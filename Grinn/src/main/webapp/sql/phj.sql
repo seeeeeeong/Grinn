@@ -50,7 +50,7 @@ create table item_fav(
 create sequence itemfav_seq;
 
 --상품사이즈
-create table size(
+create table item_size(
  item_sizenum number,
  item_cate number(1) not null,
  item_size varchar2(15),
