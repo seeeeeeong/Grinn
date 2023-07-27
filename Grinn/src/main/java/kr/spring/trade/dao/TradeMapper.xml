@@ -21,5 +21,6 @@
 			item i LEFT OUTER JOIN item_size s 
 			ON i.item_cate = s.item_cate
 			WHERE i.item_num=#{item_num}
+			
 	</select>
 </mapper>
