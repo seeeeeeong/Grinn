@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class NoticeVO {
 	private int no_num;
-	private int MEM_NUM;
+	private int mem_num;
 	private String no_title;
 	private String not_content;
 	private Date no_regdate;
