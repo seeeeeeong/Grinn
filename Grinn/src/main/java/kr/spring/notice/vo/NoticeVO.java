@@ -18,4 +18,5 @@ public class NoticeVO {
 	private Date no_modifydate;
 	private int no_status;
 	private int no_category;
+	
 }
