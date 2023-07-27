@@ -1,3 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.spring.trade.dao.TradeMapper"></mapper>
+<mapper namespace="kr.spring.trade.dao.TradeMapper">
+
+	<!-- 아이템 정보와 사이즈 정보 가져오기 -->
+	<select id="selectGetItemSize" parameterType="integer" resultType="itemSizeVO">
+		SELECT 
+			i.item_num,
+			i.item_brand,
+			i.item_name,
+			i.item_detail,
+			i.item_date,
+			i.item_price,
+			i.item_photo1,
+			i.item_photo1name,
+			i.item_cate,
+			i.item_status,
+			s.item_sizenum,
+			s.item_size
+		FROM 
+			item i LEFT OUTER JOIN item_size s 
+			ON i.item_cate = s.item_cate
+			WHERE i.item_num=#{item_num}
+	</select>
+</mapper>
