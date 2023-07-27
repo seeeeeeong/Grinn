@@ -5,9 +5,9 @@ create table trade(
  buyer_num number not null,
  seller_num number not null,
  constraint trade_pk primary key (trade_num),
- constraint trade_fk1 foreign key (item_num) references item (item_num),
- constraint trade_fk2 foreign key (buyer_num) references member (mem_num),
- constraint trade_fk3 foreign key (seller_num) references member (mem_num)
+ constraint trade_fk1 foreign key (item_num) references item (item_num) ON DELETE CASCADE,
+ constraint trade_fk2 foreign key (buyer_num) references member (mem_num) ON DELETE CASCADE,
+ constraint trade_fk3 foreign key (seller_num) references member (mem_num) ON DELETE CASCADE
 );
 create sequence trade_seq;
 
@@ -23,9 +23,9 @@ create table trade_detail(
 	trade_address1 varchar2(100) not null,
 	trade_address2 varchar2(100) not null,
 	constraint trade_detail_pk (trade_num),
-	constraint trade_detail_fk1 (trade_num) references trade (trade_num),
-	constraint trade_detail_fk2 (item_num) references item (item_num),
-	constraint trade_detail_fk3 (item_sizenum) references size (item_sizenum)
+	constraint trade_detail_fk1 (trade_num) references trade (trade_num) ON DELETE CASCADE,
+	constraint trade_detail_fk2 (item_num) references item (item_num) ON DELETE CASCADE,
+	constraint trade_detail_fk3 (item_sizenum) references size (item_sizenum) ON DELETE CASCADE
 );
 
 -- 구매 입찰 정보 테이블
@@ -38,9 +38,9 @@ create table purchase_bid(
 	purchase_regDate date default sysdate not null,
 	purchase_deadline date not null,
 	constraint purchase_bid_pk (purchase_num),
-	constraint purchase_bid_fk1 (mem_num) references member (mem_num),
-	constraint purchase_bid_fk2 (item_num) references item (item_num),
-	constraint purchase_bid_fk3 (item_sizenum) references size (item_sizenum)
+	constraint purchase_bid_fk1 (mem_num) references member (mem_num) ON DELETE CASCADE,
+	constraint purchase_bid_fk2 (item_num) references item (item_num) ON DELETE CASCADE,
+	constraint purchase_bid_fk3 (item_sizenum) references size (item_sizenum) ON DELETE CASCADE
 );
 create sequence purchase_bid_seq;
 
@@ -54,8 +54,8 @@ create table sale_bid(
 	sale_regDate date default sysdate not null,
 	sale_deadline date not null,
 	constraint sale_bid_pk (sale_num),
-	constraint sale_bid_fk1 (mem_num) references member (mem_num),
-	constraint sale_bid_fk2 (item_num) references item (item_num),
-	constraint sale_bid_fk3 (item_sizenum) references size (item_sizenum)
+	constraint sale_bid_fk1 (mem_num) references member (mem_num) ON DELETE CASCADE,
+	constraint sale_bid_fk2 (item_num) references item (item_num) ON DELETE CASCADE,
+	constraint sale_bid_fk3 (item_sizenum) references size (item_sizenum) ON DELETE CASCADE
 );
 create sequence sale_bid_seq;
