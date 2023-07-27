@@ -22,10 +22,10 @@ create table trade_detail(
 	trade_zipcode varchar2(100) not null,
 	trade_address1 varchar2(100) not null,
 	trade_address2 varchar2(100) not null,
-	constraint trade_detail_pk (trade_num),
-	constraint trade_detail_fk1 (trade_num) references trade (trade_num) ON DELETE CASCADE,
-	constraint trade_detail_fk2 (item_num) references item (item_num) ON DELETE CASCADE,
-	constraint trade_detail_fk3 (item_sizenum) references size (item_sizenum) ON DELETE CASCADE
+	constraint trade_detail_pk primary key (trade_num),
+	constraint trade_detail_fk1 foreign key (trade_num) references trade (trade_num) ON DELETE CASCADE,
+	constraint trade_detail_fk2 foreign key (item_num) references item (item_num) ON DELETE CASCADE,
+	constraint trade_detail_fk3 foreign key (item_sizenum) references size (item_sizenum) ON DELETE CASCADE
 );
 
 -- 구매 입찰 정보 테이블
@@ -37,10 +37,10 @@ create table purchase_bid(
 	purchase_price number(40) not null,
 	purchase_regDate date default sysdate not null,
 	purchase_deadline date not null,
-	constraint purchase_bid_pk (purchase_num),
-	constraint purchase_bid_fk1 (mem_num) references member (mem_num) ON DELETE CASCADE,
-	constraint purchase_bid_fk2 (item_num) references item (item_num) ON DELETE CASCADE,
-	constraint purchase_bid_fk3 (item_sizenum) references size (item_sizenum) ON DELETE CASCADE
+	constraint purchase_bid_pk primary key (purchase_num),
+	constraint purchase_bid_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
+	constraint purchase_bid_fk2 foreign key (item_num) references item (item_num) ON DELETE CASCADE,
+	constraint purchase_bid_fk3 foreign key (item_sizenum) references size (item_sizenum) ON DELETE CASCADE
 );
 create sequence purchase_bid_seq;
 
@@ -53,9 +53,9 @@ create table sale_bid(
 	sale_price number(40) not null,
 	sale_regDate date default sysdate not null,
 	sale_deadline date not null,
-	constraint sale_bid_pk (sale_num),
-	constraint sale_bid_fk1 (mem_num) references member (mem_num) ON DELETE CASCADE,
-	constraint sale_bid_fk2 (item_num) references item (item_num) ON DELETE CASCADE,
-	constraint sale_bid_fk3 (item_sizenum) references size (item_sizenum) ON DELETE CASCADE
+	constraint sale_bid_pk primary key (sale_num),
+	constraint sale_bid_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
+	constraint sale_bid_fk2 foreign key (item_num) references item (item_num) ON DELETE CASCADE,
+	constraint sale_bid_fk3 foreign key (item_sizenum) references size (item_sizenum) ON DELETE CASCADE
 );
 create sequence sale_bid_seq;
