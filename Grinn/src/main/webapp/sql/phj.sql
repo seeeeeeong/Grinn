@@ -33,8 +33,8 @@ create table review(
  item_num number not null,
  mem_num number not null,
  constraint review_pk primary key (review_num),
- constraint review_fk1 foreign key (item_num) references item (item_num),
- constraint review_fk2 foreign key (mem_num) references member (mem_num)
+ constraint review_fk1 foreign key (item_num) references item (item_num) ON DELETE CASCADE,
+ constraint review_fk2 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
 );
 create sequence review_seq;
 
@@ -44,8 +44,8 @@ create table item_fav(
  item_num number not null,
  mem_num number not null,
  constraint item_fav_pk primary key (item_favnum),
- constraint item_fav_fk1 foreign key (item_num) references item (item_num),
- constraint item_fav_fk2 foreign key (mem_num) references member (mem_num)
+ constraint item_fav_fk1 foreign key (item_num) references item (item_num) ON DELETE CASCADE,
+ constraint item_fav_fk2 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
 );
 create sequence itemfav_seq;
 
