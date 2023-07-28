@@ -11,8 +11,8 @@
 	    <put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>
     </definition>
     <definition name="boardWrite" extends="main">
-    	<put-attribute name="title" value="공지사항글작성"/>
-	    <put-attribute name="body" value="/WEB-INF/views/notice/noticeWrite.jsp"/>
+    	<put-attribute name="title" value="공지사항글목록"/>
+	    <put-attribute name="body" value="/WEB-INF/views/notice/noticeList.jsp"/>
     </definition>
 </tiles-definitions>
 

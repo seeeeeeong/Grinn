@@ -4,7 +4,7 @@
 <!-- 상단 시작 -->
 <h2 class="align-center">SpringPage</h2>
 <div class="align-right">
-	<a href="${pageContext.request.contextPath}/style/noticeList.do">고객센터</a>
+	<a href="${pageContext.request.contextPath}/notice/noticeList.do">고객센터</a>
 	<a href="${pageContext.request.contextPath}/style/list.do">게시판</a>
 
 	<c:if test="${!empty user && user.auth == 2}">
