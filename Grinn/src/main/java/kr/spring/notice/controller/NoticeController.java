@@ -11,9 +11,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.notice.service.NoticeService;
 import kr.spring.notice.vo.NoticeVO;
+import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -37,7 +40,7 @@ public class NoticeController {
 		return "noticeWrite";
 	}
 	//전송된 데이터 처리
-	@PostMapping("/notice/wirte.do")
+	@PostMapping("/notice/write.do")
 	public String submit(@Valid NoticeVO noticeVO, BindingResult result,
 						HttpServletRequest request, HttpSession session, Model model) {
 		
@@ -45,7 +48,48 @@ public class NoticeController {
 		return "";
 	}
 	
+	
+	/* ======================== 고객센터 글 등록 ======================== */
+	@RequestMapping("/notice/noticeList.do")
+	public ModelAndView getNoticeList() {
+		
+		
+		//페이지 처리
+		//PagingUtil page = new PagingUtil(currentPage, count, 10, 5);
+		
+		return null;
+	}
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

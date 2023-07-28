@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.notice.vo.NoticeVO;
 
 @Service
+@Transactional
 public class NoticeServiceImpl implements NoticeService{
 
 	@Override
