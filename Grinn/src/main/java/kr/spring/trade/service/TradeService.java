@@ -4,7 +4,9 @@ import java.util.List;
 
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
+import kr.spring.pbid.vo.PurchaseSizePriceVO;
 import kr.spring.sbid.vo.SaleBidVO;
+import kr.spring.sbid.vo.SaleSizePriceVO;
 
 public interface TradeService {
 
@@ -24,9 +26,9 @@ public interface TradeService {
 	// 즉시 판매를 위한 구매입찰 중 최대값
 	public int selectMaxSaleBid(int item_num);
 	// 아이템 정보와 사이즈 별 구매 입찰 정보 가져오기 ( 구매 입찰 가중 최대값 )
-	
+	public List<PurchaseSizePriceVO> selectPurchaseSizePrice(int item_num);
 	// 아이템 정보와 사이즈 별 판매 입찰 정보 가져오기 ( 판매 입찰 가중 최소값 )
-	
+	public List<SaleSizePriceVO> selectSaleSizePrice(int item_num);
 	// 구매 입찰 정보 등록
 	public void insertPurchaseBid(PurchaseBidVO purchaseBidVO);
 	// 판매 입찰 정보 등록 
