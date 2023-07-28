@@ -10,6 +10,11 @@
     	<put-attribute name="title" value="SpringPage"/>
 	    <put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>
     </definition>
+    
+    <definition name="selectSize" extends="main">
+    	<put-attribute name="title" value="사이즈 정보"/>
+	    <put-attribute name="body" value="/WEB-INF/views/purchase/selectSize.jsp"/>
+    </definition>
 </tiles-definitions>
 
 
