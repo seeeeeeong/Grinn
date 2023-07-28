@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.style.dao.StyleMapper">
-
+	<!-- 스타일 작성 -->
+	<insert id="insertStyle" parameterType="styleVO">
+		INSERT INTO style
+		(st_num,
+		st_phrase,
+		st_photo1n,
+		st_photo2n,
+		st_photo3n,
+		st_photo4n,
+		st_photo1,
+		st_photo2,
+		st_photo3,
+		st_photo4,
+		mem_num)
+		VALUES(
+		style_seq.nextval,
+		#{st_phrase},
+		#{st_photo1n},
+		#{st_photo2n},
+		#{st_photo3n},
+		#{st_photo4n},
+		#{st_photo1},
+		#{st_photo2},
+		#{st_photo3},
+		#{st_photo4},
+		1)
+	</insert>
 </mapper>

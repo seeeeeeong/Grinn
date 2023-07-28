@@ -13,4 +13,5 @@ public interface StyleService {
 	public StyleVO selectStyle(Integer st_num);
 	public void updateStyle(StyleVO style);
 	public void deleteStyle(Integer st_num);
+	public void uploadPhoto(StyleVO styleVO);
 }

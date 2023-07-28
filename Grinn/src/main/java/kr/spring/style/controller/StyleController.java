@@ -1,5 +1,8 @@
 package kr.spring.style.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -12,10 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.member.vo.MemberVO;
 import kr.spring.style.service.StyleService;
 import kr.spring.style.vo.StyleVO;
+import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -40,6 +47,9 @@ public class StyleController {
 	public String form() {
 		return "styleWrite";
 	}
+	
+	
+	
 	//전송된 데이터 처리
 	@PostMapping("/style/write.do")
 	public String submit(@Valid StyleVO styleVO,
@@ -55,6 +65,12 @@ public class StyleController {
 			return form();
 		}
 		
+		styleService.insertStyle(styleVO);
+		
+		model.addAttribute("message", "스타일 업로드 완료!");
+		model.addAttribute("url", 
+				request.getContextPath()+"/style/list.do");
+		
 		return "common/resultView";
 	}
 	
@@ -62,9 +78,12 @@ public class StyleController {
 	 * 게시판 목록
 	 *========================*/
 	@RequestMapping("/style/list.do")
-	public void getList() {
+	public ModelAndView getList() {
 		
-		//return mav;
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("styleList");
+		
+		return mav;
 	}
 	
 }
