@@ -2,10 +2,14 @@
 CREATE TABLE style(
 	st_num number,
 	st_phrase varchar2(500),
-	st_photo1 varchar2(200) not null,
-	st_photo2 varchar2(200),
-	st_photo3 varchar2(200),
-	st_photo4 varchar2(200),
+	st_photo1n varchar2(200) not null,
+	st_photo2n varchar2(200),
+	st_photo3n varchar2(200),
+	st_photo4n varchar2(200),
+	st_photo1 blob,
+	st_photo2 blob,
+	st_photo3 blob,
+	st_photo4 blob,
 	st_regdate DATE DEFAULT SYSDATE not null,
 	st_mdate DATE,
 	mem_num number,
@@ -27,8 +31,8 @@ CREATE TABLE style_fav(
 	mem_num number not null,
 	st_num number not null,
 	constraint style_fav_pk primary key (stfav_num),
-	constraint style_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
-    constraint style_fk2 foreign key (st_num) references style (st_num) ON DELETE CASCADE
+	constraint style_fav_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
+    constraint style_fav_fk2 foreign key (st_num) references style (st_num) ON DELETE CASCADE
 );
 
 CREATE sequence style_fav_seq;
@@ -36,7 +40,7 @@ CREATE sequence style_fav_seq;
 --스타일 댓글
 CREATE TABLE style_comment(
 	com_num number,
-	comment varchar2(400) not null,
+	com_comment varchar2(400) not null,
 	com_regdate DATE DEFAULT SYSDATE not null,
 	com_mdate DATE,
 	mem_num number not null,
@@ -73,7 +77,7 @@ CREATE sequence style_tag_seq;
 --게시물 신고
 CREATE TABLE report_st(
 	rst_num number,
-	rep_type numer(1) not null,
+	rep_type number(1) not null,
 	rep_com varchar2(800),
 	rep_hide number(1) default 0 not null,
 	rep_status number(1) default 0 not null,
@@ -93,7 +97,7 @@ CREATE sequence report_st_seq;
 --댓글 신고
 CREATE TABLE report_com(
 	rcom_num number,
-	rep_type numer(1) not null,
+	rep_type number(1) not null,
 	rep_com varchar2(800),
 	rep_hide number(1) default 0 not null,
 	rep_status number(1) default 0 not null,
