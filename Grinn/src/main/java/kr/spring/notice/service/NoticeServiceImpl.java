@@ -27,6 +27,16 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
+	public List<NoticeVO> selectFaqList(Map<String, Object> map) {
+		return noticeMapper.selectFaqList(map);
+	}
+
+	@Override
+	public List<NoticeVO> selectAuthList(Map<String, Object> map) {
+		return noticeMapper.selectAuthList(map);
+	}
+
+	@Override
 	public void insertNotice(NoticeVO notice) {
 		// TODO Auto-generated method stub
 		
@@ -49,5 +59,6 @@ public class NoticeServiceImpl implements NoticeService{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

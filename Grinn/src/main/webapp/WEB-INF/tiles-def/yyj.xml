@@ -17,7 +17,7 @@
     	<put-attribute name="title" value="자주묻는질문 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/notice/noticefaq.jsp"/>
     </definition>
-     <definition name="noticeauth_policy" extends="main">
+     <definition name="noticeAuth_policy" extends="main">
     	<put-attribute name="title" value="검수기준 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/notice/noticeAuth_policy.jsp"/>
     </definition>

@@ -54,7 +54,7 @@ public class NoticeController {
 	}
 	
 	
-	/* ======================== 고객센터 글 목록 ======================== */
+	/* ======================== 고객센터(공지사항) 글 목록 ======================== */
 	@RequestMapping("/notice/noticeList.do")
 	public ModelAndView getNoticeList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
 									String keyfield, String keyword) {
@@ -82,8 +82,62 @@ public class NoticeController {
 		
 		return mav;
 	}
-	
-	
+	/* ======================== 고객센터(자주묻는질문) 글 목록 ======================== */
+	@RequestMapping("/notice/noticefaq.do")
+	public ModelAndView getNoticeFaqList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+			String keyfield, String keyword) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		//전체 레코드 수
+		int count = noticeService.selectRowCount(map);
+		//페이지 처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 10, 5, "noticefaq.do");
+		
+		List<NoticeVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			list = noticeService.selectFaqList(map);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("noticefaq");
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("page", page.getPage());
+		
+		return mav;
+	}
+	/* ======================== 고객센터(검수기준) 글 목록 ======================== */
+	@RequestMapping("/notice/noticeAuth_policy.do")
+	public ModelAndView getNoticeAuthPolicyList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+			String keyfield, String keyword) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		//전체 레코드 수
+		int count = noticeService.selectRowCount(map);
+		//페이지 처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 10, 5, "noticeAuth_policy.do");
+		
+		List<NoticeVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			list = noticeService.selectAuthList(map);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("noticeAuth_policy");
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("page", page.getPage());
+		
+		return mav;
+	}
 	
 }
 
