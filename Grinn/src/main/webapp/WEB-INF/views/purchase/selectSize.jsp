@@ -12,7 +12,7 @@
 			<c:forEach var="list" items="${list}">
 			<tr>
 				<td>
-					<a href="purchase/check.do?item_num=${list.item_num}&item_sizenum=${list.item_sizenum}">${list.item_sizenum}</a>
+					<a href="check.do?item_num=${list.item_num}&item_sizenum=${list.item_sizenum}&item_size=${list.item_size}">${list.item_sizenum}</a>
 				</td>
 				<td>
 					${list.item_size}
