@@ -38,10 +38,15 @@ public class TradeController {
 	@GetMapping("/purchase/selectSize.do")
 	public ModelAndView getItemAndSize(@RequestParam int item_num) {
 		// 사이즈 별 판매 입찰 정보를 뿌리기
+		log.debug("<< item_num >> : " + item_num);
 		List<SaleSizePriceVO> sspList = tradeService.selectSaleSizePrice(item_num);
+		log.debug("<<sspList 크기 >> : " + sspList.size());
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("selectSize");
 		mav.addObject("list",sspList);
+		
+		// 아이템 번호로 아이템 정보 구하기
+		
 		return mav;
 	}
 	
