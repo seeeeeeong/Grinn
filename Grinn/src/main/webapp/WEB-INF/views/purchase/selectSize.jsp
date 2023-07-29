@@ -14,12 +14,26 @@
 				<td>
 					<a href="check.do?item_num=${list.item_num}&item_sizenum=${list.item_sizenum}&item_size=${list.item_size}">${list.item_sizenum}</a>
 				</td>
+				<c:if test="${empty list.item_size}">
+				<td>
+					ONE SIZE
+				</td>
+				</c:if>
+				<c:if test="${!empty list.item_size}">
 				<td>
 					${list.item_size}
 				</td>
+				</c:if>
+				<c:if test="${list.sale_price == 0}">
 				<td>
-					${list.sale_price}
+					정가 : 40,000원
 				</td>
+				</c:if>
+				<c:if test="${list.sale_price != 0}">
+				<td>
+					${list.sale_price}원
+				</td>
+				</c:if>
 			</tr>
 			</c:forEach>
 		</table>

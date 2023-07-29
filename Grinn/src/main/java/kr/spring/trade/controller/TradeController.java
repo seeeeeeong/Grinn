@@ -77,5 +77,45 @@ public class TradeController {
 		return "check";
 	}
 	
+	/**
+	 * ======================================================================================================================
+	 * 								구매 계속 버튼 클릭 시 구매 관련 상세 정보 처리
+	 * ======================================================================================================================
+	 **/
+	@GetMapping("/purchase/purchaseDetail")
+	public String getPurchaseDetail(@RequestParam int item_num, @RequestParam int item_sizenum,@RequestParam String item_size, Model model,HttpSession session) {
+		
+		// Login인터셉터로 로그인 되어있는지 확인 필요 ****************
+		
+		// 판매입찰 정보가 등록되어 있는지 확인
+		int saleBidCount = tradeService.selectGetSaleBidByItemAndSize(item_num, item_sizenum);
+		// 구매입찰 정보가 등록되어 있는지 확인
+		int purchaseBidCount = tradeService.selectGetPurchaseBidByItemAndSize(item_num, item_sizenum);
+		// 즉시 구매가 정보 넘기기
+		int minSaleBid = 0;
+		if(saleBidCount > 0) {
+			minSaleBid = tradeService.selectMinSaleBid(item_num, item_sizenum);
+		}else {
+			minSaleBid = 1000; // 입찰 정보가 없기 때문에 아이템 정가가 들어가야함 *********************************
+		}
+		
+		// 즉시 판매가 정보 넘기기
+		int maxPurchaseBid = 0;
+		if(purchaseBidCount > 0) {
+			maxPurchaseBid = tradeService.selectMaxPurchaseBid(item_num, item_sizenum);
+		}else {
+			maxPurchaseBid = 1000; // 입찰 정보가 없기 때문에 아이템 정가가 들어가야함 *********************************
+		}
+		
+		model.addAttribute("minSaleBid",minSaleBid);
+		model.addAttribute("maxPurchaseBid",maxPurchaseBid);
+		model.addAttribute("item_num",item_num);
+		model.addAttribute("item_size",item_size);
+		
+		// 아이템 번호로 아이템 정보 구해서 넘기기 *********	
+		// 구매자 정보 넘기기 **************
+		return "purchaseDetail";
+	}
+	
 	
 }

@@ -39,15 +39,13 @@ public class TradeServiceImpl implements TradeService{
 	}
 
 	@Override
-	public int selectMinPurchaseBid(int item_num) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int selectMinSaleBid(int item_num,int item_sizenum) {
+		return tradeMapper.selectMinSaleBid(item_num, item_sizenum);
 	}
 
 	@Override
-	public int selectMaxSaleBid(int item_num) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int selectMaxPurchaseBid(int item_num,int item_sizenum) {
+		return tradeMapper.selectMaxPurchaseBid(item_num, item_sizenum);
 	}
 
 	@Override
@@ -82,6 +80,16 @@ public class TradeServiceImpl implements TradeService{
 	public void deleteSaleBid(int sale_num) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int selectGetPurchaseBidByItemAndSize(int item_num, int item_sizenum) {
+		return tradeMapper.selectGetPurchaseBidByItemAndSize(item_num, item_sizenum);
+	}
+
+	@Override
+	public int selectGetSaleBidByItemAndSize(int item_num, int item_sizenum) {
+		return tradeMapper.selectGetSaleBidByItemAndSize(item_num, item_sizenum);
 	}
 
 }
