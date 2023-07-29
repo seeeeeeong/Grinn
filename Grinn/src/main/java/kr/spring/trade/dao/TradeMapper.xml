@@ -43,7 +43,7 @@
 		SELECT 
 			s.item_sizenum,
 			i.item_num,
-			min(sb.sale_price) as sale_rice,
+			min(sb.sale_price) sale_price,
 			s.item_size
 		FROM item_size s 
 		LEFT JOIN item i ON s.item_cate = i.item_cate 

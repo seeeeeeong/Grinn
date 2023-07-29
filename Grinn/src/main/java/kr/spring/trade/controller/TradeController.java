@@ -49,6 +49,7 @@ public class TradeController {
 		log.debug("<< item_num >> : " + item_num);
 		List<SaleSizePriceVO> sspList = tradeService.selectSaleSizePrice(item_num);
 		log.debug("<<sspList 크기 >> : " + sspList.size());
+		log.debug("<<test>> : " + sspList.get(0));
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("selectSize");
 		mav.addObject("list",sspList);

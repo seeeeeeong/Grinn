@@ -21,40 +21,40 @@ public class TradeServiceImpl implements TradeService{
 	TradeMapper tradeMapper;
 	
 	@Override
-	public List<ItemSizeVO> selectGetItemSize(int item_num) {
+	public List<ItemSizeVO> selectGetItemSize(Integer item_num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PurchaseBidVO> selectGetPurchaseBidByItem(int item_num) {
+	public List<PurchaseBidVO> selectGetPurchaseBidByItem(Integer item_num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<SaleBidVO> selectGetSaleBidByItem(int item_num) {
+	public List<SaleBidVO> selectGetSaleBidByItem(Integer item_num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int selectMinSaleBid(int item_num,int item_sizenum) {
+	public int selectMinSaleBid(Integer item_num,Integer item_sizenum) {
 		return tradeMapper.selectMinSaleBid(item_num, item_sizenum);
 	}
 
 	@Override
-	public int selectMaxPurchaseBid(int item_num,int item_sizenum) {
+	public int selectMaxPurchaseBid(Integer item_num,Integer item_sizenum) {
 		return tradeMapper.selectMaxPurchaseBid(item_num, item_sizenum);
 	}
 
 	@Override
-	public List<PurchaseSizePriceVO> selectPurchaseSizePrice(int item_num) {
+	public List<PurchaseSizePriceVO> selectPurchaseSizePrice(Integer item_num) {
 		return tradeMapper.selectPurchaseSizePrice(item_num);
 	}
 
 	@Override
-	public List<SaleSizePriceVO> selectSaleSizePrice(int item_num) {
+	public List<SaleSizePriceVO> selectSaleSizePrice(Integer item_num) {
 		return tradeMapper.selectSaleSizePrice(item_num);
 	}
 
@@ -71,24 +71,24 @@ public class TradeServiceImpl implements TradeService{
 	}
 
 	@Override
-	public void deletePurchaseBid(int purchase_num) {
+	public void deletePurchaseBid(Integer purchase_num) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteSaleBid(int sale_num) {
+	public void deleteSaleBid(Integer sale_num) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public int selectGetPurchaseBidByItemAndSize(int item_num, int item_sizenum) {
+	public int selectGetPurchaseBidByItemAndSize(Integer item_num, Integer item_sizenum) {
 		return tradeMapper.selectGetPurchaseBidByItemAndSize(item_num, item_sizenum);
 	}
 
 	@Override
-	public int selectGetSaleBidByItemAndSize(int item_num, int item_sizenum) {
+	public int selectGetSaleBidByItemAndSize(Integer item_num, Integer item_sizenum) {
 		return tradeMapper.selectGetSaleBidByItemAndSize(item_num, item_sizenum);
 	}
 
