@@ -65,6 +65,8 @@ public class StyleController {
 			return form();
 		}
 		
+		//로그인 작업 완료 후 세션에서 회원번호 호출하여 셋팅하는 것으로 변경
+		styleVO.setMem_num(1);
 		styleService.insertStyle(styleVO);
 		
 		model.addAttribute("message", "스타일 업로드 완료!");

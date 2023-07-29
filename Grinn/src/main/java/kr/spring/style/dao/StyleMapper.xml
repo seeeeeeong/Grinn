@@ -26,6 +26,6 @@
 		#{st_photo2},
 		#{st_photo3},
 		#{st_photo4},
-		1)
+		#{mem_num})
 	</insert>
 </mapper>
