@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.member.dao.MemberMapper">
+	<!-- 회원가입 -->
+	<insert id = "insertMember_detail" parameterType = "memberVO">
+		INSERT INTO member_detail(
+		  mem_num,
+		  mem_id,
+		  mem_passwd,
+		  mem_email,
+		  mem_phone)
+		VALUES(
+		  #{mem_num},
+		  #{mem_id},
+		  #{mem_passwd},
+		  #{mem_email},
+		  #{mem_phone})
+	</insert>
 	
+	<!-- 회원아이디로 회원정보 체크 -->
+	<select id = "selectCheckMember" parameterType = "string" resultType = "memberVO">
+		SELECT
+		  m.mem_num,
+		  m.mem_id,
+		  m.mem_auth,
+		  d.au_id,
+		  d.mem_passwd,
+		  d.mem_email
+		FROM member m LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
+		WHERE m.mem_id = #{mem_id}
+	</select>
+	
+	<!-- 관리자 - 회원목록 보기 (검색) -->
 </mapper>
 
 
