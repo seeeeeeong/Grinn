@@ -102,11 +102,15 @@ public class NoticeController {
 			list = noticeService.selectFaqList(map);
 		}
 		
+		//NoticeVO vo = new NoticeVO();
+		//vo.setNo_category(category);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("noticefaq");
 		mav.addObject("count", count);
 		mav.addObject("list", list);
 		mav.addObject("page", page.getPage());
+		//mav.addObject("vo", vo);
 		
 		return mav;
 	}

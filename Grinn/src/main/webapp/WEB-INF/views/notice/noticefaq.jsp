@@ -25,6 +25,7 @@
 	</ul>
 	</div>
 	<div id="page_body">
+		<h3>자주묻는질문</h3>
 		<!-- 검색부분 추가예정 -->
 		<table>
 			<tr>
