@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.spring.notice.service.NoticeService;
 import kr.spring.notice.vo.NoticeVO;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -62,7 +63,7 @@ public class NoticeController {
 		noticeService.insertNotice(noticeVO);
 		
 		model.addAttribute("message", "글쓰기가 완료되었습니다");
-		model.addAttribute("url", request.getContextPath()+"/notice/List.do");
+		model.addAttribute("url", request.getContextPath()+"/notice/list.do");
 		
 		return "common/resultView";
 	}
@@ -155,6 +156,18 @@ public class NoticeController {
 		mav.addObject("page", page.getPage());
 		
 		return mav;
+	}
+	/* ======================== 글 상세 ======================== */
+	@RequestMapping("/notice/detail.do")
+	public ModelAndView getDetail(@RequestParam int no_num) {
+		//글 상세
+		NoticeVO notice = noticeService.selectNotice(no_num);
+		//제목에 태그를 허용하지 않음
+		notice.setNo_title(StringUtil.useNoHtml(notice.getNo_title()));
+		//CKEditor를 사용하지 않을 경우 내용에 태그 불허
+		//notice.setNo_content(StringUtil.useBrNoHtml(notice.getNo_content()));
+		
+		return new ModelAndView("noticeView", "notice", notice);
 	}
 	
 }

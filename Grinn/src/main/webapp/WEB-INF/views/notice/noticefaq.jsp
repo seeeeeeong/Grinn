@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
 <script type="text/javascript">
 	$(function(){
 		//검색 유효성 체크
@@ -25,7 +26,7 @@
 	</ul>
 	</div>
 	<div id="page_body">
-		<h3>자주묻는질문</h3>
+		<h3 id="ha">자주묻는질문</h3>
 		<!-- 검색부분 추가예정 -->
 		<table>
 			<tr>

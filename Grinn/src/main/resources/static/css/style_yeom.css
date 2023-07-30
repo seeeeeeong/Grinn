@@ -2,8 +2,19 @@
 /* 메인
 ------------------------*/
 #ha {
-	padding-bottom: 16px;
+	padding: 5px 0 16px;
 	border-bottom: 3px solid #222;
 	display: flex;
 	font-size: 22px;
+	margin: 0 auto;
+}
+#notice_title {
+	padding: 17px 0 19px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #ebebeb;
+	cursor: pointer;
+	width: 873px;
+	font-size: 15px;
+	letter-spacing: -.15px;
 }
