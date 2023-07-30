@@ -1,6 +1,8 @@
 package kr.spring.trade.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.member.vo.MemberVO;
@@ -80,9 +84,10 @@ public class TradeController {
 	
 	/**
 	 * ======================================================================================================================
-	 * 								구매 계속 버튼 클릭 시 구매 관련 상세 정보 처리
+	 * 								구매 : 구매 계속 버튼 클릭 시 구매 관련 상세 정보 처리
 	 * ======================================================================================================================
 	 **/
+	// 즉시 구매 버튼 클릭 시 통시 및 구매 기본 화면 구성
 	@GetMapping("/purchase/purchaseDetail")
 	public String getPurchaseDetail(@RequestParam int item_num, @RequestParam int item_sizenum,@RequestParam String item_size, Model model,HttpSession session) {
 		
@@ -108,8 +113,8 @@ public class TradeController {
 			maxPurchaseBid = 1000; // 입찰 정보가 없기 때문에 아이템 정가가 들어가야함 *********************************
 		}
 		
-		model.addAttribute("minSaleBid",minSaleBid);
-		model.addAttribute("maxPurchaseBid",maxPurchaseBid);
+		model.addAttribute("minSaleBid",minSaleBid); // 즉시 구매가
+		model.addAttribute("maxPurchaseBid",maxPurchaseBid); // 즉시 판매가
 		model.addAttribute("item_num",item_num);
 		model.addAttribute("item_size",item_size);
 		
@@ -118,5 +123,21 @@ public class TradeController {
 		return "purchaseDetail";
 	}
 	
+	// 구매 입찰 버튼 클릭 시 통신
+	@PostMapping("/purchase/purchaseDetailBid")
+	@ResponseBody
+	public Map<String,Object> getPurchaseDetailBid(HttpSession session) {
+		
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		// 로그인 되어있는지 체크
+		MemberVO member = (MemberVO)session.getAttribute("user");
+		
+		//if(member == null) {
+		//	mapJson.put("result", "logout");
+		//}
+		mapJson.put("result", "");
+		
+		return mapJson;
+	}
 	
 }
