@@ -1,0 +1,9 @@
+@charset "UTF-8";
+/* 메인
+------------------------*/
+#ha {
+	padding-bottom: 16px;
+	border-bottom: 3px solid #222;
+	display: flex;
+	font-size: 22px;
+}

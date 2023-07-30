@@ -38,8 +38,7 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public void insertNotice(NoticeVO notice) {
-		// TODO Auto-generated method stub
-		
+		noticeMapper.insertNotice(notice);
 	}
 
 	@Override

@@ -13,6 +13,25 @@
 		   COUNT(*)
 		FROM notice
 	</select>
+	
+	<insert id="insertNotice" parameterType="noticeVO">
+		INSERT INTO notice (
+			no_num, 
+			mem_num, 
+			no_title, 
+			no_content, 
+			no_regdate,
+			no_status,
+			no_category) 
+		VALUES (
+			notice_seq.nextval,
+			#{no_title},
+			#{mem_num},
+			#{no_title},
+			#{no_regdate},
+			#{no_status},
+			#{no_category})
+	</insert>
 </mapper>
 
 

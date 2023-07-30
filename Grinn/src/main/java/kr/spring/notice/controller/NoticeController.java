@@ -48,9 +48,23 @@ public class NoticeController {
 	@PostMapping("/notice/write.do")
 	public String submit(@Valid NoticeVO noticeVO, BindingResult result,
 						HttpServletRequest request, HttpSession session, Model model) {
+		//유효성 체크 결과 오류가 있으면 폼 호출
+		//if(result.hasErrors()) {
+		//	return form();
+		//}
 		
+		//회원번호 세팅
+		//noticeVO.setMem_num(((NoticeVO)session.getAttribute("user")).getMem_num());
 		
-		return "";
+		//로그인작업 완료 후 세션에서 회원번호 호출하여 세팅하는 것으로 변경
+		noticeVO.setMem_num(1);		
+		//글 쓰기
+		noticeService.insertNotice(noticeVO);
+		
+		model.addAttribute("message", "글쓰기가 완료되었습니다");
+		model.addAttribute("url", request.getContextPath()+"/notice/List.do");
+		
+		return "common/resultView";
 	}
 	
 	
