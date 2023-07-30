@@ -21,7 +21,7 @@ create table member_detail(
 	mem_int varchar2(100),
 	mem_date date default sysdate not null,
 	mem_mdate date,
-	mem_point number(1200),
+	mem_point number(20),
 	constraint member_detail_pk primary key (mem_num),
 	constraint member_detail_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
 );
@@ -33,7 +33,6 @@ create table vote(
 	item_num number not null,
 	vote_date date default sysdate not null,
 	constraint vote_pk primary key (vote_num),
-	constraint vote_fk1 foreign key (board_num) references vote_board (board_num) ON DELETE CASCADE,
 	constraint vote_fk2 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
 	constraint vote_fk3 foreign key (item_num) references item (item_num) ON DELETE CASCADE
 );
