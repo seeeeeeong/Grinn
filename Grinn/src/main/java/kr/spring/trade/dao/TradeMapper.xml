@@ -23,4 +23,31 @@
 			WHERE i.item_num=#{item_num}
 			
 	</select>
+	
+	<!-- 아이템 정보로 사이즈 별 구매 입찰 가격 가져오기 -->
+	<select id="selectPurchaseSizePrice" parameterType="integer" resultType="purchaseSizePriceVO">
+		SELECT 
+			s.item_sizenum,
+			i.item_num,
+			max(pb.purchase_price) as purchase_price,
+			s.item_size
+		FROM item_size s 
+		LEFT JOIN item i ON s.item_cate = i.item_cate 
+		LEFT JOIN purchase_bid pb ON s.item_sizenum = pb.item_sizenum WHERE i.item_num = #{item_num}
+		GROUP BY s.item_sizenum,s.item_size,i.item_num
+	</select>
+	
+	
+	<!-- 아이템 정보로 사이즈 별 판매 입찰 가격 가져오기 -->
+	<select id="selectSaleSizePrice" parameterType="integer" resultType="saleSizePriceVO">
+		SELECT 
+			s.item_sizenum,
+			i.item_num,
+			min(sb.sale_price) sale_price,
+			s.item_size
+		FROM item_size s 
+		LEFT JOIN item i ON s.item_cate = i.item_cate 
+		LEFT JOIN sale_bid sb ON s.item_sizenum = sb.item_sizenum WHERE i.item_num = #{item_num}
+		GROUP BY s.item_sizenum,s.item_size,i.item_num
+	</select>
 </mapper>

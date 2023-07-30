@@ -5,14 +5,21 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-    <!-- 아래 태그 정보를 작업에 맞게 수정해서 사용하세요 -->
     <definition name="a6" extends="main">
     	<put-attribute name="title" value="SpringPage"/>
 	    <put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>
     </definition>
-    <definition name="boardWrite" extends="main">
-    	<put-attribute name="title" value="공지사항글작성"/>
-	    <put-attribute name="body" value="/WEB-INF/views/notice/noticeWrite.jsp"/>
+    <definition name="noticeList" extends="main">
+    	<put-attribute name="title" value="공지사항 | Grinn"/>
+	    <put-attribute name="body" value="/WEB-INF/views/notice/noticeList.jsp"/>
+    </definition>
+     <definition name="noticefaq" extends="main">
+    	<put-attribute name="title" value="자주묻는질문 | Grinn"/>
+	    <put-attribute name="body" value="/WEB-INF/views/notice/noticefaq.jsp"/>
+    </definition>
+     <definition name="noticeAuth_policy" extends="main">
+    	<put-attribute name="title" value="검수기준 | Grinn"/>
+	    <put-attribute name="body" value="/WEB-INF/views/notice/noticeAuth_policy.jsp"/>
     </definition>
 </tiles-definitions>
 

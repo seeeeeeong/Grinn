@@ -6,8 +6,12 @@ import java.util.Map;
 import kr.spring.notice.vo.NoticeVO;
 
 public interface NoticeService {
-	//고객센터
+	//고객센터-공지사항
 	public List<NoticeVO> selectList(Map<String, Object> map);
+	//고객센터-자주묻는질문
+	public List<NoticeVO> selectFaqList(Map<String, Object> map);
+	//고객센터-검수기준
+	public List<NoticeVO> selectAuthList(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);
 	public void insertNotice(NoticeVO notice);
 	public NoticeVO selectNotice(Integer no_num);
