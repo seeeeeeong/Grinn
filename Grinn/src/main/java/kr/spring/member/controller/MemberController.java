@@ -1,5 +1,30 @@
 package kr.spring.member.controller;
 
-public class MemberController {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
+import kr.spring.member.service.MemberService;
+import kr.spring.member.vo.MemberVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+public class MemberController {
+	
+	@Autowired
+	private MemberService memberService;
+	
+	@ModelAttribute
+	public MemberVO initCommand() {
+		return new MemberVO();
+	}
+	
+	// 회원가입
+	@GetMapping("/member/registerUser.do")
+	public String form() {
+		return "memberRegister";
+	}
+	
 }
