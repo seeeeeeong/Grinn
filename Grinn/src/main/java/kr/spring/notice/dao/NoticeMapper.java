@@ -29,7 +29,7 @@ public interface NoticeMapper {
 	@Select("SELECT * FROM notice")
 	public NoticeVO selectNotice(Integer no_num);
 	@Update("UPDATE notice SET no_title=#{no_title}, no_content=#{no_content}, "
-			+ "no_modifydate=SYSDATE, WHERE no_num=#{no_num}")
+			+ "no_modifydate=SYSDATE WHERE no_num=#{no_num}")
 	public void updateNotice(NoticeVO notice);
 	@Delete("DELETE FROM notice WHERE no_num=#{no_num}")
 	public void deleteNotice(Integer no_num);

@@ -3,18 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/category.js"></script>
-<script type="text/javascript">
-	$(function(){
-		//검색 유효성 체크
-		$('#search_form').submit(function(){
-			if($('#keyword').val().trim()==''){
-				alert('검색어를 입력하세요!');
-				$('#keyword').val('').focus();
-				return false;
-			}
-		});
-	});
-</script>
 <div class="page-main">
 	<div class="container">
 		<div id="page_nav">
@@ -30,18 +18,18 @@
 		<div id="page_body">
 			<h3 id="ha">검수기준</h3>
 			<c:forEach var="notice" items="${list}">
-			<table class="category"><br>
-				<tr>
-					<td><a href="${pageContext.request.contextPath}/notice/noticeAuth_policy.do/shoes.do">신발</a></td>
-					<td><a href="${pageContext.request.contextPath}/notice/noticeAuth_policy.do">상의</a></td>
-					<td><a href="${pageContext.request.contextPath}/notice/policyCategory/bottom.jsp">하의</a></td>
-				</tr>
-				<tr>
-					<td id="acc">패션잡화</td>
-					<td id="watch">프리미엄 시계</td>
-					<td id="bag">프리미엄 가방</td>
-				</tr>
-			</table>
+				<table class="category"><br>
+					<tr>
+						<td><a href="${pageContext.request.contextPath}/notice/noticeAuth_policy.do/shoes.do">신발</a></td>
+						<td><a href="${pageContext.request.contextPath}/notice/noticeAuth_policy.do">상의</a></td>
+						<td><a href="${pageContext.request.contextPath}/notice/policyCategory/bottom.do">하의</a></td>
+					</tr>
+					<tr>
+						<td id="acc">패션잡화</td>
+						<td id="watch">프리미엄 시계</td>
+						<td id="bag">프리미엄 가방</td>
+					</tr>
+				</table>
 			</c:forEach>
 		</div>
 	</div>

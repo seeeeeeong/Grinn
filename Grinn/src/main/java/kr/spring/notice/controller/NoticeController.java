@@ -31,13 +31,11 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	
 	/* ======================== 자바빈(VO) 초기화 ======================== */
 	@ModelAttribute
 	public NoticeVO initCommand() {
 		return new NoticeVO();
 	}
-	
 	
 	/* ======================== 고객센터 글 등록 ======================== */
 	//등록 폼
@@ -60,7 +58,6 @@ public class NoticeController {
 		//로그인작업 완료 후 세션에서 회원번호 호출하여 세팅하는 것으로 변경
 		noticeVO.setMem_num(1);
 		
-		
 		//글 쓰기
 		noticeService.insertNotice(noticeVO);
 		
@@ -69,7 +66,6 @@ public class NoticeController {
 		
 		return "common/resultView";
 	}
-	
 	
 	/* ======================== 고객센터(공지사항) 글 목록 ======================== */
 	@RequestMapping("/notice/noticeList.do")
