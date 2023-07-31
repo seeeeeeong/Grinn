@@ -28,7 +28,7 @@
 			#{no_title},
 			#{mem_num},
 			#{no_title},
-			#{no_regdate},
+			SYSDATE,
 			#{no_status},
 			#{no_category})
 	</insert>
