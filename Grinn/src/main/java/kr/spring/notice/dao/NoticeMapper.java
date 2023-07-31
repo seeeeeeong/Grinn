@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import kr.spring.notice.vo.NoticeVO;
 
-@Mapper
+@Mapper 
 public interface NoticeMapper {
 	//고객센터-공지사항
 	@Select("SELECT * FROM notice WHERE no_status=1")
