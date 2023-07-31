@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.fleaMarket.dao.MarketMapper">
+	<!-- 마켓 등록 -->
+	<insert id="insertMarket" parameterType="marketVO">
+		INSERT INTO market (
+			market_num,
+			market_title,
+			market_detail,
+			market_startDate,
+			market_endDate,
+			place_name,
+			market_type,
+			booth_count,
+			user_count,
+			booth_fee)
+		VALUES (
+			#{market_num},
+			#{market_title},
+			#{market_detail},
+			#{market_startDate},
+			#{market_endDate},
+			#{place_name},
+			#{market_type},
+			#{booth_count},
+			#{user_count},
+			#{booth_fee})
+	</insert>
+</mapper>
