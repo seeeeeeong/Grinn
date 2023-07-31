@@ -92,4 +92,14 @@ public class TradeServiceImpl implements TradeService{
 		return tradeMapper.selectGetSaleBidByItemAndSize(item_num, item_sizenum);
 	}
 
+	@Override
+	public PurchaseBidVO selectPurchaseBidByUserNum(Integer mem_num,Integer item_num) {
+		return tradeMapper.selectPurchaseBidByUserNum(mem_num,item_num);
+	}
+
+	@Override
+	public SaleBidVO selectSaleBidByUserNum(Integer mem_num,Integer item_num) {
+		return tradeMapper.selectSaleBidByUserNum(mem_num,item_num);
+	}
+
 }

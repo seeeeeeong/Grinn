@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/trade.js"></script>    
 <script type="text/javascript">
 	$(function(){
 		$('#btn_purchase_direct').show();
@@ -17,6 +18,7 @@
 			$('#purchase_method').text('').text('즉시 구매 하기');
 			$('#direct_price').css('display','block');
 			$('#bid_price').css('display','none');
+			$('#input_bid').val('');
 			$('#input_deadline').css('display','none');
 			$('#btn_purchase_direct').show();
 			$('#btn_purchase_bid').hide();
@@ -70,6 +72,10 @@
 	
 	<div class="align-center">
 		<div>
+			<input type="hidden" value="${minSaleBid}" name="minSaleBid" id="minSaleBid">
+			<input type="hidden" value="${item_num}" name="item_num" id="item_num">
+			<input type="hidden" value="${item_sizenum}" name="item_sizenum" id="item_sizenum">
+			<input type="hidden" value="${item_size}" name="item_size" id="item_size">
 			<p>즉시 구매가</p>
 			<p>${minSaleBid}</p>
 		</div>

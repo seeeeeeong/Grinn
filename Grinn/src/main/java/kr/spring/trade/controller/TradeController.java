@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.member.vo.MemberVO;
+import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.sbid.vo.SaleSizePriceVO;
 import kr.spring.trade.service.TradeService;
 import kr.spring.trade.vo.TradeVO;
@@ -88,7 +89,7 @@ public class TradeController {
 	 * ======================================================================================================================
 	 **/
 	// 즉시 구매 버튼 클릭 시 통시 및 구매 기본 화면 구성
-	@GetMapping("/purchase/purchaseDetail")
+	@GetMapping("/purchase/purchaseDetail.do")
 	public String getPurchaseDetail(@RequestParam int item_num, @RequestParam int item_sizenum,@RequestParam String item_size, Model model,HttpSession session) {
 		
 		// Login인터셉터로 로그인 되어있는지 확인 필요 ****************
@@ -117,6 +118,7 @@ public class TradeController {
 		model.addAttribute("maxPurchaseBid",maxPurchaseBid); // 즉시 판매가
 		model.addAttribute("item_num",item_num);
 		model.addAttribute("item_size",item_size);
+		model.addAttribute("item_sizenum",item_sizenum);
 		
 		// 아이템 번호로 아이템 정보 구해서 넘기기 *********	
 		// 구매자 정보 넘기기 **************
@@ -124,19 +126,37 @@ public class TradeController {
 	}
 	
 	// 구매 입찰 버튼 클릭 시 통신
-	@PostMapping("/purchase/purchaseDetailBid")
+	@PostMapping("/purchase/paymentPurchaseBid.do")
 	@ResponseBody
-	public Map<String,Object> getPurchaseDetailBid(HttpSession session) {
-		
+	public Map<String,Object> getPaymentPurchaseBid(@RequestParam int minSaleBid,
+												 	@RequestParam int item_num,
+												 	@RequestParam int item_sizenum,
+												 	@RequestParam String item_size,
+												 	@RequestParam String deadline,
+												 	@RequestParam int purchase_price,HttpSession session) {
 		Map<String, Object> mapJson = new HashMap<String, Object>();
 		// 로그인 되어있는지 체크
-		MemberVO member = (MemberVO)session.getAttribute("user");
+		MemberVO user = (MemberVO)session.getAttribute("user");
 		
-		//if(member == null) {
-		//	mapJson.put("result", "logout");
-		//}
-		mapJson.put("result", "");
+		// 구매 입찰을 등록했는지 체크
+		PurchaseBidVO pbVO = null;
 		
+		if(user == null) {
+			mapJson.put("result", "logout");
+		}else {
+			pbVO = tradeService.selectPurchaseBidByUserNum(user.getMem_num(),item_num);
+			
+			if(pbVO == null) {
+				mapJson.put("minSaleBid",minSaleBid);
+				mapJson.put("item_num", item_num);
+				mapJson.put("item_sizenum", item_sizenum);
+				mapJson.put("deadline", Integer.parseInt(deadline));
+				mapJson.put("purchase_price", purchase_price);
+				mapJson.put("result", "success");		
+			}else {
+				mapJson.put("result","duplicated");
+			}
+		}
 		return mapJson;
 	}
 	
