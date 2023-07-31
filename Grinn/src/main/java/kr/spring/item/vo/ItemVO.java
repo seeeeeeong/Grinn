@@ -29,15 +29,17 @@ public class ItemVO {
 	private int item_gender; //성별
 	private int item_status; //상품판매가능여부
 	
+	
+	private int re_cnt; //댓글 개수
+	private int fav_cnt; //좋아요 개수
+	
 	//이미지를 byte[] 배열로 변환(blob처리)
 	//(주의) 폼에서 파일 업로드 파라미터 네임은 반드시 upload로 지정해야함
 	public void setUpload(MultipartFile upload)throws IOException{
 		//MultipartFile -> byte[]
 		setItem_photo1(upload.getBytes());
-		setItem_photo2(upload.getBytes());
 		//파일이름
 		setItem_photo1name(upload.getOriginalFilename());
-		setItem_photo2name(upload.getOriginalFilename());
 	}
 	
 }

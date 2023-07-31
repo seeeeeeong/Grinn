@@ -6,9 +6,9 @@
 
 <tiles-definitions>
     <!-- 아래 태그 정보를 작업에 맞게 수정해서 사용하세요 -->
-    <definition name="a3" extends="main">
-    	<put-attribute name="title" value="SpringPage"/>
-	    <put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>
+    <definition name="itemWrite" extends="main">
+    	<put-attribute name="title" value="상품등록"/>
+	    <put-attribute name="body" value="/WEB-INF/views/item/itemWrite.jsp"/>
     </definition>
 </tiles-definitions>
 
