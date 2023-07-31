@@ -44,6 +44,20 @@
 				$('#input_warn').text('');
 			}
 		});
+		
+		$('.purchase_deadline').each(function(){
+			let deadline = $(this).attr('data-deadline');
+			$(this).click(function(){
+				$('#print_deadline').text(deadline+'일').attr('data-deadline',deadline);
+				let currentDate = new Date();
+				currentDate.setDate(currentDate.getDate() + Number(deadline));
+				let year = currentDate.getFullYear();
+				let month = (currentDate.getMonth() + 1);
+				let day = currentDate.getDate();
+				let formDate = year + '/' + month + '/' + day;
+				$('#print_deadline').append('('+formDate+') 마감');
+			});
+		});
 	});
 </script>
 <div class="page-main">
@@ -101,14 +115,14 @@
 				입찰 마감기한
 			</div>
 			<div>
-				1일 (언제 마감?)
+				<span id="print_deadline"></span> (언제 마감?)
 			</div>
 			<div>
-				<a>1일</a>
-				<a>3일</a>
-				<a>5일</a>
-				<a>7일</a>
-				<a>10일</a>
+				<a class="purchase_deadline" data-deadline="1">1일</a>
+				<a class="purchase_deadline" data-deadline="3">3일</a>
+				<a class="purchase_deadline" data-deadline="5">5일</a>
+				<a class="purchase_deadline" data-deadline="7">7일</a>
+				<a class="purchase_deadline" data-deadline="10">10일</a>
 			</div>
 		</div>
 		<div>
