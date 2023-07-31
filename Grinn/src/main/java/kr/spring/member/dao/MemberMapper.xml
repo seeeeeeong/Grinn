@@ -5,13 +5,11 @@
 	<insert id = "insertMember_detail" parameterType = "memberVO">
 		INSERT INTO member_detail(
 		  mem_num,
-		  mem_id,
 		  mem_passwd,
 		  mem_email,
 		  mem_phone)
 		VALUES(
 		  #{mem_num},
-		  #{mem_id},
 		  #{mem_passwd},
 		  #{mem_email},
 		  #{mem_phone})

@@ -25,7 +25,7 @@ public class MemberVO {
 	@Pattern(regexp="^[A-Za-z0-9]{4,12}$")
 	private String mem_passwd;
 	@NotEmpty
-	private String phone;
+	private String mem_phone;
 	@Email
 	@NotEmpty
 	private String mem_email;
@@ -37,4 +37,12 @@ public class MemberVO {
 	private Date mem_date;
 	private Date mem_mdate;
 	private int mem_point;
+	
+	// 비밀번호 일치 여부(Controller)
+	public boolean isCheckedPassword(String userPasswd) {
+		if(mem_auth > 1 && mem_passwd.equals(userPasswd)) {
+			return true;
+		}
+		return false;
+	}
 }

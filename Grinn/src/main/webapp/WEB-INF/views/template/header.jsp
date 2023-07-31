@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 상단 시작 -->
-<h2 class="align-center">SpringPage</h2>
+<h2 class="align-center">
+	<a href = "${pageContext.request.contextPath}/main/main.do">Grinn</a>
+</h2>
 <div class="align-right">
 	<a href="${pageContext.request.contextPath}/notice/noticeList.do">고객센터</a>
 	<a href="${pageContext.request.contextPath}/style/list.do">게시판</a>
