@@ -18,3 +18,15 @@
 	font-size: 15px;
 	letter-spacing: -.15px;
 }
+.category{
+    letter-spacing: -.09px;
+    height: 59px;
+	width: 874px;
+}
+.category td{
+	font-size: 18px;
+	width: 33.333333333%;
+	text-align: center;
+	height: 59px;
+	border: 1px solid #ebebeb;
+}

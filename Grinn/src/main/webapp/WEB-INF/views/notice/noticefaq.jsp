@@ -33,6 +33,8 @@
 				<th>전체</th>
 				<th>이용정책</th>
 				<th>공통</th>
+			</tr>
+			<tr>
 				<th>구매</th>
 				<th>판매</th>
 				<th></th>

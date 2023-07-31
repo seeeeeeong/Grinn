@@ -65,7 +65,7 @@ public class NoticeController {
 		noticeService.insertNotice(noticeVO);
 		
 		model.addAttribute("message", "글쓰기가 완료되었습니다");
-		model.addAttribute("url", request.getContextPath()+"/notice/list.do");
+		model.addAttribute("url", request.getContextPath()+"/notice/noticeList.do");
 		
 		return "common/resultView";
 	}
@@ -155,6 +155,7 @@ public class NoticeController {
 		mav.setViewName("noticeAuth_policy");
 		mav.addObject("count", count);
 		mav.addObject("list", list);
+		//mav.addObject("category", category);
 		mav.addObject("page", page.getPage());
 		
 		return mav;
@@ -170,6 +171,42 @@ public class NoticeController {
 		//notice.setNo_content(StringUtil.useBrNoHtml(notice.getNo_content()));
 		
 		return new ModelAndView("noticeView", "notice", notice);
+	}
+	/* ======================== 글 수정 ======================== */
+	//수정 폼 호출
+	@GetMapping("/notice/update.do")
+	public String formUpdate(@RequestParam int no_num, Model model) {
+		NoticeVO noticeVO = noticeService.selectNotice(no_num);
+		model.addAttribute("noticeVO", noticeVO);
+		
+		return "noticeModify";
+	}
+	//전송된 데이터 처리
+	@PostMapping("/notice/update.do")
+	public String submitUpdate(@Valid NoticeVO noticeVO, BindingResult result,
+						HttpServletRequest request, Model model) {
+		//유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			return "noticeModify";
+		}
+		
+		//글 수정
+		noticeService.updateNotice(noticeVO);
+		
+		//View에 표시할 메시지
+		model.addAttribute("message", "글 수정 완료!");
+		model.addAttribute("url", request.getContextPath()
+							+"/notice/detail.do?no_num="+noticeVO.getNo_num());
+		
+		return "common/resultView";
+	}
+	/* ======================== 글 삭제 ======================== */
+	@RequestMapping("/notice/delete.do")
+	public String submitDelete(@RequestParam int no_num) {
+		//글삭제
+		noticeService.deleteNotice(no_num);
+		
+		return "redirect:/notice/noticeList.do";
 	}
 	
 }

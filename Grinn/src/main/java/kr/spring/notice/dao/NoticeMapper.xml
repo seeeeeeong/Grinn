@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.notice.dao.NoticeMapper">
-	<!-- 고객센터 글 목록 -->
-	<!-- <select id="selectList" parameterType="map" resultType="noticeVO">
-		SELECT
-		  *
-		FROM notice WHERE no_status=1
-	</select> -->
-	
+	<!-- 고객센터 글 목록 -->	
 	<select id="selectRowCount" parameterType="map" resultType="integer">
 		SELECT
 		   COUNT(*)
@@ -25,13 +19,15 @@
 			no_category) 
 		VALUES (
 			notice_seq.nextval,
-			#{no_title},
 			#{mem_num},
 			#{no_title},
+			#{no_content},
 			SYSDATE,
 			#{no_status},
 			#{no_category})
 	</insert>
+	
+	
 </mapper>
 
 

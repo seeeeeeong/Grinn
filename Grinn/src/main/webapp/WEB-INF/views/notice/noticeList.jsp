@@ -3,16 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
 <script type="text/javascript">
-	$(function(){
-		//검색 유효성 체크
-		$('#search_form').submit(function(){
-			if($('#keyword').val().trim()==''){
-				alert('검색어를 입력하세요!');
-				$('#keyword').val('').focus();
-				return false;
-			}
-		});
-	});
+
 </script>
 <div class="page-main">
 	<div id="page_nav">

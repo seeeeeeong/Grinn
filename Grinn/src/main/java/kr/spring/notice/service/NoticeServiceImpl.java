@@ -43,20 +43,22 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public NoticeVO selectNotice(Integer no_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return noticeMapper.selectNotice(no_num);
 	}
 
 	@Override
 	public void updateNotice(NoticeVO notice) {
-		// TODO Auto-generated method stub
-		
+		noticeMapper.updateNotice(notice);
 	}
 
 	@Override
 	public void deleteNotice(Integer no_num) {
-		// TODO Auto-generated method stub
-		
+		noticeMapper.deleteNotice(no_num);
+	}
+
+	@Override
+	public List<NoticeVO> selectAuthListCategory(Map<String, Object> map) {
+		return noticeMapper.selectAuthListCategory(map);
 	}
 
 

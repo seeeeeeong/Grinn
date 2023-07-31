@@ -25,11 +25,12 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/notice/noticeAuth_policy.jsp" />
 	</definition>
-	<definition name="noticeWrite" extends="main">
-		<put-attribute name="title" value="공지사항 작성" />
+	<definition name="noticeDetail" extends="main">
+		<put-attribute name="title" value="공지사항디테일" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/notice/noticeWrite.jsp" />
+			value="/WEB-INF/views/notice/noticeDetail.jsp" />
 	</definition>
+	
 </tiles-definitions>
 
 
