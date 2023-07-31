@@ -117,6 +117,15 @@
 		           )a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
-		]]>	           
+		]]>
+		ORDER BY st_num DESC          
+	</select>
+	
+	<!-- 스타일 상세 -->
+	<select id="selectStyle" parameterType="integer">
+		SELECT
+		  * 
+		FROM style s JOIN member m USING(mem_num)
+		WHERE s.st_num=#{st_num}
 	</select>
 </mapper>
