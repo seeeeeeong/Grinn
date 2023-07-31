@@ -7,10 +7,11 @@
 </h2>
 <div class="align-right">
 	<a href="${pageContext.request.contextPath}/notice/noticeList.do">고객센터</a>
-	<a href="${pageContext.request.contextPath}/style/list.do">게시판</a>
 
 	<c:if test="${!empty user && user.mem_auth == 2}">
 		<a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a>
+		<a href="${pageContext.request.contextPath}/item/fav.do">관심상품</a>
+		<a href="${pageContext.request.contextPath}/alert/alert.do">알림</a>
 	</c:if>
 	
 	<c:if test="${!empty user}">
@@ -32,12 +33,15 @@
 	<a href="${pageContext.request.contextPath}/member/registerUser.do">회원가입</a>
 	<a href="${pageContext.request.contextPath}/member/login.do">로그인</a>
 	</c:if>
-	<c:if test="${empty user || user.mem_auth < 9}">
-	<a href="${pageContext.request.contextPath}/main/main.do">홈으로</a>
-	</c:if>
 	<c:if test="${!empty user && user.mem_auth == 9}">
 	<a href="${pageContext.request.contextPath}/main/admin.do">관리자메인</a>
 	</c:if>
+</div>
+<div class = "align-right">
+	<a href = "${pageContext.request.contextPath}/main/main.do">HOME</a>
+	<a href = "${pageContext.request.contextPath}/style/list.do">STYLE</a>
+	<a href = "${pageContext.request.contextPath}/shop/list.do">SHOP</a>
+	<a href = "${pageContext.request.contextPath}/fleamarket/list.do">FLEA MARKET</a>
 </div>
 <!-- 상단 끝 -->
 
