@@ -38,10 +38,10 @@
 	</c:if>
 </div>
 <div class = "align-right">
-	<a href = "${pageContext.request.contextPath}/main/main.do">HOME</a>
-	<a href = "${pageContext.request.contextPath}/style/list.do">STYLE</a>
-	<a href = "${pageContext.request.contextPath}/shop/list.do">SHOP</a>
-	<a href = "${pageContext.request.contextPath}/fleamarket/list.do">FLEA MARKET</a>
+	<a href = "${pageContext.request.contextPath}/main/main.do"><b>HOME</b></a>
+	<a href = "${pageContext.request.contextPath}/style/list.do"><b>STYLE</b></a>
+	<a href = "${pageContext.request.contextPath}/shop/list.do"><b>SHOP</b></a>
+	<a href = "${pageContext.request.contextPath}/fleamarket/list.do"><b>FLEA MARKET</b></a>
 </div>
 <!-- 상단 끝 -->
 
