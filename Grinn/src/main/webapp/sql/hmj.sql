@@ -1,21 +1,22 @@
+----플리마켓----
 --플리마켓 정보
 create table market(
-  market_num number,
-  market_title varchar2(150) not null,
-  market_detail clob,
-  market_startDate date not null,
-  market_endDate date not null,
-  place_num number(3) default 1 not null,
-  market_type number(1) not null,
-  booth_count number(3) not null,
-  user_count number(2) not null,
-  booth_fee number(6),
-  market_poster blob not null,
-  market_posterName varchar2(100) not null,
-  market_thumbNail blob not null,
-  market_thumbNailName varchar2(100) not null,
-  market_regDate date default sysdate not null,
-  market_updateDate date,
+  market_num number, -- 플리마켓 번호
+  market_title varchar2(150) not null, -- 플리마켓 제목
+  market_detail clob, -- 플리마켓 상세정보
+  market_startDate date not null, -- 플리마켓 시작일
+  market_endDate date not null, -- 플리마켓 종료일
+  place_num number(3) default 1 not null, -- 개최장소 번호
+  market_type number(1) not null, -- 플리마켓 예약 유형(1:부스 예약, 2:입장 예약)
+  booth_count number(3) not null, -- 부스 자리수
+  user_count number(2) not null, -- 입장 가능 인원수
+  booth_fee number(6), -- 부스 예약비용
+  market_poster blob not null, -- 플리마켓 포스터
+  market_posterName varchar2(100) not null, -- 포스터 이름
+  market_thumbNail blob not null, -- 플리마켓 썸네일 
+  market_thumbNailName varchar2(100) not null, -- 썸네일 이름
+  market_regDate date default sysdate not null, -- 플리마켓 등록일
+  market_updateDate date, -- 플리마켓 수정일
   constraint market_pk primary key (market_num)
 );
 
@@ -23,13 +24,13 @@ create sequence market_seq;
 
 --부스 위치
 create table boothLocation(
-  location_num number,
-  place_num number not null,
-  location_row number not null,
-  location_column number not null, 
-  booth_comp number(1) not null,
-  location_regDate date default sysdate not null,
-  location_updateDate date,
+  location_num number, -- 위치 번호
+  place_num number not null, -- 개최장소 번호
+  location_row number not null, -- 부스 위치 행
+  location_column number not null, -- 부스 위치 열
+  booth_comp number(1) not null, -- 부스 예약 완료 여부(1:미완료, 2:완료)
+  location_regDate date default sysdate not null, -- 위치 등록일
+  location_updateDate date, -- 위치 수정일
   constraint boothLocation_pk primary key (location_num),
   constraint boothLocation_fk foreign key (place_num) references market (place_num) ON DELETE CASCADE
 );
@@ -38,16 +39,17 @@ create sequence boothLocation_seq;
 
 --부스 예약 정보
 create table booking(
-  book_num number,
-  market_type number(1) not null,
-  book_time date default sysdate not null,
-  book_day date not null,
-  market_num number not null,
-  location_num number not null,
-  book_status number(1) default 1 not null,
-  booth_fee number(6) not null,
-  booth_discount number(1),
-  constraint booking_pk primary key (book_num),
+  book_seq number, -- 부스 예약 시퀀스
+  book_num varchar2(10) unique, -- 부스 예약 일렬번호
+  market_type number(1) not null, -- 플리마켓 예약 유형(1:부스 예약, 2:입장 예약)
+  book_time date default sysdate not null, -- 부스 예약한 시간
+  book_day date not null, -- 부스 예약 날짜
+  market_num number not null, -- 플리마켓 번호
+  location_num number not null, -- 부스 위치 번호
+  book_status number(1) default 1 not null, -- 예약 현황(1:미입금, 2:입금완료, 3:취소)
+  booth_fee number(6) not null, -- 부스 예약비용
+  booth_discount number(1), -- 부스 예약비용 할인
+  constraint booking_pk primary key (book_seq),
   constraint booking_fk foreign key (market_type) references market (market_type) ON DELETE CASCADE,
   constraint booking_fk2 foreign key (market_num) references market (market_num) ON DELETE CASCADE,
   constraint booking_fk3 foreign key (location_num) references boothLocation (location_num) ON DELETE CASCADE,
@@ -57,19 +59,79 @@ create sequence booking_seq;
 
 --플리마켓 예약 정보
 create table reservation(
-  res_seq number,
-  res_num varchar2(10) unique,
-  market_type number(1) not null,
-  res_time date default sysdate not null,
-  mem_num number not null,
-  market_num number not null,
-  entrance_time date not null,
-  res_count number(1) default 1 not null ,
-  res_status number(1) default 2 not null,
+  res_seq number, -- 입장 예약 시퀀스
+  res_num varchar2(10) unique, -- 입장 예약 일렬번호
+  market_type number(1) not null, -- 플리마켓 예약 유형(1:부스 예약, 2:입장 예약)
+  res_time date default sysdate not null, -- 입장 예약한 시간
+  mem_num number not null, -- 회원번호
+  market_num number not null, -- 플리마켓 번호
+  entrance_time date not null, -- 입장 시간
+  res_count number(1) default 1 not null , -- 입장 인원수(최대 2인)
+  res_status number(1) default 2 not null, -- 입장 예약 현황(1:대기, 2:예약확정, 3:취소)
   constraint reservation_pk primary key (res_seq),
-  constraint reservation_fk (market_type) references market (market_type) ON DELETE CASCADE,
-  constraint reservation_fk2 (mem_num) references member (mem_num) ON DELETE CASCADE,
-  constraint reservation_fk3 (market_num) references market (market_num) ON DELETE CASCADE,
+  constraint reservation_fk foreign key (market_type) references market (market_type) ON DELETE CASCADE,
+  constraint reservation_fk2 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
+  constraint reservation_fk3 foreign key (market_num) references market (market_num) ON DELETE CASCADE,
 );
 
-create reservation_seq;
+create sequence reservation_seq;
+
+
+----페널티----
+--회원별 페널티 요약
+create table penalty(
+  pe_num number, -- 회원 페널티 고유번호
+  mem_num number not null, -- 회원번호
+  pe_total number(3) not null, -- 회원 페널티 총합
+  mem_auth number(1) not null, -- 회원 등급
+  constraint penalty_pk primary key (pe_num),
+  constraint penalty_fk foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
+  constraint penalty_fk2 foreign key (mem_auth) references member (mem_auth) ON DELETE CASCADE
+);
+
+create sequence penalty_seq;
+
+--회원별 게시판 페널티
+create table penalty_board(
+  peBoard_num number, -- 게시판 페널티 고유번호
+  mem_num number not null, -- 회원번호
+  peBoard_score number(3) not null, -- 게시판 신고 페널티 점수
+  rep_type number(1) not null, -- 페널티 유형
+  peBoard_date date default sysdate not null, -- 게시판 페널티 부여일
+  rst_num number not null, -- 게시물 신고 번호
+  constraint penalty_board_pk primary key (peBoard_num),
+  constraint penalty_board_fk foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
+  constraint penalty_board_fk2 foreign key (rst_num) references report_st (rst_num) ON DELETE CASCADE
+);
+
+create sequence penalty_board_seq;
+
+--회원별 거래 페널티
+create table penalty_trade(
+  peTrade_num number, -- 거래 페널티 고유번호
+  mem_num number not null, -- 회원번호
+  peTrade_score number(3) not null, -- 거래 신고 페널티 점수
+  peTrade_type number(1) not null, -- 페널티 유형
+  peTrade_date date default sysdate not null, -- 거래 페널티 부여일
+  constraint penalty_trade_pk primary key (peTrade_num),
+  constraint penalty_trade_fk foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
+);
+
+----프로모션----
+--프로모션 등록 정보
+create table promotion(
+  pro_num number, -- 프로모션 번호
+  pro_name varchar2(150) not null, -- 프로모션 제목
+  pro_content clob not null, -- 프로모션 내용
+  pro_photo1 blob not null, -- 프로모션 사진1
+  pro_photo2 blob, -- 프로모션 사진2
+  pro_hit number(9) not null, -- 프로모션 조회수
+  pro_regDate date default sysdate not null, -- 프로모션 등록일
+  pro_openDate date not null, -- 프로모션 시작일
+  pro_cloDate date not null, -- 프로모션 종료일
+  pro_ing number(1) not null, -- 프로모션 진행 여부(1:진행중, 2:종료)
+  pro_hide number(1) not null, -- 프로모션 숨김 여부(1:숨김, 2:공개)
+  constraint promotion_pk primary key (pro_num)
+);
+
+create sequence promotion_seq;
