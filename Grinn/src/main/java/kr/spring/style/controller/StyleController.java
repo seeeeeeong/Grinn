@@ -1,6 +1,7 @@
 package kr.spring.style.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.service.StyleService;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.util.FileUtil;
+import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -48,15 +51,26 @@ public class StyleController {
 		return "styleWrite";
 	}
 	
+	//상품 검색
+	@RequestMapping("/style/itemSearchAjax.do")
+	@ResponseBody
+	public Map<String,Object> itemSearchAjax(@RequestParam String item_name){
+		Map<String,Object> mapJson = new HashMap<String,Object>();
 	
+		List<ItemVO> item_tag = styleService.selectSearchItem(item_name);
+		mapJson.put("result", "success");
+		mapJson.put("item_tag", item_tag);
+		
+		return mapJson;
+	}
 	
 	//전송된 데이터 처리
 	@PostMapping("/style/write.do")
 	public String submit(@Valid StyleVO styleVO,
-            BindingResult result,
-            HttpServletRequest request,
-            HttpSession session,
-            Model model) {
+            			 BindingResult result,
+            			 HttpServletRequest request,
+            			 HttpSession session,
+            			 Model model) {
 		
 		log.debug("<<STYLE 작성>> : " + styleVO);
 		
@@ -80,10 +94,35 @@ public class StyleController {
 	 * 게시판 목록
 	 *========================*/
 	@RequestMapping("/style/list.do")
-	public ModelAndView getList() {
+	public ModelAndView getList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+								@RequestParam(value="order", defaultValue="1") int order,
+								String keyfield,String keyword) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//전체/검색 레코드수
+		int count = styleService.selectRowCount(map);
+		
+		log.debug("<<count>> : " + count);
+		
+		//페이지 처리
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,20,10,"list.do","&order="+order);
+		
+		List<StyleVO> list = null;
+		if(count > 0) {
+			map.put("order",order);
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			list = styleService.selectList(map);			
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("styleList");
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("page", page.getPage());
 		
 		return mav;
 	}

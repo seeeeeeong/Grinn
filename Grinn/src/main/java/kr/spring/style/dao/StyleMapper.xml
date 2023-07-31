@@ -7,25 +7,116 @@
 		(st_num,
 		st_phrase,
 		st_photo1n,
-		st_photo2n,
-		st_photo3n,
-		st_photo4n,
+		<if test="st_photo2n != null and st_photo2n != ''">
+			st_photo2n,
+		</if>
+		<if test="st_photo3n != null and st_photo3n != ''">
+			st_photo3n,
+		</if>
+		<if test="st_photo4n != null and st_photo4n != ''">
+			st_photo4n,
+		</if>
 		st_photo1,
-		st_photo2,
-		st_photo3,
-		st_photo4,
-		mem_num)
+		<if test="st_photo2 != null and st_photo2 != ''">
+			st_photo2,
+		</if>
+		<if test="st_photo3 != null and st_photo3 != ''">
+			st_photo3,
+		</if>
+		<if test="st_photo4 != null and st_photo4 != ''">
+			st_photo4,
+		</if>
+		mem_num
+		<if test="item_num1 != null and item_num1 != ''">
+			,item_num1
+		</if>
+		<if test="item_num2 != null and item_num2 != ''">
+			,item_num2
+		</if>
+		<if test="item_num3 != null and item_num3 != ''">
+			,item_num3
+		</if>)
 		VALUES(
 		style_seq.nextval,
 		#{st_phrase},
 		#{st_photo1n},
-		#{st_photo2n},
-		#{st_photo3n},
-		#{st_photo4n},
+		<if test="st_photo2n != null and st_photo2n != ''">
+			#{st_photo2n},
+		</if>
+		<if test="st_photo3n != null and st_photo3n != ''">
+			#{st_photo3n},
+		</if>
+		<if test="st_photo4n != null and st_photo4n != ''">
+			#{st_photo4n},
+		</if>
 		#{st_photo1},
-		#{st_photo2},
-		#{st_photo3},
-		#{st_photo4},
-		#{mem_num})
+		<if test="st_photo2 != null and st_photo2 != ''">
+			#{st_photo2},
+		</if>
+		<if test="st_photo3 != null and st_photo3 != ''">
+			#{st_photo3},
+		</if>
+		<if test="st_photo4 != null and st_photo4 != ''">
+			#{st_photo4},
+		</if>
+		#{mem_num}
+		<if test="item_num1 != null and item_num1 != ''">
+			,#{item_num1}
+		</if>
+		<if test="item_num2 != null and item_num2 != ''">
+			,#{item_num2}
+		</if>
+		<if test="item_num3 != null and item_num3 != ''">
+			,#{item_num3}
+		</if>)
 	</insert>
+	
+	<!-- 스타일 목록 -->
+	<sql id="styleSearch">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyfield == 2">
+					m.mem_id LIKE '%' || #{keyword} || '%' or
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 전체/검색 레코드수 -->
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT
+		  COUNT(*)
+		FROM style s JOIN member m
+		ON s.mem_num = m.mem_num
+		<include refid="styleSearch"></include>
+	</select>
+
+	
+	<!-- 전체/검색 목록 -->
+	<select id="selectList" parameterType="map" resultType="styleVO">
+		SELECT
+		   *
+		FROM (SELECT
+		        a.*,
+		        rownum rnum
+		      FROM(SELECT
+		             st_num,
+		             <![CDATA[
+		             REPLACE(REPLACE(st_phrase, '<', '&lt;'), '>', '&gt;') st_phrase,
+		             ]]>
+		             st_photo1n,
+		             st_photo2n,
+		             st_photo3n,
+		             mem_num,
+		             st_regdate,
+		             st_mdate,
+		             item_num1,
+		             item_num2,
+		             item_num3
+		           FROM style
+		           )a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>	           
+	</select>
 </mapper>

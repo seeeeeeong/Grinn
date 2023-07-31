@@ -10,11 +10,11 @@
 	    <put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>
     </definition>
     <definition name="styleWrite" extends="main">
-    	<put-attribute name="title" value="작성 | STYLE"/>
+    	<put-attribute name="title" value="작성 | Style | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/style/styleWrite.jsp"/>
     </definition>
     <definition name="styleList" extends="main">
-    	<put-attribute name="title" value="STYLE | KREAM"/>
+    	<put-attribute name="title" value="Style | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/style/styleList.jsp"/>
     </definition>
 </tiles-definitions>

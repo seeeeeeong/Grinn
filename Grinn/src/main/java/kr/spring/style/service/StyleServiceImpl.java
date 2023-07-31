@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.item.vo.ItemVO;
 import kr.spring.style.dao.StyleMapper;
 import kr.spring.style.vo.StyleVO;
 
@@ -19,14 +20,12 @@ public class StyleServiceImpl implements StyleService{
 	
 	@Override
 	public List<StyleVO> selectList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return styleMapper.selectList(map);
 	}
 
 	@Override
 	public int selectRowCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return styleMapper.selectRowCount(map);
 	}
 
 	@Override
@@ -52,10 +51,11 @@ public class StyleServiceImpl implements StyleService{
 		
 	}
 
+
 	@Override
-	public void uploadPhoto(StyleVO styleVO) {
-		// TODO Auto-generated method stub
+	public List<ItemVO> selectSearchItem(String item_name) {
 		
+		return styleMapper.selectSearchItem(item_name);
 	}
 
 }
