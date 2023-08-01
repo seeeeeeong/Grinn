@@ -4,7 +4,6 @@
 <!-- 상품등록 시작 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <div class="page-main">
     <h2>상품등록</h2>
     <form:form modelAttribute="itemVO" action="itemWrite.do" id="itemWrite" method="post" enctype="multipart/form-data">
@@ -13,7 +12,7 @@
             <ul>
                 <li>
                     <!-- 이미지를 나타낼 <img> 요소 -->
-                    <img src="${pageContext.request.contextPath}/item/photoView.do" width="200" height="200" class="my-photo">
+                    <img src="${pageContext.request.contextPath}/images/face.png" width="200" height="200" class="my-photo">
                     <div class="camera" id="photo_btn">
                         <img src="${pageContext.request.contextPath}/images/camera.png" width="35">
                     </div>
