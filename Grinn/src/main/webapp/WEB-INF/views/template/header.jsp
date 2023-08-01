@@ -40,7 +40,7 @@
 <div class = "align-right">
 	<a href = "${pageContext.request.contextPath}/main/main.do"><b>HOME</b></a>
 	<a href = "${pageContext.request.contextPath}/style/list.do"><b>STYLE</b></a>
-	<a href = "${pageContext.request.contextPath}/shop/list.do"><b>SHOP</b></a>
+	<a href = "${pageContext.request.contextPath}/item/itemList.do"><b>SHOP</b></a>
 	<a href = "${pageContext.request.contextPath}/fleamarket/marketSelect.do"><b>FLEA MARKET</b></a>
 </div>
 <!-- 상단 끝 -->
