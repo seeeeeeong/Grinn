@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,7 +18,9 @@ public class MarketVO {
 	@NotEmpty
 	private String market_title;
 	private String market_detail;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date market_startDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date market_endDate;
 	@NotEmpty
 	private String place_name;

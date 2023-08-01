@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.selectMarket{
+	height:300px;
+	width:350px;
+}
+.booth-res{
+	float:left;
+	margin:0 20px;
+}
+.user-res{
+	float:left;
+	margin:0 20px;
+}
+.market-font{
+	font-size:25px;
+	text-align:center;
+	margin-top:150px;
+}
