@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- 상단 시작  -->
 <h2 class="align-center">
 	<a href = "${pageContext.request.contextPath}/main/main.do">Grinn</a>
 </h2>
@@ -9,7 +8,7 @@
 	<a href="${pageContext.request.contextPath}/notice/noticeList.do">고객센터</a>
 
 	<c:if test="${!empty user && user.mem_auth == 2}">
-		<a href="${pageContext.request.contextPath}/user/myPage.do">MY페이지</a>
+		<a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a>
 		<a href="${pageContext.request.contextPath}/item/fav.do">관심상품</a>
 		<a href="${pageContext.request.contextPath}/alert/alert.do">알림</a>
 	</c:if>
@@ -43,12 +42,3 @@
 	<a href = "${pageContext.request.contextPath}/item/itemList.do"><b>SHOP</b></a>
 	<a href = "${pageContext.request.contextPath}/fleamarket/marketSelect.do"><b>FLEA MARKET</b></a>
 </div>
-<!-- 상단 끝 -->
-
-
-
-
-
-
-
-
