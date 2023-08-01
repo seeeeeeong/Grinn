@@ -20,4 +20,8 @@ public interface MarketMapper {
 	public void updateMarket(MarketVO market);
 	// 플리마켓 삭제
 	public void deleteMarket(Integer market_num);
+	
+	// 플리마켓 관리 - 관리자
+	public int selectRowCount(Map<String, Object> map);
+	public void updateMarketByAdmin(MarketVO marketVO);
 }

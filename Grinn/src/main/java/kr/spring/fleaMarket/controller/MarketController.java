@@ -24,7 +24,7 @@ public class MarketController {
 	}
 	
 	// ===플리마켓 예약 선택===
-	@RequestMapping("/fleaMarket/marketSelect.do")
+	@RequestMapping("/fleamarket/marketSelect.do")
 	public ModelAndView getList() {
 		
 		ModelAndView mav = new ModelAndView();

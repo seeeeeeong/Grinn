@@ -166,7 +166,7 @@ public class NoticeController {
 		//CKEditor를 사용하지 않을 경우 내용에 태그 불허
 		//notice.setNo_content(StringUtil.useBrNoHtml(notice.getNo_content()));
 		
-		return new ModelAndView("noticeView", "notice", notice);
+		return new ModelAndView("noticeDetail", "notice", notice);
 	}
 	/* ======================== 글 수정 ======================== */
 	//수정 폼 호출

@@ -26,7 +26,6 @@ public interface NoticeMapper {
 	public List<NoticeVO> selectAuthListCategory(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);
 	public void insertNotice(NoticeVO notice);
-	@Select("SELECT * FROM notice")
 	public NoticeVO selectNotice(Integer no_num);
 	@Update("UPDATE notice SET no_title=#{no_title}, no_content=#{no_content}, "
 			+ "no_modifydate=SYSDATE WHERE no_num=#{no_num}")

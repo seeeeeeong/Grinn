@@ -68,7 +68,7 @@ public class ItemController {
 		
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("item/itemList");
+		mav.setViewName("itemList");
 		mav.addObject("count", count);
 		mav.addObject("list",list);
 		mav.addObject("page", page.getPage());
@@ -80,65 +80,35 @@ public class ItemController {
 	// 등록폼
 	@GetMapping("/item/write.do")
 	public String form() {
-		return "item/itemWrite";
+		return "itemWrite";
 	}
 
 	// ========상품 사진 출력==========
 	// 상품 사진 출력(로그인 전용)
 	@RequestMapping("/item/photoView.do")
-	public void viewProfile(@RequestParam("file") MultipartFile file, HttpServletResponse response,
-			HttpServletRequest request) {
-		try {
-			if (file.isEmpty()) {
-				// 기본 이미지 읽기
-				byte[] readByte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/face.png"));
-				response.setContentType("image/png");
-				OutputStream out = response.getOutputStream();
-				out.write(readByte);
-				out.close();
-			} else {
-				// 업로드한 상품 사진이 있는 경우
-				ItemVO itemVO = new ItemVO();
-				itemVO.setUpload(file); // MultipartFile 객체를 사용하여 ItemVO에 이미지 저장
-
-				// 여기서 itemVO에서 item_photo1 또는 item_photo2에 해당하는 이미지 데이터를 가져와서 response에 출력합니다.
-				// 아래 코드는 itemVO의 item_photo1 데이터를 response에 출력하는 예시입니다.
-				byte[] imageData = itemVO.getItem_photo1();
-				if (imageData != null && imageData.length > 0) {
-					response.setContentType("image/png"); // 이미지 타입에 맞게 Content-Type 설정
-					OutputStream out = response.getOutputStream();
-					out.write(imageData);
-					out.close();
-				} else {
-					// 이미지가 없을 경우에 대한 처리 (예를 들어 기본 이미지를 보여주는 등)
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public String getProfile(@RequestParam int item_num,HttpServletRequest request,Model model) {
+		
+		ItemVO itemVO = itemService.selectItem(item_num);
+		
+		model.addAttribute("imageFile", itemVO.getItem_photo1());
+		model.addAttribute("filename", itemVO.getItem_photo1name());
+	
+		return "imageView";
 	}
 
 	// 상품 사진 출력(회원번호 지정)
 	@RequestMapping("/item/viewProfile.do")
-	public String getProfileByItem_num(@RequestParam int item_num, HttpServletRequest request, Model model) {
+	public String getProfileByItem_num(@RequestParam(required = false) int item_num, HttpServletRequest request, Model model) {
 		ItemVO itemVO = itemService.selectItem(item_num);
-		if (itemVO == null || itemVO.getItem_photo1name() == null) {
-			// 기본 이미지 읽기
-			byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/face.png"));
-			model.addAttribute("imageFile", readbyte);
-			model.addAttribute("filename", "face.png");
-		} else {
-			// 업로드한 상품 사진이 있는 경우
-			model.addAttribute("imageFile", itemVO.getItem_photo1());
-			model.addAttribute("filename", itemVO.getItem_photo1name());
-		}
-		System.out.println("1");
+		
+		viewProfile(itemVO, request, model);
+		
 		return "imageView";
 	}
 
 	// 상품 사진 처리를 위한 공통 코드
 	public void viewProfile(ItemVO itemVO, HttpServletRequest request, Model model) {
-		if (itemVO == null || itemVO.getItem_photo1name() == null) {
+		if (itemVO == null || itemVO.getItem_photo1() == null) {
 			// 기본 이미지 읽기
 			byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/face.png"));
 			model.addAttribute("imageFile", readbyte);
@@ -148,8 +118,8 @@ public class ItemController {
 			model.addAttribute("imageFile", itemVO.getItem_photo1());
 			model.addAttribute("filename", itemVO.getItem_photo1name());
 		}
-		System.out.println("2");
 	}
+
 
 	// 상품 등록 요청 처리
 	@PostMapping("/item/itemWrite.do")

@@ -52,4 +52,16 @@ public class MarketServiceImpl implements MarketService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int selectRowCount(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void updateMarketByAdmin(MarketVO marketVO) {
+		// TODO Auto-generated method stub
+		
+	}
 }

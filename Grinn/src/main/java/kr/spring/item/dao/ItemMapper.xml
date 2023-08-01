@@ -72,6 +72,8 @@
             a.*,
             rownum rnum
            FROM(SELECT 
+           			b.item_num,
+           			b.item_photo1,
                     b.item_name,
                     b.item_detail,
                     b.item_price,
