@@ -22,6 +22,41 @@
 				<form:input path="market_title"/>
 				<form:errors path="market_title" cssClass="error-color"/>
 			</li>
+			<li>
+				<form:label path="market_startDate">시작일</form:label>
+				<form:input path="market_startDate"/>
+				<form:errors path="market_startDate" cssClass="error-color"/>
+			</li>
+			<li>
+				<form:label path="market_endDate">종료일</form:label>
+				<form:input path="market_endDate"/>
+				<form:errors path="market_endDate" cssClass="error-color"/>
+			</li>
+			<li>
+				<form:label path="place_name">장소명</form:label>
+				<form:input path="place_name"/>
+				<form:errors path="place_name" cssClass="error-color"/>
+			</li>
+			<li>
+				<form:label path="market_type">예약 유형</form:label>
+				<form:radiobutton path="market_type" value="1"/>
+				<form:radiobutton path="market_type" value="2"/>
+			</li>
+			<li>
+				<form:label path="booth_count">부스 수</form:label>
+				<form:input path="booth_count"/>
+				<form:errors path="booth_count" cssClass="error-color"/>
+			</li>
+			<li>
+				<form:label path="user_count">시간당 입장 인원</form:label>
+				<form:input path="user_count"/>
+				<form:errors path="user_count" cssClass="error-color"/>
+			</li>
+			<li>
+				<form:label path="booth_fee">부스 입점 비용</form:label>
+				<form:input path="booth_fee"/>
+				<form:errors path="booth_fee" cssClass="error-color"/>
+			</li>
 			<li>상세내용</li>
 			<li>
 				<form:textarea path="market_detail"/>
