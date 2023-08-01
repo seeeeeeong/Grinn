@@ -27,6 +27,14 @@
 			#{no_category})
 	</insert>
 	
+	<!-- 게시글 상세 -->
+	<select id="selectNotice" parameterType="integer">
+		SELECT
+		  *
+		FROM notice n JOIN member m
+		USING(mem_num)
+		WHERE n.no_num=#{no_num}
+	</select>
 	
 </mapper>
 

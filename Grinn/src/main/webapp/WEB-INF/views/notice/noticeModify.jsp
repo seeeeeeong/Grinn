@@ -26,9 +26,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
 <!-- 고객센터 글 등록 시작 -->
-<div id="page-mian">
+<div id="page-main">
 	<h2>글 작성</h2>
-	<form:form modelAttribute="noticeVO" action="write.do">
+	<form:form modelAttribute="noticeVO" action="update.do">
 		<form:errors element="div" cssClass="error-color"/>
 		<ul>
 			<li>
@@ -46,14 +46,7 @@
 				<form:radiobutton path="no_category" value="4"/>판매
 				<form:errors path="no_category" cssClass="error-color"/>
 			</li>
-			<li id="category" style="display:none;">
-				<form:label path="no_category">검수기준 카테고리 선택</form:label>
-				<form:radiobutton path="no_category" value="1"/>이용정책
-				<form:radiobutton path="no_category" value="2"/>공통
-				<form:radiobutton path="no_category" value="3"/>구매
-				<form:radiobutton path="no_category" value="4"/>판매
-				<form:errors path="no_category" cssClass="error-color"/>
-			</li>
+			
 			<li>
 				<form:label path="no_title">제목</form:label>
 				<form:input path="no_title"/>
@@ -83,7 +76,7 @@
 			</li>
 		</ul>
 		<div class="align-center">
-			<form:button>등록</form:button>
+			<form:button>수정</form:button>
 			<input type="button" value="취소" onclick="location.href='noticeList.do'">
 		</div>
 	</form:form>
