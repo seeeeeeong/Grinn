@@ -17,15 +17,12 @@ public interface MemberMapper {
 	// 회원가입
 	@Insert("INSERT INTO member (mem_num, mem_id) VALUES (#{mem_num}, #{mem_id})")
 	public void insertMember(MemberVO member);
-	public void inserMember_detail(MemberVO member);
+	public void insertMember_detail(MemberVO member);
 	// 회원아이디를 이용한 회원정보 체크
 	public MemberVO selectCheckMember(String mem_id);
 	// 회원번호를 이용한 회원정보 구하기
 	@Select("SELECT * FROM member m JOIN member_detail d ON m.mem_num = d.mem_num WHERE m.mem_num = #{mem_num}")
 	public MemberVO selectMember(Integer mem_num);
-	// 회원정보 수정
-	public void updateMember(MemberVO member);
-	public void updateMember_detail(MemberVO member);
 	// 자동 로그인
 	public void updateAu_id(String au_id, int mem_num);
 	public MemberVO selectAu_id(String au_id);

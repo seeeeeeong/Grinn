@@ -20,8 +20,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void insertMember(MemberVO member) {
 		member.setMem_num(memberMapper.selectMem_num());
+		member.setMem_zipcode(null);
+		member.setMem_address1(null);
+		member.setMem_address2(null);
 		memberMapper.insertMember(member);
-		memberMapper.inserMember_detail(member);
+		memberMapper.insertMember_detail(member);
 		
 	}
 
@@ -33,12 +36,6 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO selectMember(Integer mem_num) {
 		return memberMapper.selectMember(mem_num);
-	}
-
-	@Override
-	public void updateMember(MemberVO member) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -12,8 +12,6 @@ public interface MemberService {
 	public MemberVO selectCheckMember(String mem_id);
 	// 회원번호를 이용한 회원정보 구하기
 	public MemberVO selectMember(Integer mem_num);
-	// 회원정보 수정
-	public void updateMember(MemberVO member);
 	// 자동 로그인
 	public void updateAu_id(String au_id, int mem_num);
 	public MemberVO selectAu_id(String au_id);

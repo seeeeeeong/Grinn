@@ -1,0 +1,39 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000; /* To make sure the header stays on top of other elements */
+}
+
+.header_top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.top_list, .gnb_list {
+  display: flex;
+  margin-right: auto;
+}
+
+.right {
+  margin-left: auto;
+}
+
+.logo {
+  font-family: 'Kream Font', sans-serif;
+  color: black;
+}
+
+/* Collection styles */
+.collection_items {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: 2rem;
+}
+
+.collection_item {
+  margin-left: auto;
+  margin-right: auto;
+}

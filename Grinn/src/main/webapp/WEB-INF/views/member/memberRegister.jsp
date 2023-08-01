@@ -7,6 +7,11 @@
 	<form:form modelAttribute = "memberVO" action = "registerUser.do" id = "member_register">
 		<ul>
 			<li>
+				<form:label path="mem_name">이름</form:label>
+				<form:input path="mem_name"/>
+				<form:errors path="mem_name" cssClass="error-color"/>      
+			</li>
+			<li>
 				<form:label path = "mem_id">아이디</form:label>
 				<form:input path = "mem_id" placeholder = "영문, 숫자 포함 4~12자" autocomplete = "off"/>
 				<input type = "button" id = "confirmId" value = "ID중복체크" class = "default-btn">
