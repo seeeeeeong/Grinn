@@ -5,12 +5,49 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-    <!-- 아래 태그 정보를 작업에 맞게 수정해서 사용하세요 -->
-    <definition name="a2" extends="main">
+	<definition name="a5" extends="main">
     	<put-attribute name="title" value="SpringPage"/>
 	    <put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>
     </definition>
+    
+    <!-- myPage -->
+    <definition name="myPage" template="/WEB-INF/views/template/layout_mypage.jsp">
+    	<put-attribute name="title" value="MyPage"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="nav" value="/WEB-INF/views/user/myPage_nav.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/user/myPage.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>                                        
+    </definition>
+    
+     <definition name="userPurchasedItems" extends="myPage">
+    	<put-attribute name="title" value="구매내역"/>
+	    <put-attribute name="body" value="/WEB-INF/views/user/userPurchasedItems.jsp"/>
+    </definition>
+     <definition name="userSoldItems" extends="myPage">
+    	<put-attribute name="title" value="판매내역"/>
+	    <put-attribute name="body" value="/WEB-INF/views/user/userSoldItems.jsp"/>
+    </definition>
+     <definition name="userFavoriteItems" extends="myPage">
+    	<put-attribute name="title" value="관심상품"/>
+	    <put-attribute name="body" value="/WEB-INF/views/user/userFavoriteItems.jsp"/>
+    </definition>      
+     <definition name="userLikedStyles" extends="myPage">
+    	<put-attribute name="title" value="좋아요"/>
+	    <put-attribute name="body" value="/WEB-INF/views/user/userLikedStyles.jsp"/>
+    </definition>
+     <definition name="userLoginInfo" extends="myPage">
+    	<put-attribute name="title" value="로그인정보"/>
+	    <put-attribute name="body" value="/WEB-INF/views/user/userLoginInfo.jsp"/>
+    </definition>
+     <definition name="userPenaltyInfo" extends="myPage">
+    	<put-attribute name="title" value="패널티"/>
+	    <put-attribute name="body" value="/WEB-INF/views/user/userPenaltyInfo.jsp"/>
+    </definition>                
 </tiles-definitions>
+
+
+
+
 
 
 
