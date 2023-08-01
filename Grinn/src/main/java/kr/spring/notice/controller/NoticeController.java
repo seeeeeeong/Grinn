@@ -130,7 +130,7 @@ public class NoticeController {
 	/* ======================== 고객센터(검수기준) 글 목록 ======================== */
 	@RequestMapping("/notice/noticeAuth_policy.do")
 	public ModelAndView getNoticeAuthPolicyList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
-			String keyfield, String keyword) {
+			String keyfield, String keyword, Integer policy) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
@@ -139,11 +139,13 @@ public class NoticeController {
 		int count = noticeService.selectRowCount(map);
 		//페이지 처리
 		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 10, 5, "noticeAuth_policy.do");
-		
+		NoticeVO noticeVO = new NoticeVO();
+		policy = noticeVO.getNo_policy();
 		List<NoticeVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
+			map.put("policy", policy);
 			list = noticeService.selectAuthList(map);
 		}
 		
@@ -151,7 +153,7 @@ public class NoticeController {
 		mav.setViewName("noticeAuth_policy");
 		mav.addObject("count", count);
 		mav.addObject("list", list);
-		//mav.addObject("category", category);
+		mav.addObject("policy", policy);
 		mav.addObject("page", page.getPage());
 		
 		return mav;

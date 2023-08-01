@@ -26,10 +26,10 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<div>
-				<input type="button" value="공지사항 등록" onclick="location.href='${pageContext.request.contextPath}/notice/write.do'">
-			</div>
 			<div class="align-center">${page}</div>
 		</c:if>
+		<div>
+			<input type="button" value="공지사항 등록" onclick="location.href='${pageContext.request.contextPath}/notice/write.do'">
+		</div>
 	</div>
 </div>

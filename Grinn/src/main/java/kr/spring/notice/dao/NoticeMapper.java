@@ -20,10 +20,8 @@ public interface NoticeMapper {
 	@Select("SELECT * FROM notice WHERE no_status=2")
 	public List<NoticeVO> selectFaqList(Map<String, Object> map);
 	//고객센터-검수기준
-	@Select("SELECT * FROM notice WHERE no_status=3")
+	@Select("SELECT * FROM notice WHERE no_status=3 ORDER BY no_policy asc")
 	public List<NoticeVO> selectAuthList(Map<String, Object> map);
-	@Select("SELECT * FROM notice WHERE no_status=3 AND no_category=#{no_category}")
-	public List<NoticeVO> selectAuthListCategory(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);
 	public void insertNotice(NoticeVO notice);
 	public NoticeVO selectNotice(Integer no_num);

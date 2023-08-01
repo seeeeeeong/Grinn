@@ -16,7 +16,8 @@
 			no_content, 
 			no_regdate,
 			no_status,
-			no_category) 
+			no_category,
+			no_policy) 
 		VALUES (
 			notice_seq.nextval,
 			#{mem_num},
@@ -24,7 +25,8 @@
 			#{no_content},
 			SYSDATE,
 			#{no_status},
-			#{no_category})
+			#{no_category},
+			#{no_policy})
 	</insert>
 	
 	<!-- 게시글 상세 -->

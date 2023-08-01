@@ -13,6 +13,15 @@
 		$('#status3').click(function(){
 			$('#category').css('display','none');
 		});
+		$('#status1').click(function(){
+			$('#policy').css('display','none');
+		});
+		$('#status2').click(function(){
+			$('#policy').css('display','none');
+		});
+		$('#status3').click(function(){
+			$('#policy').css('display','block');
+		});
 	});
 </script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -46,13 +55,15 @@
 				<form:radiobutton path="no_category" value="4"/>판매
 				<form:errors path="no_category" cssClass="error-color"/>
 			</li>
-			<li id="category" style="display:none;">
-				<form:label path="no_category">검수기준 카테고리 선택</form:label>
-				<form:radiobutton path="no_category" value="1"/>이용정책
-				<form:radiobutton path="no_category" value="2"/>공통
-				<form:radiobutton path="no_category" value="3"/>구매
-				<form:radiobutton path="no_category" value="4"/>판매
-				<form:errors path="no_category" cssClass="error-color"/>
+			<li id="policy" style="display:none;">
+				<form:label path="no_policy">검수기준 카테고리 선택</form:label>
+				<form:radiobutton path="no_policy" value="1"/>신발
+				<form:radiobutton path="no_policy" value="2"/>상의
+				<form:radiobutton path="no_policy" value="3"/>하의
+				<form:radiobutton path="no_policy" value="4"/>패션잡화
+				<form:radiobutton path="no_policy" value="5"/>프리미엄 시계
+				<form:radiobutton path="no_policy" value="6"/>프리미엄 가방
+				<form:errors path="no_policy" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="no_title">제목</form:label>

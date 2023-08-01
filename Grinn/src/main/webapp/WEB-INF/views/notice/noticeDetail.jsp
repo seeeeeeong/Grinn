@@ -65,3 +65,4 @@
 		</div>
 	</div>
 </div>
+<div class="page_clear"></div>

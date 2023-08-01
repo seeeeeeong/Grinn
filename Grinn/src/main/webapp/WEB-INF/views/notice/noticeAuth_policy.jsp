@@ -3,6 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/category.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.category_link').click(function(){
+			$('.description_wrap').css('display','block');
+		});
+	});
+</script>
 <div class="page-main">
 	<div class="container">
 		<div id="page_nav">
@@ -17,20 +24,61 @@
 		</div>
 		<div id="page_body">
 			<h3 id="ha">검수기준</h3>
-			<c:forEach var="notice" items="${list}">
-				<table class="category"><br>
-					<tr>
-						<td><a href="${pageContext.request.contextPath}/notice/noticeAuth_policy.do/shoes.do">신발</a></td>
-						<td><a href="${pageContext.request.contextPath}/notice/noticeAuth_policy.do">상의</a></td>
-						<td><a href="${pageContext.request.contextPath}/notice/policyCategory/bottom.do">하의</a></td>
-					</tr>
-					<tr>
-						<td id="acc">패션잡화</td>
-						<td id="watch">프리미엄 시계</td>
-						<td id="bag">프리미엄 가방</td>
-					</tr>
-				</table>
-			</c:forEach>
+			<div class="categories">
+				<div class="category_list"><!-- 검수기준카테고리별 선택가능 -->
+					<table class="category_list_items">
+						<tr>
+							<c:forEach var="notice" items="${list}">
+								<th class="chunk_3">
+									<a href="" class="category_link">
+										<span class="category_text">${notice.no_title}</span>
+									</a>
+								</th>
+							</c:forEach>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="wrap"><!-- 검수기준카테고리별 공지사항리스트 -->
+				<div class="content">
+					<div class="description_wrap" style="display:none;">
+						<c:forEach var="notice" items="${list}">
+							<c:if test="${notice.no_policy == 1}">${notice.no_content}</c:if>
+							<c:if test="${notice.no_policy == 2}">${notice.no_content}</c:if>
+							<c:if test="${notice.no_policy == 3}">${notice.no_content}</c:if>
+							<c:if test="${notice.no_policy == 4}">${notice.no_content}</c:if>
+							<c:if test="${notice.no_policy == 5}">${notice.no_content}</c:if>
+							<c:if test="${notice.no_policy == 6}">${notice.no_content}</c:if>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+	<div class="page-clear"></div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -29,6 +29,7 @@
 <div id="page-main">
 	<h2>글 작성</h2>
 	<form:form modelAttribute="noticeVO" action="update.do">
+		<form:hidden path="no_num" />
 		<form:errors element="div" cssClass="error-color"/>
 		<ul>
 			<li>
@@ -46,7 +47,16 @@
 				<form:radiobutton path="no_category" value="4"/>판매
 				<form:errors path="no_category" cssClass="error-color"/>
 			</li>
-			
+			<li id="policy" style="display:none;">
+				<form:label path="no_policy">검수기준 카테고리 선택</form:label>
+				<form:radiobutton path="no_policy" value="1"/>신발
+				<form:radiobutton path="no_policy" value="2"/>상의
+				<form:radiobutton path="no_policy" value="3"/>하의
+				<form:radiobutton path="no_policy" value="4"/>패션잡화
+				<form:radiobutton path="no_policy" value="5"/>프리미엄 시계
+				<form:radiobutton path="no_policy" value="6"/>프리미엄 가방
+				<form:errors path="no_policy" cssClass="error-color"/>
+			</li>
 			<li>
 				<form:label path="no_title">제목</form:label>
 				<form:input path="no_title"/>

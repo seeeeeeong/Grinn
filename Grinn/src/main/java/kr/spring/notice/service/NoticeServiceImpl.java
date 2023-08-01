@@ -56,10 +56,5 @@ public class NoticeServiceImpl implements NoticeService{
 		noticeMapper.deleteNotice(no_num);
 	}
 
-	@Override
-	public List<NoticeVO> selectAuthListCategory(Map<String, Object> map) {
-		return noticeMapper.selectAuthListCategory(map);
-	}
-
 
 }
