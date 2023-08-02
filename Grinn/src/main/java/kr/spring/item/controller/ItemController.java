@@ -1,14 +1,10 @@
 package kr.spring.item.controller;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,12 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.item.service.ItemService;
 import kr.spring.item.vo.ItemVO;
-import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -77,42 +71,42 @@ public class ItemController {
 		
 		return mav;
 	}
-	//===========상품 목록 시작(관리자)===========
+
+	// ===========상품 목록 시작(관리자)===========
 	@RequestMapping("/item/itemAdminList.do")
-	public ModelAndView getAdminItemList(@RequestParam(value="pageNum",defaultValue = "1") int currentPage, 
-									@RequestParam(value="order",defaultValue = "1") int order,
-									String keyfield, String keyword) {
-		Map<String,Object> map = new HashMap<String, Object>();
+	public ModelAndView getAdminItemList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage,
+			@RequestParam(value = "order", defaultValue = "1") int order, String keyfield, String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
-		
-		//전체/검색 레코드 수
+
+		// 전체/검색 레코드 수
 		int count = itemService.selectRowCount(map);
-		
+
 		log.debug("<<count>> : " + count);
-		
-		//페이지처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 20, 10, "itemAdminList.do","&order="+order);
-		
+
+		// 페이지처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 20, 10, "itemAdminList.do",
+				"&order=" + order);
+
 		List<ItemVO> list = null;
-		if(count > 0) {
+		if (count > 0) {
 			map.put("order", order);
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
-			
+
 			list = itemService.selectList(map);
 		}
-		
-		
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("itemAdminList");
 		mav.addObject("count", count);
-		mav.addObject("list",list);
+		mav.addObject("list", list);
 		mav.addObject("page", page.getPage());
-		
+
 		return mav;
 	}
-	//===========상품 목록 끝 (사용자&관리자)===========
+	// ===========상품 목록 끝 (사용자&관리자)===========
 	
 	
 	// ===========상품 등록시작(관리자)===========
