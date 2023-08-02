@@ -20,6 +20,12 @@
 		<put-attribute name="title" value="상품목록" />
 		<put-attribute name="body" value="/WEB-INF/views/item/itemList.jsp" />
 	</definition>
+	
+		<definition name="itemAdminList" extends="main">
+		<put-attribute name="title" value="상품목록(관리자)" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/item/itemAdminList.jsp" />
+	</definition>
     
 </tiles-definitions>
 

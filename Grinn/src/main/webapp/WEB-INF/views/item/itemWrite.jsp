@@ -4,6 +4,7 @@
 <!-- 상품등록 시작 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <div class="page-main">
     <h2>상품등록</h2>
     <form:form modelAttribute="itemVO" action="itemWrite.do" id="itemWrite" method="post" enctype="multipart/form-data">
@@ -69,21 +70,21 @@
 			</li> --%>
 			<li>
    				<form:label path="item_cate">상품분류</form:label>
-    			<form:radiobutton path="item_cate" value="1" label="신발" />
-    			<form:radiobutton path="item_cate" value="2" label="상의" />
-    			<form:radiobutton path="item_cate" value="3" label="하의" />
-    			<form:radiobutton path="item_cate" value="4" label="기타" />
+    			<form:radiobutton path="item_cate" value="1"/>신발
+    			<form:radiobutton path="item_cate" value="2"/>상의
+    			<form:radiobutton path="item_cate" value="3"/>하의
+    			<form:radiobutton path="item_cate" value="4"/>기타
 			</li>
 			<li>
     			<form:label path="item_gender">성별</form:label>
-    			<form:radiobutton path="item_gender" value="1" label="남성" />
-    			<form:radiobutton path="item_gender" value="2" label="여성" />
-    			<form:radiobutton path="item_gender" value="3" label="기타" />
+    			<form:radiobutton path="item_gender" value="1"/>남성
+    			<form:radiobutton path="item_gender" value="2"/>여성
+    			<form:radiobutton path="item_gender" value="3"/>기타
 			</li>
 			<li>
     			<form:label path="item_status">상품표시여부</form:label>
-    			<form:radiobutton path="item_status" value="1" label="미표시" />
-    			<form:radiobutton path="item_status" value="2" label="표시" />
+    			<form:radiobutton path="item_status" value="1"/>미표시
+    			<form:radiobutton path="item_status" value="2"/>표시
 			</li>
 		</ul>
 		

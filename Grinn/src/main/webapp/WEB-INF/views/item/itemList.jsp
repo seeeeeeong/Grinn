@@ -44,7 +44,7 @@
 					$('#order').change(
 							function() {
 								location.href = 'itemList.do?keyfield='
-										+ $('#ketfield').val() + '&keyword='
+										+ $('#keyfield').val() + '&keyword='
 										+ $('#keyword').val() + '&order='
 										+ $('#order').val();
 							});
