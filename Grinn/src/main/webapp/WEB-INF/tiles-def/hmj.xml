@@ -10,6 +10,10 @@
     	<put-attribute name="title" value="예약 메인"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/marketSelect.jsp"/>
     </definition>
+    <definition name="boothList" extends="main">
+    	<put-attribute name="title" value="부스 예약 목록"/>
+	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/boothList.jsp"/>
+    </definition>
 </tiles-definitions>
 
 
