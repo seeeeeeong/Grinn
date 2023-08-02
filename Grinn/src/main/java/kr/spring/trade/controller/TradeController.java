@@ -12,10 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.sbid.vo.SaleSizePriceVO;
@@ -28,7 +30,8 @@ import lombok.extern.slf4j.Slf4j;
 public class TradeController {
 	@Autowired
 	TradeService tradeService;
-	
+	@Autowired
+	MemberService memberService;
 	/**
 	 * ======================================================================================================================
 	 * 												자바 빈 초기화
@@ -88,7 +91,7 @@ public class TradeController {
 	 * 								구매 : 구매 계속 버튼 클릭 시 구매 관련 상세 정보 처리
 	 * ======================================================================================================================
 	 **/
-	// 즉시 구매 버튼 클릭 시 통시 및 구매 기본 화면 구성
+	// 구매 기본 화면 구성
 	@GetMapping("/purchase/purchaseDetail.do")
 	public String getPurchaseDetail(@RequestParam int item_num, @RequestParam int item_sizenum,@RequestParam String item_size, Model model,HttpSession session) {
 		
@@ -103,7 +106,7 @@ public class TradeController {
 		if(saleBidCount > 0) {
 			minSaleBid = tradeService.selectMinSaleBid(item_num, item_sizenum);
 		}else {
-			minSaleBid = 1000; // 입찰 정보가 없기 때문에 아이템 정가가 들어가야함 *********************************
+			minSaleBid = 0; // 입찰 정보가 없기 때문에 아이템 정가가 들어가야함 *********************************
 		}
 		
 		// 즉시 판매가 정보 넘기기
@@ -111,7 +114,7 @@ public class TradeController {
 		if(purchaseBidCount > 0) {
 			maxPurchaseBid = tradeService.selectMaxPurchaseBid(item_num, item_sizenum);
 		}else {
-			maxPurchaseBid = 1000; // 입찰 정보가 없기 때문에 아이템 정가가 들어가야함 *********************************
+			maxPurchaseBid = 0; // 입찰 정보가 없기 때문에 아이템 정가가 들어가야함 *********************************
 		}
 		
 		model.addAttribute("minSaleBid",minSaleBid); // 즉시 구매가
@@ -119,21 +122,23 @@ public class TradeController {
 		model.addAttribute("item_num",item_num);
 		model.addAttribute("item_size",item_size);
 		model.addAttribute("item_sizenum",item_sizenum);
-		
+		model.addAttribute("saleBidCount",saleBidCount);
 		// 아이템 번호로 아이템 정보 구해서 넘기기 *********	
 		// 구매자 정보 넘기기 **************
 		return "purchaseDetail";
 	}
 	
 	// 구매 입찰 버튼 클릭 시 통신
-	@PostMapping("/purchase/paymentPurchaseBid.do")
+	@RequestMapping("/purchase/paymentPurchaseBid.do")
 	@ResponseBody
 	public Map<String,Object> getPaymentPurchaseBid(@RequestParam int minSaleBid,
 												 	@RequestParam int item_num,
 												 	@RequestParam int item_sizenum,
 												 	@RequestParam String item_size,
 												 	@RequestParam String deadline,
-												 	@RequestParam int purchase_price,HttpSession session) {
+												 	@RequestParam int purchase_price,
+												 	@RequestParam String dateDeadline,
+												 	@RequestParam String type,HttpSession session) {
 		Map<String, Object> mapJson = new HashMap<String, Object>();
 		// 로그인 되어있는지 체크
 		MemberVO user = (MemberVO)session.getAttribute("user");
@@ -145,19 +150,48 @@ public class TradeController {
 			mapJson.put("result", "logout");
 		}else {
 			pbVO = tradeService.selectPurchaseBidByUserNum(user.getMem_num(),item_num);
-			
+			MemberVO member = memberService.selectMember(user.getMem_num());
 			if(pbVO == null) {
+				log.debug("<<dateDeadline >> : " + dateDeadline);
+				log.debug("<<purchase_price >> : " + purchase_price);
+				log.debug("<<minSaleBid >> : " + minSaleBid);
 				mapJson.put("minSaleBid",minSaleBid);
 				mapJson.put("item_num", item_num);
 				mapJson.put("item_sizenum", item_sizenum);
 				mapJson.put("deadline", Integer.parseInt(deadline));
 				mapJson.put("purchase_price", purchase_price);
-				mapJson.put("result", "success");		
+				mapJson.put("member", member);
+				mapJson.put("dateDeadline", dateDeadline);
+				mapJson.put("result", "success");
+				mapJson.put("type", type);
 			}else {
 				mapJson.put("result","duplicated");
 			}
 		}
 		return mapJson;
 	}
+	
+	// 구매입찰 - 결제하기 버튼 클릭 시 
+	@PostMapping("/purchase/purchasePaymentBid.do")
+	public String paymentBidFinish(PurchaseBidVO pbVO,@RequestParam int total,Model model,HttpSession session) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		if(user == null) {
+			model.addAttribute("message","로그인이 필요합니다!");
+			model.addAttribute("url","../member/login.do");
+		}else {
+			pbVO.setMem_num(user.getMem_num());
+			tradeService.insertPurchaseBid(pbVO);
+			// total로 결제 금액 결제 진행 하기 *****************************************************************
+			
+			model.addAttribute("message","결제가 완료되었습니다.");
+			model.addAttribute("url","../item/itemList.do");
+		}
+		
+		return "common/resultView";
+	}
+	
+	// 즉시구매 - 결제하기 버튼 클릭 시
+	
 	
 }

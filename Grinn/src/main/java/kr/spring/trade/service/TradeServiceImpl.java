@@ -60,8 +60,7 @@ public class TradeServiceImpl implements TradeService{
 
 	@Override
 	public void insertPurchaseBid(PurchaseBidVO purchaseBidVO) {
-		// TODO Auto-generated method stub
-		
+		tradeMapper.insertPurchaseBid(purchaseBidVO);
 	}
 
 	@Override

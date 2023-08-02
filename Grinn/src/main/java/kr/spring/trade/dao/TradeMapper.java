@@ -2,6 +2,7 @@ package kr.spring.trade.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -48,6 +49,8 @@ public interface TradeMapper {
 	@Select("SELECT * FROM sale_bid WHERE mem_num=#{mem_num} AND item_num=#{item_num}")
 	public SaleBidVO selectSaleBidByUserNum(@Param(value="mem_num") Integer mem_num,@Param(value="item_num")Integer item_num);
 	// 구매 입찰 정보 등록
+	@Insert("INSERT INTO purchase_bid (purchase_num,mem_num,item_num,item_sizenum,purchase_price,purchase_regDate,purchase_deadline) "
+			+ "VALUES (purchase_bid_seq.nextval,#{mem_num},#{item_num},#{item_sizenum},#{purchase_price},SYSDATE,#{purchase_deadline})")
 	public void insertPurchaseBid(PurchaseBidVO purchaseBidVO);
 	// 판매 입찰 정보 등록 
 	public void insertSaleBid(SaleBidVO saleBidVO);
