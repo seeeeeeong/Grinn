@@ -12,14 +12,6 @@
 		<a href="${pageContext.request.contextPath}/item/fav.do">관심상품</a>
 		<a href="${pageContext.request.contextPath}/alert/alert.do">알림</a>
 	</c:if>
-	
-	<c:if test="${!empty user}">
-		<img src="${pageContext.request.contextPath}/member/photoView.do" 
-		                        width="25" height="25" class="my-photo">
-	</c:if>
-	<c:if test="${!empty user && !empty user.mem_nickname}">
-		[<span class="user_name">${user.mem_nickname}</span>]
-	</c:if>
 	<c:if test="${!empty user && empty user.mem_nickname}">
 		[<span class="user_name">${user.mem_id}</span>]
 	</c:if>
