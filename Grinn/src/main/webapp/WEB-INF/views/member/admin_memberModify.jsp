@@ -11,8 +11,8 @@
 			<li>
 				<label>회원권한</label>
 				<c:if test="${memberVO.mem_auth < 9}">
-				<form:radiobutton path="auth" value="1"/>정지
-				<form:radiobutton path="auth" value="2"/>일반
+				<form:radiobutton path="mem_auth" value="1"/>정지
+				<form:radiobutton path="mem_auth" value="2"/>일반
 				</c:if>      
 				<c:if test="${memberVO.mem_auth == 9}">관리</c:if>
 			</li>
