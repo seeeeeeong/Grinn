@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!-- 관리자 메인 시작 -->
 <div class="page-main">
 	<h2>회원목록</h2>
 	<table class="striped-table">
@@ -17,7 +16,7 @@
 		<c:forEach var="member" items="${memberList}">
 		<tr>
 			<td>
-				<c:if test="${member.mem_auth==0}">${member.mem_id}</c:if>
+				<c:if test="${member.mem_auth == 0}">${member.mem_id}</c:if>
 				<c:if test="${member.mem_auth > 0}"><a href="${pageContext.request.contextPath}/member/admin_update.do?mem_num=${member.mem_num}">${member.mem_id}</a></c:if>
 			</td>
 			<td>${member.mem_name}</td>
@@ -34,4 +33,3 @@
 		</c:forEach>
 	</table>
 </div>
-<!-- 관리자 메인 끝 -->

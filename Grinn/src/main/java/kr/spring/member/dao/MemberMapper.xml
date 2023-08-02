@@ -39,6 +39,53 @@
 	</select>
 	
 	<!-- 관리자 - 회원목록 보기 (검색) -->
+	<sql id="memberSearch">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyfield == 1">
+					m.mem_id LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 2">
+					d.mem_name LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 3">
+					d.mem_email LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 4">
+					m.mem_id LIKE '%' || #{keyword} || '%' or
+					d.mem_name LIKE '%' || #{keyword} || '%' or
+					d.mem_email LIKE '%' || #{keyword} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 전체/검색 레코드수 -->
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT
+		  COUNT(*)
+		FROM member m LEFT OUTER JOIN member_detail d
+		ON m.mem_num = d.mem_num
+		<include refid="memberSearch"></include>                               
+	</select>
+	
+	<!-- 전체/검색 목록 -->
+	<select id="selectList" parameterType="map" resultType="memberVO">
+		SELECT
+		  *
+		FROM (SELECT
+		        a.*,
+		        rownum rnum
+		      FROM (SELECT
+		              *
+		            FROM member m LEFT OUTER JOIN member_detail d
+		            ON m.mem_num = d.mem_num
+		            <include refid="memberSearch"></include>
+		            ORDER BY d.mem_date DESC NULLS LAST)a)  
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>                                     
+	</select>
 </mapper>
 
 
