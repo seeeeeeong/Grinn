@@ -22,3 +22,12 @@
 	text-align:center;
 	margin-top:150px;
 }  
+
+/*폼
+-------------------------*/
+.register-label li label{
+	margin-top:8px;
+}
+.check-label{
+	margin-top:0;
+}
