@@ -22,6 +22,9 @@ public interface NoticeMapper {
 	//고객센터-검수기준
 	@Select("SELECT * FROM notice WHERE no_status=3 ORDER BY no_policy asc")
 	public List<NoticeVO> selectAuthList(Map<String, Object> map);
+	//검수기준 policy 값 구하기
+	@Select("SELECT no_policy FROM notice WHERE no_num=#{no_num}")
+	public int selectAuthNum(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);
 	public void insertNotice(NoticeVO notice);
 	public NoticeVO selectNotice(Integer no_num);
