@@ -15,9 +15,9 @@
 	});
 </script>
 <div class="page-main">
-	<h2>부스 목록</h2>
+	<h2>부스 목록 - 관리자</h2>
 	<!-- 검색창 시작 -->
-	<form action="boothList.do" id="search_form" method="get">
+	<form action="adminBoothList.do" id="search_form" method="get">
 		<ul class="search">
 			<li>
 				<select name="keyfield" id="keyfield">
@@ -31,7 +31,7 @@
 			</li>
 			<li>
 				<input type="submit" value="찾기">
-				<input type="button" value="목록" onclick="location.href='boothList.do'">
+				<input type="button" value="목록" onclick="location.href='adminBoothList.do'">
 			</li>
 		</ul>
 	</form>
@@ -41,16 +41,16 @@
 	</c:if>
 	<c:if test="${count > 0}">
 	<table class="striped-table">
-		<c:forEach var="booth" items="${boothList}">
+		<c:forEach var="adminBooth" items="${boothList}">
 		<tr>
-			<td class="align-center" width="400">${booth.market_thumbNail}</td>
-			<td width="200">${booth.market_title}</td>
-			<td>${booth.market_startDate} ${booth.market_endDate}</td>
+			<td class="align-center" width="400">${adminBooth.market_thumbNail}</td>
+			<td width="200">${adminBooth.market_title}</td>
+			<td>${adminBooth.market_startDate} ${adminBooth.market_endDate}</td>
 			<td>예약 일시</td>
 			<td>
-				<input type="button" value="상세정보" onclick="location.href='boothDetail.do?market_num=${booth.market_num}'" class="detail-btn">
+				<input type="button" value="수정" onclick="location.href='adminBoothDetail.do?market_num=${adminBooth.market_num}'" class="detail-btn">
 				<%-- <c:if test="${booth.market_startDate}"> --%>
-				<input type="button" value="예약 예정" class="before-btn">
+				<input type="button" value="삭제" class="delete-btn">
 				<%-- </c:if> --%>
 				<%-- <c:if test="${booth.market_startDate}">
 				<input type="button" value="예약 중" class="booking-btn">
@@ -64,5 +64,8 @@
 	</table>
 	<div class="align-center">${page}</div>
 	</c:if>
+	<div class="align-right">
+		<input type="button" value="부스 등록" onclick="location.href='adminBoothWrite.do'" class="register-btn">
+	</div>
 </div>
 <!-- 부스 리스트 목록 끝 -->

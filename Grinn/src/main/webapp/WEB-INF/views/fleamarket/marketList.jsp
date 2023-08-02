@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 부스 리스트 목록 시작 -->
+<!-- 플리마켓 리스트 목록 시작 -->
 <script type="text/javascript">
 	$(function(){
 		// 검색 유효성 체크
@@ -15,9 +15,9 @@
 	});
 </script>
 <div class="page-main">
-	<h2>부스 목록</h2>
+	<h2>플리마켓 목록</h2>
 	<!-- 검색창 시작 -->
-	<form action="boothList.do" id="search_form" method="get">
+	<form action="marketList.do" id="search_form" method="get">
 		<ul class="search">
 			<li>
 				<select name="keyfield" id="keyfield">
@@ -31,7 +31,7 @@
 			</li>
 			<li>
 				<input type="submit" value="찾기">
-				<input type="button" value="목록" onclick="location.href='boothList.do'">
+				<input type="button" value="목록" onclick="location.href='marketList.do'">
 			</li>
 		</ul>
 	</form>
@@ -41,14 +41,14 @@
 	</c:if>
 	<c:if test="${count > 0}">
 	<table class="striped-table">
-		<c:forEach var="booth" items="${boothList}">
+		<c:forEach var="market" items="${marketList}">
 		<tr>
-			<td class="align-center" width="400">${booth.market_thumbNail}</td>
-			<td width="200">${booth.market_title}</td>
-			<td>${booth.market_startDate} ${booth.market_endDate}</td>
+			<td class="align-center" width="400">${market.market_thumbNail}</td>
+			<td width="200">${market.market_title}</td>
+			<td>${market.market_startDate} ${market.market_endDate}</td>
 			<td>예약 일시</td>
 			<td>
-				<input type="button" value="상세정보" onclick="location.href='boothDetail.do?market_num=${booth.market_num}'" class="detail-btn">
+				<input type="button" value="상세정보" onclick="location.href='marketDetail.do?market_num=${market.market_num}'" class="detail-btn">
 				<%-- <c:if test="${booth.market_startDate}"> --%>
 				<input type="button" value="예약 예정" class="before-btn">
 				<%-- </c:if> --%>
@@ -65,4 +65,4 @@
 	<div class="align-center">${page}</div>
 	</c:if>
 </div>
-<!-- 부스 리스트 목록 끝 -->
+<!-- 플리마켓 리스트 목록 끝 -->

@@ -14,6 +14,20 @@
     	<put-attribute name="title" value="부스 예약 목록"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/boothList.jsp"/>
     </definition>
+    
+    <!-- 관리자 -->
+    <definition name="adminBoothList" extends="admin">
+    	<put-attribute name="title" value="부스 목록(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminBoothList.jsp"/>
+    </definition>
+    <definition name="adminBoothWrite" extends="admin">
+    	<put-attribute name="title" value="부스 등록(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminBoothWrite.jsp"/>
+    </definition>
+    <definition name="adminMarketList" extends="admin">
+    	<put-attribute name="title" value="플리마켓 목록(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminMarketList.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

@@ -6,6 +6,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -38,4 +39,19 @@ public class MarketVO {
 	private String market_thumbNailName;
 	private Date regDate;
 	private Date updateDate;
+	
+	// 업로드 파일 처리
+	public void setPosterUpload(MultipartFile upload1) throws Exception{
+		// byte[]로 변환
+		setMarket_poster(upload1.getBytes());
+		// 포스터명 구하기
+		setMarket_posterName(upload1.getOriginalFilename());
+	}
+	
+	public void setThumbNailUpload(MultipartFile upload2) throws Exception{
+		// byte[]로 변환
+		setMarket_thumbNail(upload2.getBytes());
+		// 썸네일명 구하기
+		setMarket_thumbNailName(upload2.getOriginalFilename());
+	}
 }
