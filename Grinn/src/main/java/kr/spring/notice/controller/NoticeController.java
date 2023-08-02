@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.member.vo.MemberVO;
 import kr.spring.notice.service.NoticeService;
 import kr.spring.notice.vo.NoticeVO;
 import kr.spring.util.PagingUtil;
@@ -51,12 +52,14 @@ public class NoticeController {
 		if(result.hasErrors()) {
 			return form();
 		}
+		MemberVO user = (MemberVO)session.getAttribute("user");
 		
 		//회원번호 세팅
-		//noticeVO.setMem_num(((NoticeVO)session.getAttribute("user")).getMem_num());
+		noticeVO.setMem_num(user.getMem_num());
+		//MemberVO member = userService.selectMember(user.getMem_num());
 		
 		//로그인작업 완료 후 세션에서 회원번호 호출하여 세팅하는 것으로 변경
-		noticeVO.setMem_num(1);
+		//noticeVO.setMem_num(1);
 		
 		//글 쓰기
 		noticeService.insertNotice(noticeVO);
