@@ -35,8 +35,7 @@ public class StyleServiceImpl implements StyleService{
 
 	@Override
 	public StyleVO selectStyle(Integer st_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return styleMapper.selectStyle(st_num);
 	}
 
 	@Override

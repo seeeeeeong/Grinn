@@ -3,6 +3,8 @@ package kr.spring.style.vo;
 import java.io.IOException;
 import java.sql.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
@@ -11,10 +13,11 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"st_photo1", "st_photo2", "st_photo3", "st_photo4"})
 public class StyleVO {
 	private int st_num;
 	private String st_phrase;
+	@NotEmpty
 	private String st_photo1n;
 	private String st_photo2n;
 	private String st_photo3n;
@@ -29,6 +32,8 @@ public class StyleVO {
 	private int item_num1;
 	private int item_num2;
 	private int item_num3;
+	private String mem_id;
+	private String mem_photo;
 	
 	public void setUpload1(MultipartFile upload1) throws IOException{
 		//MultipartFile -> byte[]

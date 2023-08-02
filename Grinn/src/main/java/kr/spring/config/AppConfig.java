@@ -10,12 +10,14 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 import kr.spring.interceptor.AdminCheckInterceptor;
 import kr.spring.interceptor.AutoLoginCheckInterceptor;
+import kr.spring.interceptor.LoginCheckInterceptor;
 
 //자바 코드 기반 설정 클래스
 @Configuration
 public class AppConfig implements WebMvcConfigurer{
 	private AutoLoginCheckInterceptor autoLoginCheck;
 	private AdminCheckInterceptor adminCheck;
+	private LoginCheckInterceptor loginCheck;
 	
 	@Bean
 	public AutoLoginCheckInterceptor interceptor() {
@@ -29,6 +31,12 @@ public class AppConfig implements WebMvcConfigurer{
 		return adminCheck;
 	}
 	
+	@Bean
+	public LoginCheckInterceptor interceptor2() {
+		loginCheck = new LoginCheckInterceptor();
+		return loginCheck;
+	}
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		//AutoLoginCheckInterceptor 설정
@@ -40,7 +48,10 @@ public class AppConfig implements WebMvcConfigurer{
 		registry.addInterceptor(adminCheck)
 		        .addPathPatterns("/main/admin.do")
 		        .addPathPatterns("/member/admin_list.do")
-		        .addPathPatterns("/member/admin_update.do");	
+		        .addPathPatterns("/member/admin_update.do");
+		//LoginInterceptor 설정
+		registry.addInterceptor(loginCheck)
+				.addPathPatterns("/style/write.do");
 	}
 	
 	@Bean

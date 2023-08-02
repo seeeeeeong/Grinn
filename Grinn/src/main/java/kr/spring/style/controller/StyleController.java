@@ -26,6 +26,7 @@ import kr.spring.style.service.StyleService;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -71,7 +72,8 @@ public class StyleController {
             			 HttpServletRequest request,
             			 HttpSession session,
             			 Model model) {
-		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+	
 		log.debug("<<STYLE 작성>> : " + styleVO);
 		
 		//유효성 체크 결과 오류가 있으며 폼 호출
@@ -80,12 +82,11 @@ public class StyleController {
 		}
 		
 		//로그인 작업 완료 후 세션에서 회원번호 호출하여 셋팅하는 것으로 변경
-		styleVO.setMem_num(1);
+		styleVO.setMem_num(user.getMem_num());
 		styleService.insertStyle(styleVO);
 		
 		model.addAttribute("message", "스타일 업로드 완료!");
-		model.addAttribute("url", 
-				request.getContextPath()+"/style/list.do");
+		model.addAttribute("url", request.getContextPath()+"/style/list.do");
 		
 		return "common/resultView";
 	}
@@ -107,7 +108,7 @@ public class StyleController {
 		log.debug("<<count>> : " + count);
 		
 		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,20,10,"list.do","&order="+order);
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,5,10,"list.do","&order="+order);
 		
 		List<StyleVO> list = null;
 		if(count > 0) {
@@ -125,6 +126,21 @@ public class StyleController {
 		mav.addObject("page", page.getPage());
 		
 		return mav;
+	}
+	
+	/*========================
+	 * 스타일 상세
+	 *========================*/
+	@RequestMapping("/style/detail.do")
+	public ModelAndView getDetail(@RequestParam int st_num) {
+		log.debug("<<스타일 상세 - st_num>> : " + st_num);
+		
+		//글상세 
+		StyleVO style = styleService.selectStyle(st_num);
+		
+		style.setSt_phrase(StringUtil.useBrNoHtml(style.getSt_phrase()));
+		
+		return new ModelAndView("styleDetail","style", style);
 	}
 	
 }

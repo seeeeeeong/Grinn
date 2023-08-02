@@ -76,7 +76,7 @@
 		<where>
 			<if test="keyword != null and keyword != ''">
 				<if test="keyfield == 2">
-					m.mem_id LIKE '%' || #{keyword} || '%' or
+					m.mem_id LIKE '%' || #{keyword} || '%'
 				</if>
 			</if>
 		</where>
@@ -84,48 +84,34 @@
 	
 	<!-- 전체/검색 레코드수 -->
 	<select id="selectRowCount" parameterType="map" resultType="integer">
-		SELECT
-		  COUNT(*)
-		FROM style s JOIN member m
-		ON s.mem_num = m.mem_num
+		SELECT COUNT(*) FROM style s 
+		LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
+		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
 		<include refid="styleSearch"></include>
 	</select>
 
 	
 	<!-- 전체/검색 목록 -->
 	<select id="selectList" parameterType="map" resultType="styleVO">
-		SELECT
-		   *
-		FROM (SELECT
-		        a.*,
-		        rownum rnum
-		      FROM(SELECT
-		             st_num,
-		             <![CDATA[
-		             REPLACE(REPLACE(st_phrase, '<', '&lt;'), '>', '&gt;') st_phrase,
-		             ]]>
-		             st_photo1n,
-		             st_photo2n,
-		             st_photo3n,
-		             mem_num,
-		             st_regdate,
-		             st_mdate,
-		             item_num1,
-		             item_num2,
-		             item_num3
-		           FROM style
-		           )a)
+		SELECT * FROM (SELECT a.*, rownum rnum FROM
+		(SELECT st_num,
+		<![CDATA[
+		REPLACE(REPLACE(st_phrase, '<', '&lt;'), '>', '&gt;') st_phrase,
+		]]>
+		s.st_photo1n, s.st_photo2n, s.st_photo3n, s.mem_num, s.st_regdate, 
+		s.st_mdate, s.item_num1, s.item_num2, s.item_num3, m.mem_id, d.mem_photo
+		FROM style s LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
+		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num ORDER BY st_num DESC)a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
-		ORDER BY st_num DESC          
 	</select>
 	
 	<!-- 스타일 상세 -->
 	<select id="selectStyle" parameterType="integer">
-		SELECT
-		  * 
-		FROM style s JOIN member m USING(mem_num)
+		SELECT * FROM style s 
+		LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
+		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
 		WHERE s.st_num=#{st_num}
 	</select>
 </mapper>

@@ -17,6 +17,10 @@
     	<put-attribute name="title" value="Style | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/style/styleList.jsp"/>
     </definition>
+    <definition name="styleDetail" extends="main">
+    	<put-attribute name="title" value="Style | Grinn"/>
+	    <put-attribute name="body" value="/WEB-INF/views/style/styleDetail.jsp"/>
+    </definition>
 </tiles-definitions>
 
 
