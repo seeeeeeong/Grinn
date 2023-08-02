@@ -1,7 +1,13 @@
 @charset "UTF-8";
+/*플리마켓 메인
+-------------------------*/
 .selectMarket{
 	height:300px;
 	width:350px;
+}
+.selectMarket a:hover{
+	text-decoration:none;
+	color:#000000;
 }
 .booth-res{
 	float:left;
