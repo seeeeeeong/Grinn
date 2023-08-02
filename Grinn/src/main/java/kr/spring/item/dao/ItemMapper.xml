@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.item.dao.ItemMapper">
+
 	<!-- 상품 등록 -->
 	<insert id="insertItem" parameterType="itemVO">
 		INSERT INTO item(
@@ -30,7 +31,7 @@
 	</insert>
 	<!-- 상품 등록 끝 -->
 
-
+	
 	<!-- 게시판 목록 -->
 	<sql id="itemSearch">
 		<where>
@@ -72,11 +73,7 @@
             a.*,
             rownum rnum
            FROM(SELECT 
-           			b.item_num,
-           			b.item_photo1,
-                    b.item_name,
-                    b.item_detail,
-                    b.item_price,
+                    b.*,
                     r.re_cnt,
                     f.fav_cnt
                  FROM item b
@@ -89,4 +86,5 @@
       WHERE rnum >= #{start} AND rnum <= #{end}
       ]]>
    </select>
+
 </mapper>

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.item.service.ItemService;
 import kr.spring.item.vo.ItemVO;
+import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -75,6 +77,43 @@ public class ItemController {
 		
 		return mav;
 	}
+	//===========상품 목록 시작(관리자)===========
+	@RequestMapping("/item/itemAdminList.do")
+	public ModelAndView getAdminItemList(@RequestParam(value="pageNum",defaultValue = "1") int currentPage, 
+									@RequestParam(value="order",defaultValue = "1") int order,
+									String keyfield, String keyword) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//전체/검색 레코드 수
+		int count = itemService.selectRowCount(map);
+		
+		log.debug("<<count>> : " + count);
+		
+		//페이지처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 20, 10, "itemAdminList.do","&order="+order);
+		
+		List<ItemVO> list = null;
+		if(count > 0) {
+			map.put("order", order);
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			list = itemService.selectList(map);
+		}
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("itemAdminList");
+		mav.addObject("count", count);
+		mav.addObject("list",list);
+		mav.addObject("page", page.getPage());
+		
+		return mav;
+	}
+	//===========상품 목록 끝 (사용자&관리자)===========
+	
 	
 	// ===========상품 등록시작(관리자)===========
 	// 등록폼
@@ -95,6 +134,23 @@ public class ItemController {
 	
 		return "imageView";
 	}
+	
+	/*
+	public String getProfile(@RequestParam int item_num,@RequestParam int item_type,
+			HttpServletRequest request,Model model) {
+		
+		ItemVO itemVO = itemService.selectItem(item_num);
+		
+		if(item_type==1) {
+			model.addAttribute("imageFile", itemVO.getItem_photo1());
+			model.addAttribute("filename", itemVO.getItem_photo1name());
+		}else if(item_type==2) {
+			model.addAttribute("imageFile", itemVO.getItem_photo2());
+			model.addAttribute("filename", itemVO.getItem_photo2name());
+		}
+		return "imageView";
+	}
+	*/
 
 	// 상품 사진 출력(회원번호 지정)
 	@RequestMapping("/item/viewProfile.do")
@@ -120,7 +176,6 @@ public class ItemController {
 		}
 	}
 
-
 	// 상품 등록 요청 처리
 	@PostMapping("/item/itemWrite.do")
 	public String itemWrite(@ModelAttribute("itemVO") ItemVO itemVO,Model model) {
@@ -133,5 +188,14 @@ public class ItemController {
 	}
 	
 	//=========상품등록 끝============
-
+	
+	//=========상품 상세 시작============
+	@RequestMapping("/item/detail.do")
+	public ModelAndView getDetail(@RequestParam int item_num) {
+		//상품상세
+		ItemVO item = itemService.selectItem(item_num);
+		
+		return new ModelAndView("itemDetail","item",item);
+	}
+	//=========상품 상세 끝============
 }
