@@ -34,6 +34,8 @@ public class StyleVO {
 	private int item_num3;
 	private String mem_id;
 	private String mem_photo;
+	private String item_name;
+	private String item_photo1name;
 	
 	public void setUpload1(MultipartFile upload1) throws IOException{
 		//MultipartFile -> byte[]

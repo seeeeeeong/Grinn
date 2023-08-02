@@ -112,6 +112,7 @@
 		SELECT * FROM style s 
 		LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
 		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
+		LEFT OUTER JOIN item i ON s.item_num1 = i.item_num
 		WHERE s.st_num=#{st_num}
 	</select>
 </mapper>
