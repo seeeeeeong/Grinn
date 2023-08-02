@@ -79,7 +79,7 @@ public class UserController {
 		model.addAttribute("member", member);
 		
 	    //mem_photo, mem_nickname, mem_email, mem_auth, mem_point Model에 추가
-	    model.addAttribute("mem_photo", member.getPhoto());
+	    model.addAttribute("mem_photo", member.getMem_photo());
 	    model.addAttribute("mem_nickname", member.getMem_nickname());
 	    model.addAttribute("mem_email", member.getMem_email());
 
