@@ -2,7 +2,7 @@
 /* 전체 레이아웃
 ------------------------*/
 #main{
-	width:1024px;
+	width:1200px;
 	margin:0 auto;
 	font-size:10pt;
 	font-family:"맑은 고딕";
@@ -35,7 +35,7 @@ a:hover{
 #page_nav{
 	float:left;
 	width:25%;
-	min-height:530px;
+	min-height:600px;
 }
 #page_body{
 	width:75%;
