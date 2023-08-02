@@ -33,7 +33,7 @@ public class MemberVO {
 	private String mem_zipcode;
 	private String mem_address1;
 	private String mem_address2;
-	private String photo;
+	private String mem_photo;
 	private String mem_int;
 	private Date mem_date;
 	private Date mem_mdate;

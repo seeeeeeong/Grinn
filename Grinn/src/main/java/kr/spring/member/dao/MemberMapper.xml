@@ -8,13 +8,21 @@
 		  mem_name,
 		  mem_passwd,
 		  mem_email,
-		  mem_phone)
+		  mem_phone,
+		  mem_zipcode,
+		  mem_address1,
+		  mem_address2,
+		  mem_photo)
 		VALUES(
 		  #{mem_num},
 		  #{mem_name},
 		  #{mem_passwd},
 		  #{mem_email},
-		  #{mem_phone})
+		  #{mem_phone},
+		  #{mem_zipcode},
+		  #{mem_address1},
+		  #{mem_address2},
+		  #{mem_photo})
 	</insert>
 	
 	<!-- 회원아이디로 회원정보 체크 -->

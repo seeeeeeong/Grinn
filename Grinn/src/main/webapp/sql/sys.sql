@@ -10,7 +10,6 @@ create sequence member_seq;
 
 create table member_detail(
 	mem_num number, -- 회원번호
-	mem_id varchar2(12) unique not null, -- 회원 아이디
 	au_id varchar2(36) unique, -- 자동 로그인 식별값
 	mem_name varchar2(30) not null, -- 회원 이름
 	mem_passwd varchar2(15) not null, -- 회원 비밀번호

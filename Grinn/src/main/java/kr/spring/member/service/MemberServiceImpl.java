@@ -20,9 +20,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void insertMember(MemberVO member) {
 		member.setMem_num(memberMapper.selectMem_num());
-		member.setMem_zipcode(null);
-		member.setMem_address1(null);
-		member.setMem_address2(null);
+		member.setMem_zipcode("");
+		member.setMem_address1("");
+		member.setMem_address2("");
+		member.setMem_photo("");
 		memberMapper.insertMember(member);
 		memberMapper.insertMember_detail(member);
 		
