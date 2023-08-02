@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 public class MarketAdminController {
 	@Autowired
 	private MarketService marketService;
+	
+	@ModelAttribute
+	public MarketVO initCommand() {
+		return new MarketVO();
+	}
 	
 	// ===플리마켓 목록 - 관리자===
 	@RequestMapping("/fleamarket/adminMarketList.do")
