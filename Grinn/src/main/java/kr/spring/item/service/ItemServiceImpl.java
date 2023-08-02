@@ -14,6 +14,7 @@ import kr.spring.item.vo.ItemVO;
 @Transactional
 public class ItemServiceImpl implements ItemService{
 
+	
 	@Autowired
 	private ItemMapper itemMapper;
 	
@@ -48,6 +49,5 @@ public class ItemServiceImpl implements ItemService{
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }

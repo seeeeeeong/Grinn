@@ -12,16 +12,18 @@ import kr.spring.item.vo.ItemVO;
 public interface ItemMapper {
 	
 	//부모글
-		public List<ItemVO> selectList(Map<String, Object> map);
-		public int selectRowCount(Map<String,Object> map);
-		
-		public void insertItem(ItemVO item);
-		@Select("SELECT * FROM item WHERE item_num=#{item_num}")
-		public ItemVO selectItem(Integer item_num);
-		public void updateItem(ItemVO item);
-		public void deleteItem(Integer item_num);
-		
-		//관심상품
+	public List<ItemVO> selectList(Map<String, Object> map);
+	public int selectRowCount(Map<String,Object> map);
+	
+	//글작성
+	public void insertItem(ItemVO item);
+	//글상세
+	@Select("SELECT * FROM item WHERE item_num=#{item_num}")
+	public ItemVO selectItem(Integer item_num);
+	public void updateItem(ItemVO item);
+	public void deleteItem(Integer item_num);
+	
+	//관심상품
 	
 	//리뷰(댓글과 비슷하지 않을까?)
 }
