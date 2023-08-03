@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.item.dao.ItemMapper;
+import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemVO;
 
 @Service
@@ -48,6 +49,27 @@ public class ItemServiceImpl implements ItemService{
 	public void deleteItem(Integer item_num) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	//==관심상품(좋아요)==
+	@Override
+	public ItemFavVO selectFav(ItemFavVO fav) {
+		return itemMapper.selectFav(fav);
+	}
+
+	@Override
+	public int selectFavCount(Integer item_num) {
+		return itemMapper.selectFavCount(item_num);
+	}
+
+	@Override
+	public void insertFav(ItemFavVO fav) {
+		itemMapper.insertFav(fav);
+	}
+
+	@Override
+	public void deleteFav(Integer item_favNum) {
+		itemMapper.deleteFav(item_favNum);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.item.service.ItemService;
+import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemVO;
+import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -192,4 +196,65 @@ public class ItemController {
 		return new ModelAndView("itemDetail","item",item);
 	}
 	//=========상품 상세 끝============
+	
+	//=========관심 상품(좋아요) 시작============
+	@RequestMapping("/item/getFav.do")
+	@ResponseBody
+	public Map<String, Object> getFav(ItemFavVO fav, HttpSession session){
+		
+		//세션에 로그인 여부 확인
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {//로그인이 되지 않았을 때
+			mapJson.put("status", "noFav");
+		}else {
+			//로그인된 회원번호 셋팅
+			fav.setMem_num(user.getMem_num());
+			
+			ItemFavVO itemFav = itemService.selectFav(fav);
+			
+			if(itemFav!=null) {
+				mapJson.put("status", "yesFav");
+			}else {
+				mapJson.put("status", "noFav");
+			}
+		}
+		mapJson.put("count", itemService.selectFavCount(fav.getItem_num()));
+		
+		return mapJson;
+	}
+	
+	//좋아요 등록/삭제
+	@RequestMapping("/item/writeFav.do")
+	@ResponseBody
+	public Map<String, Object> writeFav(ItemFavVO fav,HttpSession session){
+		
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {
+			mapJson.put("result", "logout");
+		}else {
+			//로그인된 회원번호 셋팅
+			fav.setMem_num(user.getMem_num());
+			
+			ItemFavVO itemFav = itemService.selectFav(fav);
+			if(itemFav!=null) {
+				itemService.deleteFav(itemFav.getItem_favNum());
+				
+				mapJson.put("result", "success");
+				mapJson.put("status", "noFav");
+			}else {//등록한 좋아요가 없으면 등록
+				itemService.insertFav(fav);
+				
+				mapJson.put("result", "success");
+				mapJson.put("status", "yesFav");
+			}
+			mapJson.put("count", itemService.selectFavCount(fav.getItem_num()));
+		}
+		
+		return mapJson;
+	}
+	//=========관심 상품(좋아요) 끝============
 }
