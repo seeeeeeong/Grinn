@@ -2,6 +2,9 @@ package kr.spring.trade.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.pbid.vo.PurchaseSizePriceVO;
@@ -60,7 +63,13 @@ public interface TradeService {
 
 	// 판매 입찰 정보 등록
 	public void insertSaleBid(SaleBidVO saleBidVO);
-
+	
+	// 구매 입찰 번호 조회
+	public int selectPurchaseBidNumber(Integer mem_num, Integer item_num, Integer purchase_price);
+		
+	// 판매 입찰 번호 조회
+	public int selectSaleBidNumber(Integer mem_num, Integer item_num, Integer sale_price);
+		
 	// 구매 입찰 정보 삭제
 	public void deletePurchaseBid(Integer purchase_num);
 

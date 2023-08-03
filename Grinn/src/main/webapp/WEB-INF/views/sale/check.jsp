@@ -78,7 +78,7 @@
 			</li>
 		</ul>
 		<div>
-			<input type="button" value="판매 계속" onclick="location.href='purchaseDetail.do?item_num=${item_num}&item_size=${item_size}&item_sizenum=${item_sizenum}'">
+			<input type="button" value="판매 계속" onclick="location.href='saleDetail.do?item_num=${item_num}&item_size=${item_size}&item_sizenum=${item_sizenum}'">
 		</div>
 	</div>
 </div>

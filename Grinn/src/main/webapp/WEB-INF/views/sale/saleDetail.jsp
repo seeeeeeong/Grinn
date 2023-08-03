@@ -1,42 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/trade.js"></script>    
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/tradeSale.js"></script>    
 <script type="text/javascript">
 	$(function(){
 		$('#btn_purchase_direct').show();
 		$('#btn_purchase_bid').hide();
 		$('#print_deadline').attr('data-deadline','1');
 		
-		if(${saleBidCount == 0}){
+		if(${purchaseBidCount == 0}){
 			$('#print_deadline').attr('data-deadline','');
-			$('#purchase_method').text('').text('구매 입찰 하기');
+			$('#sale_method').text('').text('판매 입찰 하기');
 			$('#direct_price').css('display','none');
 			$('#bid_price').css('display','block');
 			$('#input_deadline').css('display','block');
-			$('#btn_purchase').attr('value','구매 입찰 계속');
-			$('#btn_purchase').attr('data-type',"2");
+			$('#btn_sale').attr('value','판매 입찰 계속');
+			$('#btn_sale').attr('data-type',"2");
 			$('#input_bid').val('');
 		}
 		
-		$('#purchase_bid').click(function(){
+		$('#sale_bid').click(function(){
 			$('#print_deadline').attr('data-deadline','');
-			$('#purchase_method').text('').text('구매 입찰 하기');
+			$('#sale_method').text('').text('판매 입찰 하기');
 			$('#direct_price').css('display','none');
 			$('#bid_price').css('display','block');
 			$('#input_deadline').css('display','block');
-			$('#btn_purchase').attr('value','구매 입찰 계속');
-			$('#btn_purchase').attr('data-type',"2");
+			$('#btn_sale').attr('value','판매 입찰 계속');
+			$('#btn_sale').attr('data-type',"2");
 			$('#input_bid').val('');
 		});
-		$('#purchase_direct').click(function(){
+		$('#sale_direct').click(function(){
 			$('#input_bid').val(${minSaleBid});
-			$('#purchase_method').text('').text('즉시 구매 하기');
+			$('#sale_method').text('').text('즉시 판매 하기');
 			$('#direct_price').css('display','block');
 			$('#bid_price').css('display','none');
 			$('#input_deadline').css('display','none');
-			$('#btn_purchase').attr('value','즉시 구매 계속');
-			$('#btn_purchase').attr('data-type',"1");
+			$('#btn_sale').attr('value','즉시 판매 계속');
+			$('#btn_sale').attr('data-type',"1");
 			
 		});
 		
@@ -53,25 +53,25 @@
 				return;
 			}
 			
-			if($(this).val() >= ${minSaleBid} && ${minSaleBid}!=0){
+			if($(this).val() <= ${maxPurchaseBid} && ${maxPurchaseBid}!=0){
 				$('#print_deadline').attr('data-deadline','1');
-				$('#purchase_method').text('').text('즉시 구매 하기');
+				$('#sale_method').text('').text('즉시 판매 하기');
 				$('#direct_price').css('display','block');
 				$('#bid_price').css('display','none');
 				$('#input_deadline').css('display','none');
-				$('#btn_purchase').attr('data-type','1');
-				$('#btn_purchase').attr('value','즉시 구매 계속');
-				$('#input_bid').val(${minSaleBid});
+				$('#btn_sale').attr('data-type','1');
+				$('#btn_sale').attr('value','즉시 판매 계속');
+				$('#input_bid').val(${maxPurchaseBid});
 				return;
 			}
 			
-			if($(this).val() < ${minSaleBid} && $(this).val() >= 20000){
+			if($(this).val() > ${maxPurchaseBid} && $(this).val() >= 20000){
 				$('#input_warn').text('');
 				return;
 			}
 		});
 		
-		$('.purchase_deadline').each(function(){
+		$('.sale_deadline').each(function(){
 			let deadline = $(this).attr('data-deadline');
 			$(this).click(function(){
 				$('#print_deadline').text(deadline+'일').attr('data-deadline',deadline);
@@ -88,16 +88,16 @@
 	});
 </script>
 <div class="page-main">
-	<h1 id="purchase_method">즉시 구매 하기</h1>	
+	<h1 id="sale_method">즉시 판매 하기</h1>	
 	<div>
 		아이템 정보가 들어가는 곳
 	</div>
 	
 	<hr size="1" width="100%" noshade>
 	
-	<div class="align-center purchase-detail">
+	<div class="align-center sale-detail">
 		<div>
-			<input type="hidden" value="${minSaleBid}" name="minSaleBid" id="minSaleBid">
+			<input type="hidden" value="${maxPurchaseBid}" name="maxPurchaseBid" id="maxPurchaseBid">
 			<input type="hidden" value="${item_num}" name="item_num" id="item_num">
 			<input type="hidden" value="${item_sizenum}" name="item_sizenum" id="item_sizenum">
 			<input type="hidden" value="${item_size}" name="item_size" id="item_size">
@@ -123,20 +123,20 @@
 		<hr size="1" width="100%" noshade>	
 		
 		<div>
-			<input type="button" value="구매 입찰" id="purchase_bid">
-			<c:if test="${saleBidCount != 0}">
-			<input type="button" value="즉시 구매" id="purchase_direct">
+			<input type="button" value="판매 입찰" id="sale_bid">
+			<c:if test="${purchaseBidCount != 0}">
+			<input type="button" value="즉시 판매" id="sale_direct">
 			</c:if>
-			<c:if test="${saleBidCount == 0}">
-			<input type="button" value="즉시 구매" id="purchase_direct" disabled>
+			<c:if test="${purchaseBidCount == 0}">
+			<input type="button" value="즉시 판매" id="sale_direct" disabled>
 			</c:if>
 		</div>
 		
 		<div id="price_now">
 			<table id="direct_price">
 				<tr>
-					<td>즉시구매가</td>
-					<td>${minSaleBid}</td>
+					<td>즉시판매가</td>
+					<td>${maxPurchaseBid}</td>
 				</tr>
 				<tr>
 					<td colspan="2">총 결제금액은 다음 화면에서 계산됩니다.</td>
@@ -145,11 +145,11 @@
 			
 			<table id="bid_price" style="display:none;">
 				<tr>
-					<td>구매희망가</td>
+					<td>판매희망가</td>
 					<td><span id="input_warn"></span></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="text" placeholder="희망가 입력" id="input_bid" value="${minSaleBid}">원</td>
+					<td colspan="2"><input type="text" placeholder="희망가 입력" id="input_bid" value="${maxPurchaseBid}">원</td>
 				</tr>
 				<tr>
 					<td colspan="2">총 결제금액은 다음 화면에서 계산됩니다.</td>
@@ -165,11 +165,11 @@
 				<span id="print_deadline"></span>
 			</div>
 			<div>
-				<a class="purchase_deadline" data-deadline="1">1일</a>
-				<a class="purchase_deadline" data-deadline="3">3일</a>
-				<a class="purchase_deadline" data-deadline="5">5일</a>
-				<a class="purchase_deadline" data-deadline="7">7일</a>
-				<a class="purchase_deadline" data-deadline="10">10일</a>
+				<a class="sale_deadline" data-deadline="1">1일</a>
+				<a class="sale_deadline" data-deadline="3">3일</a>
+				<a class="sale_deadline" data-deadline="5">5일</a>
+				<a class="sale_deadline" data-deadline="7">7일</a>
+				<a class="sale_deadline" data-deadline="10">10일</a>
 			</div>
 		</div>
 		<div>
@@ -179,7 +179,7 @@
 			</ul>
 		</div>
 		<div id="btn_confirm">
-			<input type="button" data-type="1" value="즉시 구매 계속" id="btn_purchase">
+			<input type="button" data-type="1" value="즉시 판매 계속" id="btn_sale">
 		</div>
 	</div>
 </div>

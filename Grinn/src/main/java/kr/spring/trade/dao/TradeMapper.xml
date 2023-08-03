@@ -29,11 +29,12 @@
 		SELECT 
 			s.item_sizenum,
 			i.item_num,
-			max(pb.purchase_price) as purchase_price,
+			max(CASE WHEN pb.purchase_deadline >= SYSDATE THEN pb.purchase_price ELSE 0 END) as purchase_price,
 			s.item_size
 		FROM item_size s 
 		LEFT JOIN item i ON s.item_cate = i.item_cate 
-		LEFT JOIN purchase_bid pb ON s.item_sizenum = pb.item_sizenum WHERE i.item_num = #{item_num}
+		LEFT JOIN purchase_bid pb ON s.item_sizenum = pb.item_sizenum 
+		WHERE i.item_num = #{item_num}
 		GROUP BY s.item_sizenum,s.item_size,i.item_num
 	</select>
 	
@@ -43,11 +44,12 @@
 		SELECT 
 			s.item_sizenum,
 			i.item_num,
-			min(sb.sale_price) sale_price,
+			min(CASE WHEN sb.sale_deadline >= SYSDATE THEN sb.sale_price ELSE 0 END) sale_price,
 			s.item_size
 		FROM item_size s 
 		LEFT JOIN item i ON s.item_cate = i.item_cate 
-		LEFT JOIN sale_bid sb ON s.item_sizenum = sb.item_sizenum WHERE i.item_num = #{item_num}
+		LEFT JOIN sale_bid sb ON s.item_sizenum = sb.item_sizenum
+		WHERE i.item_num = #{item_num}
 		GROUP BY s.item_sizenum,s.item_size,i.item_num
 	</select>
 	

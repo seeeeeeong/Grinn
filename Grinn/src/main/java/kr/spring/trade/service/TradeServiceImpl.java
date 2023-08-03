@@ -2,6 +2,7 @@ package kr.spring.trade.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,20 +67,18 @@ public class TradeServiceImpl implements TradeService{
 
 	@Override
 	public void insertSaleBid(SaleBidVO saleBidVO) {
-		// TODO Auto-generated method stub
+		tradeMapper.insertSaleBid(saleBidVO);
 		
 	}
 
 	@Override
 	public void deletePurchaseBid(Integer purchase_num) {
-		// TODO Auto-generated method stub
-		
+		tradeMapper.deletePurchaseBid(purchase_num);
 	}
 
 	@Override
 	public void deleteSaleBid(Integer sale_num) {
-		// TODO Auto-generated method stub
-		
+		tradeMapper.deleteSaleBid(sale_num);
 	}
 
 	@Override
@@ -109,8 +108,7 @@ public class TradeServiceImpl implements TradeService{
 
 	@Override
 	public int selectBuyerNum(Integer item_num, Integer item_sizenum, Integer purchase_price) {
-		// TODO Auto-generated method stub
-		return 0;
+		return tradeMapper.selectBuyerNum(item_num, item_sizenum, purchase_price);
 	}
 
 	@Override
@@ -123,6 +121,16 @@ public class TradeServiceImpl implements TradeService{
 		tradeMapper.insertTrade(trade);
 		tradeMapper.insertTradeDetail(trade);
 		
+	}
+
+	@Override
+	public int selectPurchaseBidNumber(Integer mem_num, Integer item_num, Integer purchase_price) {
+		return tradeMapper.selectPurchaseBidNumber(mem_num, item_num, purchase_price);
+	}
+
+	@Override
+	public int selectSaleBidNumber(Integer mem_num, Integer item_num, Integer sale_price) {
+		return tradeMapper.selectSaleBidNumber(mem_num, item_num, sale_price);
 	}
 
 }

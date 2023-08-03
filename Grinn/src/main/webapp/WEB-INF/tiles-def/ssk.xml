@@ -37,6 +37,13 @@
     	<put-attribute name="title" value="구매 하기"/>
 	    <put-attribute name="body" value="/WEB-INF/views/purchase/purchaseDetail.jsp"/>
     </definition>
+    <!-- 판매 상세 화면 -->
+    <definition name="saleDetail" extends="main">
+    	<put-attribute name="title" value="판매 하기"/>
+	    <put-attribute name="body" value="/WEB-INF/views/sale/saleDetail.jsp"/>
+    </definition>
+    
+    
 </tiles-definitions>
 
 
