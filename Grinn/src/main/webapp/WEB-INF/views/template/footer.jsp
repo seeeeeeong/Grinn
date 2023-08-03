@@ -3,34 +3,70 @@
 
 <div class = "footer">
 	<div class = "footer_inner">
-		<hr>
 		<div class = "service_area">
-			<h3>이용안내</h3>
-			<ul>
-				<li><a>검수 기준</a></li>
-				<li><a>이용 정책</a></li>
-				<li><a>패널티 정책</a></li>
-				<li><a>커뮤니티 가이드라인</a></li>
-			</ul>
-			<h3>고객지원</h3>
-			<ul>
-				<li><a>공지사항</a></li>
-				<li><a>서비스 소개</a></li>
-				<li><a>스토어 안내</a></li>
-				<li><a>판매자 방문접수</a></li>
-			</ul>
-			<h3>고객센터 0315-0825</h3>
-			<p>운영시간 평일 09:00 - 18:00 (토∙일, 공휴일 휴무)<br>
-			점심시간 평일 12:50 - 14:00</p>
-			<input type="button" class="menu-btn" value = "자주 묻는 질문" onclick="location.href='${pageContext.request.contextPath}/qna/list.do'">
+			<div class = "customer_service">
+				<strong class = "service_title">고객센터 0315-0825</strong>
+				<div class = "service_time">
+					<dl class = "time_box">
+						<dt class = "time_term">운영시간 평일 09:00 - 18:00 (토∙일, 공휴일 휴무) 점심시간 평일 12:50 - 14:00</dt>
+					</dl>
+				</div>
+				<div class = "service_btn_box">
+					<a href = "" class = "btn solid small">자주묻는질문</a>
+				</div>
+			</div>
+			<div class = "footer_menu">
+				<div class = "menu_box">
+					<strong class = "menu_title">이용안내</strong>
+					<ul class = "menu_list">
+						<li class = "menu_item">
+							<a href = "" class = "menu_link">검수기준</a>
+						</li>
+						<li class = "menu_item">
+							<a href = "" class = "menu_link">이용정책</a>
+						</li>
+						<li class = "menu_item">
+							<a href = "" class = "menu_link">패널티 정책</a>
+						</li>
+						<li class = "menu_item">
+							<a href = "" class = "menu_link">커뮤니티 가이드라인</a>
+						</li>
+					</ul>
+				</div>
+				<div class = "menu_box">
+					<strong class = "menu_title">고객지원</strong>
+					<ul class = "menu_list">
+						<li class = "menu_item">
+							<a href = "" class = "menu_link">공지사항</a>
+						</li>
+						<li class = "menu_item">
+							<a href = "" class = "menu_link">서비스 소개</a>
+						</li>
+						<li class = "menu_item">
+							<a href = "" class = "menu_link">스토어 안내</a>
+						</li>
+						<li class = "menu_item">
+							<a href = "" class = "menu_link">판매자 방문접수</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<hr>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
 		<div class = "corporation_area">
-			<h3>
 				<a href = "">이용약관</a>
 				&nbsp;
-				<a href = "">개인정보처리방침</a>
-			</h3>
+				<a href = ""><b>개인정보처리방침</b></a>
 			<p>그린 주식회사∙대표 사조     사업자등록번호 : 570-82-82828     통신판매업 : 제 2023-서울강남C-0315호<br>
 			사업장소재지 : 서울특별시 강남구 역삼1동 테헤란로 132, 8층     호스팅 서비스 : sist (주)</p>
 		</div>

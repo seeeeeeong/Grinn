@@ -411,11 +411,125 @@ form#mre_form{
 /*===================
 ====== FOOTER =======
 ====================*/
-
-.footer_inner hr {
-    border: 0.5px solid #ccc;
-    margin: 10px 0;
+div{
+	display: block;
 }
+.service_area{
+	display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    border-top: 1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb;
+}
+.service_title{
+	display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    letter-spacing: -.16px;
+    font-weight: 700;
+}
+.service_time{
+	padding-top: 8px;
+}
+.time_box{
+	line-height: 17px;
+}
+dl{
+	display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.time_term{
+	max-width: 263px;
+	margin-right: 4px;
+	float: left;
+    font-size: 13px;
+    letter-spacing: -.07px;
+    color: rgba(34,34,34,.5);
+    max-width: 263px;
+    line-height: 20px;
+}
+dt{
+	margin: 0;
+	padding: 0;
+}
+.service_btn_box .btn{
+	border-radius: 0;
+    color: #fafafa;
+}
+.solid{
+	font-weight: 700;
+	background-color: #222;
+}
+.small{
+	font-size: 12px;
+    letter-spacing: -.06px;
+    padding: 0 14px;
+    height: 34px;
+}
+.btn{
+	display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+    color: rgba(34,34,34,.8);
+    background-color: #fff;
+}
+.footer_menu{
+	display: flex;
+}
+.menu_box{
+	width: 160px;
+}
+.menu_box li a{display: block;
+    padding: 5px;
+    color: #ccc;
+    font-size: 14px;
+    text-decoration: none;
+}
+.menu_title{
+	font-size: 16px;
+    letter-spacing: -.16px;
+}
+strong{
+	font-weight: bold;
+}
+.menu_list{
+	padding-top: 16px;
+}
+li, ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.menu_link{
+	display: inline-block;
+    font-size: 14px;
+    letter-spacing: -.21px;
+    color: rgba(34,34,34,.5);
+}
+a{
+	text-decoration: none;
+}
+
+.corporation_area{
+	padding-top: 30px;
+}
+.corporation_area p,
+.notice_area p{
+	color : #ccc;
+}
+
 
 
 
