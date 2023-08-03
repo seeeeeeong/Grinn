@@ -5,7 +5,6 @@ import java.sql.Date;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Range;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;

@@ -78,7 +78,7 @@ public class MarketAdminController {
 		map.put("keyword", keyword);
 		
 		// 전체/검색 레코드수
-		int count = marketService.selectRowCount(map);
+		int count = marketService.selectCount(map);
 		
 		log.debug("<<count>> : " + count);
 		

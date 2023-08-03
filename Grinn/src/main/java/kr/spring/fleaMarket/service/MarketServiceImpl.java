@@ -19,14 +19,12 @@ public class MarketServiceImpl implements MarketService{
 
 	@Override
 	public List<MarketVO> selectList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return marketMapper.selectList(map);
 	}
 
 	@Override
 	public int selectCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return marketMapper.selectCount(map);
 	}
 
 	@Override

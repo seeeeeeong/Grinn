@@ -34,4 +34,46 @@
 			#{market_thumbNail},
 			#{market_thumbNailName})
 	</insert>
+	
+	<!-- 목록 리스트와 검색용 -->
+	<sql id="marketSearch">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyword == 1">
+					market_title LIKE '%' || #{keyword} || '%' OR market_detail LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyword == 2">
+					market_title LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyword == 3">
+					market_detail LIKE '%' || #{keyword} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 전체/검색 레코드 수 --> 
+	<select id="selectCount" parameterType="map" resultType="integer">
+		SELECT
+		  COUNT(*)
+		FROM market
+		<include refid="marketSearch"></include>
+	</select>
+	
+	<!-- 전체/검색 목록 -->
+	<select id="selectList" parameterType="map" resultType="marketVO">
+		SELECT
+		  *
+		FROM (SELECT
+		        a.*,
+		        rownum rnum
+		      FROM (SELECT
+		              *
+		            FROM market
+		            <include refid="marketSearch"></include>
+		            ORDER BY market_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
 </mapper>
