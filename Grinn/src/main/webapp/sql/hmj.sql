@@ -4,8 +4,8 @@ create table market(
   market_num number, -- 플리마켓 번호
   market_title varchar2(150) not null, -- 플리마켓 제목
   market_detail clob, -- 플리마켓 상세정보
-  market_startDate date not null, -- 플리마켓 시작일
-  market_endDate date not null, -- 플리마켓 종료일
+  market_startDate varchar2(10) not null, -- 플리마켓 시작일
+  market_endDate varchar2(10) not null, -- 플리마켓 종료일
   place_name varchar2(300) not null, -- 개최장소 번호
   market_type number(1) not null, -- 플리마켓 예약 유형(1:부스 예약, 2:입장 예약)
   booth_count number(3) not null, -- 부스 자리수
