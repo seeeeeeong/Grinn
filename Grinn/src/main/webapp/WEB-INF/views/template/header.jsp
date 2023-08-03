@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h2 class="align-center">
-	<a href = "${pageContext.request.contextPath}/main/main.do">Grinn</a>
+	<a class = "logo" href = "${pageContext.request.contextPath}/main/main.do">Grinn</a>
 </h2>
 <div class="align-right">
 	<a href="${pageContext.request.contextPath}/notice/noticeList.do">고객센터</a>

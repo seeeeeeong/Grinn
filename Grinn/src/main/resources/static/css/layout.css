@@ -431,7 +431,7 @@ div{
     font-weight: 700;
 }
 .service_time{
-	padding-top: 8px;
+	padding-top: 3px;
 }
 .time_box{
 	line-height: 17px;
@@ -452,6 +452,7 @@ dl{
     color: rgba(34,34,34,.5);
     max-width: 263px;
     line-height: 20px;
+    margin-bottom: 10px;
 }
 dt{
 	margin: 0;
@@ -459,6 +460,7 @@ dt{
 }
 .service_btn_box .btn{
 	border-radius: 0;
+	background-color: #000;
     color: #fafafa;
 }
 .solid{
@@ -504,13 +506,10 @@ strong{
 	padding-top: 16px;
 }
 li, ul{
-	margin: 0;
-	padding: 0;
 	list-style: none;
 }
 li {
     display: list-item;
-    text-align: -webkit-match-parent;
 }
 .menu_link{
 	display: inline-block;
