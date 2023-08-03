@@ -18,6 +18,7 @@
 			<div class = "footer_menu">
 				<div class = "menu_box">
 					<strong class = "menu_title">이용안내</strong>
+					<div class = "menu_title_bottom">
 					<ul class = "menu_list">
 						<li class = "menu_item">
 							<a href = "" class = "menu_link">검수기준</a>
@@ -32,9 +33,11 @@
 							<a href = "" class = "menu_link">커뮤니티 가이드라인</a>
 						</li>
 					</ul>
+					</div>
 				</div>
 				<div class = "menu_box">
 					<strong class = "menu_title">고객지원</strong>
+					<div class = "menu_title_bottom">
 					<ul class = "menu_list">
 						<li class = "menu_item">
 							<a href = "" class = "menu_link">공지사항</a>
@@ -49,6 +52,7 @@
 							<a href = "" class = "menu_link">판매자 방문접수</a>
 						</li>
 					</ul>
+					</div>
 				</div>
 			</div>
 		</div>

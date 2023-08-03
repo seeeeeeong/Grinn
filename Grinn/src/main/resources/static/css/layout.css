@@ -499,17 +499,21 @@ dt{
 	font-size: 16px;
     letter-spacing: -.16px;
 }
+.menu_title_bottom{
+	margin-top: 8px;
+}
 strong{
 	font-weight: bold;
 }
-.menu_list{
-	padding-top: 16px;
-}
-li, ul{
+.menu_box li,
+.menu_box ul{
+	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 li {
     display: list-item;
+    text-align: -webkit-match-parent;
 }
 .menu_link{
 	display: inline-block;
