@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
+import kr.spring.pbid.vo.PurchaseSizePriceVO;
 import kr.spring.sbid.vo.SaleSizePriceVO;
 import kr.spring.trade.service.TradeService;
 import kr.spring.trade.vo.TradeVO;
@@ -48,7 +49,7 @@ public class TradeController {
 	 * ======================================================================================================================
 	 **/
 	@GetMapping("/purchase/selectSize.do")
-	public ModelAndView getItemAndSize(@RequestParam int item_num) {
+	public ModelAndView getPurchaseItemAndSize(@RequestParam int item_num) {
 		
 		// Login인터셉터로 로그인 되어있는지 확인필요 ***********
 		
@@ -184,7 +185,7 @@ public class TradeController {
 			tradeService.insertPurchaseBid(pbVO);
 			// total로 결제 금액 결제 진행 하기 *****************************************************************
 			
-			model.addAttribute("message","결제가 완료되었습니다.");
+			model.addAttribute("message","[구매입찰] 결제가 완료되었습니다.");
 			model.addAttribute("url","../item/itemList.do");
 		}
 		
@@ -192,6 +193,73 @@ public class TradeController {
 	}
 	
 	// 즉시구매 - 결제하기 버튼 클릭 시
+	@PostMapping("/purchase/purchasePaymentDirect.do")
+	public String paymentDirectFinish(TradeVO tradeVO,@RequestParam int sale_price,Model model,HttpSession session) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		if(user == null) {
+			model.addAttribute("message","로그인이 필요합니다!");
+			model.addAttribute("url","../member/login.do");
+		}else {
+			int seller_num = tradeService.selectSellerNum(tradeVO.getItem_num(), tradeVO.getItem_sizenum(), sale_price);
+			
+			// 거래 정보 저장을 위한 거래 번호 생성
+			int trade_num = tradeService.selectTradeNum();
+			tradeVO.setTrade_num(trade_num);
+			tradeVO.setBuyer_num(user.getMem_num());
+			tradeVO.setSeller_num(seller_num);
+			
+			tradeService.insertTrade(tradeVO);
+			
+			model.addAttribute("message","[즉시구매] 결제를 완료했습니다.");
+			model.addAttribute("url","../item/itemList.do");
+		}
+		return "common/resultView";
+	}
+	
+	/**
+	 * ======================================================================================================================
+	 * 								판매하기 버튼 클릭 시 상품에 따른 사이즈 정보 제공
+	 * ======================================================================================================================
+	 **/
+	@GetMapping("/sale/selectSaleSize.do")
+	public ModelAndView getSaleItemAndSize(@RequestParam int item_num) {
+		
+		// Login인터셉터로 로그인 되어있는지 확인필요 ***********
+		
+		
+		// 사이즈 별 구매 입찰 정보를 뿌리기
+		log.debug("<< item_num >> : " + item_num);
+		List<PurchaseSizePriceVO> pspList = tradeService.selectPurchaseSizePrice(item_num);
+		log.debug("<<sspList 크기 >> : " + pspList.size());
+		log.debug("<<test>> : " + pspList.get(0));
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("selectSaleSize");
+		mav.addObject("list",pspList);
+		
+		// 아이템 번호로 아이템 정보 구하기 ***********
+		
+		return mav;
+	}
+	
+	/**
+	 * ======================================================================================================================
+	 * 								사이즈 버튼 클릭 시 판매 동의 화면으로 이동
+	 * ======================================================================================================================
+	 **/
+	@GetMapping("/sale/checkSale.do")
+	public String getSaleAgree(@RequestParam int item_num, @RequestParam int item_sizenum,@RequestParam String item_size, Model model, HttpSession session) {
+		
+		// Login인터셉터로 로그인 되어있는지 확인필요 ***********
+		
+		// 아이템 번호로 아이템 정보 구해서 넘기기 *********
+		
+		model.addAttribute("item_num",item_num); // item 정보를 구하게 된다면 vo 객체를 넘겨줄거임
+		model.addAttribute("item_sizenum",item_sizenum);
+		model.addAttribute("item_size",item_size);
+		
+		return "checkSale";
+	}
 	
 	
 }

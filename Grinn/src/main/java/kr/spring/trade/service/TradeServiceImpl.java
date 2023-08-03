@@ -12,6 +12,7 @@ import kr.spring.pbid.vo.PurchaseSizePriceVO;
 import kr.spring.sbid.vo.SaleBidVO;
 import kr.spring.sbid.vo.SaleSizePriceVO;
 import kr.spring.trade.dao.TradeMapper;
+import kr.spring.trade.vo.TradeVO;
 
 @Service
 @Transactional
@@ -99,6 +100,29 @@ public class TradeServiceImpl implements TradeService{
 	@Override
 	public SaleBidVO selectSaleBidByUserNum(Integer mem_num,Integer item_num) {
 		return tradeMapper.selectSaleBidByUserNum(mem_num,item_num);
+	}
+
+	@Override
+	public int selectSellerNum(Integer item_num, Integer item_sizenum, Integer sale_price) {
+		return tradeMapper.selectSellerNum(item_num, item_sizenum, sale_price);
+	}
+
+	@Override
+	public int selectBuyerNum(Integer item_num, Integer item_sizenum, Integer purchase_price) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int selectTradeNum() {
+		return tradeMapper.selectTradeNum();
+	}
+
+	@Override
+	public void insertTrade(TradeVO trade) {
+		tradeMapper.insertTrade(trade);
+		tradeMapper.insertTradeDetail(trade);
+		
 	}
 
 }

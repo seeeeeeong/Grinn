@@ -16,11 +16,20 @@
     	<put-attribute name="title" value="사이즈 정보"/>
 	    <put-attribute name="body" value="/WEB-INF/views/purchase/selectSize.jsp"/>
     </definition>
+    <definition name="selectSaleSize" extends="main">
+    	<put-attribute name="title" value="사이즈 정보"/>
+	    <put-attribute name="body" value="/WEB-INF/views/sale/selectSaleSize.jsp"/>
+    </definition>
     
     <!-- 구매 동의 화면 -->
     <definition name="check" extends="main">
     	<put-attribute name="title" value="구매 동의"/>
 	    <put-attribute name="body" value="/WEB-INF/views/purchase/check.jsp"/>
+    </definition>
+    <!-- 판매 동의 화면 -->
+    <definition name="checkSale" extends="main">
+    	<put-attribute name="title" value="판매 동의"/>
+	    <put-attribute name="body" value="/WEB-INF/views/sale/check.jsp"/>
     </definition>
     
     <!-- 구매 상세 화면 -->

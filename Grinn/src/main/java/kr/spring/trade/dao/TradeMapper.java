@@ -12,6 +12,7 @@ import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.pbid.vo.PurchaseSizePriceVO;
 import kr.spring.sbid.vo.SaleBidVO;
 import kr.spring.sbid.vo.SaleSizePriceVO;
+import kr.spring.trade.vo.TradeVO;
 
 @Mapper
 public interface TradeMapper {
@@ -48,6 +49,14 @@ public interface TradeMapper {
 	// 사용자 번호로 판매 입찰 정보 조회
 	@Select("SELECT * FROM sale_bid WHERE mem_num=#{mem_num} AND item_num=#{item_num}")
 	public SaleBidVO selectSaleBidByUserNum(@Param(value="mem_num") Integer mem_num,@Param(value="item_num")Integer item_num);
+	// 즉시 구매를 위한 판매자 정보 조회
+	@Select("SELECT mem_num FROM ("
+			+ "SELECT mem_num FROM sale_bid "
+			+ "WHERE item_num=#{item_num} AND item_sizenum=#{item_sizenum} AND sale_price=#{sale_price}"
+			+ " ORDER BY sale_regDate ASC) ROWNUM <= 1")
+	public int selectSellerNum(@Param(value="item_num") Integer item_num,@Param(value="item_sizenum") Integer item_sizenum,@Param(value="sale_price") Integer sale_price);
+	// 즉시 판매를 위한 구매자 정보 조회
+	
 	// 구매 입찰 정보 등록
 	@Insert("INSERT INTO purchase_bid (purchase_num,mem_num,item_num,item_sizenum,purchase_price,purchase_regDate,purchase_deadline) "
 			+ "VALUES (purchase_bid_seq.nextval,#{mem_num},#{item_num},#{item_sizenum},#{purchase_price},SYSDATE,#{purchase_deadline})")
@@ -58,4 +67,14 @@ public interface TradeMapper {
 	public void deletePurchaseBid(int purchase_num);
 	// 판매 입찰 정보 삭제
 	public void deleteSaleBid(int sale_num);
+	
+	// 거래 정보 저장을 위한 거래 번호 생성
+	@Select("SELECT trade_seq.nextval FROM dual")
+	public int selectTradeNum();
+	// 거래 정보 저장
+	@Insert("INSERT INTO trade (trade_num,item_num,buyer_num,seller_num) VALUES (#{trade_num},#{item_num},#{buyer_num},#{seller_num})")
+	public void insertTrade(TradeVO trade);
+	@Insert("INSERT INTO trade_detail (trade_num,item_num,item_sizenum,trade_price,trade_zipcode,trade_address1,trade_address2) "
+			+ "VALUES (#{trade_num},#{item_num},#{item_sizenum},#{trade_price},#{trade_zipcode},#{trade_address1},#{trade_address2}")
+	public void insertTradeDetail(TradeVO trade);
 }

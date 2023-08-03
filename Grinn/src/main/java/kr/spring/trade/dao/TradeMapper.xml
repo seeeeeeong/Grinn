@@ -50,4 +50,5 @@
 		LEFT JOIN sale_bid sb ON s.item_sizenum = sb.item_sizenum WHERE i.item_num = #{item_num}
 		GROUP BY s.item_sizenum,s.item_size,i.item_num
 	</select>
+	
 </mapper>
