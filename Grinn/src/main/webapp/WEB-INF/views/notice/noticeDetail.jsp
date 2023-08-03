@@ -46,17 +46,17 @@
 			</div>
 			<div class="btn_list">
 				<a href="noticeList.do">목록보기</a>
-				<a href="update.do?no_num=${notice.no_num}">수정하기</a><!-- 로그인 완료되면 삭제할 라인 -->
-				<a>삭제하기</a><!-- 로그인 완료되면 삭제할 라인 -->
-				<c:if test="${notice.mem_num == 9}">
+				<c:if test="${notice.mem_num==29}">
 					<a href="update.do?no_num=${notice.no_num}">수정하기</a>
-					<a id="delete_btn">삭제하기</a>
+					<a href="delete.do?no_num=${notice.no_num}" id="delete_btn"><input type="button" value="삭제하기"></a>
 					<script type="text/javascript">
 						let delete_btn = document.getElementById('delete_btn');
 						delete_btn.onclick = function(){
 							let choice = confirm('삭제하시겠습니까?');
 							if(choice){
 								location.replace('delete.do?no_num=${notice.no_num}');
+							}else{
+								return false;
 							}
 						};
 					</script>
