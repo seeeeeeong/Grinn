@@ -13,9 +13,13 @@
 			market_type,
 			booth_count,
 			user_count,
-			booth_fee)
+			booth_fee,
+			market_poster,
+			market_posterName,
+			market_thumbNail,
+			market_thumbNailName)
 		VALUES (
-			#{market_num},
+			market_seq.nextval,
 			#{market_title},
 			#{market_detail},
 			#{market_startDate},
@@ -24,6 +28,10 @@
 			#{market_type},
 			#{booth_count},
 			#{user_count},
-			#{booth_fee})
+			#{booth_fee},
+			#{market_poster},
+			#{market_posterName},
+			#{market_thumbNail},
+			#{market_thumbNailName})
 	</insert>
 </mapper>

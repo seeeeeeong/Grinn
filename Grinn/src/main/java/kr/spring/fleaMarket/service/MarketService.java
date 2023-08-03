@@ -10,7 +10,7 @@ public interface MarketService {
 	public List<MarketVO> selectList(Map<String, Object> map);
 	public int selectCount(Map<String, Object> map);
 	// 플리마켓 등록
-	public void insertMarket(MarketVO market);
+	public void insertMarket(MarketVO marketVO);
 	// 플리마켓 조회
 	public MarketVO selectMarket(Integer market_num);
 	// 플리마켓 수정

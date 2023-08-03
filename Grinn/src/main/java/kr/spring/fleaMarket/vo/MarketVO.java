@@ -41,14 +41,14 @@ public class MarketVO {
 	private Date updateDate;
 	
 	// 업로드 파일 처리
-	public void setPosterUpload(MultipartFile upload1) throws Exception{
+	public void setUpload1(MultipartFile upload1) throws Exception{
 		// byte[]로 변환
 		setMarket_poster(upload1.getBytes());
 		// 포스터명 구하기
 		setMarket_posterName(upload1.getOriginalFilename());
 	}
 	
-	public void setThumbNailUpload(MultipartFile upload2) throws Exception{
+	public void setUpload2(MultipartFile upload2) throws Exception{
 		// byte[]로 변환
 		setMarket_thumbNail(upload2.getBytes());
 		// 썸네일명 구하기

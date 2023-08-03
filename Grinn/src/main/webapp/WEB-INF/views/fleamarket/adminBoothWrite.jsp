@@ -16,12 +16,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
 <div class="page-main">
 	<h2>부스 등록</h2>
-	<form:form modelAttribute="marketVO" action="adminBoothWrite.do" id="register_form">
+	<form:form modelAttribute="marketVO" action="adminBoothWrite.do" id="market_register" enctype="multipart/form-data">
 		<form:errors element="div" cssClass="error-color"></form:errors>
 		<ul class=register-label>
-			<li class="check-label">
-				<form:label path="market_type">예약 유형</form:label>
-				<form:radiobutton path="market_type" value="1" checked="checked"/>부스 예약
+			<li>
+				<label>예약 유형</label>
+				<form:radiobutton path="market_type" value="1" id="market_type1" checked="checked"/>부스 예약
 			</li>
 			<li>
 				<form:label path="market_title">제목</form:label>
@@ -45,20 +45,30 @@
 			</li>
 			<li>
 				<form:label path="booth_count">부스 수</form:label>
-				<form:input path="booth_count"/>
+				<form:input path="booth_count" type="number"/>
 				<form:errors path="booth_count" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="user_count">시간당 인원수</form:label>
-				<form:input path="user_count"/>
+				<form:input path="user_count" type="number"/>
 				<form:errors path="user_count" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="booth_fee">부스 입점 비용</form:label>
-				<form:input path="booth_fee"/>
+				<form:input path="booth_fee" type="mumber"/>
 				<form:errors path="booth_fee" cssClass="error-color"/>
 			</li>
-			<li>상세내용</li>
+			<li>
+				<label for="upload1">포스터</label>
+				<input type="file" name="upload1" id="upload1" accept="image/gif,image/png,image/jpeg">
+				<form:errors path="market_poster" cssClass="error-color"/>
+			</li>
+			<li>
+				<label for="upload2">썸네일</label>
+				<input type="file" name="upload2" id="upload2" accept="image/gif,image/png,image/jpeg">
+				<form:errors path="market_thumbNail" cssClass="error-color"/>
+			</li>
+			<li><b>상세내용</b></li>
 			<li>
 				<form:textarea path="market_detail"/>
 				<form:errors path="market_detail" cssClass="error-color"/>
@@ -69,7 +79,7 @@
 						}
 					}
 					
-					ClassicEditor.create(document.querySelector('#content'),{
+					ClassicEditor.create(document.querySelector('#market_detail'),{
 						           extraPlugins:[MyCustomUploadAdapterPlugin]
 					             })
 					             .then(editor => {
@@ -82,7 +92,7 @@
 			</li>
 		</ul>
 		<div class="align-center">
-			<form:button>전송</form:button>
+			<form:button>등록</form:button>
 			<input type="button" value="목록" onclick="location.href='adminBoothList.do'">
 		</div>
 	</form:form>
