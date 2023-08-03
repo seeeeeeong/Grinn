@@ -45,23 +45,23 @@
 				</div>
 			</div>
 			<div class="wrap"><!-- 검수기준카테고리별 공지사항 내용출력 -->
-				<div class="content" class="description_wrap">
-					<div class="description_wrap1">
+				<div class="content">
+					<div class="description_wrap1" id="description_wrap">
 						<c:if test="${list.get(0).no_policy == 1}">${list.get(0).no_content}</c:if>
 					</div>
-					<div class="description_wrap2" style="display:none;">
+					<div class="description_wrap2" style="display:none;" id="description_wrap">
 						<c:if test="${list.get(1).no_policy == 2}">${list.get(1).no_content}</c:if>
 					</div>
-					<div class="description_wrap3" style="display:none;">
+					<div class="description_wrap3" style="display:none;" id="description_wrap">
 						<c:if test="${list.get(2).no_policy == 3}">${list.get(2).no_content}</c:if>
 					</div>
-					<div class="description_wrap4" style="display:none;">
+					<div class="description_wrap4" style="display:none;" id="description_wrap">
 						<c:if test="${list.get(3).no_policy == 4}">${list.get(3).no_content}</c:if>
 					</div>
-					<div class="description_wrap5" style="display:none;">
+					<div class="description_wrap5" style="display:none;" id="description_wrap">
 						<c:if test="${list.get(4).no_policy == 5}">${list.get(4).no_content}</c:if>
 					</div>
-					<div class="description_wrap6" style="display:none;">
+					<div class="description_wrap6" style="display:none;" id="description_wrap">
 						<c:if test="${list.get(5).no_policy == 6}">${list.get(5).no_content}</c:if>
 					</div>
 				</div>

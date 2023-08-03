@@ -18,7 +18,7 @@
 	font-size: 15px;
 	letter-spacing: -.15px;
 }
-/* noticeList
+/* noticeDetail
 ------------------------*/
 .dropdown_head{/* faq도 사용*/
     --global-header-height: 86px;
@@ -279,9 +279,8 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     margin: 0;
     padding: 0;
-    -webkit-box-sizing: border-box;
 }
-.description_wrap{
+#description_wrap{
     --global-header-height: 86px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
@@ -291,7 +290,6 @@
     line-height: 1.2;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     margin: 0;
-    -webkit-box-sizing: border-box;
     padding: 20px 0 19px;
 }
 
@@ -335,5 +333,48 @@
     min-width: 68px;
     width: 68px;
 }
+.classOpenImg{
+	width: 20px;
+	height: 23px;
+	margin-left: auto;
+}
+.classCloseImg{
+	width: 20px;
+	height: 23px;
+	margin-left: auto;
+}
+.imgOpenClose{
+    --global-header-height: 86px;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "frac" 0,"numr" 0;
+    list-style: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-top: 0;
+}
+/* ------------------------------------------ */
+
+
+
+
+.aqaa-content {
+  display: none;
+}
+
+
+
+.aqaa-content a:hover {background-color: #ddd;}
+
+.aqaa:hover .aqaa-content {display: block;}
+
+.aqaa:hover .dropbtn {background-color: #3e8e41;}
+
+
+
+
 
 

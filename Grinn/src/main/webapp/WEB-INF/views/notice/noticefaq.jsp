@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/dropdown.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/notice.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -71,11 +72,20 @@
 							<div class="title_box">
 								<p class="title">${faq.no_title}</p>
 							</div>
-							<img src="${pageContext.request.contextPath}/image_bundle/classOpen.png"><!-- 위아래 표시하는 사진 넣을 곳 -->
+							<%-- 드롭다운 시작 --%>
+							<div class="imgOpenClose"><!-- 위아래 표시하는 사진 넣을 곳 -->
+							<%-- 
+								<img class="classOpenImg" id="output_faq" style="float:right;" 
+										src="${pageContext.request.contextPath}/image_bundle/classClose.png">
+							--%>
+								<img class="classOpenImg" id="output_faq" src="${pageContext.request.contextPath}/image_bundle/classClose.png" onclick="changeImage(this, '../images/classOpen.png')" />
+							<img class="classOpenImg" id="output_faq" src="${pageContext.request.contextPath}/image_bundle/classOpen.png" onclick="changeImage(this, '../images/classClose.png')" />
+							</div>
+							<%-- 드롭다운 끝 --%>
 						</div>
 						<div class="dropdown_content">
 							<div class="content">
-								${faq.no_content}
+								<c:if test="">${faq.no_content}</c:if>
 							</div>
 						</div>
 					</c:forEach>
@@ -102,4 +112,12 @@
 
 
 
-
+<div class="aqaa">
+  <button class="dropbtn">드롭다운 메뉴</button>
+  <div class="aqaa-content">
+    <a href="#">홈</a>
+    <a href="#">회사소개</a>
+    <a href="#">제품소개</a>
+    <a href="#">오시는길</a>
+  </div>
+</div>

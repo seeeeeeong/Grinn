@@ -110,22 +110,21 @@ public class NoticeController {
 		//페이지 처리
 		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 10, 5, "noticefaq.do");
 		
+		NoticeVO noticeVO = new NoticeVO();
+		
 		List<NoticeVO> list = null;
 		if(count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
+			map.put("category", noticeVO.getNo_category());
 			list = noticeService.selectFaqList(map);
 		}
-		
-		//NoticeVO vo = new NoticeVO();
-		//vo.setNo_category(category);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("noticefaq");
 		mav.addObject("count", count);
 		mav.addObject("list", list);
 		mav.addObject("page", page.getPage());
-		//mav.addObject("vo", vo);
 		
 		return mav;
 	}
