@@ -61,6 +61,8 @@ public class NoticeController {
 		//글 쓰기
 		noticeService.insertNotice(noticeVO);
 		
+		//model.addAttribute("mem_auth",user.getMem_auth());
+		
 		model.addAttribute("message", "글쓰기가 완료되었습니다");
 		model.addAttribute("url", request.getContextPath()+"/notice/noticeList.do");
 		

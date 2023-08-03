@@ -45,10 +45,10 @@
 				</div>
 			</div>
 			<div class="btn_list">
-				<a href="noticeList.do">목록보기</a>
-				<c:if test="${notice.mem_num==29}">
-					<a href="update.do?no_num=${notice.no_num}">수정하기</a>
-					<a href="delete.do?no_num=${notice.no_num}" id="delete_btn"><input type="button" value="삭제하기"></a>
+				<a href="noticeList.do" class="btn_auth">목록보기</a>
+				<c:if test="${notice.mem_num==29}"><!-- 관리자 auth:9이므로 mem_auth로 수정예정 -->
+					<a href="update.do?no_num=${notice.no_num}" class="btn_auth">수정하기</a>
+					<a href="delete.do?no_num=${notice.no_num}" id="delete_btn"><input type="button" value="삭제하기" class="btn_auth"></a>
 					<script type="text/javascript">
 						let delete_btn = document.getElementById('delete_btn');
 						delete_btn.onclick = function(){

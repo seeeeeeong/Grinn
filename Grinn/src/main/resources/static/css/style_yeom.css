@@ -20,11 +20,10 @@
 }
 /* noticeList
 ------------------------*/
-.dropdown_head{
+.dropdown_head{/* faq도 사용*/
     --global-header-height: 86px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
-    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     color: #222;
     font-feature-settings: "frac" 0,"numr" 0;
     box-sizing: border-box;
@@ -36,11 +35,10 @@
     border-bottom: 1px solid #ebebeb;
     cursor: pointer;
 }
-.dropdown_head .title_box{
+.dropdown_head .title_box{/* faq도 사용*/
 	--global-header-height: 86px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
-    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     color: #222;
     font-feature-settings: "frac" 0,"numr" 0;
     cursor: pointer;
@@ -54,7 +52,6 @@
 	--global-header-height: 86px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
-    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     color: #222;
     font-feature-settings: "frac" 0,"numr" 0;
     cursor: pointer;
@@ -69,7 +66,6 @@
 	--global-header-height: 86px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
-    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     color: #222;
     font-feature-settings: "frac" 0,"numr" 0;
     cursor: pointer;
@@ -80,11 +76,10 @@
     font-size: 15px;
     letter-spacing: -.15px;
 }
-.dropdown_content{
+.dropdown_content{/* faq도 사용*/
 	--global-header-height: 86px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
-    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     color: #222;
     font-feature-settings: "frac" 0,"numr" 0;
     box-sizing: border-box;
@@ -97,11 +92,10 @@
     letter-spacing: -.21px;
     display: block;
 }
-.dropdown_content .content{
+.dropdown_content .content{/* faq도 사용*/
 	--global-header-height: 86px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
-    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     color: #222;
     font-feature-settings: "frac" 0,"numr" 0;
     font-size: 14px;
@@ -119,7 +113,6 @@
 	--global-header-height: 86px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
-    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     color: #222;
     font-feature-settings: "frac" 0,"numr" 0;
     box-sizing: border-box;
@@ -129,11 +122,10 @@
     margin-top: 30px;
     text-align: center;
 }
-.btn_list a{
+.btn_list .btn_auth{
 	--global-header-height: 86px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
-    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     font-feature-settings: "frac" 0,"numr" 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(0,0,0,.1);
@@ -212,8 +204,7 @@
     letter-spacing: -.09px;
     height: 59px;
     width: 33.3333333333%;
-    cursor: pointer;
-    
+    cursor: pointer;    
     border-left: 0.5px solid #ebebeb;
     border-top: 0.5px solid #ebebeb;
 }
@@ -249,7 +240,7 @@
     border-spacing: 0;
     border-collapse: collapse;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: -.09px;
     font-weight: 700;
     box-sizing: border-box;
@@ -281,7 +272,6 @@
     --global-header-height: 86px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
-    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     font-feature-settings: "frac" 0,"numr" 0;
     color: #222;
     font-size: 14px;
@@ -308,8 +298,42 @@
 
 /* noticeFaq
 ------------------------*/
-
-
-
+.dropdown_list{
+    --global-header-height: 86px;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "frac" 0,"numr" 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;	
+}
+.dropdown{
+    --global-header-height: 86px;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "frac" 0,"numr" 0;
+    list-style: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.sort{
+    --global-header-height: 86px;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "frac" 0,"numr" 0;
+    color: #222;
+    list-style: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    font-size: 14px;
+    letter-spacing: -.21px;
+    min-width: 68px;
+    width: 68px;
+}
 
 
