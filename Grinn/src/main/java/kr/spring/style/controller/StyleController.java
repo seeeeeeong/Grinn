@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.service.StyleService;
+import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
@@ -143,4 +144,65 @@ public class StyleController {
 		return new ModelAndView("styleDetail","style", style);
 	}
 	
+	/*========================
+	 * 스타일 좋아요
+	 *========================*/
+	//좋아요 읽기
+	@RequestMapping("/style/getFav.do")
+	@ResponseBody
+	public Map<String,Object> getFav(StyleFavVO fav, HttpSession session){
+		log.debug("<<스타일 좋아요 읽기 - StyleFavVO>> : " + fav);
+		
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {//로그인이 되지 않은 상태
+			mapJson.put("status", "noFav");
+		}else {
+			//로그인된 회원번호 셋팅
+			fav.setMem_num(user.getMem_num());
+			
+			StyleFavVO styleFav = styleService.selectFav(fav);
+			if(styleFav!=null) {
+				mapJson.put("status", "yesFav");
+			}else {
+				mapJson.put("status","noFav");
+			}
+		}
+		mapJson.put("count", styleService.selectFavCount(
+				                   fav.getSt_num()));
+		return mapJson;
+	}
+	//좋아요 등록/삭제
+	@RequestMapping("/style/writeFav.do")
+	@ResponseBody
+	public Map<String,Object> writeFav(StyleFavVO fav,HttpSession session){
+		log.debug("<<스타일 좋아요 등록/삭제 - StyleFavVO>> : " + fav);
+		
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {
+			mapJson.put("result", "logout");
+		}else {
+			//로그인된 회원번호 셋팅
+			fav.setMem_num(user.getMem_num());
+			
+			StyleFavVO styleFav = styleService.selectFav(fav);
+			if(styleFav!=null) {//등록한 좋아요가 있으면 삭제
+				styleService.deleteFav(styleFav.getStfav_num());
+				
+				mapJson.put("result", "success");
+				mapJson.put("status", "noFav");
+			}else {//등록한 좋아요가 없으면 등록
+				styleService.insertFav(fav);
+				
+				mapJson.put("result", "success");
+				mapJson.put("status", "yesFav");
+			}
+			mapJson.put("count", styleService.selectFavCount(
+					                          fav.getSt_num()));
+		}
+		return mapJson;
+	}
 }

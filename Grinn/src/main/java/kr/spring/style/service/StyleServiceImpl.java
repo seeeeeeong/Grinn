@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.item.vo.ItemVO;
 import kr.spring.style.dao.StyleMapper;
+import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 
 @Service
@@ -56,5 +57,35 @@ public class StyleServiceImpl implements StyleService{
 		
 		return styleMapper.selectSearchItem(item_name);
 	}
+
+	@Override
+	public StyleFavVO selectFav(StyleFavVO fav) {
+		
+		return styleMapper.selectFav(fav);
+	}
+
+	@Override
+	public int selectFavCount(Integer st_num) {
+		
+		return styleMapper.selectFavCount(st_num);
+	}
+
+	@Override
+	public void insertFav(StyleFavVO fav) {
+		
+		styleMapper.insertFav(fav);
+	}
+
+	@Override
+	public void deleteFav(Integer stfav_num) {
+		styleMapper.deleteFav(stfav_num);
+	}
+
+	@Override
+	public void deleteFavByStNum(Integer st_num) {
+		styleMapper.deleteFavByStNum(st_num);
+	}
+
+	
 
 }

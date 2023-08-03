@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/style.fav.js"></script>
     <style>
     #yijunesok_st{
     	align-items: stretch;
@@ -18,13 +19,24 @@
     .item-tag .tag-title{
     	font-size:15pt;
     }
-	/* 초기화 */
-	*{
-	  margin: 0 auto;
-	  padding: 0;
-	  box-sizing: border-box;
+    #output_fcount{
+	    box-sizing: border-box;
+	    width:100px;
+	    color: black;
+	    text-decoration: none;
+	    font-size: 15px;
+	    letter-spacing: -.33px;
+	    line-height: 22px;
+    }
+	.post-caption{
+	    color: #222;
+	    box-sizing: border-box;
+	    margin: 0;
+	    padding: 0;
+	    font-size: 15px;
 	}
-	
+
+	/* 사진 슬라이드 */
 	li{
 	  list-style-type: none;
 	}
@@ -46,7 +58,8 @@
 	  position: absolute;
 	  left: 0;
 	  top: 0;
-	  width: 2500px; /* 슬라이드할 사진과 마진 총 넓이 */
+	  padding:0;
+	  width: 3400px; /* 슬라이드할 사진과 마진 총 넓이 */
 	  transition: left 0.3s ease-out; 
 	  /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
 	}
@@ -103,9 +116,60 @@
 	.next:hover{
 	  transform: translateX(10px);
 	}
+	
+	/* 댓글 팝업 */
+	/*버튼을 감싸는 영역*/
+	#btnWrap {
+	  
+	}
+	
+	/*버튼 디자인*/
+	#popupBtn {
+	  
+	}
+	
+	/*모달팝업을 감싸고 있는 최상위 부모*/
+	#modalWrap {
+	  position: fixed; /* Stay in place */
+	  z-index: 1; /* Sit on top */
+	  
+	  left: 0;
+	  top: 0;
+	  width: 100%; /* Full width */
+	  height: 100%; /* Full height */
+	  overflow: auto; /* Enable scroll if needed */
+	  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
+	
+	#modalContent{
+		float:right;
+	}
+	
+	/*모달 팝업창*/
+	#modalBody {
+	  width: 400px;
+	  height: 829px;
+	  padding: 30px 30px;
+	  margin: 0 auto;
+	  
+	  background-color: #fff;
+	}
+	
+	/*닫기 버튼*/
+	#closeBtn {
+	  float:left;
+	  font-size:40px;
+	  cursor: pointer;
+	  padding-top:7px;
+	}
+	#comment_title h2{
+		margin:0;
+		padding-left:30px;
+	}
 	</style>
 <script type="text/javascript">
   $(document).ready(function() {
+	//사진 슬라이드
     const slides = $('.slides'); // 전체 슬라이드 컨테이너
     const slideImg = $('.slides li'); // 모든 슬라이드들
     let currentIdx = 0; // 현재 슬라이드 index
@@ -139,7 +203,29 @@
         moveSlide(currentIdx + 1);
       }
     });
+  	//사진 슬라이드
+  	
+  	//댓글 팝업
+  	const btn = document.getElementById('popupBtn');
+	const modal = document.getElementById('modalWrap');
+	const closeBtn = document.getElementById('closeBtn');
+	
+	btn.onclick = function() {
+	  modal.style.display = 'block';
+	}
+	closeBtn.onclick = function() {
+	  modal.style.display = 'none';
+	}
+	
+	window.onclick = function(event) {
+	  if (event.target == modal) {
+	    modal.style.display = "none";
+	  }
+	}
   });
+  
+  
+
 </script>
 <!-- 스타일 상세 -->
 <div class="page-main" id="yijunesok_st">
@@ -197,15 +283,29 @@
 				<img src="${pageContext.request.contextPath}/image_upload/${style.item_photo1name}" width="100" height="100"><br>
 				<span class="item-name">${style.item_name}</span>
 			</span>
+		</div><p>	
+		<div id="btnWrap">
+			<img id="output_fav" data-num="${style.st_num}" src="${pageContext.request.contextPath}/images/no_like.png" width="30" height="30">
+			<img id="popupBtn" src="${pageContext.request.contextPath}/images/comm_icon.png" width="33" height="33">
 		</div><p>
-		<div class="like-button">
-			<img src="${pageContext.request.contextPath}/images/no_like.png" width="30" height="30">
-			<img src="${pageContext.request.contextPath}/images/comm_icon.png" width="33" height="33">
-		</div><p>
+		<span id="output_fcount"></span>
 	    <div class="post-caption">
 	      <p>${style.st_phrase}</p>
 	    </div><p>
     </div>
+    <!-- 댓글 팝업창 -->
+	<div id="modalWrap" style="display:none;">
+	  <div id="modalContent">
+	    <div id="modalBody">
+	      <span id="closeBtn">&times;</span><!-- 닫기 버튼 -->
+	      <br>
+	      <div id="comment_title">
+	      	<h2>댓글</h2>
+	      </div>
+	      
+	      <p>modal-popup 입니다.</p> <!-- 팝업창 내 글귀 -->
+	    </div>
+	  </div>
+	</div>
 </div>
-
 <!-- 스타일 상세 -->

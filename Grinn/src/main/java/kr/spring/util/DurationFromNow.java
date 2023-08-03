@@ -13,7 +13,7 @@ public class DurationFromNow {
 	 */
 	public static String getTimeDiffLabel(String date1) {
 		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy년MM월dd일 HH:mm:ss");
 			
 			return getTimeDiffLabel(sdf.parse(date1), new Date());
 		} catch (ParseException e) {
@@ -37,7 +37,7 @@ public class DurationFromNow {
 	 * @return String
 	 */
 	public static String getTimeDiffLabel(String date1, String date2) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년MM월dd일 HH:mm:ss");
 		try {
 			return getTimeDiffLabel(sdf.parse(date1), sdf.parse(date2));
 		} catch (ParseException e) {

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/style.fav.js"></script>
     <style>
         /* Flexbox를 사용하여 가로 정렬 */
         .style_list {
@@ -62,7 +62,7 @@
                         <span>${style.mem_id}</span>
                     </div>
                     <div class="like-button">
-                    	<img src="${pageContext.request.contextPath}/images/black_heart.png">
+                    	<img class="output_fav" data-num="${style.st_num}" src="${pageContext.request.contextPath}/images/no_like.png">
                     </div><br>
                     <div class="phrase">
                     	<p>${style.st_phrase}</p>

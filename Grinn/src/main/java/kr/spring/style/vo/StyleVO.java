@@ -2,11 +2,13 @@ package kr.spring.style.vo;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.spring.util.DurationFromNow;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -37,6 +39,10 @@ public class StyleVO {
 	private String item_name;
 	private String item_photo1name;
 	
+	//좋아요
+	private int fav_cnt;
+	
+	
 	public void setUpload1(MultipartFile upload1) throws IOException{
 		//MultipartFile -> byte[]
 		setSt_photo1(upload1.getBytes());
@@ -64,5 +70,7 @@ public class StyleVO {
 		//파일이름
 		setSt_photo4n(upload4.getOriginalFilename());
 	}
+	
+	
 	
 }

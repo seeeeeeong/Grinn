@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.spring.item.vo.ItemVO;
+import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 
 public interface StyleService {
@@ -21,4 +22,10 @@ public interface StyleService {
 	public void updateStyle(StyleVO style);
 	//삭제
 	public void deleteStyle(Integer st_num);
+	//좋아요
+	public StyleFavVO selectFav(StyleFavVO fav);
+	public int selectFavCount(Integer st_num);
+	public void insertFav(StyleFavVO fav);
+	public void deleteFav(Integer stfav_num);
+	public void deleteFavByStNum(Integer st_num);
 }
