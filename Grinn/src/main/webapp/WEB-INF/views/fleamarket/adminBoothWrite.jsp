@@ -30,12 +30,12 @@
 			</li>
 			<li>
 				<form:label path="market_startDate">시작일</form:label>
-				<form:input path="market_startDate" placeholder="OOOO-OO-OO 형식으로 입력"/>
+				<form:input path="market_startDate" type="date" placeholder="OOOO-OO-OO 형식으로 입력"/>
 				<form:errors path="market_startDate" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="market_endDate">종료일</form:label>
-				<form:input path="market_endDate" placeholder="OOOO-OO-OO 형식으로 입력"/>
+				<form:input path="market_endDate" type="date" placeholder="OOOO-OO-OO 형식으로 입력"/>
 				<form:errors path="market_endDate" cssClass="error-color"/>
 			</li>
 			<li>

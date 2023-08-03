@@ -20,10 +20,10 @@ public class MarketVO {
 	@NotEmpty
 	private String market_title;
 	private String market_detail;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date market_startDate;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date market_endDate;
+	@NotEmpty
+	private String market_startDate;
+    @NotEmpty
+	private String market_endDate;
 	@NotEmpty
 	private String place_name;
 	private int market_type;
