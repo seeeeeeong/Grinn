@@ -12,7 +12,7 @@
 					</dl>
 				</div>
 				<div class = "service_btn_box">
-					<a href = "" class = "btn solid small">자주묻는질문</a>
+					<a href = "" class = "btn solid small">자주 묻는 질문</a>
 				</div>
 			</div>
 			<div class = "footer_menu">

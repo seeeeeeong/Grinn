@@ -31,3 +31,26 @@
 	<a href = "${pageContext.request.contextPath}/item/itemList.do"><b>SHOP</b></a>
 	<a href = "${pageContext.request.contextPath}/fleamarket/marketSelect.do"><b>FLEA MARKET</b></a>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
