@@ -9,10 +9,10 @@
 				<div class = "service_time">
 					<dl class = "time_box">
 						<dt class = "time_term">운영시간 평일 09:00 - 18:00 (토∙일, 공휴일 휴무) 점심시간 평일 12:50 - 14:00</dt>
-					</dl>
+					</dl> 
 				</div>
 				<div class = "service_btn_box">
-					<a href = "" class = "btn solid small">자주 묻는 질문</a>
+					<a href = "${pageContext.request.contextPath}/notice/noticefaq.do" class = "btn solid small">자주 묻는 질문</a>
 				</div>
 			</div>
 			<div class = "footer_menu">
@@ -21,10 +21,10 @@
 					<div class = "menu_title_bottom">
 					<ul class = "menu_list">
 						<li class = "menu_item">
-							<a href = "" class = "menu_link">검수기준</a>
+							<a href = "${pageContext.request.contextPath}/notice/noticeAuth_policy.do" class = "menu_link">검수기준</a>
 						</li>
 						<li class = "menu_item">
-							<a href = "" class = "menu_link">이용정책</a>
+							<a href = "${pageContext.request.contextPath}/notice/noticefaq.do" class = "menu_link">이용정책</a>
 						</li>
 						<li class = "menu_item">
 							<a href = "" class = "menu_link">패널티 정책</a>
@@ -40,7 +40,7 @@
 					<div class = "menu_title_bottom">
 					<ul class = "menu_list">
 						<li class = "menu_item">
-							<a href = "" class = "menu_link">공지사항</a>
+							<a href = "${pageContext.request.contextPath}/notice/noticeList.do" class = "menu_link">공지사항</a>
 						</li>
 						<li class = "menu_item">
 							<a href = "" class = "menu_link">서비스 소개</a>

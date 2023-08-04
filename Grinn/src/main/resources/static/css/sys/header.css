@@ -1,39 +1,285 @@
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: white;
-  z-index: 1000; /* To make sure the header stays on top of other elements */
+#layout{
+	opacity: 0.9;
+}
+.header.fixed{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+}
+.header{ /* =header_main */
+	background-color: #fff;
+	/* 수정 필요 */
+	margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+}
+.header_top .top_inner{
+	display: flex;
+    padding: 12px 40px 0;
+    height: 22px;
+}
+.header_top .top_list{
+	display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.top_inner ul{
+	list-style: none;
+	padding: 0;
+	display: flex;
+}
+.top_inner li{
+	margin-right: 10px;
+}
+.top-inner li:last-child{
+	margin-right: 0;
+}
+.top_item li{
+	list-style: none;
+}
+.header_top .top_link{
+	display: flex;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: -.06px;
+    color: rgba(34,34,34,.8);
+}
+.top_link a, a:hover{
+	text-decoration: none;
 }
 
-.header_top {
-  display: flex;
-  justify-content: flex-end;
+
+
+
+
+
+.header_main{
+	display: flex;
+	justify-content: flex-end;
+}
+.main_inner{
+	display: flex;
+    padding: 0 40px;
+    height: 64px;
+    min-width: 320px;
+    justify-content: space-between;
+}
+h1{
+	display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.logo{
+	display: flex;
+	width: 120px;
+	height: 24px;
+	font-family: initial;
+}
+h1 a{
+	text-decoration: none;
+	color: inherit;
+}
+.main_inner .center{
+	display: flex;
+    align-items: center;
+    margin: 0 20px;
+    max-width: 466px;
+}
+.main_inner .right{
+	display: flex;
+    min-width: 120px;
+    flex-shrink: 0;
+    justify-content: flex-end;
+}
+.gnb_area{
+	display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.gnb ul{
+	list-style: none;
+	padding: 0;
+	display: flex;
+}
+.gnb li{
+	margin-right: 10px;
+}
+.gnb li:last-child{
+	margin-right: 0;
+}
+												/* *{
+													box-sizing: boarder-box;
+													-webkit-tap-highlight-color: rgba(0,0,0,0);
+													}
+												*/
+nav{
+	display: block;
+}
+.gnb_list{
+	display: flex;
+    align-items: center;
+}
+.gnb ul{ /* = .gnb_area ul */
+	list-style: none;
+	/*  ul 태그 안에 쓸 수 있는 속성 가져다 쓰기 */
+	margin: 0;
+	padding: 0;
+}
+.gnb_item{
+	margin-right: 40px;
+}
+.gnb_item li{
+	list-style: none;
+	text-align: -webkit-match-parent;
+}
+.gnb_list li{
+	list-style: none;
+	/*  li 태그 안에 쓸 수 있는 속성 가져다 쓰기 */
+	margin: 0;
+	padding: 0;
+	padding-right: 10px;
+}
+.gnb_item .gnb_link{
+	position: relative;
+    display: flex;
+    font-size: 17px;
+    letter-spacing: -.27px;
+}
+.gnb_item.active a {
+	font-weight: bold;
+}
+.gnb_list a{
+	text-decoration: none;
+	color: inherit;
+	-webkit-tap-highlight-color: rgba(0,0,0,.1);
+}
+/* 검색창 변경 가능 */
+/*
+.search_btn_box{
+	display: flex;
+}
+*/
+.gnb_list li.selected a:visited{
+	font-weight: bold;
+}
+input[type="search"] {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  height: 21px;
+}
+input[type="search"]:focus {
+  border-color: rgb(89, 179, 246);
+  box-shadow: 0 0 5px rgba(89, 179, 246, 0.5);
 }
 
-.top_list, .gnb_list {
-  display: flex;
-  margin-right: auto;
+
+
+
+
+.portal_target vue-portal-target{
+	box-sizing: boarder-box;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+nav{
+	/* nav 겹침 */
+	display: block;
+	/* 이 친구도 겹침 */
+	box-sizing: boarder-box;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.lg .ul_tab.inline{
+	padding-left: 40px;
+	padding-right: 40px;
+}
+.lg .home_tabs{
+	margin-left:auto;
+	margin-right: auto;
+	max-width: 1280px;
+}
+.ul_tab.inline{
+	height: 44px;
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    overflow-y: hidden;
+    /*  li_tab 하면서 추가한 것 */
+    flex: 0 0 auto;
+}
+.tabs ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.ul_tab.inline .li_tab{
+	display: inline-flex;
+}
+.tabs li{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.ul_tab.inline .tab{
+	padding-top: 15px;
+    padding-bottom: 6px;
+    display: inline-flex;
+    height: 100%;
+}
+.tab .active{
+	font-weight: 700;
+}
+.tab{
+	position: relative;
+    color: #222;
+    cursor: pointer;
+    border-bottom: 2px solid #222;
+}
+.tab active{ /* <a class = "tab active"> */
+	text-decoration: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,.1);
+}
+.ul_tab.inline .tab_name{
+	font-size: 16px;
+    line-height: 1.25;
+}
+.tab_name{
+	position: relative;
+	background-color: #fff;
 }
 
-.right {
-  margin-left: auto;
-}
 
-.logo {
-  font-family: 'Kream Font', sans-serif;
-  color: black;
-}
 
-/* Collection styles */
-.collection_items {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-gap: 2rem;
-}
 
-.collection_item {
-  margin-left: auto;
-  margin-right: auto;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

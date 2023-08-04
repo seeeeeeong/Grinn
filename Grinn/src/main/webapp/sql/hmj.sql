@@ -48,7 +48,7 @@ create table boothReservation(
 
 create sequence boothReservation_seq;
 
---부스 예약 정보
+--부스 예약 정보**
 create table booking(
   book_seq number, -- 부스 예약 시퀀스
   book_num varchar2(10) unique, -- 부스 예약 일렬번호
@@ -68,7 +68,7 @@ create table booking(
 
 create sequence booking_seq;
 
---플리마켓 예약 정보
+--플리마켓 예약 정보**
 create table reservation(
   res_seq number, -- 입장 예약 시퀀스
   res_num varchar2(10) unique, -- 입장 예약 일렬번호
@@ -89,7 +89,7 @@ create sequence reservation_seq;
 
 
 ----페널티----
---회원별 페널티 요약
+--회원별 페널티 요약**
 create table penalty(
   pe_num number, -- 회원 페널티 고유번호
   mem_num number not null, -- 회원번호
@@ -127,6 +127,8 @@ create table penalty_trade(
   constraint penalty_trade_pk primary key (peTrade_num),
   constraint penalty_trade_fk foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
 );
+
+create sequence penalty_trade_seq;
 
 ----프로모션----
 --프로모션 등록 정보
