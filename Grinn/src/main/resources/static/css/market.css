@@ -42,13 +42,12 @@
 	width:500px;
 	height:350px;
 	float:left;
-	border:1px solod #eaeaea;
-	position:relatice;
+	position:relative;
 	margin:0 25px 25px 0;
 }
 .user-wrap img{
-	width:500px;
-	height:350px;
+	width:100%;
+	height:auto;
 	vertical-align:middle;
 	opacity:0.3;
 	position:absolute;
