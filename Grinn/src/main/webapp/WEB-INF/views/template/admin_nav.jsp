@@ -19,7 +19,7 @@
 			<h4>상품 관리</h4>
 			<ul>
 				<li>
-					<a href = "${pageContext.request.contextPath}/item/admin_list.do">상품 목록</a>
+					<a href = "${pageContext.request.contextPath}/item/itemAdminList.do">상품 목록</a>
 				</li>
 			</ul>
 		</li>

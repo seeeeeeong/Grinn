@@ -178,13 +178,14 @@ public class ItemController {
 
 	// 상품 등록 요청 처리
 	@PostMapping("/item/itemWrite.do")
-	public String itemWrite(@ModelAttribute("itemVO") ItemVO itemVO,Model model) {
+	public String itemWrite(@ModelAttribute("itemVO") ItemVO itemVO,HttpServletRequest request,Model model) {
 		// 상품 등록 로직 호출
 		itemService.insertItem(itemVO);
 
-		model.addAttribute("accessMsg", "상품등록이 완료되었습니다.");
-		// 상품 등록 후 이동할 페이지 지정 (원하는 대로 변경)
-		return "common/notice";
+		model.addAttribute("message", "상품을 등록했습니다");
+		model.addAttribute("url", request.getContextPath()+"/item/itemAdminList.do");
+		
+		return "common/resultView";
 	}
 	
 	//=========상품등록 끝============

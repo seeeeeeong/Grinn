@@ -34,7 +34,7 @@
     </definition>
     <definition name="adminBoothUpdate" extends="admin">
     	<put-attribute name="title" value="부스 수정(관리자)"/>
-	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/updateBooth.jsp"/>
+	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminBoothUpdate.jsp"/>
     </definition>
 </tiles-definitions>
 
