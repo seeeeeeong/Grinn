@@ -14,18 +14,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.item.vo.ItemVO;
+import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.trade.vo.TradeVO;
 import kr.spring.user.service.UserService;
-import kr.spring.util.AuthCheckException;
-import kr.spring.util.FileUtil;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -88,14 +86,30 @@ public class UserController {
 	    model.addAttribute("mem_auth", memAuthText);
 	    model.addAttribute("mem_point", member.getMem_point());
 		
-		//구매 상품
-		List<TradeVO> purchasedItems = userService.selectPurchasedItems(user.getMem_num());
+		//구매 상품 - trade
+	    List<TradeVO> purchasedTrades = userService.selectPurchasedTrades(user.getMem_num());
+	    model.addAttribute("purchasedTrades", purchasedTrades);
+	    
+	    //구매 상품 - item
+		List<ItemVO> purchasedItems = userService.selectPurchasedItems(user.getMem_num());
 		model.addAttribute("purchasedItems", purchasedItems);
 		
-		//판매 상품
-        List<TradeVO> soldItems = userService.selectSoldItems(user.getMem_num());
+        //구매 상품 - Size
+        List<ItemSizeVO> purchasedItemSize = userService.selectPurchasedItemSize(user.getMem_num());
+        model.addAttribute("purchasedItemSize", purchasedItemSize);
+		
+		//판매 상품 - trade
+		List<TradeVO> selectSoldTrades = userService.selectSoldTrades(user.getMem_num());
+		model.addAttribute("selectSoldTrades", selectSoldTrades);	
+	
+		//판매 상품 - item
+        List<ItemVO> soldItems = userService.selectSoldItems(user.getMem_num());
         model.addAttribute("soldItems", soldItems);
-
+        
+        //판매 상품 - Size
+        List<ItemSizeVO> soldItemSize = userService.selectSoldItemSize(user.getMem_num());
+        model.addAttribute("soldItemSize", soldItemSize);
+        
         //관심 상품
         List<ItemVO> favoriteItems = userService.selectFavoriteItems(user.getMem_num());
         model.addAttribute("favoriteItems", favoriteItems);
@@ -106,42 +120,59 @@ public class UserController {
 		return "myPage";
 	}
 	
+	
 	/*
 	 * =========================== 쇼핑 정보 - 구매 내역 ===========================
 	 */
-    @GetMapping("/user/purchasedItems.do")
+    @GetMapping("/user/userPurchasedItems.do")
     public String purchasedItemsPage(HttpSession session, Model model) {
         //로그인된 사용자 정보 가져오기
         MemberVO user = (MemberVO) session.getAttribute("user");
 
-        //구매 내역 조회
-        List<TradeVO> purchasedItems = userService.selectPurchasedItems(user.getMem_num());
-        model.addAttribute("purchasedItems", purchasedItems);
+        //구매 상품 - trade
+	    List<TradeVO> purchasedTrades = userService.selectPurchasedTrades(user.getMem_num());
+	    model.addAttribute("purchasedTrades", purchasedTrades);
+	    
+	    //구매 상품 - item
+		List<ItemVO> purchasedItems = userService.selectPurchasedItems(user.getMem_num());
+		model.addAttribute("purchasedItems", purchasedItems);
+		
+        //구매 상품 - Size
+        List<ItemSizeVO> purchasedItemSize = userService.selectPurchasedItemSize(user.getMem_num());
+        model.addAttribute("purchasedItemSize", purchasedItemSize);
 
         //purchasedItems 페이지로 이동
-        return "purchasedItems";
+        return "userPurchasedItems";
     }
     
 	/*
 	 * =========================== 쇼핑 정보 - 판매 내역 ===========================
 	 */
-    @GetMapping("/user/soldItems.do")
+    @GetMapping("/user/userSoldItems.do")
     public String soldItemsPage(HttpSession session, Model model) {
         //로그인된 사용자 정보 가져오기
         MemberVO user = (MemberVO) session.getAttribute("user");
 
-        //판매 내역 조회
-        List<TradeVO> soldItems = userService.selectSoldItems(user.getMem_num());
+		//판매 상품 - trade
+		List<TradeVO> selectSoldTrades = userService.selectSoldTrades(user.getMem_num());
+		model.addAttribute("selectSoldTrades", selectSoldTrades);	
+	
+		//판매 상품 - item
+        List<ItemVO> soldItems = userService.selectSoldItems(user.getMem_num());
         model.addAttribute("soldItems", soldItems);
         
+        //판매 상품 - Size
+        List<ItemSizeVO> soldItemSize = userService.selectSoldItemSize(user.getMem_num());
+        model.addAttribute("soldItemSize", soldItemSize);
+        
         //purchasedItems 페이지로 이동
-        return "soldItems";
+        return "userSoldItems";
     }
     
 	/*
 	 * =========================== 쇼핑 정보 - 관심 상품 ===========================
 	 */
-    @GetMapping("/user/favoriteItems.do")
+    @GetMapping("/user/userFavoriteItems.do")
     public String favoriteItemsPage(HttpSession session, Model model) {
         //로그인된 사용자 정보 가져오기
         MemberVO user = (MemberVO) session.getAttribute("user");
@@ -151,13 +182,13 @@ public class UserController {
         model.addAttribute("favoriteItems", favoriteItems);
         
         //favoriteItems 페이지로 이동
-        return "favoriteItems";
+        return "userFavoriteItems";
     }
     
 	/*
 	 * =========================== 쇼핑 정보 - 좋아요 ===========================
 	 */
-    @GetMapping("/user/likedStyles.do")
+    @GetMapping("/user/userLikedStyles.do")
     public String likedStylesPage(HttpSession session, Model model) {
         //로그인된 사용자 정보 가져오기
         MemberVO user = (MemberVO) session.getAttribute("user");
@@ -167,13 +198,13 @@ public class UserController {
         model.addAttribute("likedStyles", likedStyles);
 
         //likedStyles 페이지로 이동
-        return "likedStyles";
+        return "userLikedStyles";
     }
     
     /*
      * =========================== 내 정보 - 로그인 정보 ===========================
      */
-    @GetMapping("/user/loginInfo.do")
+    @GetMapping("/user/userLoginInfo.do")
     public String loginInfo(HttpSession session, Model model,
                             @RequestParam(name = "action", required = false) String action) {
         //로그인된 사용자 정보 가져오기
@@ -185,29 +216,156 @@ public class UserController {
         //회원 정보 Model에 추가
         model.addAttribute("member", member);
 
-        //action 파라미터에 따라 다른 뷰를 리턴하도록 처리
-        if ("userInfo".equals(action)) {
-            // userInfo.jsp로 이동
-            return "userInfo";
-        } else if ("updateProfile".equals(action)) {
-            // 회원 정보 수정 페이지로 이동
-            return "updateProfile";
-        } else if ("updatePassword".equals(action)) {
-            // 비밀번호 수정 페이지로 이동
-            return "updatePassword";
-        } else if ("deleteMember".equals(action)) {
-            // 회원 탈퇴 페이지로 이동
-            return "deleteMember";
-        }
-
         //action 파라미터가 없거나 잘못된 값일 경우 기본 페이지로 이동
-        return "loginInfo";
+        return "userLoginInfo";
+    }
+
+    //회원 탈퇴
+    @PostMapping("/user/deleteMember")
+    @ResponseBody
+    public String deleteMember(@RequestParam("mem_num") Integer mem_num) {
+        userService.deleteMember(mem_num);
+        return "success";
+    }
+
+    //이메일 변경
+    @PostMapping("/user/updateEmail")
+    @ResponseBody
+    public String updateEmail(@RequestParam("newEmail") String newEmail, HttpSession session) {
+        //로그인된 사용자 정보 가져오기
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        
+        //회원 정보 조회
+        MemberVO member = userService.selectMember(user.getMem_num());
+        	
+        //회원 정보에 새로운 이메일 설정
+        member.setMem_email(newEmail);
+        
+        //회원 정보 업데이트
+        userService.updateEmail(member);
+        
+        return "success";
+    }
+
+    //전화번호 변경
+    @PostMapping("/user/updatePhoneNumber")
+    @ResponseBody
+    public String updatePhoneNumber(@RequestParam("newPhone") String newPhone, HttpSession session) {
+        //로그인된 사용자 정보 가져오기
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        
+        //회원 정보 조회
+        MemberVO member = userService.selectMember(user.getMem_num());
+        	
+        //회원 정보에 새로운 전화번호 설정
+        member.setMem_phone(newPhone);
+        
+    	userService.updatePhoneNumber(member);
+        return "success";
     }
         
+    //주소 변경
+    @PostMapping("/user/saveAddress")
+    @ResponseBody
+    public String saveAddress(@RequestParam String zipcode,
+                              @RequestParam String address1,
+                              @RequestParam String address2, HttpSession session) {
+    	//로그인된 사용자 정보 가져오기
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        
+        //회원 정보 조회
+        MemberVO member = userService.selectMember(user.getMem_num());
+        	
+        //회원 정보에 새로운 주소 설정
+        member.setMem_zipcode(zipcode);
+        member.setMem_address1(address1);
+        member.setMem_address2(address2);
+
+        if(member.getMem_zipcode() == null) {
+        	userService.addShippingAddress(member);
+        }else {
+        	userService.updateShippingAddress(member);
+        }        
+        return "success";
+    }
+    
+    //닉네임 변경
+    @PostMapping("/user/modifyNickname")
+    @ResponseBody
+    public String modifyNickname(@RequestParam("newNickname") String newNickname, HttpSession session) {
+        //로그인된 사용자 정보 가져오기
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        
+        //회원 정보 조회
+        MemberVO member = userService.selectMember(user.getMem_num());
+        	
+        //회원 정보에 새로운 닉네임 설정
+        member.setMem_nickname(newNickname);
+        
+        if(member.getMem_nickname() == null) {
+        	userService.addNickname(member);
+        }else {
+        	userService.updateNickname(member);
+        }
+        return "success";
+    }
+
+    //소개글 변경
+    @PostMapping("/user/modifyInt")
+    @ResponseBody
+    public String modifyInt(@RequestParam("newInt") String newInt, HttpSession session) {
+        //로그인된 사용자 정보 가져오기
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        
+        //회원 정보 조회
+        MemberVO member = userService.selectMember(user.getMem_num());
+        	
+        //회원 정보에 새로운 소개글 설정
+        member.setMem_int(newInt);
+        
+        if(member.getMem_int() == null) {
+        	userService.addIntroduction(member);
+        }else {
+        	userService.updateInt(member);
+        }
+        return "success";
+    }
+
+    //비밀번호 변경
+    @PostMapping("/user/updatePassword")
+    @ResponseBody
+    public String updatePassword(@ModelAttribute MemberVO member) {
+        userService.updatePassword(member);
+        return "success"; 
+    }
+    
+	//주소 변경
+	@PostMapping("/user/addressUpdate.do")
+	public String addressUpdate(@Valid MemberVO memberVO,
+			BindingResult result, Model model, HttpSession session) {
+		 //로그인된 사용자 정보 가져오기
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        
+        //회원 정보 조회
+        MemberVO member = userService.selectMember(user.getMem_num());
+		
+		//회원 정보에 새로운 주소 설정
+        member.setMem_zipcode(memberVO.getMem_zipcode());
+        member.setMem_address1(memberVO.getMem_address1());
+        member.setMem_address2(memberVO.getMem_address2());
+        		
+        if(member.getMem_zipcode() == null) {
+        	userService.addShippingAddress(member);
+        }else {
+        	userService.updateShippingAddress(member);
+        }
+        return "success";      
+	}
+    
     /*
      * =========================== 페널티 정보 조회 ===========================
      */
-    @GetMapping("/user/penaltyInfo.do")
+    @GetMapping("/user/userPenaltyInfo.do")
     public String getPenaltyInfo(HttpSession session, Model model) {
         //로그인된 사용자 정보 가져오기
         MemberVO user = (MemberVO) session.getAttribute("user");
@@ -225,6 +383,6 @@ public class UserController {
         model.addAttribute("penaltyTradeList", penaltyTradeList);
 
         //penaltyInfo.jsp로 이동
-        return "penaltyInfo";
+        return "userPenaltyInfo";
     }   
 }

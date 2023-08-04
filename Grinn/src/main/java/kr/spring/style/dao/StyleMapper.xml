@@ -115,4 +115,34 @@
 		LEFT OUTER JOIN item i ON s.item_num1 = i.item_num
 		WHERE s.st_num=#{st_num}
 	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertComment" parameterType="styleCommentVO">
+		INSERT INTO style_comment(
+		  com_num,
+		  com_comment,
+		  mem_num,
+		  st_num)
+		VALUES (
+		  style_comment_seq.nextval,
+		  #{com_comment},
+		  #{mem_num},
+		  #{st_num})  
+	</insert>
+	
+	<!-- 댓글 목록 -->
+	<select id="selectListComment" parameterType="map" resultType="styleCommentVO">
+		SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT s.com_num,
+		              <![CDATA[
+		              REPLACE(REPLACE(com_comment,'<','&lt;'),'>','&gt;') s.com_comment,
+		              ]]>
+		              s.com_regdate, s.com_mdate, s.mem_num, s.st_num, m.mem_id, d.mem_photo
+		            FROM style_comment s
+		            LEFT OUTER JOIN member m ON s.mem_num = m.mem_num
+		            LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
+		            WHERE s.st_num=#{st_num} ORDER BY s.com_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>          
+	</select>
 </mapper>

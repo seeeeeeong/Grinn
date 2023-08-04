@@ -6,9 +6,9 @@
 	<h3>예약 메인</h3>
 	<div class="selectMarket-wrap">
 		<div class="user-wrap">
-			<span class="market-img">
+			<div class="market-img">
 				<a href="${pageContext.request.contextPath}/fleamarket/boothList.do"><img src="../image_bundle/stalls.jpg"></a>
-			</span>
+			</div>
 			<p>
 				<span class="market-font">
 				<b>판매자 부스 예약</b>
@@ -16,9 +16,9 @@
 			</p>
 		</div>
 		<div class="user-wrap">
-			<span class="market-img">
+			<div class="market-img">
 				<a href="${pageContext.request.contextPath}/fleamarket/marketList.do"><img src="../image_bundle/bazaars.jpg"></a>
-			</span>
+			</div>
 			<p>
 				<span class="market-font">
 				<b>이용자 플리마켓 예약</b>

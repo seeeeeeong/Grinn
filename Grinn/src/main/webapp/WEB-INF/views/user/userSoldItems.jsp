@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- 판매내역 시작 -->
+
 <div class="page-main">
+<!-- 판매내역 시작 -->
 <h2>판매 내역</h2>
 <table>
   <thead>
@@ -15,16 +16,20 @@
     </tr>
   </thead>
   <tbody>
-    <c:forEach items="${soldItems}" var="item">
-      <tr>
-        <td><img src="${item.item_photo1}" width="50" height="50"></td>
-        <td>${item.item_name}</td>
-        <td>${item.item_size}</td>
-        <td>${item.trade_regdate}</td>
-        <td>${item.trade_state}</td>
+       <tr>
+      <c:forEach items="${SoldItems}" var="sitems">
+        <td><img src="${sitems.item_photo1}" width="50" height="50"></td>
+        <td>${sitems.item_name}</td>
+      </c:forEach>
+      <c:forEach items="${SoldItemSize}" var="sitemSizes">  
+        <td>${sitemSizes.item_size}</td>
+      </c:forEach>
+      <c:forEach items="${soldTrades}" var="strades">  
+        <td>${strades.trade_regDate}</td>
+        <td>${strades.trade_state}</td>
+      </c:forEach>  
       </tr>
-    </c:forEach>
   </tbody>
 </table>
-</div>
 <!-- 판매내역 끝 -->
+</div>

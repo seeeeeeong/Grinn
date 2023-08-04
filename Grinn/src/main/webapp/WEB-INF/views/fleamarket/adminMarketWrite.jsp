@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!-- 마켓 등록 시작 -->
+<!-- 부스 등록 시작 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
+<!-- include libraries (jquery,bootstrap) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
 .ck-editor__editable_inline{
@@ -14,9 +16,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
 <div class="page-main">
 	<h2>플리마켓 등록</h2>
-	<form:form modelAttribute="marketVO" action="marketWrite.do" id="register_form">
+	<form:form modelAttribute="marketVO" action="adminMarketWrite.do" id="market_register" enctype="multipart/form-data">
 		<form:errors element="div" cssClass="error-color"></form:errors>
-		<ul>
+		<ul class=register-label>
+			<li>
+				<label>예약 유형</label>
+				<form:radiobutton path="market_type" value="2" id="market_type2" checked="checked"/>플리마켓 예약
+			</li>
 			<li>
 				<form:label path="market_title">제목</form:label>
 				<form:input path="market_title"/>
@@ -24,12 +30,12 @@
 			</li>
 			<li>
 				<form:label path="market_startDate">시작일</form:label>
-				<form:input path="market_startDate"/>
+				<form:input path="market_startDate" type="date"/>
 				<form:errors path="market_startDate" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="market_endDate">종료일</form:label>
-				<form:input path="market_endDate"/>
+				<form:input path="market_endDate" type="date"/>
 				<form:errors path="market_endDate" cssClass="error-color"/>
 			</li>
 			<li>
@@ -38,26 +44,31 @@
 				<form:errors path="place_name" cssClass="error-color"/>
 			</li>
 			<li>
-				<form:label path="market_type">예약 유형</form:label>
-				<form:radiobutton path="market_type" value="1"/>
-				<form:radiobutton path="market_type" value="2"/>
-			</li>
-			<li>
 				<form:label path="booth_count">부스 수</form:label>
-				<form:input path="booth_count"/>
+				<form:input path="booth_count" type="number"/>
 				<form:errors path="booth_count" cssClass="error-color"/>
 			</li>
 			<li>
-				<form:label path="user_count">시간당 입장 인원</form:label>
-				<form:input path="user_count"/>
+				<form:label path="user_count">시간당 인원수</form:label>
+				<form:input path="user_count" type="number"/>
 				<form:errors path="user_count" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="booth_fee">부스 입점 비용</form:label>
-				<form:input path="booth_fee"/>
+				<form:input path="booth_fee" type="mumber"/>
 				<form:errors path="booth_fee" cssClass="error-color"/>
 			</li>
-			<li>상세내용</li>
+			<li>
+				<label for="upload1">포스터</label>
+				<input type="file" name="upload1" id="upload1" accept="image/gif,image/png,image/jpeg">
+				<form:errors path="market_poster" cssClass="error-color"/>
+			</li>
+			<li>
+				<label for="upload2">썸네일</label>
+				<input type="file" name="upload2" id="upload2" accept="image/gif,image/png,image/jpeg">
+				<form:errors path="market_thumbNail" cssClass="error-color"/>
+			</li>
+			<li><b>상세내용</b></li>
 			<li>
 				<form:textarea path="market_detail"/>
 				<form:errors path="market_detail" cssClass="error-color"/>
@@ -68,22 +79,22 @@
 						}
 					}
 					
-					ClassicEditor.create(document.querySelector('#content'), {
-									extraPlugins:[MyCustomUploadAdapterPlugin]
-								 })
-								 .then(editor => {
-									 window.editor = editor;
-								 })
-								 .catch(error => {
-									 console.error(error);
-								 });
+					ClassicEditor.create(document.querySelector('#market_detail'),{
+						           extraPlugins:[MyCustomUploadAdapterPlugin]
+					             })
+					             .then(editor => {
+					            	 window.editor = editor;
+					             })
+					             .catch(error => {
+					            	 console.error(error);
+					             });
 				</script>
 			</li>
 		</ul>
 		<div class="align-center">
-			<form:button>전송</form:button>
+			<form:button>등록</form:button>
 			<input type="button" value="목록" onclick="location.href='adminMarketList.do'">
 		</div>
 	</form:form>
 </div>
-<!-- 마켓 등록 끝 -->
+<!-- 부스 등록 끝 -->

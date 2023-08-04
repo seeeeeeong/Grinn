@@ -41,16 +41,32 @@
 	</c:if>
 	<c:if test="${count > 0}">
 	<table class="striped-table">
+		<tr>
+			<th>제목</th>
+			<th>시작일</th>
+			<th>종료일</th>
+			<th>장소</th>
+			<th>권한</th>
+		</tr>
 		<c:forEach var="adminBooth" items="${boothList}">
 		<tr>
-			<td class="align-center" width="400">${adminBooth.market_thumbNail}</td>
-			<td width="200">${adminBooth.market_title}</td>
-			<td>${adminBooth.market_startDate} ${adminBooth.market_endDate}</td>
-			<td>예약 일시</td>
-			<td>
-				<input type="button" value="수정" onclick="location.href='adminBoothDetail.do?market_num=${adminBooth.market_num}'" class="detail-btn">
+			<td width="300">${adminBooth.market_title}</td>
+			<td class="align-center">${adminBooth.market_startDate}</td>
+			<td class="align-center">${adminBooth.market_endDate}</td>			
+			<td class="align-center">${adminBooth.place_name}</td>
+			<td class="align-center">
+				<input type="button" value="수정" onclick="location.href='updateBooth.do?market_num=${adminBooth.market_num}'" class="detail-btn">
 				<%-- <c:if test="${booth.market_startDate}"> --%>
-				<input type="button" value="삭제" class="delete-btn">
+				<input type="button" value="삭제" id="delete_btn">
+				<script type="text/javascript">
+					let delete_btn = document.getElementById('delete_btn');
+					delete_btn.onclick=function(){
+						let choice = confirm('삭제하시겠습니까?');
+						if (choice){
+							location.replace('deleteBooth.do?market_num=${adminBooth.market_num}');
+						}
+					};
+				</script>
 				<%-- </c:if> --%>
 				<%-- <c:if test="${booth.market_startDate}">
 				<input type="button" value="예약 중" class="booking-btn">

@@ -34,20 +34,17 @@ public class MarketServiceImpl implements MarketService{
 
 	@Override
 	public MarketVO selectMarket(Integer market_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return marketMapper.selectMarket(market_num);
 	}
 
 	@Override
 	public void updateMarket(MarketVO market) {
-		// TODO Auto-generated method stub
-		
+		marketMapper.updateMarket(market);
 	}
 
 	@Override
 	public void deleteMarket(Integer market_num) {
-		// TODO Auto-generated method stub
-		
+		marketMapper.deleteMarket(market_num);
 	}
 
 	@Override

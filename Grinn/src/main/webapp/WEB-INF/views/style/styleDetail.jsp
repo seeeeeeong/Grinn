@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/style.fav.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/style.comment.js"></script>
     <style>
     #yijunesok_st{
     	align-items: stretch;
@@ -12,6 +13,24 @@
     }
     .user-profile .username{
     	font-size:15pt;
+    }
+    .posted-date{
+    	font-size:10pt;
+    	color:#9d9d9d;
+    	padding-left:20px;
+    }
+    .modified-date{
+    	font-size:10pt;
+    	color:#9d9d9d;
+    	padding-left:20px;
+    }
+    .comment-posted-date{
+    	font-size:10pt;
+    	color:#9d9d9d;
+    }
+    .comment-modified-date{
+    	font-size:10pt;
+    	color:#9d9d9d;
     }
     .style-content{
     	padding:0 335px 0 335px;
@@ -125,7 +144,7 @@
 	
 	/*버튼 디자인*/
 	#popupBtn {
-	  
+	  padding-left:10px;
 	}
 	
 	/*모달팝업을 감싸고 있는 최상위 부모*/
@@ -166,9 +185,45 @@
 		margin:0;
 		padding-left:30px;
 	}
+	.user-profile{
+    	padding:0 335px 0 335px;
+    }
+	.comment-user-profile{
+		font-size:15pt;
+		margin-top:15px;
+		padding-right:5px;
+	}
+	.comment-post-caption{
+		padding-left:15pt;
+	}
+	.comment-form{
+		display: flex;
+		width:500px;
+	}
+	#com_form{
+		border-style:hidden;
+		padding:3px 0 0 10px;
+		width:500px;
+		display:flex;
+	}
+	.comment-login-photo{
+		width:30px;
+		height:30px;
+		border-radius: 70%;
+	}
+	#com_comment{
+		font-size:13pt;
+		box-sizing: border-box;
+		border: solid 2px #dedede;
+		border-radius: 5px;
+	}
+	.comment-submit{
+		magin-left:10px;
+	}
 	</style>
 <script type="text/javascript">
   $(document).ready(function() {
+	  alert(${style.st_num})
 	//사진 슬라이드
     const slides = $('.slides'); // 전체 슬라이드 컨테이너
     const slideImg = $('.slides li'); // 모든 슬라이드들
@@ -296,15 +351,44 @@
     <!-- 댓글 팝업창 -->
 	<div id="modalWrap" style="display:none;">
 	  <div id="modalContent">
-	    <div id="modalBody">
+	  	<div id="modalBody">
 	      <span id="closeBtn">&times;</span><!-- 닫기 버튼 -->
 	      <br>
 	      <div id="comment_title">
 	      	<h2>댓글</h2>
 	      </div>
-	      
-	      <p>modal-popup 입니다.</p> <!-- 팝업창 내 글귀 -->
-	    </div>
+	      <div class="comment-user-profile">
+			<img src="profile_picture.png" class="profile-photo">
+			<span class="username">${style.mem_id}</span>
+    	  </div><br>
+	      <div class="comment-post-caption">
+	      	${style.st_phrase}<br>
+	      	<span class="comment-posted-date"><small>${style.st_regdate}</small></span>
+	      	<c:if test="${!empty style.st_mdate}">
+	       	<span class="comment-modified-date"><small>${style.st_mdate}</small></span>
+	     	</c:if>
+	   	  </div>
+	   	  <hr width="100%" color="#f4f4f4">
+	   	  <!-- 댓글폼 -->
+	   	  <div class="comment-form">
+	   	  	<img src="login-photo.png" class="comment-login-photo">
+	   	  	<form id="com_form">
+	   	  		<input type="hidden" name="st_num" value="${style.st_num}" id="st_num">
+	   	  		<textarea rows="1" cols="28" name="com_comment" id="com_comment"
+	   	  		<c:if test="${empty user}">disabled="disabled" placeholder="로그인 후 이용 가능합니다."</c:if>
+	   	  		<c:if test="${!empty user}">placeholder="댓글을 입력하세요..."</c:if>></textarea>
+	   	  		<input type="submit" value="등록" class="comment-submit">
+	   	  	</form>
+	   	  </div>
+	   	  <!-- 댓글폼 -->
+	   	  <hr width="100%" color="#f4f4f4">
+	  	</div>
+	  	<!-- 댓글 목록 출력 -->
+		<div id="output"></div>
+		<div class="paging-button" style="display:none;">
+			<input type="button" value="더보기">
+		</div>
+		<!-- 댓글 끝 -->
 	  </div>
 	</div>
 </div>

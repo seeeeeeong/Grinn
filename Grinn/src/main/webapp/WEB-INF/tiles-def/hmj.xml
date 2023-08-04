@@ -28,6 +28,14 @@
     	<put-attribute name="title" value="플리마켓 목록(관리자)"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminMarketList.jsp"/>
     </definition>
+    <definition name="adminMarketWrite" extends="admin">
+    	<put-attribute name="title" value="플리마켓 등록(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminMarketWrite.jsp"/>
+    </definition>
+    <definition name="adminBoothUpdate" extends="admin">
+    	<put-attribute name="title" value="부스 수정(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/updateBooth.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

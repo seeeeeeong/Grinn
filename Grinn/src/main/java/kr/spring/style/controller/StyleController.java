@@ -1,5 +1,6 @@
 package kr.spring.style.controller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.service.StyleService;
+import kr.spring.style.vo.StyleCommentVO;
 import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.util.FileUtil;
@@ -45,7 +47,7 @@ public class StyleController {
 	}
 	
 	/*========================
-	 * 게시물 작성
+	 * 스타일 작성
 	 *========================*/
 	//등록폼
 	@GetMapping("/style/write.do")
@@ -93,7 +95,7 @@ public class StyleController {
 	}
 	
 	/*========================
-	 * 게시판 목록
+	 * 스타일 목록
 	 *========================*/
 	@RequestMapping("/style/list.do")
 	public ModelAndView getList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
@@ -203,6 +205,133 @@ public class StyleController {
 			mapJson.put("count", styleService.selectFavCount(
 					                          fav.getSt_num()));
 		}
+		return mapJson;
+	}
+	
+	/*========================
+	 * 댓글 등록
+	 *========================*/
+	@RequestMapping("/style/writeComment.do")
+	@ResponseBody
+	public Map<String,String> writeComment(StyleCommentVO styleCommentVO,
+			                    HttpSession session,
+			                    HttpServletRequest request){
+		log.debug("<<댓글 등록>> : " + styleCommentVO);
+
+		Map<String,String> mapJson = new HashMap<String,String>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {//로그인이 되지 않은 경우
+			mapJson.put("result", "logout");
+		}else {
+			//회원번호 등록
+			styleCommentVO.setMem_num(user.getMem_num());
+			//댓글 등록
+			styleService.insertComment(styleCommentVO);
+			mapJson.put("result", "success");
+		}
+		return mapJson;
+	}
+	
+	/*========================
+	 * 댓글 목록
+	 *========================*/
+	@RequestMapping("/style/listComment.do")
+	@ResponseBody
+	public Map<String, Object> getList(@RequestParam(value="pageNum", defaultValue="1") int currentPage, 
+										@RequestParam(value="rowCount", defaultValue="10") int rowCount,
+										@RequestParam int st_num, HttpSession session){
+		log.debug("<<currentPage>> : " + currentPage);
+		log.debug("<<st_num>> :" + st_num);
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("st_num", st_num);
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		//전체 레코드수
+		int count = styleService.selectRowCountComment(map);
+		
+		//페이지 처리
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, 1, null);
+		
+		List<StyleCommentVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			log.debug("<<start>> :" + page.getStartRow() + ", " + page.getEndRow());
+			list = styleService.selectListComment(map);
+	
+		}else {
+			list = Collections.emptyList();
+		}
+		
+		Map<String, Object> mapJson = new HashMap<String,Object>();
+		mapJson.put("count", count);
+		mapJson.put("list", list);
+		
+		//로그인한 회원 정보 세팅
+		if(user != null) {
+			mapJson.put("user_num", user.getMem_num());
+		}
+		
+		return mapJson;
+	}
+	
+	/*========================
+	 * 댓글 삭제
+	 *========================*/
+	@RequestMapping("/style/deleteComment.do")
+	@ResponseBody
+	public Map<String,String> deleteComment(@RequestParam int com_num, HttpSession session){
+		log.debug("<<com_num>> : " + com_num);
+		
+		Map<String, String> mapJson = new HashMap<String, String>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		StyleCommentVO db_comment = styleService.selectComment(com_num);
+		
+		if(user == null) {
+			//로그인이 되지 않은 경우
+			mapJson.put("result", "logout");
+		}else if(user!=null && user.getMem_num()==db_comment.getMem_num()) {
+			//로그인한 회원번호와 작성자 회원번호 일치
+			styleService.deleteComment(com_num);
+			mapJson.put("result", "success");
+		}else {
+			//로그인한 회원번호와 댓글작성자 회원번호 불일치한 경우
+			mapJson.put("result", "wrongAccess");
+		}
+		
+		return mapJson;
+	}
+	
+	/*========================
+	 * 댓글 수정
+	 *========================*/
+	@RequestMapping("/style/updateComment.do")
+	@ResponseBody
+	public Map<String,String> modifyReply(StyleCommentVO styleCommentVO, HttpSession session, HttpServletRequest request){
+		log.debug("<<styleCommentVO>> : " + styleCommentVO);
+		
+		Map<String,String> mapJson = new HashMap<String,String>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		StyleCommentVO db_comment = styleService.selectComment(styleCommentVO.getCom_num());
+		
+		if(user == null) {//로그인이 되지 않은 경우
+			mapJson.put("result", "logout");
+		}else if(user != null && user.getMem_num() == db_comment.getMem_num()) {
+			//로그인 회원과 작성자 회원의 번호 일치
+			//댓글 수정
+			styleService.updateComment(styleCommentVO);
+			mapJson.put("result", "success");
+		}else {
+			//로그인 회원과 작성자 회원의 번호 불일치
+			mapJson.put("result", "wrongAccess");
+		}
+		
 		return mapJson;
 	}
 }

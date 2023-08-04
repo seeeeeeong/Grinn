@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- 회원정보 시작 -->
+
 <div class="page-main">
+<!-- 회원정보 시작 -->
     <img src="${pageContext.request.contextPath}/member/photoView.do" width="200" height="200" class="my-photo">
     <p>닉네임: ${mem_nickname}</p>
     <p>이메일: ${mem_email}</p>
@@ -10,7 +11,7 @@
     <p>포인트: ${mem_point}</p>
 <!-- 프로필 관리 버튼 -->
     <input type="button" class="menu-btn" value="프로필 관리"
-           onclick="location.href='${pageContext.request.contextPath}/user/loginInfo.do'">
+           onclick="location.href='${pageContext.request.contextPath}/user/userLoginInfo.do'">
     <!-- 내 스타일 버튼 -->
     <input type="button" class="menu-btn" value="내 스타일"
            onclick="location.href='${pageContext.request.contextPath}/user/userStyle.do'">
@@ -29,15 +30,19 @@
     </tr>
   </thead>
   <tbody>
-    <c:forEach items="${purchasedItems}" var="item">
       <tr>
-        <td><img src="${item.item_photo1}" width="50" height="50"></td>
+      <c:forEach items="${purchasedItems}" var="pitem">
+        <td><img src="${pitem.item_photo1}" width="50" height="50"></td>
         <td>${item.item_name}</td>
-        <td>${item.item_size}</td>
-        <td>${item.trade_regdate}</td>
-        <td>${item.trade_state}</td>
+      </c:forEach>
+      <c:forEach items="${purchasedItemSize}" var="pitemSize">  
+        <td>${pitemSize.item_size}</td>
+      </c:forEach>
+      <c:forEach items="${purchasedTrades}" var="ptrades">  
+        <td>${ptrades.trade_regDate}</td>
+        <td>${ptrades.trade_state}</td>
+      </c:forEach>  
       </tr>
-    </c:forEach>
   </tbody>
 </table>
 <!-- 구매내역 끝 -->
@@ -55,15 +60,19 @@
     </tr>
   </thead>
   <tbody>
-    <c:forEach items="${soldItems}" var="item">
-      <tr>
-        <td><img src="${item.item_photo1}" width="50" height="50"></td>
-        <td>${item.item_name}</td>
-        <td>${item.item_size}</td>
-        <td>${item.trade_regdate}</td>
-        <td>${item.trade_state}</td>
+       <tr>
+      <c:forEach items="${SoldItems}" var="sitems">
+        <td><img src="${sitems.item_photo1}" width="50" height="50"></td>
+        <td>${sitems.item_name}</td>
+      </c:forEach>
+      <c:forEach items="${SoldItemSize}" var="sitemSizes">  
+        <td>${sitemSizes.item_size}</td>
+      </c:forEach>
+      <c:forEach items="${soldTrades}" var="strades">  
+        <td>${strades.trade_regDate}</td>
+        <td>${strades.trade_state}</td>
+      </c:forEach>  
       </tr>
-    </c:forEach>
   </tbody>
 </table>
 <!-- 판매내역 끝 -->
