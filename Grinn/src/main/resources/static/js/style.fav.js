@@ -16,11 +16,11 @@ $(function(){
 		});
 	}//end of selectFav
 	//좋아요 등록/삭제
-	$('.output_fav').click(function(){
+	$('#output_fav').click(function(){
 		$.ajax({
 			url:'writeFav.do',
 			type:'post',
-			data:{st_num:$('.output_fav').attr('data-num')},
+			data:{st_num:$('#output_fav').attr('data-num')},
 			dataType:'json',
 			success:function(param){
 				if(param.result=='logout'){
@@ -49,7 +49,7 @@ $(function(){
 			alert('좋아요 표시 오류 발생');
 		}
 		//문서 객체에 추가
-		$('.output_fav').attr('src',output);
+		$('#output_fav').attr('src',output);
 		$('#output_fcount').text("좋아요 " + param.count + "개");
 	}//end of displayFav
 	//초기 데이터 표시

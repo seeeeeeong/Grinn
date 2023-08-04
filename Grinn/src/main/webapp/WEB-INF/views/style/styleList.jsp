@@ -62,7 +62,7 @@
                         <span>${style.mem_id}</span>
                     </div>
                     <div class="like-button">
-                    	<img class="output_fav" data-num="${style.st_num}" src="${pageContext.request.contextPath}/images/no_like.png">
+                    	<img id="output_fav" data-num="${style.st_num}" src="${pageContext.request.contextPath}/images/no_like.png">
                     </div><br>
                     <div class="phrase">
                     	<p>${style.st_phrase}</p>

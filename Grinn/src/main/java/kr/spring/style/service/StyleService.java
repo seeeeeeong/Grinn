@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.spring.item.vo.ItemVO;
+import kr.spring.style.vo.StyleCommentVO;
 import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 
@@ -28,4 +29,11 @@ public interface StyleService {
 	public void insertFav(StyleFavVO fav);
 	public void deleteFav(Integer stfav_num);
 	public void deleteFavByStNum(Integer st_num);
+	//댓글
+	public List<StyleCommentVO> selectListComment(Map<String,Object> map);
+	public int selectRowCountComment(Map<String,Object> map);
+	public StyleCommentVO selectComment(Integer com_num);
+	public void insertComment(StyleCommentVO styleComment);
+	public void updateComment(StyleCommentVO styleComment);
+	public void deleteComment(Integer com_num);
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.item.vo.ItemVO;
 import kr.spring.style.dao.StyleMapper;
+import kr.spring.style.vo.StyleCommentVO;
 import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 
@@ -84,6 +85,38 @@ public class StyleServiceImpl implements StyleService{
 	@Override
 	public void deleteFavByStNum(Integer st_num) {
 		styleMapper.deleteFavByStNum(st_num);
+	}
+
+	@Override
+	public List<StyleCommentVO> selectListComment(Map<String, Object> map) {
+		return styleMapper.selectListComment(map);
+	}
+
+	@Override
+	public int selectRowCountComment(Map<String, Object> map) {
+		
+		return styleMapper.selectRowCountComment(map);
+	}
+
+	@Override
+	public StyleCommentVO selectComment(Integer com_num) {
+		
+		return styleMapper.selectComment(com_num);
+	}
+
+	@Override
+	public void insertComment(StyleCommentVO styleComment) {
+		styleMapper.insertComment(styleComment);
+	}
+
+	@Override
+	public void updateComment(StyleCommentVO styleComment) {
+		styleMapper.updateComment(styleComment);
+	}
+
+	@Override
+	public void deleteComment(Integer com_num) {
+		styleMapper.deleteComment(com_num);
 	}
 
 	
