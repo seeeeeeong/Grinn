@@ -47,9 +47,7 @@
 							});
 				});
 			</script>
-			<c:if test="${!empty user}">
-				<input type="button" value="상품등록" onclick="location.href='write.do'">
-			</c:if>
+			<input type="button" value="상품등록" onclick="location.href='itemWrite.do'">
 		</div>
 	</form>
 	<c:if test="${count == 0}">
@@ -65,6 +63,7 @@
 				<td>최근 거래가</td>
 				<td>최근 거래일</td>
 				<td>수정</td>
+				<td>삭제</td>
 			</tr>
 			<c:forEach var="item" items="${list}">
 				<tr class="align-center">
@@ -77,8 +76,18 @@
 					<td></td>
 					<td></td>
 					<td>
-						<a href="#">수정</a>
+						<a href="itemModify.do?item_num=${item.item_num}">수정</a>
 					</td>
+					<td><a id="delete_btn">삭제</a> 
+					<script type="text/javascript">
+							let delete_btn = document.getElementById('delete_btn');
+							delete_btn.onclick = function() {
+								let choice = confirm('삭제하시겠습니까?');
+								if (choice) {
+									location.replace('itemDelete.do?item_num=${item.item_num}');
+								}
+							}
+						</script></td>
 				</tr>
 			</c:forEach>
 		</table>

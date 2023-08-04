@@ -33,20 +33,113 @@ p {
     font-weight: 700;
     
 }
-span{
+.list02 span{
 	display: inline-flex;
     align-items: center;
     margin: 5px;
 }
-/* .itemName{
-	line-height: 16px;
-    font-size: 13px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+
+/*-------------
+	상세페이지
+---------------*/
+ 
+ /* itemDetailPage 전체 스타일 */
+.itemDetailPage {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
 }
-.itemDetail{
-	
-} */
+
+/* 사진 컨테이너 스타일 */
+.itemDetailPage img {
+  margin-right: 20px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 선 스타일 */
+.itemDetailPage .divider {
+  border-right: 1px solid #ccc;
+  margin: 0 20px;
+  height: 100%;
+}
+
+/* 제품 정보 컨테이너 스타일 */
+.itemInfo {
+  flex: 1;
+  padding: 20px;
+}
+
+/* 브랜드명 스타일 */
+.itemInfo .title_box .a {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* 제품명 스타일 */
+.itemInfo .title_box .b {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+/* 제품 설명 스타일 */
+.itemInfo .title_box .c {
+  font-size: 16px;
+  color: #777;
+  margin: 0;
+}
+
+/* 사이즈 및 거래가 컨테이너 스타일 */
+.itemInfo .details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* 버튼 그룹 컨테이너 스타일 */
+.itemInfo .buttons {
+  display: flex;
+  align-items: center;
+}
+
+/* 버튼 스타일 */
+.itemInfo .buttons .a{
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgb(239, 98, 83);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.itemInfo .buttons .b{
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgb(65, 185, 121);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+}
+
+/* 관심상품 스타일 */
+.itemInfo .wishlist {
+  font-size: 16px;
+  color: #555;
+  margin-left: 20px;
+}
+
+/* align-right 스타일 */
+.align-right {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.align-right button {
+  margin-left: 10px;
+}
+ 

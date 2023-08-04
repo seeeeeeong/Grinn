@@ -6,10 +6,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -115,7 +117,7 @@ public class ItemController {
 	
 	// ===========상품 등록시작(관리자)===========
 	// 등록폼
-	@GetMapping("/item/write.do")
+	@GetMapping("/item/itemWrite.do")
 	public String form() {
 		return "itemWrite";
 	}
@@ -188,7 +190,7 @@ public class ItemController {
 	//=========상품등록 끝============
 	
 	//=========상품 상세 시작============
-	@RequestMapping("/item/detail.do")
+	@RequestMapping("/item/itemDetail.do")
 	public ModelAndView getDetail(@RequestParam int item_num) {
 		//상품상세
 		ItemVO item = itemService.selectItem(item_num);
@@ -196,6 +198,48 @@ public class ItemController {
 		return new ModelAndView("itemDetail","item",item);
 	}
 	//=========상품 상세 끝============
+	
+	
+	//=========상품 수정 시작============
+	//수정폼 호출
+	@GetMapping("/item/itemModify.do")
+	public String formUpdate(@RequestParam int item_num, Model model) {
+		
+		ItemVO itemVO = itemService.selectItem(item_num);
+		model.addAttribute("itemVO",itemVO);
+		
+		return "itemModify";
+	}
+	//전송된 데이터 처리
+	@PostMapping("/item/itemModify.do")
+	public String submitModify(@Valid ItemVO itemVO, BindingResult result, 
+									HttpServletRequest request, Model model) {
+		
+		//유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			return "itemModify";
+		}
+		
+		//글수정
+		itemService.updateItem(itemVO);
+		
+		model.addAttribute("message", "상품 수정 완료!");
+		model.addAttribute("url", request.getContextPath()+"/item/itemDetail.do?item_num="+itemVO.getItem_num());
+		
+		return "common/resultView";
+		
+	}
+	//=========상품 수정 끝============
+	
+	//=========상품 삭제 시작============
+	@RequestMapping("/item/itemDelete.do")
+	public String submitDelete(@RequestParam int item_num) {
+		
+		itemService.deleteItem(item_num);
+		
+		return "redirect:/item/itemAdminList.do";
+	}
+	//=========상품 삭제 끝============
 	
 	//=========관심 상품(좋아요) 시작============
 	@RequestMapping("/item/getFav.do")

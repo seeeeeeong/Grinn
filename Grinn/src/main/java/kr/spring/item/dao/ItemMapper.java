@@ -24,6 +24,7 @@ public interface ItemMapper {
 	@Select("SELECT * FROM item WHERE item_num=#{item_num}")
 	public ItemVO selectItem(Integer item_num);
 	public void updateItem(ItemVO item);
+	@Delete("DELETE FROM item WHERE item_num=#{item_num}")
 	public void deleteItem(Integer item_num);
 	
 	//==관심상품==

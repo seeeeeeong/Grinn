@@ -52,7 +52,7 @@
 							});
 				});
 			</script>
-			<input type="button" value="상품등록" onclick="location.href='write.do'">
+			<input type="button" value="상품등록" onclick="location.href='itemWrite.do'">
 		</div>
 	</form>
 	<c:if test="${count == 0}">
@@ -62,7 +62,7 @@
 		<div class="list01">
 			<c:forEach var="item" items="${list}">
 				<div class="list02">
-					<a href="detail.do?item_num=${item.item_num}"> 	
+					<a href="itemDetail.do?item_num=${item.item_num}"> 	
 						<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${item.item_num}">
 							<div class="list03">
 								<p class="listBrand">${item.item_brand}</p>

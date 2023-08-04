@@ -15,13 +15,25 @@
 		<put-attribute name="title" value="상품등록" />
 		<put-attribute name="body" value="/WEB-INF/views/item/itemWrite.jsp" />
 	</definition>
+
+	<definition name="itemModify" extends="main">
+		<put-attribute name="title" value="상품수정" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/item/itemModify.jsp" />
+	</definition>
 	
 	<definition name="itemList" extends="main">
 		<put-attribute name="title" value="상품목록" />
 		<put-attribute name="body" value="/WEB-INF/views/item/itemList.jsp" />
 	</definition>
-	
-		<definition name="itemAdminList" extends="main">
+
+	<definition name="itemDetail" extends="main">
+		<put-attribute name="title" value="상세정보" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/item/itemDetail.jsp" />
+	</definition>
+
+	<definition name="itemAdminList" extends="main">
 		<put-attribute name="title" value="상품목록(관리자)" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/item/itemAdminList.jsp" />

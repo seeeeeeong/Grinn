@@ -41,14 +41,12 @@ public class ItemServiceImpl implements ItemService{
 
 	@Override
 	public void updateItem(ItemVO item) {
-		// TODO Auto-generated method stub
-		
+		itemMapper.updateItem(item);
 	}
 
 	@Override
 	public void deleteItem(Integer item_num) {
-		// TODO Auto-generated method stub
-		
+		itemMapper.deleteItem(item_num);
 	}
 
 	//==관심상품(좋아요)==
