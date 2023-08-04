@@ -62,16 +62,16 @@
 							<nav class = "gnb">
 								<ul class = "gnb_list">
 									<li class = "gnb_item">
-										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/main/main.do"><b>HOME</b></a>
+										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/main/main.do">HOME</a>
 									</li>
 									<li class = "gnb_item">
-										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/style/list.do"><b>STYLE</b></a>
+										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/style/list.do">STYLE</a>
 									</li>
 									<li class = "gnb_item">
-										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/item/itemList.do"><b>SHOP</b></a>
+										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/item/itemList.do">SHOP</a>
 									</li>
 									<li class = "gnb_item">
-										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/fleamarket/list.do"><b>FLEA MARKET</b></a>
+										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/fleamarket/list.do">FLEA MARKET</a>
 									</li>
 								</ul>
 							</nav>
