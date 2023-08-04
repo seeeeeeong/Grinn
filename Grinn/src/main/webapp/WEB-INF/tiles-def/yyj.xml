@@ -5,39 +5,40 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	
+	<!-- 메인 -->
 	<definition name="a6" extends="main">
 		<put-attribute name="title" value="SpringPage" />
-    	<put-attribute name="nav" value="/WEB-INF/views/template/notice_nav.jsp"/>
+		<put-attribute name="nav" value="/WEB-INF/views/template/notice_nav.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 	</definition>
-	
-	<definition name="main2" 
-                template="/WEB-INF/views/template/layout_notice.jsp">
-    	<put-attribute name="title" value="SpringPage"/>
-    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
-    	<put-attribute name="nav" value="/WEB-INF/views/template/notice_nav.jsp"/>
-	    <put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>
-	    <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
-    </definition> 
-	
-	<definition name="noticeList" extends="main2">
+	<!-- 공지사항 메인 -->
+	<definition name="noticeMain" template="/WEB-INF/views/template/layout_notice.jsp">
+		<put-attribute name="title" value="SpringPage" />
+		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/views/template/notice_nav.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp" />
+	</definition>
+
+	<!-- 공지사항 메인 상속 -->
+	<definition name="noticeList" extends="noticeMain">
 		<put-attribute name="title" value="공지사항 | Grinn" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeList.jsp" />
 	</definition>
-	<definition name="noticefaq" extends="main2">
+	<definition name="noticefaq" extends="noticeMain">
 		<put-attribute name="title" value="자주묻는질문 | Grinn" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticefaq.jsp" />
 	</definition>
-	<definition name="noticeAuth_policy" extends="main2">
+	<definition name="noticeAuth_policy" extends="noticeMain">
 		<put-attribute name="title" value="검수기준 | Grinn" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeAuth_policy.jsp" />
 	</definition>
-	<definition name="noticeDetail" extends="main2">
+	<definition name="noticeDetail" extends="noticeMain">
 		<put-attribute name="title" value="공지사항디테일" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeDetail.jsp" />
 	</definition>
-	
+
+	<!-- 메인 상속 -->
 	<definition name="noticeWrite" extends="main">
 		<put-attribute name="title" value="공지사항 글 등록" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeWrite.jsp" />
@@ -46,7 +47,7 @@
 		<put-attribute name="title" value="공지사항 글 수정" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeModify.jsp" />
 	</definition>
-	
+
 </tiles-definitions>
 
 

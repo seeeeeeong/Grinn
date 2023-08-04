@@ -63,19 +63,39 @@
 								<p class="title">${faq.no_title}</p>
 							</div>
 							<%-- 드롭다운 시작 --%>
-							<div class="imgOpenClose"><!-- 위아래 표시하는 사진 넣을 곳 -->
-							<%-- 
-								<img class="classOpenImg" id="output_faq" style="float:right;" 
-										src="${pageContext.request.contextPath}/image_bundle/classClose.png">
-							--%>
-								<img class="classOpenImg" id="output_faq" src="${pageContext.request.contextPath}/image_bundle/classClose.png" onclick="changeImage(this, '../images/classOpen.png')" />
-							<img class="classOpenImg" id="output_faq" src="${pageContext.request.contextPath}/image_bundle/classOpen.png" onclick="changeImage(this, '../images/classClose.png')" />
+							<script type="text/javascript">
+								$(document).ready(function(){//if문이나 for문으로 받는거 생각해보기 - 숙제~
+									let imgOpen = document.getElementsByClassName('imgOpen');
+									let imgClose = document.getElementsByClassName('imgClose');
+									let dropdown_content = document.getElementsByClassName('dropdown_content');
+									
+									imgOpen.onclick = function(){
+										dropdown_content.style.display = 'block';
+										imgClose.style.display = 'block';
+										imgOpen.style.display = 'none';
+									};
+									imgClose.onclick = function(){
+										dropdown_content.style.display = 'none';
+										imgOpen.style.display = 'block';
+										imgClose.style.display = 'none';
+									};
+								});
+								
+							</script>
+							<div class="imgOpen" id="imgOpen"><!-- 위아래 표시하는 사진 넣을 곳 -->
+								<img class="classOpenImg"
+									src="${pageContext.request.contextPath}/image_bundle/classOpen.png" />
 							</div>
+							<div class="imgClose" id="imgClose" style="display:none;">
+								<img class="classCloseImg"
+									src="${pageContext.request.contextPath}/image_bundle/classClose.png" />
+							</div>
+								
 							<%-- 드롭다운 끝 --%>
 						</div>
-						<div class="dropdown_content">
+						<div class="dropdown_content" id="dropdown_content" style="display:none;">
 							<div class="content">
-								<c:if test="">${faq.no_content}</c:if>
+								${faq.no_content}
 							</div>
 						</div>
 					</c:forEach>
@@ -86,22 +106,7 @@
 		<div class="align-center">${page}</div>
 	</div>
 	<div class="page-clear"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div><%--
 <div class="aqaa">
   <button class="dropbtn">드롭다운 메뉴</button>
   <div class="aqaa-content">
@@ -110,4 +115,4 @@
     <a href="#">제품소개</a>
     <a href="#">오시는길</a>
   </div>
-</div>
+</div>--%>

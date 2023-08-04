@@ -356,7 +356,7 @@
 	height: 23px;
 	margin-left: auto;
 }
-.imgOpenClose{
+.imgOpen,.imgClose{
     --global-header-height: 86px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
@@ -369,25 +369,6 @@
     margin-left: auto;
     margin-top: 0;
 }
-/* ------------------------------------------ */
-
-
-
-
-.aqaa-content {
-  display: none;
-}
-
-
-
-.aqaa-content a:hover {background-color: #ddd;}
-
-.aqaa:hover .aqaa-content {display: block;}
-
-.aqaa:hover .dropbtn {background-color: #3e8e41;}
-
-
-
 
 
 
