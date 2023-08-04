@@ -14,7 +14,7 @@
   <tbody>
     <c:forEach items="${likedStyles}" var="post">
       <tr>
-        <td><img src="${post.st_photo1}" width="50" height="50"></td>
+        <td><img src="data:image/jpeg;base64,${likedStyle.st_photo1Base64}" width="100px" height="100px" /></td>
         <td><img src="${post.mem_photo}" width="50" height="50"></td>
         <td>${post.mem_nickname}</td>
       </tr>

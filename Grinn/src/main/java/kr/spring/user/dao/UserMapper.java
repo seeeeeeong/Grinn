@@ -3,11 +3,13 @@ package kr.spring.user.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.spring.item.vo.ItemVO;
+import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.trade.vo.TradeVO;
 
@@ -23,34 +25,94 @@ public interface UserMapper {
 	public void deleteMember(Integer mem_num);
 	@Delete("DELETE FROM member_detail WHERE mem_num=#{mem_num}")
 	public void deleteMember_detail(Integer mem_num);	
+
+	//이메일 변경
+	@Update("UPDATE member_detail SET mem_email=#{mem_email} WHERE mem_num=#{mem_num}")
+	public void updateEmail(MemberVO member);
+
+	//전화번호 변경
+	@Update("UPDATE member_detail SET mem_phone=#{mem_phone} WHERE mem_num=#{mem_num}")
+	public void updatePhoneNumber(MemberVO member);
+
+	//배송지 추가
+	@Insert("INSERT INTO member_detail (mem_num, mem_zipcode, mem_address1, mem_address2) VALUES (#{mem_num}, #{mem_zipcode}, #{mem_address1}, #{mem_address2})")
+	public void addShippingAddress(MemberVO member);
+
+	//배송지 변경
+	@Update("UPDATE member_detail SET mem_zipcode=#{mem_zipcode}, mem_address1=#{mem_address1}, mem_address2=#{mem_address2} WHERE mem_num=#{mem_num}")
+	public void updateShippingAddress(MemberVO member);
+
+	//배송지 삭제
+	@Update("UPDATE member_detail SET mem_zipcode=NULL, mem_address1=NULL, mem_address2=NULL WHERE mem_num=#{mem_num}")
+	public void deleteShippingAddress(int mem_num);
+
+	//닉네임 추가
+	@Update("UPDATE member SET mem_nickname=#{mem_nickname} WHERE mem_num=#{mem_num}")
+	public void addNickname(MemberVO member);
+
+	//닉네임 변경
+	@Update("UPDATE member SET mem_nickname=#{mem_nickname} WHERE mem_num=#{mem_num}")
+	public void updateNickname(MemberVO member); 
 	
-	//회원정보 수정 - 프로필 정보 (프로필 이미지, 이메일, 전화번호, 프로필 이름, 소개, 주소록)
-	@Update("UPDATE member_detail SET mem_photo=#{mem_photo}, mem_email=#{mem_email}, mem_phone=#{mem_phone}, mem_nickname=#{mem_nickname}, mem_int=#{mem_int}, mem_zipcode=#{mem_zipcode}, mem_address1=#{mem_address1}, mem_address2=#{mem_address2} WHERE mem_num=#{mem_num}")
-	public void updateProfile(MemberVO member);	
+	//소개글 추가
+	@Update("UPDATE member_detail SET mem_int=#{mem_int} WHERE mem_num=#{mem_num}")
+	public void addIntroduction(MemberVO member);
+
+	//소개글 변경
+	@Update("UPDATE member_detail SET mem_int=#{mem_int} WHERE mem_num=#{mem_num}")
+	public void updateInt(MemberVO member); 
 	
-	//비밀번호 수정 
+	//비밀번호 변경
 	@Update("UPDATE member_detail SET mem_passwd=#{mem_passwd} WHERE mem_num=#{mem_num}")
 	public void updatePassword(MemberVO member); 
-	
-	//구매 내역
-	@Select("SELECT td.trade_num, item_photo1, item_name, s.item_size, td.trade_regdate, td.trade_state, " +
-	        "item_brand, item_price " +
+		
+	//구매내역 - trade
+	@Select("SELECT td.trade_num, td.trade_regDate, td.trade_state " +
 	        "FROM trade t " +
 	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
-	        "JOIN item ON td.item_num = item.item_num " +
+	        "WHERE t.buyer_num = #{mem_num}")
+	public List<TradeVO> selectPurchasedTrades(Integer mem_num);
+	
+	//구매내역 - Item
+	@Select("SELECT i.item_photo1, i.item_name, i.item_brand, i.item_price " +
+	        "FROM trade t " +
+	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
+	        "JOIN item i ON td.item_num = i.item_num " +
 	        "JOIN item_size s ON td.item_sizenum = s.item_sizenum " +
 	        "WHERE t.buyer_num = #{mem_num}")
-	public List<TradeVO> selectPurchasedItems(Integer mem_num);
+	public List<ItemVO> selectPurchasedItems(Integer mem_num);
+		
+	//구매내역 - Size
+	@Select("SELECT s.item_size FROM item i " +
+	        "JOIN trade t ON i.item_num = t.item_num " +
+	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
+	        "JOIN item_size s ON td.item_sizenum = s.item_sizenum " +
+	        "WHERE t.buyer_num = #{mem_num}")
+	public List<ItemSizeVO> selectPurchasedItemSize(Integer mem_num);
 	
-	//판매 내역
-	@Select("SELECT td.trade_num, i.item_photo1, i.item_name, s.item_size, td.trade_regdate, td.trade_state, " +
-	        "i.item_brand, i.item_price " +
+	//판매 내역 - Trade
+	@Select("SELECT td.trade_num, td.trade_regDate, td.trade_state " +
+	        "FROM trade t " +
+	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
+	        "WHERE t.seller_num = #{mem_num}")
+	public List<TradeVO> selectSoldTrades(Integer mem_num);
+
+	//판매 내역 - Item
+	@Select("SELECT i.item_photo1, i.item_name, i.item_brand, i.item_price " +
 	        "FROM trade t " +
 	        "JOIN item i ON t.item_num = i.item_num " +
 	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
 	        "JOIN item_size s ON td.item_sizenum = s.item_sizenum " +
 	        "WHERE t.seller_num = #{mem_num}")
-	public List<TradeVO> selectSoldItems(Integer mem_num);
+	public List<ItemVO> selectSoldItems(Integer mem_num);
+	
+	//판매내역 - Size
+	@Select("SELECT s.item_size FROM item i " +
+	        "JOIN trade t ON i.item_num = t.item_num " +
+	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
+	        "JOIN item_size s ON td.item_sizenum = s.item_sizenum " +
+	        "WHERE t.seller_num = #{mem_num}")
+	public List<ItemSizeVO> selectSoldItemSize(Integer mem_num);
 	
 	//관심 상품
 	@Select("SELECT i.item_photo1, i.item_name, i.item_brand, i.item_price " +
@@ -60,9 +122,10 @@ public interface UserMapper {
 	public List<ItemVO> selectFavoriteItems(Integer mem_num);
 	
 	//좋아요
-	@Select("SELECT s.st_photo1, s.st_phrase, m.mem_photo, m.mem_nickname " +
+	@Select("SELECT s.st_photo1, s.st_phrase, md.mem_photo, m.mem_nickname " +
 	        "FROM style_fav sf " +
-	        "JOIN member_detail m ON sf.mem_num = m.mem_num " +
+	        "JOIN member m ON sf.mem_num = m.mem_num " +
+	        "JOIN member_detail md ON sf.mem_num = md.mem_num " +
 	        "JOIN style s ON sf.st_num = s.st_num " +
 	        "WHERE sf.mem_num = #{mem_num}")
 	public List<MemberVO> selectLikedStyles(Integer mem_num);
@@ -79,5 +142,5 @@ public interface UserMapper {
     @Select("SELECT * FROM penalty_trade WHERE mem_num = #{mem_num}")
     public List<MemberVO> getPenaltyTrade(Integer mem_num);
     
-    
+
 }

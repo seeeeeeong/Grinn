@@ -23,27 +23,27 @@
 	<ul>
 		<li>
 			<input type="button" class="menu-btn" value="구매내역"
-			  onclick="location.href='${pageContext.request.contextPath}/user/purchasedItems.do'">
+			  onclick="location.href='${pageContext.request.contextPath}/user/userPurchasedItems.do'">
 		</li>
 		<li>
 			<input type="button" class="menu-btn" value="판매내역"
-			  onclick="location.href='${pageContext.request.contextPath}/user/soldItems.do'">
+			  onclick="location.href='${pageContext.request.contextPath}/user/userSoldItems.do'">
 		</li>
 		<li>
 			<input type="button" class="menu-btn" value="관심상품"
-			  onclick="location.href='${pageContext.request.contextPath}/user/favoriteItems.do'">
+			  onclick="location.href='${pageContext.request.contextPath}/user/userFavoriteItems.do'">
 		</li>
 		<li>
 			<input type="button" class="menu-btn" value="좋아요"
-			  onclick="location.href='${pageContext.request.contextPath}/user/likedStyles.do'">
+			  onclick="location.href='${pageContext.request.contextPath}/user/userLikedStyles.do'">
 		</li>
 		<li>
 			<input type="button" class="menu-btn" value="로그인정보"
-			  onclick="location.href='${pageContext.request.contextPath}/user/loginInfo.do'">
+			  onclick="location.href='${pageContext.request.contextPath}/user/userLoginInfo.do'">
 		</li>
 		<li>
 			<input type="button" class="menu-btn" value="패널티"
-			  onclick="location.href='${pageContext.request.contextPath}/user/penaltyInfo.do'">
+			  onclick="location.href='${pageContext.request.contextPath}/user/userPenaltyInfo.do'">
 		</li>
 	</ul>
 </div>

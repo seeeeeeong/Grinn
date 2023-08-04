@@ -42,6 +42,14 @@
      <definition name="userPenaltyInfo" extends="myPage">
     	<put-attribute name="title" value="패널티"/>
 	    <put-attribute name="body" value="/WEB-INF/views/user/userPenaltyInfo.jsp"/>
+    </definition>
+    
+    <!-- userStyle -->
+    <definition name="userStyle" template="/WEB-INF/views/template/layout_basic.jsp">
+    	<put-attribute name="title" value="user"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/user/userStyle.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>                                        
     </definition>                
 </tiles-definitions>
 

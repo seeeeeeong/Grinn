@@ -15,15 +15,19 @@
     </tr>
   </thead>
   <tbody>
-    <c:forEach items="${purchasedItems}" var="item">
       <tr>
-        <td><img src="${item.item_photo1}" width="50" height="50"></td>
+      <c:forEach items="${purchasedItems}" var="pitem">
+        <td><img src="${pitem.item_photo1}" width="50" height="50"></td>
         <td>${item.item_name}</td>
-        <td>${item.item_size}</td>
-        <td>${item.trade_regdate}</td>
-        <td>${item.trade_state}</td>
+      </c:forEach>
+      <c:forEach items="${purchasedItemSize}" var="pitemSize">  
+        <td>${pitemSize.item_size}</td>
+      </c:forEach>
+      <c:forEach items="${purchasedTrades}" var="ptrades">  
+        <td>${ptrades.trade_regDate}</td>
+        <td>${ptrades.trade_state}</td>
+      </c:forEach>  
       </tr>
-    </c:forEach>
   </tbody>
 </table>
 </div>
