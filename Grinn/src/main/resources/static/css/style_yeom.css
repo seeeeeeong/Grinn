@@ -1,6 +1,16 @@
 @charset "UTF-8";
 /* 메인
 ------------------------*/
+.page-main{
+	width:98%;
+	margin:0 auto;
+	height: auto;
+}
+#main-footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
 #ha {
 	padding: 5px 0 16px;
 	border-bottom: 3px solid #222;
@@ -17,6 +27,9 @@
 	width: 873px;
 	font-size: 15px;
 	letter-spacing: -.15px;
+}
+.container{
+	height: auto;
 }
 /* noticeDetail
 ------------------------*/
