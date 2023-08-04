@@ -41,12 +41,19 @@
 	</c:if>
 	<c:if test="${count > 0}">
 	<table class="striped-table">
-		<c:forEach var="adminMarket" items="${boothList}">
 		<tr>
-			<td class="align-center" width="400">${adminBooth.market_thumbNail}</td>
-			<td width="200">${adminBooth.market_title}</td>
-			<td>${adminBooth.market_startDate} ${adminBooth.market_endDate}</td>
-			<td>예약 일시</td>
+			<th>제목</th>
+			<th>시작일</th>
+			<th>종료일</th>
+			<th>장소</th>
+			<th>권한</th>
+		</tr>
+		<c:forEach var="adminMarket" items="${marketList}">
+		<tr>
+			<td width="300">${marketList.market_title}</td>
+			<td>${marketList.market_startDate}</td>
+			<td>${marketList.market_endDate}</td>
+			<td>${marketList.place_name}</td>
 			<td>
 				<input type="button" value="수정" onclick="location.href='adminBoothDetail.do?market_num=${adminBooth.market_num}'" class="detail-btn">
 				<%-- <c:if test="${booth.market_startDate}"> --%>
@@ -65,7 +72,7 @@
 	<div class="align-center">${page}</div>
 	</c:if>
 	<div class="align-right">
-		<input type="button" value="플리마켓 등록" onclick="location.href='marketRegister.do'" class="register-btn">
+		<input type="button" value="플리마켓 등록" onclick="location.href='adminMarketWrite.do'" class="register-btn">
 	</div>
 </div>
 <!-- 플리마켓 리스트 목록 끝 -->

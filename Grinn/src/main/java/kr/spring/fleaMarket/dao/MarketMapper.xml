@@ -39,13 +39,13 @@
 	<sql id="marketSearch">
 		<where>
 			<if test="keyword != null and keyword != ''">
-				<if test="keyword == 1">
+				<if test="keyfield == 1">
 					market_title LIKE '%' || #{keyword} || '%' OR market_detail LIKE '%' || #{keyword} || '%'
 				</if>
-				<if test="keyword == 2">
+				<if test="keyfield == 2">
 					market_title LIKE '%' || #{keyword} || '%'
 				</if>
-				<if test="keyword == 3">
+				<if test="keyfield == 3">
 					market_detail LIKE '%' || #{keyword} || '%'
 				</if>
 			</if>
@@ -76,4 +76,22 @@
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
 	</select>
+	
+	<!-- 부스 수정 -->
+	<update id="updateMarket" parameterType="marketVO">
+		UPDATE 
+		  market 
+		SET 
+		  market_title = #{market_title}, 
+		  market_detail = #{market_detail}, 
+		  market_startDate = #{market_startDate},
+		  market_endDate = #{market_endDate},
+		  place_name = #{place_name}, 
+		  booth_count = #{booth_count}, 
+		  user_count = #{user_count}, 
+		  booth_fee = #{booth_fee}, 
+		  market_updateDate = sysdate 
+	    WHERE 
+	      market_num = #{market_num}
+	</update>
 </mapper>
