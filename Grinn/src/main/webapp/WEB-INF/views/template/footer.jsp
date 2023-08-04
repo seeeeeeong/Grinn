@@ -9,7 +9,7 @@
 				<div class = "service_time">
 					<dl class = "time_box">
 						<dt class = "time_term">운영시간 평일 09:00 - 18:00 (토∙일, 공휴일 휴무) 점심시간 평일 12:50 - 14:00</dt>
-					</dl>
+					</dl> 
 				</div>
 				<div class = "service_btn_box">
 					<a href = "${pageContext.request.contextPath}/notice/noticefaq.do" class = "btn solid small">자주 묻는 질문</a>
