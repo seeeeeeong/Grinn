@@ -79,7 +79,7 @@
 										imgOpen.style.display = 'block';
 										imgClose.style.display = 'none';
 									};
-								});
+								}); 
 								
 							</script>
 							<div class="imgOpen" id="imgOpen"><!-- 위아래 표시하는 사진 넣을 곳 -->
