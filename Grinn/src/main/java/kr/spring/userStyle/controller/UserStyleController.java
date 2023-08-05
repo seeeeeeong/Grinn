@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.userStyle.service.UserStyleService;
@@ -39,7 +40,6 @@ public class UserStyleController {
 	public StyleVO initStyleVO() {
 		return new StyleVO();
 	}
-
 	/*
 	 * =========================== userStyle ===========================
 	 */
@@ -69,6 +69,9 @@ public class UserStyleController {
 	    return "userStyle";
 	}
 	
+	/*
+	 * =========================== 스타일 게시물 사진 ===========================
+	 */
 	@GetMapping("/user/imageView.do")
 	public String imageView(@RequestParam int st_num, @RequestParam int st_type,Model model) {
 	    StyleVO styleVO = userStyleService.selectUserStyle(st_num);
@@ -89,7 +92,7 @@ public class UserStyleController {
 		
 	    return "imageView";
 	}
-	
+
 	/*
 	 * =========================== 팔로우 ===========================
 	 */

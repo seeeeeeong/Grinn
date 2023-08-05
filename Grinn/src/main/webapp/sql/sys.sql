@@ -18,7 +18,8 @@ create table member_detail(
 	mem_zipcode varchar2(5) not null, -- 회원 우편번호
 	mem_address1 varchar2(200) not null, -- 회원 주소
 	mem_address2 varchar2(200) not null, -- 회원 상세주소
-	mem_photo varchar2(500) not null, -- 회원 프로필 사진
+	mem_photo blob, -- 회원 프로필 사진
+	mem_photo_name varchar2(100), -- 회원 프로필 사진 파일명
 	mem_int varchar2(100), -- 회원 한 줄 소개
 	mem_date date default sysdate not null, -- 등록일
 	mem_mdate date, -- 수정일

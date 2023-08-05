@@ -4,7 +4,7 @@
 
 <div class="page-main">
 <!-- 회원정보 시작 -->
-    <img src="${pageContext.request.contextPath}/member/photoView.do" width="200" height="200" class="my-photo">
+    <img src="${pageContext.request.contextPath}/user/photoView.do" width="200" height="200" class="my-photo">
     <p>닉네임: ${mem_nickname}</p>
     <p>이메일: ${mem_email}</p>
     <p>권한: ${mem_auth}</p>
@@ -91,7 +91,8 @@
   <tbody>
     <c:forEach items="${favoriteItems}" var="item">
       <tr>
-        <td><img src="${item.item_photo1}" width="50" height="50"></td>
+      <!-- 이미지 표시 -->
+        <td><img src="/user/ItemImageView.do?item_num=${item.item_num}" alt="Item Image"></td>
         <td>${item.item_brand}</td>
         <td>${item.item_name}</td>
         <td>${item.item_price}</td>

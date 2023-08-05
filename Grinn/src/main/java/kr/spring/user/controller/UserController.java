@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,7 +24,7 @@ import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.trade.vo.TradeVO;
 import kr.spring.user.service.UserService;
-
+import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -41,6 +42,10 @@ public class UserController {
 		return new MemberVO();
 	}
 	
+	@ModelAttribute
+	public ItemVO initItemVO() {
+		return new ItemVO();
+	}
 	/*
 	 * =========================== MY페이지 ===========================
 	 */
@@ -118,6 +123,99 @@ public class UserController {
 		 * myPage라는 뷰를 찾아 해당 데이터를 사용하여 뷰를 렌더링
 		 */
 		return "myPage";
+	}
+	
+	
+	/*
+	 * =========================== 아이템 사진 ===========================
+	 */
+	@GetMapping("/user/ItemImageView.do")
+	public String ItemImageView(@RequestParam int item_num, Model model) {
+	    ItemVO ItemVO = userService.selectItem(item_num);
+		
+	    	model.addAttribute("imageFile", ItemVO.getItem_photo1());
+			model.addAttribute("filename", ItemVO.getItem_photo1name());
+	 
+	    return "ItemImageView";
+	}
+	
+	/*=======================
+	 * 프로필 사진 출력
+	 *=======================*/
+	//프로필 사진 출력(로그인 전용)
+	@RequestMapping("/user/photoView.do")
+	public String getProfile(HttpSession session,
+			                 HttpServletRequest request,
+			                 Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		log.debug("<<photoView>> : " + user);
+		
+		if(user==null) {//로그인 안 된 경우
+			//기본 이미지 읽기
+			byte[] readbyte = FileUtil.getBytes(
+					      request.getServletContext().getRealPath(
+					    		                "/image_bundle/face.png"));
+			model.addAttribute("imageFile", readbyte);
+			model.addAttribute("filename", "face.png");
+		}else {//로그인 된 경우
+			MemberVO memberVO = 
+				userService.selectMember(user.getMem_num());
+			viewProfile(memberVO,request,model);
+		}
+		
+		return "imageView";
+	}
+	
+	//프로필 사진 출력(회원번호 지정)
+	@RequestMapping("/user/viewProfile.do")
+	public String getProfileByMem_num(
+			            @RequestParam int mem_num,
+			            HttpServletRequest request,
+			            Model model) {
+		MemberVO memberVO = 
+				userService.selectMember(mem_num);
+		viewProfile(memberVO,request,model);		
+		
+		return "imageView";
+	}
+	
+	//프로필 사진 처리를 위한 공통 코드
+	public void viewProfile(MemberVO memberVO,
+			                HttpServletRequest request,
+			                Model model) {
+		if(memberVO==null || memberVO.getMem_photo_name()==null) {
+			//기본 이미지 읽기
+			byte[] readbyte = FileUtil.getBytes(
+					      request.getServletContext().getRealPath(
+					    		                "/image_bundle/face.png"));
+			model.addAttribute("imageFile", readbyte);
+			model.addAttribute("filename", "face.png");
+		}else {//업로드한 프로필 사진이 있는 경우
+			model.addAttribute("imageFile", memberVO.getMem_photo());
+			model.addAttribute("filename", memberVO.getMem_photo_name());
+		}
+	}
+	
+	/*=======================
+	 * 프로필 사진 업데이트
+	 *=======================*/
+	@RequestMapping("/user/updateMyPhoto.do")
+	@ResponseBody
+	public Map<String,String> updateProfile(MemberVO memberVO,
+			HttpSession session){
+		Map<String,String> mapAjax = new HashMap<String,String>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {
+			mapAjax.put("result", "logout");
+		}else {
+			memberVO.setMem_num(user.getMem_num());
+			userService.updateProfile(memberVO);
+			
+			mapAjax.put("result", "success");
+		}
+		
+		return mapAjax;
 	}
 	
 	

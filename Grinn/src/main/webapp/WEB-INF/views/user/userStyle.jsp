@@ -5,7 +5,7 @@
 
 <div class="page-main">
 <!-- 회원정보 시작 -->
-    <img src="${pageContext.request.contextPath}/member/photoView.do" width="200" height="200" class="my-photo">
+    <img src="${pageContext.request.contextPath}/user/photoView.do" width="200" height="200" class="my-photo">
     <p>아이디: ${member.mem_id}</p>
     <p>닉네임: ${member.mem_nickname}</p>
     <p>한줄소개글: ${member.mem_int}</p>

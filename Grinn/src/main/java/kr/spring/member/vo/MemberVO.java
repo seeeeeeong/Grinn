@@ -1,10 +1,13 @@
 package kr.spring.member.vo;
 
+import java.io.IOException;
 import java.sql.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,7 +36,8 @@ public class MemberVO {
 	private String mem_zipcode;
 	private String mem_address1;
 	private String mem_address2;
-	private String mem_photo;
+	private byte[] mem_photo;
+	private String mem_photo_name;
 	private String mem_int;
 	private Date mem_date;
 	private Date mem_mdate;
@@ -45,5 +49,14 @@ public class MemberVO {
 			return true;
 		}
 		return false;
+	}
+	
+	//=======이미지를 byte[]로 변환(BLOB 처리)=======//
+	//(주의) 폼에서 파일 업로드 파라미터네임은 반드시 upload로 지정해야 함
+	public void setUpload(MultipartFile upload)throws IOException{
+		//MultipartFile -> byte[]
+		setMem_photo(upload.getBytes());
+		//파일 이름
+		setMem_photo_name(upload.getOriginalFilename());
 	}
 }

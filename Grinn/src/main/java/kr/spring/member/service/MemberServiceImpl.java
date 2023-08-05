@@ -23,7 +23,6 @@ public class MemberServiceImpl implements MemberService{
 		member.setMem_zipcode("");
 		member.setMem_address1("");
 		member.setMem_address2("");
-		member.setMem_photo("");
 		memberMapper.insertMember(member);
 		memberMapper.insertMember_detail(member);
 		

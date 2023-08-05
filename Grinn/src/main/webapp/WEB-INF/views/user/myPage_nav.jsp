@@ -6,7 +6,7 @@
 <div class="side-bar">
 	<ul>
 		<li>
-			<img src="${pageContext.request.contextPath}/member/photoView.do" width="200" height="200" class="my-photo">
+			<img src="${pageContext.request.contextPath}/user/photoView.do" width="200" height="200" class="my-photo">
 			<div class="camera" id="photo_btn">
 				<img src="${pageContext.request.contextPath}/images/camera.png" width="35">
 			</div>

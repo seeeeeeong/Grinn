@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.userStyle.dao.UserStyleMapper;
@@ -72,6 +73,4 @@ public class UserStyleServiceImpl implements UserStyleService{
 		return userStyleMapper.getFollowerCount(fromUser);
 	}
 
-
-	
 }

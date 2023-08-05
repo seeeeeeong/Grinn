@@ -35,14 +35,13 @@ public class StyleVO {
 	private int item_num2;
 	private int item_num3;
 	private String mem_id;
-	private String mem_photo;
+	private byte[] mem_photo;
 	private String item_name;
 	private String item_photo1name;
 	
 	//좋아요
 	private int fav_cnt;
-	
-	
+		
 	public void setUpload1(MultipartFile upload1) throws IOException{
 		//MultipartFile -> byte[]
 		setSt_photo1(upload1.getBytes());

@@ -134,4 +134,14 @@ public class UserServiceImpl implements UserService{
 	public List<ItemSizeVO> selectSoldItemSize(Integer mem_num) {
 		return userMapper.selectSoldItemSize(mem_num);
 	}
+
+	@Override
+	public void updateProfile(MemberVO member) {
+		userMapper.updateProfile(member);
+	}
+
+	@Override
+	public ItemVO selectItem(Integer item_num) {
+		return userMapper.selectItem(item_num);
+	}
 }

@@ -3,6 +3,7 @@ package kr.spring.user.service;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
@@ -12,7 +13,10 @@ import kr.spring.trade.vo.TradeVO;
 public interface UserService {
 	//회원정보를 이용한 회원정보 구하기
 	public MemberVO selectMember(Integer mem_num);	
-		
+
+	//프로필 이미지 업데이트
+	public void updateProfile(MemberVO member);	
+	
 	//회원탈퇴
 	public void deleteMember(Integer mem_num);
 
@@ -63,7 +67,10 @@ public interface UserService {
 	
 	//판매 내역 - Size
 	public List<ItemSizeVO> selectSoldItemSize(Integer mem_num);
-	
+	   
+    //item_num에 해당하는 item 테이블의 정보 가져오기
+    public ItemVO selectItem(Integer item_num);
+    	
 	//관심 상품
 	public List<ItemVO> selectFavoriteItems(Integer mem_num);
 	

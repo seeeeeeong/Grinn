@@ -19,7 +19,11 @@ public interface UserMapper {
 	//회원정보를 이용한 회원정보 구하기
 	@Select("SELECT * FROM member m JOIN member_detail d " + "ON m.mem_num=d.mem_num WHERE m.mem_num=#{mem_num}")
 	public MemberVO selectMember(Integer mem_num);	
-		
+    
+	//프로필 이미지 업데이트
+	@Update("UPDATE member_detail SET mem_photo=#{mem_photo},mem_photo_name=#{mem_photo_name} WHERE mem_num=#{mem_num}")
+	public void updateProfile(MemberVO member);
+	
 	//회원탈퇴
 	@Update("UPDATE member SET mem_auth=0 WHERE mem_num=#{mem_num}")
 	public void deleteMember(Integer mem_num);
@@ -121,6 +125,10 @@ public interface UserMapper {
 	        "WHERE f.mem_num = #{mem_num}")
 	public List<ItemVO> selectFavoriteItems(Integer mem_num);
 	
+    //item_num에 해당하는 item 테이블의 정보 가져오기
+    @Select("SELECT * FROM style WHERE st_num = #{st_num}")
+    public ItemVO selectItem(Integer item_num);
+    
 	//좋아요
 	@Select("SELECT s.st_photo1, s.st_phrase, md.mem_photo, m.mem_nickname " +
 	        "FROM style_fav sf " +

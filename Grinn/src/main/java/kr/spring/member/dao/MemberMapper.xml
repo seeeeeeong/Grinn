@@ -11,8 +11,7 @@
 		  mem_phone,
 		  mem_zipcode,
 		  mem_address1,
-		  mem_address2,
-		  mem_photo)
+		  mem_address2)
 		VALUES(
 		  #{mem_num},
 		  #{mem_name},
@@ -21,8 +20,7 @@
 		  #{mem_phone},
 		  #{mem_zipcode},
 		  #{mem_address1},
-		  #{mem_address2},
-		  #{mem_photo})
+		  #{mem_address2})
 	</insert>
 	
 	<!-- 회원아이디로 회원정보 체크 -->

@@ -4,7 +4,9 @@ package kr.spring.userStyle.service;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
+import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleVO;
 
@@ -21,7 +23,7 @@ public interface UserStyleService {
     
     //st_num에 해당하는 style 테이블의 정보 가져오기
     public StyleVO selectUserStyle(Integer st_num);
-    
+
     //팔로우 
     public void insertFollow(@Param("to_user") Integer toUser, @Param("from_user") Integer fromUser);
 
