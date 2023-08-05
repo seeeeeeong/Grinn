@@ -29,7 +29,6 @@
         </div>
         <!-- 사진 등록 끝 -->
 		<ul>
-			
 			<li>
 				<form:label path="item_brand">브랜드명</form:label>
 				<form:input path="item_brand" placeholder="브랜드명을 입력하세요" autocomplete="off"/>
@@ -37,21 +36,26 @@
 			</li>
 			<li>
 				<form:label path="item_name">이름</form:label>
-				<form:input path="item_name"/>
+				<form:input path="item_name" placeholder="상품명을 입력하세요" autocomplete="off"/>
 				<form:errors path="item_name" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="item_detail">설명</form:label>
-				<form:input path="item_detail"/>
+				<form:input path="item_detail" placeholder="상품 설명을 입력하세요" autocomplete="off"/>
+			</li>
+			<li>
+				<form:label path="item_model">모델명</form:label>
+				<form:input path="item_model" placeholder="모델명을 입력하세요" autocomplete="off"/>
+				<form:errors path="item_model" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="item_date">출시일</form:label>
-				<form:input path="item_date" placeholder="상품 출시일을 입력하세요"/>
+				<form:input path="item_date" placeholder="상품 출시일을 입력하세요" autocomplete="off"/>
 				<form:errors path="item_date" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="item_price">정가</form:label>
-				<form:input path="item_price"/>
+				<form:input path="item_price" placeholder="상품정가를 입력하세요" autocomplete="off"/>
 				<form:errors path="item_price" cssClass="error-color"/>
 			</li>
 			<%-- <li>
@@ -77,10 +81,10 @@
     			<form:radiobutton path="item_cate" value="4"/>기타
 			</li>
 			<li>
-    			<form:label path="item_gender">성별</form:label>
+    			<form:label path="item_gender">분류</form:label>
     			<form:radiobutton path="item_gender" value="1"/>남성
     			<form:radiobutton path="item_gender" value="2"/>여성
-    			<form:radiobutton path="item_gender" value="3"/>기타
+    			<form:radiobutton path="item_gender" value="3"/>럭셔리
 			</li>
 			<li>
     			<form:label path="item_status">상품표시여부</form:label>

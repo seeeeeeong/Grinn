@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 상품 목록 시작 -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/item.css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
 <script type="text/javascript">
 	$(function() {
 		//검색 유효성 체크
@@ -52,7 +50,6 @@
 							});
 				});
 			</script>
-			<input type="button" value="상품등록" onclick="location.href='itemWrite.do'">
 		</div>
 	</form>
 	<c:if test="${count == 0}">

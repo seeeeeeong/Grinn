@@ -16,6 +16,7 @@ public class ItemVO {
 	private String item_brand; //브랜드명
 	private String item_name; //상품이름
 	private String item_detail; //상품설명
+	private String item_model; //상품모델명
 	private String item_date; //상품출시일
 	private String item_price; //상품정가
 	private byte[] item_photo1; //상품 사진1

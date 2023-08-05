@@ -28,7 +28,6 @@
         </div>
         <!-- 사진 등록 끝 -->
 		<ul>
-			
 			<li>
 				<form:label path="item_brand">브랜드명</form:label>
 				<form:input path="item_brand" placeholder="브랜드명을 입력하세요" autocomplete="off"/>
@@ -42,6 +41,11 @@
 			<li>
 				<form:label path="item_detail">설명</form:label>
 				<form:input path="item_detail" placeholder="상품 설명을 입력하세요" autocomplete="off"/>
+			</li>
+			<li>
+				<form:label path="item_model">모델명</form:label>
+				<form:input path="item_model" placeholder="모델명을 입력하세요" autocomplete="off"/>
+				<form:errors path="item_model" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="item_date">출시일</form:label>
