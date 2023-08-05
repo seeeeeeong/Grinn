@@ -231,7 +231,7 @@ public class TradeController {
 	 * 판매하기 버튼 클릭 시 상품에 따른 사이즈 정보 제공
 	 * ======================================================================================================================
 	 **/
-	@GetMapping("/sale/selectSaleSize.do")
+	@GetMapping("/sale/selectSize.do")
 	public ModelAndView getSaleItemAndSize(@RequestParam int item_num) {
 
 		// Login인터셉터로 로그인 되어있는지 확인필요 ***********
