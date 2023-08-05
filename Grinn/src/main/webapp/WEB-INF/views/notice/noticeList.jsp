@@ -18,10 +18,6 @@
 			</table><br>
 			<div class="align-center">${page}</div>
 		</c:if>
-		<!-- 관리자페이지로 버튼이동 -->
-			<div class="btn_list">
-				<input type="button" value="공지사항 등록" class="btn_auth" onclick="location.href='${pageContext.request.contextPath}/notice/write.do'">
-			</div>
 	</div>
 	<div class="page-clear"></div>
 </div>
