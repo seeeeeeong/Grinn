@@ -30,7 +30,7 @@
 			$('#input_bid').val('');
 		});
 		$('#sale_direct').click(function(){
-			$('#input_bid').val(${minSaleBid});
+			$('#input_bid').val(${maxPurchaseBid});
 			$('#sale_method').text('').text('즉시 판매 하기');
 			$('#direct_price').css('display','block');
 			$('#bid_price').css('display','none');

@@ -25,6 +25,7 @@ import kr.spring.sbid.vo.SaleBidVO;
 import kr.spring.sbid.vo.SaleSizePriceVO;
 import kr.spring.trade.service.TradeService;
 import kr.spring.trade.vo.TradeVO;
+import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -183,7 +184,6 @@ public class TradeController {
 			pbVO.setMem_num(user.getMem_num());
 			tradeService.insertPurchaseBid(pbVO);
 			// total로 결제 금액 결제 진행 하기
-			// *****************************************************************
 
 			model.addAttribute("message", "[구매입찰] 결제가 완료되었습니다.");
 			model.addAttribute("url", "../item/itemList.do");
@@ -216,10 +216,11 @@ public class TradeController {
 	
 				tradeService.insertTrade(tradeVO);
 				// 판매입찰 정보 삭제
-				
 				tradeService.deleteSaleBid(sale_num);
 				model.addAttribute("message", "[즉시구매] 결제를 완료했습니다.");
 				model.addAttribute("url", "../item/itemList.do");
+				
+				// total로 결제 진행하기
 			}
 		}
 		return "common/resultView";
@@ -367,8 +368,7 @@ public class TradeController {
 		} else {
 			sbVO.setMem_num(user.getMem_num());
 			tradeService.insertSaleBid(sbVO);
-			// total로 결제 금액 결제 진행 하기
-			// *****************************************************************
+			// 수수료 계산하기
 
 			model.addAttribute("message", "[판매입찰] 완료되었습니다.");
 			model.addAttribute("url", "../item/itemList.do");
@@ -402,14 +402,75 @@ public class TradeController {
 				tradeService.insertTrade(tradeVO);
 				
 				// 구매 입찰 정보 삭제
-				
 				tradeService.deletePurchaseBid(purchase_num);
 				model.addAttribute("message", "[즉시판매] 완료했습니다.");
 				model.addAttribute("url", "../item/itemList.do");
+				
+				// 수수료 계산
 			}
 		}
 		return "common/resultView";
-	}	
+	}
 	
+	@RequestMapping("/myPage/buying.do")
+	public ModelAndView myPurchaseBidInfO(
+									  @RequestParam(value="way",defaultValue="1") int way,
+									  @RequestParam(value="status",defaultValue="1") int status,
+									  @RequestParam(value="pageNum",defaultValue="1") int currentPage,
+									  HttpSession session) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map = new HashMap<String, Object>();
+		int count = 0;
+		int bidCount = tradeService.selectPurchaseBidCount(user.getMem_num());
+		int tradeCount = tradeService.selectTradePurchaseCount(user.getMem_num());
+		int quitCount = 0;
+		PagingUtil page = null;
+		List<PurchaseBidVO> purchaseBidList = null;
+		List<TradeVO> purchaseTradeList = null;
+		
+		if(way == 1) {
+			count = tradeService.selectPurchaseBidCount(user.getMem_num());
+			bidCount = tradeService.selectPurchaseBidCount(user.getMem_num());
+			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			
+			map.put("status", status);
+			map.put("mem_num", user.getMem_num());
+			
+			if(count > 0 ) {
+				map.put("start", page.getStartRow());
+				map.put("end",page.getEndRow());
+				purchaseBidList = tradeService.selectPurchaseBidInfo(map);
+			}
+			
+			mav.addObject("list",purchaseBidList);
+		}else if(way == 2) {
+			count = tradeService.selectTradePurchaseCount(user.getMem_num());
+			
+			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			
+			map.put("status", status);
+			map.put("mem_num", user.getMem_num());
+			
+			if(count > 0 ) {
+				map.put("start", page.getStartRow());
+				map.put("end",page.getEndRow());
+				purchaseTradeList = tradeService.selectTradePurchaseInfo(map);
+			}
+			log.debug("<< count >> : " + count);
+			mav.addObject("list",purchaseTradeList);
+		}
+		
+		
+		mav.addObject("page",page.getPage());
+		mav.addObject("count",count);
+		mav.addObject("bidCount",bidCount);
+		mav.addObject("tradeCount",tradeCount);
+		mav.addObject("quitCount",quitCount);
+		mav.addObject("status",status);
+		mav.addObject("way",way);
+		mav.setViewName("buying");
+		return mav;
+	}
 
 }

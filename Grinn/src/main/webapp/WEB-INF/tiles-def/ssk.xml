@@ -43,6 +43,11 @@
 	    <put-attribute name="body" value="/WEB-INF/views/sale/saleDetail.jsp"/>
     </definition>
     
+    <!-- 마이페이지 : 구매내역 -->
+    <definition name="buying" extends="myPage">
+    	<put-attribute name="title" value="구매 내역"/>
+	    <put-attribute name="body" value="/WEB-INF/views/purchase/buying.jsp"/>
+    </definition>
     
 </tiles-definitions>
 

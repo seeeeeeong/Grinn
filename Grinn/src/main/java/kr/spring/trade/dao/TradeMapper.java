@@ -1,6 +1,7 @@
 package kr.spring.trade.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -91,5 +92,22 @@ public interface TradeMapper {
 	@Insert("INSERT INTO trade_detail (trade_num,item_num,item_sizenum,trade_price,trade_zipcode,trade_address1,trade_address2) "
 			+ "VALUES (#{trade_num},#{item_num},#{item_sizenum},#{trade_price},#{trade_zipcode},#{trade_address1},#{trade_address2})")
 	public void insertTradeDetail(TradeVO trade);
-	
+	// 마이페이지 거래 정보 조회
+	public List<TradeVO> selectTradePurchaseInfo(Map<String,Object> map);
+	public List<TradeVO> selectTradeSaleInfo(Map<String,Object> map);
+	// 마이페이지 거래 전체 정보 개수
+	@Select("SELECT COUNT(*) FROM trade WHERE buyer_num=#{mem_num}")
+	public int selectTradePurchaseCount(Integer mem_num);
+	@Select("SELECT COUNT(*) FROM trade WHERE seller_num=#{mem_num}")
+	public int selectTradeSaleCount(Integer mem_num);
+	// 마이페이지 구매입찰 정보 조회
+	public List<PurchaseBidVO> selectPurchaseBidInfo(Map<String, Object> map);
+	// 마이페이지 구매입찰 전체 개수
+	@Select("SELECT COUNT(*) FROM purchase_bid WHERE mem_num=#{mem_num}")
+	public int selectPurchaseBidCount(Integer mem_num);
+	// 마이페이지 판매입찰 정보 조회
+	public List<SaleBidVO> selectSaleBidInfo(Map<String, Object> map);
+	// 마이페이지 판매입찰 전체 개수
+	@Select("SELECT COUNT(*) FROM sale_bid WHERE mem_num=#{mem_num}")
+	public int selectSaleBidCount(Integer mem_num);
 }
