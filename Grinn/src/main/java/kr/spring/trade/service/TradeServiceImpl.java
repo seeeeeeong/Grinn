@@ -1,8 +1,8 @@
 package kr.spring.trade.service;
 
 import java.util.List;
+import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -132,5 +132,49 @@ public class TradeServiceImpl implements TradeService{
 	public int selectSaleBidNumber(Integer mem_num, Integer item_num, Integer sale_price) {
 		return tradeMapper.selectSaleBidNumber(mem_num, item_num, sale_price);
 	}
+
+	@Override
+	public List<TradeVO> selectTradePurchaseInfo(Map<String,Object> map) {
+		return tradeMapper.selectTradePurchaseInfo(map);
+	}
+	
+	@Override
+	public List<TradeVO> selectTradeSaleInfo(Map<String,Object> map) {
+		return null;
+	}
+
+	@Override
+	public List<PurchaseBidVO> selectPurchaseBidInfo(Map<String, Object> map) {
+		return tradeMapper.selectPurchaseBidInfo(map);
+	}
+
+	@Override
+	public List<SaleBidVO> selectSaleBidInfo(Map<String, Object> map) {
+		return null;
+	}
+
+	@Override
+	public int selectTradePurchaseCount(Integer mem_num) {
+		return tradeMapper.selectTradePurchaseCount(mem_num);
+	}
+	
+	@Override
+	public int selectTradeSaleCount(Integer mem_num) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int selectPurchaseBidCount(Integer mem_num) {
+		return tradeMapper.selectPurchaseBidCount(mem_num);
+	}
+
+	@Override
+	public int selectSaleBidCount(Integer mem_num) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 
 }

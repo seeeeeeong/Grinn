@@ -1,6 +1,7 @@
 package kr.spring.trade.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -81,5 +82,25 @@ public interface TradeService {
 
 	// 거래 정보 저장
 	public void insertTrade(TradeVO trade);
+	
+	// 마이페이지 거래 정보 조회
+	public List<TradeVO> selectTradePurchaseInfo(Map<String,Object> map);
+	public List<TradeVO> selectTradeSaleInfo(Map<String,Object> map);
+	
+	// 마이페이지 거래 전체 정보 개수
+	public int selectTradePurchaseCount(Integer mem_num);
+	public int selectTradeSaleCount(Integer mem_num);
+	
+	// 마이페이지 구매입찰 정보 조회
+	public List<PurchaseBidVO> selectPurchaseBidInfo(Map<String, Object> map);
+	
+	// 마이페이지 구매입찰 전체 개수
+	public int selectPurchaseBidCount(Integer mem_num);
+	
+	// 마이페이지 판매입찰 정보 조회
+	public List<SaleBidVO> selectSaleBidInfo(Map<String, Object> map);
+
+	// 마이페이지 판매입찰 전체 개수
+	public int selectSaleBidCount(Integer mem_num);	
 
 }
