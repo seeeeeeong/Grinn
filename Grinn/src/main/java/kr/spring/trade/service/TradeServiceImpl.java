@@ -175,6 +175,11 @@ public class TradeServiceImpl implements TradeService{
 		return 0;
 	}
 
+	@Override
+	public int selectTradePurchaseQuitCount(Integer mem_num) {
+		return tradeMapper.selectTradePurchaseQuitCount(mem_num);
+	}
+
 	
 
 }

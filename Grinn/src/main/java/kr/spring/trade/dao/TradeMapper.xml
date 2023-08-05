@@ -71,6 +71,11 @@
 	
 	<!-- 거래 상태 -->
 	<sql id="tradeStatus">
+		<if test="status == 1"> <!-- 전체 -->
+			<![CDATA[
+			AND d.trade_state <> 5
+			]]>
+		</if>
 		<if test="status == 2"> <!-- 검수준비중 -->
 			<![CDATA[
 			AND d.trade_state = 2
@@ -84,6 +89,11 @@
 		<if test="status == 4"> <!-- 배송중 -->
 			<![CDATA[
 			AND d.trade_state = 4
+			]]>
+		</if>
+		<if test="status == 5"> <!-- 배송완료 -->
+			<![CDATA[
+			AND d.trade_state = 5
 			]]>
 		</if>
 		<if test="status == 6"> <!-- 거래실패 -->

@@ -71,20 +71,7 @@
 </script>
 
 <div class="page-main">
-<h2>구매 내역</h2>
-<c:if test="${count == 0}">
-<c:if test="${way == 1}">
-	<div class="result-display">구매 입찰 내역이 없습니다.</div>
-</c:if>
-<c:if test="${way == 2}">
-	<div class="result-display">구매 거래 내역이 없습니다.</div>
-</c:if>
-<c:if test="${way == 3}">
-	<div class="result-display">종료된 구매 내역이 없습니다.</div>
-</c:if>
-</c:if>
-<c:if test="${count > 0}">
-<div class="table-header">
+	<h2>구매 내역</h2>
 	<div class="title-list">
 		<table>
 			<thead>
@@ -105,6 +92,20 @@
 			</thead>
 		</table>
 	</div>
+	<c:if test="${count == 0}">
+	<c:if test="${way == 1}">
+	<div class="result-display">구매 입찰 내역이 없습니다.</div>
+	</c:if>
+	<c:if test="${way == 2}">
+	<div class="result-display">구매 거래 내역이 없습니다.</div>
+	</c:if>
+	<c:if test="${way == 3}">
+	<div class="result-display">종료된 구매 내역이 없습니다.</div>
+	</c:if>
+	</c:if>
+<c:if test="${count > 0}">
+<div class="table-header">
+	
 	<c:if test="${way == 1}">
 		<div class="list-select">
 			<div class="select-status">
@@ -141,6 +142,13 @@
 			</div>
 		</div>
 	</c:if>
+	<c:if test="${way == 3}">
+		<div class="list-select">
+			<div class="select-status">
+				<input type="button" data-status="5" value="배송완료" id="status">
+			</div>
+		</div>
+	</c:if>
 </div>
 
 	<table>
@@ -155,7 +163,7 @@
 	      <th>입찰 등록일</th>
 	      <th>입찰 마감일</th>
 	      </c:if>
-	      <c:if test="${way == 2}">
+	      <c:if test="${way >= 2}">
 	      <th>거래 가격</th>
 	      <th>거래 날짜</th>
 	      <th>판매자 이름</th>
@@ -179,9 +187,6 @@
 	        <td>${list.trade_price}</td>
 	        <td>${list.trade_regDate}</td>
 	        <td>${list.mem_name}</td>
-	        <c:if test="${list.trade_state==0}">
-	        <td>결제완료</td>
-	        </c:if>
 	        <c:if test="${list.trade_state==2}">
 	        <td>검수준비중</td>
 	        </c:if>
@@ -193,6 +198,14 @@
 	        </c:if>
 	        <c:if test="${list.trade_state==6}">
 	        <td>거래실패</td>
+	        </c:if>
+	        </c:if>
+	        <c:if test="${way == 3}">
+	        <td>${list.trade_price}</td>
+	        <td>${list.trade_regDate}</td>
+	        <td>${list.mem_name}</td>
+	        <c:if test="${list.trade_state==5}">
+	        <td>배송완료</td>
 	        </c:if>
 	        </c:if>
 	      </tr>

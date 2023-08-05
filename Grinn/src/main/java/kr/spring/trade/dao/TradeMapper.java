@@ -96,8 +96,10 @@ public interface TradeMapper {
 	public List<TradeVO> selectTradePurchaseInfo(Map<String,Object> map);
 	public List<TradeVO> selectTradeSaleInfo(Map<String,Object> map);
 	// 마이페이지 거래 전체 정보 개수
-	@Select("SELECT COUNT(*) FROM trade WHERE buyer_num=#{mem_num}")
+	@Select("SELECT COUNT(*) FROM trade t JOIN trade_detail d ON t.trade_num=d.trade_num WHERE buyer_num=#{mem_num} AND d.trade_state<>5")
 	public int selectTradePurchaseCount(Integer mem_num);
+	@Select("SELECT COUNT(*) FROM trade t JOIN trade_detail d ON t.trade_num=d.trade_num WHERE t.buyer_num=#{mem_num} AND d.trade_state=5")
+	public int selectTradePurchaseQuitCount(Integer mem_num);
 	@Select("SELECT COUNT(*) FROM trade WHERE seller_num=#{mem_num}")
 	public int selectTradeSaleCount(Integer mem_num);
 	// 마이페이지 구매입찰 정보 조회

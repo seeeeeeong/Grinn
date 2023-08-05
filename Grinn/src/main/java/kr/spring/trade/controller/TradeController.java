@@ -424,7 +424,7 @@ public class TradeController {
 		int count = 0;
 		int bidCount = tradeService.selectPurchaseBidCount(user.getMem_num());
 		int tradeCount = tradeService.selectTradePurchaseCount(user.getMem_num());
-		int quitCount = 0;
+		int quitCount = tradeService.selectTradePurchaseQuitCount(user.getMem_num());
 		PagingUtil page = null;
 		List<PurchaseBidVO> purchaseBidList = null;
 		List<TradeVO> purchaseTradeList = null;
@@ -458,6 +458,21 @@ public class TradeController {
 				purchaseTradeList = tradeService.selectTradePurchaseInfo(map);
 			}
 			log.debug("<< count >> : " + count);
+			mav.addObject("list",purchaseTradeList);
+		}else if(way == 3) {
+			status = 5;
+			count = tradeService.selectTradePurchaseQuitCount(user.getMem_num());
+			
+			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			
+			map.put("status", status);
+			map.put("mem_num", user.getMem_num());
+			
+			if(count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end",page.getEndRow());
+				purchaseTradeList = tradeService.selectTradePurchaseInfo(map);
+			}
 			mav.addObject("list",purchaseTradeList);
 		}
 		

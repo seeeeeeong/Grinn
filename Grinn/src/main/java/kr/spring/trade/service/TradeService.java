@@ -89,6 +89,7 @@ public interface TradeService {
 	
 	// 마이페이지 거래 전체 정보 개수
 	public int selectTradePurchaseCount(Integer mem_num);
+	public int selectTradePurchaseQuitCount(Integer mem_num);
 	public int selectTradeSaleCount(Integer mem_num);
 	
 	// 마이페이지 구매입찰 정보 조회
