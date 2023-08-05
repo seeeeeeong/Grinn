@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+hr.line{
+	color:#fafafa;
+}
+.page-size-main{
+	width:98%;
+	margin:0 auto;
+	padding: 30px 40px;
+	background-color:#fafafa;
+}
+.page-size-inner{
+	padding: 32px 32px 28px;
+}
+.page-size{
+	width:780px;
+	height: 700px;
+	margin: 10px auto;
+	background-color:white;
+	box-shadow: 0 4px 10px 0 rgba(0,0,0,.1);
+}
+.item{
+	display: flex;
+	margin: 0 0 20px 16px;
+}
+.item-profile{
+	margin-right: 20px;
+}
+.item-info{
+	margin-left: 20px;
+}
+.item-info p.a{
+	font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+}
+.item-info p.b{
+	font-size: 14px;
+    line-height: 17px;
+}
+.item-info p.c{
+	color: rgba(34,34,34,.5);
+    font-size: 13px;
+    letter-spacing: -.07px;
+    letter-spacing: -.05px;
+    line-height: 16px;
+}
+.size-select{
+	border-top: 1px solid #ebebeb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 484px;
+    position: relative;
+}
+.select-list{
+	font-size: 0;
+    line-height: 0;
+    margin: -4px;
+    padding: 20px 0;
+}
+.select-size{
+	background-color: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 52px;
+    margin: 4px;
+    overflow: hidden;
+    vertical-align: top;
+    width: calc(33.33333% - 8px);
+}
+.select-size button{
+	cursor: pointer;
+    height: 100%;
+    width: 100%;
+    appearance: none;
+    background: none;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    padding: 0;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+	box-sizing: border-box;
+}
+ul{
+	list-style:none;
+	display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+span.size{
+	display: block;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: -3px;
+}
+span.price{
+	display: block;
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 1px;
+    color: #222;
+}
+

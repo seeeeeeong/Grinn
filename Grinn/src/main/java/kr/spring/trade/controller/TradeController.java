@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.item.service.ItemService;
+import kr.spring.item.vo.ItemVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
@@ -35,7 +37,8 @@ public class TradeController {
 	TradeService tradeService;
 	@Autowired
 	MemberService memberService;
-
+	@Autowired
+	ItemService itemService;
 	/**
 	 * ======================================================================================================================
 	 * 자바 빈 초기화
@@ -66,7 +69,8 @@ public class TradeController {
 		mav.addObject("list", sspList);
 
 		// 아이템 번호로 아이템 정보 구하기 ***********
-
+		ItemVO item = itemService.selectItem(item_num);
+		mav.addObject("item",item);
 		return mav;
 	}
 
@@ -246,7 +250,7 @@ public class TradeController {
 		mav.addObject("list", pspList);
 
 		// 아이템 번호로 아이템 정보 구하기 ***********
-
+		ItemVO item = itemService.selectItem(item_num);
 		return mav;
 	}
 
