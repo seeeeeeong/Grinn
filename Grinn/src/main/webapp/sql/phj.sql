@@ -2,8 +2,9 @@
 create table item(
  item_num number, --상품번호
  item_brand varchar2(50) not null, --브랜드명
- item_name varchar2(50) not null, --상품이름
- item_detail varchar2(50) not null, --상품 설명
+ item_name varchar2(100) not null, --상품이름
+ item_detail varchar2(500) not null, --상품 설명
+ item_model varchar2(100) not null, --상품 모델명
  item_date varchar2(10) not null, --상품 출시일
  item_price number(15) not null, --상품 정가
  item_photo1 blob not null, --상품 사진1

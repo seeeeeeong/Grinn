@@ -47,7 +47,9 @@
 							});
 				});
 			</script>
-			<input type="button" value="상품등록" onclick="location.href='itemWrite.do'">
+			<c:if test="${!empty user}">
+				<input type="button" value="상품등록" onclick="location.href='itemWrite.do'">
+			</c:if>
 		</div>
 	</form>
 	<c:if test="${count == 0}">
@@ -69,10 +71,12 @@
 				<tr class="align-center">
 					<td>${item.item_num}</td>
 					<td>
+					<a href="itemDetail.do?item_num=${item.item_num}">
 						<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${item.item_num}" width="100" height="100">
+					</a>
 					</td>
 					<td>${item.item_brand}</td>
-					<td>${item.item_name}</td>
+					<td><a href="itemDetail.do?item_num=${item.item_num}">${item.item_name}</a></td>
 					<td></td>
 					<td></td>
 					<td>
@@ -84,7 +88,8 @@
 							delete_btn.onclick = function() {
 								let choice = confirm('삭제하시겠습니까?');
 								if (choice) {
-									location.replace('itemDelete.do?item_num=${item.item_num}');
+									location
+											.replace('itemDelete.do?item_num=${item.item_num}');
 								}
 							}
 						</script></td>

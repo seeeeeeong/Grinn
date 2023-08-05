@@ -121,4 +121,54 @@ $(function(){
             selectFav(item_num);
         });
     });
+/*
+	$(document).ready(function() {
+		// 메뉴 클릭 이벤트 처리
+		$("#allLink, #shoesLink, #topsLink, #bottomsLink, #accessoriesLink").click(function() {
+			// 모든 링크에서 active 클래스 제거
+			$("#page_nav1 ul li a").removeClass("active");
+
+			// 클릭한 링크에 active 클래스 추가
+			$(this).addClass("active");
+		});
+	});*/
+	// 이벤트 리스너를 등록하여 스크롤 이벤트 감지
+	window.addEventListener("scroll", function() {
+		// left 이미지 요소 선택
+		const leftImage = document.querySelector(".left img");
+
+		// right 요소의 높이를 가져와서 브라우저 창 높이와 비교
+		const rightElement = document.querySelector(".right");
+		const windowHeight = window.innerHeight;
+		const rightHeight = rightElement.clientHeight;
+
+		// right 요소가 화면에 보일 때 left 이미지의 위치를 조정
+		if (rightHeight > windowHeight) {
+			const scrollPosition = window.scrollY;
+			const maxTranslate = rightHeight - windowHeight;
+			const translateValue = Math.min(maxTranslate, scrollPosition);
+
+			leftImage.style.transform = `translateY(${translateValue}px)`;
+		} else {
+			// right 요소가 화면에 보이지 않을 때 이미지 초기 위치로 복원
+			leftImage.style.transform = "translateY(0)";
+		}
+	});
+	/* 방법1 */
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+		acc[i].addEventListener("click", function() {
+			this.classList.toggle("active");
+			var panel = this.nextElementSibling;
+			if (panel.style.maxHeight) {
+				panel.style.maxHeight = null;
+			} else {
+				panel.style.maxHeight = panel.scrollHeight + "px";
+			}
+		});
+	}
+
+
 });

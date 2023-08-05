@@ -1,5 +1,45 @@
 @charset "UTF-8";
 
+/*-------------
+	상단메뉴
+---------------*/
+#page_nav1 {
+  align-items: center; /* 수직 가운데 정렬 */
+}
+
+#page_nav1 ul {
+  list-style: none;
+  display: flex; /* Flex 컨테이너로 설정 */
+  padding: 0;
+  margin: 50px 0 10px 0;
+}
+
+#page_nav1 ul li {
+  margin-right: 20px; /* 각 아이템 간 간격 조정 */
+  font-size: 20px;
+}
+
+#page_nav1 ul li:last-child {
+  margin-right: 0; /* 마지막 아이템의 간격 제거 */
+}
+
+.side-bar1{
+	border-bottom: 1px solid #f0f0f0;
+	margin-left: 30px;
+}
+
+/* itemList_nav.jsp에서 추가한 ID 선택자를 사용하여 스타일을 적용합니다. */
+#allLink.active,
+#shoesLink.active,
+#topsLink.active,
+#bottomsLink.active,
+#accessoriesLink.active {
+    font-weight: bold; /* 원하는 스타일로 변경 */
+}
+
+/*-------------
+	상품목록
+---------------*/
 .list01 {
 	display: flex;
     flex-wrap: wrap;
@@ -84,7 +124,7 @@ p {
   flex: 1;
 }
 
-.itemDetailPage img {
+.left img {
   height: auto;
 }
 
@@ -174,6 +214,9 @@ p {
 .itemDetailPage .align-right button {
   margin-left: 10px;
 }
+h3{
+	margin-top: 30px;
+}
 .detail_wrap{
 	border: 1px solid #ebebeb;
     border-width: 1px 0;
@@ -182,7 +225,6 @@ p {
   display: flex;
   justify-content: space-between;
 }
-
 .detail_wrap_one{
   	flex: 1;
   	padding-left: 0;
@@ -191,7 +233,6 @@ p {
 	flex:1;
 	border-left: 1px solid #ebebeb;
 }
-
 .detail_wrap dl dt {
   color: rgba(34, 34, 34, 0.5);
   font-size: 12px;
@@ -200,7 +241,6 @@ p {
   line-height: 14px;
   margin-left: 10px;
 }
-
 .detail_wrap dl dd {
   font-size: 14px;
   line-height: 17px;
@@ -209,6 +249,35 @@ p {
   margin-inline-start: 0;
   margin-left: 10px;
 }
+.detail_wrap2{
+	border-bottom: 1px solid #ebebeb;
+    border-width: 1px 0;
+}
+.addbnf{
+	display: flex;
+    line-height: 23px;
+    margin-bottom: 10px;
+}
+.addbnf p{
+	margin-right: 25px;
+}
+.deliveryinfo{
+	margin-bottom: 25px;
+	display: flex;
+}
+.deliveryinfo div{
+	margin-left: 25px;
+	color: rgba(34,34,34,.5);
+}
+.deliveryinfo b{
+	font-size: 16px;
+	color: #000;
+}
+.Grinninfo{
+	color: rgba(34,34,34,.5);
+	margin-top:20px; 
+}
+
 /* align-right 스타일 */
 .align-right {
   display: flex;
@@ -219,4 +288,51 @@ p {
 .align-right button {
   margin-left: 10px;
 }
- 
+
+/* 구매 전 확인해주세요! */
+.accordion {
+	background-color: #FFF;
+	color: #000;
+	cursor: pointer;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: .4s;
+	padding: 18px;
+}
+
+.active, .accordion:hover {
+	font-weight: bold;
+}
+
+.accordion:after {
+	content: '\00276F'; /*❯*/
+	float: right;
+	margin-left: 5px;
+	transform: rotate(90deg);
+}
+
+.active:after {
+	content: "\00276F";
+	transform: rotate(270deg);
+}
+
+.panel {
+	background-color: #FFF;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height .2s ease-out;
+	padding: 0 18px;
+	line-height: 23px;
+	border-bottom: 1px solid #ebebeb;
+}
+
+.p-hide {
+	display: none
+}
+
+.p-show {
+	display: block
+}

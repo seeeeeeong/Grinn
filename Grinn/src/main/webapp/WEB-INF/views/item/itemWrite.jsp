@@ -57,21 +57,21 @@
 				<form:input path="item_price" placeholder="상품정가를 입력하세요" autocomplete="off"/>
 				<form:errors path="item_price" cssClass="error-color"/>
 			</li>
-			<%-- <li>
+						<li>
 				<form:label path="item_keyword1">키워드1</form:label>
-				<form:input path="item_keyword1"/>
+				<form:input path="item_keyword1" placeholder="상품키워드를 입력하세요" autocomplete="off"/>
 				<form:errors path="item_keyword1" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="item_keyword2">키워드2</form:label>
-				<form:input path="item_keyword2"/>
+				<form:input path="item_keyword2" placeholder="상품키워드를 입력하세요" autocomplete="off"/>
 				<form:errors path="item_keyword2" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="item_keyword3">키워드3</form:label>
-				<form:input path="item_keyword3"/>
+				<form:input path="item_keyword3" placeholder="상품키워드를 입력하세요" autocomplete="off"/>
 				<form:errors path="item_keyword3" cssClass="error-color"/>
-			</li> --%>
+			</li>
 			<li>
    				<form:label path="item_cate">상품분류</form:label>
     			<form:radiobutton path="item_cate" value="1"/>신발

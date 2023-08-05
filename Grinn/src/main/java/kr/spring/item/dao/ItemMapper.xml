@@ -12,6 +12,15 @@
 		item_model,
 		item_date,
 		item_price,
+		<if test="item_keyword1!=null and item_keyword1!=''">
+			item_keyword1,
+		</if>
+		<if test="item_keyword2!=null and item_keyword2!=''">
+			item_keyword2,
+		</if>
+		<if test="item_keyword3!=null or item_keyword3!=''">
+			item_keyword3,
+		</if>
 		item_photo1,
 		item_photo1name,
 		item_cate,
@@ -25,6 +34,15 @@
 		#{item_model},
 		#{item_date},
 		#{item_price},
+		<if test="item_keyword1!=null and item_keyword1!=''">
+			#{item_keyword1},
+		</if>
+		<if test="item_keyword2!=null and item_keyword2!=''">
+			#{item_keyword2},
+		</if>
+		<if test="item_keyword3!=null or item_keyword3!=''">
+			#{item_keyword3},
+		</if>
 		#{item_photo1},
 		#{item_photo1name},
 		#{item_cate},
@@ -88,25 +106,34 @@
       WHERE rnum >= #{start} AND rnum <= #{end}
       ]]>
    </select>
-   
-   <!-- 상품 수정 -->
-   <update id="updateItem" parameterType="itemVO">
-   		UPDATE
-   			item
-   		SET
-   			item_brand=#{item_brand},
-			item_name=#{item_name},
-			item_detail=#{item_detail},
-			item_model=#{item_model},
-			item_date=#{item_date},
-			item_price=#{item_price},
-			item_photo1=#{item_photo1},
-			item_photo1name=#{item_photo1name},
-			item_cate=#{item_cate},
-			item_gender=#{item_gender},
-			item_status=#{item_status}
-   		WHERE
-   			item_num=#{item_num}
-   </update>
+
+	<!-- 상품 수정 -->
+	<update id="updateItem" parameterType="itemVO">
+		UPDATE
+		item
+		SET
+		item_brand=#{item_brand},
+		item_name=#{item_name},
+		item_detail=#{item_detail},
+		item_model=#{item_model},
+		item_date=#{item_date},
+		item_price=#{item_price},
+		<if test="item_keyword1!=null and item_keyword1!=''">
+			item_keyword1=#{item_keyword1},
+		</if>
+		<if test="item_keyword2!=null and item_keyword2!=''">
+			item_keyword2=#{item_keyword2},
+		</if>
+		<if test="item_keyword3!=null or item_keyword3!=''">
+			item_keyword3=#{item_keyword3},
+		</if>
+		item_photo1=#{item_photo1},
+		item_photo1name=#{item_photo1name},
+		item_cate=#{item_cate},
+		item_gender=#{item_gender},
+		item_status=#{item_status}
+		WHERE
+		item_num=#{item_num}
+	</update>
 
 </mapper>
