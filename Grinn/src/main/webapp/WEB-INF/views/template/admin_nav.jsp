@@ -35,7 +35,7 @@
 			<h4>공지 및 신고 관리</h4>
 			<ul>
 				<li>
-					<a href = "${pageContext.request.contextPath}/notice/admin_list.do">공지사항 목록</a>
+					<a href = "${pageContext.request.contextPath}/notice/write.do">공지사항 등록</a>
 				</li>
 				<li>
 					<a href = "${pageContext.request.contextPath}/report/admin_list.do">게시물 신고 목록</a>

@@ -57,11 +57,13 @@ public class NoticeController {
 		
 		//회원번호 세팅
 		noticeVO.setMem_num(user.getMem_num());
-		
+		noticeVO.setMem_auth(user.getMem_auth());
+		System.out.println(user.getMem_auth());
 		//글 쓰기
 		noticeService.insertNotice(noticeVO);
 		
-		//model.addAttribute("mem_auth",user.getMem_auth());
+		//관리자만 글을 쓸 수 있도록 mem_auth받기
+		//int mem_auth = user.getMem_auth();
 		
 		model.addAttribute("message", "글쓰기가 완료되었습니다");
 		model.addAttribute("url", request.getContextPath()+"/notice/noticeList.do");
@@ -72,7 +74,7 @@ public class NoticeController {
 	/* ======================== 고객센터(공지사항) 글 목록 ======================== */
 	@RequestMapping("/notice/noticeList.do")
 	public ModelAndView getNoticeList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
-									String keyfield, String keyword) {
+									String keyfield, String keyword, HttpSession session) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
@@ -90,6 +92,7 @@ public class NoticeController {
 		}
 		
 		ModelAndView mav = new ModelAndView();
+		
 		mav.setViewName("noticeList");
 		mav.addObject("count", count);
 		mav.addObject("list", list);
@@ -166,15 +169,26 @@ public class NoticeController {
 	
 	/* ======================== 글 상세 ======================== */
 	@RequestMapping("/notice/detail.do")
-	public ModelAndView getDetail(@RequestParam int no_num) {
+	public ModelAndView getDetail(@RequestParam int no_num,HttpSession session) {
 		//글 상세
 		NoticeVO notice = noticeService.selectNotice(no_num);
 		//제목에 태그를 허용하지 않음
 		notice.setNo_title(StringUtil.useNoHtml(notice.getNo_title()));
 		//CKEditor를 사용하지 않을 경우 내용에 태그 불허
 		//notice.setNo_content(StringUtil.useBrNoHtml(notice.getNo_content()));
+
+		MemberVO user = (MemberVO)session.getAttribute("user"); 
+		int mem_auth = user.getMem_auth();
 		
-		return new ModelAndView("noticeDetail", "notice", notice);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("noticeDetail");
+		mav.addObject("notice", notice);
+		if(mem_auth > 0) {
+			mav.addObject("mem_auth", mem_auth);
+		}
+		
+		
+		return mav;
 	}
 	/* ======================== 글 수정 ======================== */
 	//수정 폼 호출

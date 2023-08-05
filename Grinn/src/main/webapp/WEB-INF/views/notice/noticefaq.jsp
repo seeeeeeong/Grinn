@@ -90,7 +90,6 @@
 								<img class="classCloseImg"
 									src="${pageContext.request.contextPath}/image_bundle/classClose.png" />
 							</div>
-								
 							<%-- 드롭다운 끝 --%>
 						</div>
 						<div class="dropdown_content" id="dropdown_content" style="display:none;">
@@ -102,7 +101,7 @@
 					</div>
 				</li>
 			</ul>
-		</div>
+		</div><br>
 		<div class="align-center">${page}</div>
 	</div>
 	<div class="page-clear"></div>
