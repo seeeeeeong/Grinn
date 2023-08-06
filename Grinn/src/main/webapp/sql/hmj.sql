@@ -9,7 +9,6 @@ create table market(
   place_name varchar2(300) not null, -- 개최장소 번호
   market_type number(1) not null, -- 플리마켓 예약 유형(1:부스 예약, 2:입장 예약)
   booth_count number(3) not null, -- 부스 자리수
-  user_count number(2) not null, -- 입장 가능 인원수
   booth_fee number(6), -- 부스 예약비용
   market_poster blob not null, -- 플리마켓 포스터
   market_posterName varchar2(100) not null, -- 포스터 이름
@@ -23,7 +22,7 @@ create table market(
 create sequence market_seq;
 
 --부스 위치
-create table boothLocation(
+/*create table boothLocation(
   location_num number, -- 위치 번호
   market_num number not null, -- 플리마켓 번호
   location_row number not null, -- 부스 위치 행(배열)
@@ -35,10 +34,10 @@ create table boothLocation(
   constraint boothLocation_fk foreign key (market_num) references market (market_num) ON DELETE CASCADE
 );
 
-create sequence boothLocation_seq;
+create sequence boothLocation_seq;*/
 
 --부스 예약 등록 
-create table boothReservation(
+/*create table boothReservation(
   boothRes_num number, -- 부스 예약 등록 번호
   location_row number not null, -- 부스 행 번호
   location_column number not null, -- 부스 열 번호
@@ -46,47 +45,23 @@ create table boothReservation(
   constraint boothReservation_pk primary key (boothRes_num)
 );
 
-create sequence boothReservation_seq;
+create sequence boothReservation_seq;*/
 
 --부스 예약 정보**
 create table booking(
-  book_seq number, -- 부스 예약 시퀀스
-  book_num varchar2(10) unique, -- 부스 예약 일렬번호
-  market_type number(1) not null, -- 플리마켓 예약 유형(1:부스 예약, 2:입장 예약)
-  book_time date default sysdate not null, -- 부스 예약한 시간
-  book_day date not null, -- 부스 예약 날짜
+  book_num number, -- 부스 예약 번호
+  book_regDate date default sysdate not null, -- 예약한 시간
   market_num number not null, -- 플리마켓 번호
-  boothRes_num number not null, -- 부스 예약 등록 번호
-  book_status number(1) default 1 not null, -- 예약 현황(1:미입금, 2:입금완료, 3:취소)
-  booth_fee number(6) not null, -- 부스 예약비용
-  booth_discount number(1), -- 부스 예약비용 할인
-  constraint booking_pk primary key (book_seq),
-  constraint booking_fk foreign key (market_type) references market (market_type) ON DELETE CASCADE,
-  constraint booking_fk2 foreign key (market_num) references market (market_num) ON DELETE CASCADE,
-  constraint booking_fk3 foreign key (boothRes_num) references boothReservation (boothRes_num) ON DELETE CASCADE
+  mem_num number not null, -- 회원 번호
+--  book_status number(1) default 1 not null, -- 예약 현황(1:미입금, 2:입금완료, 3:취소)
+--  booth_fee number(6) not null, -- 부스 예약비용
+--  booth_discount number(1), -- 부스 예약비용 할인
+  constraint booking_pk primary key (book_num),
+  constraint booking_fk foreign key (market_num) references market (market_num) ON DELETE CASCADE,
+  constraint booking_fk2 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
 );
 
 create sequence booking_seq;
-
---플리마켓 예약 정보**
-create table reservation(
-  res_seq number, -- 입장 예약 시퀀스
-  res_num varchar2(10) unique, -- 입장 예약 일렬번호
-  market_type number(1) not null, -- 플리마켓 예약 유형(1:부스 예약, 2:입장 예약)
-  res_time date default sysdate not null, -- 입장 예약한 시간
-  mem_num number not null, -- 회원번호
-  market_num number not null, -- 플리마켓 번호
-  entrance_time date not null, -- 입장 시간
-  res_count number(1) default 1 not null , -- 입장 인원수(최대 2인)
-  res_status number(1) default 2 not null, -- 입장 예약 현황(1:대기, 2:예약확정, 3:취소)
-  constraint reservation_pk primary key (res_seq),
-  constraint reservation_fk foreign key (market_type) references market (market_type) ON DELETE CASCADE,
-  constraint reservation_fk2 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
-  constraint reservation_fk3 foreign key (market_num) references market (market_num) ON DELETE CASCADE,
-);
-
-create sequence reservation_seq;
-
 
 ----페널티----
 --회원별 페널티 요약**

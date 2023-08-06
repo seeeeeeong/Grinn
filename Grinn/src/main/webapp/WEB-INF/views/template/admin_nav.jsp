@@ -54,15 +54,6 @@
 				<li>
 					<a href = "${pageContext.request.contextPath}/fleamarket/admin_resList.do">플리마켓 예약 내역</a>
 				</li>
-				<li>
-					<a href = "${pageContext.request.contextPath}/fleamarket/adminBoothList.do">부스 목록</a>
-				</li>
-				<li>
-					<a href = "${pageContext.request.contextPath}/fleamarket/admin_resList.do">부스 예약 내역</a>
-				</li>
-				<li>
-					<a href = "${pageContext.request.contextPath}/fleamarket/adminLocationList.do">장소 목록</a>
-				</li>
 			</ul>
 		</li>
 		<li>
