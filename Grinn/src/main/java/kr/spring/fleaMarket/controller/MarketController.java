@@ -75,38 +75,4 @@ public class MarketController {
 		return mav;
 	}
 	
-	//===플리마켓 예약 목록===
-	@RequestMapping("/fleamarket/marketList.do")
-	public ModelAndView getMarketList(@RequestParam(value="pageNum", defaultValue="1") int currentPage, 
-			                          @RequestParam(value="order", defaultValue="1") int order, 
-			                          String keyfield, String keyword) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("keyfield", keyfield);
-		map.put("keyword", keyword);
-		
-		// 전체/검색 레코드수
-		int count = marketService.selectRowCount(map);
-		
-		log.debug("<<count>> : " + count);
-		
-		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 5, 5, "marketList.do", "&order"+order);
-		
-		List<MarketVO> list = null;
-		if (count > 0) {
-			map.put("order", order);
-			map.put("start", page.getStartRow());
-			map.put("end", page.getEndRow());
-			
-			list = marketService.selectList(map);
-		}
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("marketList");
-		mav.addObject("count", count);
-		mav.addObject("list", list);
-		mav.addObject("page", page.getPage());
-		
-		return mav;
-	}
 }

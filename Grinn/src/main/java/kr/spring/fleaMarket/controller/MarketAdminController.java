@@ -35,81 +35,6 @@ public class MarketAdminController {
 		return new MarketVO();
 	}
 	
-	// ===플리마켓 목록 - 관리자===
-	@RequestMapping("/fleamarket/adminMarketList.do")
-	public ModelAndView getAdminMarketList(@RequestParam(value="pageNum", defaultValue="1") 
-	                                          int currentPage, String keyfield, String keyword) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("keyfield", keyfield);
-		map.put("keyword", keyword);
-		
-		// 전체/검색 레코드수
-		int count = marketService.selectCount(map);
-		
-		log.debug("<<count>> : " + count);
-		
-		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 5, 5, "adminMarketList.do");
-		
-		List<MarketVO> marketList = null;
-		if (count > 0) {
-			map.put("start", page.getStartRow());
-			map.put("end", page.getEndRow());
-			
-			marketList = marketService.selectList(map);
-		}
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminMarketList");
-		mav.addObject("count", count);
-		mav.addObject("marketList", marketList);
-		mav.addObject("page", page.getPage());
-		
-		return mav;
-	}
-	
-	//===플리마켓 등록===
-	// 등록 폼
-	@GetMapping("/fleamarket/adminMarketWrite.do")
-	public String marketWriteForm() {
-		return "adminMarketWrite";
-	}
-	
-	@PostMapping("/fleamarket/adminMarketWrite.do")
-	public String marketWriteSubmit(@Valid MarketVO vo, BindingResult result, Model model,
-			                              HttpServletRequest request, HttpSession session) {
-		log.debug("<<플리마켓 등록>> : " + vo);
-		
-		// 이미지 유효성 체크
-		if (vo.getMarket_poster().length == 0) {
-			result.rejectValue("market_poster", "required");
-		}
-		if (vo.getMarket_thumbNail().length == 0) {
-			result.rejectValue("market_thumbNail", "required");
-		}
-		
-		if (vo.getMarket_poster().length >= 5*1024*1024) {
-			result.rejectValue("market_poster", "limitUploadSize", new Object[] {"5MB"}, null);
-		}
-		if (vo.getMarket_thumbNail().length >= 5*1024*1024) {
-			result.rejectValue("market_thumbNail", "limitUploadSize", new Object[] {"5MB"}, null);
-		}
-		
-		// 유효성 체크 결과 오류 발생시 폼 호출
-		if (result.hasErrors()) {
-			return marketWriteForm();
-		}
-		
-		marketService.insertMarket(vo);
-		
-		// View에 표시할 메시지
-		model.addAttribute("message", "이용자용 플리마켓 등록이 완료되었습니다.");
-		model.addAttribute("url", request.getContextPath() + "/fleamarket/adminMarketList.do");
-		
-		return "common/resultView";
-	}
-	
-	
 	// ===부스 목록 - 관리자===
 	@RequestMapping("/fleamarket/adminBoothList.do")
 	public ModelAndView getAdminBoothList(@RequestParam(value="pageNum", defaultValue="1") int currentPage, 
@@ -228,12 +153,6 @@ public class MarketAdminController {
 	}
 	
 	
-	//===장소 등록===
-	// 등록 폼
-	@GetMapping("/fleamarket/adminLocationWrite.do")
-	public String locationWriteForm() {
-		return "adminLocationWrite";
-	}
-	
-	//===장소 리스트===
+	//======
+
 }
