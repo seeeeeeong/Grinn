@@ -377,7 +377,6 @@
 }
 .nav_notice2{
     padding: 15px 0 15px 0;
-    font-weight: bold;
 }
 .nav_notice2 li{
 	margin-top: 10px;
@@ -387,9 +386,3 @@ a:hover{
 	text-decoration: none;
 	color: black;
 }
-
-
-
-
-
-
