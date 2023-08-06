@@ -20,8 +20,10 @@
 		<form:errors element="div" cssClass="error-color"></form:errors>
 		<ul class=register-label>
 			<li>
-				<label>예약 유형</label>
-				<form:radiobutton path="market_type" value="1" id="market_type1" checked="checked"/>부스 예약
+				<label>진행 유형</label>
+				<form:radiobutton path="market_type" value="1" id="market_type1" checked="checked"/>예정
+				<form:radiobutton path="market_type" value="2" id="market_type2" checked="checked"/>진행중
+				<form:radiobutton path="market_type" value="3" id="market_type3" checked="checked"/>종료
 			</li>
 			<li>
 				<form:label path="market_title">제목</form:label>
@@ -47,11 +49,6 @@
 				<form:label path="booth_count">부스 수</form:label>
 				<form:input path="booth_count" type="number"/>
 				<form:errors path="booth_count" cssClass="error-color"/>
-			</li>
-			<li>
-				<form:label path="user_count">시간당 인원수</form:label>
-				<form:input path="user_count" type="number"/>
-				<form:errors path="user_count" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="booth_fee">부스 입점 비용</form:label>
