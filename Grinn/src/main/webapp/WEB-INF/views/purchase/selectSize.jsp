@@ -20,6 +20,13 @@
 				<ul class="select-list">
 					<c:forEach var="list" items="${list}">
 					<li class="select-size">
+						<c:if test="${empty list.item_size}">
+							<script type="text/javascript">
+								$(function(){
+									$('.select-size').css('width','100%');
+								});
+							</script>
+						</c:if>
 						<button onclick="location.href='check.do?item_num=${list.item_num}&item_sizenum=${list.item_sizenum}&item_size=${list.item_size}'">
 							<div class="select-inner">
 								<span class="size">

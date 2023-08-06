@@ -86,11 +86,12 @@ public class TradeController {
 		// Login인터셉터로 로그인 되어있는지 확인필요 ***********
 
 		// 아이템 번호로 아이템 정보 구해서 넘기기 *********
+		ItemVO item = itemService.selectItem(item_num);
 
 		model.addAttribute("item_num", item_num); // item 정보를 구하게 된다면 vo 객체를 넘겨줄거임
 		model.addAttribute("item_sizenum", item_sizenum);
 		model.addAttribute("item_size", item_size);
-
+		model.addAttribute("item",item);
 		return "check";
 	}
 
@@ -251,6 +252,7 @@ public class TradeController {
 
 		// 아이템 번호로 아이템 정보 구하기 ***********
 		ItemVO item = itemService.selectItem(item_num);
+		mav.addObject("item",item);
 		return mav;
 	}
 
@@ -266,11 +268,12 @@ public class TradeController {
 		// Login인터셉터로 로그인 되어있는지 확인필요 ***********
 
 		// 아이템 번호로 아이템 정보 구해서 넘기기 *********
+		ItemVO item = itemService.selectItem(item_num);
 
 		model.addAttribute("item_num", item_num); // item 정보를 구하게 된다면 vo 객체를 넘겨줄거임
 		model.addAttribute("item_sizenum", item_sizenum);
 		model.addAttribute("item_size", item_size);
-
+		model.addAttribute("item",item);
 		return "checkSale";
 	}
 
@@ -416,6 +419,14 @@ public class TradeController {
 		return "common/resultView";
 	}
 	
+	/**
+	 * ======================================================================================================================
+	 * 마이페이지 : 구매, 판매 내역
+	 * ======================================================================================================================
+	 **/
+	
+	
+	// 마이페이지 - 구매 내역
 	@RequestMapping("/myPage/buying.do")
 	public ModelAndView myPurchaseBidInfO(
 									  @RequestParam(value="way",defaultValue="1") int way,
@@ -491,5 +502,83 @@ public class TradeController {
 		mav.setViewName("buying");
 		return mav;
 	}
-
+	
+	// 마이페이지 - 판매내역
+	@RequestMapping("/myPage/selling.do")
+	public ModelAndView mySaleInfo(
+									@RequestParam(value="way",defaultValue="1") int way,
+									@RequestParam(value="status",defaultValue="1") int status,
+									@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+									HttpSession session) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map = new HashMap<String, Object>();
+		int count = 0;
+		int bidCount = tradeService.selectSaleBidCount(user.getMem_num());
+		int tradeCount = tradeService.selectTradeSaleCount(user.getMem_num());
+		int quitCount = tradeService.selectTradeSaleQuitCount(user.getMem_num());
+		
+		PagingUtil page = null;
+		List<SaleBidVO> saleBidList = null;
+		List<TradeVO> saleTradeList = null;
+		
+		if(way == 1) { // 판매 입찰 내역
+			count = tradeService.selectSaleBidCount(user.getMem_num());
+			bidCount = tradeService.selectSaleBidCount(user.getMem_num());
+			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			
+			map.put("status", status);
+			map.put("mem_num", user.getMem_num());
+			
+			if(count > 0 ) {
+				map.put("start", page.getStartRow());
+				map.put("end",page.getEndRow());
+				saleBidList = tradeService.selectSaleBidInfo(map);
+			}
+			
+			mav.addObject("list",saleBidList);
+		}else if(way == 2) { // 판매 거래 정보 내역
+			count = tradeService.selectTradeSaleCount(user.getMem_num());
+			
+			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			
+			map.put("status", status);
+			map.put("mem_num", user.getMem_num());
+			
+			if(count > 0 ) {
+				map.put("start", page.getStartRow());
+				map.put("end",page.getEndRow());
+				saleTradeList = tradeService.selectTradeSaleInfo(map);
+			}
+			log.debug("<< count >> : " + count);
+			mav.addObject("list",saleTradeList);
+		}else if(way == 3) { // 종료된 판매 거래 정보 내역
+			status = 5;
+			count = tradeService.selectTradeSaleQuitCount(user.getMem_num());
+			
+			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			
+			map.put("status", status);
+			map.put("mem_num", user.getMem_num());
+			
+			if(count > 0) {
+				map.put("start", page.getStartRow());
+				map.put("end",page.getEndRow());
+				saleTradeList = tradeService.selectTradeSaleInfo(map);
+				log.debug("<< 종료된 판매 거래 >> : " + saleTradeList.size());
+			}
+			mav.addObject("list",saleTradeList);
+		}
+		
+		
+		mav.addObject("page",page.getPage());
+		mav.addObject("count",count);
+		mav.addObject("bidCount",bidCount);
+		mav.addObject("tradeCount",tradeCount);
+		mav.addObject("quitCount",quitCount);
+		mav.addObject("status",status);
+		mav.addObject("way",way);
+		mav.setViewName("selling");
+		return mav;
+	}
 }

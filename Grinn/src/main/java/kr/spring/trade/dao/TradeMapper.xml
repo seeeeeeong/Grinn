@@ -55,8 +55,8 @@
 		ORDER BY s.item_sizenum
 	</select>
 	
-	<!-- 입찰 상태 -->
-	<sql id="bidStatus">
+	<!-- 구매 입찰 상태 -->
+	<sql id="purchaseBidStatus">
 		<if test="status == 2">
 			<![CDATA[
 			AND pb.purchase_deadline >= SYSDATE
@@ -65,6 +65,20 @@
 		<if test="status == 3">
 			<![CDATA[
 			AND pb.purchase_deadline < SYSDATE
+			]]>
+		</if>
+	</sql>
+	
+	<!-- 판매 입찰 상태 -->
+	<sql id="saleBidStatus">
+		<if test="status == 2">
+			<![CDATA[
+			AND sb.sale_deadline >= SYSDATE
+			]]>
+		</if>
+		<if test="status == 3">
+			<![CDATA[
+			AND sb.sale_deadline < SYSDATE
 			]]>
 		</if>
 	</sql>
@@ -122,7 +136,7 @@
 				JOIN item i ON pb.item_num=i.item_num
 				JOIN item_size s ON pb.item_sizenum=s.item_sizenum
 				WHERE pb.mem_num=#{mem_num}
-				<include refid="bidStatus"></include>
+				<include refid="purchaseBidStatus"></include>
 				ORDER BY pb.purchase_regDate DESC)
 			a)
 		<![CDATA[
@@ -159,4 +173,65 @@
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>	
 	</select>
+	
+	<!-- 마이페이지 : 판매입찰 -->
+	<select id="selectSaleBidInfo" parameterType="map" resultType="saleBidVO">
+		SELECT * FROM (
+			SELECT a.*, rownum rnum FROM (
+				SELECT
+					sb.mem_num,
+					sb.sale_price,
+					sb.sale_regDate,
+					sb.sale_deadline,
+					s.item_size,
+					i.item_brand,
+					i.item_name,
+					i.item_photo1,
+					i.item_photo1name
+				FROM
+				sale_bid sb 
+				JOIN item i ON sb.item_num=i.item_num
+				JOIN item_size s ON sb.item_sizenum=s.item_sizenum
+				WHERE pb.mem_num=#{mem_num}
+				<include refid="saleBidStatus"></include>
+				ORDER BY sb.sale_regDate DESC)
+			a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>	
+	</select>
+	
+	<!-- 마이페이지 : 판매 거래 내역 -->
+	<select id="selectTradeSaleInfo" parameterType="map" resultType="tradeVO">
+		SELECT * FROM (
+			SELECT a.*,rownum rnum FROM (
+				SELECT
+					t.trade_num,
+					t.buyer_num,
+					d.trade_state,
+					d.trade_regDate,
+					d.trade_price,
+					md.mem_name,
+					s.item_size,
+					i.item_brand,
+					i.item_name,
+					i.item_photo1,
+					i.item_photo1name
+				FROM trade t
+				LEFT OUTER JOIN trade_detail d ON t.trade_num = d.trade_num
+				JOIN item i ON i.item_num=t.item_num
+				JOIN item_size s on d.item_sizenum=s.item_sizenum 
+				JOIN member_detail md on md.mem_num=t.buyer_num
+				WHERE seller_num = #{mem_num}
+				<include refid="tradeStatus"></include>
+				ORDER BY d.trade_regDate DESC)a
+			)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>	
+	</select>
+	
+	
+	
+	
 </mapper>

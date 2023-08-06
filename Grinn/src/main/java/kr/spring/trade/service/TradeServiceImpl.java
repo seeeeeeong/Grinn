@@ -140,7 +140,7 @@ public class TradeServiceImpl implements TradeService{
 	
 	@Override
 	public List<TradeVO> selectTradeSaleInfo(Map<String,Object> map) {
-		return null;
+		return tradeMapper.selectTradeSaleInfo(map);
 	}
 
 	@Override
@@ -150,7 +150,7 @@ public class TradeServiceImpl implements TradeService{
 
 	@Override
 	public List<SaleBidVO> selectSaleBidInfo(Map<String, Object> map) {
-		return null;
+		return tradeMapper.selectSaleBidInfo(map);
 	}
 
 	@Override
@@ -160,8 +160,7 @@ public class TradeServiceImpl implements TradeService{
 	
 	@Override
 	public int selectTradeSaleCount(Integer mem_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return tradeMapper.selectTradeSaleCount(mem_num);
 	}
 
 	@Override
@@ -171,13 +170,17 @@ public class TradeServiceImpl implements TradeService{
 
 	@Override
 	public int selectSaleBidCount(Integer mem_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return tradeMapper.selectSaleBidCount(mem_num);
 	}
 
 	@Override
 	public int selectTradePurchaseQuitCount(Integer mem_num) {
 		return tradeMapper.selectTradePurchaseQuitCount(mem_num);
+	}
+
+	@Override
+	public int selectTradeSaleQuitCount(Integer mem_num) {
+		return tradeMapper.selectTradeSaleQuitCount(mem_num);
 	}
 
 	

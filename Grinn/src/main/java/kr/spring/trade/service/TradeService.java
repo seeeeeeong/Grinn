@@ -91,6 +91,7 @@ public interface TradeService {
 	public int selectTradePurchaseCount(Integer mem_num);
 	public int selectTradePurchaseQuitCount(Integer mem_num);
 	public int selectTradeSaleCount(Integer mem_num);
+	public int selectTradeSaleQuitCount(Integer mem_num);
 	
 	// 마이페이지 구매입찰 정보 조회
 	public List<PurchaseBidVO> selectPurchaseBidInfo(Map<String, Object> map);

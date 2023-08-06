@@ -1,41 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="page-main">
-	<h1>판매 하기</h1>	
-	<div>
-		아이템 정보가 들어가는 곳
-	</div>
-	
-	<div class="align-center">
-		<table>
-			<c:forEach var="list" items="${list}">
-			<tr>
-				<td>
-					<a href="checkSale.do?item_num=${list.item_num}&item_sizenum=${list.item_sizenum}&item_size=${list.item_size}">${list.item_sizenum}</a>
-				</td>
-				<c:if test="${empty list.item_size}">
-				<td>
-					ONE SIZE
-				</td>
-				</c:if>
-				<c:if test="${!empty list.item_size}">
-				<td>
-					${list.item_size}
-				</td>
-				</c:if>
-				<c:if test="${list.purchase_price == 0}">
-				<td>
-					정가 : 40,000원
-				</td>
-				</c:if>
-				<c:if test="${list.purchase_price != 0}">
-				<td>
-					${list.purchase_price}원
-				</td>
-				</c:if>
-			</tr>
-			</c:forEach>
-		</table>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/selectSize.css">
+<h1 class="align-center">판매 하기</h1>
+<div class="page-size-main">
+	<div class="page-size">
+		<div class="page-size-inner">
+			<div class="item">
+				<div class="item-profile">
+					<img src="${pageContext.request.contextPath}/item/viewProfile.do?item_num=${item.item_num}" width="100" height="100">
+				</div>
+				<div class="item-info">
+					<p class="a">${item.item_brand}</p>
+					<p class="b">${item.item_name}</p>
+					<p class="c">${item.item_detail}</p>
+				</div>
+			</div>
+			<div class="size-select">
+				<ul class="select-list">
+					<c:forEach var="list" items="${list}">
+					<li class="select-size">
+						<button onclick="location.href='checkSale.do?item_num=${list.item_num}&item_sizenum=${list.item_sizenum}&item_size=${list.item_size}'">
+							<div class="select-inner">
+								<span class="size">
+									<c:if test="${empty list.item_size}">
+										ONE SIZE
+									</c:if>
+									<c:if test="${!empty list.item_size}">
+										${list.item_size}
+									</c:if>
+								</span>
+								<span class="price">
+									<c:if test="${list.purchase_price == 0}">
+										판매입찰
+									</c:if>
+									<c:if test="${list.purchase_price != 0}">
+										${list.purchase_price}원
+									</c:if>
+								</span>
+							</div>
+						</button>
+					</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>

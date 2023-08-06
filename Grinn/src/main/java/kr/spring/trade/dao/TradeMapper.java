@@ -83,6 +83,12 @@ public interface TradeMapper {
 	// 판매 입찰 정보 삭제
 	@Delete("DELETE FROM sale_bid WHERE sale_num=#{sale_num}")
 	public void deleteSaleBid(Integer sale_num);
+	
+	/**
+	 * ======================================================================================================================
+	 * 												거래 관련 정보
+	 * ======================================================================================================================
+	 **/
 	// 거래 정보 저장을 위한 거래 번호 생성
 	@Select("SELECT trade_seq.nextval FROM dual")
 	public int selectTradeNum();
@@ -92,16 +98,25 @@ public interface TradeMapper {
 	@Insert("INSERT INTO trade_detail (trade_num,item_num,item_sizenum,trade_price,trade_zipcode,trade_address1,trade_address2) "
 			+ "VALUES (#{trade_num},#{item_num},#{item_sizenum},#{trade_price},#{trade_zipcode},#{trade_address1},#{trade_address2})")
 	public void insertTradeDetail(TradeVO trade);
+	
+	/**
+	 * ======================================================================================================================
+	 * 												마이페이지 관련 정보
+	 * ======================================================================================================================
+	 **/
+	
 	// 마이페이지 거래 정보 조회
 	public List<TradeVO> selectTradePurchaseInfo(Map<String,Object> map);
 	public List<TradeVO> selectTradeSaleInfo(Map<String,Object> map);
-	// 마이페이지 거래 전체 정보 개수
+	// 마이페이지 구매 거래 전체 정보 개수
 	@Select("SELECT COUNT(*) FROM trade t JOIN trade_detail d ON t.trade_num=d.trade_num WHERE buyer_num=#{mem_num} AND d.trade_state<>5")
 	public int selectTradePurchaseCount(Integer mem_num);
 	@Select("SELECT COUNT(*) FROM trade t JOIN trade_detail d ON t.trade_num=d.trade_num WHERE t.buyer_num=#{mem_num} AND d.trade_state=5")
 	public int selectTradePurchaseQuitCount(Integer mem_num);
-	@Select("SELECT COUNT(*) FROM trade WHERE seller_num=#{mem_num}")
+	@Select("SELECT COUNT(*) FROM trade t JOIN trade_detail d ON t.trade_num=d.trade_num WHERE seller_num=#{mem_num} AND d.trade_state<>5")
 	public int selectTradeSaleCount(Integer mem_num);
+	@Select("SELECT COUNT(*) FROM trade t JOIN trade_detail d ON t.trade_num=d.trade_num WHERE t.seller_num=#{mem_num} AND d.trade_state=5")
+	public int selectTradeSaleQuitCount(Integer mem_num);
 	// 마이페이지 구매입찰 정보 조회
 	public List<PurchaseBidVO> selectPurchaseBidInfo(Map<String, Object> map);
 	// 마이페이지 구매입찰 전체 개수
