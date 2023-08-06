@@ -15,7 +15,7 @@
 	padding: 5px 0 16px;
 	border-bottom: 3px solid #222;
 	display: flex;
-	font-size: 22px;
+	font-size: 27px;
 	margin: 0 auto;
 }
 #notice_title {
@@ -305,8 +305,6 @@
     margin: 0;
     padding: 20px 0 19px;
 }
-
-
 /* noticeFaq
 ------------------------*/
 .dropdown_list{
@@ -318,7 +316,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    list-style: none;	
+    list-style: none;
 }
 .dropdown{
     --global-header-height: 86px;
@@ -369,6 +367,29 @@
     margin-left: auto;
     margin-top: 0;
 }
+/* notice_nav
+------------------------*/
+.nav_notice1{
+    font-size: 33px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+.nav_notice2{
+    padding: 15px 0 15px 0;
+    font-weight: bold;
+}
+.nav_notice2 li{
+	margin-top: 10px;
+	font-size: 17px;
+}
+a:hover{
+	text-decoration: none;
+	color: black;
+}
+
+
+
 
 
 

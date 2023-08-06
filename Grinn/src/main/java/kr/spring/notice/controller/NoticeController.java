@@ -58,7 +58,7 @@ public class NoticeController {
 		//회원번호 세팅
 		noticeVO.setMem_num(user.getMem_num());
 		noticeVO.setMem_auth(user.getMem_auth());
-		System.out.println(user.getMem_auth());
+		
 		//글 쓰기
 		noticeService.insertNotice(noticeVO);
 		
@@ -147,9 +147,6 @@ public class NoticeController {
 
 		List<NoticeVO> list = null;
 		
-		//검수기준 policy 값 구하기
-		//int policy = noticeService.selectAuthNum(map);
-		
 		if(count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
@@ -161,7 +158,6 @@ public class NoticeController {
 		mav.setViewName("noticeAuth_policy");
 		mav.addObject("count", count);
 		mav.addObject("list", list);
-		//mav.addObject("policy", policy);
 		mav.addObject("page", page.getPage());
 		
 		return mav;
@@ -177,16 +173,20 @@ public class NoticeController {
 		//CKEditor를 사용하지 않을 경우 내용에 태그 불허
 		//notice.setNo_content(StringUtil.useBrNoHtml(notice.getNo_content()));
 
-		MemberVO user = (MemberVO)session.getAttribute("user"); 
-		int mem_auth = user.getMem_auth();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		int auth;
+		if(user==null || user.getMem_auth()!=9) {
+			auth = 2;
+		}else {
+			auth = user.getMem_auth();
+			log.debug("auth"+auth);
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("noticeDetail");
 		mav.addObject("notice", notice);
-		if(mem_auth > 0) {
-			mav.addObject("mem_auth", mem_auth);
-		}
-		
+
+		mav.addObject("auth", auth);
 		
 		return mav;
 	}
@@ -228,36 +228,4 @@ public class NoticeController {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

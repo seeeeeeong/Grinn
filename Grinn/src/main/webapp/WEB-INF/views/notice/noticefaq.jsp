@@ -105,13 +105,4 @@
 		<div class="align-center">${page}</div>
 	</div>
 	<div class="page-clear"></div>
-</div><%--
-<div class="aqaa">
-  <button class="dropbtn">드롭다운 메뉴</button>
-  <div class="aqaa-content">
-    <a href="#">홈</a>
-    <a href="#">회사소개</a>
-    <a href="#">제품소개</a>
-    <a href="#">오시는길</a>
-  </div>
-</div>--%>
+</div>
