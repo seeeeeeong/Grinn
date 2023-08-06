@@ -188,7 +188,7 @@ $(function(){
 	
 	//댓글수정
 	$(document).on('submit', '#mre_form', function(event){
-		if($('mre_content').val().trim() == ''){
+		if($('#mre_content').val().trim() == ''){
 			alert('내용을 입력하세요!');
 			$('#mre_content').val('').focus();
 			return false;
