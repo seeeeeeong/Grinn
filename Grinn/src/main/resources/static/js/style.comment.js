@@ -35,7 +35,7 @@ $(function(){
 					output += item.mem_id + '<br>';
 					
 					
-					if(item.com_mdate){
+					if(item.com_mdate!=null){
 						output += '<span class="modify-date">' + item.com_mdate + '</span>';
 					}else{
 						output += '<span class="modify-date">' + item.com_regdate + '</span>';
@@ -120,15 +120,14 @@ $(function(){
 	//댓글 수정폼 호출
 	$(document).on('click', '.modify-btn', function(){
 		//댓글번호
-		let re_num = $(this).attr('data-num');
+		let com_num = $(this).attr('data-num');
 		//댓글내용
 		let content = $(this).parent().find('p').html().replace(/<br>/gi, '\r\n');
 		
 		//댓글 수정폼 UI
 		let modifyUI = '<form id="mre_form">';
 		modifyUI += '<input type="hidden" name="com_num" id="mre_num" value="' + com_num + '">';
-		modifyUI += '<textarea row="3" cols="50" name="com_comment" id="mre_content" class="rep-content">' + content + '</textarea>';
-		modifyUI += '<div id="mre_first><span class="letter-count">300/300</span></div>';
+		modifyUI += '<textarea row="1" cols="28" name="com_comment" id="mre_content" class="rep-content">' + content + '</textarea>';
 		modifyUI += '<div id="mre_second" class="align-right">';
 		modifyUI += ' <input type="submit" value="수정">';
 		modifyUI += ' <input type="button" value="취소" class="re-reset">';

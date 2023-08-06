@@ -223,7 +223,6 @@
 	</style>
 <script type="text/javascript">
   $(document).ready(function() {
-	  alert(${style.st_num})
 	//사진 슬라이드
     const slides = $('.slides'); // 전체 슬라이드 컨테이너
     const slideImg = $('.slides li'); // 모든 슬라이드들
@@ -382,13 +381,14 @@
 	   	  </div>
 	   	  <!-- 댓글폼 -->
 	   	  <hr width="100%" color="#f4f4f4">
+	   	  <!-- 댓글 목록 출력 -->
+			<div id="output"></div>
+			<div class="paging-button" style="display:none;">
+				<input type="button" value="더보기">
+			</div>
+			<!-- 댓글 끝 -->
 	  	</div>
-	  	<!-- 댓글 목록 출력 -->
-		<div id="output"></div>
-		<div class="paging-button" style="display:none;">
-			<input type="button" value="더보기">
-		</div>
-		<!-- 댓글 끝 -->
+	  	
 	  </div>
 	</div>
 </div>

@@ -312,7 +312,7 @@ public class StyleController {
 	 *========================*/
 	@RequestMapping("/style/updateComment.do")
 	@ResponseBody
-	public Map<String,String> modifyReply(StyleCommentVO styleCommentVO, HttpSession session, HttpServletRequest request){
+	public Map<String,String> modifyComment(StyleCommentVO styleCommentVO, HttpSession session, HttpServletRequest request){
 		log.debug("<<styleCommentVO>> : " + styleCommentVO);
 		
 		Map<String,String> mapJson = new HashMap<String,String>();
