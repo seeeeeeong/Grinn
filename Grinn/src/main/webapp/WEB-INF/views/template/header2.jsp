@@ -2,24 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel = "stylesheet" type = "text/css" href = "${pageContext.request.contextPath}/css/sys/header.css">
-<head></head>
 <body>
 <div id = "layout">
 	<div id = "wrap" tabindex = "0" class = "layout_base lg wrap has_tap etc lg">
 	<div></div>
 		<div class = "header fixed">
-		
-		
-		
-		
 			<div class = "header_top">
 				<div class = "top_inner">
 					<ul class = "top_list">
+						<c:if test="${user.mem_auth != 9}">
 						<li class = "top_item">
 							<a class = "top_link" href="${pageContext.request.contextPath}/notice/noticeList.do">고객센터</a>
 						</li>
 						<li class = "top_item">
-							<a class = "top_link" href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a>
+							<a class = "top_link" href="${pageContext.request.contextPath}/user/myPage.do">MY페이지</a>
 						</li>
 						<li class = "top_item">
 							<a class = "top_link" href="${pageContext.request.contextPath}/item/fav.do">관심상품</a>
@@ -27,6 +23,7 @@
 						<li class = "top_item">
 							<a class = "top_link" href="${pageContext.request.contextPath}/alert/alert.do">알림</a>
 						</li>
+						</c:if>
 						<li class = "top_item">
 							<c:if test="${!empty user}">
 							<a class = "top_link" href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
@@ -54,7 +51,7 @@
 			<div class = "header_main">
 				<div class = "main_inner"><!--  -->
 					<h1>
-						<a class = "logo" href = "${pageContext.request.contextPath}/main/main.do">Grinn</a>
+						<a id = "logo" class = "logo" href = "${pageContext.request.contextPath}/main/main.do">Grinn</a>
 					</h1>
 					<div class = "center"></div>
 					<div class = "right">
@@ -62,16 +59,16 @@
 							<nav class = "gnb">
 								<ul class = "gnb_list">
 									<li class = "gnb_item">
-										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/main/main.do">HOME</a>
+										<a class = "gnb_link" href = "${pageContext.request.contextPath}/main/main.do">HOME</a>
 									</li>
 									<li class = "gnb_item">
-										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/style/list.do">STYLE</a>
+										<a class = "gnb_link" href = "${pageContext.request.contextPath}/style/list.do">STYLE</a>
 									</li>
 									<li class = "gnb_item">
-										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/item/itemList.do">SHOP</a>
+										<a class = "gnb_link" href = "${pageContext.request.contextPath}/item/itemList.do">SHOP</a>
 									</li>
 									<li class = "gnb_item">
-										<a class = "gnb_link active nuxt -link-active active" href = "${pageContext.request.contextPath}/fleamarket/list.do">FLEA MARKET</a>
+										<a class = "gnb_link" href = "${pageContext.request.contextPath}/fleamarket/marketSelect.do">FLEA MARKET</a>
 									</li>
 								</ul>
 							</nav>
@@ -89,24 +86,24 @@
 			
 			<div class = "portal_target vue-portal-target">
 				<nav class = "tabs">
-					<ul class = "ul_tab home_tabs inline">
+					<ul class = "ul_tab">
 						<li class = "li_tab">
-							<a class = "tab active" href = "recommendation">
+							<a class = "tab" href = "">
 								<span class = "tab_name">추천</span>
 							</a>
 						</li>
 						<li class = "li_tab">
-							<a class = "tab active" href = "male">
+							<a class = "tab" href = "">
 								<span class = "tab_name">남성</span>
 							</a>
 						</li>
 						<li class = "li_tab">
-							<a class = "tab active" href = "female">
+							<a class = "tab" href = "">
 								<span class = "tab_name">여성</span>
 							</a>
 						</li>
 						<li class = "li_tab">
-							<a class = "tab active" href = "luxury">
+							<a class = "tab" href = "luxury">
 								<span class = "tab_name">럭셔리</span>
 							</a>
 						</li>

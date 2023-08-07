@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <div class = "footer">
 	<div class = "footer_inner">
 		<div class = "service_area">
@@ -21,10 +20,10 @@
 					<div class = "menu_title_bottom">
 					<ul class = "menu_list">
 						<li class = "menu_item">
-							<a href = "${pageContext.request.contextPath}/notice/noticeAuth_policy.do" class = "menu_link">검수기준</a>
+							<a href = "" class = "menu_link">검수 기준</a>
 						</li>
 						<li class = "menu_item">
-							<a href = "${pageContext.request.contextPath}/notice/noticefaq.do" class = "menu_link">이용정책</a>
+							<a href = "" class = "menu_link">이용정책</a>
 						</li>
 						<li class = "menu_item">
 							<a href = "" class = "menu_link">패널티 정책</a>

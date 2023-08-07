@@ -1,0 +1,21 @@
+div{
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+.container{
+	position: relative;
+	overflow: hidden;
+}
+.home_card_list{
+	margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+}
+.banner_slide{
+	margin-left: calc(50% - 50vw);
+    width: 100vw;
+    max-height: 480px;
+    overflow: hidden;
+    position: relative;
+}

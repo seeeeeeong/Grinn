@@ -2,8 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<style>
+	h2{
+		text-align: center;
+	}
+	.table{
+		padding-top: 20px;
+	}
+</style>
 <div class="page-main">
 	<h2>회원목록</h2>
+	<div class = "table">
 	<table class="striped-table">
 		<tr>
 			<th>아이디</th>
@@ -32,4 +41,5 @@
 		</tr>
 		</c:forEach>
 	</table>
+	</div>
 </div>

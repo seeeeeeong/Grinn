@@ -44,7 +44,6 @@ public class MainController {
 		
 		return "admin";//타일스 설정의 식별자
 	}
-	
 }
 
 
