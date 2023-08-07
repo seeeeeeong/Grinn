@@ -14,6 +14,7 @@
 		});
 	});
 </script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
 <div class="page-main">
 	<h2>부스 목록</h2>
 	<!-- 검색창 시작 -->
@@ -37,25 +38,29 @@
 	</form>
 	<!-- 검색창 끝 -->
 	<c:if test="${count == 0}">
-	<div class="result-display">표시할 게시물이 없습니다.</div>
+	<div class="result-display">표시할 플리마켓이 없습니다.</div>
 	</c:if>
 	<c:if test="${count > 0}">
 	<table class="striped-table">
 		<c:forEach var="booth" items="${boothList}">
-		<tr>
-			<td class="align-center" width="400">${booth.market_thumbNail}</td>
-			<td width="200">${booth.market_title}</td>
-			<td>${booth.market_startDate} ${booth.market_endDate}</td>
-			<td>예약 일시</td>
+		<tr class="market-list">
+			<td class="align-center tuumbNail">
+				<a href="${pageContext.request.contextPath}/fleamarket/detail.do?market_num=${booth.market_num}">
+					<img src="${pageContext.request.contextPath}/fleamarket/imageView.do?market_num=${booth.market_num}&photo_type=2" width="80" height="120">
+				</a>
+			</td>
+			<td class="market-title"><b>${booth.market_title}</b></td>
+			<td class="market-date">${booth.market_startDate} ~ ${booth.market_endDate}</td>
+			<td class="align-center market-place">${booth.place_name}</td>
 			<td>
-				<input type="button" value="상세정보" onclick="location.href='boothDetail.do?market_num=${booth.market_num}'" class="detail-btn">
+				<input type="button" value="상세정보" onclick="location.href='detail.do?market_num=${booth.market_num}'" class="detail-btn">
 				<%-- <c:if test="${booth.market_startDate}"> --%>
-				<input type="button" value="예약 예정" class="before-btn">
+				<%-- <input type="button" value="예약 예정" class="before-btn">--%>
 				<%-- </c:if> --%>
-				<%-- <c:if test="${booth.market_startDate}">
-				<input type="button" value="예약 중" class="booking-btn">
-				</c:if> --%>
-				<%-- <c:if test="${booth.market_endDate}"> 
+				<%-- <c:if test="${booth.market_startDate}">--%>
+				<input type="button" value="예약 중" class="booking-btn" onclick="location.href='book.do?market_num=${booth.market_num}'" class="detail-btn">
+				<%--</c:if> 
+				 <c:if test="${booth.market_endDate}"> 
 				<input type="button" value="예약 종료" class="after-btn">
 				-- </c:if> --%>
 			</td>

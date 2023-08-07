@@ -65,3 +65,31 @@
 .market-font b{
 	font-size:35px;
 }
+/*플리마켓 목록
+-------------------------*/
+.thumbNail img{
+	width:240px;
+	height:auto;
+	margin-top:15px;
+}
+.market-list td{
+	height:112px;
+}
+.market-title{
+	width:300px;
+	margin: 20px 0 0 40px;
+	position:relative;
+}
+.market-date{
+	width:180px;
+	font-size:15px;
+	line-height:20px;
+	color:#999;
+	text-align:center;
+}
+.market-place{
+	font-size:15px;
+	line-height:20px;
+	color:#999;
+	text-align:center;
+}
