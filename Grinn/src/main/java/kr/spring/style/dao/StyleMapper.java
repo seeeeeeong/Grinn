@@ -49,7 +49,7 @@ public interface StyleMapper {
 	@Select("SELECT * FROM style_comment WHERE com_num=#{com_num}")
 	public StyleCommentVO selectComment(Integer com_num);
 	public void insertComment(StyleCommentVO styleComment);
-	@Update("UPDATE style_comment SET com_comment=#{com_comment}, st_mdate=SYSDATE WHERE com_num=#{com_num}")
+	@Update("UPDATE style_comment SET com_comment=#{com_comment}, com_mdate=SYSDATE WHERE com_num=#{com_num}")
 	public void updateComment(StyleCommentVO styleComment);
 	@Delete("DELETE FROM style_comment WHERE com_num=#{com_num}")
 	public void deleteComment(Integer com_num);

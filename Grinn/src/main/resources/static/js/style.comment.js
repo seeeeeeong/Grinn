@@ -48,10 +48,12 @@ $(function(){
 					
 					if(param.user_num == item.mem_num){
 						//로그인한 회원번호와 댓글작성자 회원번호가 같을 때
+						output += '<div class="com_btn">';
 						output += '<input type="button" data-num="' + item.com_num + '" value="수정" class="modify-btn">';
 						output += ' <input type="button" data-num="' + item.com_num + '" value="삭제" class="delete-btn">';
+						output += '</div>';
 					}
-					output += '<hr size="1" noshade>';
+					output += '<hr size="1" color="ebebeb">';
 					output += '</div>';
 					output += '</div>';
 					
@@ -128,11 +130,11 @@ $(function(){
 		let modifyUI = '<form id="mre_form">';
 		modifyUI += '<input type="hidden" name="com_num" id="mre_num" value="' + com_num + '">';
 		modifyUI += '<textarea row="1" cols="28" name="com_comment" id="mre_content" class="rep-content">' + content + '</textarea>';
-		modifyUI += '<div id="mre_second" class="align-right">';
+		modifyUI += '<div id="mre_second" class="com_btn">';
 		modifyUI += ' <input type="submit" value="수정">';
 		modifyUI += ' <input type="button" value="취소" class="re-reset">';
 		modifyUI += '</div>';
-		modifyUI += '<hr size="1" noshade width="96%">';
+		modifyUI += '<hr size="1" noshade width="96%" color="#f4f4f4">';
 		modifyUI += '</form>';
 		
 		//이전에 이미 수정하는 댓글이 있을 경우 수정버튼을 클릭하면 숨길 sub-item을 환원시키고 수정폼을 초기화함
@@ -231,7 +233,7 @@ $(function(){
 	//댓글삭제
 	$(document).on('click', '.delete-btn', function(){
 		//댓글번호
-		let re_num = $(this).attr('data-num');
+		let com_num = $(this).attr('data-num');
 		//서버와 통신
 		$.ajax({
 			url:'deleteComment.do',

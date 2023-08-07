@@ -162,12 +162,14 @@
 	
 	#modalContent{
 		float:right;
+		height:887px;
+		background-color:white;
 	}
 	
 	/*모달 팝업창*/
 	#modalBody {
 	  width: 400px;
-	  height: 829px;
+	  height: auto;
 	  padding: 30px 30px;
 	  margin: 0 auto;
 	  
@@ -219,6 +221,26 @@
 	}
 	.comment-submit{
 		magin-left:10px;
+	}
+	.sub-item .com_btn{
+		text-align:right;
+	}
+	#mre_form{
+		padding:0;
+		margin:0;
+		width:400px;
+	}
+	#mre_content{
+		font-size:13pt;
+		box-sizing: border-box;
+		border: solid 2px #dedede;
+		border-radius: 5px;
+		
+	}
+	#mre_second.com_btn{
+		width:400px;
+		text-align:right;
+		align-items: stretch;
 	}
 	</style>
 <script type="text/javascript">
