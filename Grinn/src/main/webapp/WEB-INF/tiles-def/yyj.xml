@@ -38,7 +38,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeDetail.jsp" />
 	</definition>
 
-	<!-- 메인 상속 -->
+	<!-- 메인 상속 / 공지사항 -->
 	<definition name="noticeWrite" extends="main">
 		<put-attribute name="title" value="공지사항 글 등록" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeWrite.jsp" />
@@ -47,6 +47,21 @@
 		<put-attribute name="title" value="공지사항 글 수정" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeModify.jsp" />
 	</definition>
+	<!-- 메인 상속 / 채팅 -->
+	<definition name="talkRoomWrite" extends="main">
+		<put-attribute name="title" value="채팅방 생성" />
+		<put-attribute name="body" value="/WEB-INF/views/talk/talkRoomWrite.jsp" />
+	</definition>
+    <definition name="talkList" extends="main">
+    	<put-attribute name="title" value="채팅리스트"/>
+	    <put-attribute name="body" value="/WEB-INF/views/talk/talkList.jsp"/>
+    </definition> 
+    <definition name="talkDetail" extends="main">
+    	<put-attribute name="title" value="채팅하기"/>
+	    <put-attribute name="body" value="/WEB-INF/views/talk/talkDetail.jsp"/>
+    </definition> 
+	
+	<!-- 메인 상속 / 챗봇 -->
 
 </tiles-definitions>
 
