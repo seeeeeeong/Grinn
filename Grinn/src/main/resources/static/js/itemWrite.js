@@ -7,18 +7,18 @@ $(function(){
 	});
 	
 	//처음 화면에 보여지는 이미지 읽기/ok
-	let photo_path = $('.my-photo').attr('src');
+	let photo_path = $('.item-photo').attr('src');
 	let my_photo; //업로드하고자 선택한 이미지 저장
 	$('#upload').change(function(){
 		my_photo = this.files[0];
 		if(!my_photo){
-			$('.my-photo').attr('src',photo_path);
+			$('.item-photo').attr('src',photo_path);
 			return;
 		}
 		
 		if(my_photo.size > 1024 * 1024){
 			alert(Math.round(my_photo.size/1024)+'kbytes(1024kbytes까지만 업로드 가능)');
-			$('.my-photo').attr('src',my_photo);
+			$('.item-photo').attr('src',my_photo);
 			$(this).val('');
 			return;
 		}
@@ -28,7 +28,7 @@ $(function(){
 		reader.readAsDataURL(my_photo);
 		
 		reader.onload = function(){
-			$('.my-photo').attr('src',reader.result);
+			$('.item-photo').attr('src',reader.result);
 		};
 	});
 	
@@ -47,7 +47,7 @@ $(function(){
 	})*/
 	//취소 버튼 처리
 	$('#photo_reset').click(function(){
-		$('.my-photo').attr('src',photo_path);
+		$('.item-photo').attr('src',photo_path);
 		$('#upload').val('');
 		$('#photo_choice').hide();
 		$('#photo_btn').show();
@@ -154,7 +154,7 @@ $(function(){
 			leftImage.style.transform = "translateY(0)";
 		}
 	});
-	/* 방법1 */
+	
 	var acc = document.getElementsByClassName("accordion");
 	var i;
 

@@ -13,7 +13,7 @@
             <ul>
                 <li>
                     <!-- 이미지를 나타낼 <img> 요소 -->
-                    <img src="${pageContext.request.contextPath}/images/face.png" width="200" height="200" class="my-photo">
+                    <img src="${pageContext.request.contextPath}/images/item_add.png" width="200" height="200" class="item-photo">
                     <div class="camera" id="photo_btn">
                         <img src="${pageContext.request.contextPath}/images/camera.png" width="35">
                     </div>

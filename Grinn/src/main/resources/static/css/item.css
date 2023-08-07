@@ -40,11 +40,19 @@
 /*-------------
 	상품목록
 ---------------*/
+form#search_form {
+	margin-bottom: 20px;
+}
+
 .list01 {
-	display: flex;
+	/* display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* 아이템을 균등하게 분배합니다 */
-    margin-top: 10px;
+    justify-content: space-between; 아이템을 균등하게 분배합니다
+    margin-top: 10px; */
+	display: grid;
+	grid-template-columns: repeat(4, 1fr); /* 4개의 열로 정렬 */
+	grid-auto-rows: minmax(100px, auto);
+	grid-gap: 10px;    
 }
 
 .list01 a {
@@ -62,8 +70,9 @@ a:hover{
     box-sizing: border-box;
 }
 a img{
-	width: 200px;
-	height:200px;
+	width: 220px;
+	height:220px;
+	border-radius: 10px;
 }
 p {
 	margin: 5px;
@@ -276,17 +285,6 @@ h3{
 .Grinninfo{
 	color: rgba(34,34,34,.5);
 	margin-top:20px; 
-}
-
-/* align-right 스타일 */
-.align-right {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-}
-
-.align-right button {
-  margin-left: 10px;
 }
 
 /* 구매 전 확인해주세요! */

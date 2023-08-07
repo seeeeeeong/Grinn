@@ -71,7 +71,7 @@
 			ORDER BY b.item_num DESC
 		</if>
 		<if test="order == 2"><!-- 관심상품순 -->
-			ORDER BY f.fav_cnt DESC
+			ORDER BY f.fav_cnt DESC NULLS LAST
 		</if>
 		<if test="order == 3"><!-- 리뷰순 -->
 			ORDER BY r.re_cnt DESC
@@ -127,8 +127,10 @@
 		<if test="item_keyword3!=null or item_keyword3!=''">
 			item_keyword3=#{item_keyword3},
 		</if>
+		<if test="item_photo1.length>0">
 		item_photo1=#{item_photo1},
 		item_photo1name=#{item_photo1name},
+		</if>
 		item_cate=#{item_cate},
 		item_gender=#{item_gender},
 		item_status=#{item_status}

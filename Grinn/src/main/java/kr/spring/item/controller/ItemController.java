@@ -57,7 +57,7 @@ public class ItemController {
 		log.debug("<<count>> : " + count);
 		
 		//페이지처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 20, 10, "itemList.do","&order="+order);
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 12, 10, "itemList.do","&order="+order);
 		
 		List<ItemVO> list = null;
 		if(count > 0) {
@@ -154,7 +154,7 @@ public class ItemController {
 
 	// 상품 사진 출력(회원번호 지정)
 	@RequestMapping("/item/viewProfile.do")
-	public String getProfileByItem_num(@RequestParam(required = false) int item_num, HttpServletRequest request, Model model) {
+	public String getProfileByItem_num(@RequestParam int item_num, HttpServletRequest request, Model model) {
 		ItemVO itemVO = itemService.selectItem(item_num);
 		
 		viewProfile(itemVO, request, model);
@@ -166,7 +166,7 @@ public class ItemController {
 	public void viewProfile(ItemVO itemVO, HttpServletRequest request, Model model) {
 		if (itemVO == null || itemVO.getItem_photo1() == null) {
 			// 기본 이미지 읽기
-			byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/face.png"));
+			byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/item_add.png"));
 			model.addAttribute("imageFile", readbyte);
 			model.addAttribute("filename", "face.png");
 		} else {
