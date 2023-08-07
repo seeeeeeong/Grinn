@@ -82,7 +82,6 @@
 	</c:if>
 	<div class="align-right">
 		<input type="button" value="부스 등록" onclick="location.href='adminBoothWrite.do'" class="register-btn">
-		<input type="button" value="장소 등록" onclick="location.href='adminBoothWrite.do'" class="register-btn">
 	</div>
 </div>
 <!-- 부스 리스트 목록 끝 -->
