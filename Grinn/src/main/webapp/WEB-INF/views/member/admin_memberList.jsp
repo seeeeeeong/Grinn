@@ -13,6 +13,11 @@
 		});
 	});
 </script>
+<style>
+	h2{
+		text-align: center;
+	}
+</style>
 <div class="page-main">
 	<h2>회원목록(관리자)</h2>
 	<form action="admin_list.do" id="search_form" method="get">

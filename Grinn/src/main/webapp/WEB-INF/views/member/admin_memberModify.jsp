@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+	h2{
+		text-align: center;
+	}
+</style>
 <div class="page-main">
 	<h2>회원권한 수정(관리자)</h2>
 	<form:form modelAttribute="memberVO" action="admin_update.do" id="modify_form">

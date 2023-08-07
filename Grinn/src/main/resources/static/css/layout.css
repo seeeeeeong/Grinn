@@ -16,7 +16,10 @@
 	min-height:500px;
 }
 #page_nav{
-	padding-top: 100px;
+	padding-top: 160px;
+}
+#page_body{
+	padding-top: 90px;
 }
 /*
 #main_footer{
