@@ -19,7 +19,7 @@
 	padding-top: 160px;
 }
 #page_body{
-	padding-top: 90px;
+	padding-top: 160px;
 }
 /*
 #main_footer{
@@ -417,7 +417,7 @@ header.css
 ====================*/
 
 #layout{
-	opacity: 0.9;
+	opacity: 1;
 }
 .header.fixed{
 	position: fixed;

@@ -42,6 +42,7 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<div class="align-center">${page}</div>
 		</div>
 	</div>
 </div>

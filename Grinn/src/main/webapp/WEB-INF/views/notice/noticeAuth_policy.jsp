@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/notice.js"></script>
 <div class="page-main">
-	<div id="page_body">
-		<h3 id="ha">검수기준</h3>
+	<div class="page_body">
+		<h2 id="ha">검수기준</h2>
 		<div class="categories">
 			<div class="category_list"><!-- 검수기준카테고리별 선택기능 -->
 				<table class="category_list_items">
