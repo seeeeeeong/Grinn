@@ -63,25 +63,6 @@
 								<p class="title">${faq.no_title}</p>
 							</div>
 							<%-- 드롭다운 시작 --%>
-							<script type="text/javascript">
-								$(document).ready(function(){//if문이나 for문으로 받는거 생각해보기 - 숙제~
-									let imgOpen = document.getElementsByClassName('imgOpen');
-									let imgClose = document.getElementsByClassName('imgClose');
-									let dropdown_content = document.getElementsByClassName('dropdown_content');
-									
-									imgOpen.onclick = function(){
-										dropdown_content.style.display = 'block';
-										imgClose.style.display = 'block';
-										imgOpen.style.display = 'none';
-									};
-									imgClose.onclick = function(){
-										dropdown_content.style.display = 'none';
-										imgOpen.style.display = 'block';
-										imgClose.style.display = 'none';
-									};
-								}); 
-								
-							</script>
 							<div class="imgOpen" id="imgOpen"><!-- 위아래 표시하는 사진 넣을 곳 -->
 								<img class="classOpenImg"
 									src="${pageContext.request.contextPath}/image_bundle/classOpen.png" />
@@ -90,6 +71,9 @@
 								<img class="classCloseImg"
 									src="${pageContext.request.contextPath}/image_bundle/classClose.png" />
 							</div>
+							<script type="text/javascript">
+								 
+							</script>
 							<%-- 드롭다운 끝 --%>
 						</div>
 						<div class="dropdown_content" id="dropdown_content" style="display:none;">
@@ -106,3 +90,93 @@
 	</div>
 	<div class="page-clear"></div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="dropdown">
+  <img src="image1.png" class="dropdown-button">
+  <ul class="dropdown-menu">
+    <li>Option 1</li>
+    <li>Option 2</li>
+    <li>Option 3</li>
+  </ul>
+</div>
+<div class="dropdown">
+  <img src="image2.png" class="dropdown-button">
+  <ul class="dropdown-menu">
+    <li>Option 1</li>
+    <li>Option 2</li>
+    <li>Option 3</li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+const dropdownButtons = document.querySelectorAll(".dropdown-button");
+
+dropdownButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // 해당 이미지의 드롭다운 메뉴를 표시합니다.
+    button.nextElementSibling.style.display = "block";
+  });
+});
+
+const options = ["Option 1", "Option 2", "Option 3"];
+
+dropdownButtons.forEach((button) => {
+  button.nextElementSibling.querySelectorAll("li").forEach((li) => {
+    li.addEventListener("click", () => {
+      // 해당 이미지의 드롭다운 메뉴의 옵션을 선택합니다.
+      button.src = li.dataset.src;
+    });
+  });
+});
+</script>
+
+<style>
+.dropdown {
+  position: relative;
+}
+
+.dropdown-button {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.dropdown-menu li {
+  list-style: none;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.dropdown-menu li:hover {
+  background-color: #eee;
+}
+</style>

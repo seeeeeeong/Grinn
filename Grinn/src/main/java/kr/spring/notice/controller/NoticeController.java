@@ -132,6 +132,7 @@ public class NoticeController {
 		return mav;
 	}
 	
+	
 	/* ======================== 고객센터(검수기준) 글 목록 ======================== */
 	@RequestMapping("/notice/noticeAuth_policy.do")
 	public ModelAndView getNoticeAuthPolicyList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,

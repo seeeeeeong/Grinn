@@ -31,10 +31,7 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeMapper.selectFaqList(map);
 	}
 
-	@Override
-	public List<NoticeVO> selectAuthList(Map<String, Object> map) {
-		return noticeMapper.selectAuthList(map);
-	}
+	
 
 	@Override
 	public void insertNotice(NoticeVO notice) {
@@ -55,6 +52,12 @@ public class NoticeServiceImpl implements NoticeService{
 	public void deleteNotice(Integer no_num) {
 		noticeMapper.deleteNotice(no_num);
 	}
+
+	@Override
+	public List<NoticeVO> selectAuthList(Map<String, Object> map) {
+		return noticeMapper.selectAuthList(map);
+	}
+
 
 
 
