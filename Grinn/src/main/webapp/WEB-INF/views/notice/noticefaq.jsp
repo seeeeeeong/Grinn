@@ -21,6 +21,7 @@
 	<div id="page_body">
 		<h3 id="ha">자주묻는질문</h3>
 		<!-- 검색부분 추가예정 -->
+		
 		<div class="categories">
 			<div class="category_list"><!-- 자주묻는질문 카테고리별 선택기능 -->
 				<table class="category_list_items">
