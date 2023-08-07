@@ -134,6 +134,8 @@ public class TradeController {
 		model.addAttribute("item_sizenum", item_sizenum);
 		model.addAttribute("saleBidCount", saleBidCount);
 		// 아이템 번호로 아이템 정보 구해서 넘기기 *********
+		ItemVO item = itemService.selectItem(item_num);
+		model.addAttribute("item",item);
 		// 구매자 정보 넘기기 **************
 		return "purchaseDetail";
 	}
@@ -316,6 +318,8 @@ public class TradeController {
 		model.addAttribute("item_sizenum", item_sizenum);
 		model.addAttribute("purchaseBidCount", purchaseBidCount);
 		// 아이템 번호로 아이템 정보 구해서 넘기기 *********
+		ItemVO item = itemService.selectItem(item_num);
+		model.addAttribute("item",item);
 		// 구매자 정보 넘기기 **************
 		return "saleDetail";
 	}

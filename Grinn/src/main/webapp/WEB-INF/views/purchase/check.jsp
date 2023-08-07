@@ -72,7 +72,6 @@
 					<c:if test="${!empty item_size }">
 						<p class="d">${item_size}</p>
 					</c:if>
-					
 				</div>
 			</div>
 			<div class="check-purchase">

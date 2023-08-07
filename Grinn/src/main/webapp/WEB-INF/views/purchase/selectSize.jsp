@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/selectSize.css">
 <h1 class="align-center">구매 하기</h1>
 <div class="page-size-main">
@@ -37,12 +39,12 @@
 										${list.item_size}
 									</c:if>
 								</span>
-								<span class="price">
+								<span class="price" <c:if test="${list.sale_price != 0}">style="color:#fa7070;"</c:if>>
 									<c:if test="${list.sale_price == 0}">
 										구매입찰
 									</c:if>
 									<c:if test="${list.sale_price != 0}">
-										${list.sale_price}원
+										<fmt:formatNumber value="${list.sale_price}"/>원
 									</c:if>
 								</span>
 							</div>

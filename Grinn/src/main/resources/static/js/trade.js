@@ -36,7 +36,7 @@ $(function(){
 					item_sizenum:$('#item_sizenum').val(),
 					item_size:$('#item_size').val(),
 					deadline:$('#print_deadline').attr('data-deadline'),
-					purchase_price:$('#input_bid').val(),
+					purchase_price:$('#input_bid').val().replaceAll(',',''),
 					dateDeadline:dateDeadline
 				},
 				dataType:'json',
