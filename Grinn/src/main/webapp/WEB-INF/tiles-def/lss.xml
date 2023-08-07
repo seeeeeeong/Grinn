@@ -44,6 +44,12 @@
 	    <put-attribute name="body" value="/WEB-INF/views/user/userPenaltyInfo.jsp"/>
     </definition>
     
+    <!-- userLoginInfo -->
+    <definition name="userDelete" extends="myPage">
+    	<put-attribute name="title" value="회원탈퇴"/>
+	    <put-attribute name="body" value="/WEB-INF/views/user/userDelete.jsp"/>
+    </definition>
+    
     <!-- userStyle -->
     <definition name="userStyle" template="/WEB-INF/views/template/layout_basic.jsp">
     	<put-attribute name="title" value="user"/>

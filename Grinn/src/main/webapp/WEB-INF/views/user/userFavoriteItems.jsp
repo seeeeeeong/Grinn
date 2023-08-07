@@ -16,7 +16,7 @@
   <tbody>
     <c:forEach items="${favoriteItems}" var="item">
       <tr>
-        <td><img src="${item.item_photo1}" width="50" height="50"></td>
+        <td> <td><img src="/user/ItemImageView.do?item_num=${item.item_num}" alt="Item Image"></td></td>
         <td>${item.item_brand}</td>
         <td>${item.item_name}</td>
         <td>${item.item_price}</td>

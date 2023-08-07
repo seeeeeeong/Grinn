@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
 import kr.spring.user.service.UserService;
+import kr.spring.util.AuthCheckException;
 import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,6 +47,11 @@ public class UserController {
 	@ModelAttribute
 	public ItemVO initItemVO() {
 		return new ItemVO();
+	}
+	
+	@ModelAttribute
+	public StyleVO initStyleVO() {
+		return new StyleVO();
 	}
 	/*
 	 * =========================== MY페이지 ===========================
@@ -85,7 +92,8 @@ public class UserController {
 	    model.addAttribute("mem_photo", member.getMem_photo());
 	    model.addAttribute("mem_nickname", member.getMem_nickname());
 	    model.addAttribute("mem_email", member.getMem_email());
-
+	    model.addAttribute("mem_num", member.getMem_num());
+	    
 	    //mem_auth 값이 2이면 "일반회원", 9이면 "관리자"로 표시
 	    String memAuthText = (member.getMem_auth() == 2) ? "일반회원" : (member.getMem_auth() == 9) ? "관리자" : "";
 	    model.addAttribute("mem_auth", memAuthText);
@@ -132,11 +140,11 @@ public class UserController {
 	@GetMapping("/user/ItemImageView.do")
 	public String ItemImageView(@RequestParam int item_num, Model model) {
 	    ItemVO ItemVO = userService.selectItem(item_num);
+			
+	    model.addAttribute("imageFile", ItemVO.getItem_photo1());
+		model.addAttribute("filename", ItemVO.getItem_photo1name());
 		
-	    	model.addAttribute("imageFile", ItemVO.getItem_photo1());
-			model.addAttribute("filename", ItemVO.getItem_photo1name());
-	 
-	    return "ItemImageView";
+	    return "imageView";
 	}
 	
 	/*=======================
@@ -290,21 +298,41 @@ public class UserController {
     public String likedStylesPage(HttpSession session, Model model) {
         //로그인된 사용자 정보 가져오기
         MemberVO user = (MemberVO) session.getAttribute("user");
-
-        //좋아요한 상품들 조회
-        List<MemberVO> likedStyles = userService.selectLikedStyles(user.getMem_num());
+        
+        //좋아요한 게시물 조회
+        List<StyleVO> likedStyles = userService.selectLikedStyles(user.getMem_num());
         model.addAttribute("likedStyles", likedStyles);
-
+        
+        List<String> memId = userService.selectStyleId(user.getMem_num());
+        model.addAttribute("memId", memId);
+        
         //likedStyles 페이지로 이동
         return "userLikedStyles";
     }
+    
+	/*
+	 * =========================== 좋아요 사진 ===========================
+	 */
+	@GetMapping("/user/StyleImageView.do")
+	public String StyleImageView(@RequestParam int st_num, Model model) {
+	    StyleVO StyleVO = userService.selectStyle(st_num);
+			
+	    model.addAttribute("imageFile", StyleVO.getSt_photo1());
+		model.addAttribute("filename", StyleVO.getSt_photo1n());
+		
+	    return "imageView";
+	}
+	
+	/*
+	 * =========================== 좋아요 작성자 ===========================
+	 */
+
     
     /*
      * =========================== 내 정보 - 로그인 정보 ===========================
      */
     @GetMapping("/user/userLoginInfo.do")
-    public String loginInfo(HttpSession session, Model model,
-                            @RequestParam(name = "action", required = false) String action) {
+    public String loginInfo(HttpSession session, Model model) {
         //로그인된 사용자 정보 가져오기
         MemberVO user = (MemberVO) session.getAttribute("user");
 
@@ -316,14 +344,6 @@ public class UserController {
 
         //action 파라미터가 없거나 잘못된 값일 경우 기본 페이지로 이동
         return "userLoginInfo";
-    }
-
-    //회원 탈퇴
-    @PostMapping("/user/deleteMember")
-    @ResponseBody
-    public String deleteMember(@RequestParam("mem_num") Integer mem_num) {
-        userService.deleteMember(mem_num);
-        return "success";
     }
 
     //이메일 변경
@@ -460,6 +480,58 @@ public class UserController {
         return "success";      
 	}
     
+	/*=======================
+	 * 회원탈퇴(회원정보삭제)
+	 *=======================*/
+	//회원탈퇴 폼 호출
+	//회원 탈퇴
+	@GetMapping("/user/delete.do")
+	public String formDelete() {
+		return "userDelete";
+	}
+	//전송된 데이터 처리
+	@PostMapping("/user/delete.do")
+	public String submitDelete(@Valid MemberVO memberVO,
+			            BindingResult result, HttpSession session,
+			            Model model) {
+		log.debug("<<회원탈퇴>> : " + memberVO);
+		
+		//id와 passwd 필드만 유효성 체크, 유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasFieldErrors("mem_id") || 
+				result.hasFieldErrors("mem_passwd")) {
+			return formDelete();
+		}
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MemberVO db_member = 
+				userService.selectMember(user.getMem_num());
+		boolean check = false;
+		//아이디, 비밀번호 일치 여부 체크
+		try {
+			if(db_member!=null && 
+					db_member.getMem_id().equals(memberVO.getMem_id())) {
+				//비밀번호 일치 여부 체크
+				check = db_member.isCheckedPassword(
+						              memberVO.getMem_passwd());
+			}
+			if(check) {
+				//인증 성공, 회원정보 삭제
+				userService.deleteMember(user.getMem_num());
+				//로그아웃
+				session.invalidate();
+				
+				model.addAttribute("accessMsg", 
+						   "회원탈퇴를 완료했습니다.");
+				return "common/notice";
+			}
+			//인증 실패
+			throw new AuthCheckException();
+		}catch(AuthCheckException e) {
+			result.reject("invalidIdOrPassword");
+			return formDelete();
+		}
+	}
+	
     /*
      * =========================== 페널티 정보 조회 ===========================
      */

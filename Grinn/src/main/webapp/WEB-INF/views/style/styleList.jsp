@@ -58,8 +58,10 @@
                     	<img src="${pageContext.request.contextPath}/image_upload/${style.st_photo1n}" width="300" height="300">
                 	</a>
                 	<div class="user-profile">
-    				<img src="profile_picture.png" class="profile-photo" onclick="redirectToUserProfile(${style.mem_num})">
+                	<a href="/user/userStyle.do?mem_num=${style.mem_num}">
+    				<img src="profile_picture.png" class="profile-photo">
     				<span>${style.mem_id}</span>
+    				</a>
 					</div>
                     <div class="like-button">
                     	<img id="output_fav" data-num="${style.st_num}" src="${pageContext.request.contextPath}/images/no_like.png">
@@ -78,13 +80,3 @@
     	</div>
     	<div class="align-center">${page}</div>
     </div>
-
-<script type="text/javascript">
-    function redirectToUserProfile(mem_num) {
-        // 페이지 이동할 URL 생성
-        var url = `/user/userStyle.do?mem_num=${mem_num}`;
-        
-        // URL로 페이지 이동
-        window.location.href = url;
-    }
-</script>

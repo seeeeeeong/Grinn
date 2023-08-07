@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.userStyle.dao.UserStyleMapper;
 
@@ -71,6 +72,36 @@ public class UserStyleServiceImpl implements UserStyleService{
 	@Override
 	public int getFollowingCount(Integer fromUser) {
 		return userStyleMapper.getFollowerCount(fromUser);
+	}
+
+	@Override
+	public MemberVO selectStyleProfile(Integer mem_num) {
+		return userStyleMapper.selectStyleProfile(mem_num);
+	}
+
+	@Override
+	public StyleFavVO selectFav(StyleFavVO fav) {
+		return userStyleMapper.selectFav(fav);
+	}
+
+	@Override
+	public int selectFavCount(Integer st_num) {
+		return userStyleMapper.selectFavCount(st_num);
+	}
+
+	@Override
+	public void insertFav(StyleFavVO fav) {
+		userStyleMapper.insertFav(fav);
+	}
+
+	@Override
+	public void deleteFav(Integer stfav_num) {
+		userStyleMapper.deleteFav(stfav_num);
+	}
+
+	@Override
+	public void deleteFavByStNum(Integer st_num) {
+		userStyleMapper.deleteFavByStNum(st_num);
 	}
 
 }

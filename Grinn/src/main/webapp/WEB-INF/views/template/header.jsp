@@ -9,7 +9,7 @@
 
 	<c:if test="${!empty user && user.mem_auth == 2}">
 		<a href="${pageContext.request.contextPath}/user/myPage.do">MY페이지</a>
-		<a href="${pageContext.request.contextPath}/item/fav.do">관심상품</a>
+		<a href="${pageContext.request.contextPath}/user/userFavoriteItems.do">관심상품</a>
 		<a href="${pageContext.request.contextPath}/alert/alert.do">알림</a>
 	</c:if>
 	

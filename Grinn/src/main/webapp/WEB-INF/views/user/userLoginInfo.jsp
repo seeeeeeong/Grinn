@@ -7,31 +7,31 @@
 <div class="page-main">
    	<!-- 프로필 이미지 출력 -->
 	<img src="${pageContext.request.contextPath}/member/photoView.do" width="200" height="200" class="my-photo">
-
+	
     <!-- 닉네임 -->
-    <p>닉네임: ${mem_nickname}</p>
-
+    <p>닉네임: ${member.mem_nickname}</p>
+	
     <!-- 프로필 이미지 변경 버튼 -->
     <input type="file" id="photoFileInput">
     <input type="button" value="프로필 이미지 변경" id="photo_change_button">
-
+	
     <!-- 프로필 이미지 삭제 버튼 -->
     <input type="button" value="이미지 삭제" id="photo_delete_button">
-
+	
     <!-- 이메일주소 -->
-    <p>이메일: ${mem_email}</p>
+    <p>이메일: ${member.mem_email}</p>
 
     <!-- 이메일 변경 버튼 -->
     <input type="text" id="newEmailInput"> <!-- 이메일을 입력 받을 입력란 -->
     <input type="button" value="이메일 변경" id="email_change_button">
 
     <!-- 비밀번호 -->
-    <p>비밀번호: ${mem_password}</p>
+    <p>비밀번호: ${member.mem_passwd}</p>
     <!-- 비밀번호 변경 버튼 -->
     <input type="button" value="비밀번호 변경" id="password_change_button">
 
     <!-- 휴대폰번호 -->
-    <p>휴대폰번호: ${mem_phone}</p>
+    <p>휴대폰번호: ${member.mem_phone}</p>
     <input type="text" id="newPhoneInput"> <!-- 전화번호 입력 받을 입력란 -->
     <input type="button" value="전화번호 변경" id="phone_change_button">
 
@@ -60,6 +60,10 @@
     <!-- 소개 변경 버튼 -->
     <input type="text" id="newIntInput"> <!-- 소개를 입력 받을 입력란 -->
     <input type="button" value="소개 변경" id="int_change_button">
+    
+    <!-- 회원탈퇴 버튼 -->
+    <input type="button" class="menu-btn" value="회원탈퇴"
+			  onclick="location.href='${pageContext.request.contextPath}/user/delete.do'">
 </div>
 <!-- 회원정보 끝 -->
 

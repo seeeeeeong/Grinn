@@ -3,19 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="page-main">
-<!-- 회원정보 시작 -->
+	<!-- 회원정보 시작 -->
     <img src="${pageContext.request.contextPath}/user/photoView.do" width="200" height="200" class="my-photo">
     <p>닉네임: ${mem_nickname}</p>
     <p>이메일: ${mem_email}</p>
     <p>권한: ${mem_auth}</p>
     <p>포인트: ${mem_point}</p>
-<!-- 프로필 관리 버튼 -->
+    <p>포인트: ${mem_num}</p>
+	<!-- 프로필 관리 버튼 -->
     <input type="button" class="menu-btn" value="프로필 관리"
            onclick="location.href='${pageContext.request.contextPath}/user/userLoginInfo.do'">
     <!-- 내 스타일 버튼 -->
-    <input type="button" class="menu-btn" value="내 스타일"
-           onclick="location.href='${pageContext.request.contextPath}/user/userStyle.do'">
-<!-- 회원정보 끝 -->
+	<a href="/user/userStyle.do?mem_num=${mem_num}">
+        <input type="button" class="menu-btn" value="내 스타일">
+    </a>
+	<!-- 회원정보 끝 -->
 
 <!-- 구매내역 시작 -->
 <h2>구매 내역</h2>

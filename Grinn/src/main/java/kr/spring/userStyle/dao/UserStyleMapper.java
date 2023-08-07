@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Select;
 
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 
 @Mapper
@@ -34,6 +35,22 @@ public interface UserStyleMapper {
     @Select("SELECT * FROM style WHERE st_num = #{st_num}")
     public StyleVO selectUserStyle(Integer st_num);
 
+    //스타일 테이블의 mem_num에 해당하는 member_detail 테이블의 정보 가져오기
+    @Select("SELECT * FROM member m JOIN member_detail md ON m.mem_num = md.mem_num JOIN style s ON s.mem_num = md.mem_num WHERE s.st_num = #{st_num}")
+    public MemberVO selectStyleProfile(Integer st_num);
+    
+	//좋아요
+	@Select("SELECT * FROM style_fav WHERE st_num=#{st_num} AND mem_num=#{mem_num}")
+	public StyleFavVO selectFav(StyleFavVO fav);
+	@Select("SELECT COUNT(*) FROM style_fav WHERE mem_num=#{mem_num}")
+	public int selectFavCount(Integer mem_num);
+	@Insert("INSERT INTO style_fav (stfav_num,mem_num,st_num) VALUES (style_fav_seq.nextval,#{mem_num},#{st_num})")
+	public void insertFav(StyleFavVO fav);
+	@Delete("DELETE FROM style_fav WHERE stfav_num=#{stfav_num}")
+	public void deleteFav(Integer stfav_num);
+	@Delete("DELETE FROM style_fav WHERE st_num=#{st_num}")
+	public void deleteFavByStNum(Integer st_num);
+    
     //팔로우 
     @Insert("INSERT INTO follow (to_user, from_user) VALUES (#{to_user}, #{from_user})")
     public void insertFollow(@Param("to_user") Integer toUser, @Param("from_user") Integer fromUser);

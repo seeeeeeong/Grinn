@@ -1,13 +1,11 @@
 package kr.spring.userStyle.service;
 
-
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
-import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 
 public interface UserStyleService {
@@ -23,7 +21,17 @@ public interface UserStyleService {
     
     //st_num에 해당하는 style 테이블의 정보 가져오기
     public StyleVO selectUserStyle(Integer st_num);
-
+    
+    //스타일 테이블의 mem_num에 해당하는 member_detail 테이블의 정보 가져오기
+    public MemberVO selectStyleProfile(Integer mem_num);
+    
+	//좋아요
+	public StyleFavVO selectFav(StyleFavVO fav);
+	public int selectFavCount(Integer st_num);
+	public void insertFav(StyleFavVO fav);
+	public void deleteFav(Integer stfav_num);
+	public void deleteFavByStNum(Integer st_num);
+    
     //팔로우 
     public void insertFollow(@Param("to_user") Integer toUser, @Param("from_user") Integer fromUser);
 

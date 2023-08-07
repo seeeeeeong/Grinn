@@ -10,6 +10,7 @@ import kr.spring.user.dao.UserMapper;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
 
 @Service
@@ -40,11 +41,6 @@ public class UserServiceImpl implements UserService{
 		return userMapper.selectFavoriteItems(mem_num);
 	}
 	
-	@Override
-	public List<MemberVO> selectLikedStyles(Integer mem_num) {
-		return userMapper.selectLikedStyles(mem_num);
-	}
-
 	@Override
 	public Integer getPenaltyTotalScore(Integer mem_num) {
 		return userMapper.getPenaltyTotalScore(mem_num);
@@ -144,4 +140,21 @@ public class UserServiceImpl implements UserService{
 	public ItemVO selectItem(Integer item_num) {
 		return userMapper.selectItem(item_num);
 	}
+
+	@Override
+	public List<StyleVO> selectLikedStyles(Integer mem_num) {
+		return userMapper.selectLikedStyles(mem_num);
+	}
+
+	@Override
+	public StyleVO selectStyle(Integer st_num) {
+		return userMapper.selectStyle(st_num);
+	}
+
+	@Override
+	public List<String> selectStyleId(Integer mem_num) {
+		return userMapper.selectStyleId(mem_num);
+	}
+
+	
 }

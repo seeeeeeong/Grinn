@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
 
 public interface UserService {
@@ -74,8 +75,14 @@ public interface UserService {
 	//관심 상품
 	public List<ItemVO> selectFavoriteItems(Integer mem_num);
 	
-	//좋아요
-	public List<MemberVO> selectLikedStyles(Integer mem_num);
+	//좋아요한 게시물 정보 가져오기
+	public List<StyleVO> selectLikedStyles(Integer mem_num);
+	
+	//좋아요한 게시물의 st_num에 해당하는 style 테이블의 정보 가져오기
+	public StyleVO selectStyle(Integer st_num);	
+	
+	//좋아요한 게시물의 작성자 ID 가져오기
+	public List<String> selectStyleId(Integer mem_num);
 	
     //패널티 통합 점수
     public Integer getPenaltyTotalScore(Integer mem_num);
