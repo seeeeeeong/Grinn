@@ -367,39 +367,34 @@
     margin-left: auto;
     margin-top: 0;
 }
-.search_faq_wrap{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: "frac" 0,"numr" 0;
-    color: #222;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    position: relative;
+.search_faq_div{
+	background-color: #d6d6d6;
+	border-radius: 15px;
+    background-color: #f4f4f4;
+    font-size: 15px;
+    margin: 16px 0 20px;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 16px;
+    padding: 11px 30px 11px 12px;
 }
-.input_search_faq{
-    --global-header-height: 86px;
+.search_faq_input{
+	--global-header-height: 52px;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     box-sizing: border-box;
-    margin: 0;
     font-feature-settings: "frac" 0,"numr" 0;
     color: #222;
-    appearance: none;
-    background: none;
-    background-color: transparent;
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    -webkit-appearance: none;
     border: 0;
-    border-radius: 0;
-    outline: none;
-    padding: 0;
-    position: absolute;
-    right: 14px;
-    top: 30px;
-    display: none;
+    outline: 0;
+    resize: none;
+    background-color: #f4f4f4;
+    font-size: 15px;
 }
+
 
 /* notice_nav
 ------------------------*/
@@ -408,9 +403,30 @@ a:hover{
 	text-decoration: none;
 	color: black;
 }
+.asdsfaf{
+    --global-header-height: 52px;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+    font-feature-settings: "frac" 0,"numr" 0;
+    color: #222;
+    -webkit-appearance: none;
+    border: 0;
+    outline: 0;
+    resize: none;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    font-size: 15px;
+    margin: 16px 0 20px;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 16px;
+    padding: 11px 30px 11px 12px;
 
 
 
-
+	
+}
 
 
