@@ -9,44 +9,25 @@
 			$(this).click(function(){
 				let id = 'check' + (index+1);
 				if($('input[id='+id+']').is(':checked')){
-					$('input[id='+id+']').attr('checked',false);
+					$('input[id='+id+']').prop('checked',false);
 				}else{
-					$('input[id='+id+']').attr('checked',true);	
+					$('input[id='+id+']').prop('checked',true);	
 				}
 				checking();
 			});
 		});
 		
 		function checking(){
-			if(!$('#check1').is(':checked')){
-				$('#btn_purchase').attr('disabled','disabled');
-				c=false;
-				return;
+			if($('#check1').is(':checked') && $('#check2').is(':checked') && $('#check4').is(':checked') && $('#check3').is(':checked')){
+				$('#btn_purchase').prop('disabled',false);
+				$('#btn_purchase').css('background-color','#fa7070');
+				$('#btn_purchase').css('color','white');
+			}else{
+				$('#btn_purchase').css('background-color','#ebebeb');
+				$('#btn_purchase').css('color','black');
+				$('#btn_purchase').prop('disabled',true);
+				$('#btn_purchase').removeAttr('cursor');	
 			}
-			if(!$('#check2').is(':checked')){
-				$('#btn_purchase').attr('disabled','disabled');
-				c=false;
-				return;
-			}
-			if(!$('#check3').is(':checked')){
-				$('#btn_purchase').attr('disabled','disabled');
-				c=false;
-				return;
-			}
-			if(!$('#check4').is(':checked')){
-				$('#btn_purchase').attr('disabled','disabled');
-				c=false;
-				return;
-			}
-			$('#btn_purchase').removeAttr('disabled');
-			$('#btn_purchase').css('background-color','#fa7070');
-			$('#btn_purchase').css('color','white');
-			c=true;
-			return;
-		}
-		
-		if(!c){
-			$('#btn_purchase').removeAttr('cursor');
 		}
 	});
 </script>

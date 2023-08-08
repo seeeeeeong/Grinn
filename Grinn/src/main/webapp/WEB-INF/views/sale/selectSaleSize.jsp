@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/selectSize.css">
 <h1 class="align-center">판매 하기</h1>
 <div class="page-size-main">
@@ -20,6 +21,13 @@
 				<ul class="select-list">
 					<c:forEach var="list" items="${list}">
 					<li class="select-size">
+						<c:if test="${empty list.item_size}">
+							<script type="text/javascript">
+								$(function(){
+									$('.select-size').css('width','100%');
+								});
+							</script>
+						</c:if>
 						<button onclick="location.href='checkSale.do?item_num=${list.item_num}&item_sizenum=${list.item_sizenum}&item_size=${list.item_size}'">
 							<div class="select-inner">
 								<span class="size">
@@ -30,12 +38,12 @@
 										${list.item_size}
 									</c:if>
 								</span>
-								<span class="price">
+								<span class="price" <c:if test="${list.purchase_price != 0}">style="color:#41B979;"</c:if>>
 									<c:if test="${list.purchase_price == 0}">
 										판매입찰
 									</c:if>
 									<c:if test="${list.purchase_price != 0}">
-										${list.purchase_price}원
+										<fmt:formatNumber value="${list.purchase_price}"/>원
 									</c:if>
 								</span>
 							</div>
