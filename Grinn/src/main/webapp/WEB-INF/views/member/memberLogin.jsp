@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="page-main">
 	<h2>회원로그인</h2>
@@ -22,6 +23,9 @@
 		</ul>  
 		<div class = "align-center">
 			<form:button class = "login-btn">로그인</form:button>
-		</div>                                    
+			<form:button class = "login-btn" action = "registerUser.do">
+			<a href="${pageContext.request.contextPath}/member/registerUser.do">회원가입</a>
+			</form:button>
+		</div>                                 
 	</form:form>
 </div>

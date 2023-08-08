@@ -10,7 +10,7 @@
     width: 44px;
     z-index: 0;
 }
-button{
+#floating button{
 	-webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
