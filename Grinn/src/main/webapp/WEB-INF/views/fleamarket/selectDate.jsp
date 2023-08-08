@@ -8,32 +8,42 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/booking.js"></script>
 <style>
-/*버튼 롤오버 시 커서 표시*/
-.ui-datepicker-trigger{cursor: pointer;}
 /*input 롤오버 시 커서 표시*/
 .hasDatepicker{cursor: pointer;}
 </style>
 
 <div class="page-main">
 	<h2>예약 날짜 선택</h2>
+	<div>
+		<ul>
+			<li>${market.market_title}</li>
+			<li>${market.market_startDate} ~ ${market.market_endDate}</li>
+		</ul>
+	</div>
 	<form id="select_date" method="post">
+		<input type="hidden" name="market_num" value="${market.market_num}" id="market_num"/>
 		<input type="hidden" name="market_startDate" value="${market.market_startDate}" id="market_startDate"/>
 		<input type="hidden" name="market_endDate" value="${market.market_endDate}" id="market_endDate"/>
 		<input type="hidden" name="booth_count" value="${market.booth_count}" id="booth_count"/>
 		<ul>
 			<li>
-				<input type="text" id="datepicker">
+				<label for="from">시작일</label>
+				<input type="text" id="from">
+			</li>
+			<li>
+				<label for="from">종료일</label>
+				<input type="text" id="to">
 			</li>
 			<li>
 				<label for="book_count">예약 부스 수</label>
 				<input type="number" name="book_count" min="1" max="1" id="book_count">
 			</li>
 			<li>
-				<span>총 예약 수량 : 1개</span>
+				<span>총 예약 수량 : 0개</span>
 			</li>
 			<li>
 				<label>남은 부스 수</label>
-				<input type="number" name="booth_count" value="${market.booth_count}" id="booth_count">
+				/ ${market.booth_count}
 			</li>
 			<li>
 				<c:if test="${market.booth_fee == 0}"><span>무료</span></c:if>

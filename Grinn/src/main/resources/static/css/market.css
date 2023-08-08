@@ -93,5 +93,62 @@
 	color:#999;
 	text-align:center;
 }
+/*플리마켓 상세
+-------------------------*/
+.flea-info{
+	font-size:20px;
+	margin-left:30px;
+	padding-bottom:20px;
+}
+.market-image{
+	float:left;
+	margin:10px 30px 40px 30px;
+}
+.market-detail{
+	float:left;
+	padding-top:10px;
+}
+#market_cart{
+	border:none;
+}
+.market-section{
+	clear:both;
+}
+.flea-title{
+	font-size:28px;
+	font-weight:bold;
+	padding:5px 0 20px 0;
+}
+.flea-date{
+	font-size:20px;
+	font-style:italic;
+	padding-bottom:30px;
+	border-bottom:1px solid #eee;
+}
+.flea-detail{
+	font-size:18px;
+	display:flex;
+	margin-top:10px;
+}
+.flea-detail-comment1{
+	margin-left:306px;
+}
+.flea-detail-comment2{
+	margin-left:262px;
+}
+.flea-detail-comment3{
+	margin-left:361px;
+}
+.flea-book{
+	margin-top:20px;
+}
+.flea-book-btn{
+	background:#eee;
+	border:1px solid #eee;
+	color:#fff;
+	font-size:20px;
+	font-weight:bold;
+	cursor:pointer;
+}
 /*예약 날짜 폼
 -------------------------*/
