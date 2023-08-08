@@ -7,7 +7,7 @@ create table market(
   market_startDate varchar2(10) not null, -- 플리마켓 시작일
   market_endDate varchar2(10) not null, -- 플리마켓 종료일
   place_name varchar2(300) not null, -- 개최장소 번호
-  market_type number(1) not null, -- 플리마켓 예약 유형(1:부스 예약, 2:입장 예약)
+  market_type number(1) not null, -- 플리마켓 진행 유형(1:예정, 2:예약 중, 3:종료)
   booth_count number(3) not null, -- 부스 자리수
   booth_fee number(6), -- 부스 예약비용
   market_poster blob not null, -- 플리마켓 포스터
@@ -112,12 +112,11 @@ create table promotion(
   pro_name varchar2(150) not null, -- 프로모션 제목
   pro_content clob not null, -- 프로모션 내용
   pro_photo1 blob not null, -- 프로모션 사진1
-  pro_photo2 blob, -- 프로모션 사진2
-  pro_hit number(9) not null, -- 프로모션 조회수
+  pro_photoName1 varchar2(100) not null, -- 프로모션 사진 이름1
   pro_regDate date default sysdate not null, -- 프로모션 등록일
-  pro_openDate date not null, -- 프로모션 시작일
-  pro_cloDate date not null, -- 프로모션 종료일
-  pro_ing number(1) not null, -- 프로모션 진행 여부(1:진행중, 2:종료)
+  pro_openDate varchar2(10) not null, -- 프로모션 시작일
+  pro_cloDate varchar2(10) not null, -- 프로모션 종료일
+  pro_ing number(1) not null, -- 프로모션 진행 여부(1:진행 예정, 2:진행 중, 3:종료)
   pro_hide number(1) not null, -- 프로모션 숨김 여부(1:숨김, 2:공개)
   constraint promotion_pk primary key (pro_num)
 );

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/main.css">
 <!-- 내용 시작 -->
 <div class="page-main">
@@ -35,27 +37,39 @@
 				<div class = "collection">
 					<div class = "collection_items">
 						<div class = "collection_item">
-							<div class = "item_img"></div>
-							<p class = "item_title">그린드로우</p>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/grinndraw.png">
+							</div>
+							<p class = "item_title">그린 드로우</p>
 						</div>
 						<div class = "collection_item">
-							<div class = "item_img"></div>
-							<p class = "item_title">7월 이벤트</p>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/event_sony.jpeg">
+							</div>
+							<p class = "item_title">8월 이벤트</p>
 						</div>
 						<div class = "collection_item">
-							<div class = "item_img"></div>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/summer.jpeg">
+							</div>
 							<p class = "item_title">SUMMER 이벤트</p>
 						</div>
 						<div class = "collection_item">
-							<div class = "item_img"></div>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/new.png">
+							</div>
 							<p class = "item_title">신상품</p>
 						</div>
 						<div class = "collection_item">
-							<div class = "item_img"></div>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/male.png">
+							</div>
 							<p class = "item_title">남성 추천</p>
 						</div>
 						<div class = "collection_item">
-							<div class = "item_img"></div>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/female.png">
+							</div>
 							<p class = "item_title">여성 추천</p>
 						</div>
 					</div>
@@ -63,42 +77,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="w3-container">
-	  <h2>W3.CSS Modal</h2>
-	  <p>In this example we demonstrate how to close the modal by clicking outside of the modal box.</p>
-	
-	  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button>
-	
-	  <div id="id01" class="w3-modal">
-	    <div class="w3-modal-content w3-card-4">
-	      <header class="w3-container w3-teal"> 
-	        <span onclick="document.getElementById('id01').style.display='none'" 
-	        class="w3-button w3-display-topright">&times;</span>
-	        <h2>Modal Header</h2>
-	      </header>
-	      <div class="w3-container">
-	        <p>You have two options to close this modal:</p>
-	        <p>Click on the "x" or click anywhere outside of the modal!</p>
-	      </div>
-	      <footer class="w3-container w3-teal">
-	        <p>Modal Footer</p>
-	      </footer>
-	    </div>
-	  </div>
-	</div>
-	
-	<script>
-	// Get the modal
-	var modal = document.getElementById('id01');
-	
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	  if (event.target == modal) {
-	    modal.style.display = "none";
-	  }
-	}
-	</script>
 	
 	
 </div>

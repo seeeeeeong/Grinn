@@ -26,7 +26,7 @@
 					<span id="book_total_txt">총 예약 금액: 0원</span>
 				</li>
 				<li>
-					<input type="submit" value="예약하기">
+					<input type="submit" value="예약하기" onclick="location.href='booking.do?market_num=${market.market_num}'">
 				</li>
 				</c:if>
 				<c:if test="${market.booth_count <= 0}">

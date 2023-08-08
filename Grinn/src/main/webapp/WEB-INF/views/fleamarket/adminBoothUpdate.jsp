@@ -22,9 +22,9 @@
 		<ul>
 			<li>
 				<label>진행 유형</label>
-				<form:radiobutton path="market_type" value="1" id="market_type1" checked="checked"/>예정
-				<form:radiobutton path="market_type" value="2" id="market_type2" checked="checked"/>진행중
-				<form:radiobutton path="market_type" value="3" id="market_type3" checked="checked"/>종료
+				<form:radiobutton path="market_type" value="1" id="market_type1"/>예정
+				<form:radiobutton path="market_type" value="2" id="market_type2"/>진행중
+				<form:radiobutton path="market_type" value="3" id="market_type3"/>종료
 			</li>
 			<li>
 				<form:label path="market_title">제목</form:label>

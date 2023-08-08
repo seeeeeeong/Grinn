@@ -18,8 +18,8 @@
 	});
 </script>
 <div class="page-main">
-	<div id="page_body">
-		<h3 id="ha">자주묻는질문</h3>
+	<div class="page_body">
+		<h2 id="ha">자주묻는질문</h2>
 		<!-- 검색부분 추가예정 -->
 		<div class="search_faq_div">
 			<input type="text" placeholder="검색" title="검색창" class="search_faq_input">

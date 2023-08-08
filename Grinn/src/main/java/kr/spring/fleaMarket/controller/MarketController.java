@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,36 +44,65 @@ public class MarketController {
 	// ===부스 예약 목록===
 	@RequestMapping("/fleamarket/boothList.do")
 	public ModelAndView getBoothList(@RequestParam(value="pageNum", defaultValue="1") int currentPage, 
-			                         @RequestParam(value="order", defaultValue="1") int order, 
 			                         String keyfield, String keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
 		
 		// 전체/검색 레코드수
-		int count = marketService.selectRowCount(map);
+		int count = marketService.selectCount(map);
 				
 		log.debug("<<count>> : " + count);
 		
 		// 페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 5, 5, "boothList.do", "&order="+order);
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 5, 5, "boothList.do");
 		
-		List<MarketVO> list = null;
+		List<MarketVO> boothList = null;
 		if (count > 0) {
-			map.put("order", order);
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
 			
-			list = marketService.selectList(map);
+			boothList = marketService.selectList(map);
 		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("boothList");
 		mav.addObject("count", count);
-		mav.addObject("list", list);
+		mav.addObject("boothList", boothList);
 		mav.addObject("page", page.getPage());
 		
 		return mav;
 	}
 	
+	
+	// ===플리마켓 상세===
+	@RequestMapping("/fleamarket/detail.do")
+	public String detail(@RequestParam int market_num, Model model) {
+		log.debug("<<market_num>> : " + market_num);
+		
+		MarketVO marketVO = marketService.selectMarket(market_num);
+		model.addAttribute("market", marketVO);
+		
+		return "marketView";
+	}
+	
+	
+	// ===이미지 처리===
+	@RequestMapping("/fleamarket/imageView.do")
+	public ModelAndView viewImage(@RequestParam int market_num, @RequestParam int photo_type) {
+		MarketVO marketVO = marketService.selectMarket(market_num);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("imageView");
+		
+		if (photo_type == 1) { // poster
+			mav.addObject("imageFile", marketVO.getMarket_poster());
+			mav.addObject("filename", marketVO.getMarket_posterName());
+		} else if (photo_type == 2) { // thumbNail
+			mav.addObject("imageFile", marketVO.getMarket_thumbNail());
+			mav.addObject("filename", marketVO.getMarket_thumbNailName());
+		}
+		
+		return mav;
+	}
 }

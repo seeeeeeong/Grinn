@@ -6,9 +6,6 @@
 	h2{
 		text-align: center;
 	}
-	.table{
-		padding-top: 20px;
-	}
 </style>
 <div class="page-main">
 	<div class = "page_body">
@@ -42,6 +39,7 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<div class="align-center">${page}</div>
 		</div>
 	</div>
 </div>

@@ -1,11 +1,13 @@
 @charset "UTF-8";
 /* 메인
 ------------------------*/
+/*
 .page-main{
 	width:98%;
 	margin:0 auto;
 	height: auto;
 }
+*/
 #main-footer{
 	position: fixed;
 	bottom: 0;
@@ -15,7 +17,7 @@
 	padding: 25px 0 16px 0;
 	border-bottom: 3px solid #222;
 	display: flex;
-	font-size: 27px;
+	/*font-size: 27px;*/
 	margin: 0 auto;
 }
 #notice_title {
@@ -24,7 +26,7 @@
 	align-items: center;
 	border-bottom: 1px solid #ebebeb;
 	cursor: pointer;
-	width: 873px;
+	width: 882px;
 	font-size: 15px;
 	letter-spacing: -.15px;
 }
@@ -117,7 +119,7 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     margin: 0;
     padding: 0;
-    max-width: 640px;
+    max-width: 822px;
     word-break: break-word;
 }
 /* 목록보기/삭제하기/수정하기/글등록하기 버튼
@@ -274,7 +276,7 @@
     margin: 0;
     min-width: 320px;
     min-height: 100%;
-    max-width: 640px;
+    max-width: 882px;
     color: #222;
     font-size: 14px;
     line-height: 1.2;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/floating.css">
 <div class = "footer">
 	<div class = "footer_inner">
 		<div class = "service_area">
@@ -81,6 +82,12 @@
 			 단, 이용약관 및 정책, 기타 거래 체결 과정에서 고지하는 내용 등에 따라 검수하고 보증하는 내용에 대한 책임은 그린(주)에 있습니다.</p>
 		</div>
 	</div>
+</div>
+
+<div id = "floating">
+	<button class = "btn_top" onclick = "location.href='voteList.do'">
+		<img class = "ico-top" src = "${pageContext.request.contextPath}/images/how_to_vote.png" width = "32" height = "32">
+	</button>
 </div>
 
 <div class = "align-center">

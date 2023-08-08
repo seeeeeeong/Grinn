@@ -2,16 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
-<div id="page-main">
-	<div id="page_body">
+<div class="page-main">
+	<div class="page_body">
 		<c:if test="${notice.no_status == 1}">
-			<h3 id="ha">공지사항</h3>
+			<h2 id="ha">공지사항</h2>
 		</c:if>
 		<c:if test="${notice.no_status == 2}">
-			<h3 id="ha">자주묻는질문</h3>
+			<h2 id="ha">자주묻는질문</h2>
 		</c:if>
 		<c:if test="${notice.no_status == 3}">
-			<h3 id="ha">검수기준</h3>
+			<h2 id="ha">검수기준</h2>
 		</c:if>
 		<div class="dropdown">
 			<div class="dropdown_head">
