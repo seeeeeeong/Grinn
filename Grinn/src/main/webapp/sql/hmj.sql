@@ -7,7 +7,7 @@ create table market(
   market_startDate varchar2(10) not null, -- 플리마켓 시작일
   market_endDate varchar2(10) not null, -- 플리마켓 종료일
   place_name varchar2(300) not null, -- 개최장소 번호
-  market_type number(1) not null, -- 플리마켓 예약 유형(1:부스 예약, 2:입장 예약)
+  market_type number(1) not null, -- 플리마켓 진행 유형(1:예정, 2:예약 중, 3:종료)
   booth_count number(3) not null, -- 부스 자리수
   booth_fee number(6), -- 부스 예약비용
   market_poster blob not null, -- 플리마켓 포스터
