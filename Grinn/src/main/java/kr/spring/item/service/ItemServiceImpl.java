@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.item.dao.ItemMapper;
 import kr.spring.item.vo.ItemFavVO;
+import kr.spring.item.vo.ItemReviewVO;
 import kr.spring.item.vo.ItemVO;
 
 @Service
@@ -68,6 +69,40 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public void deleteFav(Integer item_favNum) {
 		itemMapper.deleteFav(item_favNum);
+	}
+
+	@Override
+	public List<ItemReviewVO> selectListReview(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int selectRowCountReview(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ItemReviewVO selectReview(Integer review_num) {
+		return itemMapper.selectReview(review_num);
+	}
+
+	@Override
+	public void insertReview(ItemReviewVO itemReview) {
+		itemMapper.insertReview(itemReview);
+	}
+
+	@Override
+	public void updateReview(ItemReviewVO itemReview) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteReiew(Integer review_num) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

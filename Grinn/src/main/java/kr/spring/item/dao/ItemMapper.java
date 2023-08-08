@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import kr.spring.item.vo.ItemFavVO;
+import kr.spring.item.vo.ItemReviewVO;
 import kr.spring.item.vo.ItemVO;
 
 @Mapper
@@ -39,5 +40,14 @@ public interface ItemMapper {
 	@Delete("DELETE FROM item_fav WHERE item_num=${item_num}")
 	public void deleteFavByItemNum(Integer item_num);
 	
-	//리뷰(댓글과 비슷하지 않을까?)
+	//리뷰
+	public List<ItemReviewVO> selectListReview(Map<String, Object> map);
+	public int selectRowCountReview(Map<String,Object> map);
+	@Select("SELECT * FROM review WHERE review_num=#{review_num}")
+	public ItemReviewVO selectReview(Integer review_num);
+	public void insertReview(ItemReviewVO itemReview);
+	public void updateReview(ItemReviewVO itemReview);
+	public void deleteReiew(Integer review_num);
+	//부모글 삭제시 댓글이 존재하면 부모글 삭제전 댓글 삭제
+	public void deleteReviewByItemNum(Integer review_num);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.spring.item.vo.ItemFavVO;
+import kr.spring.item.vo.ItemReviewVO;
 import kr.spring.item.vo.ItemVO;
 
 public interface ItemService {
@@ -21,4 +22,12 @@ public interface ItemService {
 	public int selectFavCount(Integer item_num);
 	public void insertFav(ItemFavVO fav);
 	public void deleteFav(Integer item_favNum);
+	
+	// 리뷰
+	public List<ItemReviewVO> selectListReview(Map<String, Object> map);
+	public int selectRowCountReview(Map<String, Object> map);
+	public ItemReviewVO selectReview(Integer review_num);
+	public void insertReview(ItemReviewVO itemReview);
+	public void updateReview(ItemReviewVO itemReview);
+	public void deleteReiew(Integer review_num);
 }

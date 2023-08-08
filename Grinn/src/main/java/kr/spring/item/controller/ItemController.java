@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.item.service.ItemService;
 import kr.spring.item.vo.ItemFavVO;
+import kr.spring.item.vo.ItemReviewVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.FileUtil;
@@ -40,6 +41,12 @@ public class ItemController {
 	public ItemVO initCommand() {
 
 		return new ItemVO();
+	}
+	
+	@ModelAttribute
+	public ItemReviewVO initReviewCommand() {
+
+		return new ItemReviewVO();
 	}
 
 	// ===========게시판 목록===========
@@ -302,4 +309,32 @@ public class ItemController {
 		return mapJson;
 	}
 	//=========관심 상품(좋아요) 끝============
+	
+	//=========후기 작성 시작============
+	//폼호출
+	@GetMapping("/item/itemReview.do")
+	public String itemReview(@RequestParam int item_num, Model model) {
+		
+		ItemVO item = itemService.selectItem(item_num);
+		
+		model.addAttribute("item",item);
+		
+		return "itemReviewWrite";
+	}
+
+	//후기 등록
+	@PostMapping("/item/itemReview.do")
+	public String itemReview(@Valid ItemReviewVO itemReviewVO,BindingResult result,
+								@RequestParam int item_num,
+								HttpSession session, Model model,HttpServletRequest request) {
+		
+		itemReviewVO.setMem_num(((MemberVO)session.getAttribute("user")).getMem_num());
+		
+		itemService.insertReview(itemReviewVO);
+		
+		model.addAttribute("message", "리뷰 작성 완료");
+		model.addAttribute("url", request.getContextPath()+"/item/itemAdminList.do");
+		
+		return "common/resultView";
+	}
 }
