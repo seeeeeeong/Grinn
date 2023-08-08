@@ -19,3 +19,56 @@ div{
     overflow: hidden;
     position: relative;
 }
+
+
+
+.collection_items{
+	padding-left: 40px;
+	padding-right: 40px;
+	grid-row-gap: 16px;
+    /**/grid-column-gap: 8px;
+    -webkit-column-gap: 8px;
+    -moz-column-gap: 8px;
+    column-gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    /**/padding-left: 16px;
+    /**/padding-right: 16px;
+	/* row-gap: 16px; */
+}
+.collection_item{
+	cursor: pointer;
+	/* 가로 배치 */
+    display: inline-block;
+    text-align: center;
+}
+.item_img{
+	border-radius: 10px;
+	height: 100px;
+	position: relative;
+}
+.item_title{
+	color: #333;
+	font-size: 15px;
+	letter-spacing: -.15px;
+    margin-top: 8px;
+}
+.collection_items p{
+	display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+
+
+
+
+
+
+
+
