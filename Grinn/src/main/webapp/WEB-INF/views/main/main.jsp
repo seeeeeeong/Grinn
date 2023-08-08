@@ -37,27 +37,39 @@
 				<div class = "collection">
 					<div class = "collection_items">
 						<div class = "collection_item">
-							<div class = "item_img"></div>
-							<p class = "item_title">그린드로우</p>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/grinndraw.png">
+							</div>
+							<p class = "item_title">그린 드로우</p>
 						</div>
 						<div class = "collection_item">
-							<div class = "item_img"></div>
-							<p class = "item_title">7월 이벤트</p>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/event_sony.jpeg">
+							</div>
+							<p class = "item_title">8월 이벤트</p>
 						</div>
 						<div class = "collection_item">
-							<div class = "item_img"></div>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/summer.jpeg">
+							</div>
 							<p class = "item_title">SUMMER 이벤트</p>
 						</div>
 						<div class = "collection_item">
-							<div class = "item_img"></div>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/new.png">
+							</div>
 							<p class = "item_title">신상품</p>
 						</div>
 						<div class = "collection_item">
-							<div class = "item_img"></div>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/male.png">
+							</div>
 							<p class = "item_title">남성 추천</p>
 						</div>
 						<div class = "collection_item">
-							<div class = "item_img"></div>
+							<div class = "item_img">
+								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/female.png">
+							</div>
 							<p class = "item_title">여성 추천</p>
 						</div>
 					</div>
