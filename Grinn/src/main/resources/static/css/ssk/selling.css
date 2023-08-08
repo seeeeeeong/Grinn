@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+dl{
+	margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.mySale{
+	margin-left: 100px;
+	padding: 0;
+}
+.mySale-title{
+	display: flex;
+	padding: 5px 0 6px;
+}
+.mySale-title-content{
+	font-size: 24px;
+}
+.mySale-tab{
+	background-color: #fff;
+    border-radius: 0;
+    margin-top: 20px;
+    display:table;
+    width:100%;
+    table-layout: fixed;
+}
+.tab-item{
+	display: table-cell;
+	text-align: center;
+}
+.tab-item a{
+	padding-top: 12px;
+	display: block;
+	position: relative;
+}
+.tab-box{
+	display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+}
+.tab-box dt{
+	color: #222;
+    font-weight: 700;
+    font-size: 13px;
+}
+.tab-box dd{
+	font-size: 20px;
+    line-height: 24px;
+    margin-top: 0;
+    margin-left: 0;
+	font-weight: 700;
+}
+.mySale-detail{
+	margin-top: 40px;
+}
+.mySale-head{
+	align-items: center;
+    border-bottom: 1px solid #ebebeb;
+    display: flex;
+    padding: 12px;
+}
+.head-list{
+	display: flex;
+}
+.head-list input{
+	background-color: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 24px;
+    min-width: 120px;
+    padding: 5px 30px 5px 10px;
+    position: relative;
+    cursor: pointer;
+}
+.mySale-empty{
+	padding: 90px;
+	text-align: center;
+}
+.mySale-main-content{
+	width: 100%;
+}
+.mySale-main-content table{
+	width: 100%;
+}
+th{
+	border-right:1px solid #ebebeb;
+	padding:10px;
+	border-bottom: 1px solid #ebebeb;
+}
+.list-text{
+	text-align: center;
+}
+.list-text td{
+	border-right: 1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb;
+}
+
