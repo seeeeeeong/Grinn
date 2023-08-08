@@ -137,5 +137,30 @@
 		WHERE
 		item_num=#{item_num}
 	</update>
+	
+		<!-- 리뷰 작성 -->
+	<insert id="insertReview" parameterType="itemReviewVO">
+		INSERT INTO review(
+			review_num,
+			review_content,
+			<if test="review_photo.length>0">
+			review_photo,
+			review_photoname,
+			</if>
+			review_star,
+			item_num,
+			mem_num
+		) VALUES (
+			review_seq.nextval,
+			#{review_content},
+			<if test="review_photo.length>0">
+			#{review_photo},
+			#{review_photoname},
+			</if>
+			#{review_star},
+			#{item_num},
+			#{mem_num}
+		)
+	</insert>
 
 </mapper>

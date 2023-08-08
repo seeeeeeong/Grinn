@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.fleaMarket.vo.BookingVO;
 
@@ -17,8 +18,8 @@ public interface BookingMapper {
 	public List<BookingVO> selectListBooking(Map<String, Object> map);
 	// 예약 상세
 	public BookingVO selectBooking(BookingVO book);
-	// 예약 수정
-	public void updateBooking(BookingVO book);
 	// 예약 삭제
 	public void deleteBooking(Integer book_num);
+	// 예약 삭제에 따른 booth_count 증가
+	public void updateBooth(Integer market_num);
 }

@@ -25,10 +25,10 @@
 				<h4>쇼핑 정보</h4>
 				<ul>
 					<li>
-						<a href = "${pageContext.request.contextPath}/user/userPurchasedItems.do">구매 내역</a>
+						<a href = "${pageContext.request.contextPath}/user/buying.do">구매 내역</a>
 					</li>
 					<li>
-						<a href = "${pageContext.request.contextPath}/user/userSoldItems.do">판매 내역</a>
+						<a href = "${pageContext.request.contextPath}/user/selling.do">판매 내역</a>
 					</li>
 					<li>
 						<a href = "${pageContext.request.contextPath}/user/userFavoriteItems.do">관심 상품</a>

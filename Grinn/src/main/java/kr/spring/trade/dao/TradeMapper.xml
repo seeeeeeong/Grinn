@@ -33,7 +33,7 @@
 			s.item_size
 		FROM item_size s 
 		LEFT JOIN item i ON s.item_cate = i.item_cate 
-		LEFT JOIN purchase_bid pb ON s.item_sizenum = pb.item_sizenum 
+		LEFT JOIN purchase_bid pb ON s.item_sizenum = pb.item_sizenum AND i.item_num = pb.item_num
 		WHERE i.item_num = #{item_num}
 		GROUP BY s.item_sizenum,s.item_size,i.item_num
 		ORDER BY s.item_sizenum
@@ -49,7 +49,7 @@
 			s.item_size
 		FROM item_size s 
 		LEFT JOIN item i ON s.item_cate = i.item_cate 
-		LEFT JOIN sale_bid sb ON s.item_sizenum = sb.item_sizenum
+		LEFT JOIN sale_bid sb ON s.item_sizenum = sb.item_sizenum AND i.item_num = sb.item_num
 		WHERE i.item_num = #{item_num}
 		GROUP BY s.item_sizenum,s.item_size,i.item_num
 		ORDER BY s.item_sizenum

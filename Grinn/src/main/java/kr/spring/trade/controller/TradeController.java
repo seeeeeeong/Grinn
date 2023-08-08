@@ -431,7 +431,7 @@ public class TradeController {
 	
 	
 	// 마이페이지 - 구매 내역
-	@RequestMapping("/myPage/buying.do")
+	@RequestMapping("/user/buying.do")
 	public ModelAndView myPurchaseBidInfO(
 									  @RequestParam(value="way",defaultValue="1") int way,
 									  @RequestParam(value="status",defaultValue="1") int status,
@@ -508,7 +508,7 @@ public class TradeController {
 	}
 	
 	// 마이페이지 - 판매내역
-	@RequestMapping("/myPage/selling.do")
+	@RequestMapping("/user/selling.do")
 	public ModelAndView mySaleInfo(
 									@RequestParam(value="way",defaultValue="1") int way,
 									@RequestParam(value="status",defaultValue="1") int status,
