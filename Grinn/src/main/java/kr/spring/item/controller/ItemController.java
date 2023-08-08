@@ -1,5 +1,6 @@
 package kr.spring.item.controller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -310,7 +311,7 @@ public class ItemController {
 	}
 	//=========관심 상품(좋아요) 끝============
 	
-	//=========후기 작성 시작============
+	//=========후기 등록 시작============
 	//폼호출
 	@GetMapping("/item/itemReview.do")
 	public String itemReview(@RequestParam int item_num, Model model) {
@@ -337,4 +338,46 @@ public class ItemController {
 		
 		return "common/resultView";
 	}
+	//=========후기 등록 끝============
+	
+	//=========후기 목록 시작============
+	@RequestMapping("/item/listReview.do")
+	@ResponseBody
+	public Map<String, Object> getReviewList(
+					@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+					@RequestParam(value="rowCount",defaultValue="10") int rowCount,
+					@RequestParam int item_num, HttpSession session){
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("item_num", item_num);
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		//전체 레코드 수
+		int count = itemService.selectRowCountReview(map);
+		
+		//페이지 처리
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, 1, null);
+		
+		List<ItemReviewVO> list = null;
+		
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			list = itemService.selectListReview(map);
+		}else {
+			list=Collections.emptyList();
+		}
+		
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		mapJson.put("count", count);
+		mapJson.put("list", list);
+		
+		if(user!=null) {
+			mapJson.put("user_num", user.getMem_num());
+		}
+		return mapJson;
+	}
+	//=========후기 목록 끝============
 }

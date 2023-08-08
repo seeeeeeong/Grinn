@@ -18,7 +18,7 @@ public class ItemReviewVO {
 	private byte[] review_photo;
 	private String review_photoname;
 	private String review_date;
-	private String review_modifyDate;
+	private String review_modifydate;
 	private int review_star;
 	private int review_status;
 	private int item_num;
@@ -27,11 +27,11 @@ public class ItemReviewVO {
 	private String mem_id;
 	private String mem_nickName;
 	
-	public void setRe_date(String re_date) {
-		this.review_date = DurationFromNow.getTimeDiffLabel(re_date);
+	public void setReview_date(String review_date) {
+		this.review_date = DurationFromNow.getTimeDiffLabel(review_date);
 	}
-	public void setRe_mdate(String re_mdate) {
-		this.review_modifyDate = DurationFromNow.getTimeDiffLabel(re_mdate);
+	public void review_modifydate(String review_modifydate) {
+		this.review_modifydate = DurationFromNow.getTimeDiffLabel(review_modifydate);
 	}
 	//이미지를 byte[] 배열로 변환(blob처리)
 	//(주의) 폼에서 파일 업로드 파라미터 네임은 반드시 upload로 지정해야함

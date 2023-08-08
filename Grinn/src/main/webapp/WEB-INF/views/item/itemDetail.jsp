@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/itemReview.js"></script>
 <!-- 게시글 상세 시작 -->
 <div class="page-main">
 	<c:if test="${item.item_status == 1}">
@@ -196,8 +197,18 @@
 		</div><!-- 상품 좌우안내 끝 -->
 		<hr>
 		<div>
-			
-		
+		<h2>Review</h2>
+			<!-- 댓글 목록 출력 -->
+			<div id="output" data-itemnum="${item.item_num}"></div>
+			<div class="paging-button" style="display: none;">
+				<input type="button" value="더보기">
+			</div>
+			<div id="loading" style="display: none;">
+				<img src="${pageContext.request.contextPath}/images/loading.gif"
+					width="100" height="100">
+			</div>
+			<!-- 댓글 UI 끝 -->
+
 		</div>
 	</c:if>
 </div>

@@ -42,8 +42,9 @@ public interface ItemMapper {
 	
 	//리뷰
 	public List<ItemReviewVO> selectListReview(Map<String, Object> map);
+	@Select("SELECT COUNT(*) FROM review JOIN member USING(mem_num) WHERE item_num=#{item_num}")
 	public int selectRowCountReview(Map<String,Object> map);
-	@Select("SELECT * FROM review WHERE review_num=#{review_num}")
+	@Select("SELECT * FROM review WHERE item_num=#{item_num}")
 	public ItemReviewVO selectReview(Integer review_num);
 	public void insertReview(ItemReviewVO itemReview);
 	public void updateReview(ItemReviewVO itemReview);

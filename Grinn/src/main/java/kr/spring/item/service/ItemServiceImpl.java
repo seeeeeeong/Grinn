@@ -73,14 +73,12 @@ public class ItemServiceImpl implements ItemService{
 
 	@Override
 	public List<ItemReviewVO> selectListReview(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return itemMapper.selectListReview(map);
 	}
 
 	@Override
 	public int selectRowCountReview(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return itemMapper.selectRowCountReview(map);
 	}
 
 	@Override

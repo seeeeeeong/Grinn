@@ -138,7 +138,7 @@
 		item_num=#{item_num}
 	</update>
 	
-		<!-- 리뷰 작성 -->
+	<!-- 리뷰 작성 -->
 	<insert id="insertReview" parameterType="itemReviewVO">
 		INSERT INTO review(
 			review_num,
@@ -163,4 +163,18 @@
 		)
 	</insert>
 
+	<!-- 댓글 목록 -->
+	<select id="selectListReview" parameterType="map" resultType="itemReviewVO">
+		SELECT * FROM (SELECT a.*, rownum rnum FROM 
+			(SELECT review_num,
+			<![CDATA[
+			REPLACE(REPLACE(review_content,'<','&lt;'),'>','&gt;') review_content,
+			]]>
+			review_date, review_modifydate, review_star, item_num, mem_num, mem_id, mem_nickname
+			 FROM review JOIN member USING(mem_num) WHERE item_num=#{item_num} 
+				ORDER BY review_num DESC)a)
+		<![CDATA[
+		
+		]]>
+	</select>
 </mapper>
