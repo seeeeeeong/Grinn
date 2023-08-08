@@ -8,15 +8,14 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/booking.js"></script>
 <style>
-/*datepicer 버튼 롤오버 시 손가락 모양 표시*/
+/*버튼 롤오버 시 커서 표시*/
 .ui-datepicker-trigger{cursor: pointer;}
-/*datepicer input 롤오버 시 손가락 모양 표시*/
+/*input 롤오버 시 커서 표시*/
 .hasDatepicker{cursor: pointer;}
 </style>
 
 <div class="page-main">
 	<h2>예약 날짜 선택</h2>
-<%-- <input type="text" id="datepicker"> --%>
 	<form id="select_date" method="post">
 		<input type="hidden" name="market_startDate" value="${market.market_startDate}" id="market_startDate"/>
 		<input type="hidden" name="market_endDate" value="${market.market_endDate}" id="market_endDate"/>
@@ -32,7 +31,10 @@
 			<li>
 				<span>총 예약 수량 : 1개</span>
 			</li>
-
+			<li>
+				<label>남은 부스 수</label>
+				<input type="number" name="booth_count" value="${market.booth_count}" id="booth_count">
+			</li>
 			<li>
 				<c:if test="${market.booth_fee == 0}"><span>무료</span></c:if>
 				<c:if test="${market.booth_fee > 0}">
