@@ -84,7 +84,7 @@
 				<a href="${pageConetext.request.contextPath}/user/buying.do?way=1" <c:if test="${way == 1}">style="border-bottom:1px solid #222"</c:if>>
 					<dl class="tab-box">
 						<dt>구매입찰</dt>
-						<dd>${bidCount}</dd>
+						<dd <c:if test="${way == 1}">style="color:#fa7070;"</c:if>>${bidCount}</dd>
 					</dl>
 				</a>
 			</div>
@@ -92,7 +92,7 @@
 				<a href="${pageConetext.request.contextPath}/user/buying.do?way=2" <c:if test="${way == 2}">style="border-bottom:1px solid #222"</c:if>>
 					<dl class="tab-box">
 						<dt>진행중</dt>
-						<dd>${tradeCount}</dd>
+						<dd <c:if test="${way == 2}">style="color:#fa7070;"</c:if>>${tradeCount}</dd>
 					</dl>
 				</a>
 			</div>
@@ -100,7 +100,7 @@
 				<a href="${pageConetext.request.contextPath}/user/buying.do?way=3" <c:if test="${way == 3}">style="border-bottom:1px solid #222"</c:if>>
 					<dl class="tab-box">
 						<dt>종료</dt>
-						<dd>${quitCount}</dd>
+						<dd <c:if test="${way == 3}">style="color:#fa7070;"</c:if>>${quitCount}</dd>
 					</dl>
 				</a>
 			</div>
