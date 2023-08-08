@@ -585,4 +585,39 @@ public class TradeController {
 		mav.setViewName("selling");
 		return mav;
 	}
+	
+	// 마이페이지 - 구매입찰 내역 삭제
+	@RequestMapping("/purchase/deleteBid.do")
+	public String deletePurchaseBid(@RequestParam int purchase_num,HttpSession session,Model model) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		
+		if(user == null) {
+			model.addAttribute("message","로그인이 필요합니다!!!");
+			model.addAttribute("url","../member/login.do");
+		}else {
+			// 구매 입찰 내역 삭제
+			tradeService.deletePurchaseBid(purchase_num);
+			model.addAttribute("message","구매입찰 내역이 성공적으로 삭제되었습니다.");
+			model.addAttribute("url","../user/buying.do");
+		}
+		
+		return "common/resultView";
+	}
+	
+	// 마이페이지 - 판매입찰 내역 삭제
+	@RequestMapping("/sale/deleteBid.do")
+	public String deleteSaleBid(@RequestParam int sale_num,HttpSession session, Model model) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		
+		if(user == null) {
+			model.addAttribute("message","로그인이 필요합니다!!!");
+			model.addAttribute("url","../member/login.do");
+		}else {
+			tradeService.deleteSaleBid(sale_num);
+			model.addAttribute("message","판매입찰 내역이 성공적으로 삭제되었습니다.");
+			model.addAttribute("url","../user/selling.do");
+		}
+		
+		return "common/resultView";
+	}
 }

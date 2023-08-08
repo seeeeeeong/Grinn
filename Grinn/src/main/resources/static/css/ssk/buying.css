@@ -97,4 +97,14 @@ th{
 	border-right: 1px solid #ebebeb;
 	border-bottom: 1px solid #ebebeb;
 }
+.btn-deleteBid{
+	border-radius: 20px;
+	border: 1px solid gray;
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+}
+.btn-deleteBid:hover{
+	background-color: #c0a8f7;
+}
 

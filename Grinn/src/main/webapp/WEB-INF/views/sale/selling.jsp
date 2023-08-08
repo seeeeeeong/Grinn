@@ -164,6 +164,9 @@
 					      <th>희망 가격</th>
 					      <th>등록일</th>
 					      <th>마감일</th>
+					      <c:if test="${status == 3}">
+					      	<th>삭제</th>
+					      </c:if>
 					      </c:if>
 					      <c:if test="${way >= 2}">
 					      <th>거래 가격</th>
@@ -183,6 +186,11 @@
 					        <td><fmt:formatNumber value="${list.sale_price}"/></td>
 					        <td class="list-date">${list.sale_regDate}</td>
 					        <td class="list-date">${list.sale_deadline}</td>
+					        <c:if test="${status==3}">
+					        <td>
+					        	<input type="button" class="btn-deleteBid" onclick="location.href='${pageContext.request.contextPath}/sale/deleteBid.do?sale_num=${list.sale_num}'">
+					        </td>
+					        </c:if>
 					        </c:if>
 					        <c:if test="${way == 2}">
 					        <td><fmt:formatNumber value="${list.trade_price}"/></td>
