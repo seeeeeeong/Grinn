@@ -1,11 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.notice.dao.NoticeMapper">
-	<!-- 고객센터 글 목록 -->	
+	<!-- 고객센터 전체/검색 레코드수 -->	
 	<select id="selectRowCount" parameterType="map" resultType="integer">
 		SELECT
 		   COUNT(*)
 		FROM notice
+		WHERE no_status=1
+	</select>
+	<select id="selectRowCount_faq" parameterType="map" resultType="integer">
+		SELECT
+		   COUNT(*)
+		FROM notice
+		WHERE no_status=2
+	</select>
+	<select id="selectRowCount_auth" parameterType="map" resultType="integer">
+		SELECT
+		   COUNT(*)
+		FROM notice
+		WHERE no_status=3
+	</select>
+	
+	<!-- 자주묻는질문 검색 목록 -->
+	<sql id="search_faq">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyfield == 1">
+					b.title LIKE '%' || #{keyword} || '%' or
+					b.content LIKE '%' || #{keyword} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 전체/검색 목록 -->
+	<select id="selectFaqList">
+		SELECT * FROM (SELECT a.*, rownum rnum FROM
+		(SELECT no_num,
+			no_title,
+			no_content,
+			no_category
+			FROM notice
+			WHERE no_status=2
+			<include refid="search_faq"></include>
+			)a)
+			<![CDATA[
+			WHERE rnum >= #{start} AND rnum <= #{end}
+			]]>
+			<if test="category == 1">
+			AND no_category=1
+			</if>
+			<if test="category == 2">
+			AND no_category=2
+			</if>
+			<if test="category == 3">
+			AND no_category=3
+			</if>
+			<if test="category == 4">
+			AND no_category=4
+			</if>
 	</select>
 	
 	<insert id="insertNotice" parameterType="noticeVO">

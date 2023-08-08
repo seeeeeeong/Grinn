@@ -370,7 +370,6 @@
     margin-top: 0;
 }
 .search_faq_div{
-	background-color: #d6d6d6;
 	border-radius: 15px;
     background-color: #f4f4f4;
     font-size: 15px;
@@ -400,35 +399,10 @@
 
 /* notice_nav
 ------------------------*/
-
 a:hover{
 	text-decoration: none;
 	color: black;
 }
-.asdsfaf{
-    --global-header-height: 52px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    box-sizing: border-box;
-    font-feature-settings: "frac" 0,"numr" 0;
-    color: #222;
-    -webkit-appearance: none;
-    border: 0;
-    outline: 0;
-    resize: none;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    font-size: 15px;
-    margin: 16px 0 20px;
-    width: 100%;
-    height: 40px;
-    margin-bottom: 16px;
-    padding: 11px 30px 11px 12px;
 
-
-
-	
-}
 
 

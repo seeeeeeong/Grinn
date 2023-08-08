@@ -55,7 +55,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="align-center">${page}</div>
+		
 	</div>
 	<div class="page-clear"></div>
 </div>

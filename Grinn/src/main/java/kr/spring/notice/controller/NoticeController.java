@@ -82,7 +82,7 @@ public class NoticeController {
 		//전체 레코드 수
 		int count = noticeService.selectRowCount(map);
 		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 10, 5, "noticeList.do");
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 3, 5, "noticeList.do");
 		
 		List<NoticeVO> list = null;
 		if(count > 0) {
@@ -109,20 +109,21 @@ public class NoticeController {
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
 		//전체 레코드 수
-		int count = noticeService.selectRowCount(map);
+		int count = noticeService.selectRowCount_faq(map);
 		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 10, 5, "noticefaq.do");
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 5, 5, "noticefaq.do");
 		
 		NoticeVO noticeVO = new NoticeVO();
 		
 		List<NoticeVO> list = null;
+		
 		if(count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
 			map.put("category", noticeVO.getNo_category());
 			list = noticeService.selectFaqList(map);
 		}
-		
+		System.out.println("헤이"+noticeVO.getNo_category());
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("noticefaq");
 		mav.addObject("count", count);
@@ -142,9 +143,9 @@ public class NoticeController {
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
 		//전체 레코드 수
-		int count = noticeService.selectRowCount(map);
+		int count = noticeService.selectRowCount_auth(map);
 		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 10, 5, "noticeAuth_policy.do");
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 3, 5, "noticeAuth_policy.do");
 
 		List<NoticeVO> list = null;
 		

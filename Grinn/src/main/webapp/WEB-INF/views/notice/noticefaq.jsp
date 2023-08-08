@@ -16,6 +16,13 @@
 			}
 		});
 	});
+	
+	$(function(){
+		//카테고리선택(테이블)
+		$('#ch1').click(function(){
+			
+		});
+	});
 </script>
 <div class="page-main">
 	<div class="page_body">
@@ -23,7 +30,6 @@
 		<!-- 검색부분 추가예정 -->
 		<div class="search_faq_div">
 			<input type="text" placeholder="검색" title="검색창" class="search_faq_input">
-			<button>ㅣ버튼ㅣ</button>
 		</div>
 		<div class="categories">
 			<div class="category_list"><!-- 자주묻는질문 카테고리별 선택기능 -->
@@ -33,7 +39,9 @@
 							<span class="category_text">전체</span>
 						</th>
 						<th class="chunk_3" id="ch2">
-							<span class="category_text">이용정책</span>
+							<span class="category_text">이용정책
+							<input type="hidden" value="${category}">
+							</span>
 						</th>
 						<th class="chunk_3" id="ch3">
 							<span class="category_text">공통</span>
@@ -56,30 +64,30 @@
 				<li class="close"><!-- 클래스명:close일때가 기본 // 드롭다운이 열렸을 때(제목 라인을 클릭했을때) class명이 open으로 변경되게끔 -->
 					<div class="dropdown">
 					<c:forEach var="faq" items="${list}">
-						<div class="dropdown_head">
-							<strong class="sort">
-								<c:if test="${faq.no_category == 1}">이용정책</c:if>
-								<c:if test="${faq.no_category == 2}">공통</c:if>
-								<c:if test="${faq.no_category == 3}">구매</c:if>
-								<c:if test="${faq.no_category == 4}">판매</c:if>
-							</strong>
-							<div class="title_box">
-								<p class="title">${faq.no_title}</p>
+						<c:if test="${faq.no_category == 1}">
+							<div class="dropdown_head">
+								<strong class="sort">
+									<c:if test="${faq.no_category == 1}">이용정책</c:if>
+								</strong>
+								<div class="title_box">
+									<p class="title">${faq.no_title}</p>
+								</div>
+							
+								<%-- 드롭다운 시작 --%>
+								<div class="imgOpen" id="imgOpen"><!-- 위아래 표시하는 사진 넣을 곳 -->
+									<img class="classOpenImg"
+										src="${pageContext.request.contextPath}/image_bundle/classOpen.png" />
+								</div>
+								<div class="imgClose" id="imgClose" style="display:none;">
+									<img class="classCloseImg"
+										src="${pageContext.request.contextPath}/image_bundle/classClose.png" />
+								</div>
+								<script type="text/javascript">
+									 
+								</script>
+								<%-- 드롭다운 끝 --%>
 							</div>
-							<%-- 드롭다운 시작 --%>
-							<div class="imgOpen" id="imgOpen"><!-- 위아래 표시하는 사진 넣을 곳 -->
-								<img class="classOpenImg"
-									src="${pageContext.request.contextPath}/image_bundle/classOpen.png" />
-							</div>
-							<div class="imgClose" id="imgClose" style="display:none;">
-								<img class="classCloseImg"
-									src="${pageContext.request.contextPath}/image_bundle/classClose.png" />
-							</div>
-							<script type="text/javascript">
-								 
-							</script>
-							<%-- 드롭다운 끝 --%>
-						</div>
+						</c:if>
 						<div class="dropdown_content" id="dropdown_content" style="display:none;">
 							<div class="content">
 								${faq.no_content}
