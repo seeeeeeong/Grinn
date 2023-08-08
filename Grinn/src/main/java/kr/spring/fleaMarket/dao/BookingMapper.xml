@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.fleaMarket.dao.BookingMapper">
+	<resultMap type="marketVO" id="marketMap">
+		<result property="marketVO.market_startDate" column="market_startDate"/>
+		<result property="marketVO.market_endDate" column="market_endDate"/>
+		<result property="marketVO.booth_count" column="booth_count"/>
+	</resultMap>
 	<insert id="insertBooking" parameterType="bookingVO"> 
 		INSERT INTO booking(
 		  book_num,
@@ -11,4 +16,12 @@
 		  #{market_num},
 		  #{mem_num})
 	</insert>
+	
+	<update id="updateBooth">
+		UPDATE 
+		  market 
+		SET 
+		  booth_count = booth_count + 1 
+		WHERE market_num = #{market_num}
+	</update>
 </mapper>
