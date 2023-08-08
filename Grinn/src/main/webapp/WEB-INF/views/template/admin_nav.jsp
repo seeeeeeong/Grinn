@@ -60,7 +60,7 @@
 				<h4>프로모션 관리</h4>
 				<ul>
 					<li>
-						<a href = "${pageContext.request.contextPath}/promotion/admin_list.do">프로모션 목록</a>
+						<a href = "${pageContext.request.contextPath}/promotion/adminList.do">프로모션 목록</a>
 					</li>
 				</ul>
 			</li>

@@ -112,12 +112,11 @@ create table promotion(
   pro_name varchar2(150) not null, -- 프로모션 제목
   pro_content clob not null, -- 프로모션 내용
   pro_photo1 blob not null, -- 프로모션 사진1
-  pro_photo2 blob, -- 프로모션 사진2
-  pro_hit number(9) not null, -- 프로모션 조회수
+  pro_photoName1 varchar2(100) not null, -- 프로모션 사진 이름1
   pro_regDate date default sysdate not null, -- 프로모션 등록일
-  pro_openDate date not null, -- 프로모션 시작일
-  pro_cloDate date not null, -- 프로모션 종료일
-  pro_ing number(1) not null, -- 프로모션 진행 여부(1:진행중, 2:종료)
+  pro_openDate varchar2(10) not null, -- 프로모션 시작일
+  pro_cloDate varchar2(10) not null, -- 프로모션 종료일
+  pro_ing number(1) not null, -- 프로모션 진행 여부(1:진행 예정, 2:진행 중, 3:종료)
   pro_hide number(1) not null, -- 프로모션 숨김 여부(1:숨김, 2:공개)
   constraint promotion_pk primary key (pro_num)
 );
