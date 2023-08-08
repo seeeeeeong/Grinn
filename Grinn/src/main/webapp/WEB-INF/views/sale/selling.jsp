@@ -21,44 +21,44 @@
 			$('#status').attr('value','전체').attr('data-status','1');	
 			$('#dialog').dialog('close');
 			if(${way} == '1'){
-				location.href='${pageContext.request.contextPath}/myPage/selling.do?way=1&status=1';
+				location.href='${pageContext.request.contextPath}/user/selling.do?way=1&status=1';
 			}else if(${way} == '2'){
-				location.href='${pageContext.request.contextPath}/myPage/selling.do?way=2&status=1';
+				location.href='${pageContext.request.contextPath}/user/selling.do?way=2&status=1';
 			}
 		});
 		$('#btn_status2').click(function(){
 			if(${way} == '1'){
 				$('#status').attr('value','입찰중').attr('data-status','2');	
 				
-				location.href='${pageContext.request.contextPath}/myPage/selling.do?way=1&status=2';
+				location.href='${pageContext.request.contextPath}/user/selling.do?way=1&status=2';
 			}else if(${way} == '2'){
 				$('#status').attr('value','검수준비중').attr('data-status','2');	
 				$('#dialog').dialog('close');
-				location.href='${pageContext.request.contextPath}/myPage/selling.do?way=2&status=2';
+				location.href='${pageContext.request.contextPath}/user/selling.do?way=2&status=2';
 			}
 		});
 		$('#btn_status3').click(function(){
 			if(${way} == '1'){
 				$('#status').attr('value','기한만료').attr('data-status','3');	
 				$('#dialog').dialog('close');
-				location.href='${pageContext.request.contextPath}/myPage/selling.do?way=1&status=3';
+				location.href='${pageContext.request.contextPath}/user/selling.do?way=1&status=3';
 			}else if(${way} == '2'){
 				$('#status').attr('value','검수중').attr('data-status','3');	
 				$('#dialog').dialog('close');
-				location.href='${pageContext.request.contextPath}/myPage/selling.do?way=2&status=3';
+				location.href='${pageContext.request.contextPath}/user/selling.do?way=2&status=3';
 			}
 		});
 		
 		$('#btn_status4').click(function(){
 			$('#status').attr('value','배송중').attr('data-status','4');	
 			$('#dialog').dialog('close');
-			location.href='${pageContext.request.contextPath}/myPage/selling.do?way=2&status=4';
+			location.href='${pageContext.request.contextPath}/user/selling.do?way=2&status=4';
 		});
 		
 		$('#btn_status5').click(function(){
 			$('#status').attr('value','거래실패').attr('data-status','6');	
 			$('#dialog').dialog('close');
-			location.href='${pageContext.request.contextPath}/myPage/selling.do?way=2&status=6';
+			location.href='${pageContext.request.contextPath}/user/selling.do?way=2&status=6';
 		});
 		
 		if(${way} == '1'){
@@ -76,15 +76,15 @@
 		<table>
 			<thead>
 				<tr>
-					<td onclick="location.href='${pageConetext.request.contextPath}/myPage/selling.do?way=1'">
+					<td onclick="location.href='${pageConetext.request.contextPath}/user/selling.do?way=1'">
 						<p>${bidCount}</p>
 						<p>판매입찰</p>
 					</td>
-					<td onclick="location.href='${pageConetext.request.contextPath}/myPage/selling.do?way=2'">
+					<td onclick="location.href='${pageConetext.request.contextPath}/user/selling.do?way=2'">
 						<p>${tradeCount}</p>
 						<p>진행중</p>
 					</td>
-					<td onclick="location.href='${pageConetext.request.contextPath}/myPage/selling.do?way=3'">
+					<td onclick="location.href='${pageConetext.request.contextPath}/user/selling.do?way=3'">
 						<p>${quitCount}</p>
 						<p>종료</p>
 					</td>
