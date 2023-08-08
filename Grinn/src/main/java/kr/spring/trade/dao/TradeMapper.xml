@@ -127,6 +127,7 @@
 					pb.purchase_regDate,
 					pb.purchase_deadline,
 					s.item_size,
+					i.item_num,
 					i.item_brand,
 					i.item_name,
 					i.item_photo1,
@@ -155,6 +156,7 @@
 					d.trade_regDate,
 					d.trade_price,
 					md.mem_name,
+					i.item_num,
 					s.item_size,
 					i.item_brand,
 					i.item_name,
@@ -183,6 +185,7 @@
 					sb.sale_price,
 					sb.sale_regDate,
 					sb.sale_deadline,
+					i.item_num,
 					s.item_size,
 					i.item_brand,
 					i.item_name,
@@ -192,7 +195,7 @@
 				sale_bid sb 
 				JOIN item i ON sb.item_num=i.item_num
 				JOIN item_size s ON sb.item_sizenum=s.item_sizenum
-				WHERE pb.mem_num=#{mem_num}
+				WHERE sb.mem_num=#{mem_num}
 				<include refid="saleBidStatus"></include>
 				ORDER BY sb.sale_regDate DESC)
 			a)
@@ -213,6 +216,7 @@
 					d.trade_price,
 					md.mem_name,
 					s.item_size,
+					i.item_num,
 					i.item_brand,
 					i.item_name,
 					i.item_photo1,

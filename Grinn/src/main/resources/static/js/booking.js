@@ -23,8 +23,11 @@ $(function(){
 
 	// 시작일과 종료일 사이 기간을 제외한 날짜 비활성화
 	function disableDates() {
-		
-	}   
+		let date;
+		let dateFormat = 'yyyy-mm-dd';	
+	};
+	
+	
 	
 	
 	// ===날짜 선택 예약===

@@ -451,7 +451,7 @@ public class TradeController {
 		if(way == 1) {
 			count = tradeService.selectPurchaseBidCount(user.getMem_num());
 			bidCount = tradeService.selectPurchaseBidCount(user.getMem_num());
-			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			page = new PagingUtil(currentPage,count,10,5,"/user/buying.do");
 			
 			map.put("status", status);
 			map.put("mem_num", user.getMem_num());
@@ -466,7 +466,7 @@ public class TradeController {
 		}else if(way == 2) {
 			count = tradeService.selectTradePurchaseCount(user.getMem_num());
 			
-			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			page = new PagingUtil(currentPage,count,10,5,"/user/buying.do");
 			
 			map.put("status", status);
 			map.put("mem_num", user.getMem_num());
@@ -482,7 +482,7 @@ public class TradeController {
 			status = 5;
 			count = tradeService.selectTradePurchaseQuitCount(user.getMem_num());
 			
-			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			page = new PagingUtil(currentPage,count,10,5,"/user/buying.do");
 			
 			map.put("status", status);
 			map.put("mem_num", user.getMem_num());
@@ -529,7 +529,7 @@ public class TradeController {
 		if(way == 1) { // 판매 입찰 내역
 			count = tradeService.selectSaleBidCount(user.getMem_num());
 			bidCount = tradeService.selectSaleBidCount(user.getMem_num());
-			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			page = new PagingUtil(currentPage,count,10,5,"/user/buying.do");
 			
 			map.put("status", status);
 			map.put("mem_num", user.getMem_num());
@@ -544,7 +544,7 @@ public class TradeController {
 		}else if(way == 2) { // 판매 거래 정보 내역
 			count = tradeService.selectTradeSaleCount(user.getMem_num());
 			
-			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			page = new PagingUtil(currentPage,count,10,5,"/user/buying.do");
 			
 			map.put("status", status);
 			map.put("mem_num", user.getMem_num());
@@ -560,7 +560,7 @@ public class TradeController {
 			status = 5;
 			count = tradeService.selectTradeSaleQuitCount(user.getMem_num());
 			
-			page = new PagingUtil(currentPage,count,10,5,"/myPage/buying.do");
+			page = new PagingUtil(currentPage,count,10,5,"/user/buying.do");
 			
 			map.put("status", status);
 			map.put("mem_num", user.getMem_num());
