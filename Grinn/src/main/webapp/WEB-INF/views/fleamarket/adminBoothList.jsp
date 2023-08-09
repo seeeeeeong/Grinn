@@ -46,6 +46,7 @@
 			<th>시작일</th>
 			<th>종료일</th>
 			<th>장소</th>
+			<th>진행</th>
 			<th>권한</th>
 		</tr>
 		<c:forEach var="adminBooth" items="${boothList}">
@@ -54,6 +55,11 @@
 			<td class="align-center">${adminBooth.market_startDate}</td>
 			<td class="align-center">${adminBooth.market_endDate}</td>			
 			<td class="align-center">${adminBooth.place_name}</td>
+			<td class="align-center">
+				<c:if test="${adminBooth.market_type == 1}">예정</c:if>
+				<c:if test="${adminBooth.market_type == 2}">예약</c:if>
+				<c:if test="${adminBooth.market_type == 3}">종료</c:if>
+			</td>
 			<td class="align-center">
 				<input type="button" value="수정" onclick="location.href='updateBooth.do?market_num=${adminBooth.market_num}'" class="detail-btn">
 				<%-- <c:if test="${booth.market_startDate}"> --%>
