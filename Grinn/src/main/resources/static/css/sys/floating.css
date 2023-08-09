@@ -25,3 +25,16 @@ ico-top{
 	height: 24px;
 	width: 24px;
 }
+
+.btn_talk{
+   background-color: #fff;
+    border-radius: 30px;
+    bottom: 80px;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
+    height: 48px;
+    /*padding-top: 2px;*/
+    position: fixed;
+    right: 24px;
+    width: 44px;
+    z-index: 0;
+}

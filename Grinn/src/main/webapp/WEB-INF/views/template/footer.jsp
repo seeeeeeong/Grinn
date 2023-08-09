@@ -84,9 +84,17 @@
 	</div>
 </div>
 
+<!-- 투표 : 신윤서 -->
 <div id = "floating">
 	<button class = "btn_top" onclick = "location.href='voteList.do'">
 		<img class = "ico-top" src = "${pageContext.request.contextPath}/images/how_to_vote.png" width = "32" height = "32">
+	</button>
+</div>
+
+<!-- 채팅 : 염유진 -->
+<div id="floating">
+	<button class="btn_talk" onclick="location.href='${pageContext.request.contextPath}/talk/talkList.do'">
+		<img class="ico-top" src="${pageContext.request.contextPath}/images/how_to_talk.png" width = "32" height = "32"">
 	</button>
 </div>
 
