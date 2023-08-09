@@ -170,7 +170,7 @@
 			<![CDATA[
 			REPLACE(REPLACE(review_content,'<','&lt;'),'>','&gt;') review_content,
 			]]>
-			review_date, review_modifydate, review_star, item_num, mem_num, mem_id, mem_nickname
+			review_date, review_modifydate, review_star,review_photo,review_photoname, item_num, mem_num, mem_id, mem_nickname
 			 FROM review JOIN member USING(mem_num) WHERE item_num=#{item_num} 
 				ORDER BY review_num DESC)a)
 		<![CDATA[

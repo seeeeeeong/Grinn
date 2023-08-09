@@ -4,7 +4,7 @@ $(function(){
 	let rowCount = 10;
 	let currentPage;
 	let count;
-	
+	/*
 	//댓글 목록
 	function selectList(pageNum){
 		currentPage = pageNum;
@@ -39,7 +39,7 @@ $(function(){
 					output += '<img src="../user/viewProfile.do?mem_num='+ item.mem_num+'" width="40" height="40" class="my-photo">';
 					output += '</li>';
 					output += '<li>';
-					if(item.nick_name){
+					if(item.mem_nickname){
 						output += item.mem_nickname + '<br>';
 					}else{
 						output += item.mem_id + '<br>';
@@ -52,6 +52,9 @@ $(function(){
 					output += '</li>';
 					output += '</ul>';
 					output += '<div class="sub-item">';
+					if(item.review_photo != null){
+						output += '<img src="../item/reviewPhoto.do?review_num='+item.review_num+'" width="40" height="40">';
+					}
 					output += '<p>' + item.review_content.replace(/\r\n/g,'<br>') + '</p>';
 					if(param.user_num==item.mem_num){
 						//로그인한 회원번호가 댓글 작성자 회원번호와 같으면
@@ -86,6 +89,40 @@ $(function(){
 		selectList(currentPage + 1);
 	});
 	
+	
+	*/
+	
+	//댓글 삭제
+	$(document).on('click','.delete-btn',function(){
+		let choice = confirm('삭제하시겠습니까?');
+		if(!choice){
+			return;
+		}
+		//서버와 통신
+		$.ajax({
+			url:'itemReviewDelete.do',
+			type:'post',
+				//key	value
+			data:{item_num:$('#output').attr('data-itemnum'),review_num:$('#output').attr('data-reviewnum')},
+			dataType:'json',
+			success:function(param){
+				if(param.result=='logout'){
+					alert('로그인해야 삭제할 수 있습니다.');
+				}else if(param.result=='success'){
+					alert('삭제완료');
+					//location.href="../item/itemDetai.do?item_num="+item_num;
+				}else if(param.result=='wrongAccess'){
+					alert('타인의 글을 삭제할 수 없습니다.')
+				}else{
+					alert('댓글 삭제 오류 발생');
+				}
+			},
+			error:function(param){
+				alert('네트워크 오류 발생!');
+			}
+			
+		});
+		
+	});
 	//초기 데이터(목록) 호출
-	selectList(1);
 });

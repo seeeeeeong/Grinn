@@ -44,10 +44,11 @@ public interface ItemMapper {
 	public List<ItemReviewVO> selectListReview(Map<String, Object> map);
 	@Select("SELECT COUNT(*) FROM review JOIN member USING(mem_num) WHERE item_num=#{item_num}")
 	public int selectRowCountReview(Map<String,Object> map);
-	@Select("SELECT * FROM review WHERE item_num=#{item_num}")
+	@Select("SELECT * FROM review WHERE review_num=#{review_num}")
 	public ItemReviewVO selectReview(Integer review_num);
 	public void insertReview(ItemReviewVO itemReview);
 	public void updateReview(ItemReviewVO itemReview);
+	@Delete("DELETE FROM review WHERE review_num=#{review_num}")
 	public void deleteReiew(Integer review_num);
 	//부모글 삭제시 댓글이 존재하면 부모글 삭제전 댓글 삭제
 	public void deleteReviewByItemNum(Integer review_num);

@@ -170,5 +170,18 @@ $(function(){
 		});
 	}
 
+		//textarea에 내용 입력시 글자수 체크
+	$(document).on('keyup', '#review_content', function () {
+    // 입력한 글자수 구하기
+    let inputLength = $(this).val().length;
 
+    if (inputLength > 300) { // 300자를 넘어선 경우
+        $(this).val($(this).val().substring(0, 300))
+    } else { // 300자 이하인 경우
+        // 남은 글자수 구하기
+        let remain = 300 - inputLength;
+        remain += '/300';
+        $('.letter-count').text(remain);
+    }
+});
 });

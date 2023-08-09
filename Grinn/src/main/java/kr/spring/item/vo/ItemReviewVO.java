@@ -25,7 +25,8 @@ public class ItemReviewVO {
 	private int mem_num;
 	
 	private String mem_id;
-	private String mem_nickName;
+	private String mem_nickname;
+	
 	
 	public void setReview_date(String review_date) {
 		this.review_date = DurationFromNow.getTimeDiffLabel(review_date);

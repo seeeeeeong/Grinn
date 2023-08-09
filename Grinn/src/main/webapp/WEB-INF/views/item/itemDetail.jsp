@@ -196,19 +196,44 @@
 			</div>
 		</div><!-- 상품 좌우안내 끝 -->
 		<hr>
+		<!-- 댓글 시작 -->
 		<div>
-		<h2>Review</h2>
-			<!-- 댓글 목록 출력 -->
-			<div id="output" data-itemnum="${item.item_num}"></div>
-			<div class="paging-button" style="display: none;">
-				<input type="button" value="더보기">
-			</div>
-			<div id="loading" style="display: none;">
-				<img src="${pageContext.request.contextPath}/images/loading.gif"
-					width="100" height="100">
-			</div>
-			<!-- 댓글 UI 끝 -->
-
+			<h2>Review</h2>
+			<c:forEach var="review" items="${list}">
+				<div class="item">
+					<ul class="detail-info">
+						<li>
+							<img src="${pageContext.request.contextPath}/user/viewProfile.do?mem_num=${review.mem_num}" width="40" height="40" class="my-photo">
+						</li>
+						<li>
+							<c:if test="${!empty review.mem_nickname}">
+								${review.mem_nickname}
+							</c:if>
+							<c:if test="${empty review.mem_nickname}">
+								${review.mem_id}
+							</c:if>
+							<c:if test="${!empty review.review_modifydate}">
+								<span class="modify-date"> 최근 수정일 : ${review.review_modifydate}</span>
+							</c:if>
+							<c:if test="${empty review.review_modifydate}">
+								<span class="modify-date"> 등록일 : ${review.review_date}</span>
+							</c:if>
+						</li>
+					</ul>
+					<div class="sub-item">
+						<c:if test="${!empty review.review_photo}">
+							<img src="${pageContext.request.contextPath}/item/reviewPhoto.do?review_num=${review.review_num}" width="40" height="40">
+						</c:if>
+						${review.review_star}점
+						<p>${review.review_content}</p>
+						<c:if test="${user_num eq review.mem_num}">
+							<input type="button" value="수정" href="#">
+							<input type="button" value="삭제" class="delete-btn" data-reviewnum="${review.review_num}" data-itemnum="${review.item_num}" id="output">
+						</c:if>
+					</div>
+				</div>
+			</c:forEach>
 		</div>
+		<!-- 댓글 끝 -->
 	</c:if>
 </div>

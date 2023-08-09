@@ -169,6 +169,7 @@ public class ItemController {
 		
 		return "imageView";
 	}
+	
 
 	// 상품 사진 처리를 위한 공통 코드
 	public void viewProfile(ItemVO itemVO, HttpServletRequest request, Model model) {
@@ -200,15 +201,55 @@ public class ItemController {
 	
 	//=========상품 상세 시작============
 	@RequestMapping("/item/itemDetail.do")
-	public ModelAndView getDetail(@RequestParam int item_num) {
-		//상품상세
-		ItemVO item = itemService.selectItem(item_num);
+	public ModelAndView getDetail(@RequestParam int item_num,@RequestParam(value = "pageNum", defaultValue = "1") int currentPage,
+			@RequestParam(value = "order", defaultValue = "1") int order, String keyfield, String keyword,HttpSession session) {
 		
-		return new ModelAndView("itemDetail","item",item);
+		ItemVO item = itemService.selectItem(item_num);
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		map.put("item_num", item_num);
+		// 전체/검색 레코드 수
+		int count = itemService.selectRowCountReview(map);
+
+		// 페이지처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 20, 10, "itemDetail.do",
+				"&order=" + order);
+
+		
+		List<ItemReviewVO> list = null;
+		if (count > 0) {
+			map.put("order", order);
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+
+			list = itemService.selectListReview(map);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("itemDetail");
+		mav.addObject("item", item);
+		if(user!=null) {
+			mav.addObject("user_num", user.getMem_num());
+		}
+		mav.addObject("list", list);
+		
+		return mav;
 	}
 	//=========상품 상세 끝============
-	
-	
+	/*
+	// =========상품 상세 시작============
+	@RequestMapping("/item/itemDetail.do")
+	public ModelAndView getDetail(@RequestParam int item_num) {
+		// 상품상세
+		ItemReviewVO item = itemService.selectReviewItemnum(item_num);
+
+		return new ModelAndView("itemDetail", "item", item);
+	}
+	// =========상품 상세 끝============
+	*/
 	//=========상품 수정 시작============
 	//수정폼 호출
 	@GetMapping("/item/itemModify.do")
@@ -233,7 +274,7 @@ public class ItemController {
 		itemService.updateItem(itemVO);
 		
 		model.addAttribute("message", "상품 수정 완료!");
-		model.addAttribute("url", request.getContextPath()+"/item/itemDetail.do?item_num="+itemVO.getItem_num());
+		model.addAttribute("url", request.getContextPath()+"/item/.do?item_num="+itemVO.getItem_num());
 		
 		return "common/resultView";
 		
@@ -334,12 +375,12 @@ public class ItemController {
 		itemService.insertReview(itemReviewVO);
 		
 		model.addAttribute("message", "리뷰 작성 완료");
-		model.addAttribute("url", request.getContextPath()+"/item/itemAdminList.do");
+		model.addAttribute("url", request.getContextPath()+"/item/itemDetail.do?item_num="+itemReviewVO.getItem_num());
 		
 		return "common/resultView";
 	}
 	//=========후기 등록 끝============
-	
+	/*
 	//=========후기 목록 시작============
 	@RequestMapping("/item/listReview.do")
 	@ResponseBody
@@ -378,6 +419,50 @@ public class ItemController {
 			mapJson.put("user_num", user.getMem_num());
 		}
 		return mapJson;
+	}*/
+	//사진 보기
+	@RequestMapping("/item/reviewPhoto.do")
+	public String viewImage(@RequestParam int review_num, HttpServletRequest request, Model model) {
+		ItemReviewVO itemReviewVO = itemService.selectReview(review_num);
+		viewProfile2(itemReviewVO, request, model);
+		
+		return "imageView";
+	}
+	public void viewProfile2(ItemReviewVO itemReviewVO, HttpServletRequest request, Model model) {
+		
+			// 업로드한 상품 사진이 있는 경우
+			model.addAttribute("imageFile", itemReviewVO.getReview_photo());
+			model.addAttribute("filename", itemReviewVO.getReview_photoname());
+		
 	}
 	//=========후기 목록 끝============
+	
+	//=========후기 수정 시작===========
+	//=========후기 수정 끝============
+	
+	//=========후기 삭제 시작===========
+	@RequestMapping("/item/itemReviewDelete.do")
+	@ResponseBody
+	public Map<String, String> deleteReply(@RequestParam int review_num, HttpSession session){
+		
+		
+		Map<String, String> mapJson = new HashMap<String, String>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		ItemReviewVO reviewVO = itemService.selectReview(review_num);
+		
+		if(user==null) {
+			//로그인이 되지 않은 경우
+			mapJson.put("result", "logout");
+		}else if(user!=null&& user.getMem_num()==reviewVO.getMem_num()) {
+			//로그인한 회원번호와 작성자 회원번호 일치
+			itemService.deleteReiew(review_num);
+			mapJson.put("result", "success");
+		}else {
+			//로그인한 회원번호와 작성자 회원번호 불일치
+			mapJson.put("result", "wrongAccess");
+		}
+		return mapJson;
+	}
+	//=========후기 삭제 끝============
+	
 }

@@ -80,6 +80,8 @@ public class ItemServiceImpl implements ItemService{
 	public int selectRowCountReview(Map<String, Object> map) {
 		return itemMapper.selectRowCountReview(map);
 	}
+	
+	
 
 	@Override
 	public ItemReviewVO selectReview(Integer review_num) {
@@ -99,8 +101,8 @@ public class ItemServiceImpl implements ItemService{
 
 	@Override
 	public void deleteReiew(Integer review_num) {
-		// TODO Auto-generated method stub
-		
+		itemMapper.deleteReiew(review_num);
 	}
+
 
 }
