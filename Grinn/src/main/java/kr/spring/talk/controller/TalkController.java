@@ -72,14 +72,14 @@ public class TalkController {
 	/* ====================== 채팅 회원 검색 ====================== */
 	@RequestMapping("/talk/memberSearchAjax.do")
 	@ResponseBody
-	public Map<String,Object> memberSearchAjax(@RequestParam String id, HttpSession session){
+	public Map<String,Object> memberSearchAjax(@RequestParam String mem_id, HttpSession session){
 		Map<String,Object> mapJson = new HashMap<String,Object>();
 		
 		MemberVO memberVO = (MemberVO)session.getAttribute("user");
 		if(memberVO == null) {//로그인이 되지 않은 경우
 			mapJson.put("result", "logout");
 		}else {//로그인 된 경우
-			List<MemberVO> member = memberService.selectSearchMember(id);
+			List<MemberVO> member = memberService.selectSearchMember(mem_id);
 			mapJson.put("result", "success");
 			mapJson.put("member", member);
 		}
@@ -132,8 +132,8 @@ public class TalkController {
 				room_name = vo.getRoom_name();
 			}
 			//채팅 멤버 저장
-			if(i>0) chatMember += ",";
-			chatMember += list.get(i).getId();
+			if(i > 0) chatMember += ",";
+			chatMember += list.get(i).getMem_id();
 		}
 		
 		//채팅 멤버 id

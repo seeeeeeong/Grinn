@@ -20,19 +20,16 @@
 	<form action="talkList.do" id="search_form" method="get">
 		<ul class="search">
 			<li>
-				<input type="search" name="keyword" id="keyword"
-				                     value="${param.keyword}">
+				<input type="search" name="keyword" id="keyword" value="${param.keyword}">
 			</li>
 			<li>
 				<input type="submit" value="찾기">
-				<input type="button" value="목록" 
-				   onclick="location.href='talkList.do'">
+				<input type="button" value="목록" onclick="location.href='talkList.do'">
 			</li>
 		</ul>
 	</form>
 	<div class="align-right">
-		<input type="button" value="채팅방 생성"
-		        onclick="location.href='talkRoomWrite.do'">
+		<input type="button" value="채팅방 생성" onclick="location.href='talkRoomWrite.do'">
 	</div>
 	<c:if test="${count == 0}">
 	<div class="result-display">표시할 채팅방이 없습니다.</div>

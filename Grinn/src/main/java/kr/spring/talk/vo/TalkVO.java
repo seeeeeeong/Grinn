@@ -17,5 +17,5 @@ public class TalkVO {
 	private String chat_date; //채팅 날짜
 	
 	private int read_count; //채팅 메시지를 읽지 않은 회원수
-	private String id; //채팅 회원
+	private String mem_id; //채팅 회원
 }

@@ -15,5 +15,5 @@ public class TalkMemberVO {
 	private String room_name;
 	private Date member_date;
 	
-	private String id;
+	private String mem_id;
 }

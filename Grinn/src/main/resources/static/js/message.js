@@ -13,7 +13,7 @@ $(function(){
 	 *    웹소켓 연결
      *--------------------*/
 	function alarm_connect(){
-		message_socket = new WebSocket("ws://localhost:8000/message-ws.do");
+		message_socket = new WebSocket("ws://211.63.89.70:8000/message-ws.do");
 		message_socket.onopen=function(evt){
 			//채팅 페이지에 진입하면 채팅 메시지 발송
 			if($('#talkDetail').length==1){
@@ -50,7 +50,7 @@ $(function(){
 		$.ajax({
 			url:'memberSearchAjax.do',
 			type:'post',
-			data:{id:$('#member_search').val()},
+			data:{mem_id:$('#member_search').val()},
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'logout'){
@@ -59,10 +59,10 @@ $(function(){
 				}else if(param.result == 'success'){
 					$('#search_area').empty();
 					$(param.member).each(function(index,item){
-						if(!member_list.includes(item.id)){
+						if(!member_list.includes(item.mem_id)){
 							let output = '';
 							output += '<li data-num="'+item.mem_num+'">';
-							output += item.id;
+							output += item.mem_id;
 							output += '</li>';
 							$('#search_area').append(output);
 						}	
@@ -334,6 +334,13 @@ $(function(){
 		$('#member_search').val('');
 		$('#search_area').empty();
 		$('#talk_member').empty();
+		
+		$(".fixed").css({
+		    "position":"static"
+	  	});
+	  	$("#main_body").css({
+		  "padding": "0 0 30px 0"
+	  	});
 	});
 	//채팅방 추가 멤버 정보 전송
 	$('#new_form').submit(function(event){
