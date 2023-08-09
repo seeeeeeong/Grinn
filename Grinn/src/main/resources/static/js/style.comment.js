@@ -29,7 +29,7 @@ $(function(){
 					let output = '<div class="item">';
 					output += '<ul class="detail-info">';
 					output += '<li>';
-					output += '<img src="../member/viewProfile.do?mem_num=' + item.mem_num +'" width="40" height="40" class="my-photo">';
+					output += '<img src="../style/viewProfileByCom_num.do?com_num=' + item.com_num + '" width="40" height="40" class="my-photo">';
 					output += '</li>';
 					output += '<li>';
 					output += item.mem_id + '<br>';
@@ -124,7 +124,7 @@ $(function(){
 		//댓글번호
 		let com_num = $(this).attr('data-num');
 		//댓글내용
-		let content = $(this).parent().find('p').html().replace(/<br>/gi, '\r\n');
+		let content = $(this).parent().parent().find('p').html().replace(/<br>/gi, '\r\n');
 		
 		//댓글 수정폼 UI
 		let modifyUI = '<form id="mre_form">';
@@ -164,29 +164,9 @@ $(function(){
 	//댓글수정폼 초기화
 	function initModifyForm(){
 		$('.sub-item').show();
+		$('.com_btn').show();
 		$('#mre_form').remove();
 	};
-	
-	//textarea에 내용 입력시 글자수 체크
-	$(document).on('keyup', 'textarea', function(){
-		//입력한 글자수 구하기
-		let inputLength = $(this).val().length;
-		
-		if(inputLength > 300){//300자를 넘어선 경우
-			$(this).val($(this).val().substring(0, 300));
-		}else{//300자 이하인 경우
-			//남은 글자수 구하기
-			let remain = 300 - inputLength;
-			remain += '/300';
-			if($(this).attr('id') == 're_content'){
-				//등록폼 글자수
-				$('#re_first .letter-count').text(remain);
-			}else{
-				//수정폼 글자수
-				$('#mre_first .letter-count').text(remain);
-			}
-		}
-	});
 	
 	//댓글수정
 	$(document).on('submit', '#mre_form', function(event){

@@ -113,8 +113,21 @@
 		LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
 		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
 		LEFT OUTER JOIN item i ON s.item_num1 = i.item_num
+		LEFT OUTER JOIN item i ON s.item_num2 = i.item_num
+		LEFT OUTER JOIN item i ON s.item_num3 = i.item_num
 		WHERE s.st_num=#{st_num}
 	</select>
+	
+	<!-- 스타일 수정 -->
+	<update id="updateStyle" parameterType="styleVO">
+		UPDATE style SET 
+		st_phrase=#{st_phrase},
+		st_mdate=sysdate,
+		item_num1=#{item_num1},
+		item_num1=#{item_num2},
+		item_num1=#{item_num3}
+		WHERE st_num=#{st_num}
+	</update>
 	
 	<!-- 댓글 등록 -->
 	<insert id="insertComment" parameterType="styleCommentVO">
@@ -133,7 +146,7 @@
 	<!-- 댓글 목록 -->
 	<select id="selectListComment" parameterType="map" resultType="styleCommentVO">
 		SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT s.com_num,
-		            s.com_comment, s.com_regdate, s.com_mdate, s.mem_num, s.st_num, m.mem_id, d.mem_photo_name
+		            s.com_comment, s.com_regdate, s.com_mdate, s.mem_num, s.st_num, m.mem_id, d.mem_photo_name, d.mem_photo
 		            FROM style_comment s
 		            LEFT OUTER JOIN member m ON s.mem_num = m.mem_num
 		            LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num

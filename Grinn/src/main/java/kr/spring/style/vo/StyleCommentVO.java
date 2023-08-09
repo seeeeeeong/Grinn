@@ -2,14 +2,13 @@ package kr.spring.style.vo;
 
 import java.sql.Date;
 
-import kr.spring.util.DurationFromNow;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"mem_photo"})
 public class StyleCommentVO {
 	private int com_num;
 	private String com_comment;
@@ -19,6 +18,7 @@ public class StyleCommentVO {
 	private int st_num;
 	
 	private String mem_id; //회원 아이디
-	private String mem_photo; //프로필 사진
+	private byte[] mem_photo;//프로필 사진
+	private String mem_photo_name; //프로필 사진명
 
 }

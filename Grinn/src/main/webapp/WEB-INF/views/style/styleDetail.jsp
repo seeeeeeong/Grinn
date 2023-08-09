@@ -4,20 +4,34 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/style.fav.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/style.comment.js"></script>
     <style>
-    #yijunesok_st{
+    #styleDetail{
     	align-items: stretch;
     	padding: 0;
     }
+    
+    .profile-photo{
+    	width:35px;
+    	height:35px;
+    	border-radius:70%;
+    }
+	.user-div{
+		padding:0 335px 0 335px;
+	}
     .user-profile{
-    	padding:0 335px 0 335px;
+    	display: flex;
+        flex-wrap: wrap; /* 아이템들을 여러 줄에 걸쳐 표시할 수 있도록 설정 */
+        width:65%;
+        float:left;
     }
     .user-profile .username{
     	font-size:15pt;
     }
+    .nameAndDate{
+    	margin-left:5px;
+    }
     .posted-date{
     	font-size:10pt;
     	color:#9d9d9d;
-    	padding-left:20px;
     }
     .modified-date{
     	font-size:10pt;
@@ -38,6 +52,12 @@
     .item-tag .tag-title{
     	font-size:15pt;
     }
+    .item-tag-box{
+    	width:100px;
+    }
+    .item-name{
+    	width:100px;
+    }
     #output_fcount{
 	    box-sizing: border-box;
 	    width:100px;
@@ -54,7 +74,54 @@
 	    padding: 0;
 	    font-size: 15px;
 	}
-
+	
+	/* 더보기 */
+	#more-btn{
+		float:right;
+		width:7%;
+		margin-top:5px;
+	}
+	#optionWrap {
+	  position: fixed; /* Stay in place */
+	  z-index: 1; /* Sit on top */
+	  padding-top: 100px; /* Location of the box */
+	  left: 0;
+	  top: 0;
+	  width: 100%; /* Full width */
+	  height: 100%; /* Full height */
+	  overflow: auto; /* Enable scroll if needed */
+	  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
+	
+	#optionBody {
+	  width: 100px;
+	  height: 100px;
+	  padding: 30px 30px;
+	  margin: 0 auto;
+	  border: none;
+	  border-radius:5%;
+	  background-color: #fff;
+	}
+	
+	#closeOption {
+	  float:left;
+	  font-size:20px;
+	  cursor: pointer;
+	}
+	
+	.options{
+		margin-top:30px;
+		text-align:center;
+		font-size:12pt;
+	}
+	.options ul{
+		padding:0;
+		margin:5px auto;
+	}
+	.options li{
+		margin-bottom:5px;
+	}
+	
 	/* 사진 슬라이드 */
 	li{
 	  list-style-type: none;
@@ -75,6 +142,7 @@
 	
 	.slides{
 	  position: absolute;
+	  margin:0;
 	  left: 0;
 	  top: 0;
 	  padding:0;
@@ -151,7 +219,6 @@
 	#modalWrap {
 	  position: fixed; /* Stay in place */
 	  z-index: 1; /* Sit on top */
-	  
 	  left: 0;
 	  top: 0;
 	  width: 100%; /* Full width */
@@ -187,16 +254,17 @@
 		margin:0;
 		padding-left:30px;
 	}
-	.user-profile{
-    	padding:0 335px 0 335px;
-    }
 	.comment-user-profile{
 		font-size:15pt;
-		margin-top:15px;
-		padding-right:5px;
+		margin:20px 0 0 0;
+    	display: flex;
+        flex-wrap: wrap; /* 아이템들을 여러 줄에 걸쳐 표시할 수 있도록 설정 */
+        padding-left:0;
 	}
 	.comment-post-caption{
-		padding-left:15pt;
+		padding-top:20px;
+		padding-left:15px;
+		magin-top:10px;
 	}
 	.comment-form{
 		display: flex;
@@ -288,33 +356,124 @@
 	
 	btn.onclick = function() {
 	  modal.style.display = 'block';
+	  $(".fixed").css({
+		    "position":"static"
+	  });
+	  $("#main_body").css({
+		  "padding": "0 0 30px 0"
+	  });
 	}
 	closeBtn.onclick = function() {
 	  modal.style.display = 'none';
+	  $(".fixed").css({
+		    "position":"fixed"
+	  });
+	  $("#main_body").css({
+		  "padding": "144px 0 30px 0"
+	  });
 	}
 	
-	window.onclick = function(event) {
-	  if (event.target == modal) {
-	    modal.style.display = "none";
+	  const optionBtn = document.getElementById('more-btn');
+	  const optionModal = document.getElementById('optionWrap');
+	  const optionCloseBtn = document.getElementById('closeOption');
+
+	  optionBtn.onclick = function() {
+		optionModal.style.display = 'block';
+		$(".fixed").css({
+		    "position":"static"
+	  	});
+	  	$("#main_body").css({
+		  "padding": "0 0 30px 0"
+	  	});
 	  }
-	}
+	  optionCloseBtn.onclick = function() {
+		optionModal.style.display = 'none';
+		  $(".fixed").css({
+			    "position":"fixed"
+		  });
+		  $("#main_body").css({
+			  "padding": "144px 0 30px 0"
+		  });
+	  }
+
+	  window.onclick = function(event) {
+	    if (event.target == optionModal) {
+	    	optionModal.style.display = "none";
+		  	  $(".fixed").css({
+				    "position":"fixed"
+			  });
+			  $("#main_body").css({
+				  "padding": "144px 0 30px 0"
+			  });
+	    }
+	  }
+	 
   });
   
-  
+
 
 </script>
 <!-- 스타일 상세 -->
-<div class="page-main" id="yijunesok_st">
-	<div class="user-profile">
-		<img src="profile_picture.png" class="profile-photo">
-		<span class="username">${style.mem_id}</span>
-		<div class="post-date">
-	      <span class="posted-date"><small>${style.st_regdate}</small></span>
-	      <c:if test="${!empty style.st_mdate}">
-	        <span class="modified-date"><small>${style.st_mdate}</small></span>
-	      </c:if>
-	    </div>
-    </div>
+<div class="page-main" id="styleDetail">
+	<div class="user-div">
+		<div class="user-profile">
+			<img src="${pageContext.request.contextPath}/style/viewProfile.do?st_num=${style.st_num}" class="profile-photo">
+			<div class="nameAndDate">
+				<span class="username">${style.mem_id}</span>
+				<div class="post-date">
+					<span class="posted-date"><small>${style.st_regdate}</small></span>
+					<c:if test="${!empty style.st_mdate}">
+						<span class="modified-date"><small>${style.st_mdate}</small></span>
+					</c:if>
+				</div>
+			</div>
+		</div>
+		<!-- 옵션 팝업 버튼 -->
+		<c:if test="${!empty user}">
+			<div class="more-option">
+				<span id="more-btn">•••</span>
+			</div>
+		</c:if>
+		<div id="optionWrap" style="display:none;">
+		  <div id="optionContent">
+		    <div id="optionBody">
+		      <span id="closeOption">&times;</span> 
+		      <div class="options">
+		      	<ul>
+		      		<li>
+		      			<c:if test="${!empty user && user.mem_num == style.mem_num}">
+		      				<span>수정</span>
+		      			</c:if>
+		      			<c:if test="${!empty user && user.mem_num != style.mem_num}">
+		      				<span>팔로우</span>
+		      			</c:if>		      			
+		      		</li>
+		      		<li>
+		      			<c:if test="${!empty user && user.mem_num == style.mem_num}">
+		      				<span id="delete_btn" style="color:red;">삭제</span>
+							<script type="text/javascript">
+								let delete_btn = document.getElementById('delete_btn');
+								delete_btn.onclick=function(){
+									let choice = confirm('삭제하시겠습니까?');
+									if(choice){
+										location.replace('delete.do?st_num=${style.st_num}');
+									}
+								};
+							</script>        		      				
+		      			</c:if>
+		      			<c:if test="${!empty user && user.mem_num != style.mem_num}">
+		      				<span style="color:red;">신고</span>
+		      			</c:if>	
+		      		</li>
+		      		<li>
+		      			<span><a href="/user/userStyle.do?mem_num=${style.mem_num}">이 계정 정보</a></span>
+		      		</li>
+		      	</ul>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
     <div class="style-photos">
 	    <div id="slideShow">
 	    <ul class="slides">
@@ -355,10 +514,11 @@
     		<div class=tag-title>
 				상품 태그
 			</div>
-			<span class="item-tag-box">
+			<div class="item-tag-box">
 				<img src="${pageContext.request.contextPath}/image_upload/${style.item_photo1name}" width="100" height="100"><br>
-				<span class="item-name">${style.item_name}</span>
-			</span>
+				<span class="item-name" style="width:100px;">${style.item_name}</span>
+			</div>
+		
 		</div><p>	
 		<div id="btnWrap">
 			<img id="output_fav" data-num="${style.st_num}" src="${pageContext.request.contextPath}/images/no_like.png" width="30" height="30">
@@ -378,27 +538,33 @@
 	      <div id="comment_title">
 	      	<h2>댓글</h2>
 	      </div>
-	      <div class="comment-user-profile">
-			<img src="profile_picture.png" class="profile-photo">
-			<span class="username">${style.mem_id}</span>
-    	  </div><br>
+	      	<div class="comment-user-profile">
+				<img src="${pageContext.request.contextPath}/style/viewProfile.do?st_num=${style.st_num}" class="profile-photo">
+				<div class="nameAndDate">
+					<span class="username">${style.mem_id}</span>
+					<div class="post-date">
+				      <span class="posted-date"><small>${style.st_regdate}</small></span>
+				      <c:if test="${!empty style.st_mdate}">
+				        <span class="modified-date"><small>${style.st_mdate}</small></span>
+				      </c:if>
+					</div>
+			    </div>
+		    </div>
 	      <div class="comment-post-caption">
 	      	${style.st_phrase}<br>
-	      	<span class="comment-posted-date"><small>${style.st_regdate}</small></span>
-	      	<c:if test="${!empty style.st_mdate}">
-	       	<span class="comment-modified-date"><small>${style.st_mdate}</small></span>
-	     	</c:if>
 	   	  </div>
 	   	  <hr width="100%" color="#f4f4f4">
 	   	  <!-- 댓글폼 -->
 	   	  <div class="comment-form">
-	   	  	<img src="login-photo.png" class="comment-login-photo">
+	   	  	<img src="${pageContext.request.contextPath}/style/viewProfileByMem_num.do" class="comment-login-photo">
 	   	  	<form id="com_form">
 	   	  		<input type="hidden" name="st_num" value="${style.st_num}" id="st_num">
 	   	  		<textarea rows="1" cols="28" name="com_comment" id="com_comment"
 	   	  		<c:if test="${empty user}">disabled="disabled" placeholder="로그인 후 이용 가능합니다."</c:if>
 	   	  		<c:if test="${!empty user}">placeholder="댓글을 입력하세요..."</c:if>></textarea>
-	   	  		<input type="submit" value="등록" class="comment-submit">
+	   	  		<c:if test="${!empty user}">
+	   	  			<input type="submit" value="등록" class="comment-submit">
+	   	  		</c:if>
 	   	  	</form>
 	   	  </div>
 	   	  <!-- 댓글폼 -->

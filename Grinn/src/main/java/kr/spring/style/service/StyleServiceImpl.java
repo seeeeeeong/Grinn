@@ -42,14 +42,12 @@ public class StyleServiceImpl implements StyleService{
 
 	@Override
 	public void updateStyle(StyleVO style) {
-		// TODO Auto-generated method stub
-		
+		styleMapper.updateStyle(style);
 	}
 
 	@Override
 	public void deleteStyle(Integer st_num) {
-		// TODO Auto-generated method stub
-		
+		styleMapper.deleteStyle(st_num);
 	}
 
 

@@ -2,13 +2,11 @@ package kr.spring.style.vo;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.spring.util.DurationFromNow;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -36,8 +34,14 @@ public class StyleVO {
 	private int item_num3;
 	private String mem_id;
 	private byte[] mem_photo;
-	private String item_name;
+	private String mem_photo_name;
 	private String item_photo1name;
+	private String item_name;
+	/*private byte[] item_photo1;
+	private String item_photo2name;
+	private byte[] item_photo2;
+	private String item_photo3name;
+	private byte[] item_photo3;*/
 	
 	//좋아요
 	private int fav_cnt;

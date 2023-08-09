@@ -28,11 +28,11 @@
             float:left;
         }
 
-        .profile-photo {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-           
+        .profile-photo img{
+              border-radius: 50%; /* 50%로 설정하여 사진을 둥글게 만듭니다 */
+			  width: 30px; /* 필요한 크기로 조정하세요 */
+			  height: 30px; /* 필요한 크기로 조정하세요 */
+			  overflow: hidden; /* 둥글게 잘린 부분을 숨김 처리합니다 */
         }
         
         .like-button{
@@ -59,7 +59,9 @@
                 	</a>
                 	<div class="user-profile">
                 	<a href="/user/userStyle.do?mem_num=${style.mem_num}">
-    				<img src="profile_picture.png" class="profile-photo">
+                	<span class="profile-photo">
+                		<img src="${pageContext.request.contextPath}/style/viewProfile.do?st_num=${style.st_num}">
+                	</span>
     				<span>${style.mem_id}</span>
     				</a>
 					</div>

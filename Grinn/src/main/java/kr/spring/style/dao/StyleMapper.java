@@ -30,6 +30,7 @@ public interface StyleMapper {
 	//수정
 	public void updateStyle(StyleVO style);
 	//삭제
+	@Delete("DELETE FROM style WHERE st_num=#{st_num}")
 	public void deleteStyle(Integer st_num);
 	//좋아요
 	@Select("SELECT * FROM style_fav WHERE st_num=#{st_num} AND mem_num=#{mem_num}")
@@ -46,7 +47,7 @@ public interface StyleMapper {
 	public List<StyleCommentVO> selectListComment(Map<String,Object> map);
 	@Select("SELECT COUNT(*) FROM style_comment WHERE st_num=#{st_num}")
 	public int selectRowCountComment(Map<String,Object> map);
-	@Select("SELECT * FROM style_comment WHERE com_num=#{com_num}")
+	@Select("SELECT * FROM style_comment c JOIN member_detail d ON c.mem_num = d.mem_num WHERE com_num=#{com_num}")
 	public StyleCommentVO selectComment(Integer com_num);
 	public void insertComment(StyleCommentVO styleComment);
 	@Update("UPDATE style_comment SET com_comment=#{com_comment}, com_mdate=SYSDATE WHERE com_num=#{com_num}")

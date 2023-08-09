@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.item.vo.ItemVO;
+import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.service.StyleService;
 import kr.spring.style.vo.StyleCommentVO;
@@ -37,6 +38,9 @@ import lombok.extern.slf4j.Slf4j;
 public class StyleController {
 	@Autowired
 	private StyleService styleService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	/*========================
 	 * 자바빈(VO) 초기화
@@ -144,6 +148,55 @@ public class StyleController {
 		style.setSt_phrase(StringUtil.useBrNoHtml(style.getSt_phrase()));
 		
 		return new ModelAndView("styleDetail","style", style);
+	}
+	
+	/*========================
+	 * 스타일 수정
+	 *========================*/
+	//수정 폼 호출
+	@GetMapping("/style/update.do")
+	public String formUpdate(@RequestParam int st_num, Model model) {
+		StyleVO styleVO = styleService.selectStyle(st_num);
+		model.addAttribute("styleVO", styleVO);
+		
+		return "styleModify";
+	}
+	//전송된 데이터 처리
+	@PostMapping("/style/update.do")
+	public String submitUpdate(
+			    @Valid StyleVO styleVO,
+			    BindingResult result,
+			    HttpServletRequest request,
+			    Model model) {
+		log.debug("<<글 수정 - StyleVO>> : " + styleVO);
+		
+		//유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			return "styleModify";
+		}
+		
+		//글 수정
+		styleService.updateStyle(styleVO);
+		
+		//View에 표시할 메시지
+		model.addAttribute("message", "수정 완료!");
+		model.addAttribute("url", request.getContextPath() + "/style/detail.do?st_num=" + styleVO.getSt_num());
+
+		return "common/resultView";
+	}
+	
+	/*========================
+	 * 스타일 삭제
+	 *========================*/
+	@RequestMapping("/style/delete.do")
+	public String submitDelete(
+			     @RequestParam int st_num) {
+		log.debug("<<글삭제 - st_num>> : " + st_num);
+		
+		//글삭제
+		styleService.deleteStyle(st_num);
+		
+		return "redirect:/style/list.do";
 	}
 	
 	/*========================
@@ -334,4 +387,78 @@ public class StyleController {
 		
 		return mapJson;
 	}
+	
+	//프로필 사진 출력(스타일번호 지정)
+	@RequestMapping("/style/viewProfile.do")
+	public String getProfileBySt_num(@RequestParam(required = false) int st_num, HttpServletRequest request, Model model) {
+		StyleVO styleVO = styleService.selectStyle(st_num);
+
+		viewProfile(styleVO, request, model);
+
+		return "imageView";
+	}
+	//스타일번호 지정을 통한 프로필 사진 처리를 위한 코드
+	public void viewProfile(StyleVO styleVO, HttpServletRequest request, Model model) {
+		if(styleVO == null || styleVO.getMem_photo() == null) {
+			// 기본 이미지 읽기
+			byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/face.png"));
+			model.addAttribute("imageFile", readbyte);
+			model.addAttribute("filename", "face.png");
+		}else {
+			// 업로드한 상품 사진이 있는 경우
+			model.addAttribute("imageFile", styleVO.getMem_photo());
+			model.addAttribute("filename", styleVO.getMem_photo_name());
+		}
+	}
+	
+	//로그인한 회원 프로필 사진 출력
+	@RequestMapping("/style/viewProfileByMem_num.do")
+	public String getProfileByMem_num(HttpSession session, HttpServletRequest request, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		MemberVO memberVO = null;
+		if(user != null) {
+			memberVO = memberService.selectMember(user.getMem_num());
+		}
+		
+		
+		viewProfileByMem_num(memberVO, request, model);
+		
+		return "imageView";
+	}
+	//회원번호 지정을 통한 프로필 사진 처리를 위한 코드
+	public void viewProfileByMem_num(MemberVO memberVO, HttpServletRequest request, Model model) {
+		if(memberVO == null || memberVO.getMem_photo() == null) {
+			// 기본 이미지 읽기
+			byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/face.png"));
+			model.addAttribute("imageFile", readbyte);
+			model.addAttribute("filename", "face.png");
+		}else {
+			// 업로드한 상품 사진이 있는 경우
+			model.addAttribute("imageFile", memberVO.getMem_photo());
+			model.addAttribute("filename", memberVO.getMem_photo_name());
+		}
+	}
+	
+	//댓글번호를 통해 회원 프로필 사진 출력
+	@RequestMapping("/style/viewProfileByCom_num.do")
+	public String getProfileByCom_num(@RequestParam(required = false) int com_num, HttpServletRequest request, Model model) {
+		StyleCommentVO styleCommentVO = styleService.selectComment(com_num);
+
+		viewProfileByCom_num(styleCommentVO, request, model);
+
+		return "imageView";
+	}
+	//댓글번호 지정을 통한 프로필 사진 처리를 위한 코드
+		public void viewProfileByCom_num(StyleCommentVO styleCommentVO, HttpServletRequest request, Model model) {
+			if(styleCommentVO == null || styleCommentVO.getMem_photo() == null) {
+				// 기본 이미지 읽기
+				byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/face.png"));
+				model.addAttribute("imageFile", readbyte);
+				model.addAttribute("filename", "face.png");
+			}else {
+				// 업로드한 상품 사진이 있는 경우
+				model.addAttribute("imageFile", styleCommentVO.getMem_photo());
+				model.addAttribute("filename", styleCommentVO.getMem_photo_name());
+			}
+		}
 }
