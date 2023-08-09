@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- 구매내역 시작 -->
+<!-- 판매내역 시작 -->
 <script type="text/javascript">
 	$(function(){
 		$('#dialog').dialog({
@@ -158,7 +158,7 @@
 					  <thead>
 					    <tr>
 					      <th>사진</th>
-					      <th width="300">이름</th>
+					      <th width="200">이름</th>
 					      <th width="50">사이즈</th>
 					      <c:if test="${way == 1}">
 					      <th>희망 가격</th>
@@ -173,6 +173,9 @@
 					      <th>거래 날짜</th>
 					      <th>판매자</th>
 					      <th>거래 상태</th>
+					      <c:if test="${status == 2}">
+					      <th>보내기</th>
+					      </c:if>
 					      </c:if>
 					    </tr>
 					  </thead>
@@ -207,6 +210,9 @@
 					        </c:if>
 					        <c:if test="${list.trade_state==6}">
 					        <td>거래실패</td>
+					        </c:if>
+					        <c:if test="${status == 2}">
+					        	<td><input type="button" class="send-item"></td>
 					        </c:if>
 					        </c:if>
 					        <c:if test="${way == 3}">
@@ -270,4 +276,4 @@
 	</div>
 </c:if>
 </div>
-<!-- 구매내역 끝 -->
+<!-- 판매내역 끝 -->

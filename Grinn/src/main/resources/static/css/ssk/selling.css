@@ -107,4 +107,14 @@ th{
 .btn-deleteBid:hover{
 	background-color: #c0a8f7;
 }
+.send-item{
+	border-radius: 20px;
+	border: 1px solid gray;
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+}
+.send-item:hover{
+	background-color:#adf7f0;
+}
 
