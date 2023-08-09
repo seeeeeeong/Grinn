@@ -115,7 +115,7 @@
 	clear:both;
 }
 .flea-title{
-	font-size:28px;
+	font-size:32px;
 	font-weight:bold;
 	padding:5px 0 20px 0;
 }
@@ -143,11 +143,14 @@
 	margin-top:20px;
 }
 .flea-book-btn{
-	background:#eee;
-	border:1px solid #eee;
+	width:165px;
+	background:url(../images/book_btn.png) no-repeat 50% 50%;
+	border:none;
 	color:#fff;
-	font-size:20px;
-	font-weight:bold;
+	font-size:18px;
+	font-weight:700;
+	line-height:36px;
+	text-align:center;
 	cursor:pointer;
 }
 /*예약 날짜 폼
