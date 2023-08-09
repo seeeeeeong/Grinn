@@ -12,7 +12,7 @@
 	padding:0 10px 0 0;
 }
 #main_body{
-	padding:144px 0px 30px 0px;
+	padding:130px 0px 30px 0px;
 	min-height:500px;
 }
 #page_nav{
@@ -419,20 +419,36 @@ header.css
 #layout{
 	opacity: 1;
 }
+.header {
+    background-color: #fff
+}
+
 .header.fixed{
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 1000;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000
 }
-.header{ /* =header_main */
-	background-color: #fff;
-	/* 수정 필요 */
-	margin-left: auto;
+
+.header.no_line {
+    box-shadow: 0 0 0 0 transparent!important
+}
+
+.notice+.header {
+    top: 32px
+}
+
+.has_tab .header {
+    box-shadow: 0 1px 0 0 rgba(0,0,0,.1)
+}
+
+.header>:not(.portal_target) {
+    margin-left: auto;
     margin-right: auto;
-    max-width: 1280px;
+    max-width: 1280px
 }
+
 .header_top .top_inner{
 	display: flex;
     padding: 12px 40px 0;
@@ -481,7 +497,7 @@ header.css
 }
 .main_inner{
 	display: flex;
-    padding: 10px 40px 30px 40px;
+    padding: 10px 40px;
     height: 45px;
     width:1200px;
     justify-content: space-between;
@@ -608,56 +624,126 @@ input[type="search"]:focus {
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 nav.tabs{
+	/* 카테고리 밑 라인 */
+	/*
 	border-bottom: 0.1px solid rgb(200, 199, 201);
+	*/
 	width: 100%;
 }
-.ul_tab.inline{
-	padding-left: 40px;
-	padding-right: 40px;
-	margin-left:auto;
-	margin-right: auto;
-	max-width: 1280px;
+.ul_tab .home_tabs.inline{
 	-webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
     display: flex;
     flex-wrap: nowrap;
     height: 44px;
     overflow-x: auto;
     overflow-y: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    scrollbar-width: none;
     width: 100%;
+    flex: 0 0 auto;
 }
-.ul_tab{
-	list-style: none;
-	padding: 0 40px;
-	margin: 0;
-	display: flex;
-	
+.ul_tab .home_tabs.inline::after{
+	content: "";
+    padding-right: 16px
 }
-.ul_tab li{
-	margin-right: 20px;
+.ul_tab .home_tabs.inline::-webkit-scrollbar {
+    background: transparent;
+    display: none;
+    height: 0;
+    width: 0
 }
-.ul_tab li:last-child{
-	margin-right: 0;
+.ul_tab.justified {
+    display: flex;
+    height: 45px;
+    padding-left: 0;
+    padding-right: 0
 }
-.tab{
-	position: relative;
+
+.ul_tab .home_tabs.inline .li_tab {
+    display: inline-flex
+}
+
+.ul_tab .home_tabs.inline .li_tab+.li_tab {
+    margin-left: 27px
+}
+
+.ul_tab.justified .li_tab {
+    flex: 1
+}
+
+.tab {
+    border-bottom: 2px solid #222;
     color: #222;
     cursor: pointer;
-    /* click -> border bottom line*/
-    border-bottom: 3px solid #222;
+    position: relative
 }
-.ul_tab.inline .tab_name{
-	font-size: 16px;
-    line-height: 1.25;
+
+.tab.active {
+    font-weight: 700
 }
-.tab_name{
-	position: relative;
-	background-color: #fff;
-	font-size: 16px;
-    line-height: 1.25;
+
+.tab:not(.active) {
+    border-bottom-color: transparent!important
+}
+
+.ul_tab.inline .tab {
+    display: inline-flex;
+    height: 100%;
+    padding-bottom: 6px;
+    padding-top: 15px
+}
+
+.ul_tab.justified .tab {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center
+}
+
+.tab_name {
+    background-color: #fff;
+    line-height: 20px;
+    position: relative;
+    font-size: 15px;
+}
+
+.updated .tab_name::after {
+    background-color: #ef6253;
+    border-radius: 5px;
+    content: "";
+    height: 5px;
+    position: absolute;
+    right: -7px;
+    top: 0;
+    width: 5px
+}
+
+.ul_tab.inline .tab_name {
+    font-size: 16px;
+    line-height: 1.25
+}
+
+.ul_tab.justified .tab_name {
+    font-size: 14px;
+    line-height: 1.2142857143
+}
+
+.lg .notification_tabs,
+.md .notification_tabs {
+    padding-left: 24px!important;
+    padding-right: 24px!important
 }
 
 
 
+
+
+
+/*===================
+====== MAIN =======
+====================*/
 
 
 

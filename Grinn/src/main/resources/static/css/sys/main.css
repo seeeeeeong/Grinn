@@ -1,5 +1,4 @@
 div{
-	display: block;
 	margin: 0;
 	padding: 0;
 }
@@ -7,6 +6,7 @@ div{
 	position: relative;
 	overflow: hidden;
 }
+/*
 .home_card_list{
 	margin-left: auto;
     margin-right: auto;
@@ -19,12 +19,32 @@ div{
     overflow: hidden;
     position: relative;
 }
+*/
+
+/*=================
+====== SLIDE ======
+===================*/
+
+.swiper-container{
+	width: 100%;
+}
+/*
+.swiper-slide{
+	width: 100%;
+	height: 800px;
+	background-color: #fff;
+}
+*/
 
 
+/* 임시로 지정한 container와 banner 사이 간격 */
+.collection{
+	padding: 20px 0;
+}
 
 .collection_items{
-	padding-left: 40px;
-	padding-right: 40px;
+	/**/padding-left: 40px;
+	/**/padding-right: 40px;
 	grid-row-gap: 12px;
     /* original */
     grid-column-gap: 8px;
@@ -36,8 +56,8 @@ div{
     margin-left: auto;
     margin-right: auto;
     max-width: 1280px;
-    /**/padding-left: 16px;
-    /**/padding-right: 16px;
+    padding-left: 0;
+    padding-right: 0;
 	/* row-gap: 16px; */
 }
 .collection_item{

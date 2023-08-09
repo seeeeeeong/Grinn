@@ -17,10 +17,8 @@
     background: none;
     background-color: transparent;
     border: 0;
-    border-radius: 0;
     outline: none;
     padding: 0;
-    color: #222;
 }
 ico-top{
 	filter: invert(46%) sepia(98%) saturate(493%) hue-rotate(333deg) brightness(94%) contrast(94%);
