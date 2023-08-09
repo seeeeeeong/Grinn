@@ -18,7 +18,7 @@
 	<h2>부스 등록</h2>
 	<form:form modelAttribute="marketVO" action="adminBoothWrite.do" id="booth_register" enctype="multipart/form-data">
 		<form:errors element="div" cssClass="error-color"></form:errors>
-		<ul class=register-label>
+		<ul class="register-label">
 			<li>
 				<label>진행 유형</label>
 				<form:radiobutton path="market_type" value="1" id="market_type1" checked="checked"/>예정

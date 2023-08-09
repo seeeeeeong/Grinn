@@ -21,31 +21,6 @@ create table market(
 
 create sequence market_seq;
 
---부스 위치
-/*create table boothLocation(
-  location_num number, -- 위치 번호
-  market_num number not null, -- 플리마켓 번호
-  location_row number not null, -- 부스 위치 행(배열)
-  location_column number not null, -- 부스 위치 열(배열)
-  booth_comp number(1) not null, -- 부스 예약 완료 여부(1:미완료, 2:완료)
-  location_regDate date default sysdate not null, -- 위치 등록일
-  location_updateDate date, -- 위치 수정일
-  constraint boothLocation_pk primary key (location_num),
-  constraint boothLocation_fk foreign key (market_num) references market (market_num) ON DELETE CASCADE
-);
-
-create sequence boothLocation_seq;*/
-
---부스 예약 등록 
-/*create table boothReservation(
-  boothRes_num number, -- 부스 예약 등록 번호
-  location_row number not null, -- 부스 행 번호
-  location_column number not null, -- 부스 열 번호
-  boothRes_regDate date default sysdate not null, -- 부스 예약 등록일
-  constraint boothReservation_pk primary key (boothRes_num)
-);
-
-create sequence boothReservation_seq;*/
 
 --부스 예약 정보**
 create table booking(
@@ -64,46 +39,20 @@ create table booking(
 create sequence booking_seq;
 
 ----페널티----
---회원별 페널티 요약**
+--회원별 페널티
 create table penalty(
   pe_num number, -- 회원 페널티 고유번호
   mem_num number not null, -- 회원번호
-  pe_total number(3) not null, -- 회원 페널티 총합
-  mem_auth number(1) not null, -- 회원 등급
+  pe_service_type number(1) not null, -- 페널티 유형(1:게시판, 2:거래)
+  pe_score number(3) not null, -- 회원 페널티 점수
+  pe_type number(1) not null, -- 페널티 부여 사유(1~3:게시글, 4~6:댓글, 7~9:거래)
+  pe_date date default sysdate not null,
   constraint penalty_pk primary key (pe_num),
-  constraint penalty_fk foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
-  constraint penalty_fk2 foreign key (mem_auth) references member (mem_auth) ON DELETE CASCADE
+  constraint penalty_fk foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
 );
 
 create sequence penalty_seq;
 
---회원별 게시판 페널티
-create table penalty_board(
-  peBoard_num number, -- 게시판 페널티 고유번호
-  mem_num number not null, -- 회원번호
-  peBoard_score number(3) not null, -- 게시판 신고 페널티 점수
-  rep_type number(1) not null, -- 페널티 유형
-  peBoard_date date default sysdate not null, -- 게시판 페널티 부여일
-  rst_num number not null, -- 게시물 신고 번호
-  constraint penalty_board_pk primary key (peBoard_num),
-  constraint penalty_board_fk foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
-  constraint penalty_board_fk2 foreign key (rst_num) references report_st (rst_num) ON DELETE CASCADE
-);
-
-create sequence penalty_board_seq;
-
---회원별 거래 페널티
-create table penalty_trade(
-  peTrade_num number, -- 거래 페널티 고유번호
-  mem_num number not null, -- 회원번호
-  peTrade_score number(3) not null, -- 거래 신고 페널티 점수
-  peTrade_type number(1) not null, -- 페널티 유형
-  peTrade_date date default sysdate not null, -- 거래 페널티 부여일
-  constraint penalty_trade_pk primary key (peTrade_num),
-  constraint penalty_trade_fk foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
-);
-
-create sequence penalty_trade_seq;
 
 ----프로모션----
 --프로모션 등록 정보
