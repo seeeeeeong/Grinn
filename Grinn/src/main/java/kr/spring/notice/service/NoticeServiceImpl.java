@@ -38,6 +38,26 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeMapper.selectRowCount_faq(map);
 	}
 	
+	@Override
+	public List<NoticeVO> selectCategoryOne(Map<String, Object> map) {
+		return noticeMapper.selectCategoryOne(map);
+	}
+
+	@Override
+	public List<NoticeVO> selectCategoryTwo(Map<String, Object> map) {
+		return noticeMapper.selectCategoryTwo(map);
+	}
+
+	@Override
+	public List<NoticeVO> selectCategoryThree(Map<String, Object> map) {
+		return noticeMapper.selectCategoryThree(map);
+	}
+
+	@Override
+	public List<NoticeVO> selectCategoryFour(Map<String, Object> map) {
+		return noticeMapper.selectCategoryFour(map);
+	}
+	
 	//고객센터-검수기준
 	@Override
 	public List<NoticeVO> selectAuthList(Map<String, Object> map) {
@@ -72,6 +92,9 @@ public class NoticeServiceImpl implements NoticeService{
 	public void deleteNotice(Integer no_num) {
 		noticeMapper.deleteNotice(no_num);
 	}
+
+
+	
 	
 
 	

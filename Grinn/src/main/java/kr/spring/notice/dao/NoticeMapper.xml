@@ -47,18 +47,21 @@
 			<![CDATA[
 			WHERE rnum >= #{start} AND rnum <= #{end}
 			]]>
-			<if test="category == 1">
-			AND no_category=1
-			</if>
-			<if test="category == 2">
-			AND no_category=2
-			</if>
-			<if test="category == 3">
-			AND no_category=3
-			</if>
-			<if test="category == 4">
-			AND no_category=4
-			</if>
+	</select>
+	
+	<select id="selectCategoryOne">
+		SELECT * FROM (SELECT a.*, rownum rnum FROM
+		(SELECT no_num,
+			no_title,
+			no_content,
+			no_category
+			FROM notice
+			WHERE no_status=2 and no_category=1
+			<include refid="search_faq"></include>
+			)a)
+			<![CDATA[
+			WHERE rnum >= #{start} AND rnum <= #{end}
+			]]>
 	</select>
 	
 	<insert id="insertNotice" parameterType="noticeVO">

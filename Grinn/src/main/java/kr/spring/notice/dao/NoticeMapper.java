@@ -22,6 +22,16 @@ public interface NoticeMapper {
 	public List<NoticeVO> selectFaqList(Map<String, Object> map);
 	public int selectRowCount_faq(Map<String, Object> map);
 	
+	//카테고리별 선택-1
+	
+	public List<NoticeVO> selectCategoryOne(Map<String, Object> map);
+	@Select("SELECT * FROM notice WHERE no_status=2 AND no_category=2")
+	public List<NoticeVO> selectCategoryTwo(Map<String, Object> map);
+	@Select("SELECT * FROM notice WHERE no_status=2 AND no_category=3")
+	public List<NoticeVO> selectCategoryThree(Map<String, Object> map);
+	@Select("SELECT * FROM notice WHERE no_status=2 AND no_category=4")
+	public List<NoticeVO> selectCategoryFour(Map<String, Object> map);
+	
 	//고객센터-검수기준
 	@Select("SELECT * FROM notice WHERE no_status=3 ORDER BY no_policy asc")
 	public List<NoticeVO> selectAuthList(Map<String, Object> map);
