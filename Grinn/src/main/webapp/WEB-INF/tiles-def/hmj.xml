@@ -37,6 +37,11 @@
     	<put-attribute name="title" value="플리마켓 수정(관리자)"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminBoothUpdate.jsp"/>
     </definition>
+    
+    <definition name="adminWrite" extends="admin">
+    	<put-attribute name="title" value="프로모션 등록(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/promotion/adminWrite.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

@@ -1,3 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.spring.promotion.dao.PromotionMapper"></mapper>
+<mapper namespace="kr.spring.promotion.dao.PromotionMapper">
+	<!-- 프로모션 등록 -->
+	<insert id="insertPromotion">
+		INSERT INTO promotion(
+		  pro_num,
+		  pro_name,
+		  pro_content,
+		  pro_photo1,
+		  pro_photoName1,
+		  pro_openDate,
+		  pro_cloDate,
+		  pro_ing,
+		  pro_hide) 
+		VALUES (
+		  promotion_seq.nextval,
+		  #{pro_num},
+		  #{pro_name},
+		  #{pro_content},
+		  #{pro_photo1},
+		  #{pro_photoName1},
+		  #{pro_openDate},
+		  #{pro_cloDate},
+		  #{pro_ing},
+		  #{pro_hide})
+	</insert>
+</mapper>
