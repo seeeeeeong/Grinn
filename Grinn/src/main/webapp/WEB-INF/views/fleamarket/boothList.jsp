@@ -52,13 +52,13 @@
 			<td class="market-title"><b>${booth.market_title}</b></td>
 			<td class="market-date">${booth.market_startDate} ~ ${booth.market_endDate}</td>
 			<td class="align-center market-place">${booth.place_name}</td>
-			<td>
+			<td class="align-center">
 				<input type="button" value="상세정보" onclick="location.href='detail.do?market_num=${booth.market_num}'" class="detail-btn">
 				<%-- <c:if test="${booth.market_startDate}"> --%>
 				<%-- <input type="button" value="예약 예정" class="before-btn">--%>
 				<%-- </c:if> --%>
 				<%-- <c:if test="${booth.market_startDate}">--%>
-				<input type="button" value="예약 중" class="booking-btn" onclick="location.href='booking.do?market_num=${booth.market_num}'" class="detail-btn">
+				<input type="button" value="예약" class="booking-btn" onclick="location.href='booking.do?market_num=${booth.market_num}'" class="detail-btn">
 				<%--</c:if> 
 				 <c:if test="${booth.market_endDate}"> 
 				<input type="button" value="예약 종료" class="after-btn">

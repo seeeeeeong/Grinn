@@ -67,21 +67,31 @@
 }
 /*플리마켓 목록
 -------------------------*/
+table.market-table{
+	border:1px #FFF solid;
+	font-size:15px;
+	width:100%;
+	border-collapse:collapse;
+	margin:10px 0 10px 0;
+}
+table.market-table > td{
+	border-bottom:1x solid rgba(0,0,0,.1);
+}
 .thumbNail img{
 	width:240px;
 	height:auto;
 	margin-top:15px;
 }
-.market-list td{
-	height:112px;
+.market-list{
+	margin:10px 0 10px 0;
 }
 .market-title{
-	width:300px;
+	width:320px;
 	margin: 20px 0 0 40px;
 	position:relative;
 }
 .market-date{
-	width:180px;
+	width:200px;
 	font-size:15px;
 	line-height:20px;
 	color:#999;
@@ -92,6 +102,17 @@
 	line-height:20px;
 	color:#999;
 	text-align:center;
+}
+.detail-btn, .booking-btn{
+	width:80px;
+	background:url(../images/book_btn2.png) no-repeat 50% 50%;
+	border:none;
+	color:#fff;
+	font-size:15px;
+	font-weight:600;
+	line-height:36px;
+	text-align:center;
+	cursor:pointer;
 }
 /*플리마켓 상세
 -------------------------*/
