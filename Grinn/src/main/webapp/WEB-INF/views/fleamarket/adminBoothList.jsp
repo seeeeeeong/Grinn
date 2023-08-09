@@ -62,7 +62,6 @@
 			</td>
 			<td class="align-center">
 				<input type="button" value="수정" onclick="location.href='updateBooth.do?market_num=${adminBooth.market_num}'" class="detail-btn">
-				<%-- <c:if test="${booth.market_startDate}"> --%>
 				<input type="button" value="삭제" id="delete_btn">
 				<script type="text/javascript">
 					let delete_btn = document.getElementById('delete_btn');
@@ -73,13 +72,6 @@
 						}
 					};
 				</script>
-				<%-- </c:if> --%>
-				<%-- <c:if test="${booth.market_startDate}">
-				<input type="button" value="예약 중" class="booking-btn">
-				</c:if> --%>
-				<%-- <c:if test="${booth.market_endDate}"> 
-				<input type="button" value="예약 종료" class="after-btn">
-				-- </c:if> --%>
 			</td>
 		</tr>
 		</c:forEach>

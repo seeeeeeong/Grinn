@@ -176,3 +176,12 @@ table.market-table > td{
 }
 /*예약 날짜 폼
 -------------------------*/
+.date-form li{
+	margin-bottom:10px;
+}
+.choose-date{
+	float:left;
+}
+#from-to, #from-to2{
+	width:120px;
+}

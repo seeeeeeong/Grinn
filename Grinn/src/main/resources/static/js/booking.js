@@ -1,5 +1,5 @@
 $(function(){
-	$('#to').datepicker({
+	/*$('#to').datepicker({
 	   dateFormat: 'yy-mm-dd' //Input Display Format 변경
        ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
        ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
@@ -17,12 +17,13 @@ $(function(){
        ,minDate:0 //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
        ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후) 
 	});
+	*/
 	
     // 초기값을 오늘 날짜로 설정
-    $('#from').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+    $('#from-to').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
 	
    var dateFormat = "yy/mm/dd",
-      from = $( "#from" )
+      from = $( "#from-to" )
         .datepicker({
           showMonthAfterYear: true, //연도,달 순서로 지정
           changeMonth: true,//달 변경 지정
@@ -34,7 +35,7 @@ $(function(){
         .on( "change", function() {
           to.datepicker( "option", "minDate", getDate(this) );//종료일의 minDate 지정
         }),
-      to = $( "#to" ).datepicker({
+      to = $( "#from-to2" ).datepicker({
      showMonthAfterYear: true,  
         changeMonth: true,
         dateFormat:"yy/mm/dd",
@@ -63,14 +64,28 @@ $(function(){
 	
 	
 	// ===종료 날짜 먼저 선택 시 시작 날짜의 값이 없으면 알림===
-	$('#to').on('keyup mouseup', function(){
-		if($('#from').val() == ''){
+	$('#from-to2').on('keyup mouseup', function(){
+		if($('#from-to').val() == ''){
 			alert('시작일을 먼저 입력하시기 바랍니다.');
-			$('#from').focus();
+			$('#from-to').focus();
 			return;
 		}
 	});
 	
+	$('#book_count').on('keyup mouseup', function(){
+		if($('#book_count').val() == ''){
+			$('#booth_total_txt').text('총 예약 금액 : 0원');
+		}
+		
+		if($('#book_count').val() < 0){
+			$('#book_count').val('');
+			return;
+		}
+		
+		let total = $('#book_count').val() * $('#booth_fee').val();
+		$('#booth_total_txt').text('총 예약 금액 : ' + total.toLocaleString() + '원');
+		
+	});
 	
 	// ===날짜 선택 예약===
 	$('#book_btn').submit(function(event){
@@ -80,11 +95,35 @@ $(function(){
 			return false;
 		}
 		
+		if ($('#book_count').val() == 0){
+			alert('수량을 입력하세요');
+			$('#book_count').focus();
+			return false;
+		}
+		
 		let form_data = $(this).serialize();
 		
 		// 서버와 통신
 		$.ajax({
-			
+			url:'completeDate.do',
+			type:'post',
+			data:form_data,
+			dataType:'json',
+			success:function(param){
+				if (param.result == 'logout'){
+					alert('로그인 후 사용하세요');
+				} else if (param.result == 'success'){
+					alert('예약 확정 단계로 넘어갑니다');
+					location.href='checkBooking.do';
+				} else if (param.result == 'alreadyBooked'){
+					alert('이미 예약하셨습니다');
+				} else {
+					alert('플리마켓 예약 오류');
+				}
+			},
+			error:function(){
+				alert('네트워크 오류 발생')
+			}
 		});
 		event.preventDefault();
 	});         
