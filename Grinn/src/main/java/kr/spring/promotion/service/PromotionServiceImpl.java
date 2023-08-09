@@ -3,15 +3,19 @@ package kr.spring.promotion.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.promotion.dao.PromotionMapper;
 import kr.spring.promotion.vo.PromotionVO;
 
 @Service
 @Transactional
 public class PromotionServiceImpl implements PromotionService{
-
+	@Autowired
+	private PromotionMapper promotionMapper;
+		
 	@Override
 	public List<PromotionVO> selectList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -25,9 +29,8 @@ public class PromotionServiceImpl implements PromotionService{
 	}
 
 	@Override
-	public void insertPromotion(PromotionVO promotion) {
-		// TODO Auto-generated method stub
-		
+	public void insertPromotion(PromotionVO promotionVO) {
+		promotionMapper.insertPromotion(promotionVO);
 	}
 
 	@Override

@@ -13,7 +13,7 @@ import kr.spring.promotion.vo.PromotionVO;
 public interface PromotionMapper {
 	public List<PromotionVO> selectList(Map<String, Object>map);
 	public int selectRowCount(Map<String, Object> map);
-	public void insertPromotion(PromotionVO promotion);
+	public void insertPromotion(PromotionVO promotionVO);
 	@Select("SELECT * FROM promotion WHERE pro_num = #{pro_num}")
 	public PromotionVO selectPromotion(Integer pro_num);
 	public void updatePromotion(PromotionVO promotion);
