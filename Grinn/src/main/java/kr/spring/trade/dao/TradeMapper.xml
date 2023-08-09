@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.trade.dao.TradeMapper">
 
+	<resultMap type="tradeVO" id="tradeMap">
+		<result property="buyerVO.mem_name" column="buyer_name"/>
+		<result property="buyerVO.mem_num" column="buyer_num"/>
+		<result property="buyerVO.mem_auth" column="buyer_auth"/>
+		<result property="sellerVO.mem_name" column="seller_name"/>
+		<result property="sellerVO.mem_num" column="seller_num"/>
+		<result property="sellerVO.mem_auth" column="seller_auth"/>
+	</resultMap>
+	
+	
+	<!-- *************************************************************************************************** -->
+	
 	<!-- 아이템 정보와 사이즈 정보 가져오기 -->
 	<select id="selectGetItemSize" parameterType="integer" resultType="itemSizeVO">
 		SELECT 
@@ -115,6 +127,27 @@
 			AND d.trade_state = 6
 			]]>
 		</if>
+	</sql>
+	
+	<!-- 관리자 : 거래 상태 조건 -->
+	<sql id="admin_tradeState">
+		<where>
+			<if test="status == 2"> <!-- 검수준비중 -->
+				d.trade_state=2
+			</if>
+			<if test="status == 3"> <!-- 검수중 -->
+				d.trade_state=3
+			</if>
+			<if test="status == 4"> <!-- 배송중 -->
+				d.trade_state=4
+			</if>
+			<if test="status == 5"> <!-- 배송완료 -->
+				d.trade_state=5
+			</if>
+			<if test="status == 6"> <!-- 거래실패 -->
+				d.trade_state=6
+			</if>
+		</where>	
 	</sql>
 	
 	<!-- 마이페이지 : 구매입찰 -->
@@ -237,6 +270,39 @@
 		]]>	
 	</select>
 	
+	<!-- 관리자 : 거래 정보 조회 -->
+	<select id="getTradeList" parameterType="map" resultMap="tradeMap">
+		SELECT * FROM (
+			SELECT a.*, rownum rnum FROM (
+				SELECT
+				    t.trade_num,
+				    i.item_name,
+				    s.item_size,
+				    d.trade_regDate,
+				    d.trade_price,
+				    buyer.mem_num buyer_num,
+				    seller.mem_num seller_num,
+				    bmd.mem_name buyer_name,
+				    smd.mem_name seller_name,
+				    buyer.mem_auth buyer_auth,
+				    seller.mem_auth seller_auth,
+				    d.trade_state 
+				FROM trade t 
+				LEFT JOIN trade_detail d on t.trade_num = d.trade_num
+				LEFT JOIN member buyer on t.buyer_num = buyer.mem_num
+				LEFT JOIN member seller on t.seller_num = seller.mem_num
+				LEFT JOIN member_detail bmd on buyer.mem_num = bmd.mem_num
+				LEFT JOIN member_detail smd on seller.mem_num = smd.mem_num
+				LEFT JOIN item i on t.item_num = i.item_num
+				LEFT JOIN item_size s on d.item_sizenum = s.item_sizenum
+				<include refid="admin_tradeState"></include>
+				ORDER BY d.trade_regDate DESC
+			)a
+		)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>	
+	</select>
 	
 	
 	

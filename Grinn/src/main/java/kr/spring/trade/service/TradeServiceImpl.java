@@ -183,6 +183,21 @@ public class TradeServiceImpl implements TradeService{
 		return tradeMapper.selectTradeSaleQuitCount(mem_num);
 	}
 
+	@Override
+	public void updateTradeStateToSend(Integer trade_num) {
+		tradeMapper.updateTradeStateToSend(trade_num);
+	}
+
+	@Override
+	public List<TradeVO> getTradeList(Map<String, Object> map) {
+		return tradeMapper.getTradeList(map);
+	}
+
+	@Override
+	public int getTradeListCount() {
+		return tradeMapper.getTradeListCount();
+	}
+
 	
 
 }

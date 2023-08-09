@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
@@ -104,7 +105,6 @@ public interface TradeMapper {
 	 * 												마이페이지 관련 정보
 	 * ======================================================================================================================
 	 **/
-	
 	// 마이페이지 거래 정보 조회
 	public List<TradeVO> selectTradePurchaseInfo(Map<String,Object> map);
 	public List<TradeVO> selectTradeSaleInfo(Map<String,Object> map);
@@ -127,4 +127,18 @@ public interface TradeMapper {
 	// 마이페이지 판매입찰 전체 개수
 	@Select("SELECT COUNT(*) FROM sale_bid WHERE mem_num=#{mem_num}")
 	public int selectSaleBidCount(Integer mem_num);
+	// 마이페이지 판매 거래 상태 수정
+	@Update("UPDATE trade_detail SET trade_state=3 WHERE trade_num=#{trade_num}")
+	public void updateTradeStateToSend(Integer trade_num);
+	
+	/**
+	 * ======================================================================================================================
+	 * 												관리자 관련 정보
+	 * ======================================================================================================================
+	 **/
+	// 거래 정보 개수
+	@Select("SELECT COUNT(*) FROM trade t LEFT JOIN trade_detail d ON t.trade_num=d.trade_num")
+	public int getTradeListCount();
+	// 거래 정보 조회
+	public List<TradeVO> getTradeList(Map<String, Object> map);
 }

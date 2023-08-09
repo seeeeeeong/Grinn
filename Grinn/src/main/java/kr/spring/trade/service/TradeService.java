@@ -104,5 +104,14 @@ public interface TradeService {
 
 	// 마이페이지 판매입찰 전체 개수
 	public int selectSaleBidCount(Integer mem_num);	
+	
+	// 마이페이지 판매 거래 상태 수정
+	public void updateTradeStateToSend(Integer trade_num);
+	
+	// 거래 정보 개수
+	public int getTradeListCount();
+	
+	// 거래 정보 조회
+	public List<TradeVO> getTradeList(Map<String, Object> map);
 
 }

@@ -55,6 +55,12 @@
 	    <put-attribute name="body" value="/WEB-INF/views/sale/selling.jsp"/>
     </definition>
     
+    <!-- 관리자 : 거래 정보 조회 -->
+    <definition name="admin_list" extends="admin">
+    	<put-attribute name="title" value="거래 정보"/>
+	    <put-attribute name="body" value="/WEB-INF/views/trade/admin_list.jsp"/>
+    </definition>
+    
 </tiles-definitions>
 
 

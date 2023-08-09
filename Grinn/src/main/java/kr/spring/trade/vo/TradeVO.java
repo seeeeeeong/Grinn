@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.spring.member.vo.MemberVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -29,6 +30,11 @@ public class TradeVO {
 	
 	// 판매자 이름
 	private String mem_name;
+	
+	// 구매자 정보
+	private MemberVO buyerVO;
+	// 판매자 정보
+	private MemberVO sellerVO;
 	
 	// 아이템 사진 및 아이템 정보
 	private String item_brand; //브랜드명

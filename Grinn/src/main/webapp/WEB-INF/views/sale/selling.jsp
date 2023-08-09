@@ -171,7 +171,7 @@
 					      <c:if test="${way >= 2}">
 					      <th>거래 가격</th>
 					      <th>거래 날짜</th>
-					      <th>판매자</th>
+					      <th>구매자</th>
 					      <th>거래 상태</th>
 					      <c:if test="${status == 2}">
 					      <th>보내기</th>
@@ -212,7 +212,7 @@
 					        <td>거래실패</td>
 					        </c:if>
 					        <c:if test="${status == 2}">
-					        	<td><input type="button" class="send-item"></td>
+					        	<td><input type="button" class="send-item" onclick="location.href='${pageContext.request.contextPath}/sale/sendItem.do?trade_num=${list.trade_num}'"></td>
 					        </c:if>
 					        </c:if>
 					        <c:if test="${way == 3}">

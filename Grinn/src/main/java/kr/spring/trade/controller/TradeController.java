@@ -428,8 +428,6 @@ public class TradeController {
 	 * 마이페이지 : 구매, 판매 내역
 	 * ======================================================================================================================
 	 **/
-	
-	
 	// 마이페이지 - 구매 내역
 	@RequestMapping("/user/buying.do")
 	public ModelAndView myPurchaseBidInfO(
@@ -610,7 +608,7 @@ public class TradeController {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		
 		if(user == null) {
-			model.addAttribute("message","로그인이 필요합니다!!!");
+			model.addAttribute("message","로그인이 필요합니다.");
 			model.addAttribute("url","../member/login.do");
 		}else {
 			tradeService.deleteSaleBid(sale_num);
@@ -620,4 +618,75 @@ public class TradeController {
 		
 		return "common/resultView";
 	}
+	
+	// 마이페이지 - 판매 거래 상태 변경 ( 검수준비중 -> 검수중 )
+	@RequestMapping("/sale/sendItem.do")
+	public String updateTradeStateToSend(@RequestParam int trade_num, HttpSession session, Model model) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		
+		if(user == null) {
+			model.addAttribute("message","로그인이 필요합니다.");
+			model.addAttribute("url","../member/login.do");
+		}else {
+			tradeService.updateTradeStateToSend(trade_num);
+			model.addAttribute("message","상품을 보냅니다.");
+			model.addAttribute("url","../user/selling.do");
+		}
+		
+		return "common/resultView";
+	}
+	
+	/**
+	 * ======================================================================================================================
+	 * 관리자 관련 정보
+	 * ======================================================================================================================
+	 **/
+	// 거래 목록 조회
+	@RequestMapping("/trade/admin_list.do")
+	public ModelAndView getTradeList(@RequestParam(value="pageNum", defaultValue="1")int currentPage,
+									 @RequestParam(value="status", defaultValue="1")int status,
+									 HttpSession session) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		String message = "";
+		String url = "";
+		PagingUtil page = null;
+		int count = 0;
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<TradeVO> list = null;
+		if(user == null) {
+			message = "로그인이 필요합니다.";
+			url = "../member/login.do";
+			mav.addObject("message",message);
+			mav.addObject("url",url);
+			mav.setViewName("common/resultView");
+			return mav;
+		}else if(user != null && user.getMem_auth() != 9) {
+			message = "잘못된 접근입니다.";
+			url = "../main/main.do";
+			mav.addObject("message",message);
+			mav.addObject("url",url);
+			mav.setViewName("common/resultView");
+			return mav;
+		}else {
+			count = tradeService.getTradeListCount();
+			page = new PagingUtil(currentPage,count,10,5,"/trade/admin_list.do");
+			
+			if(count > 0) {
+				map.put("start",page.getStartRow());
+				map.put("end",page.getEndRow());
+				map.put("status", status);
+				list = tradeService.getTradeList(map);
+			}
+			
+			mav.addObject("list",list);
+			mav.addObject("page",page.getPage());
+			mav.addObject("count",count);
+			mav.setViewName("admin_list");
+			mav.addObject("status",status);
+			return mav;
+		}
+		
+	}
+	
 }
