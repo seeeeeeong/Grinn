@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type = "text/javascript" src="${pageContext.request.contextPath}/js/click.item.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/header.css">
 <body>
 <div id = "layout">
 	<div id = "wrap" tabindex = "0" class = "layout_base lg wrap has_tap etc lg">
@@ -81,7 +82,7 @@
 			</div> 
 			<div class = "portal_target vue-portal-target">
 				<nav class = "tabs">
-					<ul class = "ul_tab">
+					<ul class = "ul_tab home_tabs">
 						<li class = "li_tab">
 							<a class = "tab" href = "">
 								<span class = "tab_name">추천</span>
@@ -106,7 +107,6 @@
 				</nav>
 			</div> 
 		</div>
-		
 	</div>
 	</div>
 </div>

@@ -3,37 +3,53 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/main.css">
-<!-- 내용 시작 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/swiper.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<div class = "body">
+	<div class="swiper-container mySwiper">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<img src = "${pageContext.request.contextPath}/images/promotion1.jpeg">
+			</div>
+			<div class="swiper-slide">
+				<img src = "${pageContext.request.contextPath}/images/promotion2.jpeg">
+			</div>
+			<div class="swiper-slide">
+				<img src = "${pageContext.request.contextPath}/images/promotion3.jpeg">
+			</div>
+			<div class="swiper-slide">
+				<img src = "${pageContext.request.contextPath}/images/promotion4.jpeg">
+			</div>
+		</div>
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<script>
+		var swiper = new Swiper(".mySwiper", {
+			spaceBetween: 30,
+			centeredSlides: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: ".swiper-pagination",
+				clickable: true,
+			},
+			navigation: {
+				nextEl: ".swiper-button-next",
+				prevEl: ".swiper-button-prev",
+			},
+		});
+	</script>
+</div>
 <div class="page-main">
-	main 화면입니다.
 	<div class = "container">
 		<div style = "display:none;"></div>
 		<div class = "home">
 			<div class = "home_card_list">
-				<div class = "banner_slide">
-					<div class = "flicking-viewport">
-						<div class = "flicking-camera">
-							<!-- banner -->
-							<div class = "banner">
-								<div class = "banner_item">
-									<div class = "item_inner">
-										<div class = "img-box">
-											<img alt = "banner" class = "banner_img">
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- banner -->
-						</div>
-						<span class = "arrow-prev"></span>
-						<span class = "arrow-next"></span>
-						<div class = "pagination">
-							<span class = "bullet"></span>
-							<span class = "bullet"></span>
-							<span class = "bullet"></span>
-						</div>
-					</div>
-				</div>
+				
 				<div class = "collection">
 					<div class = "collection_items">
 						<div class = "collection_item">

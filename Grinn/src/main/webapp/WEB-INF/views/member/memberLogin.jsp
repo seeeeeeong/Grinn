@@ -23,7 +23,7 @@
 		</ul>  
 		<div class = "align-center">
 			<form:button class = "login-btn">로그인</form:button>
-			<form:button class = "login-btn" action = "registerUser.do">
+			<form:button class = "login-btn">
 			<a href="${pageContext.request.contextPath}/member/registerUser.do">회원가입</a>
 			</form:button>
 		</div>                                 
