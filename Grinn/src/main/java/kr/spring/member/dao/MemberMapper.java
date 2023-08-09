@@ -37,5 +37,8 @@ public interface MemberMapper {
 	public List<MemberVO> selectList(Map<String, Object> map);	
 	@Update("UPDATE SET member SET mem_auth=#{mem_auth} WHERE mem_num=#{mem_num}")
 	public void updateByAdmin(MemberVO memberVO);
-	
+
+	//채팅 회원정보 검색 - 염유진
+	@Select("SELECT mem_num,mem_id,mem_nickname FROM member WHERE mem_auth>= 2 AND mem_id LIKE '%' || #{mem_id} || '%'")
+	public List<MemberVO> selectSearchMember(String id);
 }

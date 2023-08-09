@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.talk.service.TalkService;
+import kr.spring.talk.vo.TalkMemberVO;
 import kr.spring.talk.vo.TalkRoomVO;
 import kr.spring.talk.vo.TalkVO;
 import kr.spring.util.PagingUtil;
@@ -68,6 +70,22 @@ public class TalkController {
 	}
 	
 	/* ====================== 채팅 회원 검색 ====================== */
+	@RequestMapping("/talk/memberSearchAjax.do")
+	@ResponseBody
+	public Map<String,Object> memberSearchAjax(@RequestParam String id, HttpSession session){
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO memberVO = (MemberVO)session.getAttribute("user");
+		if(memberVO == null) {//로그인이 되지 않은 경우
+			mapJson.put("result", "logout");
+		}else {//로그인 된 경우
+			List<MemberVO> member = memberService.selectSearchMember(id);
+			mapJson.put("result", "success");
+			mapJson.put("member", member);
+		}
+		
+		return mapJson;
+	}
 	
 	/* ====================== 채팅방 목록 ====================== */
 	@RequestMapping("/talk/talkList.do")
@@ -98,12 +116,164 @@ public class TalkController {
 	}
 	
 	/* ====================== 채팅 메시지 처리 ====================== */
+	//채팅 메시지 페이지 호출
+	@RequestMapping("/talk/talkDetail.do")
+	public String chatDetail(@RequestParam int talkroom_num, Model model, HttpSession session) {
+		String chatMember = ""; //채팅 멤버
+		String room_name = ""; //채팅방 이름
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		List<TalkMemberVO> list = talkService.selectTalkMember(talkroom_num);
+		for(int i=0; i<list.size(); i++) {
+			TalkMemberVO vo = list.get(i);
+			if(user.getMem_num()==vo.getMem_num()) {
+				//로그인한 회원의 채팅방 이름 셋팅
+				room_name = vo.getRoom_name();
+			}
+			//채팅 멤버 저장
+			if(i>0) chatMember += ",";
+			chatMember += list.get(i).getId();
+		}
+		
+		//채팅 멤버 id
+		model.addAttribute("chatMember", chatMember);
+		//채팅 멤버수
+		model.addAttribute("chatCount", list.size());
+		//로그인한 회원의 채팅방 이름
+		model.addAttribute("room_name", room_name);			
+		
+		return "talkDetail";
+	}
+	//채팅 메시지 전송
+	@RequestMapping("/talk/writeTalk.do")
+	@ResponseBody
+	public Map<String,Object> writeTalkAjax(TalkVO vo, HttpSession session){
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		if(user==null) {//로그인이 되지 않은 경우
+			mapJson.put("result", "logout");
+		}else {//로그인 된 경우
+			vo.setMem_num(user.getMem_num());//발신자
+			
+			log.debug("<<채팅 메시지 전송>> : " + vo);
+			
+			talkService.insertTalk(vo);
+			
+			mapJson.put("result", "success");
+		}
+		
+		return mapJson;
+	}
+	//채팅 메시지 	읽기
+	@RequestMapping("/talk/talkDetailAjax.do")
+	@ResponseBody
+	public Map<String,Object> talkDetailAjax(@RequestParam int talkroom_num, HttpSession session){
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user == null) {//로그인이 되지않은 경우
+			mapJson.put("result", "logout");
+		}else {//로그인 된 경우
+			Map<String,Integer> map = new HashMap<String,Integer>();
+			map.put("talkroom_num", talkroom_num);
+			map.put("mem_num", user.getMem_num());
+			
+			List<TalkVO> list = talkService.selectTalkDetail(map);
+			
+			mapJson.put("result", "success");
+			mapJson.put("list", list);
+			mapJson.put("user_num", user.getMem_num());
+		}
+		
+		return mapJson;
+	}
 	
 	/* ====================== 채팅방 이름 변경 ====================== */
+	@RequestMapping("/talk/changeName.do")
+	@ResponseBody
+	public Map<String,String> changeName(TalkMemberVO vo, HttpSession session){
+		Map<String,String> mapJson = new HashMap<String,String>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {//로그인이 되지 않은 경우
+			mapJson.put("result", "logout");
+		}else {//로그인 된 경우
+			vo.setMem_num(user.getMem_num());
+			talkService.changeRoomName(vo);
+			
+			mapJson.put("result", "success");
+		}
+		
+		return mapJson;
+	}
 	
 	/* ====================== 채팅 멤버 추가 ====================== */
+	@RequestMapping("/talk/newMemberAjax.do")
+	@ResponseBody
+	public Map<String,Object> addNewMember(TalkRoomVO vo, HttpSession session){
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {//로그인이 되지 않은 경우
+			mapJson.put("result", "logout");
+		}else {//로그인 된 경우
+			//입장 메시지 처리
+			vo.setTalkVO(new TalkVO());
+			vo.getTalkVO().setTalkroom_num(vo.getTalkroom_num());//채팅방 번호 셋팅
+			vo.getTalkVO().setMem_num(user.getMem_num());
+			vo.getTalkVO().setMessage(user.getMem_id()+"님이 " 
+			    + findMemberId(vo, user) + "님을 초대했습니다.");
+			
+			//채팅방 이름 셋팅
+			TalkRoomVO db_vo = talkService.selectTalkRoom(vo.getTalkroom_num());
+			vo.setBasic_name(db_vo.getBasic_name());
+			talkService.insertNewMember(vo);
+			
+			mapJson.put("result", "success");
+		}
+		
+		return mapJson;
+	}
 	
 	/* ====================== 채팅방 나가기 ====================== */
+	@RequestMapping("/talk/deleteTalkRoomMemberAjax.do")
+	@ResponseBody
+	public Map<String,String> memberDeleteAjax(TalkVO talkVO, HttpSession session){
+		Map<String,String> mapJson = new HashMap<String,String>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		if(user==null) {//로그인이 되지 않은 경우
+			mapJson.put("result", "logout");
+		}else {//로그인 된 경우
+			//퇴장 메시지 생성
+			talkVO.setMem_num(user.getMem_num());
+			talkVO.setMessage(user.getMem_id()+"님이 나갔습니다.");
+			talkService.deleteTalkRoomMember(talkVO);
+			
+			mapJson.put("result", "success");
+		}
+		
+		return mapJson;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

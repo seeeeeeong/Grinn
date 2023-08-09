@@ -71,4 +71,10 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
+	//채팅 회원정보 검색 - 염유진
+	@Override
+	public List<MemberVO> selectSearchMember(String id) {
+		return memberMapper.selectSearchMember(id);
+	}
+
 }

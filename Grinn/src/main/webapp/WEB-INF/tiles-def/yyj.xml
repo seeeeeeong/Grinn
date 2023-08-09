@@ -8,7 +8,6 @@
 	<!-- 메인 -->
 	<definition name="a6" extends="main">
 		<put-attribute name="title" value="SpringPage" />
-		<put-attribute name="nav" value="/WEB-INF/views/template/notice_nav.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 	</definition>
 	<!-- 공지사항 메인 -->
