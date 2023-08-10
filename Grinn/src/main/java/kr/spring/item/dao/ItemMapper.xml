@@ -74,7 +74,7 @@
 			ORDER BY f.fav_cnt DESC NULLS LAST
 		</if>
 		<if test="order == 3"><!-- 리뷰순 -->
-			ORDER BY r.re_cnt DESC
+			ORDER BY r.re_cnt DESC NULLS LAST
 		</if>
 	</sql>
 
@@ -147,6 +147,7 @@
 			review_photo,
 			review_photoname,
 			</if>
+			review_date,
 			review_star,
 			item_num,
 			mem_num
@@ -157,6 +158,7 @@
 			#{review_photo},
 			#{review_photoname},
 			</if>
+			SYSDATE,
 			#{review_star},
 			#{item_num},
 			#{mem_num}

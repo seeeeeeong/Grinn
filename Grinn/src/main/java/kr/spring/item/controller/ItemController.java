@@ -235,6 +235,7 @@ public class ItemController {
 			mav.addObject("user_num", user.getMem_num());
 		}
 		mav.addObject("list", list);
+		mav.addObject("count", count);
 		
 		return mav;
 	}

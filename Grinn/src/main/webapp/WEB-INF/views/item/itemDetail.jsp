@@ -198,34 +198,43 @@
 		<hr>
 		<!-- 댓글 시작 -->
 		<div>
-			<h2>Review</h2>
+			<h1>Review(${count})</h1>
+			<hr>
+			<c:if test="${count==0}">
+				<div class="result-display">표시할 댓글이 없습니다.</div>
+			</c:if>
+			<c:if test="${count > 0}">
 			<c:forEach var="review" items="${list}">
 				<div class="item">
 					<ul class="detail-info">
 						<li>
 							<img src="${pageContext.request.contextPath}/user/viewProfile.do?mem_num=${review.mem_num}" width="40" height="40" class="my-photo">
 						</li>
-						<li>
+						<li class="name">
 							<c:if test="${!empty review.mem_nickname}">
 								${review.mem_nickname}
 							</c:if>
 							<c:if test="${empty review.mem_nickname}">
 								${review.mem_id}
 							</c:if>
-							<c:if test="${!empty review.review_modifydate}">
-								<span class="modify-date"> 최근 수정일 : ${review.review_modifydate}</span>
-							</c:if>
-							<c:if test="${empty review.review_modifydate}">
-								<span class="modify-date"> 등록일 : ${review.review_date}</span>
-							</c:if>
 						</li>
 					</ul>
 					<div class="sub-item">
+						<c:if test="${review.review_star==1}"><p class="star">★☆☆☆☆</p></c:if>
+						<c:if test="${review.review_star==2}"><p class="star">★★☆☆☆</p></c:if>
+						<c:if test="${review.review_star==3}"><p class="star">★★★☆☆</p></c:if>
+						<c:if test="${review.review_star==4}"><p class="star">★★★★☆</p></c:if>
+						<c:if test="${review.review_star==5}"><p class="star">★★★★★</p></c:if>
 						<c:if test="${!empty review.review_photo}">
-							<img src="${pageContext.request.contextPath}/item/reviewPhoto.do?review_num=${review.review_num}" width="40" height="40">
+							<img src="${pageContext.request.contextPath}/item/reviewPhoto.do?review_num=${review.review_num}">
 						</c:if>
-						${review.review_star}점
 						<p>${review.review_content}</p>
+						<c:if test="${!empty review.review_modifydate}">
+							<span class="modify-date"> 최근 수정일 : ${review.review_modifydate}</span>
+						</c:if>
+						<c:if test="${empty review.review_modifydate}">
+							<span class="modify-date"> 등록일 : ${review.review_date}</span>
+						</c:if>
 						<c:if test="${user_num eq review.mem_num}">
 							<input type="button" value="수정" onclick="location.href='itemReviewModify.do?review_num=${review.review_num}'">
 							<input type="button" value="삭제" class="delete-btn" data-reviewnum="${review.review_num}" data-itemnum="${review.item_num}" id="output">
@@ -233,6 +242,7 @@
 					</div>
 				</div>
 			</c:forEach>
+			</c:if>
 		</div>
 		<!-- 댓글 끝 -->
 	</c:if>

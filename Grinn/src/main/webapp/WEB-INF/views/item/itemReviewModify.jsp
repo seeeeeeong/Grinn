@@ -46,32 +46,25 @@
 			<div class="aa">
 				<ul>
 					<li>
-						<!-- 이미지를 나타낼 <img> 요소 -->
-						<c:if test="${empty reveiw.review_photo}">
+						<!-- 이미지를 나타낼 <img> 요소 --> 
+						<c:if test="${empty itemReviewVO.review_photo}">
 							<img src="${pageContext.request.contextPath}/images/item_add.png"
-							width="100" height="100" class="item-photo">
-						</c:if>
-						<c:if test="${!empty review.review_photo}">
-							<img src="${pageContext.request.contextPath}/item/photoView.do?review_num=${review.review_num}"
-								 width="200" height="200" class="item-photo">
-						</c:if>
-						<div class="camera" id="photo_btn">
-							<img src="${pageContext.request.contextPath}/images/camera.png"
-								width="35">
-						</div>
-					</li>
-					<li>
-						<div id="photo_choice" style="display: none;">
-							<!-- 파일 업로드 입력 폼 -->
+										width="100" height="100" class="item-photo">
 							<input type="file" id="upload" name="upload"
-								accept="image/gif,image/png,image/jpeg"><br>
-						</div>
+										accept="image/gif,image/png,image/jpeg">
+						</c:if> 
+						<c:if test="${!empty itemReviewVO.review_photo}">
+							<img src="${pageContext.request.contextPath}/item/reviewPhoto.do?review_num=${itemReviewVO.review_num}"
+									width="200" height="200" class="item-photo">
+							<input type="file" id="upload" name="upload"
+										accept="image/gif,image/png,image/jpeg">
+						</c:if>
 					</li>
 				</ul>
-				</div>
+			</div>
 				<div class="reviewButton">
-					<input type="submit" value="등록" class="default-btn"> <input
-						type="button" value="홈으로" class="default-btn"
+					<input type="submit" value="등록" class="default-btn"> 
+					<input type="button" value="홈으로" class="default-btn"
 						onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 				</div>
 			
