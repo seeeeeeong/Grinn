@@ -177,4 +177,17 @@
 		
 		]]>
 	</select>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateReview" parameterType="itemReviewVO">
+		UPDATE review SET 
+		review_content = #{review_content},
+		<if test="review_photo.length>0">
+			review_photo = #{review_photo},
+			review_photoname = #{review_photoname},
+		</if>
+		review_star=#{review_star},
+		review_modifydate=SYSDATE
+		WHERE review_num=#{review_num}
+	</update>
 </mapper>

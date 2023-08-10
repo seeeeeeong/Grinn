@@ -100,7 +100,7 @@ public class ItemController {
 		log.debug("<<count>> : " + count);
 
 		// 페이지처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 20, 10, "itemAdminList.do",
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 8, 10, "itemAdminList.do",
 				"&order=" + order);
 
 		List<ItemVO> list = null;
@@ -260,6 +260,7 @@ public class ItemController {
 		
 		return "itemModify";
 	}
+
 	//전송된 데이터 처리
 	@PostMapping("/item/itemModify.do")
 	public String submitModify(@Valid ItemVO itemVO, BindingResult result, 
@@ -438,8 +439,37 @@ public class ItemController {
 	//=========후기 목록 끝============
 	
 	//=========후기 수정 시작===========
+	//폼호출
+	@GetMapping("/item/itemReviewModify.do")
+	public String reviewUpdate(@RequestParam int review_num, Model model) {
+		
+		ItemReviewVO itemReviewVO = itemService.selectReview(review_num);
+		
+		model.addAttribute("itemReviewVO", itemReviewVO);
+		
+		return "itemReviewModify";
+	}
+
+	// 전송된 데이터 처리
+	@PostMapping("/item/itemReviewModify.do")
+	public String reviewUpdate(@Valid ItemReviewVO itemReviewVO, BindingResult result, HttpServletRequest request, Model model) {
+
+		// 유효성 체크 결과 오류가 있으면 폼 호출
+		if (result.hasErrors()) {
+			return "itemReviewModify";
+		}
+
+		// 글수정
+		itemService.updateReview(itemReviewVO);
+
+		model.addAttribute("message", "상품 수정 완료!");
+		model.addAttribute("url", request.getContextPath() + "/main/main.do");
+
+		return "common/resultView";
+
+	}
 	//=========후기 수정 끝============
-	
+
 	//=========후기 삭제 시작===========
 	@RequestMapping("/item/itemReviewDelete.do")
 	@ResponseBody

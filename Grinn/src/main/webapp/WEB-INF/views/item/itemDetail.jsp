@@ -227,7 +227,7 @@
 						${review.review_star}점
 						<p>${review.review_content}</p>
 						<c:if test="${user_num eq review.mem_num}">
-							<input type="button" value="수정" href="#">
+							<input type="button" value="수정" onclick="location.href='itemReviewModify.do?review_num=${review.review_num}'">
 							<input type="button" value="삭제" class="delete-btn" data-reviewnum="${review.review_num}" data-itemnum="${review.item_num}" id="output">
 						</c:if>
 					</div>

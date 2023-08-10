@@ -95,8 +95,7 @@ public class ItemServiceImpl implements ItemService{
 
 	@Override
 	public void updateReview(ItemReviewVO itemReview) {
-		// TODO Auto-generated method stub
-		
+		itemMapper.updateReview(itemReview);
 	}
 
 	@Override

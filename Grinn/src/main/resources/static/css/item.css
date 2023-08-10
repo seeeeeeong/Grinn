@@ -127,10 +127,15 @@ p {
   max-width: 1200px;
   margin: 0 auto;
   padding: 30px;
+  position: relative;
 }
 
 .itemDetailPage .left {
   flex: 1;
+  position: sticky;
+  top: 100px; /* .right의 padding 값에 맞게 조정하세요 */
+  height: calc(100vh - 400px); /* 화면 높이에서 위 아래 패딩값 빼기 */
+  overflow: auto;
 }
 
 .left img {

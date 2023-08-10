@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!-- 댓글등록 시작 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- 후기수정 시작 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
 <div class="page-main1">
-    <h2>후기 작성</h2>
-	<div class="reviewForm">
+    <h2>후기 수정</h2>
+	<%-- <div class="reviewForm">
 		<div>
 			<ul>
 				<li><img
@@ -19,9 +20,9 @@
 				<li class="b">${item.item_detail}</li>
 			</ul>
 		</div>
-	</div>
-	<form:form modelAttribute="itemReviewVO" action="itemReview.do" id="itemReview" method="post" enctype="multipart/form-data">
-    	<input type="hidden" name="item_num" value="${item.item_num}">
+	</div> --%>
+	<form:form modelAttribute="itemReviewVO" action="itemReviewModify.do" id="itemReview" method="post" enctype="multipart/form-data">
+    	<form:hidden path="review_num"/>
 		<fieldset>
 			<form:radiobutton path="review_star" value="5" id="rate1" />
 			<label for="rate1">★</label>
@@ -45,9 +46,15 @@
 			<div class="aa">
 				<ul>
 					<li>
-						<!-- 이미지를 나타낼 <img> 요소 --> 
-						<img src="${pageContext.request.contextPath}/images/item_add.png"
+						<!-- 이미지를 나타낼 <img> 요소 -->
+						<c:if test="${empty reveiw.review_photo}">
+							<img src="${pageContext.request.contextPath}/images/item_add.png"
 							width="100" height="100" class="item-photo">
+						</c:if>
+						<c:if test="${!empty review.review_photo}">
+							<img src="${pageContext.request.contextPath}/item/photoView.do?review_num=${review.review_num}"
+								 width="200" height="200" class="item-photo">
+						</c:if>
 						<div class="camera" id="photo_btn">
 							<img src="${pageContext.request.contextPath}/images/camera.png"
 								width="35">
@@ -73,4 +80,4 @@
         
     </form:form>
 </div>
-<!-- 댓글등록 끝 -->
+<!-- 후기 수정 끝 -->
