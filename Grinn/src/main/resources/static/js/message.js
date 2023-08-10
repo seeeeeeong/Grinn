@@ -30,7 +30,7 @@ $(function(){
 			}
 		};
 		message_socket.onclose=function(evt){
-			//소켓이 종료된 후 부과적인 작업이 있을 경우 명시
+			//소켓이 종료된 후 부가적인 작업이 있을 경우 명시
 			console.log('채팅 종료');
 		};
 		

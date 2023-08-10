@@ -52,6 +52,10 @@ $(function(){
 						output += '<input type="button" data-num="' + item.com_num + '" value="수정" class="modify-btn">';
 						output += ' <input type="button" data-num="' + item.com_num + '" value="삭제" class="delete-btn">';
 						output += '</div>';
+					}else{
+						output += '<div class="com_btn">';
+						output += ' <a style="color:red;">신고</a>';
+						output += '</div>';
 					}
 					output += '<hr size="1" color="ebebeb">';
 					output += '</div>';
