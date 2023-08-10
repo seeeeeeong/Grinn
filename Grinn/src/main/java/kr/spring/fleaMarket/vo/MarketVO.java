@@ -25,6 +25,7 @@ public class MarketVO {
 	private String market_endDate;
 	@NotEmpty
 	private String place_name;
+	@Range(min=1, max=3)
 	private int market_type;
 	@Range(min=1,max=999)
 	private int booth_count;

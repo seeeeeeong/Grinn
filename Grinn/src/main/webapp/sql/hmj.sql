@@ -26,6 +26,9 @@ create sequence market_seq;
 create table booking(
   book_num number, -- 부스 예약 번호
   book_regDate date default sysdate not null, -- 예약한 시간
+  book_date1 varchar2(10) not null, -- 예약하려는 날짜1(시작일)
+  book_date2 varchar2(10) not null, -- 예약하려는 날짜2(종료일)
+  get_count number(1) not null, -- 예약한 자리 수(1회원 1개 제한)
   market_num number not null, -- 플리마켓 번호
   mem_num number not null, -- 회원 번호
 --  book_status number(1) default 1 not null, -- 예약 현황(1:미입금, 2:입금완료, 3:취소)

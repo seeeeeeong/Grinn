@@ -9,19 +9,62 @@
 	<insert id="insertBooking" parameterType="bookingVO"> 
 		INSERT INTO booking(
 		  book_num,
+		  get_count,
 		  market_num,
 		  mem_num)
 		VALUES(
 		  booking_seq.nextval,
+		  #{get_count},
 		  #{market_num},
 		  #{mem_num})
 	</insert>
 	
-	<update id="updateBooth">
-		UPDATE 
-		  market 
-		SET 
-		  booth_count = booth_count + 1 
-		WHERE market_num = #{market_num}
-	</update>
+	<!-- 관리자 - 예약 목록 -->
+	<sql id="bookingSearch">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyword == 1">
+					m.market_title LIKE '%' || #{keyword} || '%' OR
+					mem.mem_id LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyword == 2">
+					m.market_title LIKE '%' || #{keyword} || '%' 
+				</if>
+				<if test="keyword == 3">
+					mem.mem_id LIKE '%' || #{keyword} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 전체/검색 레코드 수 --><!-- **** -->
+	<select id="selectCountBooking" parameterType="map" resultType="integer">
+		SELECT
+		  COUNT(*)
+		FROM market m JOIN booking b 
+		ON m.market_num = b.market_num
+		JOIN member mem ON mem.mem_id 
+		<include refid="bookingSearch"></include>
+	</select>
+	
+	<!-- 전체/검색 목록 --><!-- **** -->
+	<select id="selectListBooking" parameterType="map" resultType="bookingVO">
+		SELECT
+		  *
+		FROM (SELECT
+		         a.*,
+		         rownum rnum
+		      FROM (SELECT
+		              b.book_num,
+		              mem.mem_id,
+		              b.book_regDate,
+		              m.market_title,
+		              b.get_count
+		            FROM booking b
+		            JOIN market m
+		            ON b.market_num = m.market_num
+		            LEFT OUTER JOIN (SELECT COUNT(*) FROM member)mem ON b.mem_num = mem.mem_num
+		            <include refid="bookingSearch"></include>
+		            )a)
+	</select>
 </mapper>

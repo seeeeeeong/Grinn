@@ -40,13 +40,25 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	@Override
-	public void updateBooking(BookingVO book) {
+	public void deleteBooking(Integer book_num) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteBooking(Integer book_num) {
+	public int selectCountBooking(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void bookBooth_count(Integer market_num) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void rollbackBooth_count(Integer market_num) {
 		// TODO Auto-generated method stub
 		
 	}

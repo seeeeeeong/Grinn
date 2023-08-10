@@ -32,7 +32,7 @@ public class BookingController {
 		return new BookingVO();
 	}
 	
-	// ===예약 폼===
+	// ===예약 폼    @RequestMapping, PostMapping?===
 	@RequestMapping("fleamarket/booking.do")
 	public ModelAndView getList() {
 		
