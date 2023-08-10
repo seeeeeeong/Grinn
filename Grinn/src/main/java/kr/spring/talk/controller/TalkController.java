@@ -41,13 +41,14 @@ public class TalkController {
 	//전송된 데이터 처리
 	@PostMapping("/talk/talkRoomWrite.do")
 	public String talkRoomSubmit(TalkRoomVO vo, HttpSession session) {
+		log.debug("<<채팅방 만들기>> : " + vo);
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
 		//채팅 멤버 초대 문구 설정 시작
 		vo.setTalkVO(new TalkVO());
 		vo.getTalkVO().setMem_num(user.getMem_num());
 		vo.getTalkVO().setMessage(user.getMem_id() + "님이 "
-									+ findMemberId(vo, user) + "님을 초대했습니다.");
+							+ findMemberId(vo, user) + "님을 초대했습니다.@{member}@");
 		//채팅 멤버 초대 문구 설정 끝
 		
 		talkService.insertTalkRoom(vo);
@@ -225,7 +226,7 @@ public class TalkController {
 			vo.getTalkVO().setTalkroom_num(vo.getTalkroom_num());//채팅방 번호 셋팅
 			vo.getTalkVO().setMem_num(user.getMem_num());
 			vo.getTalkVO().setMessage(user.getMem_id()+"님이 " 
-			    + findMemberId(vo, user) + "님을 초대했습니다.");
+			    + findMemberId(vo, user) + "님을 초대했습니다.@{member}@");
 			
 			//채팅방 이름 셋팅
 			TalkRoomVO db_vo = talkService.selectTalkRoom(vo.getTalkroom_num());
@@ -251,7 +252,7 @@ public class TalkController {
 		}else {//로그인 된 경우
 			//퇴장 메시지 생성
 			talkVO.setMem_num(user.getMem_num());
-			talkVO.setMessage(user.getMem_id()+"님이 나갔습니다.");
+			talkVO.setMessage(user.getMem_id()+"님이 나갔습니다.@{member}@");
 			talkService.deleteTalkRoomMember(talkVO);
 			
 			mapJson.put("result", "success");

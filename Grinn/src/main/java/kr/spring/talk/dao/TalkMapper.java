@@ -57,10 +57,7 @@ public interface TalkMapper {
 	//채팅방 상세
 	@Select("SELECT * FROM talkroom WHERE talkroom_num=#{talkroom_num}")
 	public TalkRoomVO selectTalkRoom(Integer talkroom_num);
-	
-	//채팅 멤버 추가
-	public void insertNewMember(TalkRoomVO talkRoomVO);
-	
+		
 	//채팅방 나가기
 	@Delete("DELETE FROM talk_member WHERE talkroom_num=#{talkroom_num} AND mem_num=#{mem_num}")
 	public void deleteTalkRoomMember(TalkVO talkVO);

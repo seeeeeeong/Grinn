@@ -91,13 +91,12 @@
 		USING(talk_num)
 		JOIN member
 		USING(mem_num)
-		WHERE talkroom_num=#{talkroom_num}
+		WHERE talkroom_num = #{talkroom_num}
 		AND chat_date >= (SELECT
 							member_date
 						FROM talk_member
-						WHERE talkroom_num=#{talkroom_num}
-						AND mem_num=#{mem_num})
-						/* 멤버 등록일 이후의 정보만 읽어옴 */
+						WHERE talkroom_num = #{talkroom_num}
+						AND mem_num=#{mem_num}) /*멤버 등록일 이후의 정보만 읽어옴*/
 		ORDER BY chat_date ASC
 	</select>
 	

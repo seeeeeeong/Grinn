@@ -14,8 +14,6 @@ $(function() {
 		$('#ch5').css('color', '#909090');
 		$('#ch6').css('color', '#909090');
 		
-		$('#drop1').css('display', 'block');
-		$('#drop2').css('display', 'none');
 	});
 	$('#ch2').click(function() {
 		$(this).css('color', 'black');
@@ -33,8 +31,6 @@ $(function() {
 		$('#ch5').css('color', '#909090');
 		$('#ch6').css('color', '#909090');
 		
-		$('#drop1').css('display', 'none');
-		$('#drop2').css('display', 'block');
 	});
 	$('#ch3').click(function() {
 		$(this).css('color', 'black');

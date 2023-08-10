@@ -16,13 +16,7 @@
 			}
 		});
 	});
-	
-	$(function(){
-		//카테고리선택(테이블)
-		$('#ch1').click(function(){
-			
-		});
-	});
+
 </script>
 <div class="page-main">
 	<div class="page_body">
@@ -87,7 +81,7 @@
 								<%-- 드롭다운 끝 --%>
 							</div>
 							<%-- 드롭다운 내용 --%>
-							<div class="dropdown_content"style="display:none;">
+							<div class="dropdown_content" style="display:none;">
 								<div class="content">
 									${faq.no_content}
 								</div>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!-- 채팅 메시지 처리 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery-ui.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/message.js"></script>   
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -14,7 +15,6 @@
 		});
 	});
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/message.js"></script>   
 <div id="talkDetail" class="page-main">
 	<h1 id="chatroom_title">
 		<span id="chatroom_name">${room_name}</span> 채팅방

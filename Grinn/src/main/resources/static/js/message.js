@@ -79,13 +79,13 @@ $(function(){
 	
 	//검색된 회원 선택하기
 	$(document).on('click','#search_area li',function(){
-		let id = $(this).text(); //선택한 아이디
+		let mem_id = $(this).text(); //선택한 아이디
 		let mem_num = $(this).attr('data-num'); //선택한 회원번호
-		member_list.push(id);
+		member_list.push(mem_id);
 		//선택한 id를 화면에 표시
-		let choice_id = '<span class="member-span" data-id="'+id+'">';
+		let choice_id = '<span class="member-span" data-id="'+mem_id+'">';
 		choice_id += '<input type="hidden" name="members" value="'+mem_num+'">';
-		choice_id += id + '<sup>&times;</sup></span>';
+		choice_id += mem_id + '<sup>&times;</sup></span>';
 		$('#talk_member').append(choice_id);
 		$('#member_search').val('');
 		$('#search_area').empty(); //ul 태그 초기화
@@ -97,9 +97,9 @@ $(function(){
 	
 	//선택한 채팅방 멤버 삭제하기
 	$(document).on('click','.member-span',function(){
-		let id = $(this).attr('data-id');
-		//채팅 멤버가 저장된 배열에서 삭제할 멤버의 id 제거
-		member_list.splice(member_list.indexOf(id),1);
+		let mem_id = $(this).attr('data-id');
+		//채팅 멤버가 저장된 배열에서 삭제할 멤버의 mem_id 제거
+		member_list.splice(member_list.indexOf(mem_id),1);
 		$(this).remove();//이벤트가 발생한 태그 제거
 		
 		if($('#name_checked').is(':checked')){
@@ -187,14 +187,14 @@ $(function(){
 						}else{
 							//멤버등록/탈퇴 메시지가 아닌 일반 메시지
 							if(item.mem_num == param.user_num){
-								output += '<div class="from-position">'+item.id;
+								output += '<div class="from-position">'+item.mem_id;
 								output += '<div>'
 							}else{
 								output += '<div class="to-position">';
 								output += '<div class="space-photo">';
 								output += '<img src="../member/viewProfile.do?mem_num='+item.mem_num+'" width="40" height="40" class="my-photo">';
 								output += '</div><div class="space-message">';
-								output += item.id;
+								output += item.mem_id;
 							}
 							output += '<div class="item">';
 							output += item.read_count + ' <span>'+item.message.replace(/\r\n/g,'<br>').replace(/\r/g,'<br>').replace(/\n/g,'<br>')+'</span>';
