@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!-- 채팅 메시지 처리 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery-ui.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/message.js"></script>   
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
 <script type="text/javascript">

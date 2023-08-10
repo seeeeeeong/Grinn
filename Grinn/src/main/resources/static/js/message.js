@@ -2,6 +2,7 @@ $(function(){
 	let message_socket;//웹소켓 식별자
 	let member_list = []; //채팅 회원 저장
 	
+	
 	//채팅방 멤버를 저장하는 배열에 회원을 저장
 	if($('#user').length>0){//채팅방 생성
 		member_list = [$('#user').attr('data-id')];
