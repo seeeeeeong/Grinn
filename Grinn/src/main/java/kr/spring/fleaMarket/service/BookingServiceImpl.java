@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.fleaMarket.dao.BookingMapper;
+import kr.spring.fleaMarket.dao.MarketMapper;
 import kr.spring.fleaMarket.vo.BookingVO;
 
 @Service
@@ -15,6 +16,9 @@ import kr.spring.fleaMarket.vo.BookingVO;
 public class BookingServiceImpl implements BookingService{
 	@Autowired
 	private BookingMapper bookingMapper;
+	
+	@Autowired
+	private MarketMapper marketMapper;
 	
 	@Override
 	public void insertBooking(BookingVO book) {
@@ -61,5 +65,10 @@ public class BookingServiceImpl implements BookingService{
 	public void rollbackBooth_count(Integer market_num) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int selectMarketDate(Integer market_num) {
+		return bookingMapper.selectMarketDate(market_num);
 	}
 }

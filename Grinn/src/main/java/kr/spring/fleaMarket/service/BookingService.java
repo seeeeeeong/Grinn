@@ -10,6 +10,8 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.fleaMarket.vo.BookingVO;
 
 public interface BookingService {
+	// 플리마켓 날짜 추출
+	public int selectMarketDate(Integer market_num);
 	// 예약 등록
 	public void insertBooking(BookingVO book);
 	// 회원 번호별 예약 액수

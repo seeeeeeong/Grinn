@@ -7,14 +7,19 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.fleaMarket.service.BookingService;
 import kr.spring.fleaMarket.service.MarketService;
 import kr.spring.fleaMarket.vo.BookingVO;
+import kr.spring.fleaMarket.vo.MarketVO;
+import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,14 +37,15 @@ public class BookingController {
 		return new BookingVO();
 	}
 	
-	// ===예약 폼    @RequestMapping, PostMapping?===
-	@RequestMapping("fleamarket/booking.do")
-	public ModelAndView getList() {
+	// ===예약 폼===    
+	@RequestMapping("/fleamarket/booking.do")
+	public String getForm(@RequestParam int market_num, HttpSession session, Model model) {
 		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("selectDate");
+		MarketVO market = marketService.selectMarket(market_num);
 		
-		return mav;
+		model.addAttribute("market", market);
+		
+		return "selectDate";
 	}
 	
 	// ===예약 날짜 선택===

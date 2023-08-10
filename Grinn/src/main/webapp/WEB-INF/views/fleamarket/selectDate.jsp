@@ -23,15 +23,15 @@
 		<input type="hidden" name="market_endDate" value="${market.market_endDate}" id="market_endDate"/>
 		<input type="hidden" name="booth_count" value="${market.booth_count}" id="booth_count"/>
 		<ul class="date-form">
-			<li>${market.market_title}</li>
-			<li>${market.market_startDate} ~ ${market.market_endDate}</li>
+			<li>예약 플리마켓: ${market.market_title}</li>
+			<li>운영 일정: ${market.market_startDate} ~ ${market.market_endDate}</li>
 			<li class="choose-date">
 				<label for="from-to">예약 일정</label>
 				<input type="text" id="from-to" autocomplete="off"> ~ <input type="text" id="from-to2" autocomplete="off">
 			</li>
 			<li>
-				<label for="book_count">예약 부스 수</label>
-				<input type="number" name="book_count" min="0" max="1" id="book_count">
+				<label for="get_count">예약 부스 수</label>
+				<input type="number" name="get_count" min="0" max="1" id="get_count">
 			</li>
 			<li>
 				<span>총 예약 수량 : 0개</span>
@@ -52,6 +52,7 @@
 			</li>
 		</ul>
 		<div class="align-right">
+			<input type="button" value="목록" onclick="location.href='boothList.do'">
 			<input type="submit" id="book_btn" value="예약하기">
 		</div>
 	</form>

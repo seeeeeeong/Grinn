@@ -75,32 +75,32 @@ $(function(){
 		}
 	});
 	
-	$('#book_count').on('keyup mouseup', function(){
-		if($('#book_count').val() == ''){
+	$('#get_count').on('keyup mouseup', function(){
+		if($('#get_count').val() == ''){
 			$('#booth_total_txt').text('총 예약 금액 : 0원');
 		}
 		
-		if($('#book_count').val() < 0){
-			$('#book_count').val('');
+		if($('#get_count').val() < 0){
+			$('#get_count').val('');
 			return;
 		}
 		
-		let total = $('#book_count').val() * $('#booth_fee').val();
+		let total = $('#get_count').val() * $('#booth_fee').val();
 		$('#booth_total_txt').text('총 예약 금액 : ' + total.toLocaleString() + '원');
 		
 	});
 	
 	// ===날짜 선택 예약===
 	$('#book_btn').submit(function(event){
-		if ($('#book_count').val() == ''){
+		if ($('#get_count').val() == ''){
 			alert('수량을 입력하세요');
-			$('#book_count').focus();
+			$('#get_count').focus();
 			return false;
 		}
 		
-		if ($('#book_count').val() == 0){
+		if ($('#get_count').val() == 0){
 			alert('수량을 입력하세요');
-			$('#book_count').focus();
+			$('#get_count').focus();
 			return false;
 		}
 		
