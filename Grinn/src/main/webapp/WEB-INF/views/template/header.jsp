@@ -9,7 +9,7 @@
 	<div class = "board_line">
 		<div class = "header fixed">
 			<div class = "header_top">
-				<div class = "top_inner">
+				<div class = "top_inner"> 
 					<ul class = "top_list">
 						<li class = "top_item">
 							<c:if test="${!empty user && user.mem_auth == 9}">
