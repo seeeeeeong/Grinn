@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.util.AuthCheckException;
+import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -164,6 +166,28 @@ public class MemberController {
 		response.addCookie(auto_cookie);
 		
 		return "redirect:/main/main.do";
+	}
+	//프로필 사진 출력(회원번호 지정)
+	@RequestMapping("/member/viewProfile.do")
+	public String getProfileByMem_num(@RequestParam int mem_num,
+							HttpServletRequest request, Model model) {
+		MemberVO memberVO = memberService.selectMember(mem_num);
+		viewProfile(memberVO, request, model);
+		
+		return "imageView";
+	}
+	//프로필 사진 처리를 위한 공통 코드
+	public void viewProfile(MemberVO memberVO,
+							HttpServletRequest request, Model model) {
+		if(memberVO==null || memberVO.getMem_photo_name()==null) {//기본 이미지 읽기
+			byte[] readbyte = FileUtil.getBytes(
+					request.getServletContext().getRealPath("/image_bundle/face.png"));
+			model.addAttribute("imageFile", readbyte);
+			model.addAttribute("filename", "face.png");
+		}else {//업로드한 프로필 사진이 있는 경우
+			model.addAttribute("imageFile", memberVO.getMem_photo());
+			model.addAttribute("filename", memberVO.getMem_photo_name());
+		}
 	}
 	
 }
