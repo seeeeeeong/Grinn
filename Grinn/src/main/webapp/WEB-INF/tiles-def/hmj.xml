@@ -42,6 +42,10 @@
     	<put-attribute name="title" value="프로모션 등록(관리자)"/>
 	    <put-attribute name="body" value="/WEB-INF/views/promotion/adminWrite.jsp"/>
     </definition>
+    <definition name="adminPromotionList" extends="admin">
+    	<put-attribute name="title" value="프로모션 목록(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/promotion/adminList.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

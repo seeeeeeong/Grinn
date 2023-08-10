@@ -15,7 +15,6 @@
 		  pro_hide) 
 		VALUES (
 		  promotion_seq.nextval,
-		  #{pro_num},
 		  #{pro_name},
 		  #{pro_content},
 		  #{pro_photo1},
@@ -25,4 +24,45 @@
 		  #{pro_ing},
 		  #{pro_hide})
 	</insert>
+	
+	<!-- 프로모션 목록 -->
+	<sql id="promotionSearch">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyfield == 1">
+					pro_name LIKE '%' || #{keyword} || '%' OR
+					pro_content LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 2">
+					pro_name LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 3">
+					pro_content LIKE '%' || #{keyword} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectList" parameterType="map" resultType="promotionVO">
+		SELECT
+		  *
+		FROM (SELECT
+		        a.*,
+		        rownum rnum
+		      FROM (SELECT
+		              *
+		            FROM promotion
+		            <include refid="promotionSearch"></include>
+		            ORDER BY pro_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT 
+		  COUNT(*)
+		FROM promotion
+		<include refid="promotionSearch"></include>
+	</select>
 </mapper>

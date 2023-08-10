@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
@@ -26,7 +27,9 @@ public class PromotionVO {
 	private String pro_openDate;
 	@NotEmpty
 	private String pro_cloDate;
+	@Range(min=1, max=3)
 	private int pro_ing;
+	@Range(min=1, max=2)
 	private int pro_hide;
 	
 	// 업로드 파일 처리

@@ -18,14 +18,12 @@ public class PromotionServiceImpl implements PromotionService{
 		
 	@Override
 	public List<PromotionVO> selectList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return promotionMapper.selectList(map);
 	}
 
 	@Override
 	public int selectRowCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return promotionMapper.selectRowCount(map);
 	}
 
 	@Override

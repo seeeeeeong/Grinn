@@ -22,13 +22,13 @@
 			<li>
 				<label>공개 여부</label>
 				<form:radiobutton path="pro_hide" value="1" id="pro_hide1" checked="checked"/>숨김
-				<form:radiobutton path="pro_hide" value="2" id="pro_hide2" checked="checked"/>공개
+				<form:radiobutton path="pro_hide" value="2" id="pro_hide2"/>공개
 			</li>
 			<li>
 				<label>진행 유형</label>
 				<form:radiobutton path="pro_ing" value="1" id="pro_ing1" checked="checked"/>예정
-				<form:radiobutton path="pro_ing" value="2" id="pro_ing2" checked="checked"/>진행중
-				<form:radiobutton path="pro_ing" value="3" id="pro_ing3" checked="checked"/>종료
+				<form:radiobutton path="pro_ing" value="2" id="pro_ing2"/>진행중
+				<form:radiobutton path="pro_ing" value="3" id="pro_ing3"/>종료
 			</li>
 			<li>
 				<form:label path="pro_name">제목</form:label>
