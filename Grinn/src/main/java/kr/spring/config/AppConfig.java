@@ -51,7 +51,8 @@ public class AppConfig implements WebMvcConfigurer{
 		        .addPathPatterns("/member/admin_update.do");
 		//LoginInterceptor 설정
 		registry.addInterceptor(loginCheck)
-				.addPathPatterns("/style/write.do");
+				.addPathPatterns("/style/write.do")
+				.addPathPatterns("/talk/talkList.do");
 	}
 	
 	@Bean

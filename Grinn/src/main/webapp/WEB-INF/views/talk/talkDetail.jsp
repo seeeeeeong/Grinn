@@ -31,6 +31,7 @@
 		<span id="chat_member">${chatMember}</span>
 		<span id="chat_mcount">(${chatCount}명)</span>
 	</p>
+	<!-- 메세지내용 -->
 	<div id="chatting_message"></div>
 	<form method="post" id="detail_form">
 		<input type="hidden" name="talkroom_num" id="talkroom_num"
