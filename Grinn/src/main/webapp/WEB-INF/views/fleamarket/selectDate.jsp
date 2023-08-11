@@ -71,18 +71,18 @@ $(function(){
 		<input type="hidden" name="booth_count" value="${market.booth_count}" id="booth_count"/>
 		<input type="hidden" name="booth_fee" value="${market.booth_fee}" id="booth_fee"/>
 		<ul class="date-form">
-			<li>예약 플리마켓: ${market.market_title}</li>
-			<li>운영 일정: ${market.market_startDate} ~ ${market.market_endDate}</li>
+			<li>예약 플리마켓 ${market.market_title}</li>
+			<li>운영 일정 ${market.market_startDate} ~ ${market.market_endDate}</li>
 			<li class="choose-date">
 				<label for="from-to">예약 일정</label>
-				<input type="text" id="from-to" autocomplete="off"> ~ <input type="text" id="from-to2" autocomplete="off">
+				<input type="text" id="from-to" autocomplete="off" placeholder="희망 시작 일자"> ~ <input type="text" id="from-to2" autocomplete="off" placeholder="희망 종료 일자">
 			</li>
 			<li>
 				<label for="get_count">예약 부스 수</label>
-				<input type="number" name="get_count" min="0" max="1" id="get_count">
+				<input type="number" name="get_count" min="0" max="1" id="get_count"/>
 			</li>
 			<li>
-				<span id="book_total_count">총 예약 수량 : 0개</span>
+				<span id="book_total_count">총 예약 수량 0개</span>
 			</li>
 			<li>
 				<label>남은 부스 수</label>
@@ -96,12 +96,12 @@ $(function(){
 				</c:if>
 			</li>
 			<li>
-				<span id="booth_total_txt">총 예약 금액 : 0원</span>
+				<span id="booth_total_txt">총 예약 금액  0원</span>
 			</li>
 		</ul>
 		<div class="align-right">
 			<input type="button" value="목록" onclick="location.href='boothList.do'">
-			<input type="submit" id="book_btn" value="예약하기">
+			<input type="submit" id="book_btn" value="다음으로">
 		</div>
 	</form>
 </div>

@@ -21,8 +21,8 @@ public class BookingServiceImpl implements BookingService{
 	private MarketMapper marketMapper;
 	
 	@Override
-	public void insertBooking(BookingVO book) {
-		bookingMapper.insertBooking(book);
+	public void insertBooking(BookingVO bookingVO) {
+		bookingMapper.insertBooking(bookingVO);
 	}
 
 	@Override

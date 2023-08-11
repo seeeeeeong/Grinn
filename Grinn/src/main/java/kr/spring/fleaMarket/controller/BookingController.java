@@ -37,7 +37,7 @@ public class BookingController {
 		return new BookingVO();
 	}
 	
-	// ===예약 폼===    
+	// ===예약 폼===   
 	@RequestMapping("/fleamarket/booking.do")
 	public String getForm(@RequestParam int market_num, HttpSession session, Model model) {
 		

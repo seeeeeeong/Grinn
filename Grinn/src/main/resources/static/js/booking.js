@@ -25,7 +25,6 @@ $(function(){
 	
    	
 	
-	
 	// ===종료 날짜 먼저 선택 시 시작 날짜의 값이 없으면 알림===
 	$('#from-to2').on('keyup mouseup', function(){
 		if($('#from-to').val() == ''){
@@ -38,7 +37,7 @@ $(function(){
 	
 	$('#get_count').on('keyup mouseup', function(){
 		if($('#get_count').val() == ''){
-			$('#booth_total_txt').text('총 예약 금액 : 0원');
+			$('#booth_total_txt').text('총 예약 금액 0원');
 		}
 		
 		if($('#get_count').val() < 0){
@@ -46,8 +45,12 @@ $(function(){
 			return;
 		}
 		
+		if($('#get_count').val() == 1){
+			$('#booth_total_count').text('총 예약 수량 1개');
+		}
+		
 		let total = $('#get_count').val() * $('#booth_fee').val();
-		$('#booth_total_txt').text('총 예약 금액 : ' + total.toLocaleString() + '원');
+		$('#booth_total_txt').text('총 예약 금액 ' + total.toLocaleString() + '원');
 		
 	});
 	
@@ -69,7 +72,7 @@ $(function(){
 		
 		// 서버와 통신
 		$.ajax({
-			url:'completeDate.do',
+			url:'select.do',
 			type:'post',
 			data:form_data,
 			dataType:'json',

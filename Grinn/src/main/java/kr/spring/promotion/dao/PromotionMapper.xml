@@ -65,4 +65,20 @@
 		FROM promotion
 		<include refid="promotionSearch"></include>
 	</select>
+	
+	<update id="updatePromotion" parameterType="promotionVO">
+		UPDATE
+		  promotion
+		SET 
+		  pro_name = #{pro_name},
+		  pro_content = #{pro_content},
+		  pro_photo1 = #{pro_photo1},
+		  pro_photoName1 = #{pro_photoName1},
+		  pro_openDate = #{pro_openDate},
+		  pro_cloDate = #{pro_cloDate},
+		  pro_ing = #{pro_ing},
+		  pro_hide = #{pro_hide}
+		WHERE
+		  pro_num = #{pro_num}
+	</update>
 </mapper>

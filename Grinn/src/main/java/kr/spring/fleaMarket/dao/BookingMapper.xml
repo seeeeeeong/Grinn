@@ -9,11 +9,15 @@
 	<insert id="insertBooking" parameterType="bookingVO"> 
 		INSERT INTO booking(
 		  book_num,
+		  book_date1,
+		  book_date2,
 		  get_count,
 		  market_num,
 		  mem_num)
 		VALUES(
 		  booking_seq.nextval,
+		  #{book_date1},
+		  #{book_date2},
 		  #{get_count},
 		  #{market_num},
 		  #{mem_num})

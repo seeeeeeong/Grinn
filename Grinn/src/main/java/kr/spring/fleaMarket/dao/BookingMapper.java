@@ -16,7 +16,7 @@ public interface BookingMapper {
 	@Select("SELECT market_startDate, market_endDate FROM market WHERE market_num = #{market_num}")
 	public int selectMarketDate(Integer market_num);
 	// 예약 등록
-	public void insertBooking(BookingVO book);
+	public void insertBooking(BookingVO bookingVO);
 	// 회원 번호별 예약 액수
 	public int selectTotalByMem_num(Map<String, Object> map); 
 	// 예약 목록

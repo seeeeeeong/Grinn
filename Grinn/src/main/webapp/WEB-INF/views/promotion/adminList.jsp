@@ -42,6 +42,7 @@
 	<c:if test="${count > 0}">
 	<table class="striped-table">
 		<tr>
+			<th>번호</th>
 			<th>제목</th>
 			<th>등록일</th>
 			<th>시작일</th>
@@ -52,7 +53,8 @@
 		</tr>
 		<c:forEach var="pro" items="${list}">
 		<tr>
-			<td width="300" class="align-center">${pro.pro_name}</td>
+			<td class="align-center">${pro.pro_num}</td>
+			<td class="align-center">${pro.pro_name}</td>
 			<td class="align-center">${pro.pro_regDate}</td>
 			<td class="align-center">${pro.pro_openDate}</td>
 			<td class="align-center">${pro.pro_cloDate}</td>			

@@ -104,8 +104,56 @@ public class PromotionController {
 	}
 	
 	
+	// ===프로모션 사진 출력===
+	@RequestMapping("/promotion/photoView.do")
+	public String getPhoto(@RequestParam int pro_num, HttpServletRequest request, Model model) {
+		PromotionVO promotionVO = promotionService.selectPromotion(pro_num);
+		
+		model.addAttribute("photoFile", promotionVO.getPro_photo1());
+		model.addAttribute("photoName", promotionVO.getPro_photoName1());
+		
+		return "photoView";
+	}
+	
+	
 	// ===프로모션 수정===
+	// 수정 폼
+	@GetMapping("/promotion/updatePromotion.do")
+	public String updateForm(@RequestParam int pro_num, Model model) {
+		PromotionVO promotionVO = promotionService.selectPromotion(pro_num);
+		model.addAttribute("promotionVO", promotionVO);
+		
+		return "adminUpdate";
+	}
+	
+	// 전송된 데이터 처리
+	@PostMapping("/promotion/updatePromotion.do")
+	public String updateSubmit(@Valid PromotionVO promotionVO, BindingResult result, 
+			                   HttpServletRequest request, Model model) {
+		log.debug("<<프로모션 수정>> : " + promotionVO);
+		
+		// 유효성 검사에서 오류 발생시 폼 호출
+		if (result.hasErrors()) {
+			return "adminUpdate";
+		}
+		
+		promotionService.updatePromotion(promotionVO);
+		
+		// View
+		model.addAttribute("message", "프로모션 수정 완료");
+		model.addAttribute("url", request.getContextPath() + "/promotion/adminList.do");
+		
+		return "common/resultView";
+	}
 	
 	
 	// ===프로모션 삭제===
+	@RequestMapping("/promotion/deletePromotion.do")
+	public String delete(@RequestParam int pro_num) {
+		log.debug("<<프로모션 삭제>> : " + pro_num);
+		
+		promotionService.deletePromotion(pro_num);
+		
+		return "redirect:/promotion/adminList.do";
+	}
 }

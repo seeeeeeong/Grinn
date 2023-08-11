@@ -42,6 +42,7 @@
 	<c:if test="${count > 0}">
 	<table class="striped-table">
 		<tr>
+			<th>번호</th>
 			<th>제목</th>
 			<th>시작일</th>
 			<th>종료일</th>
@@ -51,6 +52,7 @@
 		</tr>
 		<c:forEach var="adminBooth" items="${boothList}">
 		<tr>
+			<td class="align-center">${adminBooth.market_num}</td>
 			<td width="300">${adminBooth.market_title}</td>
 			<td class="align-center">${adminBooth.market_startDate}</td>
 			<td class="align-center">${adminBooth.market_endDate}</td>			

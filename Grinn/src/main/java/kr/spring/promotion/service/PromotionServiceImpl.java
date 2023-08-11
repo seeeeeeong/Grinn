@@ -33,20 +33,17 @@ public class PromotionServiceImpl implements PromotionService{
 
 	@Override
 	public PromotionVO selectPromotion(Integer pro_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return promotionMapper.selectPromotion(pro_num);
 	}
 
 	@Override
 	public void updatePromotion(PromotionVO promotion) {
-		// TODO Auto-generated method stub
-		
+		promotionMapper.updatePromotion(promotion);
 	}
 
 	@Override
 	public void deletePromotion(Integer pro_num) {
-		// TODO Auto-generated method stub
-		
+		promotionMapper.deletePromotion(pro_num);
 	}
 
 }
