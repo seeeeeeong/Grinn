@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.user.dao.UserMapper;
+import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleVO;
@@ -184,6 +185,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<Integer> saledState(Integer mem_num) {
 		return userMapper.saledState(mem_num);
+	}
+
+	@Override
+	public int selectFavoriteItemsCount(Integer mem_num) {
+		return userMapper.selectFavoriteItemsCount(mem_num);
 	}
 
 }

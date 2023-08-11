@@ -4,9 +4,11 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
@@ -96,6 +98,9 @@ public interface UserService {
     	
 	//관심 상품
 	public List<ItemVO> selectFavoriteItems(Integer mem_num);
+	
+	//관심상품 전체 개수
+	public int selectFavoriteItemsCount(Integer mem_num);
 	
 	//좋아요한 게시물 정보 가져오기
 	public List<StyleVO> selectLikedStyles(Integer mem_num);

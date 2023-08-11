@@ -1,6 +1,7 @@
 package kr.spring.user.controller;
 
 import java.sql.Date;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
@@ -238,19 +240,39 @@ public class UserController {
 	/*
 	 * =========================== 쇼핑 정보 - 관심 상품 ===========================
 	 */
-    @GetMapping("/user/userFavoriteItems.do")
-    public String favoriteItemsPage(HttpSession session, Model model) {
-        //로그인된 사용자 정보 가져오기
-        MemberVO user = (MemberVO) session.getAttribute("user");
+	@GetMapping("/user/userFavoriteItems.do")
+	public String favoriteItemsPage(HttpSession session, Model model,
+	        @RequestParam(name = "pageNum", defaultValue = "1") int pageNum) {
+	    MemberVO user = (MemberVO) session.getAttribute("user");
 
-        //판매 내역 조회
-        List<ItemVO> favoriteItems = userService.selectFavoriteItems(user.getMem_num());
-        model.addAttribute("favoriteItems", favoriteItems);
-        
-        //favoriteItems 페이지로 이동
-        return "userFavoriteItems";
-    }
-    
+	    // 판매 내역 조회
+	    List<ItemVO> favoriteItems = userService.selectFavoriteItems(user.getMem_num());
+
+	    int totalCount = favoriteItems.size(); // 전체 게시물 수
+	    int rowCount = 10; // 한 페이지에 보여줄 게시물 수 (원하는 값으로 변경)
+	    int pageCount = 5; // 한 화면에 보여줄 페이지 수 (원하는 값으로 변경)
+
+	    String subUrl = ""; // URL 파라미터를 따로 붙이지 않습니다.
+
+	    PagingUtil pagingUtil = new PagingUtil(pageNum, totalCount, rowCount, pageCount,
+	            "/user/userFavoriteItems.do", subUrl);
+
+	    int startRow = pagingUtil.getStartRow();
+	    int endRow = pagingUtil.getEndRow();
+
+	    // 현재 페이지의 게시물들을 추출 (범위를 벗어나지 않도록 조정)
+	    if (startRow <= totalCount) {
+	        List<ItemVO> currentPageItems = favoriteItems.subList(startRow - 1, Math.min(endRow, totalCount));
+	        model.addAttribute("favoriteItems", currentPageItems);
+	    } else {
+	        model.addAttribute("favoriteItems", Collections.emptyList());
+	    }
+
+	    model.addAttribute("page", pagingUtil.getPage().toString());
+
+	    return "userFavoriteItems";
+	}
+       
 	/*
 	 * =========================== 쇼핑 정보 - 좋아요 ===========================
 	 */

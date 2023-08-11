@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleVO;
@@ -119,13 +120,17 @@ public interface UserMapper {
 	@Select("SELECT td.trade_state FROM sale_bid sb JOIN trade_detail td ON sb.item_num = td.item_num WHERE sb.mem_num = #{mem_num}")
 	public List<Integer> saledState(Integer mem_num);
 	
-	//관심 상품
+	//관심상품 전체 개수
+	@Select("SELECT COUNT(*) FROM item_fav WHERE mem_num = #{mem_num}")
+	public int selectFavoriteItemsCount(Integer mem_num);
+	
+	//관심상품
 	@Select("SELECT i.item_num ,i.item_name, i.item_brand, i.item_price " +
 	        "FROM item_fav f " +
 	        "JOIN item i ON f.item_num = i.item_num " +
 	        "WHERE f.mem_num = #{mem_num}")
 	public List<ItemVO> selectFavoriteItems(Integer mem_num);
-	
+			
     //item_num에 해당하는 item 테이블의 정보 가져오기
     @Select("SELECT * FROM item WHERE item_num = #{item_num}")
     public ItemVO selectItem(Integer item_num);
