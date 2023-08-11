@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dropdown.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/notice.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js">
 <script type="text/javascript">
 	$(function(){
 		//검색 유효성 체크
@@ -16,6 +17,8 @@
 			}
 		});
 	});
+
+	
 
 </script>
 <div class="page-main">
@@ -56,7 +59,7 @@
 				<li class="close"><!-- 클래스명:close일때가 기본 // 드롭다운이 열렸을 때(제목 라인을 클릭했을때) class명이 open으로 변경되게끔 -->
 					<div class="dropdown">
 						<%-- 공통 시작 --%>
-						<div id="drop1">
+						<div id="drop">
 						<c:forEach var="faq" items="${list}">
 							<%-- 드롭다운 타이틀 --%>
 							<div class="dropdown_head">
@@ -83,7 +86,7 @@
 							<%-- 드롭다운 내용 --%>
 							<div class="dropdown_content" style="display:none;">
 								<div class="content">
-									${faq.no_content}
+									<b>${faq.no_content}</b>
 								</div>
 							</div>
 						</c:forEach>

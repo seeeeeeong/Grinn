@@ -22,7 +22,7 @@
 					<div class = "menu_title_bottom">
 					<ul class = "menu_list">
 						<li class = "menu_item">
-							<a href = "" class = "menu_link">검수 기준</a>
+							<a href = "${pageContext.request.contextPath}/notice/noticeAuth_policy.do" class = "menu_link">검수 기준</a>
 						</li>
 						<li class = "menu_item">
 							<a href = "" class = "menu_link">이용정책</a>
@@ -93,7 +93,7 @@
 
 <!-- 채팅 : 염유진 -->
 <div id="floating">
-	<button class="btn_talk" onclick="location.href='${pageContext.request.contextPath}/chatbot/chatbotList.do'">
+	<button class="btn_talk" onclick="location.href='${pageContext.request.contextPath}/chatbot/chatbotDetail.do'">
 		<img class="ico-top" src="${pageContext.request.contextPath}/images/how_to_chatbot.jpg" width = "32" height = "32"">
 	</button>
 </div>

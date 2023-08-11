@@ -9,9 +9,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ChatBotVO {
+public class ChatBotRoomVO {
 	private int croom_num; //방번호
 	private int mem_num; //회원번호
 	private String mem_id; //회원아이디
-	private Date croom_regdate; //챗봇시작 날짜
+	private String croom_question; //회원의 질문
+	private String croom_answer; //답변
 }
