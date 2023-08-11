@@ -8,19 +8,19 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
 <div class="page-main1">
     <h2>후기 수정</h2>
-	<%-- <div class="reviewForm">
+	<div class="reviewForm">
 		<div>
 			<ul>
 				<li><img
-					src="${pageContext.request.contextPath}/item/photoView.do?item_num=${item.item_num}"
+					src="${pageContext.request.contextPath}/item/photoView.do?item_num=${itemVO.item_num}"
 					width="200" height="200"></li>
 			</ul>
 			<ul>
-				<li class="a">${item.item_name}</li>
-				<li class="b">${item.item_detail}</li>
+				<li class="a">${itemVO.item_name}</li>
+				<li class="b">${itemVO.item_detail}</li>
 			</ul>
 		</div>
-	</div> --%>
+	</div>
 	<form:form modelAttribute="itemReviewVO" action="itemReviewModify.do" id="itemReview" method="post" enctype="multipart/form-data">
     	<form:hidden path="review_num"/>
 		<fieldset>
@@ -63,11 +63,12 @@
 				</ul>
 			</div>
 				<div class="reviewButton">
-					<input type="submit" value="등록" class="default-btn"> 
-					<input type="button" value="홈으로" class="default-btn"
-						onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+					<div>
+						<input type="submit" value="등록" class="default-btn"> 
+						<input type="button" value="홈으로" class="default-btn"
+							onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 				</div>
-			
+			</div>
 		</div>
 		<!-- 사진 등록 끝 -->
         

@@ -11,6 +11,8 @@ import kr.spring.item.dao.ItemMapper;
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemReviewVO;
 import kr.spring.item.vo.ItemVO;
+import kr.spring.pbid.vo.PurchaseBidVO;
+import kr.spring.sbid.vo.SaleBidVO;
 
 @Service
 @Transactional
@@ -102,6 +104,23 @@ public class ItemServiceImpl implements ItemService{
 	public void deleteReiew(Integer review_num) {
 		itemMapper.deleteReiew(review_num);
 	}
+
+	@Override
+	public Integer minSale(Integer item_num) {
+		return itemMapper.minSale(item_num);
+	}
+
+	@Override
+	public Integer maxPurchase(Integer item_num) {
+		return itemMapper.maxPurchase(item_num);
+	}
+
+	@Override
+	public Integer latelyTrade(Integer item_num) {
+		return itemMapper.latelyTrade(item_num);
+	}
+
+
 
 
 }

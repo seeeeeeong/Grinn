@@ -98,19 +98,20 @@ $(function(){
 		if(!choice){
 			return;
 		}
+		let item_num = $(this).attr('data-itemnum');
 		//서버와 통신
 		$.ajax({
 			url:'itemReviewDelete.do',
 			type:'post',
 				//key	value
-			data:{item_num:$('#output').attr('data-itemnum'),review_num:$('#output').attr('data-reviewnum')},
+			data:{item_num,review_num:$('#output').attr('data-reviewnum')},
 			dataType:'json',
 			success:function(param){
 				if(param.result=='logout'){
 					alert('로그인해야 삭제할 수 있습니다.');
 				}else if(param.result=='success'){
 					alert('삭제완료');
-					//location.href="../item/itemDetai.do?item_num="+item_num;
+					location.href="../item/itemDetail.do?item_num="+item_num;
 				}else if(param.result=='wrongAccess'){
 					alert('타인의 글을 삭제할 수 없습니다.')
 				}else{

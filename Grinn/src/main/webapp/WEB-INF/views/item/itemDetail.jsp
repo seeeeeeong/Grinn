@@ -35,15 +35,42 @@
 					<div class="details">
 						<div>사이즈</div>
 					</div>
+					<hr>
 					<div class="details">
 						<div>최근 거래가</div>
+						<c:if test="${empty latelyTrade}">
+						<div>
+							<div class="tradeInfo">-</div>
+							<span></span>
+						</div>
+						</c:if>
+						<c:if test="${!empty latelyTrade}">
+							<div>
+							<div class="tradeInfo">${latelyTrade}원</div>
+							<span></span>
+							</div>
+						</c:if>
 					</div>
 					<div>
 						<div class="buttons">
 							<button class="a"
-								onclick="location.href='${pageContext.request.contextPath}/purchase/selectSize.do?item_num=${item.item_num}'">구매</button>
+								onclick="location.href='${pageContext.request.contextPath}/purchase/selectSize.do?item_num=${item.item_num}'">
+								<div>구매</div>
+								<div>
+									<c:if test="${empty sale}"><span> -원</span></c:if>
+									<c:if test="${!empty sale}"><span class="c">${sale}</span></c:if>
+									<span class="d">즉시 구매가</span>
+								</div>
+							</button>
 							<button class="b"
-								onclick="location.href='${pageContext.request.contextPath}/sale/selectSize.do?item_num=${item.item_num}'">판매</button>
+								onclick="location.href='${pageContext.request.contextPath}/sale/selectSize.do?item_num=${item.item_num}'">
+								<div>판매</div>
+								<div>
+									<c:if test="${empty purchase}"><span> - </span></c:if>
+									<c:if test="${!empty purchase}"><span class="c">${purchase}</span></c:if>
+									<span class="d">즉시 판매가</span>
+								</div>	
+							</button>
 						</div>
 						<br> <span class="output_fav" data-num="${item.item_num}"
 							id="output-fav"> <span> <img class="output_fav"
@@ -201,45 +228,54 @@
 			<h1>Review(${count})</h1>
 			<hr>
 			<c:if test="${count==0}">
-				<div class="result-display">표시할 댓글이 없습니다.</div>
+				<div class="result-display">표시할 리뷰가 없습니다.</div>
 			</c:if>
 			<c:if test="${count > 0}">
-			<c:forEach var="review" items="${list}">
-				<div class="item">
-					<ul class="detail-info">
-						<li>
-							<img src="${pageContext.request.contextPath}/user/viewProfile.do?mem_num=${review.mem_num}" width="40" height="40" class="my-photo">
-						</li>
-						<li class="name">
-							<c:if test="${!empty review.mem_nickname}">
-								${review.mem_nickname}
+				<c:forEach var="review" items="${list}">
+					<div class="item">
+					<div class="item-i">
+					<div>
+						<ul class="detail-info">
+							<li>
+								<img src="${pageContext.request.contextPath}/user/viewProfile.do?mem_num=${review.mem_num}" width="30" height="30" class="my-photo">
+							</li>
+							<li class="name">
+								<c:if test="${!empty review.mem_nickname}">
+									${review.mem_nickname}
+								</c:if>
+								<c:if test="${empty review.mem_nickname}">
+									${review.mem_id}
+								</c:if>
+							</li>
+							<li>
+								<c:if test="${user_num eq review.mem_num}">
+									<input type="button" value="수정" onclick="location.href='itemReviewModify.do?review_num=${review.review_num}&item_num=${review.item_num}'">
+									<input type="button" value="삭제" class="delete-btn" data-reviewnum="${review.review_num}" data-itemnum="${review.item_num}" id="output">
+								</c:if>
+							</li>
+						</ul>
+						<div class="sub-item">
+							<c:if test="${review.review_star==1}"><p class="star">★☆☆☆☆</p></c:if>
+							<c:if test="${review.review_star==2}"><p class="star">★★☆☆☆</p></c:if>
+							<c:if test="${review.review_star==3}"><p class="star">★★★☆☆</p></c:if>
+							<c:if test="${review.review_star==4}"><p class="star">★★★★☆</p></c:if>
+							<c:if test="${review.review_star==5}"><p class="star">★★★★★</p></c:if>
+							<p>${review.review_content}</p>
+							<c:if test="${!empty review.review_modifydate}">
+								<span class="modify-date"> 최근 수정일 : ${review.review_modifydate}</span>
 							</c:if>
-							<c:if test="${empty review.mem_nickname}">
-								${review.mem_id}
+							<c:if test="${empty review.review_modifydate}">
+								<span class="modify-date"> 등록일 : ${review.review_date}</span>
 							</c:if>
-						</li>
-					</ul>
-					<div class="sub-item">
-						<c:if test="${review.review_star==1}"><p class="star">★☆☆☆☆</p></c:if>
-						<c:if test="${review.review_star==2}"><p class="star">★★☆☆☆</p></c:if>
-						<c:if test="${review.review_star==3}"><p class="star">★★★☆☆</p></c:if>
-						<c:if test="${review.review_star==4}"><p class="star">★★★★☆</p></c:if>
-						<c:if test="${review.review_star==5}"><p class="star">★★★★★</p></c:if>
-						<c:if test="${!empty review.review_photo}">
-							<img src="${pageContext.request.contextPath}/item/reviewPhoto.do?review_num=${review.review_num}">
-						</c:if>
-						<p>${review.review_content}</p>
-						<c:if test="${!empty review.review_modifydate}">
-							<span class="modify-date"> 최근 수정일 : ${review.review_modifydate}</span>
-						</c:if>
-						<c:if test="${empty review.review_modifydate}">
-							<span class="modify-date"> 등록일 : ${review.review_date}</span>
-						</c:if>
-						<c:if test="${user_num eq review.mem_num}">
-							<input type="button" value="수정" onclick="location.href='itemReviewModify.do?review_num=${review.review_num}'">
-							<input type="button" value="삭제" class="delete-btn" data-reviewnum="${review.review_num}" data-itemnum="${review.item_num}" id="output">
-						</c:if>
-					</div>
+						</div>
+						</div>
+						<div>
+							<c:if test="${!empty review.review_photo}">
+								<img src="${pageContext.request.contextPath}/item/reviewPhoto.do?review_num=${review.review_num}"  class="reviewImg">
+							</c:if>
+						</div>
+					
+				</div>
 				</div>
 			</c:forEach>
 			</c:if>

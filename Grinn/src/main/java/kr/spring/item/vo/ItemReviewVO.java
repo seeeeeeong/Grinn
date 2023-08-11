@@ -1,6 +1,7 @@
 package kr.spring.item.vo;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,11 +28,10 @@ public class ItemReviewVO {
 	private String mem_id;
 	private String mem_nickname;
 	
-	
-	public void setReview_date(String review_date) {
+	public void setReview_date(Date review_date) {
 		this.review_date = DurationFromNow.getTimeDiffLabel(review_date);
 	}
-	public void review_modifydate(String review_modifydate) {
+	public void setReview_modifydate(Date review_modifydate) {
 		this.review_modifydate = DurationFromNow.getTimeDiffLabel(review_modifydate);
 	}
 	//이미지를 byte[] 배열로 변환(blob처리)

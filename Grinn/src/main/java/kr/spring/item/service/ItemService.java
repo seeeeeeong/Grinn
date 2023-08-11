@@ -6,6 +6,8 @@ import java.util.Map;
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemReviewVO;
 import kr.spring.item.vo.ItemVO;
+import kr.spring.pbid.vo.PurchaseBidVO;
+import kr.spring.sbid.vo.SaleBidVO;
 
 public interface ItemService {
 	
@@ -14,6 +16,9 @@ public interface ItemService {
 	public int selectRowCount(Map<String,Object> map);
 	public void insertItem(ItemVO item);
 	public ItemVO selectItem(Integer item_num);
+	public Integer minSale(Integer item_num);
+	public Integer maxPurchase(Integer item_num);
+	public Integer latelyTrade(Integer item_num);
 	public void updateItem(ItemVO item);
 	public void deleteItem(Integer item_num);
 	

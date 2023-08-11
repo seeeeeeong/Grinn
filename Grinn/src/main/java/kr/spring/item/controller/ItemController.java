@@ -26,6 +26,8 @@ import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemReviewVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.pbid.vo.PurchaseBidVO;
+import kr.spring.sbid.vo.SaleBidVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -204,7 +206,13 @@ public class ItemController {
 	public ModelAndView getDetail(@RequestParam int item_num,@RequestParam(value = "pageNum", defaultValue = "1") int currentPage,
 			@RequestParam(value = "order", defaultValue = "1") int order, String keyfield, String keyword,HttpSession session) {
 		
+		
 		ItemVO item = itemService.selectItem(item_num);
+		
+		Integer sale = itemService.minSale(item_num);
+		Integer purchase = itemService.maxPurchase(item_num);
+		Integer latelyTrade = itemService.latelyTrade(item_num);
+		
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -215,7 +223,7 @@ public class ItemController {
 		int count = itemService.selectRowCountReview(map);
 
 		// 페이지처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 20, 10, "itemDetail.do",
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 3, 10, "itemDetail.do",
 				"&order=" + order);
 
 		
@@ -226,6 +234,7 @@ public class ItemController {
 			map.put("end", page.getEndRow());
 
 			list = itemService.selectListReview(map);
+			log.debug("<<list>> : " + list);
 		}
 		
 		ModelAndView mav = new ModelAndView();
@@ -236,6 +245,9 @@ public class ItemController {
 		}
 		mav.addObject("list", list);
 		mav.addObject("count", count);
+		mav.addObject("sale", sale);
+		mav.addObject("purchase", purchase);
+		mav.addObject("latelyTrade", latelyTrade);
 		
 		return mav;
 	}
@@ -442,11 +454,13 @@ public class ItemController {
 	//=========후기 수정 시작===========
 	//폼호출
 	@GetMapping("/item/itemReviewModify.do")
-	public String reviewUpdate(@RequestParam int review_num, Model model) {
+	public String reviewUpdate(ItemReviewVO vo, Model model) {
 		
-		ItemReviewVO itemReviewVO = itemService.selectReview(review_num);
+		ItemReviewVO itemReviewVO = itemService.selectReview(vo.getReview_num());
+		ItemVO itemVO = itemService.selectItem(vo.getItem_num());
 		
 		model.addAttribute("itemReviewVO", itemReviewVO);
+		model.addAttribute("itemVO", itemVO);
 		
 		return "itemReviewModify";
 	}
@@ -462,9 +476,11 @@ public class ItemController {
 
 		// 글수정
 		itemService.updateReview(itemReviewVO);
+		
+		ItemReviewVO vo = itemService.selectReview(itemReviewVO.getReview_num());
 
 		model.addAttribute("message", "상품 수정 완료!");
-		model.addAttribute("url", request.getContextPath() + "/main/main.do");
+		model.addAttribute("url", request.getContextPath() + "/item/itemDetail.do?item_num="+vo.getItem_num());
 
 		return "common/resultView";
 

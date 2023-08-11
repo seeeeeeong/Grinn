@@ -135,7 +135,7 @@ p {
   flex: 1;
   position: sticky;
   top: 100px; /* .right의 padding 값에 맞게 조정하세요 */
-  height: calc(100vh - 400px); /* 화면 높이에서 위 아래 패딩값 빼기 */
+  height: calc(100vh - 200px); /* 화면 높이에서 위 아래 패딩값 빼기 */
   overflow: auto;
 }
 
@@ -153,6 +153,12 @@ p {
   flex: 1;
   padding: 20px;
 }
+
+.tradeInfo{
+	font-weight: bold;
+	font-size: 20px;
+}
+
 
 .itemDetailPage .title_box {
   margin-bottom: 10px;
@@ -182,25 +188,52 @@ p {
   margin: 20px 0;
 }
 
+.itemDetailPage .buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
 .itemDetailPage .buttons button {
-  padding: 10px 20px;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: bold;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 48%;
-  height: 50px;
+  width: calc(50% - 5px); /* 2개 버튼의 간격을 띄우기 위한 계산 */
+  height: 60px;
 }
 
 .itemDetailPage .buttons .a {
-  background-color:rgb(239, 98, 83);
-  margin-right: 10px;
+  background-color: rgb(239, 98, 83);
 }
 
 .itemDetailPage .buttons .b {
-  background-color:rgb(65, 185, 121);
+  background-color: rgb(65, 185, 121);
+}
+
+.itemDetailPage .buttons button div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 15px;
+}
+
+.itemDetailPage .buttons button div:first-child {
+  margin-bottom: 5px;
+}
+
+.itemDetailPage .buttons .c {
+  font-size: 16px;
+}
+.itemDetailPage .buttons .d {
+  font-size: 11px;
 }
 
 #output-fav {
@@ -340,19 +373,42 @@ h3{
 /*-------------
 	후기목록
 ---------------*/
+.detail-info input{
+	border: none;
+    margin-left: 10px;
+    background: none;
+    width: 30px;
+    height: 20pxpx;
+    margin-top: 8px;
+}
 .item{
 	border-bottom: 1px solid rgb(168, 168, 168);
 }
+.item-i{
+	margin: 5px;
+	justify-content: space-between;
+	display:flex;
+}
 .sub-item p{
-	font-size: 18px;
-	margin-bottom: 10px;
+	font-size: 16px;
+    margin: 5px 0 10px 0;
 }
 .sub-item .star{
 	color: #dbdb00;
+	margin: 0;
 }
 .detail-info .name{
-	margin-top: 15px;
-	font-size: 15px;
+	margin-top: 10px;
+	font-size: 13px;
+}
+.reviewImg{
+	margin: 8px;
+	width:100px;
+	height:100px;
+	justify-content: center;
+}
+.modify-date{
+	margin-bottom: 5px;
 }
 /*-------------
 	후기작성/수정 폼
@@ -429,15 +485,23 @@ h3{
 }
 #itemReview .bb{
 	display: flex; /* Flex 컨테이너로 설정 */
-  justify-content: space-between;
+	justify-content: space-between;
 }
 #itemReview .aa{
 	display: inline-block;
 }
 .reviewButton{
-	text-align: right;
+	/* text-align: right;
   	display: inline-block;
-	margin-top:60px;
+	margin-top:60px; */
+	display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.reviewButton div{
+	display: flex;
+    align-items: center;
 }
 .reviewButton input{
 	width: 100px;
