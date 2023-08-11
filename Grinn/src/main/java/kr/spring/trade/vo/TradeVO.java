@@ -37,6 +37,7 @@ public class TradeVO {
 	private MemberVO sellerVO;
 	
 	// 아이템 사진 및 아이템 정보
+	private String item_detail; // 상품설명
 	private String item_brand; //브랜드명
 	private String item_name; //상품이름
 	private byte[] item_photo1; //상품 사진1

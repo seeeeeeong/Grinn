@@ -141,4 +141,9 @@ public interface TradeMapper {
 	public int getTradeListCount();
 	// 거래 정보 조회
 	public List<TradeVO> getTradeList(Map<String, Object> map);
+	// 거래 상세 정보 조회
+	public TradeVO getTradeDetail(Integer trade_num);
+	// 거래 상태 수정
+	@Update("UPDATE trade_detail SET trade_state=#{trade_state} WHERE trade_num=#{trade_num}")
+	public void updateTradeState(@Param(value="trade_num") Integer trade_num, @Param(value="trade_state") Integer trade_state);
 }

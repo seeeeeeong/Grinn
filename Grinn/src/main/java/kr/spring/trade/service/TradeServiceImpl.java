@@ -198,6 +198,16 @@ public class TradeServiceImpl implements TradeService{
 		return tradeMapper.getTradeListCount();
 	}
 
+	@Override
+	public void updateTradeState(Integer trade_num, Integer trade_state) {
+		tradeMapper.updateTradeState(trade_num, trade_state);
+	}
+
+	@Override
+	public TradeVO getTradeDetail(Integer trade_num) {
+		return tradeMapper.getTradeDetail(trade_num);
+	}
+
 	
 
 }

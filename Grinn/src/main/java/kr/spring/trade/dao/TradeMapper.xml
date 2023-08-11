@@ -12,6 +12,20 @@
 	</resultMap>
 	
 	
+	<resultMap type="tradeVO" id="tradeDetailMap">
+		<result property="buyerVO.mem_name" column="buyer_name"/>
+		<result property="buyerVO.mem_num" column="buyer_num"/>
+		<result property="buyerVO.mem_auth" column="buyer_auth"/>
+		<result property="buyerVO.mem_phone" column="buyer_phone"/>
+		<result property="sellerVO.mem_name" column="seller_name"/>
+		<result property="sellerVO.mem_num" column="seller_num"/>
+		<result property="sellerVO.mem_auth" column="seller_auth"/>
+		<result property="sellerVO.mem_phone" column="seller_phone"/>
+	</resultMap>
+	
+	
+	
+	
 	<!-- *************************************************************************************************** -->
 	
 	<!-- 아이템 정보와 사이즈 정보 가져오기 -->
@@ -304,6 +318,37 @@
 		]]>	
 	</select>
 	
-	
+	<!-- 관리자 : 거래 상세 정보 조회 -->
+	<select id="getTradeDetail" parameterType="integer" resultMap="tradeDetailMap">
+		SELECT
+			t.trade_num,
+            t.item_num,
+            buyer.mem_num buyer_num,
+			seller.mem_num seller_num,
+			i.item_name,
+			i.item_detail,
+			i.item_brand,
+			s.item_size,
+            i.item_photo1,
+            i.item_photo1name,
+			d.trade_regDate,
+			d.trade_price,
+			bmd.mem_name buyer_name,
+			smd.mem_name seller_name,
+			buyer.mem_auth buyer_auth,
+			seller.mem_auth seller_auth,
+            bmd.mem_phone buyer_phone,
+            smd.mem_phone seller_phone,
+			d.trade_state 
+		FROM trade t 
+			LEFT JOIN trade_detail d on t.trade_num = d.trade_num
+			LEFT JOIN member buyer on t.buyer_num = buyer.mem_num
+			LEFT JOIN member seller on t.seller_num = seller.mem_num
+			LEFT JOIN member_detail bmd on buyer.mem_num = bmd.mem_num
+			LEFT JOIN member_detail smd on seller.mem_num = smd.mem_num
+			LEFT JOIN item i on t.item_num = i.item_num
+			LEFT JOIN item_size s on d.item_sizenum = s.item_sizenum
+        WHERE t.trade_num=#{trade_num}
+	</select>
 	
 </mapper>

@@ -689,4 +689,37 @@ public class TradeController {
 		
 	}
 	
+	// 거래 상세 페이지
+	@RequestMapping("/trade/admin_detail.do")
+	public String getTradeDetail(@RequestParam int trade_num, HttpSession session, Model model) {
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		TradeVO trade = null;
+		if(user == null) {
+			model.addAttribute("message","로그인이 필요합니다.");
+			model.addAttribute("url","../member/login.do");
+			return "common/resultView";
+		}else {
+			if(user.getMem_auth() != 9) {
+				model.addAttribute("message","잘못된 접근입니다.");
+				model.addAttribute("url","../main/main.do");
+				return "common/resultView";
+			}else {
+				trade = tradeService.getTradeDetail(trade_num);
+				model.addAttribute("trade",trade);
+			}
+		}
+		
+		return "admin_detail";
+	}
+	
+	// 거래 상태 수정
+	@RequestMapping("/trade/updateTradeState.do")
+	@ResponseBody
+	public Map<String, Object> updateTradeState(){
+		Map<String, Object> mapJson = new HashMap<>();
+		
+		return mapJson;
+	}
+	
 }

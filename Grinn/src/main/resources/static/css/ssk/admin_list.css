@@ -122,6 +122,11 @@
 .real-content table tr:nth-child(odd){
 	background-color: rgb(250,250,247);
 }
+.click-table:hover{
+	cursor:pointer;
+	font-weight: bold;
+}
+
 
 
 

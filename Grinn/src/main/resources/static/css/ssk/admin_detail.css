@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+#ha {
+	padding: 25px 0 16px 0;
+	border-bottom: 3px solid #222;
+	display: flex;
+	margin: 0 auto;
+}
+.trade-content{
+	width: 90%;
+    margin: 20px auto;
+}
+.item-title{
+	margin: 20px 20px 0 20px;
+}
+.seller-title, .buyer-title, .trade-title{
+	margin: 50px 20px 0 20px;
+}
+.trade-content-detail{
+	width:100%;
+	margin: 0 auto;
+}
+.item-info{
+	display: flex;
+	margin: 20px 20px 20px 20px;
+	justify-content: space-between;
+	box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.1);
+	padding: 20px 20px 0 10px;
+}
+.item-info-box, trade-info-box{
+	width: 80%;
+	margin: 0 auto;
+}
+.item-img{
+	float: left;
+}
+
+.item-profile{
+	float: right;
+	margin: 0;
+	padding: 0;
+	height: 130px;
+	justify-content: space-between;
+}
+.seller-info{
+	border: 1px solid #fa7070;
+}
+.buyer-info{
+	border: 1px solid #41B979;
+}
+.trade-info{
+	border: 1px solid #c87aff;
+}
+.seller-info, .buyer-info, .trade-info{
+	margin: 20px 20px 20px 20px;
+	box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.1);
+	padding: 20px 20px 0 10px;
+}
+.seller-info-box, .buyer-info-box, .trade-info-box{
+	width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+}
+.seller-detail, .buyer-detail, .trade-detail{
+	width: 50%;
+	margin: 0 auto;
+}
+.seller-detail dl, .buyer-detail dl, .trade-detail-summary dl{
+	display: flex;
+	justify-content: space-between;
+	font-size: 15px;
+}
+.seller-detail dt, .buyer-detail dt, .trade-detail-summary dt{
+	color:#8f8f8f;
+}
+.seller-detail dd, .buyer-detail dd, .trade-detail-summary dd{
+	font-weight: bold;	
+}
+.trade-title{
+	display: flex;
+	justify-content: space-between;
+}
+.trade-title a{
+	position: relative;
+	align-self: flex-end;
+	width:80px;
+	text-align: center;
+	height: 40px;
+	cursor: pointer;
+	background-color:#dea8ff;
+	color: white;
+}
+.a-tag-text{
+	line-height:40px;
+}
+.trade-title a:hover{
+	background-color: white;
+	color: #dea8ff;
+	border: 1px solid black;
+}
+
+#modalWrap {
+	background-color: rgba(34,34,34,.5);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1010;
+	
+}
+#modalBody {
+ 	width: 520px;
+	background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,.1);
+    left: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+#closeBtn {
+  float:right;
+  font-weight: bold;
+  color: #777;
+  font-size:25px;
+  cursor: pointer;
+}
+
+

@@ -70,7 +70,7 @@
 						</tr>
 					<c:forEach var="list" items="${list}">
 						<tr>
-							<td>${list.item_name}</td>
+							<td class="click-table" onclick="location.href='admin_detail.do?trade_num=${list.trade_num}'">${list.item_name}</td>
 							<td>${list.item_size}</td>
 							<td><fmt:formatNumber value="${list.trade_price}"/></td>
 							<td>${list.buyerVO.mem_name}</td>
@@ -121,6 +121,7 @@
 				</div>
 			</div>
 		</div>
+		<div class="align-center">${page}</div>
 	</div>
 </div>
 

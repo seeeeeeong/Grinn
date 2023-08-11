@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
@@ -113,5 +114,10 @@ public interface TradeService {
 	
 	// 거래 정보 조회
 	public List<TradeVO> getTradeList(Map<String, Object> map);
+	
+	// 거래 상세 정보 조회
+	public TradeVO getTradeDetail(Integer trade_num);
 
+	// 거래 상태 수정
+	public void updateTradeState(Integer trade_num, Integer trade_state);
 }
