@@ -1,6 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/floating.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/iframe_yeom.css">
+<script type="text/javascript">
+	$(document).ready(function(){
+		const btn_talk = document.getElementsByClassName("btn_talk");
+		const box_content = document.getElementsByClassName("box_content");
+		btn_talk.onclick = function(){
+			box_content.style.display = 'block';
+		};
+		
+		const optionBtn = document.getElementsByClassName('btn_talk');
+		  const optionModal = document.getElementsByClassName('optionWrap');
+		  const optionCloseBtn = document.getElementsByClassName('closeOption');
+
+		  optionBtn.onclick = function() {
+			optionModal.style.display = 'block';
+			$(".fixed").css({
+			    "position":"static"
+		  	});
+		  	$("#main_body").css({
+			  "padding": "0 0 30px 0"
+		  	});
+		  }
+		  optionCloseBtn.onclick = function() {
+			optionModal.style.display = 'none';
+			  $(".fixed").css({
+				    "position":"fixed"
+			  });
+			  $("#main_body").css({
+				  "padding": "144px 0 30px 0"
+			  });
+		  }
+
+		  window.onclick = function(event) {
+		    if (event.target == optionModal) {
+		    	optionModal.style.display = "none";
+			  	  $(".fixed").css({
+					    "position":"fixed"
+				  });
+				  $("#main_body").css({
+					  "padding": "144px 0 30px 0"
+				  });
+		    }
+		  }
+		  
+		  
+				  
+	});
+</script>
 <div class = "footer">
 	<div class = "footer_inner">
 		<div class = "service_area">
@@ -88,13 +136,6 @@
 <div id = "floating">
 	<button class = "btn_top" onclick = "location.href='voteList.do'">
 		<img class = "ico-top" src = "${pageContext.request.contextPath}/images/how_to_vote.png" width = "32" height = "32">
-	</button>
-</div>
-
-<!-- 채팅 : 염유진 -->
-<div id="floating">
-	<button class="btn_talk" onclick="location.href='${pageContext.request.contextPath}/chatbot/chatbotDetail.do'">
-		<img class="ico-top" src="${pageContext.request.contextPath}/images/how_to_chatbot.jpg" width = "32" height = "32"">
 	</button>
 </div>
 

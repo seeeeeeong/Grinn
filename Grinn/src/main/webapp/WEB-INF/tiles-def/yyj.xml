@@ -61,6 +61,10 @@
     </definition> 
 	
 	<!-- 메인 상속 / 챗봇 -->
+    <definition name="chatbotDetail" extends="main">
+    	<put-attribute name="title" value="챗봇으로 문의하기"/>
+	    <put-attribute name="body" value="/WEB-INF/views/chatbot/chatbotDetail.jsp"/>
+    </definition> 
 
 </tiles-definitions>
 

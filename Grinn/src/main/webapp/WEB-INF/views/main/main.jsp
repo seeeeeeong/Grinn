@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/swiper.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatbot.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/chatbot.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <div class = "body">
 	<div class="swiper-container mySwiper">
@@ -45,56 +47,75 @@
 	</script>
 </div>
 <div class="page-main">
-	<div class = "container">
-		<div style = "display:none;"></div>
-		<div class = "home">
-			<div class = "home_card_list">
-				
-				<div class = "collection">
-					<div class = "collection_items">
-						<div class = "collection_item">
-							<div class = "item_img">
-								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/grinndraw.png">
+	<div class="container">
+		<div style="display: none;"></div>
+		<div class="home">
+			<div class="home_card_list">
+
+				<div class="collection">
+					<div class="collection_items">
+						<div class="collection_item">
+							<div class="item_img">
+								<img class="item_img_bg"
+									src="${pageContext.request.contextPath}/images/grinndraw.png">
 							</div>
-							<p class = "item_title">그린 드로우</p>
+							<p class="item_title">그린 드로우</p>
 						</div>
-						<div class = "collection_item">
-							<div class = "item_img">
-								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/event_sony.jpeg">
+						<div class="collection_item">
+							<div class="item_img">
+								<img class="item_img_bg"
+									src="${pageContext.request.contextPath}/images/event_sony.jpeg">
 							</div>
-							<p class = "item_title">8월 이벤트</p>
+							<p class="item_title">8월 이벤트</p>
 						</div>
-						<div class = "collection_item">
-							<div class = "item_img">
-								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/summer.jpeg">
+						<div class="collection_item">
+							<div class="item_img">
+								<img class="item_img_bg"
+									src="${pageContext.request.contextPath}/images/summer.jpeg">
 							</div>
-							<p class = "item_title">SUMMER 이벤트</p>
+							<p class="item_title">SUMMER 이벤트</p>
 						</div>
-						<div class = "collection_item">
-							<div class = "item_img">
-								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/new.png">
+						<div class="collection_item">
+							<div class="item_img">
+								<img class="item_img_bg"
+									src="${pageContext.request.contextPath}/images/new.png">
 							</div>
-							<p class = "item_title">신상품</p>
+							<p class="item_title">신상품</p>
 						</div>
-						<div class = "collection_item">
-							<div class = "item_img">
-								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/male.png">
+						<div class="collection_item">
+							<div class="item_img">
+								<img class="item_img_bg"
+									src="${pageContext.request.contextPath}/images/male.png">
 							</div>
-							<p class = "item_title">남성 추천</p>
+							<p class="item_title">남성 추천</p>
 						</div>
-						<div class = "collection_item">
-							<div class = "item_img">
-								<img class = "item_img_bg" src = "${pageContext.request.contextPath}/images/female.png">
+						<div class="collection_item">
+							<div class="item_img">
+								<img class="item_img_bg"
+									src="${pageContext.request.contextPath}/images/female.png">
 							</div>
-							<p class = "item_title">여성 추천</p>
+							<p class="item_title">여성 추천</p>
 						</div>
 					</div>
 				</div>
+				<!-- 모달띄우기 시작 -->
+				<div id="floating">
+					<button class="btn_talk" id="btn_talk">
+						<img class="ico-top"
+							src="${pageContext.request.contextPath}/images/how_to_chatbot.jpg"
+							width="32" height="32">
+					</button>
+				</div>
+				<div id="modalWrap">
+					<div id="modalBody">
+						<span id="closeBtn">&times;</span>
+						<p>모달띄우기 테스트</p>
+					</div>
+				</div>
+				<!-- 모달띄우기 끝  -->
 			</div>
 		</div>
 	</div>
-	
-	
 </div>
 <!-- 내용 끝 -->
 
