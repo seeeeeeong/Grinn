@@ -33,13 +33,13 @@ public interface UserStyleService {
 	public void deleteFavByStNum(Integer st_num);
     
     //팔로우 
-    public void insertFollow(@Param("to_user") Integer toUser, @Param("from_user") Integer fromUser);
+    public void insertFollow(Integer to_user, Integer from_user);
 
     //팔로우 취소
-    public void deleteFollow(@Param("to_user") Integer toUser, @Param("from_user") Integer fromUser);
+    public void deleteFollow(Integer to_user, Integer from_user);
 
     //팔로잉 여부 확인
-    public int checkFollow(@Param("to_user") Integer toUser, @Param("from_user") Integer fromUser);
+    public boolean isFollowing(Integer to_user, Integer from_user);
 
     //팔로워 목록 조회
     public List<Integer> getFollowers(@Param("to_user") Integer toUser);
@@ -48,8 +48,8 @@ public interface UserStyleService {
     public List<Integer> getFollowings(@Param("from_user") Integer fromUser);
     
     //팔로워 수 조회
-    public int getFollowerCount(@Param("to_user") Integer toUser);
+    public int getFollowerCount(Integer to_user);
 
     //팔로잉 수 조회
-    public int getFollowingCount(@Param("from_user") Integer fromUser);
+    public int getFollowingCount(Integer to_user);
 }

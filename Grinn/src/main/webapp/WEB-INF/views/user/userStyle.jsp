@@ -11,7 +11,32 @@
             margin-bottom: 10px;
         }
     </style>
-    
+    <script type="text/javascript">
+    function followUser(toUser) {
+        
+    	// AJAX 요청 보내기
+        $.ajax({
+            url: '/user/follow',
+            method: 'POST',
+            data: { to_user: toUser }, // toUser 값을 데이터로 전달합니다.
+            success: function (data) {
+                // 요청이 성공적으로 완료되었을 때 처리
+                if (data === 'follow') {
+                    alert('팔로우 성공!');
+                } else if (data === 'unfollow') {
+                    alert('팔로우 취소!');
+                } else {
+                    alert('알 수 없는 응답입니다.');
+                }
+                // 추가적인 처리를 수행하거나 화면을 갱신할 수 있습니다.
+            },
+            error: function () {
+                // 요청이 실패했을 때 처리
+                alert('팔로우 실패...');
+            }
+        });
+    }
+    </script>
 <div class="page-main">
 	<!-- 회원정보 시작 -->
     <c:choose>
@@ -25,12 +50,21 @@
     <p>아이디: ${member.mem_id}</p>
     <p>닉네임: ${member.mem_nickname}</p>
     <p>한줄소개글: ${member.mem_int}</p>
-       
+ 	
+ 	<c:choose>
+    <c:when test="${isOwnProfile}">
+        <!-- "Profile Management(프로필 관리)" 버튼 표시 -->
+        <a href="/user/userLoginInfo.do">프로필 관리</a>
+    </c:when>
+    <c:otherwise>
+        <button onclick="followUser(${member.mem_num})">팔로우</button>
+    </c:otherwise>
+	</c:choose>
+ 	  
 	<!-- 회원정보 끝 -->
 	<p>게시물: ${totalStyleCount}</p>
 	<p>팔로워: ${followerCount}</p>
 	<p>팔로잉: ${followingCount}</p>
-
 	<!-- 사용자가 작성한 스타일 게시물 정보 시작 -->
     <c:forEach items="${userStyles}" var="style">
         <div>

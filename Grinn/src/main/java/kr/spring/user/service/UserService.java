@@ -1,6 +1,8 @@
 package kr.spring.user.service;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -8,6 +10,8 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.pbid.vo.PurchaseBidVO;
+import kr.spring.sbid.vo.SaleBidVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
 
@@ -50,25 +54,43 @@ public interface UserService {
 	
 	//비밀번호 변경
 	public void updatePassword(MemberVO member); 
-	
-	//구매내역 - trade
-	public List<TradeVO> selectPurchasedTrades(Integer mem_num);
-	
-	//구매내역 - Item
-	public List<ItemVO> selectPurchasedItems(Integer mem_num);
-	
-	//구매 내역 - Size
-	public List<ItemSizeVO> selectPurchasedItemSize(Integer mem_num);
-	
-	//판매 내역 - Trade
-	public List<TradeVO> selectSoldTrades(Integer mem_num);
 
-	//판매 내역 - Item
-	public List<ItemVO> selectSoldItems(Integer mem_num);
+	//구매입찰 count
+	public int purchasedCount(Integer mem_num);
 	
-	//판매 내역 - Size
-	public List<ItemSizeVO> selectSoldItemSize(Integer mem_num);
-	   
+	//구매입찰 trade_state : 2,3,4,6
+	public int ongoingCount(Integer mem_num);
+	
+	//구매입찰 trade_state : 5
+	public int  completedCount(Integer mem_num);
+	
+	//구매입찰 사진, 아이템 이름
+	public List<ItemVO> purchasedItems(Integer mem_num);
+	
+	//구매날짜
+	public List<Date> purchasedDate(Integer mem_num);
+	
+	//구매상태(거래 상태)
+	public List<Integer> purchasedState(Integer mem_num);	
+	
+	//판매입찰 count
+	public int saledCount(Integer mem_num);
+	
+	//판매입찰 trade_state : 2,3,4,6
+	public int saledOngoingCount(Integer mem_num);
+	
+	//판매입찰 trade_state : 5
+	public int  saledCompletedCount(Integer mem_num);
+	
+	//판매 상품
+	public List<ItemVO> saledItems(Integer mem_num);
+	
+	//판매날짜
+	public List<Date> saledDate(Integer mem_num);
+	
+	//판매상태(거래 상태)	
+	public List<Integer> saledState(Integer mem_num);
+	
     //item_num에 해당하는 item 테이블의 정보 가져오기
     public ItemVO selectItem(Integer item_num);
     	

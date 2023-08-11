@@ -39,20 +39,6 @@ public class UserStyleServiceImpl implements UserStyleService{
 		return userStyleMapper.selectUserStyle(st_num);
 	}
 
-	@Override
-	public void insertFollow(Integer toUser, Integer fromUser) {
-		userStyleMapper.insertFollow(toUser, fromUser);		
-	}
-
-	@Override
-	public void deleteFollow(Integer toUser, Integer fromUser) {
-		userStyleMapper.deleteFollow(toUser, fromUser);		
-	}
-
-	@Override
-	public int checkFollow(Integer toUser, Integer fromUser) {
-		return userStyleMapper.checkFollow(toUser, fromUser);
-	}
 
 	@Override
 	public List<Integer> getFollowers(Integer toUser) {
@@ -65,13 +51,13 @@ public class UserStyleServiceImpl implements UserStyleService{
 	}
 
 	@Override
-	public int getFollowerCount(Integer toUser) {
-		return userStyleMapper.getFollowerCount(toUser);
+	public int getFollowerCount(Integer to_user) {
+		return userStyleMapper.getFollowerCount(to_user);
 	}
 
 	@Override
-	public int getFollowingCount(Integer fromUser) {
-		return userStyleMapper.getFollowerCount(fromUser);
+	public int getFollowingCount(Integer to_user) {
+		return userStyleMapper.getFollowingCount(to_user);
 	}
 
 	@Override
@@ -102,6 +88,26 @@ public class UserStyleServiceImpl implements UserStyleService{
 	@Override
 	public void deleteFavByStNum(Integer st_num) {
 		userStyleMapper.deleteFavByStNum(st_num);
+	}
+
+	@Override
+	public void insertFollow(Integer to_user, Integer from_user) {
+		if(!isFollowing(to_user, from_user)) {
+		userStyleMapper.insertFollow(to_user, from_user);
+		}
+	}		
+
+	@Override
+	public void deleteFollow(Integer to_user, Integer from_user) {
+		if(isFollowing(to_user, from_user)) {
+		userStyleMapper.deleteFollow(to_user, from_user);
+		}
+	}		
+
+	@Override
+	public boolean isFollowing(Integer to_user, Integer from_user) {
+		int count = userStyleMapper.isFollowing(to_user, from_user);
+        return count > 0;
 	}
 
 }

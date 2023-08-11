@@ -1,5 +1,6 @@
 package kr.spring.user.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -9,7 +10,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.spring.item.vo.ItemVO;
-import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
@@ -71,53 +71,53 @@ public interface UserMapper {
 	@Update("UPDATE member_detail SET mem_passwd=#{mem_passwd} WHERE mem_num=#{mem_num}")
 	public void updatePassword(MemberVO member); 
 		
-	//구매내역 - trade
-	@Select("SELECT td.trade_num, td.trade_regDate, td.trade_state " +
-	        "FROM trade t " +
-	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
-	        "WHERE t.buyer_num = #{mem_num}")
-	public List<TradeVO> selectPurchasedTrades(Integer mem_num);
+	//구매입찰 count
+	@Select("SELECT count(*) AS purchased_count FROM purchase_bid WHERE mem_num = #{mem_num}")
+	public int purchasedCount(Integer mem_num);
 	
-	//구매내역 - Item
-	@Select("SELECT i.item_photo1, i.item_name, i.item_brand, i.item_price " +
-	        "FROM trade t " +
-	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
-	        "JOIN item i ON td.item_num = i.item_num " +
-	        "JOIN item_size s ON td.item_sizenum = s.item_sizenum " +
-	        "WHERE t.buyer_num = #{mem_num}")
-	public List<ItemVO> selectPurchasedItems(Integer mem_num);
-		
-	//구매내역 - Size
-	@Select("SELECT s.item_size FROM item i " +
-	        "JOIN trade t ON i.item_num = t.item_num " +
-	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
-	        "JOIN item_size s ON td.item_sizenum = s.item_sizenum " +
-	        "WHERE t.buyer_num = #{mem_num}")
-	public List<ItemSizeVO> selectPurchasedItemSize(Integer mem_num);
+	//구매입찰 trade_state : 2,3,4,6
+	@Select("SELECT count(*) AS ongoing_count FROM purchase_bid pb JOIN trade_detail td ON pb.item_num = td.item_num WHERE pb.mem_num = #{mem_num} AND td.trade_state IN (2, 3, 4, 6)") 
+	public int ongoingCount(Integer mem_num);
 	
-	//판매 내역 - Trade
-	@Select("SELECT td.trade_num, td.trade_regDate, td.trade_state " +
-	        "FROM trade t " +
-	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
-	        "WHERE t.seller_num = #{mem_num}")
-	public List<TradeVO> selectSoldTrades(Integer mem_num);
-
-	//판매 내역 - Item
-	@Select("SELECT i.item_photo1, i.item_name, i.item_brand, i.item_price " +
-	        "FROM trade t " +
-	        "JOIN item i ON t.item_num = i.item_num " +
-	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
-	        "JOIN item_size s ON td.item_sizenum = s.item_sizenum " +
-	        "WHERE t.seller_num = #{mem_num}")
-	public List<ItemVO> selectSoldItems(Integer mem_num);
+	//구매입찰 trade_state : 5
+	@Select("SELECT count(*) AS completed_count FROM purchase_bid pb JOIN trade_detail td ON pb.item_num = td.item_num WHERE pb.mem_num = #{mem_num} AND td.trade_state = 5")
+	public int  completedCount(Integer mem_num);
 	
-	//판매내역 - Size
-	@Select("SELECT s.item_size FROM item i " +
-	        "JOIN trade t ON i.item_num = t.item_num " +
-	        "JOIN trade_detail td ON t.trade_num = td.trade_num " +
-	        "JOIN item_size s ON td.item_sizenum = s.item_sizenum " +
-	        "WHERE t.seller_num = #{mem_num}")
-	public List<ItemSizeVO> selectSoldItemSize(Integer mem_num);
+	//구매 상품
+	@Select("SELECT i.item_num, i.item_name FROM purchase_bid pb JOIN item i ON pb.item_num = i.item_num WHERE pb.mem_num = #{mem_num}")
+	public List<ItemVO> purchasedItems(Integer mem_num);
+	
+	//구매날짜
+	@Select("SELECT td.trade_regdate FROM purchase_bid pb JOIN trade_detail td ON pb.item_num = td.item_num WHERE pb.mem_num = #{mem_num}")
+	public List<Date> purchasedDate(Integer mem_num);
+	
+	//구매상태(거래 상태)
+	@Select("SELECT td.trade_state FROM purchase_bid pb JOIN trade_detail td ON pb.item_num = td.item_num WHERE pb.mem_num = #{mem_num}")
+	public List<Integer> purchasedState(Integer mem_num);
+	
+	//판매입찰 count
+	@Select("SELECT count(*) AS saled_count FROM sale_bid WHERE mem_num = #{mem_num}")
+	public int saledCount(Integer mem_num);
+	
+	//판매입찰 trade_state : 2,3,4,6
+	@Select("SELECT count(*) AS ongoing_count FROM sale_bid sb JOIN trade_detail td ON sb.item_num = td.item_num WHERE sb.mem_num = #{mem_num} AND td.trade_state IN (2, 3, 4, 6)") 
+	public int saledOngoingCount(Integer mem_num);
+	
+	//판매입찰 trade_state : 5
+	@Select("SELECT count(*) AS completed_count FROM sale_bid sb JOIN trade_detail td ON sb.item_num = td.item_num WHERE sb.mem_num = #{mem_num} AND td.trade_state = 5")
+	public int  saledCompletedCount(Integer mem_num);
+	
+	//판매 상품
+	@Select("SELECT i.item_num, i.item_name FROM sale_bid sb JOIN item i ON sb.item_num = i.item_num WHERE sb.mem_num = #{mem_num}")
+	public List<ItemVO> saledItems(Integer mem_num);
+	
+	//판매날짜
+	@Select("SELECT td.trade_regdate FROM sale_bid sb JOIN trade_detail td ON sb.item_num = td.item_num WHERE sb.mem_num = #{mem_num}")
+	public List<Date> saledDate(Integer mem_num);
+	
+	//판매상태(거래 상태)
+	@Select("SELECT td.trade_state FROM sale_bid sb JOIN trade_detail td ON sb.item_num = td.item_num WHERE sb.mem_num = #{mem_num}")
+	public List<Integer> saledState(Integer mem_num);
 	
 	//관심 상품
 	@Select("SELECT i.item_num ,i.item_name, i.item_brand, i.item_price " +

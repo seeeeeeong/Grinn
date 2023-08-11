@@ -1,5 +1,6 @@
 package kr.spring.user.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.user.dao.UserMapper;
 import kr.spring.item.vo.ItemVO;
-import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
@@ -102,36 +102,6 @@ public class UserServiceImpl implements UserService{
     }
 
 	@Override
-	public List<TradeVO> selectPurchasedTrades(Integer mem_num) {
-		return userMapper.selectPurchasedTrades(mem_num);
-	}
-
-	@Override
-	public List<TradeVO> selectSoldTrades(Integer mem_num) {
-		return userMapper.selectSoldTrades(mem_num);
-	}
-
-	@Override
-	public List<ItemVO> selectPurchasedItems(Integer mem_num) {
-		return userMapper.selectPurchasedItems(mem_num);
-	}
-
-	@Override
-	public List<ItemVO> selectSoldItems(Integer mem_num) {
-		return userMapper.selectSoldItems(mem_num);
-	}
-
-	@Override
-	public List<ItemSizeVO> selectPurchasedItemSize(Integer mem_num) {
-		return userMapper.selectPurchasedItemSize(mem_num);
-	}
-
-	@Override
-	public List<ItemSizeVO> selectSoldItemSize(Integer mem_num) {
-		return userMapper.selectSoldItemSize(mem_num);
-	}
-
-	@Override
 	public void updateProfile(MemberVO member) {
 		userMapper.updateProfile(member);
 	}
@@ -156,5 +126,64 @@ public class UserServiceImpl implements UserService{
 		return userMapper.selectStyleId(mem_num);
 	}
 
-	
+	@Override
+	public int purchasedCount(Integer mem_num) {
+		return userMapper.purchasedCount(mem_num);
+	}
+
+	@Override
+	public int ongoingCount(Integer mem_num) {
+		return userMapper.ongoingCount(mem_num);
+	}
+
+	@Override
+	public int completedCount(Integer mem_num) {
+		return userMapper.completedCount(mem_num);
+	}
+
+	@Override
+	public List<ItemVO> purchasedItems(Integer mem_num) {
+		return userMapper.purchasedItems(mem_num);
+	}
+
+	@Override
+	public List<Date> purchasedDate(Integer mem_num) {
+		return userMapper.purchasedDate(mem_num);
+	}
+
+	@Override
+	public List<Integer> purchasedState(Integer mem_num) {
+		return userMapper.purchasedState(mem_num);
+	}
+
+	@Override
+	public int saledCount(Integer mem_num) {
+		return userMapper.saledCount(mem_num);
+	}
+
+	@Override
+	public int saledOngoingCount(Integer mem_num) {
+		return userMapper.saledOngoingCount(mem_num);
+	}
+
+	@Override
+	public int saledCompletedCount(Integer mem_num) {
+		return userMapper.saledCompletedCount(mem_num);
+	}
+
+	@Override
+	public List<ItemVO> saledItems(Integer mem_num) {
+		return userMapper.saledItems(mem_num);
+	}
+
+	@Override
+	public List<Date> saledDate(Integer mem_num) {
+		return userMapper.saledDate(mem_num);
+	}
+
+	@Override
+	public List<Integer> saledState(Integer mem_num) {
+		return userMapper.saledState(mem_num);
+	}
+
 }

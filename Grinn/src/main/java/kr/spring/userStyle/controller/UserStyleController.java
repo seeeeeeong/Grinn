@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,7 @@ import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.userStyle.service.UserStyleService;
+import kr.spring.userStyle.vo.FollowVO;
 import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,16 +45,25 @@ public class UserStyleController {
 	public StyleVO initStyleVO() {
 		return new StyleVO();
 	}
+	
+	@ModelAttribute
+	public FollowVO initFollowVO() {
+		return new FollowVO();
+	}
 	/*
 	 * =========================== userStyle ===========================
 	 */
 	
 	@GetMapping("/user/userStyle.do")
 	public String userStyle(@RequestParam("mem_num") int memNum, HttpSession session, Model model) {
-	    // 로그인한 사용자의 mem_num 값을 가져옵니다.
+	    //로그인한 사용자의 mem_num 값을 가져옵니다.
 	    MemberVO user = (MemberVO) session.getAttribute("user");
 	    int loggedInUserMemNum = user.getMem_num();
-
+	    
+	    //mem_num 값과 로그인한 사용자의 mem_num 값을 비교합니다.
+	    boolean isOwnProfile = memNum == loggedInUserMemNum;
+	    model.addAttribute("isOwnProfile", isOwnProfile);
+	    
 	    //mem_num 값과 로그인한 사용자의 mem_num 값을 비교합니다.
 	    if (memNum == loggedInUserMemNum) {
 	        //mem_num 값과 로그인한 사용자의 mem_num이 일치하는 경우, 해당 사용자의 정보를 표시합니다.
@@ -82,7 +93,7 @@ public class UserStyleController {
 
 	        MemberVO member = userStyleService.selectMember(memNum);
 	        model.addAttribute("member", member);
-
+	        
 	        int totalStyleCount = userStyleService.selectUserStyleCount(memNum);
 	        model.addAttribute("totalStyleCount", totalStyleCount);
 
@@ -212,47 +223,25 @@ public class UserStyleController {
 	}
 	
 	/*
-	 * =========================== 팔로우 ===========================
+	 * =========================== 팔로우 및 팔로우 취소 ===========================
 	 */
-	@GetMapping("/user/follow.do")
-	@ResponseBody
-	public Map<String, Object> follow(@RequestParam("to_user") Integer to_user, HttpSession session) {
-	    Map<String, Object> resultMap = new HashMap<>();
-	    MemberVO user = (MemberVO) session.getAttribute("user");
-	    Integer from_user = user.getMem_num();
-
-	    try {
-	        // 팔로우 추가
-	        userStyleService.insertFollow(from_user, to_user);
-	        resultMap.put("status", "success");
-	    } catch (Exception e) {
-	        resultMap.put("status", "error");
-	        resultMap.put("message", "Failed to follow the user.");
-	    }
-
-	    return resultMap;
-	}
-
-	/*
-	 * =========================== 팔로우 취소 ===========================
-	 */
-	@GetMapping("/user/unfollow.do")
-	@ResponseBody
-	public Map<String, Object> unfollow(@RequestParam("to_user") Integer to_user, HttpSession session) {
-	    Map<String, Object> resultMap = new HashMap<>();
-	    MemberVO user = (MemberVO) session.getAttribute("user");
-	    Integer from_user = user.getMem_num();
-
-	    try {
-	        // 팔로우 취소
-	        userStyleService.deleteFollow(from_user, to_user);
-	        resultMap.put("status", "success");
-	    } catch (Exception e) {
-	        resultMap.put("status", "error");
-	        resultMap.put("message", "Failed to unfollow the user.");
-	    }
-
-	    return resultMap;
-	}
-
+	@PostMapping("/user/follow")
+    @ResponseBody
+    public String followUser(@RequestParam("to_user") int toUser, HttpSession session) {
+        
+		//로그인한 사용자의 mem_num 값을 가져옵니다.
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        int fromUser = user.getMem_num();
+        
+        // 이미 팔로우한 경우: 팔로우 취소
+        if (userStyleService.isFollowing(toUser, fromUser)) {
+            userStyleService.deleteFollow(toUser, fromUser);
+            return "unfollow"; // 팔로우 취소 응답
+        }
+        // 팔로우하지 않은 경우: 팔로우 추가
+        else {
+            userStyleService.insertFollow(toUser, fromUser);
+            return "follow"; // 팔로우 성공 응답
+        }
+    }
 }
