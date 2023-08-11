@@ -64,6 +64,14 @@
 					</li>
 				</ul>
 			</li>
+			<li>
+				<h4>투표 관리</h4>
+				<ul>
+					<li>
+						<a href = "${pageContext.request.contextPath}/vote/adminList.do">투표 목록</a>
+					</li>
+				</ul>
+			</li>
 		</ul>
 	</div>
 </div>
