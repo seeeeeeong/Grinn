@@ -3,53 +3,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/floating.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/iframe_yeom.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/chatbot.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		const btn_talk = document.getElementsByClassName("btn_talk");
-		const box_content = document.getElementsByClassName("box_content");
-		btn_talk.onclick = function(){
-			box_content.style.display = 'block';
-		};
-		
-		const optionBtn = document.getElementsByClassName('btn_talk');
-		  const optionModal = document.getElementsByClassName('optionWrap');
-		  const optionCloseBtn = document.getElementsByClassName('closeOption');
 
-		  optionBtn.onclick = function() {
-			optionModal.style.display = 'block';
-			$(".fixed").css({
-			    "position":"static"
-		  	});
-		  	$("#main_body").css({
-			  "padding": "0 0 30px 0"
-		  	});
-		  }
-		  optionCloseBtn.onclick = function() {
-			optionModal.style.display = 'none';
-			  $(".fixed").css({
-				    "position":"fixed"
-			  });
-			  $("#main_body").css({
-				  "padding": "144px 0 30px 0"
-			  });
-		  }
-
-		  window.onclick = function(event) {
-		    if (event.target == optionModal) {
-		    	optionModal.style.display = "none";
-			  	  $(".fixed").css({
-					    "position":"fixed"
-				  });
-				  $("#main_body").css({
-					  "padding": "144px 0 30px 0"
-				  });
-		    }
-		  }
-		  
-		  
-				  
-	});
-</script>
 <div class = "footer">
 	<div class = "footer_inner">
 		<div class = "service_area">
@@ -141,7 +95,7 @@
 </div>
 <!-- 채팅 시작 -->
 <div id = "floating">
-	<button class = "btn_talk" onclick = "location.href='talkList.do'">
+	<button class = "btn_talk" onclick = "location.href='${pageContext.request.contextPath}/talk/talkList.do'">
 		<img class = "ico-top" src = "${pageContext.request.contextPath}/images/how_to_talk.jpg" width = "32" height = "32">
 	</button>
 </div>
@@ -149,8 +103,7 @@
 <!-- 새창으로챗봇 시작 -->
 <div id="floating">
 	<button class="btn_chatbot" id="btn_chatbot" onclick="open3()">
-		<img class="ico-top"
-			src="${pageContext.request.contextPath}/images/how_to_chatbot.jpg"
+		<img src="${pageContext.request.contextPath}/images/how_to_chatbot.jpg"
 			width="32" height="32">
 	</button>
 </div>
