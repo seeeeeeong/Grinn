@@ -89,7 +89,7 @@
 
 <!-- 투표 : 신윤서 -->
 <div id = "floating">
-	<button class = "btn_top" onclick = "location.href=${pageContext.request.contextPath}/poll/pollMain.do">
+	<button class = "btn_top" onclick = "location.href='${pageContext.request.contextPath}/poll/pollMain.do'">
 		<img class = "ico-top" src = "${pageContext.request.contextPath}/images/how_to_vote.png" width = "32" height = "32">
 	</button>
 </div>
