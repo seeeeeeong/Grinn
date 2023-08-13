@@ -21,6 +21,14 @@
     	<put-attribute name="title" value="Style | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/style/styleDetail.jsp"/>
     </definition>
+    <definition name="styleReport" extends="main">
+    	<put-attribute name="title" value="게시글 신고 | Grinn"/>
+	    <put-attribute name="body" value="/WEB-INF/views/report/styleReport.jsp"/>
+    </definition>
+    <definition name="commentReport" extends="main">
+    	<put-attribute name="title" value="댓글 신고 | Grinn"/>
+	    <put-attribute name="body" value="/WEB-INF/views/report/commentReport.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

@@ -449,16 +449,16 @@ public class StyleController {
 		return "imageView";
 	}
 	//댓글번호 지정을 통한 프로필 사진 처리를 위한 코드
-		public void viewProfileByCom_num(StyleCommentVO styleCommentVO, HttpServletRequest request, Model model) {
-			if(styleCommentVO == null || styleCommentVO.getMem_photo() == null) {
-				// 기본 이미지 읽기
-				byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/face.png"));
-				model.addAttribute("imageFile", readbyte);
-				model.addAttribute("filename", "face.png");
-			}else {
-				// 업로드한 상품 사진이 있는 경우
-				model.addAttribute("imageFile", styleCommentVO.getMem_photo());
-				model.addAttribute("filename", styleCommentVO.getMem_photo_name());
-			}
+	public void viewProfileByCom_num(StyleCommentVO styleCommentVO, HttpServletRequest request, Model model) {
+		if(styleCommentVO == null || styleCommentVO.getMem_photo() == null) {
+			// 기본 이미지 읽기
+			byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/face.png"));
+			model.addAttribute("imageFile", readbyte);
+			model.addAttribute("filename", "face.png");
+		}else {
+			// 업로드한 상품 사진이 있는 경우
+			model.addAttribute("imageFile", styleCommentVO.getMem_photo());
+			model.addAttribute("filename", styleCommentVO.getMem_photo_name());
 		}
+	}
 }

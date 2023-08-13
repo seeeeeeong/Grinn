@@ -36,9 +36,9 @@ $(function(){
 					
 					
 					if(item.com_mdate!=null){
-						output += '<span class="modify-date">' + item.com_mdate + '</span>';
+						output += '<span class="modify-date"><small style="color:#9d9d9d">' + item.com_mdate + '</small></span>';
 					}else{
-						output += '<span class="modify-date">' + item.com_regdate + '</span>';
+						output += '<span class="modify-date"><small style="color:#9d9d9d">' + item.com_regdate + '</small></span>';
 					}
 					
 					output += '</li>';
@@ -54,7 +54,7 @@ $(function(){
 						output += '</div>';
 					}else{
 						output += '<div class="com_btn">';
-						output += ' <a style="color:red;">신고</a>';
+						output += ' <a href="/style/commentReport.do?com_num=' + item.com_num + '" style="color:red;">신고</a>';
 						output += '</div>';
 					}
 					output += '<hr size="1" color="ebebeb">';

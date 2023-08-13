@@ -462,7 +462,7 @@
 							</script>        		      				
 		      			</c:if>
 		      			<c:if test="${!empty user && user.mem_num != style.mem_num}">
-		      				<span style="color:red;">신고</span>
+		      				<span><a href="/style/styleReport.do?st_num=${style.st_num}" style="color:red;">신고</a></span>
 		      			</c:if>	
 		      		</li>
 		      		<li>
