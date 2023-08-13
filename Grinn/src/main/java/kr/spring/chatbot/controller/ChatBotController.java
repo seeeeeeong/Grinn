@@ -1,13 +1,16 @@
 package kr.spring.chatbot.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.chatbot.service.ChatBotService;
 import kr.spring.chatbot.vo.ChatBotVO;
@@ -31,18 +34,24 @@ public class ChatBotController {
 		return "chatbotDetail";
 	}
 	//전송된 데이터 처리
-	public String chatbotSubmit(ChatBotVO vo, HttpSession session) {
+	public String chatbotSubmit(@RequestParam int croom_num, Model model, ChatBotVO vo, HttpSession session) {
 		Map<String,Object> mapJson = new HashMap<String,Object>();
-		log.debug("<<채팅방 만들기>> : " + vo);
+		log.debug("<<챗봇방 만들기>> : " + vo);
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(user==null) {
 			mapJson.put("result", "logout");
 		}
 		
-		return "";
+		//vo.set
+		
+		//채팅 멤버 초대문구 설정 시작
+		
+		
+		
+		return "chatbotDetail";
 	}
 	
-	/* ====================== 채팅방 목록 ====================== */
+	/* ====================== 채팅방 목록(?) ====================== */
 	
 	/* ====================== 채팅 메시지 처리 ====================== */
 	

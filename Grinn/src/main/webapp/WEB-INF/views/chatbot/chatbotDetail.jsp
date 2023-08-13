@@ -54,8 +54,8 @@
 					<!-- 보내기 버튼 -->
 					<div class="frame_attach">
 						<a><!-- 이미지?? -->
-						<img src="${pageContext.request.contextPath}/images/how_to_send.jpg" width="50" class="sendBtn">
-						<span class="blind">입력 완료</span>
+							<img src="${pageContext.request.contextPath}/images/how_to_send.jpg" width="50" class="sendBtn">
+							<span class="blind">입력 완료</span>
 						</a>
 					</div>
 				</div>

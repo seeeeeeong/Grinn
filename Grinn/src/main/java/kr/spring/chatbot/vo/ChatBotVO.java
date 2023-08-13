@@ -14,4 +14,5 @@ public class ChatBotVO {
 	private int mem_num; //회원번호
 	private String mem_id; //회원아이디
 	private Date croom_regdate; //챗봇시작 날짜
+	
 }
