@@ -27,9 +27,20 @@
 			$('body').removeAttr('style');
 		});
 		
-		
-		
-		
+		$('.penal').click(function(event){
+			event.preventDefault();
+			let date = $(this).attr('data-regDate');
+			let currentDate = new Date();
+			date = new Date(date);
+			let diff = currentDate.getDate() - date.getDate();
+			
+			if(diff <= 5){
+				alert('아직 상품 발송 기간이 남아있습니다.');
+				return;
+			}else{
+				location.href='adminGivePenalty.do?seller_num=${trade.sellerVO.mem_num}&trade_num=${trade.trade_num}';
+			}
+		});
 	});
 </script>
 <div class="page_body">
@@ -116,7 +127,7 @@
 						<a class="change-state"><span class="a-tag-text">상태 변경</span></a>
 					</c:if>
 					<c:if test="${trade.trade_state == 2}">
-						<a class="penal" href="adminGivePenalty.do?seller_num=${trade.sellerVO.mem_num}&trade_num=${trade.trade_num}"><span class="a-tag-text">패널티 부여</span></a>
+						<a class="penal" data-regDate="${trade.trade_regDate}" href="adminGivePenalty.do?seller_num=${trade.sellerVO.mem_num}&trade_num=${trade.trade_num}"><span class="a-tag-text">패널티 부여</span></a>
 					</c:if>
 					
 				</div>
