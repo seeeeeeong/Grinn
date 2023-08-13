@@ -71,7 +71,12 @@
 					<c:forEach var="list" items="${list}">
 						<tr>
 							<td class="click-table" onclick="location.href='admin_detail.do?trade_num=${list.trade_num}'">${list.item_name}</td>
-							<td>${list.item_size}</td>
+							<c:if test="${empty list.item_size }">
+								<td>ONE SIZE</td>
+							</c:if>
+							<c:if test="${!empty list.item_size }">
+								<td>${list.item_size}</td>
+							</c:if>
 							<td><fmt:formatNumber value="${list.trade_price}"/></td>
 							<td>${list.buyerVO.mem_name}</td>
 							<c:if test="${list.buyerVO.mem_auth == 0}">

@@ -68,6 +68,22 @@
 			}	
 		}
 		
+		let currentDate = new Date();
+		$('.send-item').each(function(){
+			let date = $(this).attr('data-regDate');
+			date = new Date(date);
+			let diff = currentDate.getDate() - date.getDate();
+			let trade_num = $(this).attr('data-trade_num');
+			$(this).click(function(){
+				if(diff > 5){
+    				alert('5일이 지났습니다. 거래는 실패했습니다.');	
+    				return;
+    			}else{
+    				location.href='${pageContext.request.contextPath}/sale/sendItem.do?trade_num=' + trade_num;
+    			}
+			});
+		});
+		
 		
 	});
 </script>
@@ -78,6 +94,9 @@
 			<div class="mySale-title-content">
 				<h2>판매 내역</h2>
 			</div>
+		</div>
+		<div class="mySale-notice">
+			<span>검수준비중인 상품을 거래일 기준 5일 이내로 보내주세요.</span>
 		</div>
 		<div class="mySale-tab">
 			<div class="tab-item">
@@ -184,7 +203,12 @@
 					      <tr class="list-text">
 					        <td><img src="${pageContext.request.contextPath}/item/viewProfile.do?item_num=${list.item_num}" width="50" height="50"></td>
 					        <td>${list.item_name}</td>
-					        <td>${list.item_size}</td>
+					       <c:if test="${empty list.item_size}">
+					        	<td>ONE SIZE</td>
+					        </c:if>
+					        <c:if test="${!empty list.item_size}">
+					        	<td>${list.item_size}</td>
+					        </c:if>
 					        <c:if test="${way == 1}">
 					        <td><fmt:formatNumber value="${list.sale_price}"/></td>
 					        <td class="list-date">${list.sale_regDate}</td>
@@ -211,8 +235,8 @@
 					        <c:if test="${list.trade_state==6}">
 					        <td>거래실패</td>
 					        </c:if>
-					        <c:if test="${status == 2}">
-					        	<td><input type="button" class="send-item" onclick="location.href='${pageContext.request.contextPath}/sale/sendItem.do?trade_num=${list.trade_num}'"></td>
+					        <c:if test="${list.trade_state == 2}">
+					        	<td class="btn-send-item"><input type="button" class="send-item" data-regDate="${list.trade_regDate}" data-trade_num="${list.trade_num}"></td>
 					        </c:if>
 					        </c:if>
 					        <c:if test="${way == 3}">

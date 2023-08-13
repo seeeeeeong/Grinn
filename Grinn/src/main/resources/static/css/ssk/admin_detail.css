@@ -43,10 +43,10 @@
 	justify-content: space-between;
 }
 .seller-info{
-	border: 1px solid #fa7070;
+	border: 1px solid #41B979;
 }
 .buyer-info{
-	border: 1px solid #41B979;
+	border: 1px solid #fa7070;
 }
 .trade-info{
 	border: 1px solid #c87aff;
@@ -110,7 +110,8 @@
 	
 }
 #modalBody {
- 	width: 520px;
+ 	width: 300px;
+ 	height: 300px;
 	background-color: #fff;
     border-radius: 16px;
     box-shadow: 0 4px 10px 0 rgba(0,0,0,.1);
@@ -126,6 +127,31 @@
   color: #777;
   font-size:25px;
   cursor: pointer;
+}
+.modal-detail{
+	margin: 20px auto;
+}
+.modal-btns{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.modal-btns input{
+	margin: 5px 0;
+	background-color: #ebebeb;
+	border: 0;
+	cursor: pointer;
+	width:50%;
+}
+.modal-btns input:hover:not([disabled]){
+	background-color: #777;
+	color: white;
+}
+.modal-close{
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
 }
 
 

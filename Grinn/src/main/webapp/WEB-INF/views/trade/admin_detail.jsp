@@ -11,7 +11,7 @@
 			$('.trade-state dd').css('color','red');
 		}
 		
-		$('.trade-title a').click(function(){
+		$('.change-state').click(function(){
 			if(${trade.trade_state != 3} && ${trade.trade_state != 4}){
 				alert('거래 상태가 [검수중],[배송중] 일때만 변경할 수 있습니다.');
 			}else{
@@ -21,11 +21,14 @@
 				$('body').css('overflow','hidden').css('padding-right','17px');
 			}
 		});
-		$('#closeBtn').click(function(){
+		$('#modal_close').click(function(){
 			$('#modalWrap').css('display','none');
 			$('#main').removeAttr('style');
 			$('body').removeAttr('style');
 		});
+		
+		
+		
 		
 	});
 </script>
@@ -109,9 +112,13 @@
 				</div>
 				<div class="trade-title">
 					<h2>거래 정보</h2>
-					<a>
-						<span class="a-tag-text">상태 변경</span>
-					</a>
+					<c:if test="${trade.trade_state > 2}">
+						<a class="change-state"><span class="a-tag-text">상태 변경</span></a>
+					</c:if>
+					<c:if test="${trade.trade_state == 2}">
+						<a class="penal" href="adminGivePenalty.do?seller_num=${trade.sellerVO.mem_num}&trade_num=${trade.trade_num}"><span class="a-tag-text">패널티 부여</span></a>
+					</c:if>
+					
 				</div>
 				<div class="trade-info">
 					<div class="trade-info-box">
@@ -147,7 +154,6 @@
 <div id="modalWrap">
   <div id="modalContent">
     <div id="modalBody">
-      <span id="closeBtn">&times;</span>
       <div class="modal-content">
       	<div class="modal-title">
       		<h2>거래 상태 변경</h2>
@@ -155,17 +161,21 @@
       	<div class="modal-detail">
       		<div class="modal-btns">
       			<c:if test="${trade.trade_state == 3}">
-      				<input type="checkbox" id="check3" checked="checked" disabled="disabled">
-					<label for="check3">검수중</label>
-      				<input type="checkbox" id="check4">
-					<label for="check4">배송중</label>
-					<input type="checkbox" id="check5">
-					<label for="check4">배송완료</label>
-					<input type="checkbox" id="check6">
-					<label for="check4">거래실패</label>	
+      				<input type="button" value="검수중" disabled="disabled" id="btn3">
+      				<input type="button" value="배송중" id="btn4" onclick="location.href='adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=4'">
+      				<input type="button" value="배송완료" disabled="disabled" id="btn5">
+      				<input type="button" value="거래실패" id="btn6" onclick="location.href='adminGivePenalty.do?seller_num=${trade.sellerVO.mem_num}&trade_num=${trade.trade_num}'">
       			</c:if>
-      			
+      			<c:if test="${trade.trade_state == 4}">
+      				<input type="button" value="검수중" disabled="disabled" id="btn3">
+      				<input type="button" value="배송중" disabled="disabled" id="btn4">
+      				<input type="button" value="배송완료" id="btn5" onclick="location.href='adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=5'">
+      				<input type="button" value="거래실패" disabled="disabled" id="btn6" >
+      			</c:if>
       		</div>
+      	</div>
+      	<div class="modal-close">
+      		<input type="button" value="닫기" id="modal_close">
       	</div>
       </div>
     </div>

@@ -181,7 +181,12 @@
 					      <tr class="list-text">
 					        <td><img src="${pageContext.request.contextPath}/item/viewProfile.do?item_num=${list.item_num}" width="50" height="50"></td>
 					        <td>${list.item_name}</td>
-					        <td>${list.item_size}</td>
+					        <c:if test="${empty list.item_size}">
+					        	<td>ONE SIZE</td>
+					        </c:if>
+					        <c:if test="${!empty list.item_size}">
+					        	<td>${list.item_size}</td>
+					        </c:if>
 					        <c:if test="${way == 1}">
 					        <td><fmt:formatNumber value="${list.purchase_price}"/></td>
 					        <td class="list-date">${list.purchase_regDate}</td>

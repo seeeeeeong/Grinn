@@ -714,12 +714,51 @@ public class TradeController {
 	}
 	
 	// 거래 상태 수정
-	@RequestMapping("/trade/updateTradeState.do")
-	@ResponseBody
-	public Map<String, Object> updateTradeState(){
-		Map<String, Object> mapJson = new HashMap<>();
+	@RequestMapping("/trade/adminUpdateTradeState.do")
+	public String updateTradeState(HttpSession session, Model model, @RequestParam int trade_num, @RequestParam int trade_state){
+		MemberVO user = (MemberVO) session.getAttribute("user");
 		
-		return mapJson;
+		if(user == null) {
+			model.addAttribute("message","로그인이 필요하니다.");
+			model.addAttribute("url","../member/login.do");
+			return "common/resultView";
+		}else {
+			if(user.getMem_auth() != 9) {
+				model.addAttribute("message","잘못된 접근입니다.");
+				model.addAttribute("url","../main/main.do");
+				return "common/resultView";
+			}else {
+				tradeService.updateTradeState(trade_num, trade_state);
+				model.addAttribute("message","거래 상태를 성공정으로 수정했습니다.");
+				model.addAttribute("url","../trade/admin_list.do");
+				return "common/resultView";
+			}
+		}
+	}
+	
+	// 거래 실패로 인한 패널티 부여 페이지
+	@RequestMapping("/trade/adminGivePenalty.do")
+	public ModelAndView getAdminGivePenaltyForm(@RequestParam int seller_num, @RequestParam int trade_num, HttpSession session) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		ModelAndView mav = new ModelAndView();
+		
+		if(user == null) {
+			mav.addObject("message","로그인이 필요합니다.");
+			mav.addObject("url","../member/login.do");
+			mav.setViewName("common/resultView");
+			return mav;
+		}else {
+			if(user.getMem_auth() != 9) {
+				mav.addObject("message","잘못된 접근입니다.");
+				mav.addObject("url","../main/main.do");
+				mav.setViewName("common/resultView");
+				return mav;
+			}else {
+				mav.addObject("trade",tradeService.getTradeDetail(trade_num));
+				mav.setViewName("admin_penalty");
+				return mav;
+			}
+		}
 	}
 	
 }
