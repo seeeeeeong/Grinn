@@ -1,4 +1,3 @@
-
 create table member(
 	mem_num number, -- 회원번호
 	mem_id varchar2(12) unique not null, -- 회원 아이디
@@ -28,51 +27,59 @@ create table member_detail(
 	constraint member_detail_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
 );
 
-create table vote(
-	vote_num number, -- 투표 번호
-	board_num number not null, -- 게시물 번호
-	mem_num number not null, -- 회원 번호
-	item_num number not null, -- 상품 번호
-	vote_date date default sysdate not null, -- 투표일
-	constraint vote_pk primary key (vote_num),
-	constraint vote_fk2 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
-	constraint vote_fk3 foreign key (item_num) references item (item_num) ON DELETE CASCADE
+create table poll(
+	poll_num number, -- 투표글 번호
+	poll_title varchar2(50) not null, -- 투표글 제목
+	poll_content varchar2(200) not null, -- 투표글 내용
+	poll_item1 varchar2(500) not null, -- 투표 항목1
+	poll_item2 varchar2(500) not null, -- 투표 항목2
+	poll_item3 varchar2(500), -- 투표 항목3
+	poll_item4 varchar2(500), -- 투표 항목4
+	poll_total number not null, -- 총 득표수
+	poll_date date default sysdate not null, -- 투표글 등록일
+	mem_num number not null, -- 회원번호
+	item_num number not null, -- 상품번호
+	constraint poll_pk primary key (poll_num),
+	constraint poll_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
+	constraint poll_fk2 foreign key (item_num) references item (item_num) ON DELETE CASCADE
 );
-create sequence vote_seq;
+create sequence poll_seq;
 
-create table vote_board(
-	board_num number, -- 게시물 번호
-	board_title varchar2(50) not null, -- 게시물 제목
-	board_content varchar2(300), -- 게시물 내용
-	item_num1 number not null, -- 상품번호1
-	item_num2 number not null, -- 상품번호2
-	item_num3 number not null, -- 상품번호3
-	item_num4 number not null, -- 상품번호4
-	item_photo1 blob not null, -- 상품사진1
-	item_photo2 blob not null, -- 상품사진2
-	item_photo3 blob, -- 상품사진3
-	item_photo4 blob, -- 상품사진4
-	board_date date default sysdate not null, -- 게시물 등록일
-	vote_num number not null, -- 투표 번호
-	mem_num number not null, -- 회원 번호
-	constraint vote_board_pk primary key (board_num),
-	constraint vote_board_fk1 foreign key (vote_num) references vote (vote_num) ON DELETE CASCADE,
-	constraint vote_board_fk2 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
+create table pollsub(
+	pollsub_num number, -- 투표번호
+	poll_acount number not null, -- 투표수
+	poll_num number not null, -- 투표글 번호
+	item_num number not null, -- 상품번호
+	constraint pollsub_pk primary key (pollsub_num),
+	constraint pollsub_fk1 foreign key (poll_num) references poll (poll_num) ON DELETE CASCADE,
+	constraint pollsub_fk2 foreign key (item_num) references item (item_num) ON DELETE CASCADE
 );
-create sequence vote_board_seq;
+create sequence pollsub_seq;
 
-create table vote_reply(
-	re_num number, -- 투표 댓글 번호
-	re_content varchar2(100) not null, -- 투표 댓글 내용
+create table voter(
+	voter_num number, -- 투표 정보번호
+	poll_num number not null, -- 투표글 번호
+	pollsub_num number not null, -- 투표번호
+	mem_num number not null, -- 회원번호
+	polling_date date default sysdate not null, -- 투표일
+	constraint voter_pk primary key (voter_num),
+	constraint voter_fk1 foreign key (poll_num) references poll (poll_num) ON DELETE CASCADE,
+	constraint voter_fk2 foreign key (pollsub_num) references pollsub (pollsub_num) ON DELETE CASCADE,
+	constraint voter_fk3 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
+);
+create sequence voter_seq;
+
+create table poll_reply(
+	re_num number, -- 투표글 댓글 번호
+	re_content varchar2(100) not null, -- 투표글 댓글 내용
 	re_date date default sysdate not null, -- 투표 댓글 등록일
-	re_mdate date, -- 투표 댓글 수정일
 	mem_num number not null, -- 회원 번호
-	board_num number not null, -- 게시물 번호
-	constraint vote_reply_pk primary key (re_num),
-	constraint vote_reply_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
-	constraint vote_reply_fk2 foreign key (board_num) references vote_board (board_num) ON DELETE CASCADE
+	poll_num number not null, -- 게시물 번호
+	constraint poll_reply_pk primary key (re_num),
+	constraint poll_reply_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
+	constraint poll_reply_fk2 foreign key (poll_num) references poll (poll_num) ON DELETE CASCADE
 );
-create sequence vote_reply_seq;
+create sequence poll_reply_seq;
 
 
 
