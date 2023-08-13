@@ -36,13 +36,9 @@
 /* noticeDetail
 ------------------------*/
 .dropdown_head{/* faq도 사용*/
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
     color: #222;
     font-feature-settings: "frac" 0,"numr" 0;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
     margin: 0;
     padding: 17px 0 19px;
     display: flex;
@@ -51,14 +47,10 @@
     cursor: pointer;
 }
 .dropdown_head .title_box{/* faq도 사용*/
-	--global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
     color: #222;
     font-feature-settings: "frac" 0,"numr" 0;
     cursor: pointer;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
     margin: 0;
     padding: 0;
     margin-right: 10px;
@@ -481,21 +473,267 @@ form#detail_form{
 #message_btn input{
 	width:505px
 }
+/* chatbot(챗봇으로 문의)
+------------------------*/
+.chatbot_header{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+    height: 56px;
+    margin-bottom: auto;
+    background-color: #222;
+}
+.title_area{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    margin: 0 86px 0 46px;
+    box-sizing: border-box;
+    margin-left: 20px;
+}
+.tit_room{
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    display: block;
+    position: relative;
+    font-weight: 700;
+    min-height: 23px;
+    color: #fff;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 56px;
+}
+.tit{
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    color: #fff;
+    font-size: 18px;
+    line-height: 56px;
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: top;
+}
+.header_btn{
+    margin: 0;
+    padding: 0;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    cursor: pointer;
+    border: 0;
+    background: none;
+}
+.exit_btn{
+    margin: 0;
+    padding: 0;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    cursor: pointer;
+    border: 0;
+    background: none;
+    float: left;
+    margin-left: 16px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.chatbot_content{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    color: #000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+}
+.list_talk{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    margin: 0;
+    list-style: none;
+    padding: 8px 20px 8px;
+}
+.date{
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    color: #000;
+    list-style: none;
+    display: block;
+    margin: 5px 0;
+    padding: 0;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 24px;
+    text-align: center;
+    margin-top: 10px;
+}
+.log_my{
+    --talk_info-padding: 118px;
+    --bubble_snippet-width: 225px;
+    --snippet-desc-maxHeight: 37px;
+    --snippet-title-fontSize: 14px;
+    --snippet-text-fontSize: 13px;
+    --list_sticker-width: 20%;
+    -webkit-text-size-adjust: none;
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+}
+.inner_talk{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    color: #000;
+    list-style: none;
+    position: relative;
+    max-width: calc(100% - var(--talk_info-padding));
+    padding-left: 40px;
+    float: right;
+}
+.talk_info{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    color: #000;
+    list-style: none;
+    position: relative;
+    box-sizing: border-box;
+    float: right;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+.bubble{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    list-style: none;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    max-width: 100%;
+    line-height: 1.33;
+    word-break: break-word;
+    word-wrap: break-word;
+    vertical-align: bottom;
+    background-color: #dbdbdb;
+    text-align: left;
+    /* float: right; */
+    border-radius: 16px 16px 3px;
+    font-size: 13px;
+}
+.txt{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    list-style: none;
+    line-height: 2.33;
+    word-break: break-word;
+    word-wrap: break-word;
+    text-align: left;
+    font-size: 13px;
+    padding: 0;
+    margin: 10px 12px 9px;
+    white-space: pre-wrap;
+}
+.desc{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    list-style: none;
+    text-align: right;
+    display: block;
+    padding: 0 5px 0;
+    font-size: 12px;
+    color: #888;
+    line-height: 1.4em;
+    white-space: nowrap;
+    padding-left: 0;
+    padding-right: 18px;
+}
+.talk_write{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    z-index: 10;
+    margin-top: auto;
+    flex: none;
+    /* position: relative; */
+    position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 70px;
+}
+.frame_msg{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    position: relative;
+    min-height: 50px;
+    padding: 7px 55px 7px 16px;
+    box-sizing: border-box;
+    background-color: #fff;
+    height: 70px;
+}
+.inner{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    padding: 9px 70px 7px 10px;
+    box-sizing: border-box;
+    border-radius: 18px;
+    background-color: #f5f6f8;
+    height: 50px;
+}
+.blind{/* label */
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+}
+#msgInputArea{/* textarea */
+    margin: 0 auto;
+    padding: 0 auto;
+    font-weight: 400;
+    overflow-y: auto;
+    width: 100%;
+    max-height: 57px;
+    border: 0 none;
+    line-height: 2em;
+    background-color: #f5f6f8;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    box-sizing: border-box;
+    resize: none;
+    outline: transparent;
+    padding-top: 2px;
+    font-size: 13px;
+}
+.frame_attach{
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    color: #000;
+    position: absolute;
+    bottom: 7px;
+    right: 0;
+    z-index: 1;
+}
+.sendBtn{
+	opacity: 0.3;
+    font-weight: 400;
+    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
+    text-decoration: none;
+    overflow: hidden;
+    float: right;
+    margin-right: 5px;
+    padding-bottom: 5px;
+}
 
 
 

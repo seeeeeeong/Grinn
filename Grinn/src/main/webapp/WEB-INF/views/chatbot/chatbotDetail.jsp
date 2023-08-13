@@ -2,80 +2,66 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/style.fav.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/chatbot.js"></script>
 <script type="text/javascript">
-  $(document).ready(function() {
-	//댓글 팝업
-  	const btn = document.getElementById('popupBtn');
-	const modal = document.getElementById('modalWrap');
-	const closeBtn = document.getElementById('closeBtn');
-	
-	btn.onclick = function() {
-	  modal.style.display = 'block';
-	  $(".fixed").css({
-		    "position":"static"
-	  });
-	  $("#main_body").css({
-		  "padding": "0 0 30px 0"
-	  });
-	}
-	closeBtn.onclick = function() {
-	  modal.style.display = 'none';
-	  $(".fixed").css({
-		    "position":"fixed"
-	  });
-	  $("#main_body").css({
-		  "padding": "144px 0 30px 0"
-	  });
-	}
-	
-	  const optionBtn = document.getElementById('more-btn');
-	  const optionModal = document.getElementById('optionWrap');
-	  const optionCloseBtn = document.getElementById('closeOption');
-
-	  optionBtn.onclick = function() {
-		optionModal.style.display = 'block';
-		$(".fixed").css({
-		    "position":"static"
-	  	});
-	  	$("#main_body").css({
-		  "padding": "0 0 30px 0"
-	  	});
-	  }
-	  optionCloseBtn.onclick = function() {
-		optionModal.style.display = 'none';
-		  $(".fixed").css({
-			    "position":"fixed"
-		  });
-		  $("#main_body").css({
-			  "padding": "144px 0 30px 0"
-		  });
-	  }
-
-	  window.onclick = function(event) {
-	    if (event.target == optionModal) {
-	    	optionModal.style.display = "none";
-		  	  $(".fixed").css({
-				    "position":"fixed"
-			  });
-			  $("#main_body").css({
-				  "padding": "144px 0 30px 0"
-			  });
-	    }
-	  }
-	 
-  });
 </script>
 <!-- 챗봇 상세 -->
-<div class="page-main" id="styleDetail">
-	안녕하세요
-</div>
-<div class="optionWrap" style="display:none;">
-	<div class="optionContent">
-		<div class="optionBody">
-		<span id="closeOption">&times;</span> 
-			모달테스트
+<div class="page-main" id="">
+	<!-- 챗봇 타이틀과 내용 묶어주기 -->
+	<div>
+		<!-- 챗봇 타이틀 시작 -->
+		<div class="chatbot_header">
+			<div class="title_area">
+				<div class="tit_room">
+					<strong class="tit">챗봇으로 문의하기</strong>
+				</div>
+			</div>
+			<div class="header_btn">
+				<button class="exit_btn" style="color:white;">나가기</button>
+			</div>
 		</div>
+		<!-- 챗봇 타이틀 끝 -->
+		<!-- 챗봇 내용 시작 -->
+		<div class="chatbot_content">
+			<ul class="list_talk">
+				<li class="date"> 2023.08.11. (금) </li><!-- 문의날짜 -->
+				<li class="log_my">
+					<div class="inner_talk">
+					<!---->
+						<div class="talk_info">
+						<!---->
+							<div class="bubble">
+							<p class="txt">문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳문의내용넣을곳</p>
+							<div id="chatbot_message"></div>
+							</div>
+						<!---->
+							<div class="etc">
+								<span class="desc">읽음 <!--읽었는지는 체크 안해도 되겠지?--></span>
+								<span class="desc">오후 5:33 <!--채팅보낸시간 넣어줄거고--></span>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<!-- 입력창 -->
+			<div class="talk_write">
+				<div class="frame_msg">
+					<!-- 내용 입력 -->
+					<div class="inner">
+						<label for="msgInputArea" class="blind">채팅입력창</label>
+						<textarea id="msgInputArea" placeholder="메시지를 입력하세요." rows="1" class="msg_input"></textarea>
+					</div>
+					<!-- 보내기 버튼 -->
+					<div class="frame_attach">
+						<a><!-- 이미지?? -->
+						<img src="${pageContext.request.contextPath}/images/how_to_send.jpg" width="50" class="sendBtn">
+						<span class="blind">입력 완료</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 챗봇 내용 끝 -->
 	</div>
 </div>
 <!-- 챗봇 상세 -->

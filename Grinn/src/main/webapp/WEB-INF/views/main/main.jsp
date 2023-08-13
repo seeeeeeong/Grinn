@@ -4,8 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/swiper.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatbot.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/chatbot.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <div class = "body">
 	<div class="swiper-container mySwiper">
@@ -98,35 +96,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- 모달띄우기 시작 -->
-				<div id="floating">
-					<button class="btn_chatbot" id="btn_chatbot">
-						<img class="ico-top"
-							src="${pageContext.request.contextPath}/images/how_to_chatbot.jpg"
-							width="32" height="32">
-					</button>
-				</div>
-				<div id="modalWrap">
-					<div id="modalBody">
-						<span id="closeBtn">&times;</span>
-						<p>모달띄우기 테스트</p>
-					</div>
-				</div>
-				<!-- 모달띄우기 끝  -->
-				<!-- 새창으로챗봇 시작 -->
-				<div id="floating">
-					<button class="btn_test" id="btn_test" onclick="open3()">
-						<img class="ico-top"
-							src="${pageContext.request.contextPath}/images/how_to_talk3.jpg"
-							width="32" height="32">
-					</button>
-				</div>
-				<script type="text/javascript">
-				function open3(){
-				  window.open("${pageContext.request.contextPath}/chatbot/chatbotDetail.do", "_blank", "width=500, height=500");
-				}
-				</script>
-				<!-- 새창으로챗봇 끝  -->
 			</div>
 		</div>
 	</div>

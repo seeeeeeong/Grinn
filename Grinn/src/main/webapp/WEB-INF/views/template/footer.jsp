@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/floating.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/iframe_yeom.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/chatbot.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		const btn_talk = document.getElementsByClassName("btn_talk");
@@ -138,6 +139,27 @@
 		<img class = "ico-top" src = "${pageContext.request.contextPath}/images/how_to_vote.png" width = "32" height = "32">
 	</button>
 </div>
+<!-- 채팅 시작 -->
+<div id = "floating">
+	<button class = "btn_talk" onclick = "location.href='talkList.do'">
+		<img class = "ico-top" src = "${pageContext.request.contextPath}/images/how_to_talk.jpg" width = "32" height = "32">
+	</button>
+</div>
+<!-- 채팅 끝  -->
+<!-- 새창으로챗봇 시작 -->
+<div id="floating">
+	<button class="btn_chatbot" id="btn_chatbot" onclick="open3()">
+		<img class="ico-top"
+			src="${pageContext.request.contextPath}/images/how_to_chatbot.jpg"
+			width="32" height="32">
+	</button>
+</div>
+<script type="text/javascript">
+function open3(){
+  window.open("${pageContext.request.contextPath}/chatbot/chatbotDetail.do", "_blank", "width=500, height=500");
+}
+</script>
+<!-- 새창으로챗봇 끝  -->
 
 <div class = "align-center">
 	&copy; SpringPage

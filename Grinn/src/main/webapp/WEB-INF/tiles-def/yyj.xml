@@ -18,6 +18,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp" />
 	</definition>
+	<!-- 챗봇 메인 ->새창으로띄우기 (모든것을상속받지않기위해 구분) -->
+	<definition name="chatbotMain" template="/WEB-INF/views/chatbot/chatbotDetail.jsp">
+		<put-attribute name="title" value="챗봇으로 문의" />
+		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
+	</definition>
 
 	<!-- 공지사항 메인 상속 -->
 	<definition name="noticeList" extends="noticeMain">
@@ -60,8 +65,8 @@
 	    <put-attribute name="body" value="/WEB-INF/views/talk/talkDetail.jsp"/>
     </definition> 
 	
-	<!-- 메인 상속 / 챗봇 -->
-    <definition name="chatbotDetail" extends="main">
+	<!-- 챗봇 메인 상속 -->
+    <definition name="chatbotDetail" extends="chatbotMain">
     	<put-attribute name="title" value="챗봇으로 문의하기"/>
 	    <put-attribute name="body" value="/WEB-INF/views/chatbot/chatbotDetail.jsp"/>
     </definition> 
