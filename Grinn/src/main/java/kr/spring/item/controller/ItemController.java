@@ -70,7 +70,7 @@ public class ItemController {
 		log.debug("<<count>> : " + count);
 		
 		//페이지처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 12, 10, "itemList.do?tab="+tab,"&order="+order);
+		ItemReviewPage page = new ItemReviewPage(keyfield, keyword, currentPage, count, 12, 10, "itemList.do?tab="+tab,"&order="+order);
 		
 		List<ItemVO> list = null;
 		if(count > 0) {

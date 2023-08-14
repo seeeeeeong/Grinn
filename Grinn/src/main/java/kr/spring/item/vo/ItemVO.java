@@ -1,6 +1,7 @@
 package kr.spring.item.vo;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,6 +34,8 @@ public class ItemVO {
 	private int sale;
 	private int re_cnt; //댓글 개수
 	private int fav_cnt; //좋아요 개수
+	private int trade_price;
+	private Date trade_regdate;
 	
 	//이미지를 byte[] 배열로 변환(blob처리)
 	//(주의) 폼에서 파일 업로드 파라미터 네임은 반드시 upload로 지정해야함

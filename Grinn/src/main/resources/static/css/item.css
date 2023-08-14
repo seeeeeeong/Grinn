@@ -83,12 +83,12 @@ a:hover{
     box-sizing: border-box;
     margin-left: 20px;
 }
-a img{
+.list02 a img{
 	width: 220px;
 	height:220px;
 	border-radius: 10px;
 }
-p {
+.list02 p {
 	margin: 5px;
 	padding: 0;
 }
@@ -141,14 +141,28 @@ p {
     color:#b0abab;
     margin-top: 0;
 }
-
+.item-name-cell {
+	max-width: 270px; /* 최대 너비를 지정하세요 */
+}
+.brand-name-cell{
+	max-width:30px;
+}
+.striped-table td{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.striped-table .z{
+	font-size: 13px;
+}
+.delete-btn{
+	cursor: pointer;
+}
 /*-------------
 	상세페이지
 ---------------*/
- 
+
 /* 공통 스타일 */
-
-
 .page-main {
   margin: 30px;
 }

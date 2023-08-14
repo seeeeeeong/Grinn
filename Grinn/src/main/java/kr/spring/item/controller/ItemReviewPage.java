@@ -72,6 +72,7 @@ public class ItemReviewPage {
 			page.append("</a>");
 		}
 	}
+	
 	public StringBuffer getPage() {
 		return page;
 	}

@@ -107,28 +107,30 @@
 	<!-- 전체/검색 목록 -->
 	<select id="selectList" parameterType="map" resultType="itemVO">
 		SELECT
-		*
-		FROM (SELECT
-		a.*,
-		rownum rnum
-		FROM(SELECT
-		b.*,
-		r.re_cnt,
-		f.fav_cnt,
-		s.sale
-		FROM item b
-		LEFT OUTER JOIN (SELECT count(*) re_cnt, item_num FROM review GROUP BY
-		item_num)r ON b.item_num=r.item_num
-		LEFT OUTER JOIN (SELECT count(*) fav_cnt, item_num FROM item_fav GROUP BY
-		item_num)f ON b.item_num=f.item_num
-		LEFT OUTER JOIN (SELECT MIN(sale_price) sale, item_num FROM sale_bid GROUP
-		BY item_num)s ON b.item_num=s.item_num
-		<include refid="itemSearch"></include>
-		<include refid="itemOrder"></include>
-		)a)
-      <![CDATA[
-      WHERE rnum >= #{start} AND rnum <= #{end}
-      ]]>
+			* FROM (SELECT a.*, rownum rnum
+				FROM(SELECT
+					b.*,
+					r.re_cnt,
+					f.fav_cnt,
+					s.sale,
+					t.trade_price,
+					t.trade_regdate
+					FROM item b
+			LEFT OUTER JOIN (SELECT count(*) re_cnt, item_num FROM review GROUP BY item_num)r ON b.item_num=r.item_num
+			LEFT OUTER JOIN (SELECT count(*) fav_cnt, item_num FROM item_fav GROUP BY item_num)f ON b.item_num=f.item_num
+			LEFT OUTER JOIN (SELECT MIN(sale_price) sale, item_num FROM sale_bid 
+			<![CDATA[
+				WHERE sale_deadline <= TO_CHAR(SYSDATE,'YYYYMMDD')
+			]]>
+			 GROUP BY item_num)s ON b.item_num=s.item_num
+			LEFT OUTER JOIN (SELECT td.item_num, td.trade_price, td.trade_regDate FROM trade_detail td JOIN (
+                SELECT item_num, MAX(trade_regDate) AS md FROM trade_detail GROUP BY item_num) mds ON td.item_num = mds.item_num AND td.trade_regDate = mds.md)t ON b.item_num=t.item_num
+			<include refid="itemSearch"></include>
+			<include refid="itemOrder"></include>
+			)a)
+      	<![CDATA[
+      		WHERE rnum >= #{start} AND rnum <= #{end}
+      	]]>
 	</select>
 
 	<!-- 상품 수정 -->

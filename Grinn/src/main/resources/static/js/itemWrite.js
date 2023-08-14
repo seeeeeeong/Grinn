@@ -193,6 +193,38 @@ $(function(){
     
     	const url = `itemList.do?tab=${selectedTab}&keyfield=${keyfield}&keyword=${keyword}&order=${order}`;
     	location.href = url;
-});
-
+	});
+	
+	//관리자 상품 삭제
+	$(document).on('click','.delete-btn',function(){
+		let choice = confirm('삭제하시겠습니까?');
+		if(!choice){
+			return;
+		}
+		//서버와 통신
+		$.ajax({
+			url:'itemDelete.do',
+			type:'post',
+				//key	value
+			data:{item_num:$('#output').attr('data-itemnum')},
+			dataType:'json',
+			success:function(param){
+				if(param.result=='logout'){
+					alert('로그인해야 삭제할 수 있습니다.');
+				}else if(param.result=='success'){
+					alert('삭제완료');
+					location.href="../item/itemAdminList.do";
+				}else if(param.result=='wrongAccess'){
+					alert('잘못된 경로입니다.');
+				}else{
+					alert('상품 삭제 오류 발생');
+				}
+			},
+			error:function(param){
+				alert('네트워크 오류 발생!');
+			}
+			
+		});
+		
+	});
 });

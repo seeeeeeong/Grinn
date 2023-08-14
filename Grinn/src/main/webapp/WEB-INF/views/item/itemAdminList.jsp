@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 상품 목록 시작 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
 <script type="text/javascript">
 	$(function(){
 		//검색 유효성 체크
@@ -57,42 +60,37 @@
 	</c:if>
 	<c:if test="${count > 0}">
 		<table class="striped-table">
-			<tr class="align-center">
-				<td>제품번호</td>
-				<td></td>
-				<td>브랜드</td>
-				<td>제품명</td>
-				<td>최근 거래가</td>
-				<td>최근 거래일</td>
-				<td>수정</td>
-				<td>삭제</td>
+			<tr>
+				<th class="z">제품<br>번호</th>
+				<th></th>
+				<th>브랜드</th>
+				<th>제품명</th>
+				<th class="z">최근<br>거래가</th>
+				<th class="z">최근<br>거래일</th>
+				<th>수정</th>
+				<th>삭제</th>
 			</tr>
 			<c:forEach var="item" items="${list}">
 				<tr class="align-center">
 					<td>${item.item_num}</td>
 					<td>
 					<a href="itemDetail.do?item_num=${item.item_num}">
-						<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${item.item_num}" width="100" height="100">
+						<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${item.item_num}" width="50" height="50">
 					</a>
 					</td>
-					<td>${item.item_brand}</td>
-					<td><a href="itemDetail.do?item_num=${item.item_num}">${item.item_name}</a></td>
-					<td></td>
-					<td></td>
+					<td class="brand-name-cell">${item.item_brand}</td>
+					<td class="item-name-cell"><a href="itemDetail.do?item_num=${item.item_num}">${item.item_name}</a></td>
+					<c:if test="${item.trade_price>0}">
+						<td><fmt:formatNumber value="${item.trade_price}"/>원</td>
+						<td><fmt:formatDate value="${item.trade_regdate}" pattern="yy.MM.dd"/></td>
+					</c:if>
+					<c:if test="${item.trade_price==0}">
+						<td colspan="2">거래정보 없음</td>
+					</c:if>
 					<td>
 						<a href="itemModify.do?item_num=${item.item_num}">수정</a>
 					</td>
-					<td><a id="delete_btn">삭제</a> 
-					<script type="text/javascript">
-							let delete_btn = document.getElementById('delete_btn');
-							delete_btn.onclick = function() {
-								let choice = confirm('삭제하시겠습니까?');
-								if (choice) {
-									location
-											.replace('itemDelete.do?item_num=${item.item_num}');
-								}
-							}
-						</script></td>
+					<td><a id="output" class="delete-btn" data-itemnum="${item.item_num}">삭제</a></td>
 				</tr>
 			</c:forEach>
 		</table>
