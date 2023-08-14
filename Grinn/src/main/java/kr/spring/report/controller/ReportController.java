@@ -1,5 +1,9 @@
 package kr.spring.report.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.member.vo.MemberVO;
 import kr.spring.report.service.ReportService;
@@ -21,6 +26,7 @@ import kr.spring.report.vo.StyleReportVO;
 import kr.spring.style.service.StyleService;
 import kr.spring.style.vo.StyleCommentVO;
 import kr.spring.style.vo.StyleVO;
+import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -127,6 +133,75 @@ public class ReportController {
 	//신고 상세
 	
 	//신고 목록
+	//(관리자) 게시물 신고 목록
+	@RequestMapping("/report/styleReportList.do")
+	public ModelAndView getList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+								@RequestParam(value="order", defaultValue="1") int order,
+								String keyfield,String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//전체/검색 레코드수
+		int count = reportService.selectStyleReportRowCount(map);
+		
+		log.debug("<<count>> : " + count);
+		
+		//페이지 처리
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,5,10,"styleReportList.do","&order="+order);
+		
+		List<StyleReportVO> list = null;
+		if(count > 0) {
+			map.put("order",order);
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			list = reportService.selectListStyleReport(map);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("styleReportList");
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("page", page.getPage());
+		
+		return mav;
+	}
+	
+	//(관리자) 댓글 신고 목록
+	@RequestMapping("/report/comReportList.do")
+	public ModelAndView getComList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+								@RequestParam(value="order", defaultValue="1") int order,
+								String keyfield,String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		//전체/검색 레코드수
+		int count = reportService.selectComReportRowCount(map);
+		
+		log.debug("<<count>> : " + count);
+		
+		//페이지 처리
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,5,10,"comReportList.do","&order="+order);
+		
+		List<ComReportVO> list = null;
+		if(count > 0) {
+			map.put("order",order);
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			list = reportService.selectListComReport(map);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("comReportList");
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("page", page.getPage());
+		
+		return mav;
+	}	
 	
 	//신고 처리
 	

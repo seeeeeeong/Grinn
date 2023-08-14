@@ -38,10 +38,10 @@
 						<a href = "${pageContext.request.contextPath}/notice/write.do">공지사항 등록</a>
 					</li>
 					<li>
-						<a href = "${pageContext.request.contextPath}/report/admin_list.do">게시물 신고 목록</a>
+						<a href = "${pageContext.request.contextPath}/report/styleReportList.do">게시물 신고 목록</a>
 					</li>
 					<li>
-						<a href = "${pageContext.request.contextPath}/report/admin_list.do">댓글 신고 목록</a>
+						<a href = "${pageContext.request.contextPath}/report/comReportList.do">댓글 신고 목록</a>
 					</li>
 				</ul>
 			</li>

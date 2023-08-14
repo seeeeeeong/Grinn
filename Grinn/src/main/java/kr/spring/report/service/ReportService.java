@@ -22,8 +22,10 @@ public interface ReportService {
 	//신고 목록
 	//게시글 신고 목록
 	public List<StyleReportVO> selectListStyleReport(Map<String, Object> map);
+	public int selectStyleReportRowCount(Map<String,Object> map);
 	//댓글 신고 목록
 	public List<ComReportVO> selectListComReport(Map<String, Object> map);
+	public int selectComReportRowCount(Map<String,Object> map);
 	//신고 상태 변경
 	
 }

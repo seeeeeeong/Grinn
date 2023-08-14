@@ -19,4 +19,7 @@ public class ComReportVO {
 	private int com_num;
 	private int report_mem;//신고자
 	private int reported_mem;//피신고자
+	
+	private String report_id;//신고자 ID
+	private String reported_id;//피신고자 ID
 }

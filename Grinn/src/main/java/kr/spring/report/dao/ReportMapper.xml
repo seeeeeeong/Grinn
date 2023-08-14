@@ -5,39 +5,80 @@
 	<sql id="reportSearch">
 		<where>
 			<if test="keyword != null and keyword != ''">
-				<if test="keyfield == 1"><!-- 상품번호 -->
-					report_mem = #{rst_num}
+				<if test="keyfield == 1"><!-- 신고자 ID -->
+					report.mem_id LIKE '%' || #{keyword} || '%'
 				</if>
-				<if test="keyfield == 2"><!-- 댓글번호 -->
-					com_num = #{rcom_num}
+				<if test="keyfield == 2"><!-- 피신고자 ID -->
+					reported.mem_id LIKE '%' || #{keyword} || '%'
 				</if>				
 			</if>
 		</where>
 	</sql>
 	
-	<!-- 전체/검색 레코드수 -->
-	<select id="selectRowCount" parameterType="map" resultType="integer">
-		SELECT COUNT(*) FROM report_st 
-		LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
-		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
+	<!-- 게시물 신고 전체/검색 레코드수 -->
+	<select id="selectStyleReportRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM report_st r
+		LEFT OUTER JOIN member report ON r.report_mem = report.mem_num 
+        LEFT OUTER JOIN member reported ON r.reported_mem = reported.mem_num
 		<include refid="reportSearch"></include>
 	</select>
 
+	<sql id="reportStyleOrder">
+		<if test="order == 1">
+			ORDER BY r.rst_num DESC
+		</if>
+		<if test="order == 2">
+			ORDER BY r.rep_regdate DESC
+		</if>
+	</sql>
 	
-	<!-- 전체/검색 목록 -->
-	<select id="selectList" parameterType="map" resultType="styleVO">
+	<!-- 게시물 신고 전체/검색 목록 -->
+	<select id="selectListStyleReport" parameterType="map" resultType="styleReportVO">
 		SELECT * FROM (SELECT a.*, rownum rnum FROM
-		(SELECT st_num,
-		<![CDATA[
-		REPLACE(REPLACE(st_phrase, '<', '&lt;'), '>', '&gt;') st_phrase,
-		]]>
-		s.st_photo1n, s.st_photo2n, s.st_photo3n, s.mem_num, s.st_regdate, 
-		s.st_mdate, s.item_num1, s.item_num2, s.item_num3, m.mem_id, d.mem_photo
-		FROM style s LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
-		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num ORDER BY st_num DESC)a)
+		(SELECT r.rst_num, r.rep_type, r.rep_hide, r.rep_status, r.rep_regdate, r.st_num, report.mem_id report_id, reported.mem_id reported_id
+		FROM report_st r 
+        LEFT OUTER JOIN member report ON r.report_mem = report.mem_num 
+        LEFT OUTER JOIN member reported ON r.reported_mem = reported.mem_num
+		<include refid="reportSearch"></include>
+		<include refid="reportStyleOrder"></include>
+		)a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
 	</select>
+	
+	
+	<!-- 댓글 신고 전체/검색 레코드수 -->
+	<select id="selectComReportRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM report_com r
+		LEFT OUTER JOIN member report ON r.report_mem = report.mem_num 
+        LEFT OUTER JOIN member reported ON r.reported_mem = reported.mem_num
+		<include refid="reportSearch"></include>
+	</select>
+
+	<!-- 댓글 신고 전체/검색 목록 -->
+	<select id="selectListComReport" parameterType="map" resultType="ComReportVO">
+		SELECT * FROM (SELECT a.*, rownum rnum FROM
+		(SELECT r.rcom_num, r.rep_type, r.rep_hide, r.rep_status, r.rep_regdate, r.com_num, report.mem_id report_id, reported.mem_id reported_id
+		FROM report_com r 
+        LEFT OUTER JOIN member report ON r.report_mem = report.mem_num 
+        LEFT OUTER JOIN member reported ON r.reported_mem = reported.mem_num
+		<include refid="reportSearch"></include>
+		<include refid="reportComOrder"></include>
+		)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+		<sql id="reportComOrder">
+		<if test="order == 1">
+			ORDER BY r.rcom_num DESC
+		</if>
+		<if test="order == 2">
+			ORDER BY r.rep_regdate DESC
+		</if>
+	</sql>
+	
 	
 </mapper>

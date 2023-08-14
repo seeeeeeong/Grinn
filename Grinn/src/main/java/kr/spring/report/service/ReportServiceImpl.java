@@ -30,11 +30,23 @@ public class ReportServiceImpl implements ReportService{
 	@Override
 	public List<StyleReportVO> selectListStyleReport(Map<String, Object> map) {
 		
-		return null;
+		return reportMapper.selectListStyleReport(map);
 	}
 
 	@Override
 	public List<ComReportVO> selectListComReport(Map<String, Object> map) {
-		return null;
+		return reportMapper.selectListComReport(map);
+	}
+
+	@Override
+	public int selectStyleReportRowCount(Map<String, Object> map) {
+		
+		return reportMapper.selectStyleReportRowCount(map);
+	}
+
+	@Override
+	public int selectComReportRowCount(Map<String, Object> map) {
+		
+		return reportMapper.selectComReportRowCount(map);
 	}
 }

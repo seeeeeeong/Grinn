@@ -19,4 +19,7 @@ public class StyleReportVO {
 	private int st_num;
 	private int report_mem;//신고자
 	private int reported_mem;//피신고자
+	
+	private String report_id;
+	private String reported_id;
 }
