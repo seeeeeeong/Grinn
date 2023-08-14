@@ -10,8 +10,8 @@
 	<c:if test="${item.item_status == 1}">
 		<div class="result-display">
 			<div class="align-center">
-				본 상품은 판매 중지되었습니다.
-				<input type="button" value="판매상품보기" onclick="location.href='itemList.do'">
+				본 상품은 판매 중지되었습니다. <input type="button" value="판매상품보기"
+					onclick="location.href='itemList.do'">
 			</div>
 		</div>
 	</c:if>
@@ -39,15 +39,18 @@
 					<div class="details">
 						<div>최근 거래가</div>
 						<c:if test="${empty latelyTrade}">
-						<div>
-							<div class="tradeInfo">-</div>
-							<span></span>
-						</div>
+							<div>
+								<div class="tradeInfo">-</div>
+								<span></span>
+							</div>
 						</c:if>
 						<c:if test="${!empty latelyTrade}">
 							<div>
-							<div class="tradeInfo">${latelyTrade}원</div>
-							<span></span>
+								<div class="tradeInfo">
+									<fmt:formatNumber value="${latelyTrade}" />
+									원
+								</div>
+								<span></span>
 							</div>
 						</c:if>
 					</div>
@@ -57,8 +60,12 @@
 								onclick="location.href='${pageContext.request.contextPath}/purchase/selectSize.do?item_num=${item.item_num}'">
 								<div>구매</div>
 								<div>
-									<c:if test="${empty sale}"><span> -원</span></c:if>
-									<c:if test="${!empty sale}"><span class="c">${sale}</span></c:if>
+									<c:if test="${empty sale}">
+										<span> - 원</span>
+									</c:if>
+									<c:if test="${!empty sale}">
+										<span class="c"><fmt:formatNumber value="${sale}" />원</span>
+									</c:if>
 									<span class="d">즉시 구매가</span>
 								</div>
 							</button>
@@ -66,10 +73,14 @@
 								onclick="location.href='${pageContext.request.contextPath}/sale/selectSize.do?item_num=${item.item_num}'">
 								<div>판매</div>
 								<div>
-									<c:if test="${empty purchase}"><span> - </span></c:if>
-									<c:if test="${!empty purchase}"><span class="c">${purchase}</span></c:if>
+									<c:if test="${empty purchase}">
+										<span> -원</span>
+									</c:if>
+									<c:if test="${!empty purchase}">
+										<span class="c"><fmt:formatNumber value="${purchase}" />원</span>
+									</c:if>
 									<span class="d">즉시 판매가</span>
-								</div>	
+								</div>
 							</button>
 						</div>
 						<br> <span class="output_fav" data-num="${item.item_num}"
@@ -133,14 +144,14 @@
 						<img src="${pageContext.request.contextPath}/images/thunder.png"
 							width="40" height="40">
 						<div>
-							<b>빠른배송  5,000원</b> <br> 지금 결제시 3일 뒤 도착 예정
+							<b>빠른배송 5,000원</b> <br> 지금 결제시 3일 뒤 도착 예정
 						</div>
 					</div>
 					<div class="deliveryinfo">
 						<img src="${pageContext.request.contextPath}/images/postbox.png"
 							width="40" height="40">
 						<div>
-							<b>일반배송  3,000원</b><br> 검수 후 배송 • 5-7일 내 도착 예정
+							<b>일반배송 3,000원</b><br> 검수 후 배송 • 5-7일 내 도착 예정
 						</div>
 					</div>
 				</div>
@@ -152,17 +163,17 @@
 					<div class="panel">
 						<p>
 							<b>GRINN은 최대한 빠르게 모든 상품을 배송하기 위해 노력하고 있습니다. 배송 시간은 판매자가 검수를
-								위하여 상품을 검수센터로 보내는 속도에 따라 차이가 있습니다.</b><br>
-							<br> [빠른배송 구매]<br> - 판매자가 보관 신청한 상품 중<br> 검수에 합격한
-							상품을 GRINN의 전용 창고에 보관합니다. 보관 상품에 한하여 바로 구매와 95점 구매가 가능합니다.<br>
-							- 오늘(오후 11:59까지) 결제하면 내일 바로 출고되어 빠른 배송이 가능합니다. (연휴 및 공휴일, 천재지변,
-							택배사 사유 등 예외적으로 출고일이 변경될 수 있습니다.<br>
-							<br> [일반 구매]<br> - 거래가 체결된 시점부터 48시간(일요일•공휴일 제외) 내에
-							판매자가 상품을 발송해야 하며, 통상적으로 발송 후 1-2일 내에 GRINN 검수센터에 도착합니다.<br>
-							- 검수센터에 도착한 상품은 입고 완료 후 3영업일 이내에 검수를 진행합니다. 검수 합격시 배송을 준비합니다. *
-							상품 종류 및 상태에 따라 검수 소요 시간은 상이할 수 있으며, 구매의사 확인에 해당할 경우 구매자와 상담 진행으로
-							인해 지연이 발생할 수 있습니다.<br> - 검수센터 출고는 매 영업일에 진행하고 있으며, 출고 마감시간은
-							오후 5시입니다. 출고 마감시간 이후 검수 완료건은 운송장번호는 입력되지만 다음 영업일에 출고됩니다.<br>
+								위하여 상품을 검수센터로 보내는 속도에 따라 차이가 있습니다.</b><br> <br> [빠른배송 구매]<br>
+							- 판매자가 보관 신청한 상품 중<br> 검수에 합격한 상품을 GRINN의 전용 창고에 보관합니다. 보관
+							상품에 한하여 바로 구매와 95점 구매가 가능합니다.<br> - 오늘(오후 11:59까지) 결제하면 내일
+							바로 출고되어 빠른 배송이 가능합니다. (연휴 및 공휴일, 천재지변, 택배사 사유 등 예외적으로 출고일이 변경될 수
+							있습니다.<br> <br> [일반 구매]<br> - 거래가 체결된 시점부터
+							48시간(일요일•공휴일 제외) 내에 판매자가 상품을 발송해야 하며, 통상적으로 발송 후 1-2일 내에 GRINN
+							검수센터에 도착합니다.<br> - 검수센터에 도착한 상품은 입고 완료 후 3영업일 이내에 검수를 진행합니다.
+							검수 합격시 배송을 준비합니다. * 상품 종류 및 상태에 따라 검수 소요 시간은 상이할 수 있으며, 구매의사 확인에
+							해당할 경우 구매자와 상담 진행으로 인해 지연이 발생할 수 있습니다.<br> - 검수센터 출고는 매 영업일에
+							진행하고 있으며, 출고 마감시간은 오후 5시입니다. 출고 마감시간 이후 검수 완료건은 운송장번호는 입력되지만 다음
+							영업일에 출고됩니다.<br>
 						</p>
 					</div>
 					<button class="accordion">검수 안내</button>
@@ -216,12 +227,13 @@
 					</div>
 				</div>
 				<div class="Grinninfo">
-					<div>Grinn(주)는 통신판매 중개자로서 통신판매의 당사자가 아닙니다. 본 상품은 개별판매자가 등록한 상품으로
-						상품, 상품정보, 거래에 관한 의무와 책임은 각 판매자에게 있습니다. 단, 이용약관 및 정책, 기타 거래 체결 과정에서
-						고지하는 내용 등에 따라 검수하고 보증하는 내용에 대한 책임은 Grinn(주)에 있습니다.</div>
+					<div>Grinn(주)는 통신판매 중개자로서 통신판매의 당사자가 아닙니다. 본 상품은 개별판매자가 등록한
+						상품으로 상품, 상품정보, 거래에 관한 의무와 책임은 각 판매자에게 있습니다. 단, 이용약관 및 정책, 기타 거래 체결
+						과정에서 고지하는 내용 등에 따라 검수하고 보증하는 내용에 대한 책임은 Grinn(주)에 있습니다.</div>
 				</div>
 			</div>
-		</div><!-- 상품 좌우안내 끝 -->
+		</div>
+		<!-- 상품 좌우안내 끝 -->
 		<hr>
 		<!-- 댓글 시작 -->
 		<div>
@@ -233,53 +245,76 @@
 			<c:if test="${count > 0}">
 				<c:forEach var="review" items="${list}">
 					<div class="item">
-					<div class="item-i">
-					<div>
-						<ul class="detail-info">
-							<li>
-								<img src="${pageContext.request.contextPath}/user/viewProfile.do?mem_num=${review.mem_num}" width="30" height="30" class="my-photo">
-							</li>
-							<li class="name">
-								<c:if test="${!empty review.mem_nickname}">
-									${review.mem_nickname}
+						<div class="item-i">
+							<div>
+								<ul class="detail-info">
+									<li>
+										<img src="${pageContext.request.contextPath}/user/viewProfile.do?mem_num=${review.mem_num}"
+												width="30" height="30" class="my-photo">
+									</li>
+									<li class="name">
+										<c:if test="${!empty review.mem_nickname}">
+											${review.mem_nickname}
+										</c:if> 
+										<c:if test="${empty review.mem_nickname}">
+											${review.mem_id}
+										</c:if>
+									</li>
+									<li>
+										<c:if test="${user_num eq review.mem_num}">
+											<input type="button" value="수정"
+												onclick="location.href='itemReviewModify.do?review_num=${review.review_num}&item_num=${review.item_num}'">
+											<input type="button" value="삭제" class="delete-btn"
+												data-reviewnum="${review.review_num}"
+												data-itemnum="${review.item_num}" id="output">
+										</c:if>
+									</li>
+								</ul>
+								<div class="sub-item">
+									<c:if test="${review.review_star==1}">
+										<p class="star">★☆☆☆☆</p>
+									</c:if>
+									<c:if test="${review.review_star==2}">
+										<p class="star">★★☆☆☆</p>
+									</c:if>
+									<c:if test="${review.review_star==3}">
+										<p class="star">★★★☆☆</p>
+									</c:if>
+									<c:if test="${review.review_star==4}">
+										<p class="star">★★★★☆</p>
+									</c:if>
+									<c:if test="${review.review_star==5}">
+										<p class="star">★★★★★</p>
+									</c:if>
+									<p>${review.review_content}</p>
+									<c:if test="${!empty review.review_modifydate}">
+										<span class="modify-date"> 최근 수정일 : ${review.review_modifydate}</span>
+									</c:if>
+									<c:if test="${empty review.review_modifydate}">
+										<span class="modify-date"> 등록일 : ${review.review_date}</span>
+									</c:if>
+								</div>
+							</div>
+							<div>
+								<c:if test="${!empty review.review_photo}">
+									<div class="divImg">
+										<img src="${pageContext.request.contextPath}/item/reviewPhoto.do?review_num=${review.review_num}"
+											class="reviewImg"> 
+										<img src="${pageContext.request.contextPath}/images/item_search.png"
+											class="searchImg">
+									</div>
+									<div class="modal">
+										<span class="close">&times;</span> 
+										<img class="modal_content" id="reviewImg01">
+									</div>
 								</c:if>
-								<c:if test="${empty review.mem_nickname}">
-									${review.mem_id}
-								</c:if>
-							</li>
-							<li>
-								<c:if test="${user_num eq review.mem_num}">
-									<input type="button" value="수정" onclick="location.href='itemReviewModify.do?review_num=${review.review_num}&item_num=${review.item_num}'">
-									<input type="button" value="삭제" class="delete-btn" data-reviewnum="${review.review_num}" data-itemnum="${review.item_num}" id="output">
-								</c:if>
-							</li>
-						</ul>
-						<div class="sub-item">
-							<c:if test="${review.review_star==1}"><p class="star">★☆☆☆☆</p></c:if>
-							<c:if test="${review.review_star==2}"><p class="star">★★☆☆☆</p></c:if>
-							<c:if test="${review.review_star==3}"><p class="star">★★★☆☆</p></c:if>
-							<c:if test="${review.review_star==4}"><p class="star">★★★★☆</p></c:if>
-							<c:if test="${review.review_star==5}"><p class="star">★★★★★</p></c:if>
-							<p>${review.review_content}</p>
-							<c:if test="${!empty review.review_modifydate}">
-								<span class="modify-date"> 최근 수정일 : ${review.review_modifydate}</span>
-							</c:if>
-							<c:if test="${empty review.review_modifydate}">
-								<span class="modify-date"> 등록일 : ${review.review_date}</span>
-							</c:if>
+							</div>
 						</div>
-						</div>
-						<div>
-							<c:if test="${!empty review.review_photo}">
-								<img src="${pageContext.request.contextPath}/item/reviewPhoto.do?review_num=${review.review_num}"  class="reviewImg">
-							</c:if>
-						</div>
-					
-				</div>
-				</div>
-			</c:forEach>
+					</div>
+				</c:forEach>
 			</c:if>
 		</div>
 		<!-- 댓글 끝 -->
+		<div class="align-center">${page}</div>
 	</c:if>
 </div>

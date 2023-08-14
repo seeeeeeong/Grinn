@@ -132,28 +132,6 @@ $(function(){
 			$(this).addClass("active");
 		});
 	});*/
-	// 이벤트 리스너를 등록하여 스크롤 이벤트 감지
-	window.addEventListener("scroll", function() {
-		// left 이미지 요소 선택
-		const leftImage = document.querySelector(".left img");
-
-		// right 요소의 높이를 가져와서 브라우저 창 높이와 비교
-		const rightElement = document.querySelector(".right");
-		const windowHeight = window.innerHeight;
-		const rightHeight = rightElement.clientHeight;
-
-		// right 요소가 화면에 보일 때 left 이미지의 위치를 조정
-		if (rightHeight > windowHeight) {
-			const scrollPosition = window.scrollY;
-			const maxTranslate = rightHeight - windowHeight;
-			const translateValue = Math.min(maxTranslate, scrollPosition);
-
-			leftImage.style.transform = `translateY(${translateValue}px)`;
-		} else {
-			// right 요소가 화면에 보이지 않을 때 이미지 초기 위치로 복원
-			leftImage.style.transform = "translateY(0)";
-		}
-	});
 	
 	var acc = document.getElementsByClassName("accordion");
 	var i;
@@ -170,18 +148,51 @@ $(function(){
 		});
 	}
 
-		//textarea에 내용 입력시 글자수 체크
-	$(document).on('keyup', '#review_content', function () {
-    // 입력한 글자수 구하기
-    let inputLength = $(this).val().length;
+	//textarea에 내용 입력시 글자수 체크
+	$(document).on('keyup', '#review_content', function() {
+		// 입력한 글자수 구하기
+		let inputLength = $(this).val().length;
 
-    if (inputLength > 300) { // 300자를 넘어선 경우
-        $(this).val($(this).val().substring(0, 300))
-    } else { // 300자 이하인 경우
-        // 남은 글자수 구하기
-        let remain = 300 - inputLength;
-        remain += '/300';
-        $('.letter-count').text(remain);
-    }
+		if (inputLength > 300) { // 300자를 넘어선 경우
+			$(this).val($(this).val().substring(0, 300))
+		} else { // 300자 이하인 경우
+			// 남은 글자수 구하기
+			let remain = 300 - inputLength;
+			remain += '/300';
+			$('.letter-count').text(remain);
+		}
+	});
+	
+
+    const tabLinks = document.querySelectorAll('.tab-link');
+
+    tabLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            // 이전에 선택된 탭에서 active 클래스 제거
+            const previouslyActiveTab = document.querySelector('.tab-link.active');
+            if (previouslyActiveTab) {
+                previouslyActiveTab.classList.remove('active');
+            }
+            
+            // 클릭된 탭에 active 클래스 추가
+            event.target.classList.add('active');
+            
+            // 클릭된 탭의 data-tab 속성 값 가져오기
+            const selectedTab = event.target.getAttribute('data-tab');
+            
+            // 선택한 탭에 대한 페이지로 이동
+            location.href = `itemList.do?tab=${selectedTab}`;
+        });
+    });
+
+	$('#order').change(function() {
+    	const selectedTab = $('[data-tab].active').attr('data-tab'); // 현재 선택된 탭 가져오기
+    	const keyfield = $('#keyfield').val();
+    	const keyword = $('#keyword').val();
+    	const order = $('#order').val();
+    
+    	const url = `itemList.do?tab=${selectedTab}&keyfield=${keyfield}&keyword=${keyword}&order=${order}`;
+    	location.href = url;
 });
+
 });

@@ -56,8 +56,11 @@ public class ItemController {
 	@RequestMapping("/item/itemList.do")
 	public ModelAndView getItemList(@RequestParam(value="pageNum",defaultValue = "1") int currentPage, 
 									@RequestParam(value="order",defaultValue = "1") int order,
+									@RequestParam(value="tab", defaultValue = "0") int tab,
 									String keyfield, String keyword) {
+		
 		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("tab", tab);
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
 		
@@ -67,14 +70,13 @@ public class ItemController {
 		log.debug("<<count>> : " + count);
 		
 		//페이지처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 12, 10, "itemList.do","&order="+order);
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 12, 10, "itemList.do?tab="+tab,"&order="+order);
 		
 		List<ItemVO> list = null;
 		if(count > 0) {
 			map.put("order", order);
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
-			
 			list = itemService.selectList(map);
 		}
 		
@@ -84,7 +86,7 @@ public class ItemController {
 		mav.addObject("count", count);
 		mav.addObject("list",list);
 		mav.addObject("page", page.getPage());
-		
+		mav.addObject("activeTab", tab);
 		return mav;
 	}
 
@@ -223,7 +225,7 @@ public class ItemController {
 		int count = itemService.selectRowCountReview(map);
 
 		// 페이지처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 3, 10, "itemDetail.do",
+		ItemReviewPage page = new ItemReviewPage(keyfield, keyword, currentPage, count, 2, 10, "itemDetail.do?item_num="+item_num,
 				"&order=" + order);
 
 		
@@ -245,6 +247,7 @@ public class ItemController {
 		}
 		mav.addObject("list", list);
 		mav.addObject("count", count);
+		mav.addObject("page", page.getPage());
 		mav.addObject("sale", sale);
 		mav.addObject("purchase", purchase);
 		mav.addObject("latelyTrade", latelyTrade);

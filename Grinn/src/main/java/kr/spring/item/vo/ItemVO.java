@@ -30,6 +30,7 @@ public class ItemVO {
 	private int item_gender; //성별
 	private int item_status; //상품판매가능여부
 	
+	private int sale;
 	private int re_cnt; //댓글 개수
 	private int fav_cnt; //좋아요 개수
 	

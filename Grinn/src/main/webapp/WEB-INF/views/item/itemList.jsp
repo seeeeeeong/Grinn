@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 상품 목록 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
@@ -18,19 +19,29 @@
 </script>
 
 <div class="page-main">
-	<h2>상품 목록</h2>
+	<div id="page_nav1">
+		<div class="side-bar1">
+			<a href="itemList.do" class="tab-link ${activeTab == 0 ? 'active' : ''}" data-tab="0">전체</a>
+    		<a href="itemList.do?tab=1" class="tab-link ${activeTab == 1 ? 'active' : ''}" data-tab="1">신발</a>
+    		<a href="itemList.do?tab=2" class="tab-link ${activeTab == 2 ? 'active' : ''}" data-tab="2">상의</a>
+    		<a href="itemList.do?tab=3" class="tab-link ${activeTab == 3 ? 'active' : ''}" data-tab="3">하의</a>
+    		<a href="itemList.do?tab=4" class="tab-link ${activeTab == 4 ? 'active' : ''}" data-tab="4">패션잡화</a>
+    	</div>
+    </div>
 	<form action="itemList.do" id="search_form" method="get">
 		<ul class="search">
-			<li><select name="keyfield" id="keyfield">
-					<option value="1"
-						<c:if test="${param.keyfield == 1}">selected</c:if>>브랜드</option>
-					<option value="2"
-						<c:if test="${param.keyfield == 2}">selected</c:if>>상품명</option>
-			</select></li>
-			<li><input type="search" name="keyword" id="keyword"
-				value="${param.keyword}"></li>
-			<li><input type="submit" value="찾기"> <input
-				type="button" value="목록" onclick="location.href='itemList.do'">
+			<li>
+				<select name="keyfield" id="keyfield">
+					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>브랜드</option>
+					<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>상품명</option>
+				</select>
+			</li>
+			<li>
+				<input type="search" name="keyword" id="keyword" value="${param.keyword}">
+			</li>
+			<li>
+				<input type="submit" value="찾기"> 
+				<input type="button" value="목록" onclick="location.href='itemList.do'">
 			</li>
 		</ul>
 		<div class="align-right">
@@ -39,7 +50,7 @@
 				<option value="2" <c:if test="${param.order == 2}">selected</c:if>>관심상품순</option>
 				<option value="3" <c:if test="${param.order == 3}">selected</c:if>>리뷰순</option>
 			</select>
-			<script type="text/javascript">
+			<!-- <script type="text/javascript">
 				$(function() {
 					$('#order').change(
 							function() {
@@ -49,7 +60,7 @@
 										+ $('#order').val();
 							});
 				});
-			</script>
+			</script> -->
 		</div>
 	</form>
 	<c:if test="${count == 0}">
@@ -68,9 +79,16 @@
 									<p class="itemDetail">${item.item_detail}</p>
 								</div>
 							</div>
-							<div>
-							<!-- 즉시구매가 넣는곳 -->
-								<p>7000원</p>
+							<div class="sale">
+							<!-- 즉시구매가 -->
+								<c:if test="${item.sale==0}">
+									<span>- 원</span>
+									<p>즉시구매가</p>
+								</c:if>
+								<c:if test="${item.sale!=0}">
+									<span><fmt:formatNumber value="${item.sale}"/>원</span>
+									<p>즉시구매가</p>
+								</c:if>
 							</div>
 						</a>
 						<div>

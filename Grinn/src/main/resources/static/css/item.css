@@ -5,6 +5,9 @@
 ---------------*/
 #page_nav1 {
   align-items: center; /* 수직 가운데 정렬 */
+  display: flex;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 30px;
 }
 
 #page_nav1 ul {
@@ -24,17 +27,27 @@
 }
 
 .side-bar1{
-	border-bottom: 1px solid #f0f0f0;
+	margin-bottom: 10px;
 	margin-left: 30px;
 }
 
-/* itemList_nav.jsp에서 추가한 ID 선택자를 사용하여 스타일을 적용합니다. */
-#allLink.active,
-#shoesLink.active,
-#topsLink.active,
-#bottomsLink.active,
-#accessoriesLink.active {
-    font-weight: bold; /* 원하는 스타일로 변경 */
+/* .tab {
+    display: flex;
+    background-color: #f0f0f0;
+}
+ */
+.tab-link {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.tab-link.active {
+    font-weight: bold;
+    font-size: 17px;
+    border-bottom: 2px solid #000;
 }
 
 /*-------------
@@ -68,6 +81,7 @@ a:hover{
 	flex-basis: calc(25% - 20px); /* 각 아이템이 컨테이너의 25% 너비를 차지하도록 설정, 간격은 20px */
     padding: 10px;
     box-sizing: border-box;
+    margin-left: 20px;
 }
 a img{
 	width: 220px;
@@ -96,20 +110,37 @@ p {
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 220px;
+    margin-bottom: 4px;
+    font-size: 14px;
 }
 .itemDetail{
-	-webkit-line-clamp: 1; /* 최대 3줄 표시 */
+	-webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 12px;
+    color: #b0abab;
+    width: 220px;
+    margin-top: 0;
 }
 .list02 span{
 	display: inline-flex;
     align-items: center;
     margin: 5px;
 }
-
+.list02 .sale span{
+	font-weight: bold;
+	margin-top: 10px;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+.list02 .sale p{
+	font-size: 12px;
+    color:#b0abab;
+    margin-top: 0;
+}
 
 /*-------------
 	상세페이지
@@ -351,7 +382,7 @@ h3{
 	transform: rotate(90deg);
 }
 
-.active:after {
+.accordion.active:after {
 	content: "\00276F";
 	transform: rotate(270deg);
 }
@@ -388,6 +419,7 @@ h3{
 	margin: 5px;
 	justify-content: space-between;
 	display:flex;
+	position:relative;
 }
 .sub-item p{
 	font-size: 16px;
@@ -401,15 +433,90 @@ h3{
 	margin-top: 10px;
 	font-size: 13px;
 }
-.reviewImg{
+/* .reviewImg{
 	margin: 8px;
 	width:100px;
 	height:100px;
 	justify-content: center;
-}
+} */
 .modify-date{
 	margin-bottom: 5px;
 }
+.divImg{
+	position: relative;
+}
+.reviewImg {
+	width: 100px;
+	height:100px;
+	cursor: pointer;
+	transition: 0.3s;
+	margin: 8px;
+	justify-content: center;
+}
+.searchImg{
+	width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 88px;
+    right: 12px;
+    background-color: #e6e6e6;
+    border-radius: 5px;
+}
+/* 이미지 클릭 시, 밝기 조절 */
+.reivewImg:hover {
+	opacity: 0.8;
+}
+
+.modal {
+	display: none; /* 모달창 숨겨 놓기 */
+	position: fixed;
+	z-index: 1; /* 모달창을 제일 앞에 두기 */
+	padding-top: 100px;
+	left: 0;
+	top: 100px;
+	width: 100%;
+	height: 100%;
+	overflow: auto; /* 스크롤 허용 auto */
+	cursor: pointer; /* 마우스 손가락모양 */
+	background-color: rgba(0, 0, 0, 0.8);
+}
+/* 모달창 이미지 */
+.modal_content {
+	margin: auto;
+	display: block;
+	width: auto;
+	height: auto;
+	/* max-width: 1000px; */
+	animation-name: zoom;
+	animation-duration: 0.8s;
+}
+/* 모달창 애니메이션 추가 */
+@keyframes zoom {
+	from {transform: scale(0)
+}
+
+to {
+	transform: scale(1)
+}
+
+}
+/* 닫기 버튼 꾸미기 */
+.close {
+	position: absolute;
+	top: 15px;
+	right: 35px;
+	color: #f1f1f1;
+	font-size: 40px;
+	font-weight: bold;
+	transition: 0.3s;
+}
+
+.close:hover, .close:focus {
+	color: #bbb;
+	text-decoration: none;
+	cursor: pointer;
+}
+
 /*-------------
 	후기작성/수정 폼
 ---------------*/
