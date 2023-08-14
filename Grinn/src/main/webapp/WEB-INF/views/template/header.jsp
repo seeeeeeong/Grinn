@@ -17,6 +17,11 @@
                      <a class = "top_link" href="${pageContext.request.contextPath}/main/admin.do"><b>[관리자메인]</b></a>
                      </c:if>
                   </li>
+                  <c:if test="${!empty user && user.mem_auth == 9}">
+                  <li class = "top_item">
+                     <a class = "top_link" href="${pageContext.request.contextPath}/admin/point.do">포인트내역</a>
+                  </li>
+                  </c:if>
                   <c:if test="${user.mem_auth != 9}">
                   <li class = "top_item">
                      <a class = "top_link" href="${pageContext.request.contextPath}/notice/noticeList.do">고객센터</a>
