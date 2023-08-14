@@ -478,26 +478,25 @@
 	    <div id="slideShow">
 	    <ul class="slides">
 	    	<li>
-		  		<img src="${pageContext.request.contextPath}/image_upload/${style.st_photo1n}" width="500" height="500">
+		  		<img src="${pageContext.request.contextPath}/style/viewPhoto1.do?st_num=${style.st_num}" width="500" height="500">
 		    </li>
 		    <c:if test="${!empty style.st_photo2n}">
 		    <li>
-		    	
-		    		<img src="${pageContext.request.contextPath}/image_upload/${style.st_photo2n}" width="500" height="500">
+		    	<img src="${pageContext.request.contextPath}/style/viewPhoto2.do?st_num=${style.st_num}" width="500" height="500">
 		    </li>
 		    </c:if>
 		    <c:if test="${!empty style.st_photo3n}">
 		    <li>
-		    		<img src="${pageContext.request.contextPath}/image_upload/${style.st_photo3n}" width="500" height="500">
+		    	<img src="${pageContext.request.contextPath}/style/viewPhoto3.do?st_num=${style.st_num}" width="500" height="500">
 		    </li>
 		    </c:if>
 		    <c:if test="${!empty style.st_photo4n}">
 		    <li>
-		    		<img src="${pageContext.request.contextPath}/image_upload/${style.st_photo4n}" width="500" height="500">
+		    	<img src="${pageContext.request.contextPath}/style/viewPhoto4.do?st_num=${style.st_num}" width="500" height="500">
 		    </li>
 		    </c:if>
 	    </ul>
-	    <c:if test="${!empty style.st_photo2n && !empty style.st_photo3n && !empty style.st_photo4n}">
+	    <c:if test="${!empty style.st_photo2n}">
 	    <p class="controller">
 	      
 	      <!-- &lang: 왼쪽 방향 화살표
@@ -510,6 +509,7 @@
   	</div>
     
     <div class="style-content">
+    	<c:if test="${style.item_photo1name != null}">
     	<div class="item-tag">
     		<div class=tag-title>
 				상품 태그
@@ -518,8 +518,8 @@
 				<img src="${pageContext.request.contextPath}/image_upload/${style.item_photo1name}" width="100" height="100"><br>
 				<span class="item-name" style="width:100px;">${style.item_name}</span>
 			</div>
-		
-		</div><p>	
+		</div>
+		</c:if><p>	
 		<div id="btnWrap">
 			<img id="output_fav" data-num="${style.st_num}" src="${pageContext.request.contextPath}/images/no_like.png" width="30" height="30">
 			<img id="popupBtn" src="${pageContext.request.contextPath}/images/comm_icon.png" width="33" height="33">

@@ -151,6 +151,66 @@ public class StyleController {
 	}
 	
 	/*========================
+	 * 스타일 사진 출력
+	 *========================*/	
+	//게시물 사진 출력(스타일번호 지정)
+	@RequestMapping("/style/viewPhoto1.do")
+	public String getPhoto1BySt_num(@RequestParam(required = false) int st_num, HttpServletRequest request, Model model) {
+		StyleVO styleVO = styleService.selectStyle(st_num);
+
+		viewPhoto1(styleVO, request, model);
+
+		return "imageView";
+	}
+	@RequestMapping("/style/viewPhoto2.do")
+	public String getPhoto2BySt_num(@RequestParam(required = false) int st_num, HttpServletRequest request, Model model) {
+		StyleVO styleVO = styleService.selectStyle(st_num);
+
+		viewPhoto2(styleVO, request, model);
+
+		return "imageView";
+	}
+	@RequestMapping("/style/viewPhoto3.do")
+	public String getPhoto3BySt_num(@RequestParam(required = false) int st_num, HttpServletRequest request, Model model) {
+		StyleVO styleVO = styleService.selectStyle(st_num);
+
+		viewPhoto3(styleVO, request, model);
+
+		return "imageView";
+	}
+	@RequestMapping("/style/viewPhoto4.do")
+	public String getPhoto4BySt_num(@RequestParam(required = false) int st_num, HttpServletRequest request, Model model) {
+		StyleVO styleVO = styleService.selectStyle(st_num);
+
+		viewPhoto4(styleVO, request, model);
+
+		return "imageView";
+	}
+	//스타일번호 지정을 통한 게시물 사진 처리를 위한 코드
+	public void viewPhoto1(StyleVO styleVO, HttpServletRequest request, Model model) {
+		model.addAttribute("imageFile", styleVO.getSt_photo1());
+		model.addAttribute("filename", styleVO.getSt_photo1n());
+	}
+	public void viewPhoto2(StyleVO styleVO, HttpServletRequest request, Model model) {
+		if(styleVO.getSt_photo2() != null) {
+			model.addAttribute("imageFile", styleVO.getSt_photo2());
+			model.addAttribute("filename", styleVO.getSt_photo2n());			
+		}
+	}
+	public void viewPhoto3(StyleVO styleVO, HttpServletRequest request, Model model) {
+		if(styleVO.getSt_photo3() != null) {
+			model.addAttribute("imageFile", styleVO.getSt_photo3());
+			model.addAttribute("filename", styleVO.getSt_photo3n());			
+		}
+	}
+	public void viewPhoto4(StyleVO styleVO, HttpServletRequest request, Model model) {
+		if(styleVO.getSt_photo4() != null) {
+			model.addAttribute("imageFile", styleVO.getSt_photo4());
+			model.addAttribute("filename", styleVO.getSt_photo4n());			
+		}
+	}
+	
+	/*========================
 	 * 스타일 수정
 	 *========================*/
 	//수정 폼 호출

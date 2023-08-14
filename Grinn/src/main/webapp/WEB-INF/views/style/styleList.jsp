@@ -55,7 +55,7 @@
             	<div class="style-item">
                    
                 	<a href="detail.do?st_num=${style.st_num}">
-                    	<img src="${pageContext.request.contextPath}/image_upload/${style.st_photo1n}" width="300" height="300">
+                    	<img src="${pageContext.request.contextPath}/style/viewPhoto1.do?st_num=${style.st_num}" width="300" height="300">
                 	</a>
                 	<div class="user-profile">
                 	<a href="/user/userStyle.do?mem_num=${style.mem_num}">
