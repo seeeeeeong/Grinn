@@ -35,7 +35,7 @@
 			let diff = currentDate.getDate() - date.getDate();
 			
 			if(diff <= 5){
-				alert('아직 상품 발송 기간이 남아있습니다.');
+				alert('아직 상품 발송 기간 '+(5-diff)+'일 남아있습니다.');	
 				return;
 			}else{
 				location.href='adminGivePenalty.do?seller_num=${trade.sellerVO.mem_num}&trade_num=${trade.trade_num}';
