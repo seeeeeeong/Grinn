@@ -41,16 +41,6 @@ public class UserStyleServiceImpl implements UserStyleService{
 
 
 	@Override
-	public List<Integer> getFollowers(Integer toUser) {
-		return userStyleMapper.getFollowers(toUser);
-	}
-
-	@Override
-	public List<Integer> getFollowings(Integer fromUser) {
-		return userStyleMapper.getFollowings(fromUser);
-	}
-
-	@Override
 	public int getFollowerCount(Integer to_user) {
 		return userStyleMapper.getFollowerCount(to_user);
 	}
@@ -108,6 +98,16 @@ public class UserStyleServiceImpl implements UserStyleService{
 	public boolean isFollowing(Integer to_user, Integer from_user) {
 		int count = userStyleMapper.isFollowing(to_user, from_user);
         return count > 0;
+	}
+
+	@Override
+	public MemberVO selectFollower(Integer mem_num) {
+		return userStyleMapper.selectFollower(mem_num);
+	}
+
+	@Override
+	public MemberVO selectFollowing(Integer mem_num) {
+		return userStyleMapper.selectFollowing(mem_num);
 	}
 
 }

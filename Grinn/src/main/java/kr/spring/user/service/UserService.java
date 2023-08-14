@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -14,6 +15,7 @@ import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.sbid.vo.SaleBidVO;
+import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
 
@@ -23,6 +25,10 @@ public interface UserService {
 
 	//프로필 이미지 업데이트
 	public void updateProfile(MemberVO member);	
+	//이미지 삭제
+	public void deleteProfile(Integer mem_num);
+	//이미지 존재 여부 확인
+	public boolean checkProfileImage(Integer mem_num);
 	
 	//회원탈퇴
 	public void deleteMember(Integer mem_num);
@@ -108,8 +114,24 @@ public interface UserService {
 	//좋아요한 게시물의 st_num에 해당하는 style 테이블의 정보 가져오기
 	public StyleVO selectStyle(Integer st_num);	
 	
-	//좋아요한 게시물의 작성자 ID 가져오기
-	public List<String> selectStyleId(Integer mem_num);
+	//좋아요한 게시물 작성자의 프로필 사진
+	public MemberVO selectProfile(Integer st_num);
+	
+	//좋아요한 게시물 작성자의 아이디
+	public String selectProfileId(Integer st_num);
+	
+	//좋아요 기능
+	public StyleFavVO selectFav(StyleFavVO fav);
+	
+	//좋아요 개수
+	public int selectFavCount(Integer st_num);
+	
+	//좋아요
+	public void insertFav(StyleFavVO fav);
+		
+	//좋아요 취소
+	public void deleteFav(Integer stfav_num);
+	public void deleteFavByStNum(Integer st_num);
 	
     //패널티 통합 점수
     public Integer getPenaltyTotalScore(Integer mem_num);

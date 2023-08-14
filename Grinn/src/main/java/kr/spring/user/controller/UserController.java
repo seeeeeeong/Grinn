@@ -28,6 +28,7 @@ import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.sbid.vo.SaleBidVO;
+import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
 import kr.spring.user.service.UserService;
@@ -236,6 +237,22 @@ public class UserController {
 		
 		return mapAjax;
 	}
+	
+	//프로필 삭제
+    @PostMapping("/user/deleteMyPhoto")
+    @ResponseBody
+    public String deleteMyPhoto(HttpSession session) {
+        //로그인된 사용자 정보 가져오기
+        MemberVO user = (MemberVO) session.getAttribute("user");
+               
+        if(userService.checkProfileImage(user.getMem_num())) {
+        	userService.deleteProfile(user.getMem_num());
+        	return "success";
+        }else {
+        	return "fail";
+        }
+                     
+    }
 	    
 	/*
 	 * =========================== 쇼핑 정보 - 관심 상품 ===========================
@@ -285,8 +302,13 @@ public class UserController {
         List<StyleVO> likedStyles = userService.selectLikedStyles(user.getMem_num());
         model.addAttribute("likedStyles", likedStyles);
         
-        List<String> memId = userService.selectStyleId(user.getMem_num());
-        model.addAttribute("memId", memId);
+        
+        for (StyleVO style : likedStyles) {
+            int st_num = style.getSt_num();
+            String profileId = userService.selectProfileId(st_num);
+            
+            model.addAttribute("profileId", profileId);
+        }
         
         //likedStyles 페이지로 이동
         return "userLikedStyles";
@@ -296,7 +318,7 @@ public class UserController {
 	 * =========================== 좋아요 사진 ===========================
 	 */
 	@GetMapping("/user/StyleImageView.do")
-	public String StyleImageView(@RequestParam int st_num, Model model) {
+	public String styleImageView(@RequestParam int st_num, Model model) {
 	    StyleVO StyleVO = userService.selectStyle(st_num);
 			
 	    model.addAttribute("imageFile", StyleVO.getSt_photo1());
@@ -306,10 +328,88 @@ public class UserController {
 	}
 	
 	/*
-	 * =========================== 좋아요 작성자 ===========================
+	 * =========================== 좋아요 작성자 프로필 사진 ===========================
 	 */
-
+	@GetMapping("user/ProfileImageView.do")
+	public String profileImageView(@RequestParam int st_num, Model model, HttpServletRequest request) {
+		MemberVO memberVO = userService.selectProfile(st_num);
+		
+		if(memberVO==null || memberVO.getMem_photo_name()==null) {
+			//기본 이미지 읽기
+			byte[] readbyte = FileUtil.getBytes(
+					      request.getServletContext().getRealPath(
+					    		                "/image_bundle/face.png"));
+			model.addAttribute("imageFile", readbyte);
+			model.addAttribute("filename", "face.png");
+		}else {//업로드한 프로필 사진이 있는 경우
+			model.addAttribute("imageFile", memberVO.getMem_photo());
+			model.addAttribute("filename", memberVO.getMem_photo_name());
+		}		
+		return "imageView";
+	}
     
+	/*========================
+	 * 스타일 좋아요
+	 *========================*/
+	//좋아요 읽기
+	@RequestMapping("/user/getStyleFav.do")
+	@ResponseBody
+	public Map<String,Object> getFav(StyleFavVO fav, HttpSession session){
+		log.debug("<<스타일 좋아요 읽기 - StyleFavVO>> : " + fav);
+		
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {//로그인이 되지 않은 상태
+			mapJson.put("status", "noFav");
+		}else {
+			//로그인된 회원번호 셋팅
+			fav.setMem_num(user.getMem_num());
+			
+			StyleFavVO styleFav = userService.selectFav(fav);
+			if(styleFav!=null) {
+				mapJson.put("status", "yesFav");
+			}else {
+				mapJson.put("status","noFav");
+			}
+		}
+		mapJson.put("count", userService.selectFavCount(
+                fav.getSt_num()));
+		
+		return mapJson;
+	}
+	//좋아요 등록/삭제
+	@RequestMapping("/user/writeStyleFav.do")
+	@ResponseBody
+	public Map<String,Object> writeFav(StyleFavVO fav,HttpSession session){
+		log.debug("<<스타일 좋아요 등록/삭제 - StyleFavVO>> : " + fav);
+		
+		Map<String,Object> mapJson = new HashMap<String,Object>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user==null) {
+			mapJson.put("result", "logout");
+		}else {
+			//로그인된 회원번호 셋팅
+			fav.setMem_num(user.getMem_num());
+			
+			StyleFavVO styleFav = userService.selectFav(fav);
+			if(styleFav!=null) {//등록한 좋아요가 있으면 삭제
+				userService.deleteFav(styleFav.getStfav_num());
+				
+				mapJson.put("result", "success");
+				mapJson.put("status", "noFav");
+			}else {//등록한 좋아요가 없으면 등록
+				userService.insertFav(fav);
+				
+				mapJson.put("result", "success");
+				mapJson.put("status", "yesFav");
+			}
+			mapJson.put("count", userService.selectFavCount(
+					                          fav.getSt_num()));
+		}
+		return mapJson;
+	}
     /*
      * =========================== 내 정보 - 로그인 정보 ===========================
      */
@@ -346,7 +446,24 @@ public class UserController {
         
         return "success";
     }
-
+    
+    //비밀번호 변경
+    @PostMapping("/user/updatePassword")
+    @ResponseBody
+    public String updatePassword(@RequestParam("newPassword") String newPassword, HttpSession session) {
+    	//로그인된 사용자 정보 가져오기
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        
+        //회원 정보 조회
+        MemberVO member = userService.selectMember(user.getMem_num());
+    	
+        member.setMem_passwd(newPassword);
+        
+    	userService.updatePassword(member);
+    
+        return "success"; 
+    }
+    
     //전화번호 변경
     @PostMapping("/user/updatePhoneNumber")
     @ResponseBody
@@ -363,30 +480,23 @@ public class UserController {
     	userService.updatePhoneNumber(member);
         return "success";
     }
-        
-    //주소 변경
-    @PostMapping("/user/saveAddress")
-    @ResponseBody
-    public String saveAddress(@RequestParam String zipcode,
-                              @RequestParam String address1,
-                              @RequestParam String address2, HttpSession session) {
-    	//로그인된 사용자 정보 가져오기
+    
+    /*
+     * =========================== 내 정보 - 프로필 관리 ===========================
+     */
+    @GetMapping("/user/userProfileInfo.do")
+    public String ProfileInfo(HttpSession session, Model model) {
+        //로그인된 사용자 정보 가져오기
         MemberVO user = (MemberVO) session.getAttribute("user");
-        
+
         //회원 정보 조회
         MemberVO member = userService.selectMember(user.getMem_num());
-        	
-        //회원 정보에 새로운 주소 설정
-        member.setMem_zipcode(zipcode);
-        member.setMem_address1(address1);
-        member.setMem_address2(address2);
 
-        if(member.getMem_zipcode() == null) {
-        	userService.addShippingAddress(member);
-        }else {
-        	userService.updateShippingAddress(member);
-        }        
-        return "success";
+        //회원 정보 Model에 추가
+        model.addAttribute("member", member);
+
+        //action 파라미터가 없거나 잘못된 값일 경우 기본 페이지로 이동
+        return "userProfileInfo";
     }
     
     //닉네임 변경
@@ -430,13 +540,30 @@ public class UserController {
         }
         return "success";
     }
-
-    //비밀번호 변경
-    @PostMapping("/user/updatePassword")
+    
+    //주소 변경
+    @PostMapping("/user/saveAddress")
     @ResponseBody
-    public String updatePassword(@ModelAttribute MemberVO member) {
-        userService.updatePassword(member);
-        return "success"; 
+    public String saveAddress(@RequestParam String zipcode,
+                              @RequestParam String address1,
+                              @RequestParam String address2, HttpSession session) {
+    	//로그인된 사용자 정보 가져오기
+        MemberVO user = (MemberVO) session.getAttribute("user");
+        
+        //회원 정보 조회
+        MemberVO member = userService.selectMember(user.getMem_num());
+        	
+        //회원 정보에 새로운 주소 설정
+        member.setMem_zipcode(zipcode);
+        member.setMem_address1(address1);
+        member.setMem_address2(address2);
+
+        if(member.getMem_zipcode() == null) {
+        	userService.addShippingAddress(member);
+        }else {
+        	userService.updateShippingAddress(member);
+        }        
+        return "success";
     }
     
 	//주소 변경

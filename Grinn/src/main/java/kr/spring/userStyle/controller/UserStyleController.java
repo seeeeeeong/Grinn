@@ -77,11 +77,6 @@ public class UserStyleController {
 	        List<StyleVO> userStyles = userStyleService.selectStyle(memNum);
 	        model.addAttribute("userStyles", userStyles);
 
-	        List<Integer> followers = userStyleService.getFollowers(memNum);
-	        List<Integer> followings = userStyleService.getFollowings(memNum);
-	        model.addAttribute("followers", followers);
-	        model.addAttribute("followings", followings);
-
 	        int followerCount = userStyleService.getFollowerCount(memNum);
 	        int followingCount = userStyleService.getFollowingCount(memNum);
 	        model.addAttribute("followerCount", followerCount);
@@ -99,11 +94,6 @@ public class UserStyleController {
 
 	        List<StyleVO> userStyles = userStyleService.selectStyle(memNum);
 	        model.addAttribute("userStyles", userStyles);
-
-	        List<Integer> followers = userStyleService.getFollowers(memNum);
-	        List<Integer> followings = userStyleService.getFollowings(memNum);
-	        model.addAttribute("followers", followers);
-	        model.addAttribute("followings", followings);
 
 	        int followerCount = userStyleService.getFollowerCount(memNum);
 	        int followingCount = userStyleService.getFollowingCount(memNum);
@@ -244,4 +234,49 @@ public class UserStyleController {
             return "follow"; // 팔로우 성공 응답
         }
     }
+	
+	
+	@GetMapping("/user/viewFollowerProfile.do")
+	public String followerProfileView(@RequestParam int mem_num, Model model, HttpServletRequest request) {
+		MemberVO memberVO = userStyleService.selectFollower(mem_num);
+		
+		if(memberVO.getMem_photo_name()==null) {
+			//기본 이미지 읽기
+			byte[] readbyte = FileUtil.getBytes(
+					      request.getServletContext().getRealPath(
+					    		                "/image_bundle/face.png"));
+			model.addAttribute("imageFile", readbyte);
+			model.addAttribute("filename", "face.png");
+		}else {//업로드한 프로필 사진이 있는 경우
+			model.addAttribute("imageFile", memberVO.getMem_photo());
+			model.addAttribute("filename", memberVO.getMem_photo_name());
+		}
+
+		return "imageView";
+	}
+	
+	//팔로워 목록
+	@PostMapping("/user/getFollower")
+    @ResponseBody
+    public String getFollower(@RequestParam("mem_num") int mem_num, Model model) {
+        MemberVO member = userStyleService.selectFollower(mem_num);
+		
+		model.addAttribute("member_id", member.getMem_id());
+        model.addAttribute("member_nickname", member.getMem_nickname());
+		
+        return "success";
+    }
+	
+	//팔로잉 목록
+	@PostMapping("/user/getFollowing")
+    @ResponseBody
+    public String getFollowing(@RequestParam("mem_num") int mem_num, Model model) {
+        MemberVO member = userStyleService.selectFollowing(mem_num);
+		
+		model.addAttribute("member_id", member.getMem_id());
+        model.addAttribute("member_nickname", member.getMem_nickname());
+		
+        return "success";
+    }
+	
 }

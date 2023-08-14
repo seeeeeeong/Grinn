@@ -11,6 +11,7 @@ import kr.spring.user.dao.UserMapper;
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
 
@@ -122,10 +123,6 @@ public class UserServiceImpl implements UserService{
 		return userMapper.selectStyle(st_num);
 	}
 
-	@Override
-	public List<String> selectStyleId(Integer mem_num) {
-		return userMapper.selectStyleId(mem_num);
-	}
 
 	@Override
 	public int purchasedCount(Integer mem_num) {
@@ -190,6 +187,52 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int selectFavoriteItemsCount(Integer mem_num) {
 		return userMapper.selectFavoriteItemsCount(mem_num);
+	}
+
+	@Override
+	public MemberVO selectProfile(Integer st_num) {
+		return userMapper.selectProfile(st_num);
+	}
+
+	@Override
+	public String selectProfileId(Integer st_num) {
+		return userMapper.selectProfileId(st_num);
+	}
+
+	@Override
+	public StyleFavVO selectFav(StyleFavVO fav) {
+		return userMapper.selectFav(fav);
+	}
+
+	@Override
+	public void insertFav(StyleFavVO fav) {
+		userMapper.insertFav(fav);
+	}
+
+	@Override
+	public void deleteFav(Integer stfav_num) {
+		userMapper.deleteFav(stfav_num);
+	}
+
+	@Override
+	public void deleteFavByStNum(Integer st_num) {
+		userMapper.deleteFavByStNum(st_num);
+	}
+
+	@Override
+	public int selectFavCount(Integer st_num) {
+		return userMapper.selectFavCount(st_num);
+	}
+
+	@Override
+	public void deleteProfile(Integer mem_num) {
+		userMapper.deleteProfile(mem_num);
+	}
+
+	@Override
+	public boolean checkProfileImage(Integer mem_num) {
+		String memPhoto = userMapper.checkProfileImage(mem_num);
+        return memPhoto != null && !memPhoto.isEmpty();
 	}
 
 }

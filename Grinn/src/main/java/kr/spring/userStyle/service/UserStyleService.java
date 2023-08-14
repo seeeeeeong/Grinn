@@ -3,6 +3,7 @@ package kr.spring.userStyle.service;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleFavVO;
@@ -42,10 +43,10 @@ public interface UserStyleService {
     public boolean isFollowing(Integer to_user, Integer from_user);
 
     //팔로워 목록 조회
-    public List<Integer> getFollowers(@Param("to_user") Integer toUser);
-
+    public MemberVO selectFollower(Integer mem_num);
+    
     //팔로잉 목록 조회
-    public List<Integer> getFollowings(@Param("from_user") Integer fromUser);
+    public MemberVO selectFollowing(Integer mem_num);
     
     //팔로워 수 조회
     public int getFollowerCount(Integer to_user);

@@ -63,6 +63,16 @@
   margin-top: 30px;
   margin-bottom: 200px;  
 }
+
+.text-center {
+	text-align: center;
+}
+
+.no-favorite-items {
+    margin-top: 20px; /* 위쪽 간격 조절 */
+    font-size: 12px;
+    opacity: 0.3;
+}
 </style>
 <!-- 관심상품 시작 -->
 <div class="page-main">
@@ -71,6 +81,13 @@
 
 	
 <div class="favoirte-items">
+	<c:choose>
+    <c:when test="${empty favoriteItems}">
+      <div class="text-center">
+      <div class="no-favorite-items">관심 상품이 없습니다.<br><br><br><br><br><br><br><br></div>
+      </div>
+    </c:when>
+    <c:otherwise>
   <c:forEach items="${favoriteItems}" var="item">
     <div class="favorite-item bordered-item">
        <a href="/item/itemDetail.do?item_num=${item.item_num}">
@@ -90,6 +107,8 @@
       </a>
     </div>
   </c:forEach>
+  </c:otherwise>
+  </c:choose>
 </div>
 
 <!-- 관심상품 끝 -->

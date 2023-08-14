@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
 
@@ -25,6 +26,14 @@ public interface UserMapper {
 	//프로필 이미지 업데이트
 	@Update("UPDATE member_detail SET mem_photo=#{mem_photo},mem_photo_name=#{mem_photo_name} WHERE mem_num=#{mem_num}")
 	public void updateProfile(MemberVO member);
+	
+	//이미지 삭제
+	@Delete("UPDATE member_detail SET mem_photo=null, mem_photo_name=null WHERE mem_num=#{mem_num}")
+	public void deleteProfile(Integer mem_num);
+	
+	//이미지 존재 여부 확인
+	@Select("SELECT mem_photo FROM member_detail WHERE mem_num=#{mem_num}")
+	public String checkProfileImage(Integer mem_num);
 	
 	//회원탈퇴
 	@Update("UPDATE member SET mem_auth=0 WHERE mem_num=#{mem_num}")
@@ -113,7 +122,7 @@ public interface UserMapper {
 	public List<ItemVO> saledItems(Integer mem_num);
 	
 	//판매날짜
-	@Select("SELECT td.trade_regdate FROM sale_bid sb JOIN trade_detail td ON sb.item_num = td.item_num WHERE sb.mem_num = #{mem_num}")
+	@Select("SELECT sb.sale_regdate FROM sale_bid sb JOIN trade_detail td ON sb.item_num = td.item_num WHERE sb.mem_num = #{mem_num}")
 	public List<Date> saledDate(Integer mem_num);
 	
 	//판매상태(거래 상태)
@@ -142,10 +151,32 @@ public interface UserMapper {
 	//좋아요한 게시물의 st_num에 해당하는 style 테이블의 정보 가져오기
 	@Select("SELECT * FROM style WHERE st_num = #{st_num}")
 	public StyleVO selectStyle(Integer st_num);
+		
+	//좋아요한 게시물 작성자의 프로필 사진
+	@Select("SELECT sd.mem_photo, sd.mem_photo_name FROM style s JOIN member_detail sd ON s.mem_num = sd.mem_num WHERE s.st_num = #{st_num}")
+	public MemberVO selectProfile(Integer st_num);
 	
-	//좋아요한 게시물의 작성자 정보 가져오기
-	@Select("SELECT DISTINCT m.mem_id FROM member m JOIN member_detail md ON m.mem_num = md.mem_num JOIN style_fav sf ON m.mem_num = sf.mem_num JOIN style s ON sf.st_num = s.st_num WHERE sf.mem_num = #{mem_num}")
-	public List<String> selectStyleId(Integer mem_num);
+	//좋아요한 게시물 작성자의 아이디
+	@Select("SELECT m.mem_id FROM style s JOIN member m ON s.mem_num = m.mem_num WHERE s.st_num = #{st_num}")
+	public String selectProfileId(Integer st_num);
+
+	//좋아요 기능
+	@Select("SELECT * FROM style_fav WHERE st_num=#{st_num} AND mem_num=#{mem_num}")
+	public StyleFavVO selectFav(StyleFavVO fav);
+	
+	//좋아요 개수
+	@Select("SELECT COUNT(*) FROM style_fav WHERE st_num=#{st_num}")
+	public int selectFavCount(Integer st_num);
+	
+	//좋아요
+	@Insert("INSERT INTO style_fav (stfav_num,mem_num,st_num) VALUES (style_fav_seq.nextval,#{mem_num},#{st_num})")
+	public void insertFav(StyleFavVO fav);
+	
+	//좋아요 취소
+	@Delete("DELETE FROM style_fav WHERE stfav_num=#{stfav_num}")
+	public void deleteFav(Integer stfav_num);
+	@Delete("DELETE FROM style_fav WHERE st_num=#{st_num}")
+	public void deleteFavByStNum(Integer st_num);
 	
     //패널티 통합 점수
     @Select("SELECT pe_total FROM penalty WHERE mem_num = #{mem_num}")

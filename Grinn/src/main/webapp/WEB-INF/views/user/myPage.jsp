@@ -193,6 +193,7 @@
     margin: 20px 0;
     border-radius: 5px;
 }
+
 </style>  
 <div class="page-main">
 	<!-- 회원정보 시작 -->
@@ -376,7 +377,7 @@
 <c:choose>
     <c:when test="${empty favoriteItems}">
         <div class="favorite-item" style="display: flex; align-items: center; justify-content: center; width: 100%;">
-    		<p style="font-size: 12px; opacity: 0.3;">관심 상품이 없습니다.</p><br><br>
+    		<p style="font-size: 12px; opacity: 0.3;">관심 상품이 없습니다.<br><br><br><br><br><br><br><br><br><br></p>
 		</div>
 	</c:when>
     <c:otherwise>

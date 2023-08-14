@@ -14,14 +14,6 @@
     	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>                                        
     </definition>
     
-     <definition name="userPurchasedItems" extends="myPage">
-    	<put-attribute name="title" value="구매내역"/>
-	    <put-attribute name="body" value="/WEB-INF/views/user/userPurchasedItems.jsp"/>
-    </definition>
-     <definition name="userSoldItems" extends="myPage">
-    	<put-attribute name="title" value="판매내역"/>
-	    <put-attribute name="body" value="/WEB-INF/views/user/userSoldItems.jsp"/>
-    </definition>
      <definition name="userFavoriteItems" extends="myPage">
     	<put-attribute name="title" value="관심상품"/>
 	    <put-attribute name="body" value="/WEB-INF/views/user/userFavoriteItems.jsp"/>
@@ -33,6 +25,14 @@
      <definition name="userLoginInfo" extends="myPage">
     	<put-attribute name="title" value="로그인정보"/>
 	    <put-attribute name="body" value="/WEB-INF/views/user/userLoginInfo.jsp"/>
+    </definition>
+    <definition name="userProfileInfo" extends="myPage">
+    	<put-attribute name="title" value="프로필관리"/>
+	    <put-attribute name="body" value="/WEB-INF/views/user/userProfileInfo.jsp"/>
+    </definition>
+    <definition name="userAddressBook" extends="myPage">
+    	<put-attribute name="title" value="주소록"/>
+	    <put-attribute name="body" value="/WEB-INF/views/user/userAddressBook.jsp"/>
     </definition>
      <definition name="userPenaltyInfo" extends="myPage">
     	<put-attribute name="title" value="패널티"/>

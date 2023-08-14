@@ -64,12 +64,12 @@ public interface UserStyleMapper {
     public int isFollowing(Integer to_user, Integer from_user);
     
     //팔로워 목록 조회
-    @Select("SELECT from_user FROM follow WHERE to_user = #{to_user}")
-    public List<Integer> getFollowers(@Param("to_user") Integer toUser);
+    @Select("SELECT m.mem_id, md.mem_photo, md.mem_photo_name, md.mem_nickname FROM follow f JOIN member m ON f.from_user = m.mem_num JOIN member_detail md ON f.from_user = md.mem_num WHERE f.to_user = #{mem_num}")
+    public MemberVO selectFollower(Integer mem_num);
     
     //팔로잉 목록 조회
-    @Select("SELECT to_user FROM follow WHERE from_user = #{from_user}")
-    public List<Integer> getFollowings(@Param("from_user") Integer fromUser);
+    @Select("SELECT m.mem_id, md.mem_photo, md.mem_photo_name, md.mem_nickname FROM follow f JOIN member m ON f.to_user = m.mem_num JOIN member_detail md ON f.to_user = md.mem_num WHERE f.from_user = #{mem_num}")
+    public MemberVO selectFollowing(Integer mem_num);
     
     //팔로워 수 조회
     @Select("SELECT COUNT(*) FROM follow WHERE to_user = #{to_user}")
