@@ -85,6 +85,7 @@
 		  market_startDate = #{market_startDate},
 		  market_endDate = #{market_endDate},
 		  place_name = #{place_name}, 
+		  market_type = #{market_type},
 		  booth_count = #{booth_count}, 
 		  booth_fee = #{booth_fee}, 
 		  <if test="market_poster.length>0">

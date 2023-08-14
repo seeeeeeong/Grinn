@@ -6,6 +6,7 @@
 
 <tiles-definitions>
     <!-- 아래 태그 정보를 작업에 맞게 수정해서 사용하세요 -->
+    <!-- 이용자 -->
     <definition name="marketSelect" extends="main">
     	<put-attribute name="title" value="예약 메인"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/marketSelect.jsp"/>
@@ -25,6 +26,7 @@
     </definition>
     
     <!-- 관리자 -->
+    <!-- 플리마켓 -->
     <definition name="adminBoothList" extends="admin">
     	<put-attribute name="title" value="플리마켓 목록(관리자)"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminBoothList.jsp"/>
@@ -38,6 +40,17 @@
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminBoothUpdate.jsp"/>
     </definition>
     
+    <!-- 페널티 -->
+    <definition name="adminPenaltyWrite" extends="admin">
+    	<put-attribute name="title" value="페널티 등록(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/penalty/adminPenaltyWrite.jsp"/>
+    </definition>
+    <definition name="adminPenaltyList" extends="admin">
+    	<put-attribute name="title" value="페널티 목록(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/penalty/adminPenaltyList.jsp"/>
+    </definition>
+    
+    <!-- 프로모션 -->
     <definition name="adminWrite" extends="admin">
     	<put-attribute name="title" value="프로모션 등록(관리자)"/>
 	    <put-attribute name="body" value="/WEB-INF/views/promotion/adminWrite.jsp"/>

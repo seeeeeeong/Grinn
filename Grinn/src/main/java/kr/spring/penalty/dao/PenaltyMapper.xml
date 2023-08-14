@@ -1,4 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.penalty.dao.PenaltyMapper">
+	<resultMap type="penaltyVO" id="penaltyMap">
+		<result property="memberVO.mem_id" column="mem_id"></result>
+		<result property="memberVO.mem_id" column="mem_auth"></result>
+	</resultMap>
+	
+	<insert id="insertPenalty" parameterType="penaltyVO">
+		INSERT INTO penalty (
+		  pe_num,
+		  mem_num,
+		  pe_service_type,
+		  pe_score,
+		  pe_type)
+		VALUES (
+		  penalty_seq.nextval,
+		  #{mem_num},
+		  #{pe_service_type},
+		  #{pe_score},
+		  #{pe_type})
+	</insert>
+	
+	<sql id="penaltySearch">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyword == 1">
+					AND mem_id LIKE '%' || #{keyword} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 전체/검색 레코드 수 -->
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT 
+		  COUNT(*)
+		FROM
+		  penalty
+		<include refid="penaltySearch"></include>
+	</select>
+	<!-- 전체/검색 레코드 목록 -->
+	<select id="selectList" parameterType="map" resultType="penaltyVO">
+	  SELECT 
+	    *
+	  FROM (SELECT 
+	          a.*, 
+	          rownum rnum
+	        FROM (SELECT 
+	                *
+	              FROM penalty
+	              <include refid="penaltySearch"></include>
+	              ORDER BY pe_num DESC)a)
+	  <![CDATA[
+	  WHERE rnum >= #{start} AND rnum <= #{end}
+	  ]]>
+	</select>
 </mapper>
