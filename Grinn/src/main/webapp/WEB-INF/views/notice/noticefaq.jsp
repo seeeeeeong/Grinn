@@ -24,10 +24,13 @@
 <div class="page-main">
 	<div class="page_body">
 		<h2 id="ha">자주묻는질문</h2>
-		<!-- 검색부분 추가예정 -->
-		<div class="search_faq_div">
-			<input type="text" placeholder="검색" title="검색창" class="search_faq_input">
-		</div>
+		<!-- 검색부분 -->
+		<form action="noticefaq.do" id="search_form" method="get">
+			<div class="search_faq_div">
+				<input type="text" placeholder="검색" title="검색창" class="search_faq_input">
+			</div>
+		</form>
+		<!-- 자주묻는질문 시작 -->
 		<div class="categories">
 			<div class="category_list"><!-- 자주묻는질문 카테고리별 선택기능 -->
 				<table class="category_list_items">

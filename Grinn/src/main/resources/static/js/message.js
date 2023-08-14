@@ -336,12 +336,6 @@ $(function(){
 		$('#search_area').empty();
 		$('#talk_member').empty();
 		
-		$(".fixed").css({
-		    "position":"static"
-	  	});
-	  	$("#main_body").css({
-		  "padding": "0 0 30px 0"
-	  	});
 	});
 	//채팅방 추가 멤버 정보 전송
 	$('#new_form').submit(function(event){

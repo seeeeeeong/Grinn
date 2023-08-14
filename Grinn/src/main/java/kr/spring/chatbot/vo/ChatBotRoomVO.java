@@ -11,8 +11,9 @@ import lombok.ToString;
 @ToString
 public class ChatBotRoomVO {
 	private int croom_num; //방번호
-	private int mem_num; //회원번호
-	private String mem_id; //회원아이디
 	private String croom_question; //회원의 질문
 	private String croom_answer; //답변
+	
+	private ChatBotVO chatbotVO; //챗봇 메세지 VO
+	private ChatBotAnswerVO chatbotAnswerVO; //챗봇 답변 VO
 }

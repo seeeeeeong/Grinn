@@ -23,7 +23,6 @@ public interface NoticeMapper {
 	public int selectRowCount_faq(Map<String, Object> map);
 	
 	//카테고리별 선택-1
-	
 	public List<NoticeVO> selectCategoryOne(Map<String, Object> map);
 	@Select("SELECT * FROM notice WHERE no_status=2 AND no_category=2")
 	public List<NoticeVO> selectCategoryTwo(Map<String, Object> map);

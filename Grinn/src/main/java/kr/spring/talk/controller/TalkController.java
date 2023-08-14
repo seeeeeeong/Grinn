@@ -94,7 +94,7 @@ public class TalkController {
 	
 	/* ====================== 채팅방 목록 ====================== */
 	@RequestMapping("/talk/talkList.do")
-	public String chatList(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+	public String chatList(@RequestParam(value="talkroom_num",defaultValue="0")int talkroom_num,@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 										String keyword, HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
@@ -116,6 +116,29 @@ public class TalkController {
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page.getPage());
+		model.addAttribute("talkroom_num",talkroom_num);
+		/**/
+		String chatMember = ""; //채팅 멤버
+		String room_name = ""; //채팅방 이름
+		
+		List<TalkMemberVO> list2 = talkService.selectTalkMember(talkroom_num);
+		for(int i=0; i<list2.size(); i++) {
+			TalkMemberVO vo = list2.get(i);
+			if(user.getMem_num()==vo.getMem_num()) {
+				//로그인한 회원의 채팅방 이름 셋팅
+				room_name = vo.getRoom_name();
+			}
+			//채팅 멤버 저장
+			if(i > 0) chatMember += ",";
+			chatMember += list2.get(i).getMem_id();
+		}
+		
+		//채팅 멤버 id
+		model.addAttribute("chatMember", chatMember);
+		//채팅 멤버수
+		model.addAttribute("chatCount", list2.size());
+		//로그인한 회원의 채팅방 이름
+		model.addAttribute("room_name", room_name);		
 		
 		return "talkList";
 	}
@@ -148,7 +171,7 @@ public class TalkController {
 		//로그인한 회원의 채팅방 이름
 		model.addAttribute("room_name", room_name);			
 		
-		return "talkDetail";
+		return "talkList";
 	}
 	//채팅 메시지 전송
 	@RequestMapping("/talk/writeTalk.do")

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.chatbot.dao.ChatBotMapper">
-
+	
+	<!-- 챗봇메세지 등록 -->
+	<insert id="insertChatBot" parameterType="chatbotVO">
+		INSERT INTO chatbot(c_num, croom_num, mem_num, message)
+		VALUES(#{c_num},#{croom_num},#{mem_num},#{message})
+	</insert>
+	
+	<!-- 챗봇메세지 읽기 -->
+	
 </mapper>

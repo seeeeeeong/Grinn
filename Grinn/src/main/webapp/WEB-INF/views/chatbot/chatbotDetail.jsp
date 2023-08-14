@@ -17,7 +17,7 @@
 				</div>
 			</div>
 			<div class="header_btn">
-				<button class="exit_btn" style="color:white;">나가기</button>
+				<button id="exit_croom" class="exit_btn" style="color:white;">나가기</button>
 			</div>
 		</div>
 		<!-- 챗봇 타이틀 끝 -->
@@ -53,10 +53,10 @@
 					</div>
 					<!-- 보내기 버튼 -->
 					<div class="frame_attach">
-						<a><!-- 이미지?? -->
+						<button onclick="location.href='chatbotDetail.do'">
 							<img src="${pageContext.request.contextPath}/images/how_to_send.jpg" width="50" class="sendBtn">
 							<span class="blind">입력 완료</span>
-						</a>
+						</button>
 					</div>
 				</div>
 			</div>
