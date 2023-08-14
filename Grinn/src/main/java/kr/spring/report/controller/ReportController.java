@@ -27,6 +27,7 @@ import kr.spring.style.service.StyleService;
 import kr.spring.style.vo.StyleCommentVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.util.PagingUtil;
+import kr.spring.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -202,6 +203,33 @@ public class ReportController {
 		
 		return mav;
 	}	
+	
+	//(관리자) 게시물 신고 상세
+	@RequestMapping("/report/styleReportDetail.do")
+	public ModelAndView getStyleReportDetail(@RequestParam int rst_num) {
+		
+		//신고 글 상세
+		StyleReportVO style = reportService.selectStyleReport(rst_num);
+		
+		style.setRep_com(StringUtil.useBrNoHtml(style.getRep_com()));
+		
+		return new ModelAndView("styleReportDetail","style", style);
+	}
+	
+	//(관리자) 댓글 신고 상세
+	@RequestMapping("/report/comReportDetail.do")
+	public ModelAndView getComReportDetail(@RequestParam int rcom_num, @RequestParam(value="rep_hide", defaultValue="0") int rep_hide) {
+		
+		//신고 글 상세
+		ComReportVO com = reportService.selectComReport(rcom_num);
+		
+		com.setRep_com(StringUtil.useBrNoHtml(com.getRep_com()));
+		
+		reportService.handleComReport(rcom_num, rep_hide);
+		
+		return new ModelAndView("comReportDetail","com", com);
+	}	
+	
 	
 	//신고 처리
 	

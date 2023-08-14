@@ -33,13 +33,23 @@
 	}
 </style>
 <script type="text/javascript">
+$(document).ready(function() {
+    $('#submit_btn').click(function() {
+        if ($(".rep-type").is(':checked')) {
 
+        }
+        else {
+            alert('신고 사유를 선택해주세요.');
+            return false;
+        }
+    })
+});
 </script>
 <div class="page-main">
 	<div class="style-report">
 		<form action="styleReport.do" method="post" class="style-report">
 			<div class="style-info">
-				<img src="${pageContext.request.contextPath}/image_upload/${style.st_photo1n}" width="300" height="300">
+				<img src="${pageContext.request.contextPath}/style/viewPhoto1.do?st_num=${style.st_num}" width="300" height="300">
 				<div class="except-photo">
 					<span style="font-size:15pt;"><b>${style.mem_id}</b></span><br>
 					<p style="font-size:12pt;">${style.st_phrase}</p>
@@ -58,20 +68,20 @@
 				<input type="hidden" name="reported_mem" value="${style.mem_num}">
 				<legend>신고 사유</legend>
 				<div>
-					<input type="checkbox" id="rep_1" class="rep-type" name="rep_type" value="1">
-					<label for="rep_1">선정적인 게시물</label>			
+					<input type="radio" id="rep_1" class="rep-type" name="rep_type" value="1">
+					선정적인 게시물			
 				</div>
 				<div>
-					<input type="checkbox" id="rep_2" class="rep-type" name="rep_type" value="2">
-					<label for="rep_2">관련 없는 상품 태그 또는 해시태그</label>			
+					<input type="radio" id="rep_2" class="rep-type" name="rep_type" value="2">
+					관련 없는 상품 태그 또는 해시태그			
 				</div>
 				<div>
-					<input type="checkbox" id="rep_3" class="rep-type" name="rep_type" value="3">
-					<label for="rep_3">영리목적/홍보성 게시물</label>			
+					<input type="radio" id="rep_3" class="rep-type" name="rep_type" value="3">
+					영리목적/홍보성 게시물		
 				</div>			
 				<div>
-					<input type="checkbox" id="rep_4" class="rep-type" name="rep_type" value="4">
-					<label for="rep_4">비방성 게시물</label>			
+					<input type="radio" id="rep_4" class="rep-type" name="rep_type" value="4">
+					비방성 게시물			
 				</div>			
 			</fieldset>
 			<div class="rep-com">
@@ -79,7 +89,7 @@
 			<textarea rows="4" cols="72" name="rep_com" id="rep_com"></textarea>
 			</div>
 			<div class="align-center">
-				<input type="submit" value="등록">
+				<input type="submit" value="등록" id="submit_btn">
 				<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/style/detail.do?st_num=${style.st_num}'">
 			</div>
 		</form>

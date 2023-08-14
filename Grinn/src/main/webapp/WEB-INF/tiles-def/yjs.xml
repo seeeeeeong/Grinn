@@ -29,6 +29,10 @@
     	<put-attribute name="title" value="게시글 신고 목록 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/report/styleReportList.jsp"/>
     </definition>
+    <definition name="styleReportDetail" extends="admin">
+    	<put-attribute name="title" value="게시글 신고 상세 | Grinn"/>
+	    <put-attribute name="body" value="/WEB-INF/views/report/styleReportDetail.jsp"/>
+    </definition>
    
     <definition name="commentReport" extends="main">
     	<put-attribute name="title" value="댓글 신고 | Grinn"/>
@@ -37,6 +41,10 @@
     <definition name="comReportList" extends="admin">
     	<put-attribute name="title" value="댓글 신고 목록 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/report/comReportList.jsp"/>
+    </definition>
+    <definition name="comReportDetail" extends="admin">
+    	<put-attribute name="title" value="댓글 신고 상세 | Grinn"/>
+	    <put-attribute name="body" value="/WEB-INF/views/report/comReportDetail.jsp"/>
     </definition>
 
 </tiles-definitions>

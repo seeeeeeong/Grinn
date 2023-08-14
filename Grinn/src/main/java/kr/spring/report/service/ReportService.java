@@ -26,6 +26,14 @@ public interface ReportService {
 	//댓글 신고 목록
 	public List<ComReportVO> selectListComReport(Map<String, Object> map);
 	public int selectComReportRowCount(Map<String,Object> map);
+	//신고 상세
+	//게시물 신고 상세
+	public StyleReportVO selectStyleReport(Integer rst_num);
+	//댓글 신고 상세
+	public ComReportVO selectComReport(Integer rcom_num);
 	//신고 상태 변경
-	
+	//게시물 신고 처리
+	public void handleStyleReport(Integer rst_num);
+	//댓글 신고 처리
+	public void handleComReport(Integer rcom_num, Integer rep_hide);
 }

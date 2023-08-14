@@ -49,4 +49,24 @@ public class ReportServiceImpl implements ReportService{
 		
 		return reportMapper.selectComReportRowCount(map);
 	}
+
+	@Override
+	public StyleReportVO selectStyleReport(Integer rst_num) {
+		return reportMapper.selectStyleReport(rst_num);
+	}
+
+	@Override
+	public ComReportVO selectComReport(Integer rcom_num) {
+		return reportMapper.selectComReport(rcom_num);
+	}
+
+	@Override
+	public void handleStyleReport(Integer rst_num) {
+		reportMapper.handleStyleReport(rst_num);
+	}
+
+	@Override
+	public void handleComReport(Integer rcom_num, Integer rep_hide) {
+		reportMapper.handleComReport(rcom_num, rep_hide);
+	}
 }

@@ -49,23 +49,24 @@
 				<th>피신고자ID</th>
 				<th>신고유형</th>
 				<th>게시물 공개여부</th>
-				<th>처리상황</th>
 				<th>신고 접수일</th>
 				<th>게시물</th>
 			</tr>
 			<c:forEach var="reportStyle" items="${list}">
 				<tr>
-					<td>${reportStyle.rst_num}</td>
+					<td><a href="styleReportDetail.do?rst_num=${reportStyle.rst_num}">${reportStyle.rst_num}</a></td>
 					<td>${reportStyle.report_id}</td>
 					<td>${reportStyle.reported_id}</td>
-					<td>${reportStyle.rep_type}</td>
 					<td>
-						<c:if test="${reportStyle.rep_hide == 0}">공개</c:if>
-						<c:if test="${reportStyle.rep_hide == 1}">비공개</c:if>
+						<c:if test="${reportStyle.rep_type == 1}">선정적인 게시물</c:if>
+						<c:if test="${reportStyle.rep_type == 2}">관련 없는 태그</c:if>
+						<c:if test="${reportStyle.rep_type == 3}">영리목적/홍보성</c:if>
+						<c:if test="${reportStyle.rep_type == 4}">비방성 게시물</c:if>
 					</td>
 					<td>
-						<c:if test="${reportStyle.rep_status == 0}">미처리</c:if>
-						<c:if test="${reportStyle.rep_status == 1}">처리</c:if>
+						<c:if test="${reportStyle.rep_hide == 0}">미처리</c:if>
+						<c:if test="${reportStyle.rep_hide == 1}">공개</c:if>
+						<c:if test="${reportStyle.rep_hide == 2}">비공개</c:if>
 					</td>
 					<td>${reportStyle.rep_regdate}</td>
 					<td><a href="${pageContext.request.contextPath}/style/detail.do?st_num=${reportStyle.st_num}">게시물 이동</a></td>
