@@ -15,6 +15,9 @@ public interface BookingMapper {
 	// 플리마켓 날짜 추출
 	@Select("SELECT market_startDate, market_endDate FROM market WHERE market_num = #{market_num}")
 	public int selectMarketDate(Integer market_num);
+	// 예약 중복여부 확인
+	@Select("SELECT COUNT(*) FROM booking WHERE mem_num = ${mem_num}")
+	public int checkalreadyBooked(Integer book_num);
 	// 예약 등록
 	public void insertBooking(BookingVO bookingVO);
 	// 회원 번호별 예약 액수

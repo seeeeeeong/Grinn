@@ -38,12 +38,19 @@ public class BookingController {
 	}
 	
 	// ===예약 폼===   
-	@RequestMapping("/fleamarket/booking.do")
+	@GetMapping("/fleamarket/booking.do")
 	public String getForm(@RequestParam int market_num, HttpSession session, Model model) {
 		
-		MarketVO market = marketService.selectMarket(market_num);
-		
-		model.addAttribute("market", market);
+		//로그인한 사용자의 회원번호 와 market_num 이용해서 예약했는지 여부 확인
+		// boolean, yes/no, if문 등으로 확인 후에 
+		// 이미 예약한 경우: 예약했다고 알림창을 띄우기(날짜도 알려줌?)
+		// 예약 내역이 없는 경우: 이어서
+		// String result = "no";
+		// BookingVO book = bookingService.
+		// MarketVO market = marketService.selectMarket(market_num);
+			
+		// model.addAttribute("market", market);
+		// model.addAttribute("result", result);
 		
 		return "selectDate";
 	}

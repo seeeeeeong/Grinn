@@ -17,15 +17,16 @@
 <div class="page-main">
 	<h2>프로모션 수정</h2>
 	<form:form modelAttribute="promotionVO" action="updatePromotion.do" id="promotion_update" method="post" enctype="multipart/form-data">
+		<form:hidden path="pro_num"/>
 		<form:errors element="div" cssClass="error-color"></form:errors>
 		<ul class="register-label">
 			<li>
-				<label>공개 여부</label>
+				<label for="pro_hide">공개 여부</label>
 				<form:radiobutton path="pro_hide" value="1" id="pro_hide1"/>숨김
 				<form:radiobutton path="pro_hide" value="2" id="pro_hide2"/>공개
 			</li>
 			<li>
-				<label>진행 유형</label>
+				<label for="pro_ing">진행 유형</label>
 				<form:radiobutton path="pro_ing" value="1" id="pro_ing1"/>예정
 				<form:radiobutton path="pro_ing" value="2" id="pro_ing2"/>진행중
 				<form:radiobutton path="pro_ing" value="3" id="pro_ing3"/>종료

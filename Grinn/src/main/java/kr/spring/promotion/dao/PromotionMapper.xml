@@ -72,8 +72,10 @@
 		SET 
 		  pro_name = #{pro_name},
 		  pro_content = #{pro_content},
+		  <if test="pro_photo1.length>0">
 		  pro_photo1 = #{pro_photo1},
 		  pro_photoName1 = #{pro_photoName1},
+		  </if>
 		  pro_openDate = #{pro_openDate},
 		  pro_cloDate = #{pro_cloDate},
 		  pro_ing = #{pro_ing},

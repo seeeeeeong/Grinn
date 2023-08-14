@@ -87,6 +87,14 @@
 		  place_name = #{place_name}, 
 		  booth_count = #{booth_count}, 
 		  booth_fee = #{booth_fee}, 
+		  <if test="market_poster.length>0">
+		  market_poster = #{market_poster},
+		  market_posterName = #{market_posterName},
+		  </if>
+		  <if test="market_thumbNail.length>0">
+		  market_thumbNail = #{market_thumbNail},
+		  market_thumbNailName = #{market_thumbNailName},
+		  </if>
 		  market_updateDate = sysdate 
 	    WHERE 
 	      market_num = #{market_num}
