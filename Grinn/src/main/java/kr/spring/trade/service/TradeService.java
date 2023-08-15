@@ -65,13 +65,13 @@ public interface TradeService {
 
 	// 판매 입찰 정보 등록
 	public void insertSaleBid(SaleBidVO saleBidVO);
-	
+
 	// 구매 입찰 번호 조회
 	public int selectPurchaseBidNumber(Integer mem_num, Integer item_num, Integer purchase_price);
-		
+
 	// 판매 입찰 번호 조회
 	public int selectSaleBidNumber(Integer mem_num, Integer item_num, Integer sale_price);
-		
+
 	// 구매 입찰 정보 삭제
 	public void deletePurchaseBid(Integer purchase_num);
 
@@ -83,41 +83,75 @@ public interface TradeService {
 
 	// 거래 정보 저장
 	public void insertTrade(TradeVO trade);
-	
+
 	// 마이페이지 거래 정보 조회
-	public List<TradeVO> selectTradePurchaseInfo(Map<String,Object> map);
-	public List<TradeVO> selectTradeSaleInfo(Map<String,Object> map);
-	
+	public List<TradeVO> selectTradePurchaseInfo(Map<String, Object> map);
+
+	public List<TradeVO> selectTradeSaleInfo(Map<String, Object> map);
+
 	// 마이페이지 거래 전체 정보 개수
 	public int selectTradePurchaseCount(Integer mem_num);
+
 	public int selectTradePurchaseQuitCount(Integer mem_num);
+
 	public int selectTradeSaleCount(Integer mem_num);
+
 	public int selectTradeSaleQuitCount(Integer mem_num);
-	
+
 	// 마이페이지 구매입찰 정보 조회
 	public List<PurchaseBidVO> selectPurchaseBidInfo(Map<String, Object> map);
-	
+
 	// 마이페이지 구매입찰 전체 개수
 	public int selectPurchaseBidCount(Integer mem_num);
-	
+
 	// 마이페이지 판매입찰 정보 조회
 	public List<SaleBidVO> selectSaleBidInfo(Map<String, Object> map);
 
 	// 마이페이지 판매입찰 전체 개수
-	public int selectSaleBidCount(Integer mem_num);	
-	
+	public int selectSaleBidCount(Integer mem_num);
+
 	// 마이페이지 판매 거래 상태 수정
 	public void updateTradeStateToSend(Integer trade_num);
-	
+
 	// 거래 정보 개수
 	public int getTradeListCount();
-	
+
 	// 거래 정보 조회
 	public List<TradeVO> getTradeList(Map<String, Object> map);
-	
+
 	// 거래 상세 정보 조회
 	public TradeVO getTradeDetail(Integer trade_num);
 
 	// 거래 상태 수정
 	public void updateTradeState(Integer trade_num, Integer trade_state);
+
+	// 관리자 포인트 조회 (29)
+	public int adminGetPoint(Integer mem_num);
+
+	// 구매 입찰, 즉시 구매 버튼 클릭 시 관리자에게 포인트 전송
+	public void executePayment(Integer total);
+
+	// 포인트 전송시 내 포인트 차감
+	public void spendPoint(Integer mem_num, Integer total);
+
+	// 즉시 구매시 판매자에게 포인트 입금
+	public void sendPointToSeller(Integer mem_num, Integer total);
+
+	// 판매자에게 거래가 입금을 위한 데이터 조회
+	public TradeVO getTradeDetailForDeposit(Integer trade_num);
+
+	// 판매자에게 거래가 입금 후 관리자 포인트 차감(29)
+	public void adminWithdraw(Integer total, Integer mem_num);
+
+	// 즉시 구매시 등록된 입찰 정보를 삭제하기 위한 구매입찰 정보 조회
+	public PurchaseBidVO selectPurchaseBidForDirectBuy(Integer mem_num, Integer item_num, Integer item_sizenum);
+
+	// 즉시 판매시 등록된 입찰 정보를 확인하기 위한 판매입찰 정보 조회
+	public SaleBidVO selectSaleBidForDirectSell(Integer mem_num, Integer item_num, Integer item_sizenum);
+
+	// 즉시 구매시 등록된 구매입찰이 존재할 경우 사용자 포인트 반환
+	public void sendPointToBuyer(Integer mem_num, Integer total);
+
+	// 즉시 구매시 등록된 구매입찰이 존재할 경우 관리자 포인트 차감
+	public void cancelExecutePayment(Integer total);
 }

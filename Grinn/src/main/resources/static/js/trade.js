@@ -219,8 +219,8 @@ $(function(){
 							output += '<form action="/purchase/purchasePaymentDirect.do" method="post" id="newForm">';
 							output += '<input type="hidden" name="item_num" id="item_num" value="'+param.item_num+'">';
 							output += '<input type="hidden" name="item_sizenum" id="item_sizenum" value="'+param.item_sizenum+'">';
-							output += '<input type="hidden" name="sale_price" id="sale_price" value="'+param.purchase_price+'">';
-							output += '<input type="hidden" name="trade_price" id="trade_price" value="'+total+'">';
+							output += '<input type="hidden" name="trade_price" id="trade_price" value="'+param.purchase_price+'">';
+							output += '<input type="hidden" name="total" id="total" value="'+total+'">';
 							output += '<input type="hidden" name="trade_zipcode" id="trade_zipcode" value="'+param.member.mem_zipcode+'">';
 							output += '<input type="hidden" name="trade_address1" id="trade_address1" value="'+param.member.mem_address1+'">';
 							output += '<input type="hidden" name="trade_address2" id="trade_address2" value="'+param.member.mem_address2+'">';

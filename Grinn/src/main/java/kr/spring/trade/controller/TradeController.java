@@ -189,9 +189,20 @@ public class TradeController {
 			model.addAttribute("url", "../member/login.do");
 		} else {
 			pbVO.setMem_num(user.getMem_num());
-			tradeService.insertPurchaseBid(pbVO);
-			// total로 결제 금액 결제 진행 하기
-
+			// total로 결제 금액 결제 진행 하기 **************************************************************
+			MemberVO member = memberService.selectMember(user.getMem_num());
+			
+			if(member.getMem_point() - total < 0) {
+				model.addAttribute("message","잔액이 부족합니다. 금액을 충전해주세요.");
+				model.addAttribute("url","../item/itemList.do");
+				return "common/resultView";
+			}else {
+				tradeService.executePayment(total); // 관리자에게 입금
+				// 포인트 차감 진행.
+				tradeService.spendPoint(user.getMem_num(), total);
+				tradeService.insertPurchaseBid(pbVO);
+				
+			}
 			model.addAttribute("message", "[구매입찰] 결제가 완료되었습니다.");
 			model.addAttribute("url", "../item/itemList.do");
 		}
@@ -201,33 +212,62 @@ public class TradeController {
 
 	// 즉시구매 - 결제하기 버튼 클릭 시
 	@PostMapping("/purchase/purchasePaymentDirect.do")
-	public String paymentDirectFinish(TradeVO tradeVO, @RequestParam int sale_price, Model model, HttpSession session) {
+	public String paymentDirectFinish(TradeVO tradeVO, @RequestParam int total, Model model, HttpSession session) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 
 		if (user == null) {
 			model.addAttribute("message", "로그인이 필요합니다!");
 			model.addAttribute("url", "../member/login.do");
-		} else {
-			int seller_num = tradeService.selectSellerNum(tradeVO.getItem_num(), tradeVO.getItem_sizenum(), sale_price);
+		}else{
+			int seller_num = tradeService.selectSellerNum(tradeVO.getItem_num(), tradeVO.getItem_sizenum(), tradeVO.getTrade_price());
 			if(seller_num == user.getMem_num()) {
 				model.addAttribute("message","본인이 등록한 입찰 정보로 즉시 구매 할 수 없습니다.");
 				model.addAttribute("url","../item/itemList.do");
+				return "common/resultView";
 			}else {
+				MemberVO member = memberService.selectMember(user.getMem_num());
+				
+				if(total > member.getMem_point()) {
+					model.addAttribute("message","잔액이 부족합니다. 금액을 충전해주세요.");
+					model.addAttribute("url","../item/itemList.do");
+					return "common/resultView";
+				}
 				// 거래 정보 저장을 위한 거래 번호 생성
 				int trade_num = tradeService.selectTradeNum();
 				int mem_num = seller_num;
-				int sale_num = tradeService.selectSaleBidNumber(mem_num, tradeVO.getItem_num(), sale_price);
+				int sale_num = tradeService.selectSaleBidNumber(mem_num, tradeVO.getItem_num(), tradeVO.getTrade_price());
 				tradeVO.setTrade_num(trade_num);
 				tradeVO.setBuyer_num(user.getMem_num());
 				tradeVO.setSeller_num(seller_num);
-	
+				
+				// 관리자에게 입금
+				tradeService.executePayment(total);
+				tradeService.spendPoint(user.getMem_num(), total);
+				
+				// 구매입찰을 등록했는데 즉시구매를 했을 경우
+				PurchaseBidVO pbVO = tradeService.selectPurchaseBidForDirectBuy(user.getMem_num(), tradeVO.getItem_num(), tradeVO.getItem_sizenum());
+				if(pbVO.getMem_num() == user.getMem_num()) {
+					// 입금했던 거래가 다시 반환
+					int deposit = 0;
+					if(pbVO.getPurchase_price() < 50000) {
+						deposit += 3000;
+					}
+					deposit += (pbVO.getPurchase_price() / 10);
+					deposit += pbVO.getPurchase_price();
+					// 사용자 포인트 반환
+					tradeService.sendPointToBuyer(user.getMem_num(), deposit);
+					// 관리자 포인트 차감
+					tradeService.cancelExecutePayment(deposit);
+					
+					// 구매 입찰 정보 삭제
+					tradeService.deletePurchaseBid(pbVO.getPurchase_num());
+				}
+
 				tradeService.insertTrade(tradeVO);
 				// 판매입찰 정보 삭제
 				tradeService.deleteSaleBid(sale_num);
 				model.addAttribute("message", "[즉시구매] 결제를 완료했습니다.");
 				model.addAttribute("url", "../item/itemList.do");
-				
-				// total로 결제 진행하기
 			}
 		}
 		return "common/resultView";
@@ -379,7 +419,6 @@ public class TradeController {
 		} else {
 			sbVO.setMem_num(user.getMem_num());
 			tradeService.insertSaleBid(sbVO);
-			// 수수료 계산하기
 
 			model.addAttribute("message", "[판매입찰] 완료되었습니다.");
 			model.addAttribute("url", "../item/itemList.do");
@@ -398,9 +437,16 @@ public class TradeController {
 			model.addAttribute("url", "../member/login.do");
 		} else {
 			int buyer_num = tradeService.selectBuyerNum(tradeVO.getItem_num(), tradeVO.getItem_sizenum(), purchase_price);
+			SaleBidVO sbVO = tradeService.selectSaleBidForDirectSell(user.getMem_num(), tradeVO.getItem_num(), tradeVO.getItem_sizenum());
+			if(sbVO.getMem_num() == user.getMem_num()) {
+				model.addAttribute("message","이미 등록된 입찰 정보가 있어, 즉시 판매를 할 수 없습니다.");
+				model.addAttribute("url","../item/itemList.do");
+				return "common/resultView";
+			}
 			if(buyer_num == user.getMem_num()) {
 				model.addAttribute("message","본인이 등록한 입찰 정보로 즉시 판매할 수 없습니다.");
 				model.addAttribute("url","../item/itemList.do");
+				return "common/resultView";
 			}else {
 				// 거래 정보 저장을 위한 거래 번호 생성
 				int trade_num = tradeService.selectTradeNum();
@@ -409,15 +455,14 @@ public class TradeController {
 				tradeVO.setTrade_num(trade_num);
 				tradeVO.setBuyer_num(buyer_num);
 				tradeVO.setSeller_num(user.getMem_num());
-	
+				tradeVO.setTrade_price(purchase_price);
+				
 				tradeService.insertTrade(tradeVO);
 				
 				// 구매 입찰 정보 삭제
 				tradeService.deletePurchaseBid(purchase_num);
 				model.addAttribute("message", "[즉시판매] 완료했습니다.");
 				model.addAttribute("url", "../item/itemList.do");
-				
-				// 수수료 계산
 			}
 		}
 		return "common/resultView";
@@ -723,11 +768,24 @@ public class TradeController {
 			model.addAttribute("url","../member/login.do");
 			return "common/resultView";
 		}else {
-			if(user.getMem_auth() != 9) {
+			if(user.getMem_auth() != 9 || user.getMem_num()!=29) {
 				model.addAttribute("message","잘못된 접근입니다.");
 				model.addAttribute("url","../main/main.do");
 				return "common/resultView";
 			}else {
+				if(trade_state == 4) {
+					// 검수 성공 - 판매자에게 (입찰가 - 수수료) 입금하기
+					TradeVO tradeVO = tradeService.getTradeDetailForDeposit(trade_num);
+					int mem_num = tradeVO.getSeller_num();
+					int price = tradeVO.getTrade_price();
+					int fee = price / 10;
+					int total = price - fee;
+					
+					// 거래가 판매자에게 입금
+					tradeService.sendPointToSeller(mem_num, total); 
+					// 거래가 관리자에서 출금
+					tradeService.adminWithdraw(total, user.getMem_num());
+				}
 				tradeService.updateTradeState(trade_num, trade_state);
 				model.addAttribute("message","거래 상태를 성공정으로 수정했습니다.");
 				model.addAttribute("url","../trade/admin_list.do");
@@ -757,6 +815,26 @@ public class TradeController {
 				mav.addObject("trade",tradeService.getTradeDetail(trade_num));
 				mav.setViewName("admin_penalty");
 				return mav;
+			}
+		}
+	}
+	
+	// 관리자 - 포인트 정보
+	@RequestMapping("/admin/point.do")
+	public String adminGetPoint(HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user == null) {
+			model.addAttribute("message","로그인이 필요합니다.");
+			model.addAttribute("url","../member/login.do");
+			return "common/resultView";
+		}else {
+			if(user.getMem_auth() != 9 || user.getMem_num() != 29) {
+				model.addAttribute("message","잘못된 접근입니다.");
+				model.addAttribute("url","../main/main.do");
+				return "common/resultView";
+			}else {
+				model.addAttribute("point",tradeService.adminGetPoint(user.getMem_num()));
+				return "admin_point";
 			}
 		}
 	}

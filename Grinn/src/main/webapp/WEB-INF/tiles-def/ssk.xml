@@ -73,6 +73,11 @@
 	    <put-attribute name="body" value="/WEB-INF/views/trade/admin_penalty.jsp"/>
     </definition>
     
+     <!-- 관리자 : 포인트 조회 -->
+     <definition name="admin_point" extends="admin">
+    	<put-attribute name="title" value="거래 상세 정보"/>
+	    <put-attribute name="body" value="/WEB-INF/views/trade/admin_point.jsp"/>
+    </definition>
 </tiles-definitions>
 
 

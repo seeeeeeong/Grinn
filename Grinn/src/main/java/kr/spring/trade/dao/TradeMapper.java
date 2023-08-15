@@ -52,6 +52,13 @@ public interface TradeMapper {
 	// 사용자 번호로 판매 입찰 정보 조회
 	@Select("SELECT * FROM sale_bid WHERE mem_num=#{mem_num} AND item_num=#{item_num} AND sale_deadline >= SYSDATE")
 	public SaleBidVO selectSaleBidByUserNum(@Param(value="mem_num") Integer mem_num,@Param(value="item_num")Integer item_num);
+	// 즉시 구매시 등록된 입찰 정보를 삭제하기 위한 구매입찰 정보 조회
+	@Select("SELECT * FROM purchase_bid WHERE mem_num=#{mem_num} AND item_num=#{item_num} AND item_sizenum=#{item_sizenum} AND purchase_deadline >= SYSDATE")
+	public PurchaseBidVO selectPurchaseBidForDirectBuy(@Param(value="mem_num")Integer mem_num,@Param(value="item_num")Integer item_num,@Param(value="item_sizenum")Integer item_sizenum);
+	// 즉시 판매시 등록된 입찰 정보를 확인하기 위한 판매입찰 정보 조회
+	@Select("SELECT * FROM sale_bid WHERE mem_num=#{mem_num} AND item_num=#{item_num} AND item_sizenum=#{item_sizenum} AND sale_deadline >= SYSDATE")
+	public SaleBidVO selectSaleBidForDirectSell(@Param(value="mem_num")Integer mem_num,@Param(value="item_num")Integer item_num,@Param(value="item_sizenum")Integer item_sizenum);
+	
 	// 즉시 구매를 위한 판매자 정보 조회
 	@Select("SELECT mem_num FROM ("
 			+ "SELECT mem_num FROM sale_bid "
@@ -100,6 +107,21 @@ public interface TradeMapper {
 			+ "VALUES (#{trade_num},#{item_num},#{item_sizenum},#{trade_price},#{trade_zipcode},#{trade_address1},#{trade_address2})")
 	public void insertTradeDetail(TradeVO trade);
 	
+	// 구매 입찰, 즉시 구매 버튼 클릭 시 관리자에게 포인트 전송
+	@Update("UPDATE member_detail SET mem_point = NVL(mem_point,0) + #{total} WHERE mem_num=29")
+	public void executePayment(Integer total);
+	// 구매시 포인트 전송시 내 포인트 차감
+	@Update("UPDATE member_detail SET mem_point = NVL(mem_point,0) - #{total} WHERE mem_num=#{mem_num}")
+	public void spendPoint(@Param(value="mem_num")Integer mem_num, @Param(value="total")Integer total);
+	// 거래 성공후 거래 상태가 배송중으로 변경되면 판매자에게 포인트 입금
+	@Update("UPDATE member_detail SET mem_point = NVL(mem_point,0) + #{total} WHERE mem_num=#{mem_num}")
+	public void sendPointToSeller(@Param(value="mem_num")Integer mem_num, @Param(value="total")Integer total);
+	// 즉시 구매시 등록된 구매입찰이 존재할 경우 사용자 포인트 반환
+	@Update("UPDATE member_detail SET mem_point = NVL(mem_point,0) + #{total} WHERE mem_num=#{mem_num}")
+	public void sendPointToBuyer(@Param(value="mem_num")Integer mem_num, @Param(value="total")Integer total);
+	// 즉시 구매시 등록된 구매입찰이 존재할 경우 관리자 포인트 차감
+	@Update("UPDATE member_detail SET mem_point = NVL(mem_point,0) - #{total} WHERE mem_num=29")
+	public void cancelExecutePayment(Integer total);
 	/**
 	 * ======================================================================================================================
 	 * 												마이페이지 관련 정보
@@ -146,4 +168,13 @@ public interface TradeMapper {
 	// 거래 상태 수정
 	@Update("UPDATE trade_detail SET trade_state=#{trade_state} WHERE trade_num=#{trade_num}")
 	public void updateTradeState(@Param(value="trade_num") Integer trade_num, @Param(value="trade_state") Integer trade_state);
+	// 관리자 포인트 조회 (29)
+	@Select("SELECT NVL(mem_point, 0) FROM member_detail WHERE mem_num=#{mem_num}")
+	public int adminGetPoint(Integer mem_num);
+	// 판매자에게 거래가 입금 후 관리자 포인트 차감(29)
+	@Update("UPDATE member_detail SET mem_point=mem_point-#{total} WHERE mem_num=#{mem_num}")
+	public void adminWithdraw(@Param(value="total")Integer total, @Param(value="mem_num")Integer mem_num);
+	// 판매자에게 거래가 입금을 위한 데이터 조회
+	@Select("SELECT t.trade_num, t.item_num, t.seller_num, d.trade_price FROM trade t left join trade_detail d on t.trade_num=d.trade_num WHERE t.trade_num=#{trade_num}")
+	public TradeVO getTradeDetailForDeposit(Integer trade_num);
 }

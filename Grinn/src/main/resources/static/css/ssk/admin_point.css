@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#ha {
+	padding: 25px 0 16px 0;
+	border-bottom: 3px solid #222;
+	display: flex;
+	margin: 0 auto;
+}
+.trade-content{
+	width: 50%;
+    margin: 20px auto;
+}
+.trade-content-detail{
+	box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.1);
+	height: 60px;
+	justify-content: center;
+	display: flex;
+}
+.trade-content-detail dl{
+	display: flex;
+	font-size: 15px;
+	justify-content: center;
+}

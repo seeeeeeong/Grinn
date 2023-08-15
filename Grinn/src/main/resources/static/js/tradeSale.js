@@ -112,7 +112,7 @@ $(function(){
 					output += '</dl>';
 					output += '<dl>';
 					output += '<dt>배송비</dt>';
-					output += '<dd>선불 - 판매자 부담 (발송 시 정산금액에서 차감)</dd>';						
+					output += '<dd>선불 - 판매자 부담 </dd>';						
 					
 					output += '</dl>';
 					output += '</div>';
@@ -211,7 +211,6 @@ $(function(){
 							output += '<input type="hidden" name="item_num" id="item_num" value="'+param.item_num+'">';
 							output += '<input type="hidden" name="item_sizenum" id="item_sizenum" value="'+param.item_sizenum+'">';
 							output += '<input type="hidden" name="purchase_price" id="purchase_price" value="'+param.sale_price+'">';
-							output += '<input type="hidden" name="trade_price" id="trade_price" value="'+total+'">';
 							output += '<input type="hidden" name="trade_zipcode" id="trade_zipcode" value="'+param.member.mem_zipcode+'">';
 							output += '<input type="hidden" name="trade_address1" id="trade_address1" value="'+param.member.mem_address1+'">';
 							output += '<input type="hidden" name="trade_address2" id="trade_address2" value="'+param.member.mem_address2+'">';

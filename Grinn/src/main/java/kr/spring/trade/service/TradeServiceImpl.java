@@ -208,6 +208,56 @@ public class TradeServiceImpl implements TradeService{
 		return tradeMapper.getTradeDetail(trade_num);
 	}
 
+	@Override
+	public int adminGetPoint(Integer mem_num) {
+		return tradeMapper.adminGetPoint(mem_num);
+	}
+
+	@Override
+	public void executePayment(Integer total) {
+		tradeMapper.executePayment(total);
+	}
+
+	@Override
+	public void spendPoint(Integer mem_num, Integer total) {
+		tradeMapper.spendPoint(mem_num, total);
+	}
+
+	@Override
+	public void sendPointToSeller(Integer mem_num, Integer total) {
+		tradeMapper.sendPointToSeller(mem_num, total);
+	}
+
+	@Override
+	public TradeVO getTradeDetailForDeposit(Integer trade_num) {
+		return tradeMapper.getTradeDetailForDeposit(trade_num);
+	}
+
+	@Override
+	public void adminWithdraw(Integer total, Integer mem_num) {
+		tradeMapper.adminWithdraw(total, mem_num);
+	}
+
+	@Override
+	public PurchaseBidVO selectPurchaseBidForDirectBuy(Integer mem_num, Integer item_num, Integer item_sizenum) {
+		return tradeMapper.selectPurchaseBidForDirectBuy(mem_num, item_num, item_sizenum);
+	}
+
+	@Override
+	public SaleBidVO selectSaleBidForDirectSell(Integer mem_num, Integer item_num, Integer item_sizenum) {
+		return tradeMapper.selectSaleBidForDirectSell(mem_num, item_num, item_sizenum);
+	}
+
+	@Override
+	public void sendPointToBuyer(Integer mem_num, Integer total) {
+		tradeMapper.sendPointToBuyer(mem_num, total);
+	}
+
+	@Override
+	public void cancelExecutePayment(Integer total) {
+		tradeMapper.cancelExecutePayment(total);
+	}
+
 	
 
 }

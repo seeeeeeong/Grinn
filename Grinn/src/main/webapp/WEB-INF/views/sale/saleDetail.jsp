@@ -17,7 +17,7 @@
 			$('#direct_price').css('display','none');
 			$('#bid_price').css('display','flex');
 			$('#input_deadline').css('display','block');
-			$('#btn_sale').attr('value','구매 입찰 계속');
+			$('#btn_sale').attr('value','판매 입찰 계속');
 			$('#btn_sale').attr('data-type',"2");
 			$('#input_bid').val('');
 			$('.btn-bid input').css('background-color','#41B979')
