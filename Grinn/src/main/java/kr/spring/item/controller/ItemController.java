@@ -25,9 +25,10 @@ import kr.spring.item.service.ItemService;
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemReviewVO;
 import kr.spring.item.vo.ItemVO;
+import kr.spring.item.vo.ItemstVO;
 import kr.spring.member.vo.MemberVO;
-import kr.spring.pbid.vo.PurchaseBidVO;
-import kr.spring.sbid.vo.SaleBidVO;
+import kr.spring.sbid.vo.SaleSizePriceVO;
+import kr.spring.trade.service.TradeService;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,9 @@ public class ItemController {
 
 	@Autowired
 	private ItemService itemService;
+	
+	@Autowired
+	private TradeService tradeService;
 
 	// ===========자바빈 초기화===========
 	@ModelAttribute
@@ -208,10 +212,16 @@ public class ItemController {
 	public ModelAndView getDetail(@RequestParam int item_num,@RequestParam(value = "pageNum", defaultValue = "1") int currentPage,
 			@RequestParam(value = "order", defaultValue = "1") int order, String keyfield, String keyword,HttpSession session) {
 		
-		
+		List<SaleSizePriceVO> sspList = tradeService.selectSaleSizePrice(item_num);
 		ItemVO item = itemService.selectItem(item_num);
-		
-		Integer sale = itemService.minSale(item_num);
+		ItemVO sizeList = itemService.sizeListInfo(item_num);
+		System.out.println("!!!!"+sizeList);
+		if(sizeList != null) {
+		item.setItem_sizenum(sizeList.getItem_sizenum());
+		item.setItem_size(sizeList.getItem_size());
+		item.setSale(sizeList.getSale());
+		}
+		//Integer sale = itemService.minSale(item_num);
 		Integer purchase = itemService.maxPurchase(item_num);
 		Integer latelyTrade = itemService.latelyTrade(item_num);
 		
@@ -225,7 +235,7 @@ public class ItemController {
 		int count = itemService.selectRowCountReview(map);
 
 		// 페이지처리
-		ItemReviewPage page = new ItemReviewPage(keyfield, keyword, currentPage, count, 2, 10, "itemDetail.do?item_num="+item_num,
+		ItemReviewPage page = new ItemReviewPage(keyfield, keyword, currentPage, count, 5, 10, "itemDetail.do?item_num="+item_num,
 				"&order=" + order);
 
 		
@@ -245,10 +255,11 @@ public class ItemController {
 		if(user!=null) {
 			mav.addObject("user_num", user.getMem_num());
 		}
+		mav.addObject("sspList", sspList);
 		mav.addObject("list", list);
 		mav.addObject("count", count);
 		mav.addObject("page", page.getPage());
-		mav.addObject("sale", sale);
+		//mav.addObject("sale", sale);
 		mav.addObject("purchase", purchase);
 		mav.addObject("latelyTrade", latelyTrade);
 		
@@ -514,5 +525,49 @@ public class ItemController {
 		return mapJson;
 	}
 	//=========후기 삭제 끝============
+	
+	//=========스타일 목록 시작=============
+	@RequestMapping("/item/itemStList.do")
+	@ResponseBody
+	public Map<String, Object> getList(
+					@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+					@RequestParam(value="rowCount",defaultValue="10") int rowCount,
+					@RequestParam int item_num, HttpSession session){
+		
+		log.debug("<<currentPage>> : " + currentPage);
+		log.debug("<<item_num>> : " + item_num);
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("item_num", item_num);
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		//전체 레코드 수 
+		int count = itemService.selectRowCountST(map);
+		
+		//페이지 처리
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, 1, null);
+		
+		List<ItemstVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			list = itemService.selectListST(map);
+		}else {
+			list = Collections.emptyList();
+		}
+		
+		Map<String, Object> mapJson = new HashMap<String, Object>();
+		mapJson.put("count", count);
+		mapJson.put("list", list);
+		//=======로그인한 회원정보 셋팅=======
+		if(user!=null) {
+			mapJson.put("user_num", user.getMem_num());
+		}
+		
+		return mapJson;
+	}
+	
+	//=========스타일 목록 끝==============
 	
 }

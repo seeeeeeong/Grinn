@@ -6,6 +6,7 @@ import java.util.Map;
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemReviewVO;
 import kr.spring.item.vo.ItemVO;
+import kr.spring.item.vo.ItemstVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.sbid.vo.SaleBidVO;
 
@@ -16,7 +17,8 @@ public interface ItemService {
 	public int selectRowCount(Map<String,Object> map);
 	public void insertItem(ItemVO item);
 	public ItemVO selectItem(Integer item_num);
-	public Integer minSale(Integer item_num);
+	public ItemVO sizeListInfo(Integer item_num);
+	//public Integer minSale(Integer item_num);
 	public Integer maxPurchase(Integer item_num);
 	public Integer latelyTrade(Integer item_num);
 	public void updateItem(ItemVO item);
@@ -35,4 +37,8 @@ public interface ItemService {
 	public void insertReview(ItemReviewVO itemReview);
 	public void updateReview(ItemReviewVO itemReview);
 	public void deleteReiew(Integer review_num);
+	
+	//스타일
+	public List<ItemstVO> selectListST(Map<String,Object> map);
+	public int selectRowCountST(Map<String,Object> map);
 }

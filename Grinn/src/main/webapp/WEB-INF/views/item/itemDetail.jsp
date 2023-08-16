@@ -34,6 +34,75 @@
 					</div>
 					<div class="details">
 						<div>사이즈</div>
+							<c:if test="${item.item_cate==4}"><span class="oneSize">ONE SIZE</span></c:if>
+							<c:if test="${item.item_cate!=4}">
+						<div id="btnWrap">
+							<button type="button" id="popupBtn"><span>모든사이즈</span></button>
+						</div>
+						</c:if>
+						<div id="modalWrap">
+							<div id="modalBody">
+								<span id="closeBtn">&times;</span>
+								<div class="page-size-main">
+									<div class="page-size">
+										<div class="page-size-inner">
+											<div class="size-select">
+												<h2>사이즈</h2>
+												<ul class="select-list">
+												<button onclick="location.href='${pageContext.request.contextPath}/purchase/check.do?item_num=${item.item_num}&item_sizenum=${item.item_sizenum}&item_size=${item.item_size}'">
+																<div class="select-inner">
+																	<span class="size"><br> 
+																			전체 사이즈
+																	</span> 
+																	<span class="price"
+																		<c:if test="${item.sale>0}">style="color:#fa7070;"</c:if>><br>
+																		<c:if test="${item.sale==0}">
+																		구매입찰
+																		</c:if> 
+																		<c:if test="${item.sale>0}">
+																			<fmt:formatNumber value="${item.sale}" />원
+																		</c:if>
+																	</span>
+																</div>
+															</button>
+													<c:forEach var="list" items="${sspList}">
+														<li class="select-size">
+															<c:if test="${empty list.item_size}">
+																<script type="text/javascript">
+																	$(function() {
+																		$('.select-size')
+																			.css('width','100%');
+																	});
+																</script>
+															</c:if>
+															<button
+																onclick="location.href='${pageContext.request.contextPath}/purchase/check.do?item_num=${list.item_num}&item_sizenum=${list.item_sizenum}&item_size=${list.item_size}'">
+																<div class="select-inner">
+																	<span class="size"><br> 
+																		<c:if test="${!empty list.item_size}">
+																			${list.item_size}
+																		</c:if>
+																	</span> 
+																	<span class="price"
+																		<c:if test="${list.sale_price != 0}">style="color:#fa7070;"</c:if>><br>
+																		<c:if test="${list.sale_price == 0}">
+																		구매입찰
+																		</c:if> 
+																		<c:if test="${list.sale_price != 0}">
+																			<fmt:formatNumber value="${list.sale_price}" />원
+																		</c:if>
+																	</span>
+																</div>
+															</button>
+														</li>
+													</c:forEach>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<hr>
 					<div class="details">
@@ -60,11 +129,11 @@
 								onclick="location.href='${pageContext.request.contextPath}/purchase/selectSize.do?item_num=${item.item_num}'">
 								<div>구매</div>
 								<div>
-									<c:if test="${empty sale}">
+									<c:if test="${item.sale==0}">
 										<span> - 원</span>
 									</c:if>
-									<c:if test="${!empty sale}">
-										<span class="c"><fmt:formatNumber value="${sale}" />원</span>
+									<c:if test="${item.sale>0}">
+										<span class="c"><fmt:formatNumber value="${item.sale}" />원</span>
 									</c:if>
 									<span class="d">즉시 구매가</span>
 								</div>
@@ -234,6 +303,17 @@
 			</div>
 		</div>
 		<!-- 상품 좌우안내 끝 -->
+		<hr>
+		<!-- 스타일 시작 -->
+		<div id="stoutput" data-itemnum="${item.item_num}"></div>
+		<div class="paging-button" style="display: none;">
+			<input type="button" value="더보기">
+		</div>
+		<div id="loading" style="display: none;">
+			<img src="${pageContext.request.contextPath}/images/loading.gif"
+				width="100" height="100">
+		</div>
+		<!-- 스타일 끝 -->
 		<hr>
 		<!-- 댓글 시작 -->
 		<div>

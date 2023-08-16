@@ -166,7 +166,96 @@ a:hover{
 .page-main {
   margin: 30px;
 }
+/* 상품 사이즈 모달창 */
+#btnWrap * {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+#popupBtn {
+	background-color: #FFF;
+	color: #000;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	font-size: 15px;
+	display: flex;
+	align-items: center;
+}
+.oneSize{
+	font-size: 17px;
+    font-weight: bold;
+}
+#popupBtn span{
+	margin-right: 10px;
+    font-size: 17px;
+    font-weight: bold;
+}
 
+#popupBtn:after {
+	content: '\00276F'; /*❯*/
+	float: right;
+	margin-left: 5px;
+	transform: rotate(90deg);
+	margin-top: 0;
+}
+
+#modalWrap {
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+	display: none;
+}
+
+#modalBody {
+	width: 500px;
+	height: 300px;
+	padding: 30px 30px;
+	margin: 100px auto;
+	border: 1px solid #777;
+	background-color: #fff;
+}
+
+#closeBtn {
+	float: right;
+	font-weight: bold;
+	color: #777;
+	font-size: 25px;
+	cursor: pointer;
+}
+/* 모달 내부 */
+.size-select h2{
+	margin-top: 10px;
+}
+.select-list{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 10px;
+	padding: 0;
+}
+.select-list button{
+	background-color: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    overflow: hidden;
+    vertical-align: top;
+    width:100%;
+    margin-bottom: 10px;
+}
+.select-size .price {
+    margin-top: 10px; /* Add margin at the top */
+}
 /* 아이템 디테일 페이지 */
 .itemDetailPage {
   display: flex;
@@ -223,16 +312,15 @@ a:hover{
 .itemDetailPage .title_box .c {
   font-size: 14px;
   color: #777;
-  margin: 0;
+  margin: 0 0 30px 0;
 }
 
 .itemDetailPage .details {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0;
+  margin: 15px 0;
 }
-
 .itemDetailPage .buttons {
   display: flex;
   justify-content: space-between;

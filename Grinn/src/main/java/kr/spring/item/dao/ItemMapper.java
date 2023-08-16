@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Select;
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemReviewVO;
 import kr.spring.item.vo.ItemVO;
+import kr.spring.item.vo.ItemstVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.sbid.vo.SaleBidVO;
 
@@ -26,8 +27,10 @@ public interface ItemMapper {
 	//글상세
 	@Select("SELECT * FROM item WHERE item_num=#{item_num}")
 	public ItemVO selectItem(Integer item_num);
+	//
+	public ItemVO sizeListInfo(Integer item_num);
 	//최소구매입찰가
-	@Select("SELECT MIN(sale_price) FROM sale_bid WHERE item_num=#{item_num} AND sale_deadline <= TO_CHAR(SYSDATE,'YYYYMMDD')")
+	//@Select("SELECT MIN(sale_price) FROM sale_bid WHERE item_num=#{item_num} AND sale_deadline >= TO_CHAR(SYSDATE,'YYYYMMDD')")
 	public Integer minSale(Integer item_num);
 	//최대 판매입찰가
 	@Select("SELECT MAX(purchase_price) FROM purchase_bid WHERE item_num=#{item_num} AND purchase_deadline >= TO_CHAR(SYSDATE,'YYYYMMDD')")
@@ -64,4 +67,9 @@ public interface ItemMapper {
 	public void deleteReiew(Integer review_num);
 	//부모글 삭제시 댓글이 존재하면 부모글 삭제전 댓글 삭제
 	public void deleteReviewByItemNum(Integer review_num);
+	
+	//스타일
+	public List<ItemstVO> selectListST(Map<String,Object> map);
+	public int selectRowCountST(Map<String,Object> map);
+	
 }
