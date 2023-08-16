@@ -59,7 +59,11 @@ $(function(){
    let item_num1;
    let item_num2;
    let item_num3;
-   let item_photo1name;
+   let num = 1;
+   let choice_item1;
+   let choice_item2;
+   let choice_item3;
+   let itemNumber = [];
    
    //상품 검색
    $('#item_search').keyup(function(){
@@ -78,10 +82,9 @@ $(function(){
                $('#search_area').empty();
                $(param.item_tag).each(function(index,item){
                   if(!item_list.includes(item.item_name)){
-                     item_photo1name = item.item_photo1name;
                      let output = '';
-                     output += '<li data-num="' + item.item_num + '">';
-                     output += '<img src="../' + item.item_photo1name + '">';
+                     output += '<li data-num="' + item.item_num + '"style="margin-left:30px">';
+                     output += '<img src="../style/viewPhotoByItem_num.do?item_num=' + item.item_num + '" width="30" height="30">';
                      output += item.item_name;
                      output += '</li>';
                      $('#search_area').append(output);
@@ -96,30 +99,30 @@ $(function(){
          }
       });
    });
-   
+  
    //검색된 상품 선택
    $(document).on('click', '#search_area li', function(){
       let item_name = $(this).text(); //선택한 상품 저장
       let item_num = $(this).attr('data-num'); //선택한 상품번호
-      item_list.push(item_name);
-      item_nameList.push(item_num);
+      if(item_list.length <= 2) {
+		  item_list.push(item_name);
+	  }else{
+			alert('3개까지 추가 가능');
+			$('#item_search').val('');
+			$('#search_area').empty();
+			return;
+	  }
+      if(item_nameList.length <= 2) {
+		  item_nameList.push(item_num);
+	  }
+	  let idx = item_list.length;
       //선택한 상품을 화면에 표시
-      let choice_item = '<span class="item-span" data-name=' + item_name + '>';
-      choice_item += '<img src="../' + item_photo1name + '">';
-      choice_item += '<input type="hidden" name="items" value="' + item_num + '">';
-      if(item_list[0] != null){
-         item_num1 = item_nameList[0];
-         choice_item += '<input type="hidden" name="item_num1" value="' + item_num1 + '">';
-      }
-      if(item_list[1] != null){
-         item_num2 = item_nameList[1];
-         choice_item += '<input type="hidden" name="item_num2" value="' + item_num2 + '">';
-      }
-      if(item_list[2] != null){
-         item_num3 = item_nameList[2];
-         choice_item += '<input type="hidden" name="item_num3" value="' + item_num3 + '">';
-      }
-      choice_item += item_name + '<sup>&times;</sup></span>';
+      let choice_item = '<span class="item-span" data-name=' + item_name + '">';
+      choice_item += item_num;
+      choice_item += '<img src="../style/viewPhotoByItem_num.do?item_num=' + item_num + '" width="40" height="40" data-num="' + item_num + '">';
+      //choice_item += '<input type="hidden" name="items" value="' + item_num + '">';
+	  choice_item += item_name + '<sup>&times;</sup><br></span>';
+   
       $('#item_tag').append(choice_item);
       $('#item_search').val('');
       $('#search_area').empty(); //ul태그 초기화
@@ -128,13 +131,24 @@ $(function(){
    //선택한 상품 삭제하기
    $(document).on('click', '.item-span', function(){
       let item_name = $(this).attr('data-name');
+      let item_num = $(this).find('img').attr('data-num');
       //채팅 멤버가 배열에서 삭제할 멤버의 ID 제거
       item_list.splice(item_list.indexOf(item_name), 1);
+      item_nameList.splice(item_nameList.indexOf(item_num), 1);
       $(this).remove();//이벤트가 발생한 태그 제거
       $('.item-span').val('');
       if($('#item_tag span').length == 0){
          $('.item-span').empty();
       }
+     
+   });
+   
+   $(document).on('click', '.submit-style', function(){
+	    if(item_nameList.length > 0){
+		   for(let i=0;i<item_nameList.length;i++){
+			   $('#item_num' + (i+1)).val(item_nameList[i]);
+		   }
+	   }
    });
    
 });

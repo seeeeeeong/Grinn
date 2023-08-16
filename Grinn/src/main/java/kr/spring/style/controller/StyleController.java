@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.item.service.ItemService;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
@@ -41,6 +42,9 @@ public class StyleController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired 
+	private ItemService itemService;
 	
 	/*========================
 	 * 자바빈(VO) 초기화
@@ -520,5 +524,21 @@ public class StyleController {
 			model.addAttribute("imageFile", styleCommentVO.getMem_photo());
 			model.addAttribute("filename", styleCommentVO.getMem_photo_name());
 		}
+	}
+	
+	//상품번호를 통해 상품 대표 사진 출력
+	@RequestMapping("/style/viewPhotoByItem_num.do")
+	public String getPhotoByItem_num(@RequestParam(required = false) int item_num, HttpServletRequest request, Model model) {
+		ItemVO itemVO = itemService.selectItem(item_num);
+
+		viewPhotoByItem_num(itemVO, request, model);
+
+		return "imageView";
+	}
+	//댓글번호 지정을 통한 프로필 사진 처리를 위한 코드
+	public void viewPhotoByItem_num(ItemVO itemVO, HttpServletRequest request, Model model) {
+		
+			model.addAttribute("imageFile", itemVO.getItem_photo1());
+			model.addAttribute("filename", itemVO.getItem_photo1name());
 	}
 }

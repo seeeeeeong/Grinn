@@ -121,12 +121,20 @@
 	
 	<!-- 스타일 상세 -->
 	<select id="selectStyle" parameterType="integer">
-		SELECT * FROM style s 
+		SELECT 
+		s.st_num, s.st_phrase,
+		s.st_photo1n, s.st_photo2n, s.st_photo3n, s.st_photo4n,
+		s.st_photo1, s.st_photo2, s.st_photo3, s.st_photo4,
+		s.st_regdate, s.st_mdate, s.mem_num,
+		i1.item_num item_num1, i1.item_name item_name1, i1.item_photo1 item_photo1_1, i1.item_photo1name item_photo1name_1,
+		i2.item_num item_num2, i2.item_name item_name2, i2.item_photo1 item_photo1_2, i2.item_photo1name item_photo1name_2,
+		i3.item_num item_num3, i3.item_name item_name3, i3.item_photo1 item_photo1_3, i3.item_photo1name item_photo1name_3
+		FROM style s 
 		LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
 		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
-		LEFT OUTER JOIN item i ON s.item_num1 = i.item_num
-		LEFT OUTER JOIN item i ON s.item_num2 = i.item_num
-		LEFT OUTER JOIN item i ON s.item_num3 = i.item_num
+		LEFT OUTER JOIN item i1 ON s.item_num1 = i1.item_num
+		LEFT OUTER JOIN item i2 ON s.item_num2 = i2.item_num
+		LEFT OUTER JOIN item i3 ON s.item_num3 = i3.item_num
 		WHERE s.st_num=#{st_num}
 	</select>
 	

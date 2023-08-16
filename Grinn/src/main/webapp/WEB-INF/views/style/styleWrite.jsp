@@ -22,14 +22,19 @@
 				<form:textarea path="st_phrase" rows="4" cols="51" placeholder="스타일을 자랑해보세요."/>
 			</li>
 			<li>
-				<label>상품 태그</label>
-				<input type="text" id="item_search" autocomplete="off">
+				<label class="item-tag">상품 태그</label>
+				<input type="text" id="item_search" autocomplete="off" style="margin-rigth:10px">
 				<ul id="search_area"></ul>
 				<div id="item_tag"></div>
+				<div>
+					<input type="hidden" name="item_num1" id="item_num1" value="0">
+					<input type="hidden" name="item_num2" id="item_num2" value="0">
+					<input type="hidden" name="item_num3" id="item_num3" value="0">
+				</div>
 			</li>
 		</ul>
 		<div class="align-center">
-			<form:button>올리기</form:button>
+			<form:button class="submit-style">올리기</form:button>
 			<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/style/list.do'">
 		</div>
 	</form:form>

@@ -35,9 +35,17 @@ public class StyleVO {
 	private String mem_id;
 	private byte[] mem_photo;
 	private String mem_photo_name;
-	private String item_photo1name;
-	private String item_name;
 	private int st_hide;
+	
+	private String item_name1;
+	private String item_name2;
+	private String item_name3;
+	private byte[] item_photo1_1;
+	private String item_photo1name_1;
+	private byte[] item_photo1_2;
+	private String item_photo1name_2;
+	private byte[] item_photo1_3;
+	private String item_photo1name_3;
 	
 	//좋아요
 	private int fav_cnt;

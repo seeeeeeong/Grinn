@@ -515,8 +515,16 @@
 				상품 태그
 			</div>
 			<div class="item-tag-box">
-				<img src="${pageContext.request.contextPath}/image_upload/${style.item_photo1name}" width="100" height="100"><br>
-				<span class="item-name" style="width:100px;">${style.item_name}</span>
+				<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num1}" width="100" height="100"><br>
+				<span class="item-name" style="width:100px;">${style.item_name1}</span>
+			</div>
+			<div class="item-tag-box">
+				<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num2}" width="100" height="100"><br>
+				<span class="item-name" style="width:100px;">${style.item_name2}</span>
+			</div>
+			<div class="item-tag-box">
+				<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num3}" width="100" height="100"><br>
+				<span class="item-name" style="width:100px;">${style.item_name3}</span>
 			</div>
 		</div>
 		</c:if><p>	
