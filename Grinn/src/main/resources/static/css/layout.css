@@ -104,6 +104,9 @@ a:hover{
 .align-right{
 	text-align:right;
 }
+.align-left{
+	text-align:left;
+}
 /* 상단 메뉴
 ------------------------*/
 div#main_menu ul{

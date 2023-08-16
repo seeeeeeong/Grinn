@@ -177,7 +177,7 @@ $(function(){
 						//날짜 추출
 						if(chat_date != item.chat_date.split(' ')[0]){
 							chat_date = item.chat_date.split(' ')[0];
-							output += '<div class="date-position"><span>'+chat_date+'</span></div>';
+							output += '<div class="date-position"><span><b>'+chat_date+'</b></span></div>';
 						}
 						
 						if(item.message.indexOf('@{member}@')>=0){//멤버등록/탈퇴 메시지 처리
@@ -188,21 +188,39 @@ $(function(){
 						}else{
 							//멤버등록/탈퇴 메시지가 아닌 일반 메시지
 							if(item.mem_num == param.user_num){
-								output += '<div class="from-position">'+item.mem_id;
+								output += '<div class="from-position">'
 								output += '<div>'
 							}else{
 								output += '<div class="to-position">';
 								output += '<div class="space-photo">';
-								output += '<img src="../member/viewProfile.do?mem_num='+item.mem_num+'" width="40" height="40" class="my-photo">';
-								output += '</div><div class="space-message">';
-								output += item.mem_id;
+								output += '<img src="../member/viewProfile.do?mem_num='+item.mem_num+'" width="40" height="40" class="my-photo"></div>';
+								//space-photo끝 / space-message시작
+								output += '<div class="space-message">';
+								//메세지를 보낸사람 아이디
+								output += '<div class="align-left"><b>'+item.mem_id+'</b></div>';
 							}
+							//item과 카운팅, 시간까지 묶는 div태그
+							//메세지내용
 							output += '<div class="item">';
-							output += item.read_count + ' <span>'+item.message.replace(/\r\n/g,'<br>').replace(/\r/g,'<br>').replace(/\n/g,'<br>')+'</span>';
-							//시간 추출
-							output += '<div class="align-right">'+item.chat_date.split(' ')[1]+'</div>';
+							output += '<span>'+item.message.replace(/\r\n/g,'<br>').replace(/\r/g,'<br>').replace(/\n/g,'<br>')+'</span>';
 							output += '</div>';
-							output += '</div><div class="space-clear"></div>';
+							if(item.mem_num == param.user_num){
+								//		메세지를 읽지않은 사람수			시간 추출
+							output += '<div style="text-align:left">';
+								if(item.read_count > 0){
+									output += item.read_count+'<br>';
+								}
+							output += item.chat_date.split(' ')[1]+'</div>';
+							}else{
+								//		메세지를 읽지않은 사람수			시간 추출
+							output += '<div style="text-align:right">';
+								if(item.read_count > 0){
+									output += item.read_count+'<br>';
+								}
+							output += item.chat_date.split(' ')[1]+'</div>';
+							}
+							output += '</div>'; //space-message 끝
+							output += '<div class="space-clear"></div>';
 							output += '</div>';
 							
 						}

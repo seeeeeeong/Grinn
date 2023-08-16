@@ -103,7 +103,8 @@ public class NoticeController {
 	/* ======================== 고객센터(자주묻는질문) 글 목록 ======================== */
 	@RequestMapping("/notice/noticefaq.do")
 	public ModelAndView getNoticeFaqList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
-			String keyfield, String keyword) {
+										 @RequestParam(value="no_category", defaultValue="1") int no_category,
+										 String keyfield, String keyword) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
@@ -111,34 +112,23 @@ public class NoticeController {
 		//전체 레코드 수
 		int count = noticeService.selectRowCount_faq(map);
 		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 5, 5, "noticefaq.do");
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 10, 5, "/notice/noticefaq.do");
 		
 		List<NoticeVO> list = null;
-		List<NoticeVO> list1 = null;
-		List<NoticeVO> list2 = null;
-		List<NoticeVO> list3 = null;
-		List<NoticeVO> list4 = null;
 		
 		if(count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
+			map.put("no_category", no_category);
 			list = noticeService.selectFaqList(map);
 		}
-
-		list1 = noticeService.selectCategoryOne(map);
-		list2 = noticeService.selectCategoryTwo(map);
-		list3 = noticeService.selectCategoryThree(map);
-		list4 = noticeService.selectCategoryFour(map);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("noticefaq");
 		mav.addObject("count", count);
 		mav.addObject("list", list);
-		mav.addObject("listOne", list1);
-		mav.addObject("listTwo", list2);
-		mav.addObject("listThree", list3);
-		mav.addObject("listFour", list4);
 		mav.addObject("page", page.getPage());
+		mav.addObject("no_category", no_category);
 		
 		return mav;
 	}
@@ -154,15 +144,10 @@ public class NoticeController {
 		map.put("keyword", keyword);
 		//전체 레코드 수
 		int count = noticeService.selectRowCount_auth(map);
-		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 3, 5, "noticeAuth_policy.do");
 
 		List<NoticeVO> list = null;
 		
 		if(count > 0) {
-			map.put("start", page.getStartRow());
-			map.put("end", page.getEndRow());
-			//map.put("policy", policy);
 			list = noticeService.selectAuthList(map);
 		}
 		
@@ -170,7 +155,6 @@ public class NoticeController {
 		mav.setViewName("noticeAuth_policy");
 		mav.addObject("count", count);
 		mav.addObject("list", list);
-		mav.addObject("page", page.getPage());
 		
 		return mav;
 	}

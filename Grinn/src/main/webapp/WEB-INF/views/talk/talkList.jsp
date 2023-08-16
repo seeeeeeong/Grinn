@@ -4,6 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/message.js"></script>   
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery-ui.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		if(${talkroom_num} == 0){
@@ -16,13 +18,20 @@
 			});
 		});
 		
-		/* let detail_btn = document.getElementById('detail_btn');
-		let chatDetail_main = document.getElementById('chatDetail_main');
-		detail_btn.onclick = function(){
-			chatDetail_main.style.display = 'block';
-		}; */
+		//dialog - 멤버추가
+		$('#opener').click(function(){
+			$('#dialog').css('display','block');
+		});
 	});
 	
+	$(function(){
+		$('#dialog').dialog({
+			width:'700px',
+			height:'auto',
+			autoOpen:false,
+			modal:true
+		});
+	});
 </script>
 <!-- 채팅방 목록 시작 -->
 <div class="page-main">
@@ -65,15 +74,15 @@
 		<div id="talkDetail">
 		<input type="hidden" name="talkroom_num" id="talkroom_num" value="${talkroom_num}">
 		<div class="btn_list">
-			<h2 id="chatroom_title">
+			<h2 id="chatroom_title" class="align-left" style="padding-left: 20px;">
 				<span id="chatroom_name">${room_name}</span>
-				<input type="button" value="채팅방이름 변경" id="change_name" class="btn_auth">
+				<input type="button" value="채팅방이름 변경" id="change_name" class="btn_talkRoomName">
 			</h2>
-			<input type="button" value="멤버추가" id="opener" class="btn_auth">
-			<input type="button" value="방탈출" id="delete_talkroom" class="btn_auth">
-			<input type="button" value="목록"  class="btn_auth" onclick="location.href='talkList.do'">
+			<input type="button" value="멤버추가" id="opener" class="btn_talkInput">
+			<input type="button" value="방탈출" id="delete_talkroom" class="btn_talkInput">
+			<input type="button" value="목록"  class="btn_talkInput" onclick="location.href='talkList.do'">
 		</div>
-		<p class="align-right">
+		<p class="align-left" style="padding-left: 20px;">
 			채팅 멤버 :
 			<span id="chat_member">${chatMember}</span>
 			<span id="chat_mcount">(${chatCount}명)</span>
@@ -83,16 +92,7 @@
 			<form method="post" id="detail_form">
 				<input type="hidden" name="talkroom_num" id="talkroom_num"
 				               value="${param.talkroom_num}">
-				<ul>
-					<li>
-						<label for="message">내용</label>
-						<textarea rows="5" cols="60"
-						  name="message" id="message"></textarea>
-					</li>
-				</ul> 
-				<div class="align-right" id="message_btn">
-					<input type="submit" value="전송"> 
-				</div>              
+						<textarea rows="1" name="message" id="message" placeholder="메시지를 입력하세요."></textarea>
 			</form>
 			<!-- 멤버 추가 다이얼로그 시작 -->
 			<div id="dialog">

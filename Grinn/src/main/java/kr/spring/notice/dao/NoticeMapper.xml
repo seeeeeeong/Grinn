@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.notice.dao.NoticeMapper">
-	<!-- 염 -->
-	<sql id="status">
-		<if test="no_category == 1"> <!-- ㅁㅁ -->
-			no_category = 1
+	<!-- 자주묻는질문 카테고리별 선택 -->
+	<sql id="no_category">
+		<if test="no_category == 1"> <!-- 전체를 어떻게 가져올까 -->
+			no_category > 0
 		</if>
-		<if test="no_category == 2"> <!-- 검수준비중 -->
+		<if test="no_category == 2"> <!-- 이용정책 -->
 			no_category = 2
 		</if>
-		<if test="no_category == 3"> <!-- 검수중 -->
+		<if test="no_category == 3"> <!-- 공통 -->
 			no_category = 3
 		</if>
-		<if test="no_category == 4"> <!-- 배송중 -->
+		<if test="no_category == 4"> <!-- 구매 -->
 			no_category = 4
 		</if>
-		
+		<if test="no_category == 5"> <!-- 판매 -->
+			no_category = 5
+		</if>
+		<if test="no_category == 6"> <!-- 기타 -->
+			no_category = 6
+		</if>
 	</sql>
 
 	<!-- 고객센터 전체/검색 레코드수 -->	
@@ -40,42 +45,26 @@
 	
 	<!-- 자주묻는질문 검색 목록 -->
 	<sql id="search_faq">
-		<where>
-			<if test="keyword != null and keyword != ''">
-				b.title LIKE '%' || #{keyword} || '%' or
-				b.content LIKE '%' || #{keyword} || '%'
-			</if>
-		</where>
+		<if test="keyword != null and keyword != ''"> AND
+			no_title LIKE '%' || #{keyword} || '%' or
+			no_content LIKE '%' || #{keyword} || '%'
+		</if>
 	</sql>
 	
-	<!-- 전체/검색 목록 -->
+	<!-- 자주묻는질문 전체/검색 목록 -->
 	<select id="selectFaqList">
 		SELECT * FROM (SELECT a.*, rownum rnum FROM
 		(SELECT no_num,
 			no_title,
 			no_content,
-			no_category
+			no_category 
 			FROM notice
 			WHERE no_status=2
-			<include refid="status"></include>
+			<include refid="search_faq"></include> AND
+			<include refid="no_category"></include>
 			)a)
 			<![CDATA[
-			WHERE rnum >= #{start} AND rnum <= #{end}
-			]]>
-	</select>
-	
-	<select id="selectCategoryOne">
-		SELECT * FROM (SELECT a.*, rownum rnum FROM
-		(SELECT no_num,
-			no_title,
-			no_content,
-			no_category
-			FROM notice
-			WHERE no_status=2 and no_category=1
-			<include refid="search_faq"></include>
-			)a)
-			<![CDATA[
-			WHERE rnum >= #{start} AND rnum <= #{end}
+			WHERE rnum >= #{start} AND rnum <= #{end} 
 			]]>
 	</select>
 	

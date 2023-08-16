@@ -49,10 +49,11 @@
 			</li>
 			<li id="category" style="display:none;">
 				<form:label path="no_category">자주묻는질문 카테고리 선택</form:label>
-				<form:radiobutton path="no_category" value="1"/>이용정책
-				<form:radiobutton path="no_category" value="2"/>공통
-				<form:radiobutton path="no_category" value="3"/>구매
-				<form:radiobutton path="no_category" value="4"/>판매
+				<form:radiobutton path="no_category" value="2"/>이용정책
+				<form:radiobutton path="no_category" value="3"/>공통
+				<form:radiobutton path="no_category" value="4"/>구매
+				<form:radiobutton path="no_category" value="5"/>판매
+				<form:radiobutton path="no_category" value="6"/>기타
 				<form:errors path="no_category" cssClass="error-color"/>
 			</li>
 			<li id="policy" style="display:none;">
