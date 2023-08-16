@@ -16,7 +16,6 @@
 				</div>
 				<div class = "service_btn_box">
 					<a href = "${pageContext.request.contextPath}/notice/noticefaq.do" class = "btn solid small">자주 묻는 질문</a>
-					<a href = "${pageContext.request.contextPath}/talk/talkList.do" class = "btn solid small">채팅하기(테스트)</a>
 				</div>
 			</div>
 			<div class = "footer_menu">
