@@ -30,14 +30,26 @@
 					<p>참가 비용</p>
 					<p class="flea-detail-comment3">하단 내용 참조</p>
 				</li>
-				<c:if test="${market.booth_count > 0}">
+				<c:if test="${market.market_type == 2}">
+					<c:if test="${market.booth_count > 0}">
+					<li class="flea-book page_clear align-right">
+						<input type="button" class="flea-book-btn" value="예약하기" onclick="location.href='booking.do?market_num=${market.market_num}'">
+					</li>
+					</c:if>
+					<c:if test="${market.booth_count <= 0}">
+					<li class="align-right">
+						<span class="sold-out">매진</span>
+					</li>
+					</c:if>
+				</c:if>
+				<c:if test="${market.market_type == 1}">
 				<li class="flea-book page_clear align-right">
-					<input type="button" class="flea-book-btn" value="예약하기" onclick="location.href='booking.do?market_num=${market.market_num}'">
+					<input type="button" class="flea-book-btn-disabled" value="예약 예정">
 				</li>
 				</c:if>
-				<c:if test="${market.booth_count <= 0}">
-				<li class="align-right">
-					<span class="sold-out">매진</span>
+				<c:if test="${market.market_type == 3}">
+				<li class="flea-book page_clear align-right">
+					<input type="button" class="flea-book-btn-disabled" value="예약 종료">
 				</li>
 				</c:if>
 			</ul>

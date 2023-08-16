@@ -114,6 +114,16 @@ table.market-table > td{
 	text-align:center;
 	cursor:pointer;
 }
+.detail-btn-disabled{
+	width:80px;
+	background:url(../images/book_btn3.png) no-repeat 50% 50%;
+	border:none;
+	color:#fff;
+	font-size:15px;
+	font-weight:600;
+	line-height:36px;
+	text-align:center;
+}
 /*플리마켓 상세
 -------------------------*/
 .flea-info{
@@ -173,6 +183,16 @@ table.market-table > td{
 	line-height:36px;
 	text-align:center;
 	cursor:pointer;
+}
+.flea-book-btn-disabled{
+	width:165px;
+	background:url(../images/book_btn4.png) no-repeat 50% 50%;
+	border:none;
+	color:#fff;
+	font-size:18px;
+	font-weight:700;
+	line-height:36px;
+	text-align:center;
 }
 /*예약 날짜 폼
 -------------------------*/
