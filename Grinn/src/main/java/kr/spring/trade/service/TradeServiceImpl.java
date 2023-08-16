@@ -258,6 +258,11 @@ public class TradeServiceImpl implements TradeService{
 		tradeMapper.cancelExecutePayment(total);
 	}
 
+	@Override
+	public PurchaseBidVO selectPurchaseBidByPurchaseNum(Integer purchase_num) {
+		return tradeMapper.selectPurchaseBidByPurchaseNum(purchase_num);
+	}
+
 	
 
 }

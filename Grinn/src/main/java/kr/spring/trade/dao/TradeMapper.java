@@ -85,6 +85,9 @@ public interface TradeMapper {
 	// 판매 입찰 번호 조회
 	@Select("SELECT sale_num FROM sale_bid WHERE mem_num=#{mem_num} AND item_num=#{item_num} AND sale_price=#{sale_price}")
 	public int selectSaleBidNumber(@Param(value="mem_num") Integer mem_num, @Param(value="item_num") Integer item_num, @Param(value="sale_price") Integer sale_price);
+	// 구매 입찰 정보 조회
+	@Select("SELECT * FROM purchase_bid WHERE purchase_num=#{purchase_num}")
+	public PurchaseBidVO selectPurchaseBidByPurchaseNum(Integer purchase_num);
 	// 구매 입찰 정보 삭제
 	@Delete("DELETE FROM purchase_bid WHERE purchase_num=#{purchase_num}")
 	public void deletePurchaseBid(Integer purchase_num);
