@@ -38,7 +38,7 @@
 				alert('아직 상품 발송 기간 '+(5-diff)+'일 남아있습니다.');	
 				return;
 			}else{
-				location.href='adminGivePenalty.do?seller_num=${trade.sellerVO.mem_num}&trade_num=${trade.trade_num}';
+				location.href='adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=6';
 			}
 		});
 	});
@@ -127,7 +127,7 @@
 						<a class="change-state"><span class="a-tag-text">상태 변경</span></a>
 					</c:if>
 					<c:if test="${trade.trade_state == 2}">
-						<a class="penal" data-regDate="${trade.trade_regDate}" href="adminGivePenalty.do?seller_num=${trade.sellerVO.mem_num}&trade_num=${trade.trade_num}"><span class="a-tag-text">패널티 부여</span></a>
+						<a class="penal" data-regDate="${trade.trade_regDate}" href="adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=6"><span class="a-tag-text">거래 실패</span></a>
 					</c:if>
 					
 				</div>

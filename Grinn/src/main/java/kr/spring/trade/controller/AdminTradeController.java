@@ -151,8 +151,10 @@ public class AdminTradeController {
 					int fee = price / 10;
 					log.debug("구매자 : " + mem_num);
 					log.debug("구매액 : " + (price+ship+fee));
-					
+					// 구매자에게 포인트 반환
 					tradeService.sendPointToBuyer(mem_num, price+ship+fee);
+					// 관리자에서 포인트 차감
+					tradeService.adminWithdraw(price+ship+fee,user.getMem_num());
 				}
 				
 				tradeService.updateTradeState(trade_num, trade_state);

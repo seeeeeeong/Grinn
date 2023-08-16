@@ -174,7 +174,7 @@ public interface TradeMapper {
 	// 관리자 포인트 조회 (29)
 	@Select("SELECT NVL(mem_point, 0) FROM member_detail WHERE mem_num=#{mem_num}")
 	public int adminGetPoint(Integer mem_num);
-	// 판매자에게 거래가 입금 후 관리자 포인트 차감(29)
+	// 관리자 포인트 차감(29)
 	@Update("UPDATE member_detail SET mem_point=mem_point-#{total} WHERE mem_num=#{mem_num}")
 	public void adminWithdraw(@Param(value="total")Integer total, @Param(value="mem_num")Integer mem_num);
 	// 판매자에게 거래가 입금을 위한 데이터 조회

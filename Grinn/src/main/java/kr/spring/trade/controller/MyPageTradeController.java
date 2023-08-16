@@ -215,8 +215,10 @@ public class MyPageTradeController {
 			int fee = pbVO.getPurchase_price() / 10;
 			int total = pbVO.getPurchase_price() + ship + fee;
 			
+			// 구매입찰 시 결제한 금액 반환
 			tradeService.sendPointToBuyer(user.getMem_num(), total);
-			
+			// 관리자에서 포인트 차감
+			tradeService.adminWithdraw(total, 29);
 			// 구매 입찰 내역 삭제
 			tradeService.deletePurchaseBid(purchase_num);
 						
