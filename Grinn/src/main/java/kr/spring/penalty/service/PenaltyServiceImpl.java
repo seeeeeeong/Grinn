@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.member.dao.MemberMapper;
 import kr.spring.penalty.dao.PenaltyMapper;
 import kr.spring.penalty.vo.PenaltyVO;
 
@@ -15,6 +16,9 @@ import kr.spring.penalty.vo.PenaltyVO;
 public class PenaltyServiceImpl implements PenaltyService{
 	@Autowired
 	private PenaltyMapper penaltyMapper;
+	
+	@Autowired
+	private MemberMapper memberMapper;
 	
 	@Override
 	public List<PenaltyVO> selectList(Map<String, Object> map) {
@@ -29,6 +33,7 @@ public class PenaltyServiceImpl implements PenaltyService{
 	@Override
 	public void insertPenalty(PenaltyVO penaltyVO) {
 		penaltyMapper.insertPenalty(penaltyVO);
+		memberMapper.selectMember(penaltyVO.getMem_num());
 	}
 
 	@Override
