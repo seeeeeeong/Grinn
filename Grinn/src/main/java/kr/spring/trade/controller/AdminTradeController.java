@@ -118,7 +118,7 @@ public class AdminTradeController {
 	@RequestMapping("/trade/adminUpdateTradeState.do")
 	public String updateTradeState(HttpSession session, Model model, @RequestParam int trade_num, @RequestParam int trade_state){
 		MemberVO user = (MemberVO) session.getAttribute("user");
-		
+		TradeVO tradeVO = null;
 		if(user == null) {
 			model.addAttribute("message","로그인이 필요하니다.");
 			model.addAttribute("url","../member/login.do");
@@ -131,17 +131,30 @@ public class AdminTradeController {
 			}else {
 				if(trade_state == 4) {
 					// 검수 성공 - 판매자에게 (입찰가 - 수수료) 입금하기
-					TradeVO tradeVO = tradeService.getTradeDetailForDeposit(trade_num);
+					tradeVO = tradeService.getTradeDetailForDeposit(trade_num);
 					int mem_num = tradeVO.getSeller_num();
 					int price = tradeVO.getTrade_price();
 					int fee = price / 10;
 					int total = price - fee;
-					
+					log.debug("판매자 : " + tradeVO.getSeller_num());
 					// 거래가 판매자에게 입금
 					tradeService.sendPointToSeller(mem_num, total); 
 					// 거래가 관리자에서 출금
 					tradeService.adminWithdraw(total, user.getMem_num());
+				}else if(trade_state == 6) {// 거래 실패
+					// 거래실패로 상태 변경시 구매자에게 포인트 반환
+					tradeVO = tradeService.getTradeDetail(trade_num);
+					int mem_num = tradeVO.getBuyerVO().getMem_num();
+					int price = tradeVO.getTrade_price();
+					int ship = 0;
+					if(price < 50000) ship+=3000;
+					int fee = price / 10;
+					log.debug("구매자 : " + mem_num);
+					log.debug("구매액 : " + (price+ship+fee));
+					
+					tradeService.sendPointToBuyer(mem_num, price+ship+fee);
 				}
+				
 				tradeService.updateTradeState(trade_num, trade_state);
 				model.addAttribute("message","거래 상태를 성공정으로 수정했습니다.");
 				model.addAttribute("url","../trade/admin_list.do");
@@ -175,6 +188,11 @@ public class AdminTradeController {
 		}
 	}
 	
+	/**
+	 * ======================================================================================================================
+	 * 관리자 포인트 정보
+	 * ======================================================================================================================
+	 **/
 	// 관리자 - 포인트 정보
 	@RequestMapping("/admin/point.do")
 	public String adminGetPoint(HttpSession session, Model model) {

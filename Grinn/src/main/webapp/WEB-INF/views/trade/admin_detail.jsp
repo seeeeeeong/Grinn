@@ -175,7 +175,7 @@
       				<input type="button" value="검수중" disabled="disabled" id="btn3">
       				<input type="button" value="배송중" id="btn4" onclick="location.href='adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=4'">
       				<input type="button" value="배송완료" disabled="disabled" id="btn5">
-      				<input type="button" value="거래실패" id="btn6" onclick="location.href='adminGivePenalty.do?seller_num=${trade.sellerVO.mem_num}&trade_num=${trade.trade_num}'">
+      				<input type="button" value="거래실패" id="btn6" onclick="location.href='adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=6'">
       			</c:if>
       			<c:if test="${trade.trade_state == 4}">
       				<input type="button" value="검수중" disabled="disabled" id="btn3">
