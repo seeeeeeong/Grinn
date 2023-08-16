@@ -3,6 +3,10 @@
 /*-------------
 	상단메뉴
 ---------------*/
+
+#error {
+    margin-left: 100px;
+}
 #page_nav1 {
   align-items: center; /* 수직 가운데 정렬 */
   display: flex;
@@ -247,11 +251,13 @@ a:hover{
     display: inline-block;
     align-items: center;
     justify-content: center;
-    height: 52px;
     overflow: hidden;
     vertical-align: top;
     width:100%;
     margin-bottom: 10px;
+}
+.select-inner{
+	margin-bottom: 10px;
 }
 .select-size .price {
     margin-top: 10px; /* Add margin at the top */

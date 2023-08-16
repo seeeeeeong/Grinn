@@ -27,7 +27,7 @@ public class ItemVO {
 	private String item_model; //상품모델명
 	@NotEmpty
 	private String item_date; //상품출시일
-	@Range(min = 0, max = 99999)
+	@Range(min = 1, max = 99999)
 	private int item_price; //상품정가
 	private byte[] item_photo1; //상품 사진1
 	private String item_photo1name;//상품사진1이름

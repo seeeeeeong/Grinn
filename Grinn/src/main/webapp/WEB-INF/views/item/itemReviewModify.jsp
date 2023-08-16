@@ -37,7 +37,7 @@
 		</fieldset>
 		<ul>
 			<li><form:textarea id="review_content" path="review_content"
-					placeholder="후기를 입력하세요" autocomplete="off" rows="10" cols="105" />
+					placeholder="후기를 입력하세요" autocomplete="off" rows="10" cols="105" /><br>
 				<form:errors path="review_content" cssClass="error-color"/><br>
 				<span class="letter-count">300/300</span></li>
 		</ul>
