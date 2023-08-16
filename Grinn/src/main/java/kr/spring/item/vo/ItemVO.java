@@ -3,6 +3,9 @@ package kr.spring.item.vo;
 import java.io.IOException;
 import java.sql.Date;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Range;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
@@ -14,12 +17,18 @@ import lombok.ToString;
 @Getter
 public class ItemVO {
 	private int item_num; //상품번호
+	@NotEmpty
 	private String item_brand; //브랜드명
+	@NotEmpty
 	private String item_name; //상품이름
+	@NotEmpty
 	private String item_detail; //상품설명
+	@NotEmpty
 	private String item_model; //상품모델명
+	@NotEmpty
 	private String item_date; //상품출시일
-	private String item_price; //상품정가
+	@Range(min = 0, max = 99999)
+	private int item_price; //상품정가
 	private byte[] item_photo1; //상품 사진1
 	private String item_photo1name;//상품사진1이름
 	private byte[] item_photo2; //상품 사진2
@@ -27,8 +36,11 @@ public class ItemVO {
 	private String item_keyword1; //상품검색키워드1
 	private String item_keyword2; //상품검색키워드2
 	private String item_keyword3; //상품검색키워드3
+	@Range(min=1,max=4)
 	private int item_cate; //상품분류
+	@Range(min=1,max=3)
 	private int item_gender; //성별
+	@Range(min=1,max=2)
 	private int item_status; //상품판매가능여부
 	
 	private int item_sizenum;

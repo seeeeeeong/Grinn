@@ -195,7 +195,19 @@ public class ItemController {
 
 	// 상품 등록 요청 처리
 	@PostMapping("/item/itemWrite.do")
-	public String itemWrite(@ModelAttribute("itemVO") ItemVO itemVO,HttpServletRequest request,Model model) {
+	public String itemWrite(@Valid ItemVO itemVO,BindingResult result,HttpServletRequest request,Model model) {
+		
+		if(itemVO.getItem_photo1().length==0) {
+			result.rejectValue("item_photo1", "required");
+		}
+		if(itemVO.getItem_photo1().length>=5*1024*1024) {
+			result.rejectValue("item_photo1", "limitUploadSize",new Object[] {"5MB"},null);
+		}
+		//유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			return form();
+		}
+		
 		// 상품 등록 로직 호출
 		itemService.insertItem(itemVO);
 
@@ -398,6 +410,10 @@ public class ItemController {
 								@RequestParam int item_num,
 								HttpSession session, Model model,HttpServletRequest request) {
 		
+		//유효성 체크 결과 오류가 있으면 폼 호출
+		if(result.hasErrors()) {
+			return itemReview(item_num, model);
+		}
 		itemReviewVO.setMem_num(((MemberVO)session.getAttribute("user")).getMem_num());
 		
 		itemService.insertReview(itemReviewVO);

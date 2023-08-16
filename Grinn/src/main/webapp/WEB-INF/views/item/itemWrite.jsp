@@ -22,6 +22,7 @@
                 	<div id="photo_choice" style="display:none;">
                     <!-- 파일 업로드 입력 폼 -->
                     	<input type="file" id="upload" name="upload" accept="image/gif,image/png,image/jpeg"><br>
+                    	<form:errors path="item_photo1" cssClass="error-color"/>
                     </div>
                 </li>
             </ul>

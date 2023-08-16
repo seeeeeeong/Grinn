@@ -37,7 +37,7 @@ $(function(){
 					stoutput += '<img src="../member/viewProfile.do?mem_num='+ item.mem_num+'" width="40" height="40" class="my-photo">';
 					stoutput += '</li>';
 					stoutput += '<li>';
-					stoutput += item.id + '<br>';
+					stoutput += item.mem_id + '<br>';
 					stoutput += '</li>';
 					stoutput += '</ul>';
 					stoutput += '<div class="sub-item">';

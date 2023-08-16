@@ -3,6 +3,9 @@ package kr.spring.item.vo;
 import java.io.IOException;
 import java.sql.Date;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Range;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.spring.util.DurationFromNow;
@@ -15,11 +18,13 @@ import lombok.ToString;
 @ToString
 public class ItemReviewVO {
 	private int review_num;
+	@NotEmpty
 	private String review_content;
 	private byte[] review_photo;
 	private String review_photoname;
 	private String review_date;
 	private String review_modifydate;
+	@Range(min=1,max=5)
 	private int review_star;
 	private int review_status;
 	private int item_num;

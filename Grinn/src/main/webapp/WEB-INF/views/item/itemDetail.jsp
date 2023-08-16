@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemReview.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/itemSt.js"></script>
 <!-- 게시글 상세 시작 -->
 <div class="page-main">
 	<c:if test="${item.item_status == 1}">
