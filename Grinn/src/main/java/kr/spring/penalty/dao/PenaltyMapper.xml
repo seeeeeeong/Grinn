@@ -55,4 +55,14 @@
 	  WHERE rnum >= #{start} AND rnum <= #{end}
 	  ]]>
 	</select>
+	
+	<select id="selectPenaltyByMem_num" parameterType="map" resultType="integer">
+		SELECT
+		  NVL(SUM(pe_score), 0)
+		FROM (SELECT
+		        pe_num,
+		        mem_num
+		      FROM penalty JOIN member USING(mem_num))
+		WHERE mem_num = #{mem_num}
+	</select>
 </mapper>

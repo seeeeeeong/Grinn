@@ -64,44 +64,42 @@ $(function(){
 	<h2>예약 날짜 선택</h2>
 	<div>
 	</div>
-	<form id="select_date" action="completeDate.do" method="post">
-		<input type="hidden" name="market_num" value="${market.market_num}" id="market_num"/>
-		<input type="hidden" name="market_startDate" value="${market.market_startDate}" id="market_startDate"/>
-		<input type="hidden" name="market_endDate" value="${market.market_endDate}" id="market_endDate"/>
-		<input type="hidden" name="booth_count" value="${market.booth_count}" id="booth_count"/>
-		<input type="hidden" name="booth_fee" value="${market.booth_fee}" id="booth_fee"/>
+	<form:form id="select_date" action="booking.do" method="post" modelAttribute="bookingVO">
+		<input type="hidden" name="market_num" value="${market.market_num}"/>
+		<input type="hidden" name="market_startDate" value="${market.market_startDate}"/>
+		<input type="hidden" name="market_endDate" value="${market.market_endDate}"/>
+		<input type="hidden" name="booth_count" value="${market.booth_count}"/>
+		<input type="hidden" name="booth_fee" value="${market.booth_fee}"/>
+		<form:errors element="div" cssClass="error-color"></form:errors>
 		<ul class="date-form">
-			<li>예약 플리마켓 ${market.market_title}</li>
-			<li>운영 일정 ${market.market_startDate} ~ ${market.market_endDate}</li>
-			<li class="choose-date">
-				<label for="from-to">예약 일정</label>
-				<input type="text" id="from-to" autocomplete="off" placeholder="희망 시작 일자"> ~ <input type="text" id="from-to2" autocomplete="off" placeholder="희망 종료 일자">
+			<li class="book-flea-title">${market.market_title}</li>
+			<li class="book-flea-date align-right">${market.market_startDate} ~ ${market.market_endDate}</li>
+			<li class="choose-date book-flea-detail">
+				<label for="from-to"><b>예약 일정</b></label>
+				<form:input path="book_date1" type="text" id="from-to" autocomplete="off" placeholder="희망 시작 일자"/> ~ <form:input path="book_date2" type="text" id="from-to2" autocomplete="off" placeholder="희망 종료 일자"/>
 			</li>
-			<li>
-				<label for="get_count">예약 부스 수</label>
-				<input type="number" name="get_count" min="0" max="1" id="get_count"/>
+			<li class="book-flea-detail">
+				<form:label path="get_count"><b>예약 부스 수</b></form:label>
+				<form:input type="number" path="get_count" min="0" max="1" id="get_count"/>
 			</li>
-			<li>
-				<span id="book_total_count">총 예약 수량 0개</span>
+			<li class="book-flea-detail">
+				<label><b>남은 부스 수</b></label>
+				${market.booth_count}개
 			</li>
-			<li>
-				<label>남은 부스 수</label>
-				${market.booth_count} / ${market.booth_count}
-			</li>
-			<li>
-				<label for="booth_fee">플리마켓 비용</label>
+			<li class="book-flea-detail">
+				<label for="booth_fee"><b>비용</b></label>
 				<c:if test="${market.booth_fee == 0}"><span>무료</span></c:if>
 				<c:if test="${market.booth_fee > 0}">
 				<fmt:formatNumber value="${market.booth_fee}"/>원
 				</c:if>
 			</li>
-			<li>
-				<span id="booth_total_txt">총 예약 금액  0원</span>
+			<li class="book-total align-right">
+				<span id="booth_total_txt">총 금액 0원</span>
 			</li>
 		</ul>
-		<div class="align-right">
-			<input type="button" value="목록" onclick="location.href='boothList.do'">
-			<input type="submit" id="book_btn" value="다음으로">
+		<div class="btn-area align-right">
+			<input type="button" value="목록" class="book-btn1" onclick="location.href='boothList.do'">
+			<form:button class="book-btn2" id="book_btn">예약</form:button>
 		</div>
-	</form>
+	</form:form>
 </div>

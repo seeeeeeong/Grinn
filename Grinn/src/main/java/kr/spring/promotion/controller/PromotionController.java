@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.promotion.service.PromotionService;
 import kr.spring.promotion.vo.PromotionVO;
+import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -109,10 +110,22 @@ public class PromotionController {
 	public String getPhoto(@RequestParam int pro_num, HttpServletRequest request, Model model) {
 		PromotionVO promotionVO = promotionService.selectPromotion(pro_num);
 		
-		model.addAttribute("photoFile", promotionVO.getPro_photo1());
-		model.addAttribute("photoName", promotionVO.getPro_photoName1());
+		viewPhoto(promotionVO, request, model);
 		
 		return "photoView";
+	}
+	
+	public void viewPhoto(PromotionVO promotionVO, HttpServletRequest request, Model model) {
+		if (promotionVO == null || promotionVO.getPro_photoName1() == null) {
+			// 기본 이미지
+			byte[] readbyte = FileUtil.getBytes(request.getServletContext().getRealPath("/image_bundle/empty.jpg")); 
+			model.addAttribute("photoFile", readbyte);
+			model.addAttribute("photoName", "empty.jpg");
+		} else {
+			// 업로드한 사진이 있는 경우
+			model.addAttribute("photoFile", promotionVO.getPro_photo1());
+			model.addAttribute("photoName", promotionVO.getPro_photoName1());
+		}
 	}
 	
 	

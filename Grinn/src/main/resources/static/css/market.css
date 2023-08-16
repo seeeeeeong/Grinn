@@ -197,11 +197,60 @@ table.market-table > td{
 /*예약 날짜 폼
 -------------------------*/
 .date-form li{
-	margin-bottom:10px;
+	margin-bottom:20px;
+}
+.book-flea-title{
+	font-size: 25px;
+    font-weight: bold;
+    padding: 5px 0 5px 0;
+}
+.book-flea-date{
+	font-size: 20px;
+    font-style: italic;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-right:35px;
 }
 .choose-date{
 	float:left;
 }
 #from-to, #from-to2{
 	width:120px;
+}
+.book-flea-detail{
+	font-size:16px;
+	margin-top:20px;
+}
+.book-total{
+	font-size:22px;
+	font-weight:bolder;
+	margin:35px 50px 0 0;
+}
+.btn-area{
+	margin:30px 45px 0 0 ;
+}
+.book-btn1{
+	width:100px;
+	background:url(../images/book_btn6.png) no-repeat 50% 50%;
+	border:none;
+	color:#fff;
+	font-size:18px;
+	font-weight:700;
+	line-height:36px;
+	text-align:center;
+	cursor:pointer;
+}
+.book-btn2{
+	width:105px;
+	background:url(../images/book_btn5.png) no-repeat 50% 50%;
+	border:none;
+	color:#fff;
+	font-size:18px;
+	font-weight:700;
+	line-height:36px;
+	text-align:center;
+	cursor:pointer;
+}
+#book_btn{
+	height:38px;
 }

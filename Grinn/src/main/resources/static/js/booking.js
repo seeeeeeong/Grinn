@@ -35,9 +35,9 @@ $(function(){
 	});
 	
 	
-	$('#get_count').on('keyup mouseup', function(){
+	$('#get_count').on('keyup mouseup click', function(){
 		if($('#get_count').val() == ''){
-			$('#booth_total_txt').text('총 예약 금액 0원');
+			$('#booth_total_txt').text('총 금액 0원');
 		}
 		
 		if($('#get_count').val() < 0){
@@ -45,12 +45,14 @@ $(function(){
 			return;
 		}
 		
-		if($('#get_count').val() == 1){
-			$('#booth_total_count').text('총 예약 수량 1개');
+		if($('#get_count').val() >1){
+			alert('최대 1개 예약 가능합니다.')
+			$('#get_count').val('');
+			return;
 		}
-		
-		let total = $('#get_count').val() * $('#booth_fee').val();
-		$('#booth_total_txt').text('총 예약 금액 ' + total.toLocaleString() + '원');
+				
+		let total = Number($('#get_count').val()) * $('#booth_fee').val();
+		$('#booth_total_txt').text('총 금액 ' + total.toLocaleString() + '원');
 		
 	});
 	

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.member.service.MemberService;
 import kr.spring.penalty.service.PenaltyService;
 import kr.spring.penalty.vo.PenaltyVO;
 import kr.spring.util.PagingUtil;
@@ -29,6 +30,9 @@ import lombok.extern.slf4j.Slf4j;
 public class PenaltyAdminController {
 	@Autowired
 	private PenaltyService penaltyService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	// 자바빈 초기화
 	@ModelAttribute
@@ -92,4 +96,7 @@ public class PenaltyAdminController {
 		
 		return mav;
 	}
+	
+	
+	// ===페널티 수정===
 }

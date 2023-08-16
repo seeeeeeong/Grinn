@@ -43,14 +43,12 @@ public class PenaltyServiceImpl implements PenaltyService{
 
 	@Override
 	public int selectPenaltyByMem_num(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return penaltyMapper.selectPenaltyByMem_num(map);
 	}
 
 	@Override
 	public void updatePenalty(PenaltyVO penaltyVO) {
-		// TODO Auto-generated method stub
-		
+		penaltyMapper.updatePenalty(penaltyVO);
 	}
 
 }

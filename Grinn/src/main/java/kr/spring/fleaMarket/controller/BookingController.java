@@ -3,13 +3,17 @@ package kr.spring.fleaMarket.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +34,8 @@ public class BookingController {
 	private BookingService bookingService;
 	@Autowired
 	private MarketService marketService;
+	@Autowired
+	private MemberService memberServie;
 	
 	// ===자바빈 초기화===
 	@ModelAttribute
@@ -37,7 +43,8 @@ public class BookingController {
 		return new BookingVO();
 	}
 	
-	// ===예약 폼===   
+	// ===예약===
+	// 예약 폼
 	@GetMapping("/fleamarket/booking.do")
 	public String getForm(@RequestParam int market_num, HttpSession session, Model model) {
 		
@@ -47,14 +54,39 @@ public class BookingController {
 		// 예약 내역이 없는 경우: 이어서
 		// String result = "no";
 		// BookingVO book = bookingService.
-		// MarketVO market = marketService.selectMarket(market_num);
+		MarketVO market = marketService.selectMarket(market_num);
 			
-		// model.addAttribute("market", market);
-		// model.addAttribute("result", result);
+		model.addAttribute("market", market);
+		//model.addAttribute("result", result);
 		
 		return "selectDate";
 	}
 	
+	// 전송된 데이터 처리
+	@PostMapping("/fleamarket/booking.do")
+	public String submitDate(@Valid BookingVO bookingVO, BindingResult result, 
+			                        HttpServletRequest request, HttpSession session, Model model) {
+		log.debug("<<예약 제출>> : " + bookingVO);
+		
+		// 유효성 체크 결과 오류가 있으면 폼 호출
+		if (result.hasErrors()) {
+			//return getForm(int, session, model);
+		}
+				
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_num", user.getMem_num());
+		
+		bookingService.insertBooking(bookingVO);
+		
+		// View
+		model.addAttribute("message", "예약이 완료되었습니다.");
+		model.addAttribute("url", request.getContextPath() + "/fleamarket/marketList.do");
+		
+		return "common/resultView";
+	}
+	
+	/*
 	// ===예약 날짜 선택===
 	@RequestMapping("/fleamarket/selectDate.do")
 	@ResponseBody
@@ -81,6 +113,7 @@ public class BookingController {
 		}
 		return mapJson;
 	}
+	*/
 	
 	
 }

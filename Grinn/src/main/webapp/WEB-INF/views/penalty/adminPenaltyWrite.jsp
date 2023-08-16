@@ -9,13 +9,6 @@
 		<form:errors element="div" cssClass="error-color"></form:errors>
 		<ul class="register-label">
 			<li>
-				<label for="pe_service_type">페널티 유형</label>
-				<form:radiobutton path="pe_service_type" value="1" id="pe_service_type1" onclick="OnOff(this.value)"/>게시글
-				<form:radiobutton path="pe_service_type" value="2" id="pe_service_type2" onclick="OnOff(this.value)"/>댓글
-				<form:radiobutton path="pe_service_type" value="3" id="pe_service_type3" onclick="OnOff(this.value)"/>거래
-				<form:errors path="pe_service_type" cssClass="error-color"/>
-			</li>
-			<li>
 				<label for="mem_num">ID</label>
 				<form:input path="mem_num"/>
 				<form:errors path="mem_num" cssClass="error-color"/>
@@ -26,18 +19,23 @@
 				<form:errors path="pe_score" cssClass="error-color"/>
 			</li>
 			<li>
-				<form:label path="pe_type">사유</form:label>
-				<form:select path="pe_type">
-					<form:option value="1" class="type1" disabled="disabled">도용</form:option>
-					<form:option value="2" class="type1" disabled="disabled">관련 없는 게시글</form:option>
-					<form:option value="3" class="type1" disabled="disabled">선정적 게시글</form:option>
-					<form:option value="4" class="type2" disabled="disabled">허위 댓글</form:option>
-					<form:option value="5" class="type2" disabled="disabled">비방 댓글</form:option>
-					<form:option value="6" class="type2" disabled="disabled">선정적 댓글</form:option>
-					<form:option value="7" class="type3" disabled="disabled">가품 판정</form:option>
-					<form:option value="8" class="type3" disabled="disabled">손상/오염</form:option>
-					<form:option value="9" class="type3" disabled="disabled">발송지연</form:option>
-				</form:select>
+				<form:label path="pe_service_type">페널티 유형</form:label>
+				<form:radiobutton path="pe_service_type" value="1" id="pe_service_type1"/>게시글
+				<form:radiobutton path="pe_service_type" value="2" id="pe_service_type2"/>댓글
+				<form:radiobutton path="pe_service_type" value="3" id="pe_service_type3"/>거래
+				<form:errors path="pe_service_type" cssClass="error-color"/>
+			</li>
+			<li>
+				<form:label path="pe_type">사유</form:label><br>
+				<input type="radio" value="1" name="pe_service_type1" id="pe_service_type1" class="pe-type1"/>도용 게시글
+				<input type="radio" value="2" name="pe_service_type2" id="pe_service_type2" class="pe-type1"/>관련 없는 게시글
+				<input type="radio" value="3" name="pe_service_type3" id="pe_service_type3" class="pe-type1"/>선정적 게시글<br>
+				<input type="radio" value="4" name="pe_service_type4" id="pe_service_type4" class="pe-type2"/>허위 댓글
+				<input type="radio" value="5" name="pe_service_type5" id="pe_service_type5" class="pe-type2"/>비방 댓글
+				<input type="radio" value="6" name="pe_service_type6" id="pe_service_type6" class="pe-type2"/>선정적 댓글<br>
+				<input type="radio" value="7" name="pe_service_type7" id="pe_service_type7" class="pe-type3"/>가품 판정
+				<input type="radio" value="8" name="pe_service_type8" id="pe_service_type8" class="pe-type3"/>손상/오염
+				<input type="radio" value="9" name="pe_service_type9" id="pe_service_type9" class="pe-type3"/>발송지연
 				<form:errors path="pe_type" cssClass="error-color"/>
 			</li>
 		</ul>

@@ -1,4 +1,17 @@
 $(function(){
+
+
+	/*
+	if($('#penalty_register #pe_service_type1').attr('checked', true)){
+		$('.pe-type1').show();
+		$('.pe-type2').hide();
+		$('.pe-type3').hide();
+	}
+	*/
+
+	
+	
+	
 	function OnOff(value){
 	 	// 라디오 버튼 value 값 조건 비교
  		if(value == "1"){
@@ -8,7 +21,7 @@ $(function(){
  		}else {
 			document.querySelector('.type3').disabled = false;
 		}
-	}
+	};
 /*	
 	$('#pe_service_type1').click(function(){
             

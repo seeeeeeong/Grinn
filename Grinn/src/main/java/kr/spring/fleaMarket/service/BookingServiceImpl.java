@@ -39,8 +39,7 @@ public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public BookingVO selectBooking(BookingVO book) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookingMapper.selectBooking(book);
 	}
 
 	@Override
