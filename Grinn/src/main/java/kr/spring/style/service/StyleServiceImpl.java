@@ -117,6 +117,16 @@ public class StyleServiceImpl implements StyleService{
 		styleMapper.deleteComment(com_num);
 	}
 
+	@Override
+	public void hideStyle(Integer st_num) {
+		styleMapper.hideStyle(st_num);
+	}
+
+	@Override
+	public void hideComment(Integer com_num) {
+		styleMapper.hideComment(com_num);
+	}
+
 	
 
 }

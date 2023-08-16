@@ -99,5 +99,24 @@
 			</div>
 		</div>
 	</div>
+	<div class="form-handleReport">
+		<form action="styleReportDetail.do" method="post">
+			<input type="hidden" value="${style.rst_num}" name="rst_num">
+			<fieldset class="reps">
+				<span>
+					<input type="radio" class="rep-hide" name="rep_hide" value="1" <c:if test="${style.rep_hide == 1}">checked</c:if>>
+					공개 처리
+				</span>
+				<span>
+					<input type="radio" class="rep-hide" name="rep_hide" value="2" <c:if test="${style.rep_hide == 2}">checked</c:if>>
+					비공개 처리
+				</span>
+			</fieldset>
+			<div class="align-center">
+				<input type="submit" value="등록" id="submit_btn">
+				<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/report/styleReportList.do'">
+			</div>			
+		</form>
+	</div>	
 </div>
 <!-- (관리자) 스타일 신고 상세 -->

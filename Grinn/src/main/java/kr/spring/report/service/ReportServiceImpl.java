@@ -61,8 +61,8 @@ public class ReportServiceImpl implements ReportService{
 	}
 
 	@Override
-	public void handleStyleReport(Integer rst_num) {
-		reportMapper.handleStyleReport(rst_num);
+	public void handleStyleReport(Integer rst_num, Integer rep_hide) {
+		reportMapper.handleStyleReport(rst_num, rep_hide);
 	}
 
 	@Override

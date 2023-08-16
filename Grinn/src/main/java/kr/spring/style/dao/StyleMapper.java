@@ -43,6 +43,9 @@ public interface StyleMapper {
 	public void deleteFav(Integer stfav_num);
 	@Delete("DELETE FROM style_fav WHERE st_num=#{st_num}")
 	public void deleteFavByStNum(Integer st_num);
+	//게시글 비공개(관리자 처리)
+	@Update("UPDATE style SET st_hide=1 WHERE st_num=#{st_num}")
+	public void hideStyle(Integer st_num);
 	//댓글
 	public List<StyleCommentVO> selectListComment(Map<String,Object> map);
 	@Select("SELECT COUNT(*) FROM style_comment WHERE st_num=#{st_num}")
@@ -57,4 +60,7 @@ public interface StyleMapper {
 	//부모글 삭제시 댓글이 존재하면 부모글 삭제전 댓글 삭제
 	@Delete("DELETE FROM style_comment WHERE st_num=#{st_num}")
 	public void deleteReplyByStyleNum(Integer st_num);
+	//댓글 비공개(관리자 처리)
+	@Update("UPDATE style_comment SET com_hide=1 WHERE com_num=#{com_num}")
+	public void hideComment(Integer com_num);
 }

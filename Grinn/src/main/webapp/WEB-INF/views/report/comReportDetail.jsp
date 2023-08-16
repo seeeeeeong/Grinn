@@ -58,9 +58,6 @@
 	    font-size: 15px;	
 	}
 
-	dd{
-			
-	}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {

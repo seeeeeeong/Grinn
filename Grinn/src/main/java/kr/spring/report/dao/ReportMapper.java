@@ -41,7 +41,7 @@ public interface ReportMapper {
 	//신고 상태 변경
 	//게시물 신고 처리
 	@Update("UPDATE report_st SET rep_hide=#{rep_hide}, rep_status=1 WHERE rst_num=#{rst_num}")
-	public void handleStyleReport(Integer rst_num);
+	public void handleStyleReport(@Param(value="rst_num")Integer rst_num, @Param(value="rep_hide")Integer rep_hide);
 	//댓글 신고 처리
 	@Update("UPDATE report_com SET rep_hide=#{rep_hide}, rep_status=1 WHERE rcom_num=#{rcom_num}")
 	public void handleComReport(@Param(value="rcom_num")Integer rcom_num, @Param(value="rep_hide")Integer rep_hide);

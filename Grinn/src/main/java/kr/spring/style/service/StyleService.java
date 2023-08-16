@@ -36,4 +36,10 @@ public interface StyleService {
 	public void insertComment(StyleCommentVO styleComment);
 	public void updateComment(StyleCommentVO styleComment);
 	public void deleteComment(Integer com_num);
+	
+	
+	//게시글 비공개(관리자 처리)
+	public void hideStyle(Integer st_num);
+	//댓글 비공개(관리자 처리)
+	public void hideComment(Integer com_num);
 }

@@ -37,6 +37,7 @@ public class StyleVO {
 	private String mem_photo_name;
 	private String item_photo1name;
 	private String item_name;
+	private int st_hide;
 	
 	//좋아요
 	private int fav_cnt;

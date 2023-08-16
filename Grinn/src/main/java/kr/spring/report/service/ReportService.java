@@ -33,7 +33,7 @@ public interface ReportService {
 	public ComReportVO selectComReport(Integer rcom_num);
 	//신고 상태 변경
 	//게시물 신고 처리
-	public void handleStyleReport(Integer rst_num);
+	public void handleStyleReport(Integer rst_num, Integer rep_hide);
 	//댓글 신고 처리
 	public void handleComReport(Integer rcom_num, Integer rep_hide);
 }

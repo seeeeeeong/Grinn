@@ -16,6 +16,7 @@ CREATE TABLE style(
 	item_num1 number,
 	item_num2 number,
 	item_num3 number,
+	st_hide number DEFAULT 0,
 	constraint style_pk primary key (st_num),
 	constraint style_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
     constraint style_fk2 foreign key (item_num1) references item (item_num) ON DELETE CASCADE,
@@ -45,6 +46,7 @@ CREATE TABLE style_comment(
 	com_mdate DATE,
 	mem_num number not null,
 	st_num number not null,
+	com_hide number DEFAULT 0,
 	constraint style_comment_pk primary key (com_num),
 	constraint style_comment_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
 	constraint style_comment_fk2 foreign key (st_num) references style (st_num) ON DELETE CASCADE
