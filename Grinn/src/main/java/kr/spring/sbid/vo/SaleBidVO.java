@@ -20,7 +20,10 @@ public class SaleBidVO {
 	private int sale_price;
 	private Date sale_regDate;
 	private Date sale_deadline;
-
+	private String sale_zipcode;
+	private String sale_address1;
+	private String sale_address2;
+	
 	private String item_size;
 	
 	// 아이템 사진 및 아이템 정보

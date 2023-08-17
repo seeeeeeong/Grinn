@@ -22,9 +22,13 @@ public class TradeVO {
 	private Date trade_regDate;
 	private int item_sizenum;
 	private int trade_price;
-	private String trade_zipcode;
-	private String trade_address1;
-	private String trade_address2;
+	private String trade_rcvZipcode;
+	private String trade_rcvAddress1;
+	private String trade_rcvAddress2;
+	private String trade_sendZipcode;
+	private String trade_sendAddress1;
+	private String trade_sendAddress2;
+
 	
 	private String item_size;
 	

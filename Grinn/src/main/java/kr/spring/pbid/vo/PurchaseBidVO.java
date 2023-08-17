@@ -20,6 +20,9 @@ public class PurchaseBidVO {
 	private int purchase_price;
 	private Date purchase_regDate;
 	private Date purchase_deadline;
+	private String purchase_zipcode;
+	private String purchase_address1;
+	private String purchase_address2;
 	
 	private String item_size;
 

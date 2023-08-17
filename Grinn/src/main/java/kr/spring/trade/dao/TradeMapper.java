@@ -72,12 +72,12 @@ public interface TradeMapper {
 			+ " ORDER BY purchase_regDate ASC) WHERE ROWNUM <= 1")
 	public int selectBuyerNum(@Param(value="item_num") Integer item_num,@Param(value="item_sizenum") Integer item_sizenum, @Param(value="purchase_price") Integer purchase_price);
 	// 구매 입찰 정보 등록
-	@Insert("INSERT INTO purchase_bid (purchase_num,mem_num,item_num,item_sizenum,purchase_price,purchase_regDate,purchase_deadline) "
-			+ "VALUES (purchase_bid_seq.nextval,#{mem_num},#{item_num},#{item_sizenum},#{purchase_price},SYSDATE,#{purchase_deadline})")
+	@Insert("INSERT INTO purchase_bid (purchase_num,mem_num,item_num,item_sizenum,purchase_price,purchase_regDate,purchase_deadline,purchase_zipcode,purchase_address1,purchase_address2) "
+			+ "VALUES (purchase_bid_seq.nextval,#{mem_num},#{item_num},#{item_sizenum},#{purchase_price},SYSDATE,#{purchase_deadline},#{purchase_zipcode},#{purchase_address1},#{purchase_address2})")
 	public void insertPurchaseBid(PurchaseBidVO purchaseBidVO);
 	// 판매 입찰 정보 등록 
-	@Insert("INSERT INTO sale_bid (sale_num,mem_num,item_num,item_sizenum,sale_price,sale_regDate,sale_deadline) "
-			+ "VALUES (sale_bid_seq.nextval,#{mem_num},#{item_num},#{item_sizenum},#{sale_price},SYSDATE,#{sale_deadline})")
+	@Insert("INSERT INTO sale_bid (sale_num,mem_num,item_num,item_sizenum,sale_price,sale_regDate,sale_deadline,sale_zipcode,sale_address1,sale_address2) "
+			+ "VALUES (sale_bid_seq.nextval,#{mem_num},#{item_num},#{item_sizenum},#{sale_price},SYSDATE,#{sale_deadline},#{sale_zipcode},#{sale_address1},#{sale_address2})")
 	public void insertSaleBid(SaleBidVO saleBidVO);
 	// 구매 입찰 번호 조회
 	@Select("SELECT purchase_num FROM purchase_bid WHERE mem_num=#{mem_num} AND item_num=#{item_num} AND purchase_price=#{purchase_price}")
@@ -88,6 +88,9 @@ public interface TradeMapper {
 	// 구매 입찰 정보 조회
 	@Select("SELECT * FROM purchase_bid WHERE purchase_num=#{purchase_num}")
 	public PurchaseBidVO selectPurchaseBidByPurchaseNum(Integer purchase_num);
+	// 판매 입찰 정보 조회
+	@Select("SELECT * FROM sale_bid WHERE sale_num=#{sale_num}")
+	public SaleBidVO selectSaleBidBySaleNum(Integer sale_num);
 	// 구매 입찰 정보 삭제
 	@Delete("DELETE FROM purchase_bid WHERE purchase_num=#{purchase_num}")
 	public void deletePurchaseBid(Integer purchase_num);
@@ -106,8 +109,8 @@ public interface TradeMapper {
 	// 거래 정보 저장
 	@Insert("INSERT INTO trade (trade_num,item_num,buyer_num,seller_num) VALUES (#{trade_num},#{item_num},#{buyer_num},#{seller_num})")
 	public void insertTrade(TradeVO trade);
-	@Insert("INSERT INTO trade_detail (trade_num,item_num,item_sizenum,trade_price,trade_zipcode,trade_address1,trade_address2) "
-			+ "VALUES (#{trade_num},#{item_num},#{item_sizenum},#{trade_price},#{trade_zipcode},#{trade_address1},#{trade_address2})")
+	@Insert("INSERT INTO trade_detail (trade_num,item_num,item_sizenum,trade_price,trade_rcvZipcode,trade_rcvAddress1,trade_rcvAddress2,trade_sendZipcode,trade_sendAddress1,trade_sendAddress2) "
+			+ "VALUES (#{trade_num},#{item_num},#{item_sizenum},#{trade_price},#{trade_rcvZipcode},#{trade_rcvAddress1},#{trade_rcvAddress2},#{trade_sendZipcode},#{trade_sendAddress1},#{trade_sendAddress2})")
 	public void insertTradeDetail(TradeVO trade);
 	
 	// 구매 입찰, 즉시 구매 버튼 클릭 시 관리자에게 포인트 전송

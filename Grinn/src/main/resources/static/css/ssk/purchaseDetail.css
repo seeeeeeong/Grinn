@@ -274,6 +274,15 @@ ul{
     font-weight: 600;
     line-height: 22px;
 }
+.delivery-address-title a{
+	color: rgba(34,34,34,.5);
+    font-size: 13px;
+    letter-spacing: -.07px;
+    margin-left: auto;
+    padding-left: 2px;
+    cursor: pointer;
+}
+
 .delivery-address-detail{
 	padding-right: 80px;
     position: relative;
@@ -461,6 +470,61 @@ input[type="checkbox"]:checked + label{
 #btn_purchase:hover{
 	background-color:#fa7070;
 	color:white;
+}
+
+#modalWrap {
+	background-color: rgba(34,34,34,.5);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1010;
+	
+}
+#modalBody {
+ 	width: 400px;
+ 	height: 450px;
+	background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,.1);
+    left: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+#closeBtn {
+  float:right;
+  font-weight: bold;
+  color: #777;
+  font-size:25px;
+  cursor: pointer;
+}
+.modal-detail{
+	margin: 20px auto;
+}
+.modal-btns{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.modal-btns input{
+	margin: 5px 0;
+	background-color: #ebebeb;
+	border: 0;
+	cursor: pointer;
+	width:50%;
+}
+.modal-btns input:hover:not([disabled]){
+	background-color: #777;
+	color: white;
+}
+.modal-close{
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
 }
 
 

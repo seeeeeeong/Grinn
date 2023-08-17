@@ -263,6 +263,11 @@ public class TradeServiceImpl implements TradeService{
 		return tradeMapper.selectPurchaseBidByPurchaseNum(purchase_num);
 	}
 
+	@Override
+	public SaleBidVO selectSaleBidBySaleNum(Integer sale_num) {
+		return tradeMapper.selectSaleBidBySaleNum(sale_num);
+	}
+
 	
 
 }

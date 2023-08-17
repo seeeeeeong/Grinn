@@ -55,6 +55,11 @@ $(function(){
 					output += '<div class="delivery-address">';
 					output += '<div class="delivery-address-title">';
 					output += '<h3>반송주소</h3>';
+					if(param.member.mem_zipcode == null || param.member.mem_zipcode == ''){
+							output += '<a class="add-ship-info">+ 배송지 입력</a>';	
+					}else{
+						output += '<a class="add-ship-info">+ 배송지 변경</a>';
+					}
 					output += '</div>';
 					output += '<div class="delivery-address-detail">';
 					output += '<div class="address-info">';
@@ -70,7 +75,12 @@ $(function(){
 					output += '</div>';
 					output += '<div class="info-box">';
 					output += '<dt>반송 주소</dt>';
-					output += '<dd>'+ param.member.mem_zipcode+' '+param.member.mem_address1+' '+param.member.mem_address2+'</dd>';
+					if(param.member.mem_zipcode == null || param.member.mem_zipcode == ''){
+						output += '<dd class="info-ship">반송 배송지를 입력해주세요.</dd>';
+					}else{
+						output += '<dd class="info-ship">'+param.member.mem_address1+' '+param.member.mem_address2+'</dd>';	
+					}
+					
 					output += '</div>';
 					output += '</dl>';
 					output += '</div>';
@@ -205,6 +215,9 @@ $(function(){
 							output += '<input type="hidden" name="sale_price" id="sale_price" value="'+param.sale_price+'">';
 							output += '<input type="hidden" name="total" id="total" value="'+total+'">';
 							output += '<input type="hidden" name="sale_deadline" id="sale_deadline" value="'+param.dateDeadline+'">';
+							output += '<input type="hidden" name="trade_zipcode" id="trade_zipcode" value="'+param.member.mem_zipcode+'">';
+							output += '<input type="hidden" name="trade_address1" id="trade_address1" value="'+param.member.mem_address1+'">';
+							output += '<input type="hidden" name="trade_address2" id="trade_address2" value="'+param.member.mem_address2+'">';
 							output += '<input type="submit" id="btn_final_sale" value="판매입찰하기">';
 						}else{							
 							output += '<form action="/sale/salePaymentDirect.do" method="post" id="newForm">';
@@ -256,5 +269,50 @@ $(function(){
 	  }
 	  checking();
 	});
+	
+	$(document).on("click",".add-ship-info",function(){
+			$('#modalWrap').css('display','block');
+				
+			$('#main').css('opacity','1');
+			$('body').css('overflow','hidden').css('padding-right','17px');
+		});
+		$('#modal_close').click(function(){
+			$('#modalWrap').css('display','none');
+			$('#main').removeAttr('style');
+			$('body').removeAttr('style');
+		});
+		
+		$(document).on("click","#modal_save",function(){
+			if($('#zipcode').val().trim() == ''){
+				alert('우편번호를 입력하세요.');
+				return;
+			}
+			if($('#address1').val().trim() == ''){
+				alert('우편번호를 입력하세요.');
+				return;
+			}
+			if($('#address2').val().trim() == ''){
+				alert('상세주소를 입력하세요.');
+				return;
+			}
+			
+			$('.info-ship').text($('#address1').val() + ' ' + $('#address2').val());
+			$('.info-ship').css('color','black');
+			$('#trade_zipcode').val($('#zipcode').val());
+			$('#trade_address1').val($('#address1').val());
+			$('#trade_address2').val($('#address2').val());
+			
+			$('#modalWrap').css('display','none');
+			$('#main').removeAttr('style');
+			$('body').removeAttr('style');
+		});
+		
+		$(document).on("click","#btn_final_purchase",function(){
+			if($('.info-ship').text().trim() == '반송 배송지를 입력해주세요.'){
+				$('html, body').scrollTop($(".item").offset().top);
+				$('.info-ship').css('color','red');
+				return false;
+			}
+		});
 
 });

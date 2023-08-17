@@ -75,6 +75,9 @@ public interface TradeService {
 	// 구매 입찰 정보 조회
 	public PurchaseBidVO selectPurchaseBidByPurchaseNum(Integer purchase_num);
 
+	// 판매 입찰 정보 조회
+	public SaleBidVO selectSaleBidBySaleNum(Integer sale_num);
+
 	// 구매 입찰 정보 삭제
 	public void deletePurchaseBid(Integer purchase_num);
 

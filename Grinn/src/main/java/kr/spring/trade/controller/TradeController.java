@@ -181,7 +181,11 @@ public class TradeController {
 
 	// 구매입찰 - 결제하기 버튼 클릭 시
 	@PostMapping("/purchase/purchasePaymentBid.do")
-	public String paymentBidFinish(PurchaseBidVO pbVO, @RequestParam int total, Model model, HttpSession session) {
+	public String paymentBidFinish(PurchaseBidVO pbVO,
+								   @RequestParam String trade_zipcode,
+								   @RequestParam String trade_address1,
+								   @RequestParam String trade_address2,
+								   @RequestParam int total, Model model, HttpSession session) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 
 		if (user == null) {
@@ -200,6 +204,9 @@ public class TradeController {
 				tradeService.executePayment(total); // 관리자에게 입금
 				// 포인트 차감 진행.
 				tradeService.spendPoint(user.getMem_num(), total);
+				pbVO.setPurchase_zipcode(trade_zipcode);
+				pbVO.setPurchase_address1(trade_address1);
+				pbVO.setPurchase_address2(trade_address2);
 				tradeService.insertPurchaseBid(pbVO);
 				
 			}
@@ -212,7 +219,11 @@ public class TradeController {
 
 	// 즉시구매 - 결제하기 버튼 클릭 시
 	@PostMapping("/purchase/purchasePaymentDirect.do")
-	public String paymentDirectFinish(TradeVO tradeVO, @RequestParam int total, Model model, HttpSession session) {
+	public String paymentDirectFinish(TradeVO tradeVO, 
+									  @RequestParam String trade_zipcode,
+									  @RequestParam String trade_address1,
+									  @RequestParam String trade_address2,
+									  @RequestParam int total, Model model, HttpSession session) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 
 		if (user == null) {
@@ -236,6 +247,19 @@ public class TradeController {
 				int trade_num = tradeService.selectTradeNum();
 				int mem_num = seller_num;
 				int sale_num = tradeService.selectSaleBidNumber(mem_num, tradeVO.getItem_num(), tradeVO.getTrade_price());
+				
+				// 판매입찰 정보에서 등록한 판매자 반환주소 정보 받아오기
+				SaleBidVO sbvo = tradeService.selectSaleBidBySaleNum(sale_num);
+				// 판매자 반환주소 설정
+				tradeVO.setTrade_sendZipcode(sbvo.getSale_zipcode());
+				tradeVO.setTrade_sendAddress1(sbvo.getSale_address1());
+				tradeVO.setTrade_sendAddress2(sbvo.getSale_address2());
+				
+				// 구매자 배송 주소 설정
+				tradeVO.setTrade_rcvZipcode(trade_zipcode);
+				tradeVO.setTrade_rcvAddress1(trade_address1);
+				tradeVO.setTrade_rcvAddress2(trade_address2);
+				
 				tradeVO.setTrade_num(trade_num);
 				tradeVO.setBuyer_num(user.getMem_num());
 				tradeVO.setSeller_num(seller_num);
@@ -245,24 +269,26 @@ public class TradeController {
 				tradeService.spendPoint(user.getMem_num(), total);
 				
 				// 구매입찰을 등록했는데 즉시구매를 했을 경우
-				PurchaseBidVO pbVO = tradeService.selectPurchaseBidForDirectBuy(user.getMem_num(), tradeVO.getItem_num(), tradeVO.getItem_sizenum());
-				if(pbVO.getMem_num() == user.getMem_num()) {
-					// 입금했던 거래가 다시 반환
-					int deposit = 0;
-					if(pbVO.getPurchase_price() < 50000) {
-						deposit += 3000;
+				PurchaseBidVO pbVO = null;
+				pbVO = tradeService.selectPurchaseBidForDirectBuy(user.getMem_num(), tradeVO.getItem_num(), tradeVO.getItem_sizenum());
+				if(pbVO != null) {
+					if(pbVO.getMem_num() == user.getMem_num()) {
+						// 입금했던 거래가 다시 반환
+						int deposit = 0;
+						if(pbVO.getPurchase_price() < 50000) {
+							deposit += 3000;
+						}
+						deposit += (pbVO.getPurchase_price() / 10);
+						deposit += pbVO.getPurchase_price();
+						// 사용자 포인트 반환
+						tradeService.sendPointToBuyer(user.getMem_num(), deposit);
+						// 관리자 포인트 차감
+						tradeService.cancelExecutePayment(deposit);
+						
+						// 구매 입찰 정보 삭제
+						tradeService.deletePurchaseBid(pbVO.getPurchase_num());
 					}
-					deposit += (pbVO.getPurchase_price() / 10);
-					deposit += pbVO.getPurchase_price();
-					// 사용자 포인트 반환
-					tradeService.sendPointToBuyer(user.getMem_num(), deposit);
-					// 관리자 포인트 차감
-					tradeService.cancelExecutePayment(deposit);
-					
-					// 구매 입찰 정보 삭제
-					tradeService.deletePurchaseBid(pbVO.getPurchase_num());
 				}
-
 				tradeService.insertTrade(tradeVO);
 				// 판매입찰 정보 삭제
 				tradeService.deleteSaleBid(sale_num);
@@ -410,7 +436,11 @@ public class TradeController {
 	}
 	// 판매입찰 - 판매입찰하기 버튼 클릭 시
 	@PostMapping("/sale/salePaymentBid.do")
-	public String saleBidFinish(SaleBidVO sbVO, @RequestParam int total, Model model, HttpSession session) {
+	public String saleBidFinish(SaleBidVO sbVO,
+								@RequestParam String trade_zipcode,
+							    @RequestParam String trade_address1,
+							    @RequestParam String trade_address2,
+							    @RequestParam int total, Model model, HttpSession session) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 
 		if (user == null) {
@@ -418,6 +448,9 @@ public class TradeController {
 			model.addAttribute("url", "../member/login.do");
 		} else {
 			sbVO.setMem_num(user.getMem_num());
+			sbVO.setSale_zipcode(trade_zipcode);
+			sbVO.setSale_address1(trade_address1);
+			sbVO.setSale_address2(trade_address2);
 			tradeService.insertSaleBid(sbVO);
 
 			model.addAttribute("message", "[판매입찰] 완료되었습니다.");
@@ -429,7 +462,11 @@ public class TradeController {
 
 	// 즉시판매 - 즉시판매하기 버튼 클릭 시
 	@PostMapping("/sale/salePaymentDirect.do")
-	public String saleDirectFinish(TradeVO tradeVO, @RequestParam int purchase_price, Model model, HttpSession session) {
+	public String saleDirectFinish(TradeVO tradeVO,
+								   @RequestParam String trade_zipcode,
+							       @RequestParam String trade_address1,
+							       @RequestParam String trade_address2,
+								   @RequestParam int purchase_price, Model model, HttpSession session) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 
 		if (user == null) {
@@ -437,8 +474,9 @@ public class TradeController {
 			model.addAttribute("url", "../member/login.do");
 		} else {
 			int buyer_num = tradeService.selectBuyerNum(tradeVO.getItem_num(), tradeVO.getItem_sizenum(), purchase_price);
-			SaleBidVO sbVO = tradeService.selectSaleBidForDirectSell(user.getMem_num(), tradeVO.getItem_num(), tradeVO.getItem_sizenum());
-			if(sbVO.getMem_num() == user.getMem_num()) {
+			SaleBidVO sbVO = null;
+			sbVO = tradeService.selectSaleBidForDirectSell(user.getMem_num(), tradeVO.getItem_num(), tradeVO.getItem_sizenum());
+			if(sbVO != null) {
 				model.addAttribute("message","이미 등록된 입찰 정보가 있어, 즉시 판매를 할 수 없습니다.");
 				model.addAttribute("url","../item/itemList.do");
 				return "common/resultView";
@@ -452,6 +490,17 @@ public class TradeController {
 				int trade_num = tradeService.selectTradeNum();
 				int mem_num = buyer_num;
 				int purchase_num = tradeService.selectPurchaseBidNumber(mem_num, tradeVO.getItem_num(), purchase_price);
+				// 구매자 배송지 정보
+				PurchaseBidVO pbvo = tradeService.selectPurchaseBidByPurchaseNum(purchase_num);
+				tradeVO.setTrade_rcvZipcode(pbvo.getPurchase_zipcode());
+				tradeVO.setTrade_rcvAddress1(pbvo.getPurchase_address1());
+				tradeVO.setTrade_rcvAddress2(pbvo.getPurchase_address2());
+				
+				// 판매자 반송 배송지 정보 설정
+				tradeVO.setTrade_sendZipcode(trade_zipcode);
+				tradeVO.setTrade_sendAddress1(trade_address1);
+				tradeVO.setTrade_sendAddress2(trade_address2);
+				
 				tradeVO.setTrade_num(trade_num);
 				tradeVO.setBuyer_num(buyer_num);
 				tradeVO.setSeller_num(user.getMem_num());
