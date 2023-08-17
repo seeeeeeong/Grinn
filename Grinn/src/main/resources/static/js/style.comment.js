@@ -31,7 +31,7 @@ $(function(){
 					output += '<li>';
 					output += '<img src="../style/viewProfileByCom_num.do?com_num=' + item.com_num + '" width="40" height="40" class="my-photo">';
 					output += '</li>';
-					output += '<li>';
+					output += '<li class="idAndDate">';
 					output += item.mem_id + '<br>';
 					
 					

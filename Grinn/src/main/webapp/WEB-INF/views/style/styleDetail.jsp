@@ -90,6 +90,7 @@
 		float:right;
 		width:7%;
 		margin:5px 10px 0 0; 
+		cursor: pointer;
 	}
 	#optionWrap {
 	  position: fixed; /* Stay in place */
@@ -120,7 +121,7 @@
 	}
 	
 	.options{
-		margin-top:30px;
+		margin-top:45px;
 		text-align:center;
 		font-size:12pt;
 	}
@@ -223,6 +224,7 @@
 	/*버튼 디자인*/
 	#popupBtn {
 	  padding-left:10px;
+	  cursor: pointer;
 	}
 	
 	/*모달팝업을 감싸고 있는 최상위 부모*/
@@ -239,7 +241,7 @@
 	
 	#modalContent{
 		float:right;
-		height:887px;
+		height:1443px;
 		background-color:white;
 	}
 	
@@ -270,6 +272,9 @@
     	display: flex;
         flex-wrap: wrap; /* 아이템들을 여러 줄에 걸쳐 표시할 수 있도록 설정 */
         padding-left:0;
+	}
+	.my-photo{
+		margin-right:5px;
 	}
 	.comment-post-caption{
 		padding-top:20px;
@@ -427,9 +432,13 @@
 <div class="page-main" id="styleDetail">
 	<div class="user-div">
 		<div class="user-profile">
-			<img src="${pageContext.request.contextPath}/style/viewProfile.do?st_num=${style.st_num}" class="profile-photo">
+			<a href="${pageContext.request.contextPath}/user/userStyle.do?mem_num=${style.mem_num}">
+				<img src="${pageContext.request.contextPath}/style/viewProfile.do?st_num=${style.st_num}" class="profile-photo">
+			</a>
 			<div class="nameAndDate">
-				<span class="username">${style.mem_id}</span>
+				<a href="${pageContext.request.contextPath}/user/userStyle.do?mem_num=${style.mem_num}">
+					<span class="username">${style.mem_id}</span>
+				</a>
 				<div class="post-date">
 					<span class="posted-date"><small>${style.st_regdate}</small></span>
 					<c:if test="${!empty style.st_mdate}">
@@ -439,11 +448,9 @@
 			</div>
 		</div>
 		<!-- 옵션 팝업 버튼 -->
-		<c:if test="${!empty user}">
 			<div class="more-option">
 				<span id="more-btn">•••</span>
 			</div>
-		</c:if>
 		<div id="optionWrap" style="display:none;">
 		  <div id="optionContent">
 		    <div id="optionBody">
@@ -454,9 +461,6 @@
 		      			<c:if test="${!empty user && user.mem_num == style.mem_num}">
 		      				<span>수정</span>
 		      			</c:if>
-		      			<c:if test="${!empty user && user.mem_num != style.mem_num}">
-		      				<span>팔로우</span>
-		      			</c:if>		      			
 		      		</li>
 		      		<li>
 		      			<c:if test="${!empty user && user.mem_num == style.mem_num}">
@@ -471,9 +475,9 @@
 								};
 							</script>        		      				
 		      			</c:if>
-		      			<c:if test="${!empty user && user.mem_num != style.mem_num}">
+		      			<c:if test="${empty user || user.mem_num != style.mem_num}">
 		      				<span><a href="/style/styleReport.do?st_num=${style.st_num}" style="color:red;">신고</a></span>
-		      			</c:if>	
+		      			</c:if>
 		      		</li>
 		      		<li>
 		      			<span><a href="/user/userStyle.do?mem_num=${style.mem_num}">이 계정 정보</a></span>
@@ -515,7 +519,7 @@
 	      <span class="next">&rang;</span>
 	    </p>
 	    </c:if>
-	  	</div><p>
+	  	</div>
   	</div>
     
     <div class="style-content">
@@ -526,19 +530,25 @@
 			</div>
 			<div class="tag-boxes">
 				<div class="item-tag-box">
-					<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num1}" width="100" height="100"><br>
-					<span class="item-name" style="width:100px;">${style.item_name1}</span>
+					<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${style.item_num1}">
+						<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num1}" width="100" height="100"><br>
+						<span class="item-name" style="width:100px;">${style.item_name1}</span>
+					</a>
 				</div>
 				<c:if test="${style.item_num2 != 0}">
 				<div class="item-tag-box">
-					<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num2}" width="100" height="100"><br>
-					<span class="item-name" style="width:100px;">${style.item_name2}</span>
+					<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${style.item_num2}">
+						<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num2}" width="100" height="100"><br>
+						<span class="item-name" style="width:100px;">${style.item_name2}</span>
+					</a>
 				</div>
 				</c:if>
 				<c:if test="${style.item_num3 != 0}">
 				<div class="item-tag-box">
-					<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num3}" width="100" height="100"><br>
-					<span class="item-name" style="width:100px;">${style.item_name3}</span>
+					<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${style.item_num3}">
+						<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num3}" width="100" height="100"><br>
+						<span class="item-name" style="width:100px;">${style.item_name3}</span>
+					</a>
 				</div>
 				</c:if>
 			</div>
