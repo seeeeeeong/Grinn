@@ -307,7 +307,7 @@ $(function(){
 			$('body').removeAttr('style');
 		});
 		
-		$(document).on("click","#btn_final_purchase",function(){
+		$(document).on("click","#btn_final_sale",function(){
 			if($('.info-ship').text().trim() == '반송 배송지를 입력해주세요.'){
 				$('html, body').scrollTop($(".item").offset().top);
 				$('.info-ship').css('color','red');

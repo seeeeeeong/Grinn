@@ -87,7 +87,9 @@
 		
 	});
 </script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/selling.css">    
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/selling.css">   
+<jsp:useBean id="now" class="java.util.Date" /> 
+<fmt:formatDate value="${now}" pattern="yyyy/MM/dd" var="nowDate" /> 
 <div class="page-main">
 	<div class="mySale">
 		<div class="mySale-title">
@@ -200,7 +202,7 @@
 					  </thead>
 					  <tbody>
 					    <c:forEach items="${list}" var="list">
-					      <tr class="list-text">
+					      <tr class="list-text" <c:if test="${way == 1 and now > list.sale_deadline}">style="color:red;"</c:if>>
 					        <td><img src="${pageContext.request.contextPath}/item/viewProfile.do?item_num=${list.item_num}" width="50" height="50"></td>
 					        <td>${list.item_name}</td>
 					       <c:if test="${empty list.item_size}">

@@ -186,7 +186,7 @@
 				JOIN item_size s ON pb.item_sizenum=s.item_sizenum
 				WHERE pb.mem_num=#{mem_num}
 				<include refid="purchaseBidStatus"></include>
-				ORDER BY pb.purchase_regDate DESC)
+				ORDER BY pb.purchase_deadline DESC)
 			a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
@@ -246,7 +246,7 @@
 				JOIN item_size s ON sb.item_sizenum=s.item_sizenum
 				WHERE sb.mem_num=#{mem_num}
 				<include refid="saleBidStatus"></include>
-				ORDER BY sb.sale_regDate DESC)
+				ORDER BY sb.sale_deadline DESC)
 			a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
