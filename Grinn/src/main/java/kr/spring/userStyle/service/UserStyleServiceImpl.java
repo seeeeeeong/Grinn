@@ -14,8 +14,8 @@ import kr.spring.userStyle.dao.UserStyleMapper;
 
 @Service
 @Transactional
-public class UserStyleServiceImpl implements UserStyleService{
-	
+public class UserStyleServiceImpl implements UserStyleService {
+
 	@Autowired
 	private UserStyleMapper userStyleMapper;
 
@@ -23,7 +23,7 @@ public class UserStyleServiceImpl implements UserStyleService{
 	public MemberVO selectMember(Integer mem_num) {
 		return userStyleMapper.selectMember(mem_num);
 	}
-	
+
 	@Override
 	public int selectUserStyleCount(Integer mem_num) {
 		return userStyleMapper.selectUserStyleCount(mem_num);
@@ -38,7 +38,6 @@ public class UserStyleServiceImpl implements UserStyleService{
 	public StyleVO selectUserStyle(Integer st_num) {
 		return userStyleMapper.selectUserStyle(st_num);
 	}
-
 
 	@Override
 	public int getFollowerCount(Integer to_user) {
@@ -82,32 +81,42 @@ public class UserStyleServiceImpl implements UserStyleService{
 
 	@Override
 	public void insertFollow(Integer to_user, Integer from_user) {
-		if(!isFollowing(to_user, from_user)) {
-		userStyleMapper.insertFollow(to_user, from_user);
+		if (!isFollowing(to_user, from_user)) {
+			userStyleMapper.insertFollow(to_user, from_user);
 		}
-	}		
+	}
 
 	@Override
 	public void deleteFollow(Integer to_user, Integer from_user) {
-		if(isFollowing(to_user, from_user)) {
-		userStyleMapper.deleteFollow(to_user, from_user);
+		if (isFollowing(to_user, from_user)) {
+			userStyleMapper.deleteFollow(to_user, from_user);
 		}
-	}		
+	}
 
 	@Override
 	public boolean isFollowing(Integer to_user, Integer from_user) {
 		int count = userStyleMapper.isFollowing(to_user, from_user);
-        return count > 0;
+		return count > 0;
 	}
 
 	@Override
-	public MemberVO selectFollower(Integer mem_num) {
-		return userStyleMapper.selectFollower(mem_num);
+	public MemberVO selectFollowerProfile(Integer mem_num) {
+		return userStyleMapper.selectFollowerProfile(mem_num);
 	}
 
 	@Override
 	public MemberVO selectFollowing(Integer mem_num) {
 		return userStyleMapper.selectFollowing(mem_num);
+	}
+
+	@Override
+	public List<MemberVO> followerInfo(Integer mem_num) {
+		return userStyleMapper.followerInfo(mem_num);
+	}
+
+	@Override
+	public List<MemberVO> followingInfo(Integer mem_num) {
+		return userStyleMapper.followingInfo(mem_num);
 	}
 
 }

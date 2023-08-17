@@ -17,7 +17,7 @@ import kr.spring.trade.vo.TradeVO;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserMapper userMapper;
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService{
 	public MemberVO selectMember(Integer mem_num) {
 		return userMapper.selectMember(mem_num);
 	}
-	
+
 	@Override
 	public void deleteMember(Integer mem_num) {
 		userMapper.deleteMember(mem_num);
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService{
 	public List<ItemVO> selectFavoriteItems(Integer mem_num) {
 		return userMapper.selectFavoriteItems(mem_num);
 	}
-	
+
 	@Override
 	public Integer getPenaltyTotalScore(Integer mem_num) {
 		return userMapper.getPenaltyTotalScore(mem_num);
@@ -58,50 +58,50 @@ public class UserServiceImpl implements UserService{
 		return userMapper.getPenaltyTrade(mem_num);
 	}
 
-    @Override
-    public void updateEmail(MemberVO member) {
-        userMapper.updateEmail(member);
-    }
+	@Override
+	public void updateEmail(MemberVO member) {
+		userMapper.updateEmail(member);
+	}
 
-    @Override
-    public void updatePhoneNumber(MemberVO member) {
-        userMapper.updatePhoneNumber(member);
-    }
+	@Override
+	public void updatePhoneNumber(MemberVO member) {
+		userMapper.updatePhoneNumber(member);
+	}
 
-    @Override
-    public void addShippingAddress(MemberVO member) {
-        userMapper.addShippingAddress(member);
-    }
-    
-    @Override
-    public void updateShippingAddress(MemberVO member) {
-        userMapper.updateShippingAddress(member);
-    }
+	@Override
+	public void addShippingAddress(MemberVO member) {
+		userMapper.addShippingAddress(member);
+	}
 
-    @Override
-    public void deleteShippingAddress(int mem_num) {
-        userMapper.deleteShippingAddress(mem_num);
-    }
+	@Override
+	public void updateShippingAddress(MemberVO member) {
+		userMapper.updateShippingAddress(member);
+	}
 
-    @Override
-    public void addNickname(MemberVO member) {
-        userMapper.addNickname(member);
-    }
+	@Override
+	public void deleteShippingAddress(int mem_num) {
+		userMapper.deleteShippingAddress(mem_num);
+	}
 
-    @Override
-    public void updateNickname(MemberVO member) {
-        userMapper.updateNickname(member);
-    }
+	@Override
+	public void addNickname(MemberVO member) {
+		userMapper.addNickname(member);
+	}
 
-    @Override
-    public void addIntroduction(MemberVO member) {
-        userMapper.addIntroduction(member);
-    }
+	@Override
+	public void updateNickname(MemberVO member) {
+		userMapper.updateNickname(member);
+	}
 
-    @Override
-    public void updateInt(MemberVO member) {
-        userMapper.updateInt(member);
-    }
+	@Override
+	public void addIntroduction(MemberVO member) {
+		userMapper.addIntroduction(member);
+	}
+
+	@Override
+	public void updateInt(MemberVO member) {
+		userMapper.updateInt(member);
+	}
 
 	@Override
 	public void updateProfile(MemberVO member) {
@@ -122,7 +122,6 @@ public class UserServiceImpl implements UserService{
 	public StyleVO selectStyle(Integer st_num) {
 		return userMapper.selectStyle(st_num);
 	}
-
 
 	@Override
 	public int purchasedCount(Integer mem_num) {
@@ -227,12 +226,6 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void deleteProfile(Integer mem_num) {
 		userMapper.deleteProfile(mem_num);
-	}
-
-	@Override
-	public boolean checkProfileImage(Integer mem_num) {
-		String memPhoto = userMapper.checkProfileImage(mem_num);
-        return memPhoto != null && !memPhoto.isEmpty();
 	}
 
 }
