@@ -35,7 +35,7 @@ public class BookingController {
 	@Autowired
 	private MarketService marketService;
 	@Autowired
-	private MemberService memberServie;
+	private MemberService memberService;
 	
 	// ===자바빈 초기화===
 	@ModelAttribute
@@ -70,12 +70,11 @@ public class BookingController {
 		
 		// 유효성 체크 결과 오류가 있으면 폼 호출
 		if (result.hasErrors()) {
-			//return getForm(int, session, model);
+			//return getForm(bookingVO, session, model);
 		}
 				
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("mem_num", user.getMem_num());
+		bookingVO.setMem_num(user.getMem_num());
 		
 		bookingService.insertBooking(bookingVO);
 		
@@ -115,5 +114,30 @@ public class BookingController {
 	}
 	*/
 	
+	// ===회원별 예약 목록===
+	@RequestMapping("fleamarket/marketList.do")
+	public String myMarketPage(HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		// 회원 정보 반환
+		MemberVO member = memberService.selectMember(user.getMem_num());
+		// BookingVO book = bookingService.selectBooking(book);
+		
+		// 회원 정보
+		model.addAttribute("member", member);
+		
+		return "userMarketPage";
+	}
 	
+	
+	// 이용자/관리자 - 예약 상세
+	
+	// 이용자 - 예약 취소
+	@RequestMapping("/fleamarket/bookingDelete.do")
+	public String bookDelete(@RequestParam int book_num) {
+		log.debug("<<예약 취소>> : " + book_num);
+		
+		bookingService.deleteBooking(book_num);
+		
+		return "redirect:/fleamarket/marketList.do";
+	}
 }

@@ -23,6 +23,7 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public void insertBooking(BookingVO bookingVO) {
 		bookingMapper.insertBooking(bookingVO);
+		bookingMapper.bookBooth_count(bookingVO.getMarket_num());
 	}
 
 	@Override
@@ -44,8 +45,7 @@ public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public void deleteBooking(Integer book_num) {
-		// TODO Auto-generated method stub
-		
+		bookingMapper.deleteBooking(book_num);
 	}
 
 	@Override

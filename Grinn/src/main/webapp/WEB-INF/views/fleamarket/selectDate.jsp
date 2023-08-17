@@ -79,8 +79,8 @@ $(function(){
 				<form:input path="book_date1" type="text" id="from-to" autocomplete="off" placeholder="희망 시작 일자"/> ~ <form:input path="book_date2" type="text" id="from-to2" autocomplete="off" placeholder="희망 종료 일자"/>
 			</li>
 			<li class="book-flea-detail">
-				<form:label path="get_count"><b>예약 부스 수</b></form:label>
-				<form:input type="number" path="get_count" min="0" max="1" id="get_count"/>
+				<label for="get_count"><b>예약 부스 수</b></label>
+				<input type="number" name="get_count" min="0" max="1" id="get_count"/>
 			</li>
 			<li class="book-flea-detail">
 				<label><b>남은 부스 수</b></label>
@@ -88,7 +88,7 @@ $(function(){
 			</li>
 			<li class="book-flea-detail">
 				<label for="booth_fee"><b>비용</b></label>
-				<c:if test="${market.booth_fee == 0}"><span>무료</span></c:if>
+				<c:if test="${market.booth_fee == 0}"><span>0</span>원</c:if>
 				<c:if test="${market.booth_fee > 0}">
 				<fmt:formatNumber value="${market.booth_fee}"/>원
 				</c:if>
