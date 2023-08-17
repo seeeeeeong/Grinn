@@ -81,7 +81,7 @@ public class BookingController {
 		
 		// View
 		model.addAttribute("message", "예약이 완료되었습니다.");
-		model.addAttribute("url", request.getContextPath() + "/fleamarket/marketList.do");
+		model.addAttribute("url", request.getContextPath() + "/fleamarket/marketList.do?mem_num=" + bookingVO.getMem_num());
 		
 		return "common/resultView";
 	}

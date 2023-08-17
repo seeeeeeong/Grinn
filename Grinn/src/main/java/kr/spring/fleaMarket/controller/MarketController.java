@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.fleaMarket.service.MarketService;
 import kr.spring.fleaMarket.vo.MarketVO;
+import kr.spring.member.service.MemberService;
+import kr.spring.member.vo.MemberVO;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +27,9 @@ public class MarketController {
 	@Autowired
 	private MarketService marketService;
 	
+	@Autowired
+	private MemberService memberService;
+	
 	// ===자바빈 초기화===
 	@ModelAttribute
 	public MarketVO initCommand() {
@@ -34,6 +39,8 @@ public class MarketController {
 	// ===플리마켓 예약 선택===
 	@RequestMapping("/fleamarket/marketSelect.do")
 	public ModelAndView getList() {
+		
+		//MemberVO member = memberService.selectMember();
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("marketSelect");

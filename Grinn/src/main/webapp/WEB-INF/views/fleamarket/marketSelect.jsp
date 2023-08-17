@@ -17,7 +17,7 @@
 		</div>
 		<div class="user-wrap">
 			<div class="market-img">
-				<a href="${pageContext.request.contextPath}/fleamarket/marketList.do"><img src="../image_bundle/bazaars.jpg"></a>
+				<a href="${pageContext.request.contextPath}/fleamarket/marketList.do?mem_num="><img src="../image_bundle/bazaars.jpg"></a>
 			</div>
 			<p>
 				<span class="market-font">

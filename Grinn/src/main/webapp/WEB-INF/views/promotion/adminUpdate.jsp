@@ -48,8 +48,9 @@
 			</li>
 			<li>
 				<label for="upload1">게시용 사진</label>
-				<img src="${pageContext.request.contextPath}/promotion/photoView.do?pro_num=${promotionVO.pro_num}" width="100" height="100" class="pro-photo">
 				<input type="file" name="upload1" id="upload1" accept="image/gif,image/png,image/jpeg">
+				<br>
+				<span>업로드된 파일명 : ${promotionVO.pro_photoName1}</span>
 				<form:errors path="pro_photo1" cssClass="error-color"/>
 			</li>
 			<li><b>상세내용</b></li>

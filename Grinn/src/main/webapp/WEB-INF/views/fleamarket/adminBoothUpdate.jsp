@@ -59,11 +59,15 @@
 			<li>
 				<label for="upload1">포스터</label>
 				<input type="file" name="upload1" id="upload1" accept="image/gif,image/png,image/jpeg">
+				<br>
+				<span>업로드된 파일명 : ${marketVO.market_posterName}</span>
 				<form:errors path="market_poster" cssClass="error-color"/>
 			</li>
 			<li>
 				<label for="upload2">썸네일</label>
 				<input type="file" name="upload2" id="upload2" accept="image/gif,image/png,image/jpeg">
+				<br>
+				<span>업로드된 파일명 : ${marketVO.market_thumbNailName}</span>
 				<form:errors path="market_thumbNail" cssClass="error-color"/>
 			</li>
 			<li><b>상세내용</b></li>
