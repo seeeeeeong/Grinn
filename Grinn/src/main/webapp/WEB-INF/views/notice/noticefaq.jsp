@@ -35,6 +35,7 @@
 		//이미지(열 때)
 		$('.imgOpen').each(function(index,item){
 			$(this).click(function(){
+				$('.imgOpen').css('display','block');
 				$(this).css('display','none');
 				$('.dropdown_content').css('display','none');
 				$('.dropdown_content[data-index="'+index+'"]').css('display','block');
@@ -46,7 +47,9 @@
 		$('.imgClose').each(function(index,item){
 			$(this).click(function(){
 				$(this).css('display','none');
+				$('.dropdown_content').css('display','none');
 				$('.dropdown_content[data-index="'+index+'"]').css('display','none');
+				$('.imgOpen').css('display','block');
 				$('.imgOpen[data-index="'+index+'"]').css('display','block');
 			});
 		});

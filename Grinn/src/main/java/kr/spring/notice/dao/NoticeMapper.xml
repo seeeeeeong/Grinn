@@ -3,7 +3,7 @@
 <mapper namespace="kr.spring.notice.dao.NoticeMapper">
 	<!-- 자주묻는질문 카테고리별 선택 -->
 	<sql id="no_category">
-		<if test="no_category == 1"> <!-- 전체를 어떻게 가져올까 -->
+		<if test="no_category == 1"> <!-- 전체 -->
 			no_category > 0
 		</if>
 		<if test="no_category == 2"> <!-- 이용정책 -->
@@ -23,24 +23,19 @@
 		</if>
 	</sql>
 
-	<!-- 고객센터 전체/검색 레코드수 -->	
+	<!-- 공지사항 전체/검색 레코드수 -->
 	<select id="selectRowCount" parameterType="map" resultType="integer">
 		SELECT
 		   COUNT(*)
 		FROM notice
 		WHERE no_status=1
 	</select>
+	<!-- 자주묻는질문 전체/검색 레코드수 -->
 	<select id="selectRowCount_faq" parameterType="map" resultType="integer">
 		SELECT
 		   COUNT(*)
 		FROM notice
 		WHERE no_status=2
-	</select>
-	<select id="selectRowCount_auth" parameterType="map" resultType="integer">
-		SELECT
-		   COUNT(*)
-		FROM notice
-		WHERE no_status=3
 	</select>
 	
 	<!-- 자주묻는질문 검색 목록 -->
@@ -64,7 +59,7 @@
 			<include refid="no_category"></include>
 			)a)
 			<![CDATA[
-			WHERE rnum >= #{start} AND rnum <= #{end} 
+			WHERE rnum >= #{start} AND rnum <= #{end}
 			]]>
 	</select>
 	

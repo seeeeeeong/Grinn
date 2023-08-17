@@ -136,24 +136,19 @@ public class NoticeController {
 	
 	/* ======================== 고객센터(검수기준) 글 목록 ======================== */
 	@RequestMapping("/notice/noticeAuth_policy.do")
-	public ModelAndView getNoticeAuthPolicyList(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
-			String keyfield, String keyword) {
+	public ModelAndView getNoticeAuthPolicyList(String keyfield, String keyword) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
 		//전체 레코드 수
-		int count = noticeService.selectRowCount_auth(map);
 
 		List<NoticeVO> list = null;
 		
-		if(count > 0) {
 			list = noticeService.selectAuthList(map);
-		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("noticeAuth_policy");
-		mav.addObject("count", count);
 		mav.addObject("list", list);
 		
 		return mav;

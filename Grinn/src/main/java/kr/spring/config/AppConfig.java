@@ -50,11 +50,16 @@ public class AppConfig implements WebMvcConfigurer{
 		        .addPathPatterns("/member/admin_list.do")
 		        .addPathPatterns("/member/admin_update.do")
 				.addPathPatterns("/report/styleReportList.do")
-				.addPathPatterns("/report/comReportList.do");
+				.addPathPatterns("/report/comReportList.do")
+				.addPathPatterns("/notice/noticeWrite.do")
+				.addPathPatterns("/notice/noticeModify.do");
 		//LoginInterceptor 설정
 		registry.addInterceptor(loginCheck)
 				.addPathPatterns("/style/write.do")
-				.addPathPatterns("/talk/talkList.do");
+				.addPathPatterns("/talk/talkList.do")
+				.addPathPatterns("/talk/talkList.do")
+				.addPathPatterns("/talk/talkDetail.do")
+				.addPathPatterns("/talk/talkRoomWrite.do");
 	}
 	
 	@Bean
