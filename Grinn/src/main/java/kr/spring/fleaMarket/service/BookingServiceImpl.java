@@ -34,13 +34,12 @@ public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public List<BookingVO> selectListBooking(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookingMapper.selectListBooking(map);
 	}
 
 	@Override
-	public BookingVO selectBooking(BookingVO book) {
-		return bookingMapper.selectBooking(book);
+	public BookingVO selectBooking(Integer book_num) {
+		return bookingMapper.selectBooking(book_num);
 	}
 
 	@Override
@@ -50,8 +49,7 @@ public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public int selectCountBooking(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bookingMapper.selectCountBooking(map);
 	}
 
 	@Override
@@ -69,5 +67,15 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public int selectMarketDate(Integer market_num) {
 		return bookingMapper.selectMarketDate(market_num);
+	}
+
+	@Override
+	public int selectBookingCountByMem_num(Map<String, Object> map) {
+		return bookingMapper.selectBookingCountByMem_num(map);
+	}
+
+	@Override
+	public List<BookingVO> selectListBookingByMem_num(Map<String, Object> map) {
+		return bookingMapper.selectListBookingByMem_num(map);
 	}
 }

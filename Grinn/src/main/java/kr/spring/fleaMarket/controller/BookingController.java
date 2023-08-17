@@ -1,6 +1,9 @@
 package kr.spring.fleaMarket.controller;
 
+
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +19,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.fleaMarket.service.BookingService;
@@ -25,6 +27,7 @@ import kr.spring.fleaMarket.vo.BookingVO;
 import kr.spring.fleaMarket.vo.MarketVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -46,7 +49,7 @@ public class BookingController {
 	// ===예약===
 	// 예약 폼
 	@GetMapping("/fleamarket/booking.do")
-	public String getForm(@RequestParam int market_num, HttpSession session, Model model) {
+	public String getForm(@RequestParam int market_num, Model model) {
 		
 		//로그인한 사용자의 회원번호 와 market_num 이용해서 예약했는지 여부 확인
 		// boolean, yes/no, if문 등으로 확인 후에 
@@ -70,7 +73,7 @@ public class BookingController {
 		
 		// 유효성 체크 결과 오류가 있으면 폼 호출
 		if (result.hasErrors()) {
-			//return getForm(bookingVO, session, model);
+			return "selectDate";
 		}
 				
 		MemberVO user = (MemberVO)session.getAttribute("user");
@@ -85,51 +88,94 @@ public class BookingController {
 		return "common/resultView";
 	}
 	
-	/*
-	// ===예약 날짜 선택===
-	@RequestMapping("/fleamarket/selectDate.do")
-	@ResponseBody
-	public Map<String, String> submit(BookingVO bookingVO, HttpSession session) {
-		log.debug("<<BookingVO>> : " + bookingVO);
-		
-		Map<String, String> mapJson = new HashMap<String, String>();
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		
-		if (user == null) { // 로그인 상태 X
-			mapJson.put("result", "logout");
-		} else { // 로그인 상태
-			bookingVO.setMem_num(user.getMem_num());
-			
-			BookingVO db_book = bookingService.selectBooking(bookingVO);
-			if (user != null && db_book == null) { // 예약된 동일 내역이 없는 경우
-				bookingService.insertBooking(bookingVO);
-				mapJson.put("result", "success");
-			} else if (user != null && db_book != null) { // 이미 예약한 내역이 있는 경우***
-				mapJson.put("result", "alreadyBooked");
-			} else {
-				mapJson.put("result", "wrongAccess");
-			}
-		}
-		return mapJson;
-	}
-	*/
 	
-	// ===회원별 예약 목록===
+	// ===관리자 - 예약 목록===
+	@RequestMapping("fleamarket/admin_resList.do")
+	public ModelAndView adminBookList(@RequestParam(value="pageNum", defaultValue="1") int currentPage, 
+			                                        String keyfield, String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		// 전체/검색 레코드 수
+		int count = bookingService.selectCountBooking(map);
+		
+		log.debug("<<예약 목록 수>>" + count);
+		
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 5, 5, "admin_resList.do");
+		
+		List<BookingVO> bookList = null;
+		if (count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			bookList = bookingService.selectListBooking(map);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("adminBookList");
+		mav.addObject("count", count);
+		mav.addObject("bookList", bookList);
+		mav.addObject("page", page.getPage());
+		
+		return mav;
+	}
+	
+	
+	// ===이용자 - 회원별 예약 목록===
 	@RequestMapping("fleamarket/marketList.do")
-	public String myMarketPage(HttpSession session, Model model) {
+	public String myMarketPage(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+			                                 String keyfield, String keyword, HttpSession session) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		map.put("mem_num", user.getMem_num());
+		
+		// 전체 검색 레코드 수
+		int count = bookingService.selectBookingCountByMem_num(map);
+		
+		log.debug("<<이용자 예약 목록 수>> : " + count);
+		
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 5, 5, "marketList.do");
+		List<BookingVO> list = null;
+		if (count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			
+			list = bookingService.selectListBookingByMem_num(map);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("userMarketPage");
+		mav.addObject("count", count);
+		mav.addObject("list", list);
+		mav.addObject("page", page.getPage());
+		
 		// 회원 정보 반환
-		MemberVO member = memberService.selectMember(user.getMem_num());
+		//MemberVO member = memberService.selectMember(user.getMem_num());
 		// BookingVO book = bookingService.selectBooking(book);
 		
-		// 회원 정보
-		model.addAttribute("member", member);
-		
-		return "userMarketPage";
+		return "mav";
 	}
 	
 	
 	// 이용자/관리자 - 예약 상세
+	@RequestMapping("/fleaMarket/detailBooking.do")
+	public String detail(@RequestParam int book_num, @RequestParam int market_num, Model model) {
+		log.debug("<<예약 내역>> : " + book_num);
+		// 예약 정보
+		BookingVO bookingVO = bookingService.selectBooking(book_num);
+		MarketVO marketVO = marketService.selectMarket(market_num);
+		
+		model.addAttribute("bookingVO", bookingVO);
+		model.addAttribute("marketVO", marketVO);
+		
+		return "bookDetail";
+	}
 	
 	// 이용자 - 예약 취소
 	@RequestMapping("/fleamarket/bookingDelete.do")

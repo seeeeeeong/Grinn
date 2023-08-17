@@ -45,6 +45,16 @@
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminBoothUpdate.jsp"/>
     </definition>
     
+    <!-- 예약 -->
+    <definition name="adminBookList" extends="admin">
+    	<put-attribute name="title" value="예약 목록(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/admin_bookList.jsp"/>
+    </definition>
+    <definition name="bookDetail" extends="admin">
+    	<put-attribute name="title" value="예약 내역(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/admin_bookDetail.jsp"/>
+    </definition>
+    
     <!-- 페널티 -->
     <definition name="adminPenaltyWrite" extends="admin">
     	<put-attribute name="title" value="페널티 등록(관리자)"/>

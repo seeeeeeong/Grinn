@@ -22,12 +22,15 @@ public interface BookingMapper {
 	public void insertBooking(BookingVO bookingVO);
 	// 회원 번호별 예약 액수
 	public int selectTotalByMem_num(Map<String, Object> map); 
-	// 예약 목록
+	// 사용자 - 예약 목록
+	public int selectBookingCountByMem_num(Map<String, Object> map);
+	public List<BookingVO> selectListBookingByMem_num(Map<String, Object> map);
+	// 관리자 - 예약 목록
 	public List<BookingVO> selectListBooking(Map<String, Object> map);
 	public int selectCountBooking(Map<String, Object> map);
-	// 예약 상세
+	// 관리자/이용자 - 예약 상세
 	@Select("SELECT * FROM booking WHERE book_num = #{book_num}")
-	public BookingVO selectBooking(BookingVO book);
+	public BookingVO selectBooking(Integer book_num);
 	// 예약 완료로 인한 booth_count 변동
 	@Update("UPDATE market SET booth_count=booth_count-#{get_count} WHERE market_num=#{market_num}")
 	public void bookBooth_count(Integer market_num);

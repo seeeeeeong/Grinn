@@ -2,9 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.fleaMarket.dao.BookingMapper">
 	<resultMap type="marketVO" id="marketMap">
+		<result property="marketVO.market_title" column="market_title"/>
 		<result property="marketVO.market_startDate" column="market_startDate"/>
 		<result property="marketVO.market_endDate" column="market_endDate"/>
+		<result property="marketVO.place_name" column="place_name"/>
 		<result property="marketVO.booth_count" column="booth_count"/>
+		<result property="marketVO.booth_fee" column="booth_fee"/>
+		<result property="marketVO.market_poster" column="market_poster"/>
+		<result property="marketVO.market_posterName" column="market_posterName"/>
 	</resultMap>
 	<insert id="insertBooking" parameterType="bookingVO"> 
 		INSERT INTO booking(
@@ -28,8 +33,7 @@
 		<where>
 			<if test="keyword != null and keyword != ''">
 				<if test="keyword == 1">
-					m.market_title LIKE '%' || #{keyword} || '%' OR
-					mem.mem_id LIKE '%' || #{keyword} || '%'
+					b.book_num = #{keyword} 
 				</if>
 				<if test="keyword == 2">
 					m.market_title LIKE '%' || #{keyword} || '%' 
@@ -41,17 +45,18 @@
 		</where>
 	</sql>
 	
-	<!-- 전체/검색 레코드 수 --><!-- **** -->
+	<!-- 관리자 - 전체/검색 레코드 수 --><!-- **** -->
 	<select id="selectCountBooking" parameterType="map" resultType="integer">
 		SELECT
 		  COUNT(*)
 		FROM market m JOIN booking b 
-		ON m.market_num = b.market_num
-		JOIN member mem ON mem.mem_id 
+						ON m.market_num = b.market_num
+					  JOIN member mem 
+						ON b.mem_num = mem.mem_num 
 		<include refid="bookingSearch"></include>
 	</select>
 	
-	<!-- 전체/검색 목록 --><!-- **** -->
+	<!-- 관리자 - 전체/검색 목록 --><!-- **** -->
 	<select id="selectListBooking" parameterType="map" resultType="bookingVO">
 		SELECT
 		  *
@@ -59,16 +64,47 @@
 		         a.*,
 		         rownum rnum
 		      FROM (SELECT
-		              b.book_num,
-		              mem.mem_id,
-		              b.book_regDate,
-		              m.market_title,
-		              b.get_count
-		            FROM booking b
-		            JOIN market m
-		            ON b.market_num = m.market_num
-		            LEFT OUTER JOIN (SELECT COUNT(*) FROM member)mem ON b.mem_num = mem.mem_num
+		              *
+		            FROM booking b JOIN market m
+		            				 ON b.market_num = m.market_num
+		                LEFT OUTER JOIN (SELECT * FROM member)mem ON b.mem_num = mem.mem_num
 		            <include refid="bookingSearch"></include>
-		            )a)
+		            ORDER BY book_num DESC)a)
+		      <![CDATA[
+		      WHERE rnum >= #{start} AND rnum <= #{end}
+		      ]]>
+	</select>
+	
+	
+	<!-- 이용자 예약 목록 -->
+	<sql id="bookingSearchByUser">
+		WHERE mem_num = #{mem_num}
+		<if test="keyword != null and keyword != ''">
+			<if test="keyfield == 1">
+			AND book_num = #{keyword}
+			</if>
+		</if>
+	</sql>
+	<select id="selectBookingCountByMem_num" parameterType="map">
+		SELECT
+		  COUNT(*)
+		FROM booking
+		<include refid="bookingSearchByUser"></include>
+	</select>
+	
+	<select id="selectListBookingByMem_num" parameterType="map" resultType="bookingVO">
+		SELECT
+		  *
+		FROM (SELECT
+			    a.*,
+			    rownum rnum
+			  FROM (SELECT
+			          *
+			        FROM booking
+			        <include refid="bookingSearchByUser"></include>
+			        ORDER BY book_num DESC)a)
+	    <![CDATA[
+	    WHERE rnum >= #{start} AND rnum <= #{end}
+	    ]]>
 	</select>
 </mapper>

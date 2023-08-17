@@ -26,4 +26,5 @@ public class BookingVO {
 	private int mem_num;
 	
 	private MarketVO marketVO;
+	private String mem_id;
 }

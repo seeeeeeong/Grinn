@@ -16,11 +16,14 @@ public interface BookingService {
 	public void insertBooking(BookingVO bookingVO);
 	// 회원 번호별 예약 액수
 	public int selectTotalByMem_num(Map<String, Object> map); 
-	// 예약 목록
+	// 사용자 - 예약 목록
+	public int selectBookingCountByMem_num(Map<String, Object> map);
+	public List<BookingVO> selectListBookingByMem_num(Map<String, Object> map);
+	// 관리자 - 예약 목록
 	public List<BookingVO> selectListBooking(Map<String, Object> map);
 	public int selectCountBooking(Map<String, Object> map);
 	// 예약 상세
-	public BookingVO selectBooking(BookingVO book);
+	public BookingVO selectBooking(Integer book_num);
 	// 예약 완료로 인한 booth_count 변동
 	public void bookBooth_count(Integer market_num);
 	// 예약 삭제
