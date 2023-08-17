@@ -95,8 +95,8 @@
 		
         <div class="align-center">
             <input type="submit" value="전송" class="default-btn">
-            <input type="button" value="홈으로" class="default-btn" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-            <input type="button" value="삭제" id="delete_btn">
+            <input type="button" value="홈으로" class="default-btn" onclick="location.href='${pageContext.request.contextPath}/item/itemAdminList.do'">
+            <input type="button" value="삭제" id="delete_btn" class="default-btn">
 			<script type="text/javascript">
 				let delete_btn = document.getElementById('delete_btn');
 				delete_btn.onclick=function(){

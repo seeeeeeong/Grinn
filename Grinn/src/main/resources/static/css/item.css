@@ -308,6 +308,7 @@ a:hover{
   font-size: 24px;
   font-weight: bold;
   margin: 0;
+  border-bottom: 2px solid #000;
 }
 
 .itemDetailPage .title_box .b {
@@ -375,7 +376,7 @@ a:hover{
   font-size: 11px;
 }
 
-#output-fav {
+#output-itemfav {
   display: flex;
   align-items: center;
   justify-content: center;

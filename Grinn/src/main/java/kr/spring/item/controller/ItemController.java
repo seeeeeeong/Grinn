@@ -227,13 +227,13 @@ public class ItemController {
 		List<SaleSizePriceVO> sspList = tradeService.selectSaleSizePrice(item_num);
 		ItemVO item = itemService.selectItem(item_num);
 		ItemVO sizeList = itemService.sizeListInfo(item_num);
-		System.out.println("!!!!"+sizeList);
 		if(sizeList != null) {
 		item.setItem_sizenum(sizeList.getItem_sizenum());
 		item.setItem_size(sizeList.getItem_size());
 		item.setSale(sizeList.getSale());
 		}
 		//Integer sale = itemService.minSale(item_num);
+		int stylecount=itemService.stylecount(item_num);
 		Integer purchase = itemService.maxPurchase(item_num);
 		Integer latelyTrade = itemService.latelyTrade(item_num);
 		
@@ -267,6 +267,7 @@ public class ItemController {
 		if(user!=null) {
 			mav.addObject("user_num", user.getMem_num());
 		}
+		mav.addObject("stylecount", stylecount);
 		mav.addObject("sspList", sspList);
 		mav.addObject("list", list);
 		mav.addObject("count", count);
@@ -332,9 +333,9 @@ public class ItemController {
 	//=========상품 삭제 끝============
 	
 	//=========관심 상품(좋아요) 시작============
-	@RequestMapping("/item/getFav.do")
+	@RequestMapping("/item/getitemFav.do")
 	@ResponseBody
-	public Map<String, Object> getFav(ItemFavVO fav, HttpSession session){
+	public Map<String, Object> getitemFav(ItemFavVO fav, HttpSession session){
 		
 		//세션에 로그인 여부 확인
 		Map<String, Object> mapJson = new HashMap<String, Object>();
@@ -360,9 +361,9 @@ public class ItemController {
 	}
 	
 	//좋아요 등록/삭제
-	@RequestMapping("/item/writeFav.do")
+	@RequestMapping("/item/writeitemFav.do")
 	@ResponseBody
-	public Map<String, Object> writeFav(ItemFavVO fav,HttpSession session){
+	public Map<String, Object> writeitemFav(ItemFavVO fav,HttpSession session){
 		
 		Map<String, Object> mapJson = new HashMap<String, Object>();
 		

@@ -29,7 +29,9 @@
 				<!-- 브랜드, 이름, 설명, 사이즈, 최근 거래가, 구매/판매버튼, 관심상품 -->
 				<div class="itemInfo">
 					<div class="title_box">
-						<p class="a">${item.item_brand}</p>
+					<div>
+						<a href="itemList.do?keyfield=1&keyword=${item.item_brand}&order=1" class="a">${item.item_brand}</a>
+						</div>
 						<p class="b">${item.item_name}</p>
 						<p class="c">${item.item_detail}</p>
 					</div>
@@ -152,14 +154,14 @@
 									<span class="d">즉시 판매가</span>
 								</div>
 							</button>
-						</div>
-						<br> <span class="output_fav" data-num="${item.item_num}"
-							id="output-fav"> <span> <img class="output_fav"
-								data-num="${item.item_num}"
-								src="${pageContext.request.contextPath}/images/save_blank.png"
-								width="15" height="15"> <span>관심상품</span> <span
-								class="output_fcount" data-num="${item.item_num}"></span>
-						</span>
+						</div><br> 
+						<span class="output_itemfav" data-num="${item.item_num}" id="output-itemfav"> 
+							<span> 
+								<img class="output_itemfav" data-num="${item.item_num}" 
+									src="${pageContext.request.contextPath}/images/save_blank.png" width="15" height="15"> 
+									<span>관심상품</span> 
+								<span class="output_itemfcount" data-num="${item.item_num}"></span>
+							</span>
 						</span>
 					</div>
 				</div>
@@ -306,6 +308,11 @@
 		<!-- 상품 좌우안내 끝 -->
 		<hr>
 		<!-- 스타일 시작 -->
+		<h1>Style(${stylecount})</h1>
+		<hr>
+		<c:if test="${stylecount==0}">
+				<div class="result-display">등록된 게시글이 없습니다.</div>
+			</c:if>
 		<div id="stoutput" data-itemnum="${item.item_num}"></div>
 		<div class="paging-button" style="display: none;">
 			<input type="button" value="더보기">
@@ -321,7 +328,7 @@
 			<h1>Review(${count})</h1>
 			<hr>
 			<c:if test="${count==0}">
-				<div class="result-display">표시할 리뷰가 없습니다.</div>
+				<div class="result-display">등록된 리뷰가 없습니다.</div>
 			</c:if>
 			<c:if test="${count > 0}">
 				<c:forEach var="review" items="${list}">

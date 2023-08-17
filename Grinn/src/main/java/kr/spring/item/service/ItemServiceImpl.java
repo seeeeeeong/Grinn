@@ -136,8 +136,9 @@ public class ItemServiceImpl implements ItemService{
 		return itemMapper.sizeListInfo(item_num);
 	}
 
-
-
-
+	@Override
+	public int stylecount(Integer item_num) {
+		return itemMapper.stylecount(item_num);
+	}
 
 }

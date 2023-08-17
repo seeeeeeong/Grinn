@@ -71,5 +71,7 @@ public interface ItemMapper {
 	//스타일
 	public List<ItemstVO> selectListST(Map<String,Object> map);
 	public int selectRowCountST(Map<String,Object> map);
+	@Select("SELECT count(*)st_cnt FROM style WHERE item_num1=#{item_num} or item_num2=#{item_num} or item_num3=#{item_num}")
+	public int stylecount(Integer item_num);
 	
 }

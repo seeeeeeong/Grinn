@@ -2,6 +2,7 @@ $(function(){
 	let rowCount = 10;
 	let currentPage;
 	let count;
+	
 	//댓글 목록
 	function selectList(pageNum){
 		currentPage = pageNum;
@@ -30,25 +31,39 @@ $(function(){
 				
 				//댓글 목록
 				$(param.list).each(function(index,item){
-					let stoutput = '<div class="item">';
-					stoutput += '<h2>Style</h2>'
+					let stoutput = '<a href="/style/detail.do?st_num='+item.st_num+'">';
+					stoutput += '<div>';
+					//stoutput += '<h2>Style</h2>'
+					stoutput += '<img src="../style/viewPhoto1.do?st_num='+item.st_num+'" width="100" height="100">';
 					stoutput += '<ul class="detail-info">';
 					stoutput += '<li>';
-					stoutput += '<img src="../member/viewProfile.do?mem_num='+ item.mem_num+'" width="40" height="40" class="my-photo">';
+					stoutput += '<img src="../member/viewProfile.do?mem_num='+ item.mem_num+'" width="20" height="20" class="my-photo">';
 					stoutput += '</li>';
 					stoutput += '<li>';
-					stoutput += item.mem_id + '<br>';
+					stoutput +=  item.mem_id + '<br>';
 					stoutput += '</li>';
 					stoutput += '</ul>';
 					stoutput += '<div class="sub-item">';
-					stoutput += '<p>' + item.st_phrase.replace(/\r\n/g,'<br>') + '</p>';
-					stoutput += '<hr size="1" noshade>';
+					stoutput += '<p>' +item.st_phrase.replace(/\r\n/g,'<br>') + '</p>'
+					stoutput += '</a>';
+					stoutput += '<div class="like-button">';
+					stoutput += '<img class="output_fav" data-num="' + item.st_num + '" src="../images/no_like.png" width="20" height="20">';
+					stoutput += '<span class="output_fcount" data-num="'+item.st_num+'"></span>';
 					stoutput += '</div>';
 					stoutput += '</div>';
+					stoutput += '</div>';
+					
 					
 					//문서 객체 추가
 					$('#stoutput').append(stoutput);
 				});
+				
+				$('.output_fav').each(function() {
+					let st_num = $(this).attr('data-num');
+					//console.log('st_num : ' + st_num);
+					selectFav(st_num);
+				});
+				
 				//paging button 처리
 				if(currentPage >= Math.ceil(count/rowCount)){
 					//다음 페이지가 없음
@@ -83,7 +98,64 @@ $(function(){
 		//문서 객체 추가
 		$('#output_rcount').text(stoutput);
 	}
+	//좋아요 읽기
+	//좋아요 선택 여부와 선택한 총개수 표시
+		function selectFav(st_num) {
+			$.ajax({
+				url: '../style/getFav.do',
+				type: 'post',
+				data: { st_num: st_num },
+				dataType: 'json',
+				success: function(param) {
+					displayFav(param, st_num);
+				},
+				error: function() {
+					alert('네트워크 오류 발생');
+				}
+			});
+		}//end of selectFav
+		//좋아요 표시 공통 함수
+		function displayFav(param, st_num) {
+			let outputSelector = '.output_fav[data-num="' + st_num + '"]';
+			let outputCountSelector = '.output_fcount[data-num="' + st_num + '"]';
+			let output;
+			if (param.status == 'yesFav') {
+				output = '../images/yes_like.png';
+			} else if (param.status == 'noFav') {
+				output = '../images/no_like.png';
+			} else {
+				alert('좋아요 표시 오류 발생');
+			}
+			//문서 객체에 추가
+			$(outputSelector).attr('src', output);
+			$(outputCountSelector).text(param.count);
+		}//end of displayFav
+
+		//좋아요 등록/삭제
+		$(document).on('click', '.output_fav', function() {
+			let st_num = $(this).attr('data-num');
+			$.ajax({
+				url: '../style/writeFav.do',
+				type: 'post',
+				data: { st_num: st_num },
+				dataType: 'json',
+				success: function(param) {
+					if (param.result == 'logout') {
+						alert('로그인 후 이용 가능합니다.');
+						location.href = '/member/login.do';
+					} else if (param.result == 'success') {
+						displayFav(param, st_num);
+					} else {
+						alert('등록시 오류 발생');
+					}
+				},
+				error: function() {
+					alert('네트워크 오류 발생');
+				}
+			});
+		});//end of click
 	
 	//초기 데이터(목록) 호출
 	selectList(1);
-});
+});	
+	

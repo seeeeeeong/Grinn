@@ -41,4 +41,5 @@ public interface ItemService {
 	//스타일
 	public List<ItemstVO> selectListST(Map<String,Object> map);
 	public int selectRowCountST(Map<String,Object> map);
+	public int stylecount(Integer item_num);
 }

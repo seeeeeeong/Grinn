@@ -58,14 +58,14 @@ $(function(){
     $(function() {
         // 좋아요 읽기
         // 좋아요 선택여부와 선택한 총개수 표시
-        function selectFav(item_num) {
+        function selectitemFav(item_num) {
             $.ajax({
-                url: 'getFav.do',
+                url: 'getitemFav.do',
                 type: 'post',
                 data: { item_num: item_num },
                 dataType: 'json',
                 success: function(param) {
-                    displayFav(param, item_num); // 수정된 부분
+                    displayitemFav(param, item_num); // 수정된 부분
                 },
                 error: function() {
                     alert('네트워크 오류 발생');
@@ -74,9 +74,9 @@ $(function(){
         } // end of selectFav
 
         // 좋아요 표시 공통 함수
-        function displayFav(param, item_num) { // 수정된 부분
-            let outputSelector = '.output_fav[data-num="' + item_num + '"]';
-            let outputCountSelector = '.output_fcount[data-num="' + item_num + '"]';
+        function displayitemFav(param, item_num) { // 수정된 부분
+            let outputSelector = '.output_itemfav[data-num="' + item_num + '"]';
+            let outputCountSelector = '.output_itemfcount[data-num="' + item_num + '"]';
             let output;
 
             if (param.status == 'yesFav') {
@@ -93,10 +93,10 @@ $(function(){
         } // end of displayFav
 
         // 좋아요 등록/삭제
-        $(document).on('click', '.output_fav', function() {
+        $(document).on('click', '.output_itemfav', function() {
             let item_num = $(this).attr('data-num');
             $.ajax({
-                url: 'writeFav.do',
+                url: 'writeitemFav.do',
                 type: 'post',
                 data: { item_num: item_num },
                 dataType: 'json',
@@ -104,7 +104,7 @@ $(function(){
                     if (param.result == 'logout') {
                         alert('로그인 후 좋아요를 눌러주세요!');
                     } else if (param.result == 'success') {
-                        displayFav(param, item_num); // 수정된 부분
+                        displayitemFav(param, item_num); // 수정된 부분
                     } else {
                         alert('등록시 오류 발생');
                     }
@@ -116,9 +116,9 @@ $(function(){
         });
 
         // 초기 데이터 표시
-        $('.output_fav').each(function() {
+        $('.output_itemfav').each(function() {
             let item_num = $(this).attr('data-num');
-            selectFav(item_num);
+            selectitemFav(item_num);
         });
     });
 /*

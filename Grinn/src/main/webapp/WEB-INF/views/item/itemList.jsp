@@ -94,9 +94,9 @@
 						<div>
 						<!-- 상품보관버튼 -->
 						<span class="wishReview"> 
-							<img class="output_fav" data-num="${item.item_num}"
+							<img class="output_itemfav" data-num="${item.item_num}"
 								src="${pageContext.request.contextPath}/images/save_blank.png" width="15" height="15"> 
-								<span class="output_fcount"  data-num="${item.item_num}"></span>
+								<span class="output_itemfcount"  data-num="${item.item_num}"></span>
 						</span> 
 						<span class="wishReview"> 
 							<img src="${pageContext.request.contextPath}/images/review.png"
