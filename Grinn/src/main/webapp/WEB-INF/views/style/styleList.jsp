@@ -6,6 +6,7 @@
         .style_list {
             display: flex;
             flex-wrap: wrap; /* 아이템들을 여러 줄에 걸쳐 표시할 수 있도록 설정 */
+            margin-left: 50px;
             
         }
 

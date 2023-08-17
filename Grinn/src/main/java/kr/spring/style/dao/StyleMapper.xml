@@ -125,7 +125,7 @@
 		s.st_num, s.st_phrase,
 		s.st_photo1n, s.st_photo2n, s.st_photo3n, s.st_photo4n,
 		s.st_photo1, s.st_photo2, s.st_photo3, s.st_photo4,
-		s.st_regdate, s.st_mdate, s.mem_num,
+		s.st_regdate, s.st_mdate, s.mem_num, m.mem_id, d.mem_photo, d.mem_photo_name,
 		i1.item_num item_num1, i1.item_name item_name1, i1.item_photo1 item_photo1_1, i1.item_photo1name item_photo1name_1,
 		i2.item_num item_num2, i2.item_name item_name2, i2.item_photo1 item_photo1_2, i2.item_photo1name item_photo1name_2,
 		i3.item_num item_num3, i3.item_name item_name3, i3.item_photo1 item_photo1_3, i3.item_photo1name item_photo1name_3
@@ -144,8 +144,8 @@
 		st_phrase=#{st_phrase},
 		st_mdate=sysdate,
 		item_num1=#{item_num1},
-		item_num1=#{item_num2},
-		item_num1=#{item_num3}
+		item_num2=#{item_num2},
+		item_num3=#{item_num3}
 		WHERE st_num=#{st_num}
 	</update>
 	

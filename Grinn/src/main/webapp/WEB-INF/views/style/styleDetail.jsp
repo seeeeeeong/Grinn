@@ -22,6 +22,7 @@
         flex-wrap: wrap; /* 아이템들을 여러 줄에 걸쳐 표시할 수 있도록 설정 */
         width:65%;
         float:left;
+        margin-left:20px;
     }
     .user-profile .username{
     	font-size:15pt;
@@ -49,11 +50,18 @@
     .style-content{
     	padding:0 335px 0 335px;
     }
+    .tag-boxes{
+    	display: flex;
+        flex-wrap: wrap; /* 아이템들을 여러 줄에 걸쳐 표시할 수 있도록 설정 */
+        margin: 10px 0 0 0;
+    }
     .item-tag .tag-title{
     	font-size:15pt;
+    	margin-left:15px;
     }
     .item-tag-box{
     	width:100px;
+    	margin-left:15px;
     }
     .item-name{
     	width:100px;
@@ -66,6 +74,7 @@
 	    font-size: 15px;
 	    letter-spacing: -.33px;
 	    line-height: 22px;
+	    margin-left:20px;
     }
 	.post-caption{
 	    color: #222;
@@ -73,13 +82,14 @@
 	    margin: 0;
 	    padding: 0;
 	    font-size: 15px;
+	    margin-left:20px;
 	}
 	
 	/* 더보기 */
 	#more-btn{
 		float:right;
 		width:7%;
-		margin-top:5px;
+		margin:5px 10px 0 0; 
 	}
 	#optionWrap {
 	  position: fixed; /* Stay in place */
@@ -207,7 +217,7 @@
 	/* 댓글 팝업 */
 	/*버튼을 감싸는 영역*/
 	#btnWrap {
-	  
+	  margin-left:20px;
 	}
 	
 	/*버튼 디자인*/
@@ -509,22 +519,28 @@
   	</div>
     
     <div class="style-content">
-    	<c:if test="${style.item_photo1name != null}">
+    	<c:if test="${style.item_num1 != 0}">
     	<div class="item-tag">
     		<div class=tag-title>
 				상품 태그
 			</div>
-			<div class="item-tag-box">
-				<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num1}" width="100" height="100"><br>
-				<span class="item-name" style="width:100px;">${style.item_name1}</span>
-			</div>
-			<div class="item-tag-box">
-				<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num2}" width="100" height="100"><br>
-				<span class="item-name" style="width:100px;">${style.item_name2}</span>
-			</div>
-			<div class="item-tag-box">
-				<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num3}" width="100" height="100"><br>
-				<span class="item-name" style="width:100px;">${style.item_name3}</span>
+			<div class="tag-boxes">
+				<div class="item-tag-box">
+					<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num1}" width="100" height="100"><br>
+					<span class="item-name" style="width:100px;">${style.item_name1}</span>
+				</div>
+				<c:if test="${style.item_num2 != 0}">
+				<div class="item-tag-box">
+					<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num2}" width="100" height="100"><br>
+					<span class="item-name" style="width:100px;">${style.item_name2}</span>
+				</div>
+				</c:if>
+				<c:if test="${style.item_num3 != 0}">
+				<div class="item-tag-box">
+					<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num3}" width="100" height="100"><br>
+					<span class="item-name" style="width:100px;">${style.item_name3}</span>
+				</div>
+				</c:if>
 			</div>
 		</div>
 		</c:if><p>	
