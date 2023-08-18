@@ -75,7 +75,7 @@ public class ChatBotServiceImpl implements ChatBotService{
 	//챗봇방 상세
 	@Override
 	public ChatBotRoomVO selectChatBotRoom(Integer croom_num) {
-		return null;
+		return chatbotMapper.selectChatBotRoom(croom_num);
 	}
 
 	//챗봇방 나가기
