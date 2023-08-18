@@ -38,7 +38,7 @@
 				alert('아직 상품 발송 기간 '+(5-diff)+'일 남아있습니다.');	
 				return;
 			}else{
-				location.href='adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=6';
+				location.href='adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=6&pe_type=9';
 			}
 		});
 		

@@ -165,8 +165,10 @@ public class AdminTradeController {
 					vo.setPe_type(pe_type);
 					if(pe_type == 7) {
 						vo.setPe_score(20);
-					}else {
+					}else if(pe_type == 8){
 						vo.setPe_score(30);
+					}else {
+						vo.setPe_score(10);
 					}
 					
 					tradeService.adminInsertPenalty(vo);
