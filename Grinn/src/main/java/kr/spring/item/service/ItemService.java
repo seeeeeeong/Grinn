@@ -42,4 +42,7 @@ public interface ItemService {
 	public List<ItemstVO> selectListST(Map<String,Object> map);
 	public int selectRowCountST(Map<String,Object> map);
 	public int stylecount(Integer item_num);
+	
+	// 투표
+	public List<ItemVO> selectSearchItem(String item_name);
 }

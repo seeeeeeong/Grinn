@@ -141,4 +141,9 @@ public class ItemServiceImpl implements ItemService{
 		return itemMapper.stylecount(item_num);
 	}
 
+	@Override
+	public List<ItemVO> selectSearchItem(String item_name) {
+		return itemMapper.selectSearchItem(item_name);
+	}
+
 }

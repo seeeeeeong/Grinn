@@ -74,4 +74,8 @@ public interface ItemMapper {
 	@Select("SELECT count(*)st_cnt FROM style WHERE item_num1=#{item_num} or item_num2=#{item_num} or item_num3=#{item_num}")
 	public int stylecount(Integer item_num);
 	
+	// 투표
+	@Select("SELECT item_num, item_brand, item_name FROM item WHERE item_status == 1 AND item_name LIKE '%' || #{item_name} || '%'")
+	public List<ItemVO> selectSearchItem(String item_name);
+	
 }
