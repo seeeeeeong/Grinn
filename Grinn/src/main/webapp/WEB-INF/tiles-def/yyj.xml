@@ -60,16 +60,12 @@
     	<put-attribute name="title" value="채팅리스트"/>
 	    <put-attribute name="body" value="/WEB-INF/views/talk/talkList.jsp"/>
     </definition> 
-    <definition name="talkDetail" extends="main">
-    	<put-attribute name="title" value="채팅하기"/>
-	    <put-attribute name="body" value="/WEB-INF/views/talk/talkDetail.jsp"/>
-    </definition> 
 	
 	<!-- 챗봇 메인 상속 -->
     <definition name="chatbotDetail" extends="chatbotMain">
     	<put-attribute name="title" value="챗봇으로 문의하기"/>
 	    <put-attribute name="body" value="/WEB-INF/views/chatbot/chatbotDetail.jsp"/>
-    </definition> 
+    </definition>
 
 </tiles-definitions>
 

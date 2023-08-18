@@ -1,6 +1,6 @@
 $(function(){
 	/* 챗봇메세지 */
-	let message_socket;
+	let msg_socket;
 	let member_list = []; //채팅 회원 저장 -> 로그인한 회원과 챗봇
 
 	//챗봇방 멤버를 저장하는 배열에 회원을 저장
@@ -11,29 +11,29 @@ $(function(){
 	}
 	
 	/* 웹 소켓 연결 */
-	function alarm_connect(){
-		message_socket = new WebSocket("ws://localhost:8000/message-ws.do");
-		message_socket.onopen=function(evt){
+	function al_connect(){
+		msg_socket = new WebSocket("ws://localhost:8000/message-ws.do");
+		msg_socket.onopen=function(evt){
 			//채팅 페이지에 진입하면 채팅 메시지 발송
 			if($('#chatbotDetail').length==1){
-				message_socket.send("msg:");
+				msg_socket.send("msg:");
 			}
 			console.log('채팅페이지 접속');
 		};
 		//서버로부터 메시지를 받으면 호출되는 함수 지정
-		message_socket.onmessage=function(evt){
+		msg_socket.onmessage=function(evt){
 			let data = evt.data;
 			if($('#chatbotDetail').length == 1 &&
 			    data.substring(0,4) == 'msg:'){
 				selectMsg();
 			}
 		};
-		message_socket.onclose=function(evt){
+		msg_socket.onclose=function(evt){
 			//소켓이 종료된 후 부가적인 작업이 있을 경우 명시
 			console.log('채팅 종료');
 		};
 	}
-	alarm_connect();
+	al_connect();
 	
 	/* 챗봇방 생성하기 */
 	//채팅방 생성을 위한 데이터 전송
@@ -51,14 +51,14 @@ $(function(){
 	function selectMsg(){
 		//서버와 통신
 		$.ajax({
-			url:'',
+			url:'../chatbot/chatbotDetailAjax.do',
 			type:'post',
-			data:{},
+			data:{croom_num:$(croom_num).val()},
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'logout'){
 					alert('로그인 후 사용하세요!');
-					message_socket.close();
+					msg_socket.close();
 				}else if(param.result == 'success'){
 					//메시지 표시 UI 초기화
 					$('#chatbot_message').empty();
@@ -98,12 +98,12 @@ $(function(){
 					
 				}else{
 					alert('채팅 메시지 읽기 오류 발생');
-					message_socket.close();
+					msg_socket.close();
 				}
 			},
 			error:function(){
 				alert('네트워크 오류 발생');
-				message_socket.close();
+				msg_socket.close();
 			}
 		});/* ajax통신 끝 */
 	}
@@ -131,27 +131,27 @@ $(function(){
 		
 		//서버와 통신
 		$.ajax({
-			url:'../chatbot/writechatbot.do',
+			url:'../chatbot/writeChatbot.do',
 			type:'post',
 			data:form_data,
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'logout'){
 					alert('로그인해야 작성할 수 있습니다.');
-					message_socket.close();
+					msg_socket.close();
 				}else if(param.result == 'success'){
 					//폼 초기화
 					$('#message').val('').focus();
 					//메시지가 저장되었다고 소켓에 신호를 보냄
-					message_socket.send('msg:');
+					msg_socket.send('msg:');
 				}else{
 					alert('채팅 등록 오류 발생');
-					message_socket.close();
+					msg_socket.close();
 				}
 			},
 			error:function(){
 				alert('네트워크 오류 발생');
-				message_socket.close();
+				msg_socket.close();
 			}
 		});
 		//기본이벤트 제거
@@ -174,20 +174,20 @@ $(function(){
 			success:function(param){
 				if(param.result == 'logout'){
 					alert('로그인해야 사용할 수 있습니다.');
-					message_socket.close();
+					msg_socket.close();
 				}else if(param.result == 'success'){
 					alert('정상적으로 채팅방을 나갔습니다.');
 					//메시지가 저장되었다고 소켓에 신호를 보냄
-					message_socket.send('msg:');
+					msg_socket.send('msg:');
 					location.href='../chatbot/chatbotList.do';
 				}else{
 					alert('채팅방 나가기 처리 오류 발생');
-					message_socket.close();
+					msg_socket.close();
 				}
 			},
 			error:function(){
 				alert('네트워크 오류 발생');
-				message_socket.close();
+				msg_socket.close();
 			}
 		});
 	})

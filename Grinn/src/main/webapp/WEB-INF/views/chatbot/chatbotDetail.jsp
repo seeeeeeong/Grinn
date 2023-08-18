@@ -23,6 +23,7 @@
 		<!-- 챗봇 타이틀 끝 -->
 		<!-- 챗봇 내용 시작 -->
 		<div class="chatbot_content">
+			<input type="hidden" name="croom_num" id="croom_num" value="${croom_num}">
 			<ul class="list_talk">
 				<li class="date"> 2023.08.11. (금) </li><!-- 문의날짜 -->
 				<li class="log_my">
@@ -47,8 +48,9 @@
 			<div class="talk_write">
 				<div class="frame_msg">
 					<!-- 내용 입력 -->
-					<div class="inner">
+					<div class="inner" id="inner">
 						<label for="msgInputArea" class="blind">채팅입력창</label>
+						<input type="hidden" name="croom_num" id="croom_num" value="${param.croom_num}">
 						<textarea id="msgInputArea" placeholder="메시지를 입력하세요." rows="1" class="msg_input"></textarea>
 					</div>
 					<!-- 보내기 버튼 -->
@@ -56,7 +58,7 @@
 						<button onclick="location.href='chatbotDetail.do'">
 							<img src="${pageContext.request.contextPath}/images/how_to_send.jpg" width="50" class="sendBtn">
 							<span class="blind">입력 완료</span>
-						</button>
+						</button> <!-- ???? -->
 					</div>
 				</div>
 			</div>

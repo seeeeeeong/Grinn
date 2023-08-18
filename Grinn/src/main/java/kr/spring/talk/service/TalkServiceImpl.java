@@ -18,16 +18,17 @@ public class TalkServiceImpl implements TalkService{
 	@Autowired
 	TalkMapper talkMapper;
 	
+	//채팅방 목록
 	@Override
 	public List<TalkRoomVO> selectTalkRoomList(Map<String, Object> map) {
 		return talkMapper.selectTalkRoomList(map);
 	}
-
 	@Override
 	public int selectRowCount(Map<String, Object> map) {
 		return talkMapper.selectRowCount(map);
 	}
 
+	//채팅방 생성
 	@Override
 	public void insertTalkRoom(TalkRoomVO talkRoomVO) {
 		//기본키 생성
@@ -48,11 +49,13 @@ public class TalkServiceImpl implements TalkService{
 		}
 	}
 
+	//채팅 멤버 읽기
 	@Override
 	public List<TalkMemberVO> selectTalkMember(Integer talkroom_num) {
 		return talkMapper.selectTalkMember(talkroom_num);
 	}
 
+	//채팅 메시지 등록
 	@Override
 	public void insertTalk(TalkVO talkVO) {
 		//채팅 번호를 생성해서 자바빈(VO)에 저장
@@ -66,6 +69,7 @@ public class TalkServiceImpl implements TalkService{
 		}
 	}
 
+	//채팅메시지 읽기
 	@Override
 	public List<TalkVO> selectTalkDetail(Map<String, Integer> map) {
 		//읽은 채팅 기록 삭제
@@ -73,16 +77,19 @@ public class TalkServiceImpl implements TalkService{
 		return talkMapper.selectTalkDetail(map);
 	}
 
+	//채팅방 이름 변경하기
 	@Override
 	public void changeRoomName(TalkMemberVO vo) {
 		talkMapper.changeRoomName(vo);
 	}
 
+	//채팅방 상세
 	@Override
 	public TalkRoomVO selectTalkRoom(Integer talkroom_num) {
 		return talkMapper.selectTalkRoom(talkroom_num);
 	}
 
+	//채팅 멤버 추가
 	@Override
 	public void insertNewMember(TalkRoomVO talkRoomVO) {
 		//입장 메시지 처리
@@ -96,6 +103,7 @@ public class TalkServiceImpl implements TalkService{
 		}
 	}
 
+	//채팅방 나가기
 	@Override
 	public void deleteTalkRoomMember(TalkVO talkVO) {
 		talkMapper.deleteTalkRoomMember(talkVO);
