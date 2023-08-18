@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.fleaMarket.dao.BookingMapper">
-	<resultMap type="marketVO" id="marketMap">
+	<resultMap type="bookingVO" id="marketMap">
+		<result property="marketVO.market_num" column="market_num"/>
 		<result property="marketVO.market_title" column="market_title"/>
 		<result property="marketVO.market_startDate" column="market_startDate"/>
 		<result property="marketVO.market_endDate" column="market_endDate"/>
@@ -10,9 +11,12 @@
 		<result property="marketVO.booth_fee" column="booth_fee"/>
 		<result property="marketVO.market_poster" column="market_poster"/>
 		<result property="marketVO.market_posterName" column="market_posterName"/>
+		<!--  <result property="memberVO.mem_id" column="mem_id"/>-->
 	</resultMap>
 	<resultMap type="bookingVO" id="bookingMap">
 		<result property="marketVO.market_title" column="market_title"/>
+		<result property="marketVO.place_name" column="place_name"/>
+		<result property="marketVO.booth_fee" column="booth_fee"/>
 	</resultMap>
 	<insert id="insertBooking" parameterType="bookingVO"> 
 		INSERT INTO booking(
@@ -88,6 +92,7 @@
 			</if>
 		</if>
 	</sql>
+	
 	<select id="selectBookingCountByMem_num" parameterType="map">
 		SELECT
 		  COUNT(*)
@@ -109,5 +114,12 @@
 	    <![CDATA[
 	    WHERE rnum >= #{start} AND rnum <= #{end}
 	    ]]>
+	</select>
+	
+	<select id="selectBooking" parameterType="int" resultMap="marketMap">
+		SELECT * FROM booking b LEFT JOIN market m 
+								ON b.market_num = m.market_num 
+								LEFT JOIN member u ON b.mem_num = u.mem_num 
+		WHERE b.book_num = #{book_num}
 	</select>
 </mapper>

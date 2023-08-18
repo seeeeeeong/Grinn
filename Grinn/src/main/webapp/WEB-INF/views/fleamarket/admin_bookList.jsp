@@ -46,8 +46,6 @@
 			<th>회원 ID</th>
 			<th>플리마켓명</th>
 			<th>예약 날짜</th>
-			<th>희망 시작일</th>
-			<th>희망 종료일</th>
 			<th>권한</th>
 		</tr>
 		<c:forEach var="book" items="${bookList}">
@@ -56,8 +54,6 @@
 			<td class="align-center">${book.mem_id}</td>
 			<td class="align-center">${book.marketVO.market_title}</td>
 			<td class="align-center">${book.book_regDate}</td>
-			<td class="align-center">${book.book_date1}</td>			
-			<td class="align-center">${book.book_date2}</td>
 			<td class="align-center">
 				<input type="button" value="상세보기" onclick="location.href='detailBooking.do?book_num=${book.book_num}'" class="detail-btn">
 			</td>

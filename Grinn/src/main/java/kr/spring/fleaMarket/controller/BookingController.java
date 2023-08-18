@@ -124,9 +124,24 @@ public class BookingController {
 	}
 	
 	
+	// 관리자 - 예약 상세
+	@RequestMapping("/fleamarket/detailBooking.do")
+	public String detail(@RequestParam int book_num, Model model) {
+		log.debug("<<예약 내역>> : " + book_num);
+		// 예약 정보
+		BookingVO bookingVO = bookingService.selectBooking(book_num);
+		//MarketVO marketVO = marketService.selectMarket(market_num);
+		
+		model.addAttribute("bookingVO", bookingVO);
+		//model.addAttribute("marketVO", marketVO);
+		
+		return "bookDetail";
+	}
+	
+	
 	// ===이용자 - 회원별 예약 목록===
 	@RequestMapping("/fleamarket/marketList.do")
-	public String myMarketPage(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
+	public ModelAndView myMarketPage(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
 			                                 String keyfield, String keyword, HttpSession session) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
@@ -138,45 +153,30 @@ public class BookingController {
 		// 전체 검색 레코드 수
 		int count = bookingService.selectBookingCountByMem_num(map);
 		
-		log.debug("<<이용자 예약 목록 수>> : " + count);
+		log.debug("<<이용자 예약 내역 수>> : " + count);
 		
 		// 페이지 처리
 		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 5, 5, "marketList.do");
-		List<BookingVO> list = null;
+		
+		List<BookingVO> userList = null;
 		if (count > 0) {
 			map.put("start", page.getStartRow());
 			map.put("end", page.getEndRow());
 			
-			list = bookingService.selectListBookingByMem_num(map);
+			userList = bookingService.selectListBookingByMem_num(map);
 		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("userMarketPage");
 		mav.addObject("count", count);
-		mav.addObject("list", list);
+		mav.addObject("userList", userList);
 		mav.addObject("page", page.getPage());
-		
-		// 회원 정보 반환
-		//MemberVO member = memberService.selectMember(user.getMem_num());
-		// BookingVO book = bookingService.selectBooking(book);
-		
-		return "mav";
+				
+		return mav;
 	}
 	
 	
-	// 이용자/관리자 - 예약 상세
-	@RequestMapping("/fleaMarket/detailBooking.do")
-	public String detail(@RequestParam int book_num, @RequestParam int market_num, Model model) {
-		log.debug("<<예약 내역>> : " + book_num);
-		// 예약 정보
-		BookingVO bookingVO = bookingService.selectBooking(book_num);
-		MarketVO marketVO = marketService.selectMarket(market_num);
-		
-		model.addAttribute("bookingVO", bookingVO);
-		model.addAttribute("marketVO", marketVO);
-		
-		return "bookDetail";
-	}
+
 	
 	// 이용자 - 예약 취소
 	@RequestMapping("/fleamarket/bookingDelete.do")

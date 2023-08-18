@@ -29,7 +29,8 @@ public interface BookingMapper {
 	public List<BookingVO> selectListBooking(Map<String, Object> map);
 	public int selectCountBooking(Map<String, Object> map);
 	// 관리자/이용자 - 예약 상세
-	@Select("SELECT * FROM booking WHERE book_num = #{book_num}")
+	//@Select("SELECT * FROM booking WHERE book_num = #{book_num}")
+	//@Select("SELECT * FROM booking b LEFT JOIN market m ON b.market_num = m.market_num LEFT JOIN member u ON b.mem_num = u.mem_num WHERE b.book_num = #{book_num}")
 	public BookingVO selectBooking(Integer book_num);
 	// 예약 완료로 인한 booth_count 변동
 	@Update("UPDATE market SET booth_count=booth_count-#{get_count} WHERE market_num=#{market_num}")

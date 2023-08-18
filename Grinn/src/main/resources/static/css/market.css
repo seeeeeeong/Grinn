@@ -254,3 +254,34 @@ table.market-table > td{
 #book_btn{
 	height:38px;
 }
+/*예약 상세
+-------------------------*/
+.detail-border{
+	border-bottom:3px solid #222;
+	margin:0 auto;
+	padding:25px 0 16px 0;
+}
+#book_detail{
+	border:none;
+	width:97%;
+	padding:10px;
+}
+.detail-poster{
+	float:left;
+	width:40%;
+	position:relative;
+}
+.detail-market{
+	float:left;
+	width:45%;
+	font-size:18px;
+	margin:15px 0;
+	position:relative;
+}
+.detail-user{
+	font-size:18px;
+	position:relative;
+}
+.user-label{
+	font-weight:600;
+}

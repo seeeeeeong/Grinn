@@ -3,11 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!-- 관리자 예약 내역 시작 -->
+<!-- 이용자 예약 내역 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
 <div class="page-main">
-	<h2 class="detail-border">예약 내역 - 관리자</h2>
-	<form:form modelAttribute="bookingVO" action="detailBooking.do" id="book_detail">
+	<h2 class="detail-border">예약 내역</h2>
+	<form:form modelAttribute="bookingVO" action="userDetail.do" id="book_detail">
 		<form:hidden path="book_num"/>
 		<ul>
 			<li class="detail-poster">
@@ -15,50 +15,47 @@
 			width="250" height="300">
 			</li>
 			<li class="detail-market">
-				<label class="user-label">플리마켓명</label>
+				<label><b>플리마켓명</b></label>
 				${bookingVO.marketVO.market_title}
 			</li>
 			<li class="detail-market">
-				<label class="user-label">개최 기간</label>
+				<label><b>개최 기간</b></label>
 				${bookingVO.marketVO.market_startDate} ~ ${bookingVO.marketVO.market_endDate}
 			</li>
 			<li class="detail-market">
-				<label class="user-label">장소</label>
+				<label><b>장소</b></label>
 				${bookingVO.marketVO.place_name}
 			</li>
-			<li class="detail-user">
-				<label class="user-label">예약 번호</label>
+			<li>
+				<label>예약 번호</label>
 				${bookingVO.book_num}
 			</li>
-			<li class="detail-user">
-				<label class="user-label">시작일</label>
+			<li>
+				<label>희망 시작일</label>
 				${bookingVO.book_date1}
 			</li>
-			<li class="detail-user">
-				<label class="user-label">종료일</label>
+			<li>
+				<label>희망 종료일</label>
 				${bookingVO.book_date2}
-			</li>
-			<li class="detail-user">
-				<label class="user-label">예약자 ID</label>
-				${memberVO.mem_id}
-			</li>
-			<li class="detail-user">
-				<label class="user-label">예약일</label>
+			</li>			
+			<li>
+				<label>예약일</label>
 				${bookingVO.book_regDate}
 			</li>
-			<li class="detail-user">
-				<label class="user-label">예약 비용</label>
+			<li>
+				<label>예약 비용</label>
 				<fmt:formatNumber>${bookingVO.marketVO.booth_fee}</fmt:formatNumber>
 			</li>
-			<li class="detail-user">
-				<label class="user-label">수령 방법</label>
+			<li>
+				<label>수령 방법</label>
 				<span>현장수령</span>
 			</li>
 		</ul>	
 		<div class="align-right">
+			<form:button>예약 취소</form:button>
 			<input type="button" value="예약 목록"
-			 onclick="location.href='${pageContext.request.contextPath}/fleamarket/admin_resList.do'">
+			 onclick="location.href='${pageContext.request.contextPath}/fleamarket/marketList.do'">
 		</div>             
 	</form:form>
 </div>
-<!-- 관리자 예약 내역 끝 -->
+<!-- 이용자 예약 내역 끝 -->

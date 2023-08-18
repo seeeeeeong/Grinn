@@ -7,6 +7,7 @@
 <tiles-definitions>
     <!-- 아래 태그 정보를 작업에 맞게 수정해서 사용하세요 -->
     <!-- 이용자 -->
+    <!-- 플리마켓 및 예약 -->
     <definition name="marketSelect" extends="main">
     	<put-attribute name="title" value="예약 메인"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/marketSelect.jsp"/>
@@ -24,12 +25,18 @@
     	<put-attribute name="title" value="플리마켓 날짜 예약"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/selectDate.jsp"/>
     </definition>
+    <definition name="userMarketPage" extends="main">
+    	<put-attribute name="title" value="플리마켓 예약 목록"/>
+	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/user_bookList.jsp"/>
+    </definition>
     
+    <!-- 프로모션 -->
     <definition name="promotionDetail" extends="main">
         <put-attribute name="title" value="프로모션 상세"/>
         <put-attribute name="body" value="/WEB-INF/views/promotion/userDetail.jsp"/>
     </definition>
     
+    <!-- 페널티 -->
     <definition name="penaltyList" extends="main">
     	<put-attribute name="title" value="회원 페널티 목록"/>
 	    <put-attribute name="body" value="/WEB-INF/views/penalty/userList.jsp"/>

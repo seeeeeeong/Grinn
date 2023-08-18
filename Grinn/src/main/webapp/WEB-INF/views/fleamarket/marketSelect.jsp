@@ -11,17 +11,17 @@
 			</div>
 			<p>
 				<span class="market-font">
-				<b>판매자 부스 예약</b>
+				<b>플리마켓 부스 예약</b>
 				</span>
 			</p>
 		</div>
 		<div class="user-wrap">
 			<div class="market-img">
-				<a href="${pageContext.request.contextPath}/fleamarket/marketList.do?"><img src="../image_bundle/bazaars.jpg"></a>
+				<a href="${pageContext.request.contextPath}/fleamarket/marketList.do"><img src="../image_bundle/bazaars.jpg"></a>
 			</div>
 			<p>
 				<span class="market-font">
-				<b>이용자 플리마켓 예약</b>
+				<b>부스 예약 목록</b>
 				</span>
 			</p>
 		</div>		
