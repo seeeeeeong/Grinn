@@ -232,7 +232,25 @@ public class StyleController {
 			    BindingResult result,
 			    HttpServletRequest request,
 			    Model model) {
+		
+		StyleVO db_styleVO = styleService.selectStyle(styleVO.getSt_num());
+		styleVO.setSt_photo1(db_styleVO.getSt_photo1());
+		styleVO.setSt_photo1n(db_styleVO.getSt_photo1n());
+		if(db_styleVO.getSt_photo2n() != null) {
+			styleVO.setSt_photo2(db_styleVO.getSt_photo2());
+			styleVO.setSt_photo2n(db_styleVO.getSt_photo2n());
+		}
+		if(db_styleVO.getSt_photo3n() != null) {
+			styleVO.setSt_photo3(db_styleVO.getSt_photo3());
+			styleVO.setSt_photo3n(db_styleVO.getSt_photo3n());
+		}
+		if(db_styleVO.getSt_photo4n() != null) {
+			styleVO.setSt_photo4(db_styleVO.getSt_photo4());
+			styleVO.setSt_photo4n(db_styleVO.getSt_photo4n());
+		}
+		
 		log.debug("<<글 수정 - StyleVO>> : " + styleVO);
+		
 		
 		//유효성 체크 결과 오류가 있으면 폼 호출
 		if(result.hasErrors()) {

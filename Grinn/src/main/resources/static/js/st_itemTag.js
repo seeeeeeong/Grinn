@@ -56,14 +56,6 @@ $(function(){
       //태그할 상품 저장
    let item_list = [];
    let item_nameList = [];
-   let item_num1;
-   let item_num2;
-   let item_num3;
-   let num = 1;
-   let choice_item1;
-   let choice_item2;
-   let choice_item3;
-   let itemNumber = [];
    
    //상품 검색
    $('#item_search').keyup(function(){
@@ -83,7 +75,7 @@ $(function(){
                $(param.item_tag).each(function(index,item){
                   if(!item_list.includes(item.item_name)){
                      let output = '';
-                     output += '<li data-num="' + item.item_num + '"style="margin-left:30px">';
+                     output += '<li data-num="' + item.item_num + '">';
                      output += '<img src="../style/viewPhotoByItem_num.do?item_num=' + item.item_num + '" width="30" height="30">';
                      output += item.item_name;
                      output += '</li>';
@@ -115,7 +107,6 @@ $(function(){
       if(item_nameList.length <= 2) {
 		  item_nameList.push(item_num);
 	  }
-	  let idx = item_list.length;
       //선택한 상품을 화면에 표시
       let choice_item = '<span class="item-span" data-name=' + item_name + '">';
       choice_item += item_num;
@@ -132,7 +123,6 @@ $(function(){
    $(document).on('click', '.item-span', function(){
       let item_name = $(this).attr('data-name');
       let item_num = $(this).find('img').attr('data-num');
-      //채팅 멤버가 배열에서 삭제할 멤버의 ID 제거
       item_list.splice(item_list.indexOf(item_name), 1);
       item_nameList.splice(item_nameList.indexOf(item_num), 1);
       $(this).remove();//이벤트가 발생한 태그 제거
@@ -143,6 +133,7 @@ $(function(){
      
    });
    
+   //올리기 버튼 클릭시 상품 태그 등록
    $(document).on('click', '.submit-style', function(){
 	    if(item_nameList.length > 0){
 		   for(let i=0;i<item_nameList.length;i++){
@@ -151,5 +142,36 @@ $(function(){
 	   }
    });
    
+});
+
+//스타일 수정
+$(function(){
+	
+   //기존 상품 태그 삭제하기
+   //$(document).on('click', '.item-tag-box', function(){
+      //$(this).remove();//이벤트가 발생한 태그 제거
+      //$('#item_num').val('0');
+      //$(this).val('');
+   //});
+   
+   $(document).on('click', '#box1', function(){
+	   $(this).remove();
+	   $('#item_num1').val('0');
+   });
+   $(document).on('click', '#box2', function(){
+	   $(this).remove();
+	   $('#item_num2').val('0');
+   });
+   $(document).on('click', '#box3', function(){
+	   $(this).remove();
+	   $('#item_num3').val('0');
+   });
+   
+   //상품태그 수정
+   $(document).on('click', 'item-tag-box', function(){
+	  let item_name = $(this).attr('data-name');
+      let item_num = $(this).find('img').attr('data-num');
+   });
+	
 });
 

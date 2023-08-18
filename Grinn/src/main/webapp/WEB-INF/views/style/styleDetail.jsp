@@ -37,7 +37,6 @@
     .modified-date{
     	font-size:10pt;
     	color:#9d9d9d;
-    	padding-left:20px;
     }
     .comment-posted-date{
     	font-size:10pt;
@@ -440,7 +439,9 @@
 					<span class="username">${style.mem_id}</span>
 				</a>
 				<div class="post-date">
-					<span class="posted-date"><small>${style.st_regdate}</small></span>
+					<c:if test="${empty style.st_mdate}">
+						<span class="posted-date"><small>${style.st_regdate}</small></span>
+					</c:if>
 					<c:if test="${!empty style.st_mdate}">
 						<span class="modified-date"><small>${style.st_mdate}</small></span>
 					</c:if>
@@ -459,7 +460,7 @@
 		      	<ul>
 		      		<li>
 		      			<c:if test="${!empty user && user.mem_num == style.mem_num}">
-		      				<span>수정</span>
+		      				<span><a href="update.do?st_num=${style.st_num}">수정</a></span>
 		      			</c:if>
 		      		</li>
 		      		<li>
@@ -591,7 +592,7 @@
 	   	  <!-- 댓글폼 -->
 	   	  <div class="comment-form">
 	   	  	<img src="${pageContext.request.contextPath}/style/viewProfileByMem_num.do" class="comment-login-photo">
-	   	  	<form id="com_form">
+	   	  	<form id="com_form" action="writeComment.do">
 	   	  		<input type="hidden" name="st_num" value="${style.st_num}" id="st_num">
 	   	  		<textarea rows="1" cols="28" name="com_comment" id="com_comment"
 	   	  		<c:if test="${empty user}">disabled="disabled" placeholder="로그인 후 이용 가능합니다."</c:if>

@@ -140,12 +140,18 @@
 	
 	<!-- 스타일 수정 -->
 	<update id="updateStyle" parameterType="styleVO">
-		UPDATE style SET 
+		UPDATE style SET
 		st_phrase=#{st_phrase},
-		st_mdate=sysdate,
-		item_num1=#{item_num1},
-		item_num2=#{item_num2},
-		item_num3=#{item_num3}
+		st_mdate=sysdate
+		<if test="item_num1 != null and item_num1 != ''">
+			,item_num1=#{item_num1}
+		</if>
+		<if test="item_num2 != null and item_num2 != ''">
+			,item_num2=#{item_num2}
+		</if>
+		<if test="item_num3 != null and item_num3 != ''">
+			,item_num3=#{item_num3}
+		</if>
 		WHERE st_num=#{st_num}
 	</update>
 	
