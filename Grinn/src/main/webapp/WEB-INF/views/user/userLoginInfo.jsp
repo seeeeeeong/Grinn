@@ -5,120 +5,150 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$(".email-button").click(
-						function() { // Use 'email-button' class to target email button
-							var $emailContainer = $(this).closest(
-									".email-section");
-							var $emailText = $emailContainer
-									.find(".email-text");
-							var $emailInput = $emailContainer
-									.find(".email-input");
-							var $button = $(this);
+$(document).ready(function() {
+    $(".email-button").click(function() {
+        var $emailContainer = $(this).closest(".email-section");
+        var $emailText = $emailContainer.find(".email-text");
+        var $emailInput = $emailContainer.find(".email-input");
+        var $button = $(this);
 
-							if ($emailText.is(":visible")) {
-								$emailText.hide();
-								$emailInput.show();
-								$emailInput.val($emailText.text());
-								$button.text("저장 ");
-								$emailContainer.find("h5").css("font-weight",
-										"bold").css("opacity", 1);
-							} else {
-								var newEmail = $emailInput.val();
-								$.post("/user/updateEmail", {
-									newEmail : newEmail
-								}, function(response) {
-									if (response === "success") {
-										$emailText.text(newEmail);
-										$emailInput.hide();
-										$emailText.show();
-										$button.text("변경");
-										$emailContainer.find("h5").css(
-												"font-weight", "normal").css(
-												"opacity", 0.3);
-									} else {
-										alert("이메일 주소 변경에 실패했습니다.");
-									}
-								});
-							}
-						});
+        if ($emailText.is(":visible")) {
+            $emailText.hide();
+            $emailInput.show();
+            $emailInput.val($emailText.text());
+            $button.text("저장 ");
+            $emailContainer.find("h5").css("font-weight", "bold").css("opacity", 1);
+        } else {
+            var newEmail = $emailInput.val();
 
-				$(".password-button").click(
-						function() {
-							var $passwordContainer = $(this).closest(
-									".password-section");
-							var $passwordText = $passwordContainer
-									.find(".password-text"); // Modify class to match the actual class of the password element
-							var $passwordInput = $passwordContainer
-									.find(".password-input");
-							var $button = $(this);
+            // 정규식을 사용하여 이메일 형식 검사
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-							if ($passwordText.is(":visible")) {
-								$passwordText.hide();
-								$passwordInput.show();
-								$passwordInput.val(""); // Clear the input field
-								$button.text("저장 ");
-								$passwordContainer.find("h5").css(
-										"font-weight", "bold")
-										.css("opacity", 1);
-							} else {
-								var newPassword = $passwordInput.val();
-								$.post("/user/updatePassword", {
-									newPassword : newPassword
-								}, function(response) {
-									if (response === "success") {
-										// Update password display (if needed) and reset the input field
-										$passwordText.text(newPassword); // Update the class accordingly
-										$passwordInput.hide();
-										$passwordText.show();
-										$button.text("변경");
-										$passwordContainer.find("h5").css(
-												"font-weight", "normal").css(
-												"opacity", 0.3);
-									} else {
-										alert("비밀번호 변경에 실패했습니다.");
-									}
-								});
-							}
-						});
+            if (!emailPattern.test(newEmail)) {
+                alert("올바른 이메일 형식이 아닙니다.");
+                return; // 형식이 올바르지 않으면 더 이상 처리하지 않음
+            }
 
-				$(".phone-button").click(
-						function() { // Use 'phone-button' class to target phone button
-							var $sectionContainer = $(this).closest(
-									".section-border");
-							var $phoneText = $sectionContainer
-									.find(".phone-text");
-							var $phoneInput = $sectionContainer
-									.find(".phone-input");
-							var $button = $(this);
+            $.post("/user/updateEmail", { newEmail: newEmail }, function(response) {
+                if (response === "success") {
+                    $emailText.text(newEmail);
+                    $emailInput.hide();
+                    $emailText.show();
+                    $button.text("변경");
+                    $emailContainer.find("h5").css("font-weight", "normal").css("opacity", 0.3);
+                } else {
+                    alert("이메일 주소 변경에 실패했습니다.");
+                }
+            });
+        }
+    });
 
-							if ($phoneText.is(":visible")) {
-								$phoneText.hide();
-								$phoneInput.show();
-								$phoneInput.val($phoneText.text());
-								$button.text("저장 ");
-								$sectionContainer.find("h5").css("font-weight",
-										"bold").css("opacity", 1);
-							} else {
-								var newPhone = $phoneInput.val();
-								$.post("/user/updatePhoneNumber", {
-									newPhone : newPhone
-								}, function(response) {
-									if (response === "success") {
-										$phoneText.text(newPhone);
-										$phoneInput.hide();
-										$phoneText.show();
-										$button.text("변경");
-										$sectionContainer.find("h5").css(
-												"font-weight", "normal").css(
-												"opacity", 0.3);
-									} else {
-										alert("전화번호 변경에 실패했습니다.");
-									}
-								});
-							}
-						});
+    $(".password-button").click(function() {
+        var $passwordContainer = $(this).closest(".password-section");
+        var $passwordText = $passwordContainer.find(".password-text");
+        var $passwordInput = $passwordContainer.find(".password-input");
+        var $newPasswordInput = $passwordContainer.find(".new-password-input");
+        var $confirmPasswordInput = $passwordContainer.find(".confirm-password-input");
+        var $errorMessage = $passwordContainer.find(".error-message");
+        var $button = $(this);
+
+        if ($passwordText.is(":visible")) {
+            $passwordText.hide();
+            $passwordInput.show();
+            $newPasswordInput.show();
+            $confirmPasswordInput.show();
+            $passwordInput.val("");
+            $newPasswordInput.val("");
+            $confirmPasswordInput.val("");
+            $button.text("저장 ");
+            $passwordContainer.find("h5").css("font-weight", "bold").css("opacity", 1);
+        } else {
+            var currentPassword = $passwordInput.val();
+            var newPassword = $newPasswordInput.val();
+            var confirmPassword = $confirmPasswordInput.val();
+
+            var memberCurrentPassword = "${member.mem_passwd}";
+            
+            if (newPassword.length < 4 || newPassword.length > 12) {
+                $errorMessage.text("비밀번호는 4~12자 이어야 합니다"); // 오류 메시지 변경
+                $errorMessage.show(); // 오류 메시지 보이기
+                return;
+            }
+			
+            if (currentPassword !== memberCurrentPassword) {
+                $errorMessage.text("비밀번호가 일치하지 않습니다."); // 오류 메시지 변경
+                $errorMessage.show(); // 오류 메시지 보이기
+                return;
+            } else {
+                $errorMessage.hide(); // 비밀번호가 일치하면 오류 메시지 숨기기
+            }
+            
+            if (newPassword !== confirmPassword) {
+                $errorMessage.text("새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다."); // 오류 메시지 변경
+                $errorMessage.show(); // 오류 메시지 보이기
+                return;
+            } else {
+                $errorMessage.hide(); // 일치할 때 오류 메시지 숨기기
+            }
+
+            $.post("/user/updatePassword", {
+                currentPassword: currentPassword,
+                newPassword: newPassword
+            }, function(response) {
+                if (response === "success") {
+                    $passwordText.text("******");
+                    $newPasswordInput.val("");
+                    $confirmPasswordInput.val("");
+                    $passwordInput.hide();
+                    $newPasswordInput.hide();
+                    $confirmPasswordInput.hide();
+                    $passwordText.show();
+                    $button.text("변경");
+                    $passwordContainer.find("h5").css("font-weight", "normal").css("opacity", 0.3);
+                } else {
+                    alert("비밀번호 변경에 실패했습니다.");
+                }
+            });
+        }
+    });
+
+
+		        $(".phone-button").click(function() {
+		            var $sectionContainer = $(this).closest(".section-border");
+		            var $phoneText = $sectionContainer.find(".phone-text");
+		            var $phoneInput = $sectionContainer.find(".phone-input");
+		            var $button = $(this);
+
+		            if ($phoneText.is(":visible")) {
+		                $phoneText.hide();
+		                $phoneInput.show();
+		                $phoneInput.val($phoneText.text());
+		                $button.text("저장 ");
+		                $sectionContainer.find("h5").css("font-weight", "bold").css("opacity", 1);
+		            } else {
+		                var newPhone = $phoneInput.val();
+
+		                // 정규식을 사용하여 휴대폰 번호 형식 검사
+		                var phonePattern = /^\d{3}-\d{3,4}-\d{4}$/;
+
+		                if (!phonePattern.test(newPhone)) {
+		                    alert("올바른 휴대폰 번호 형식이 아닙니다.");
+		                    return; // 형식이 올바르지 않으면 더 이상 처리하지 않음
+		                }
+
+		                $.post("/user/updatePhoneNumber", { newPhone: newPhone }, function(response) {
+		                    if (response === "success") {
+		                        $phoneText.text(newPhone);
+		                        $phoneInput.hide();
+		                        $phoneText.show();
+		                        $button.text("변경");
+		                        $sectionContainer.find("h5").css("font-weight", "normal").css("opacity", 0.3);
+		                    } else {
+		                        alert("전화번호 변경에 실패했습니다.");
+		                    }
+		                });
+		            }
+		        });
 			});
 </script>
 
@@ -197,6 +227,22 @@ h5 {
 	padding: 5px 0;
 	margin-top: 25px;
 }
+
+.new-password-input {
+	border: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 0;
+	padding: 5px 0;
+	margin-top: 25px;
+}
+
+.confirm-password-input {
+	border: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 0;
+	padding: 5px 0;
+	margin-top: 25px;
+}
 </style>
 <!-- 회원정보 시작 -->
 <div class="page-main">
@@ -218,17 +264,22 @@ h5 {
 		</div>
 	</div>
 
-	<div class="password-section section-border">
-		<h5 style="font-size: 13px; margin-bottom: 1px;">비밀번호</h5>
-		<div class="button-container">
-			<p style="font-size: 16px; margin-right: 10px;" class="password-text">${member.mem_passwd}</p>
-			<!-- Display password dots or placeholder -->
-			<div class="password-input-container">
-				<input type="password" class="password-input" style="display: none;">
-			</div>
-			<button class="button password-button">변경</button>
-		</div>
-	</div>
+    <div class="password-section section-border">
+        <h5 style="font-size: 13px; margin-bottom: 1px;">비밀번호</h5>
+        <div class="button-container">
+            <p style="font-size: 16px; margin-right: 10px;" class="password-text">******</p>
+            <!-- Display password dots or placeholder -->
+            <div class="password-input-container">
+                <input type="password" class="password-input" placeholder="현재 비밀번호" style="display: none;"><br>
+
+                <input type="password" class="new-password-input" placeholder="새 비밀번호" style="display: none;"><br>
+                <input type="password" class="confirm-password-input" placeholder="새 비밀번호 확인" style="display: none;">
+                <div class="error-message" style="color: red; display: none;"></div>				
+            </div>
+            
+            <button class="button password-button">변경</button>
+        </div>
+    </div>
 
 	<br>
 	<br>

@@ -1,6 +1,7 @@
 package kr.spring.user.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -70,6 +71,12 @@ public class UserController {
 	@GetMapping("/user/myPage.do")
 	public String myPage(HttpSession session, Model model) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
+		
+		// 로그인되지 않은 상태라면 로그인 페이지로 이동
+	    if (user == null) {
+	        return "redirect:/member/login.do"; // 로그인 페이지로 리다이렉트
+	    }
+		
 		MemberVO member = userService.selectMember(user.getMem_num());
 
 		model.addAttribute("member", member);
@@ -235,7 +242,12 @@ public class UserController {
 	public String favoriteItemsPage(HttpSession session, Model model,
 			@RequestParam(name = "pageNum", defaultValue = "1") int pageNum) {
 		MemberVO user = (MemberVO) session.getAttribute("user");
-
+		
+		// 로그인되지 않은 상태라면 로그인 페이지로 이동
+	    if (user == null) {
+	        return "redirect:/member/login.do"; // 로그인 페이지로 리다이렉트
+	    }
+		
 		// 판매 내역 조회
 		List<ItemVO> favoriteItems = userService.selectFavoriteItems(user.getMem_num());
 
@@ -269,23 +281,27 @@ public class UserController {
 	 */
 	@GetMapping("/user/userLikedStyles.do")
 	public String likedStylesPage(HttpSession session, Model model) {
-		// 로그인된 사용자 정보 가져오기
-		MemberVO user = (MemberVO) session.getAttribute("user");
+	    // 로그인된 사용자 정보 가져오기
+	    MemberVO user = (MemberVO) session.getAttribute("user");
 
-		// 좋아요한 게시물 조회
-		List<StyleVO> likedStyles = userService.selectLikedStyles(user.getMem_num());
-		model.addAttribute("likedStyles", likedStyles);
+	    // 좋아요한 게시물 조회
+	    List<StyleVO> likedStyles = userService.selectLikedStyles(user.getMem_num());
 
-		for (StyleVO style : likedStyles) {
-			int st_num = style.getSt_num();
-			String profileId = userService.selectProfileId(st_num);
+	    // 각 StyleVO에 대해 profileId를 가져와서 리스트에 추가
+	    List<String> profileIds = new ArrayList<>();
+	    for (StyleVO style : likedStyles) {
+	        int st_num = style.getSt_num();
+	        String profileId = userService.selectProfileId(st_num);
+	        profileIds.add(profileId);
+	    }
 
-			model.addAttribute("profileId", profileId);
-		}
+	    model.addAttribute("likedStyles", likedStyles);
+	    model.addAttribute("profileIds", profileIds);
 
-		// likedStyles 페이지로 이동
-		return "userLikedStyles";
+	    // likedStyles 페이지로 이동
+	    return "userLikedStyles";
 	}
+
 
 	/*
 	 * =========================== 좋아요 사진 ===========================

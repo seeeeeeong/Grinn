@@ -57,6 +57,12 @@ public class UserStyleController {
 	public String userStyle(@RequestParam("mem_num") int memNum, HttpSession session, Model model) {
 		// 로그인한 사용자의 mem_num 값을 가져옵니다.
 		MemberVO user = (MemberVO) session.getAttribute("user");
+		
+		// 로그인되지 않은 상태라면 로그인 페이지로 이동
+	    if (user == null) {
+	        return "redirect:/member/login.do"; // 로그인 페이지로 리다이렉트
+	    }
+		
 		int loggedInUserMemNum = user.getMem_num();
 
 		// mem_num 값과 로그인한 사용자의 mem_num 값을 비교합니다.

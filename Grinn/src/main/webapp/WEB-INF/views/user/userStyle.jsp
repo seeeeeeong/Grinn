@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/style.fav.js"></script>
+
 <style>
 .like-button {
 	width: 20px;
@@ -64,7 +65,7 @@
 	margin-top: 10px;
 }
 
-.user-profile, .like-section {
+.user-profile {
 	margin-right: 10px;
 }
 
@@ -72,6 +73,11 @@
 	margin-left: auto;
 	display: flex;
 	align-items: center;
+}
+
+.style-phrase {
+	text-align: left;
+	margin-top: 5px;
 }
 
 .output-fav, .output-fcount {
@@ -359,17 +365,15 @@
 	<c:choose>
 		<c:when test="${isOwnProfile}">
 			<div class="profile-link">
-				<a href="/user/userLoginInfo.do">프로필 관리</a>
+				<a href="/user/userProfileInfo.do">프로필 관리</a>
 			</div>
 		</c:when>
 		<c:otherwise>
 
 
 
-			<button class="unfollow-button" data-user-id="${member.mem_num}"
-				style="display: ${followCount ? 'inline-block' : 'none'}">팔로잉</button>
-			<button class="follow-button" data-user-id="${member.mem_num}"
-				style="display: ${followCount ? 'none' : 'inline-block'}">팔로우</button>
+			<button class="unfollow-button" data-user-id="${member.mem_num}">팔로잉</button>
+			<button class="follow-button" data-user-id="${member.mem_num}">팔로우</button>
 
 
 		</c:otherwise>
@@ -410,11 +414,14 @@
 					<c:forEach items="${followerInfo}" var="follower">
 						<div
 							style="display: flex; align-items: center; margin-bottom: 10px;">
+							
 							<img
 								src="${pageContext.request.contextPath}/user/FollowerProfileImage.do?mem_num=${follower.mem_num}"
 								width="44" height="44" class="my-photo"
 								style="margin-right: 10px;">
+							<a href="/user/userStyle.do?mem_num=${follower.mem_num}">
 							<p style="font-size: 14px; font-weight: bold;">${follower.mem_id}</p>
+							</a>
 							<div style="margin-left: auto;">
 								<button class="follow-button" style="padding: 6px 26px;"
 									data-user-id="${follower.mem_num}">팔로우</button>
@@ -455,11 +462,14 @@
 					<c:forEach items="${followingInfo}" var="following">
 						<div
 							style="display: flex; align-items: center; margin-bottom: 10px;">
+							
 							<img
 								src="${pageContext.request.contextPath}/user/FollowerProfileImage.do?mem_num=${following.mem_num}"
 								width="44" height="44" class="my-photo"
 								style="margin-right: 10px;">
+							<a href="/user/userStyle.do?mem_num=${following.mem_num}">
 							<p style="font-size: 14px; font-weight: bold;">${following.mem_id}</p>
+							</a>
 							<div style="margin-left: auto;">
 								<button class="follow-button" style="padding: 6px 26px;"
 									data-user-id="${following.mem_num}">팔로우</button>
@@ -494,32 +504,33 @@
 								height="200" alt="Style Image" style="border-radius: 10px;">
 							</a>
 						</div>
-						<div class="user-like-section">
-							<a href="/user/userStyle.do?mem_num=${member.mem_num}">
-								<div class="user-profile"
-									style="color: rgba(34, 34, 34, .8); font-size: 15px;">
-									<img
-										src="${pageContext.request.contextPath}/user/ProfileImageView.do?st_num=${style.st_num}"
-										width="25" height="25" class="my-photo">
-									${member.mem_id}
+						<div class="style-content">
+							<div class="user-like-section">
+								<a href="/user/userStyle.do?mem_num=${member.mem_num}">
+									<div class="user-profile">
+										<img
+											src="${pageContext.request.contextPath}/user/ProfileImageView.do?st_num=${style.st_num}"
+											width="25" height="25" class="my-photo">
+										${member.mem_id}
+									</div>
+								</a>
+								<div class="like-section">
+									<div class="like-button">
+										<img class="output-fav" data-num="${style.st_num}"
+											src="${pageContext.request.contextPath}/images/no_like.png"
+											width="18" height="18">
+									</div>
+									<span class="output-fcount" data-num="${style.st_num}"
+										style="color: rgba(34, 34, 34, .5);"></span>
 								</div>
-							</a>
-							<div class="like-section">
-								<div class="like-button">
-									<img class="output-fav" data-num="${style.st_num}"
-										src="${pageContext.request.contextPath}/images/no_like.png"
-										width="18" height="18">
-								</div>
-								<span class="output-fcount" data-num="${style.st_num}"
-									style="color: rgba(34, 34, 34, .5);"></span>
+							</div>
+							<div class="style-phrase">
+								<a href="/style/detail.do?st_num=${style.st_num}">
+									${style.st_phrase} </a>
 							</div>
 						</div>
-						<div class="style-phrase"
-							style="margin-top: 10px; margin-right: 150px; font-size: 14px;">
-							<a href="/style/detail.do?st_num=${style.st_num}">
-								${style.st_phrase} </a>
-						</div>
 					</div>
+
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>

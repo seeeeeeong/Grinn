@@ -285,7 +285,7 @@
                     </c:when>
 								<c:when test="${purchasedState[0] eq 5}">
                         배송완료<br>
-									<a href="write.do">스타일올리기</a>
+									<a href="${pageConetext.request.contextPath}/style/write.do" style="font-size: 12px; opacity: 0.5;">스타일올리기</a>
 								</c:when>
 								<c:when test="${purchasedState[0] eq 6}">
                         거래실패

@@ -84,7 +84,7 @@
 }
 
 .style {
-	width: 23%;
+	width: 22%;
 	margin-right: 20px;
 	margin-bottom: 20px;
 }
@@ -138,7 +138,7 @@
 			</div>
 		</c:when>
 		<c:otherwise>
-			<c:forEach items="${likedStyles}" var="post">
+			<c:forEach items="${likedStyles}" var="post" varStatus="loop">
 				<div class="style">
 					<div class="style-image">
 						<a href="/style/detail.do?st_num=${post.st_num}"> <img
@@ -152,7 +152,7 @@
 								style="color: rgba(34, 34, 34, .8); font-size: 15px;">
 								<img
 									src="${pageContext.request.contextPath}/user/ProfileImageView.do?st_num=${post.st_num}"
-									width="25" height="25" class="my-photo"> ${profileId}
+									width="25" height="25" class="my-photo"> ${profileIds[loop.index]}
 							</div>
 						</a>
 						<div class="like-section">
