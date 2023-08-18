@@ -1,0 +1,23 @@
+@charset "UTF-8";
+/* 관리자/이용자 - 프로모션 상세
+-------------------------*/
+.pro-detail{
+	border-bottom:1px solid #eee;
+}
+.pro-detail form{
+	width:97%;
+	border:none;
+	text-align:right;
+	padding:10px;
+}
+.pro-title{
+	font-size:25px;
+	margin:5px 0 5px 20px;
+}
+.pro-period{
+	font-size:20px;
+}
+.pro-ing{
+	font-size:18px;
+	margin-top:8px;
+}

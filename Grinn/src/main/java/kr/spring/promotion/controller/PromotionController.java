@@ -106,6 +106,7 @@ public class PromotionController {
 	
 	
 	// ===프로모션 사진 출력===
+	/*
 	@RequestMapping("/promotion/photoView.do")
 	public String getPhoto(@RequestParam int pro_num, HttpServletRequest request, Model model) {
 		PromotionVO promotionVO = promotionService.selectPromotion(pro_num);
@@ -127,7 +128,19 @@ public class PromotionController {
 			model.addAttribute("photoName", promotionVO.getPro_photoName1());
 		}
 	}
+	*/
 	
+	
+	// ===프로모션 상세===
+	@RequestMapping("/promotion/detail.do")
+	public String detail(@RequestParam int pro_num, Model model) {
+		log.debug("<<pro_num>> : " + pro_num);
+		
+		PromotionVO promotionVO = promotionService.selectPromotion(pro_num);
+		model.addAttribute("promotion", promotionVO);
+		
+		return "promotionDetail";
+	}
 	
 	// ===프로모션 수정===
 	// 수정 폼
