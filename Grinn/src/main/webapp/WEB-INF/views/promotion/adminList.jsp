@@ -54,7 +54,9 @@
 		<c:forEach var="pro" items="${list}">
 		<tr>
 			<td class="align-center">${pro.pro_num}</td>
-			<td class="align-center">${pro.pro_name}</td>
+			<td class="align-center">
+				<a href="detail.do?pro_num=${pro.pro_num}">${pro.pro_name}</a>
+			</td>
 			<td class="align-center">${pro.pro_regDate}</td>
 			<td class="align-center">${pro.pro_openDate}</td>
 			<td class="align-center">${pro.pro_cloDate}</td>			
