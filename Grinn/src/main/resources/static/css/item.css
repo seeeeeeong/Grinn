@@ -219,7 +219,7 @@ a:hover{
 
 #modalBody {
 	width: 500px;
-	height: 300px;
+	height: auto;
 	padding: 30px 30px;
 	margin: 100px auto;
 	border: 1px solid #777;
@@ -275,7 +275,7 @@ a:hover{
   flex: 1;
   position: sticky;
   top: 100px; /* .right의 padding 값에 맞게 조정하세요 */
-  height: calc(100vh - 200px); /* 화면 높이에서 위 아래 패딩값 빼기 */
+  height: calc(100vh - 100px); /* 화면 높이에서 위 아래 패딩값 빼기 */
   overflow: auto;
 }
 
@@ -510,6 +510,72 @@ h3{
 .p-show {
 	display: block
 }
+/*-------------
+	스타일목록
+---------------*/
+/* 스타일 리스트 컨테이너 */
+#stoutput {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 그리드 항목 크기 및 자동 조정 설정 */
+  gap: 20px;
+}
+.stylelist01 {
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
+
+/* 스타일 이미지 */
+.stylelist01 .stylept {
+  object-fit: cover;
+  margin-bottom: 10px;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+/* 디테일 정보 컨테이너 */
+.detail-style {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin : 0 10px 10px 0;
+  padding:0;
+}
+
+/* 프로필 이미지 */
+.my-photo {
+  object-fit: cover;
+  margin-right: 5px;
+}
+
+/* 멤버 아이디 */
+.detail-style li:last-child {
+  margin-left: 5px;
+}
+
+
+
+/* 스타일 문구 */
+.sub-style p {
+  white-space: pre-line; /* 개행을 유지하기 위함 */
+  margin: 0 0 10px 0;
+}
+.like-button{
+	display: flex;
+}
+/* 좋아요 버튼 */
+.like-button img {
+  margin-right: 7px;
+  width:18px;
+  height:18px;
+}
+
+/* 좋아요 수 표시 */
+.output_fcount {
+  font-weight: bold;
+}
+
 /*-------------
 	후기목록
 ---------------*/

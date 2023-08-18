@@ -31,25 +31,26 @@ $(function(){
 				
 				//댓글 목록
 				$(param.list).each(function(index,item){
-					let stoutput = '<a href="/style/detail.do?st_num='+item.st_num+'">';
-					stoutput += '<div>';
-					//stoutput += '<h2>Style</h2>'
-					stoutput += '<img src="../style/viewPhoto1.do?st_num='+item.st_num+'" width="100" height="100">';
-					stoutput += '<ul class="detail-info">';
+					let stoutput = '<div class="stylelist01">';
+					stoutput += '<a href="/style/detail.do?st_num='+item.st_num+'">';
+					stoutput += '<img src="../style/viewPhoto1.do?st_num='+item.st_num+'" class="stylept">';
+					stoutput += '<ul class="detail-style">';
 					stoutput += '<li>';
-					stoutput += '<img src="../member/viewProfile.do?mem_num='+ item.mem_num+'" width="20" height="20" class="my-photo">';
+					stoutput += '<img src="../member/viewProfile.do?mem_num='+ item.mem_num+'" width="25" height="25" class="my-photo">';
 					stoutput += '</li>';
 					stoutput += '<li>';
 					stoutput +=  item.mem_id + '<br>';
 					stoutput += '</li>';
 					stoutput += '</ul>';
-					stoutput += '<div class="sub-item">';
-					stoutput += '<p>' +item.st_phrase.replace(/\r\n/g,'<br>') + '</p>'
+					stoutput += '<div class="sub-style">';
+					if(item.st_phrase!=null){
+						stoutput += '<p>' +item.st_phrase.replace(/\r\n/g,'<br>') + '</p>'
+					}
+					stoutput += '</div>';
 					stoutput += '</a>';
 					stoutput += '<div class="like-button">';
-					stoutput += '<img class="output_fav" data-num="' + item.st_num + '" src="../images/no_like.png" width="20" height="20">';
+					stoutput += '<img class="output_fav" data-num="' + item.st_num + '" src="../images/no_like.png">';
 					stoutput += '<span class="output_fcount" data-num="'+item.st_num+'"></span>';
-					stoutput += '</div>';
 					stoutput += '</div>';
 					stoutput += '</div>';
 					
@@ -90,6 +91,7 @@ $(function(){
 	function displayReplyCount(data){
 		let count = data.count;
 		let stoutput;
+		console.log(data.count);
 		if(count==0){
 			stoutput = '댓글수(0)';
 		}else{
@@ -142,7 +144,6 @@ $(function(){
 				success: function(param) {
 					if (param.result == 'logout') {
 						alert('로그인 후 이용 가능합니다.');
-						location.href = '/member/login.do';
 					} else if (param.result == 'success') {
 						displayFav(param, st_num);
 					} else {
