@@ -107,7 +107,7 @@
 </div>
 <script type="text/javascript">
 function open3(){/* chatbotDetail.do -> chatbotList.do 변경예정 */
-  window.open("${pageContext.request.contextPath}/chatbot/chatbotDetail.do?croom_num=1", "_blank", "width=400, height=500");
+  window.open("${pageContext.request.contextPath}/chatbot/chatbotList.do", "_blank", "width=400, height=500");
 }
 </script>
 <!-- 새창으로챗봇 끝  -->

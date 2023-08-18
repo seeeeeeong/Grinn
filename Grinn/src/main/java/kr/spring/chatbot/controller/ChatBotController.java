@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.chatbot.service.ChatBotService;
+import kr.spring.chatbot.vo.ChatBotMemberVO;
 import kr.spring.chatbot.vo.ChatBotRoomVO;
 import kr.spring.chatbot.vo.ChatBotVO;
 import kr.spring.member.service.MemberService;
@@ -34,19 +35,15 @@ public class ChatBotController {
 	
 	/* ====================== 채팅방 생성 ====================== */
 	//폼 호출
-	@GetMapping("/chatbot/chatbotDetail.do")
+	@GetMapping("/chatbot/chatbotCreate.do")
 	public String chatbotRoomDetail() {
-		return "chatbotDetail";
+		return "chatbotCreate";
 	}
 	//전송된 데이터 처리
-	@PostMapping("/chatbot/chathbotDetail.do")
+	@PostMapping("/chatbot/chatbotCreate.do")
 	public String chatbotSubmit(@RequestParam int croom_num, Model model, ChatBotRoomVO vo, HttpSession session) {
-		Map<String,Object> mapJson = new HashMap<String,Object>();
 		log.debug("<<챗봇방 만들기>> : " + vo);
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		if(user==null) {
-			mapJson.put("result", "logout");
-		}
 		
 		//채팅 멤버 초대문구 설정 시작
 		vo.setChatbotVO(new ChatBotVO());
@@ -56,10 +53,19 @@ public class ChatBotController {
 		
 		chatbotService.insertChatBotRoom(vo);
 		
-		return "redirect:/chatbot/chatbotDetail.do";
+		return "redirect:/chatbot/chatbotList.do";
 	}
 	
 	/* ====================== 채팅방 목록(?) ====================== */
+	@RequestMapping("/chatbot/chatbotList.do")
+	public String chatbotList(@RequestParam(value="croom_num",defaultValue="0") int croom_num,
+									HttpSession session, Model model) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		model.addAttribute("croom_num", croom_num);
+		return "chatbotList";
+	}
 	
 	/* ====================== 채팅 메시지 처리 ====================== */
 	//챗봇 메세지 페이지 호출
@@ -69,10 +75,17 @@ public class ChatBotController {
 		log.debug("croom_num : "+croom_num);
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
+		List<ChatBotMemberVO> list = chatbotService.selectChatBotMember(croom_num);
+		for(int i=0; i<list.size(); i++) {
+			ChatBotMemberVO vo = list.get(i);
+			//멤버 저장
+			chatMember += list.get(i).getMem_id();
+		}
+		
 		//채팅 멤버 id
 		model.addAttribute("chatMember", chatMember);
 		
-		return "talkDetail";
+		return "chatbotDetail";
 	}
 	//채팅 메시지 전송
 	@RequestMapping("/chatbot/writeChatbot.do")

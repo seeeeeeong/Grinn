@@ -20,8 +20,8 @@ public class ChatBotServiceImpl implements ChatBotService{
 	
 	//챗봇방 목록
 	@Override
-	public List<ChatBotRoomVO> selectChatBoatRoomList(Map<String, Object> map) {
-		return chatbotMapper.selectChatBoatRoomList(map);
+	public List<ChatBotRoomVO> selectChatBotRoomList(Map<String, Object> map) {
+		return chatbotMapper.selectChatBotRoomList(map);
 	}
 	@Override
 	public int selectRowCount(Map<String, Object> map) {

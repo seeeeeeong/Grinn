@@ -5,8 +5,8 @@
 <!-- 채팅방 목록 시작 -->
 <div class="page-main">
 	<h2>채팅리스트</h2>
-	<div class="align-right">
-		<input type="button" value="챗봇문의 생성" onclick="location.href='chatbotRoomWrite.do'">
+ 	<div class="align-right">
+		<input type="button" value="챗봇문의 생성" onclick="location.href='chatbotCreate.do'">
 	</div>
 	<c:if test="${count == 0}">
 	<div class="result-display">표시할 채팅방이 없습니다.</div>
@@ -28,7 +28,7 @@
 		</c:forEach>
 	</table>
 	<div class="align-center">${page}</div>
-	</c:if>	
+	</c:if>
 </div>
 <!-- 채팅방 목록 끝 -->
 

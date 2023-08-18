@@ -62,9 +62,17 @@
     </definition> 
 	
 	<!-- 챗봇 메인 상속 -->
+    <definition name="chatbotList" extends="chatbotMain">
+    	<put-attribute name="title" value="챗봇 목록(생성)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/chatbot/chatbotList.jsp"/>
+    </definition>
     <definition name="chatbotDetail" extends="chatbotMain">
     	<put-attribute name="title" value="챗봇으로 문의하기"/>
 	    <put-attribute name="body" value="/WEB-INF/views/chatbot/chatbotDetail.jsp"/>
+    </definition>
+    <definition name="chatbotCreate" extends="chatbotMain">
+    	<put-attribute name="title" value="챗봇으로 문의하기"/>
+	    <put-attribute name="body" value="/WEB-INF/views/chatbot/chatbotCreate.jsp"/>
     </definition>
 
 </tiles-definitions>

@@ -9,7 +9,7 @@ import kr.spring.chatbot.vo.ChatBotVO;
 
 public interface ChatBotService {
 	//챗봇방 목록
-	public List<ChatBotRoomVO> selectChatBoatRoomList(Map<String,Object> map);
+	public List<ChatBotRoomVO> selectChatBotRoomList(Map<String,Object> map);
 	public int selectRowCount(Map<String,Object> map);
 	//챗봇방 생성
 	public void insertChatBotRoom(ChatBotRoomVO chatbotRoomVO);

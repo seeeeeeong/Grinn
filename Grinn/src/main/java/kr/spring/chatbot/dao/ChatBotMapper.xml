@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.chatbot.dao.ChatBotMapper">
 	
+	<!-- 챗봇방 목록 -->
+	<select id="selectChatBotRoomList">
+		SELECT * FROM CHATBOT
+	</select>
+	
 	<!-- 챗봇메세지 등록 -->
 	<insert id="insertChatBot" parameterType="chatbotVO">
 		INSERT INTO chatbot(c_num, croom_num, mem_num, message)
