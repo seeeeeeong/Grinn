@@ -1,7 +1,5 @@
 package kr.spring.fleaMarket.controller;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,9 +88,12 @@ public class BookingController {
 	
 	
 	// ===관리자 - 예약 목록===
-	@RequestMapping("fleamarket/admin_resList.do")
+	@RequestMapping("/fleamarket/admin_resList.do")
 	public ModelAndView adminBookList(@RequestParam(value="pageNum", defaultValue="1") int currentPage, 
 			                                        String keyfield, String keyword) {
+		log.debug("<<keyfield>> : " + keyfield);
+		log.debug("<<keyword>> : " + keyword);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
@@ -124,7 +125,7 @@ public class BookingController {
 	
 	
 	// ===이용자 - 회원별 예약 목록===
-	@RequestMapping("fleamarket/marketList.do")
+	@RequestMapping("/fleamarket/marketList.do")
 	public String myMarketPage(@RequestParam(value="pageNum", defaultValue="1") int currentPage,
 			                                 String keyfield, String keyword, HttpSession session) {
 		MemberVO user = (MemberVO)session.getAttribute("user");

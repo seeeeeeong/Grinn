@@ -11,6 +11,9 @@
 		<result property="marketVO.market_poster" column="market_poster"/>
 		<result property="marketVO.market_posterName" column="market_posterName"/>
 	</resultMap>
+	<resultMap type="bookingVO" id="bookingMap">
+		<result property="marketVO.market_title" column="market_title"/>
+	</resultMap>
 	<insert id="insertBooking" parameterType="bookingVO"> 
 		INSERT INTO booking(
 		  book_num,
@@ -32,14 +35,14 @@
 	<sql id="bookingSearch">
 		<where>
 			<if test="keyword != null and keyword != ''">
-				<if test="keyword == 1">
+				<if test="keyfield == 1">
 					b.book_num = #{keyword} 
 				</if>
-				<if test="keyword == 2">
+				<if test="keyfield == 2">
 					m.market_title LIKE '%' || #{keyword} || '%' 
 				</if>
-				<if test="keyword == 3">
-					mem.mem_id LIKE '%' || #{keyword} || '%'
+				<if test="keyfield == 3">
+					u.mem_id LIKE '%' || #{keyword} || '%'
 				</if>
 			</if>
 		</where>
@@ -51,13 +54,13 @@
 		  COUNT(*)
 		FROM market m JOIN booking b 
 						ON m.market_num = b.market_num
-					  JOIN member mem 
-						ON b.mem_num = mem.mem_num 
+					  JOIN member u 
+						ON b.mem_num = u.mem_num 
 		<include refid="bookingSearch"></include>
 	</select>
 	
 	<!-- 관리자 - 전체/검색 목록 --><!-- **** -->
-	<select id="selectListBooking" parameterType="map" resultType="bookingVO">
+	<select id="selectListBooking" parameterType="map" resultMap="bookingMap">
 		SELECT
 		  *
 		FROM (SELECT
@@ -67,7 +70,7 @@
 		              *
 		            FROM booking b JOIN market m
 		            				 ON b.market_num = m.market_num
-		                LEFT OUTER JOIN (SELECT * FROM member)mem ON b.mem_num = mem.mem_num
+		                LEFT OUTER JOIN member u ON b.mem_num = u.mem_num
 		            <include refid="bookingSearch"></include>
 		            ORDER BY book_num DESC)a)
 		      <![CDATA[
