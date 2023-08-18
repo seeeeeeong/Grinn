@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.member.vo.MemberVO;
+import kr.spring.penalty.service.PenaltyService;
+import kr.spring.penalty.vo.PenaltyVO;
 import kr.spring.trade.service.TradeService;
 import kr.spring.trade.vo.TradeVO;
 import kr.spring.util.PagingUtil;
@@ -116,7 +118,7 @@ public class AdminTradeController {
 	
 	// 거래 상태 수정
 	@RequestMapping("/trade/adminUpdateTradeState.do")
-	public String updateTradeState(HttpSession session, Model model, @RequestParam int trade_num, @RequestParam int trade_state){
+	public String updateTradeState(HttpSession session, Model model, @RequestParam int trade_num, @RequestParam int trade_state,@RequestParam(value="pe_type",defaultValue="0")int pe_type){
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		TradeVO tradeVO = null;
 		if(user == null) {
@@ -155,6 +157,19 @@ public class AdminTradeController {
 					tradeService.sendPointToBuyer(mem_num, price+ship+fee);
 					// 관리자에서 포인트 차감
 					tradeService.adminWithdraw(price+ship+fee,user.getMem_num());
+					
+					// 패널티 부여하기
+					PenaltyVO vo = new PenaltyVO();
+					vo.setMem_num(tradeVO.getSellerVO().getMem_num());
+					vo.setPe_service_type(3);
+					vo.setPe_type(pe_type);
+					if(pe_type == 7) {
+						vo.setPe_score(20);
+					}else {
+						vo.setPe_score(30);
+					}
+					
+					tradeService.adminInsertPenalty(vo);
 				}
 				
 				tradeService.updateTradeState(trade_num, trade_state);

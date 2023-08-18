@@ -3,6 +3,7 @@ package kr.spring.trade.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -10,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.pbid.vo.PurchaseSizePriceVO;
+import kr.spring.penalty.vo.PenaltyVO;
 import kr.spring.sbid.vo.SaleBidVO;
 import kr.spring.sbid.vo.SaleSizePriceVO;
 import kr.spring.trade.vo.TradeVO;
@@ -160,4 +162,7 @@ public interface TradeService {
 
 	// 즉시 구매시 등록된 구매입찰이 존재할 경우 관리자 포인트 차감
 	public void cancelExecutePayment(Integer total);
+	
+	// 관리자 회원에게 패널티 부여
+	public void adminInsertPenalty(PenaltyVO penalty);
 }

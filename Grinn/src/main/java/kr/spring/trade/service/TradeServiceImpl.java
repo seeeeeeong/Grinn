@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.pbid.vo.PurchaseSizePriceVO;
+import kr.spring.penalty.vo.PenaltyVO;
 import kr.spring.sbid.vo.SaleBidVO;
 import kr.spring.sbid.vo.SaleSizePriceVO;
 import kr.spring.trade.dao.TradeMapper;
@@ -266,6 +267,11 @@ public class TradeServiceImpl implements TradeService{
 	@Override
 	public SaleBidVO selectSaleBidBySaleNum(Integer sale_num) {
 		return tradeMapper.selectSaleBidBySaleNum(sale_num);
+	}
+
+	@Override
+	public void adminInsertPenalty(PenaltyVO penalty) {
+		tradeMapper.adminInsertPenalty(penalty);
 	}
 
 	

@@ -13,6 +13,7 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.pbid.vo.PurchaseSizePriceVO;
+import kr.spring.penalty.vo.PenaltyVO;
 import kr.spring.sbid.vo.SaleBidVO;
 import kr.spring.sbid.vo.SaleSizePriceVO;
 import kr.spring.trade.vo.TradeVO;
@@ -183,4 +184,7 @@ public interface TradeMapper {
 	// 판매자에게 거래가 입금을 위한 데이터 조회
 	@Select("SELECT t.trade_num, t.item_num, t.seller_num, d.trade_price FROM trade t left join trade_detail d on t.trade_num=d.trade_num WHERE t.trade_num=#{trade_num}")
 	public TradeVO getTradeDetailForDeposit(Integer trade_num);
+	// 관리자 회원에게 패널티 부여
+	@Insert("INSERT INTO penalty VALUES(penalty_seq.nextval,#{mem_num},#{pe_service_type},#{pe_score},#{pe_type},SYSDATE)")
+	public void adminInsertPenalty(PenaltyVO penalty);
 }

@@ -41,6 +41,19 @@
 				location.href='adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=6';
 			}
 		});
+		
+		$('#btn6').click(function(){
+			$('.penal-reason').css('display','block');
+		});
+		$('.penal-reason-check').each(function(){
+			$(this).click(function(){
+				let pe_type = $(this).val();
+				if(confirm('패널티 부여를 확정합니까?')){
+					location.href='adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=6&pe_type='+pe_type;	
+				}
+				
+			});
+		});
 	});
 </script>
 <div class="page_body">
@@ -123,13 +136,15 @@
 				</div>
 				<div class="trade-title">
 					<h2>거래 정보</h2>
-					<c:if test="${trade.trade_state > 2}">
+					<c:if test="${trade.trade_state > 2 and trade.trade_state < 6}">
 						<a class="change-state"><span class="a-tag-text">상태 변경</span></a>
 					</c:if>
 					<c:if test="${trade.trade_state == 2}">
 						<a class="penal" data-regDate="${trade.trade_regDate}" href="adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=6"><span class="a-tag-text">거래 실패</span></a>
 					</c:if>
-					
+					<c:if test="${trade.trade_state == 6}">
+						<a class="givePenal"><span class="a-tag-text">패널티부여</span></a>
+					</c:if>
 				</div>
 				<div class="trade-info">
 					<div class="trade-info-box">
@@ -175,7 +190,13 @@
       				<input type="button" value="검수중" disabled="disabled" id="btn3">
       				<input type="button" value="배송중" id="btn4" onclick="location.href='adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=4'">
       				<input type="button" value="배송완료" disabled="disabled" id="btn5">
-      				<input type="button" value="거래실패" id="btn6" onclick="location.href='adminUpdateTradeState.do?trade_num=${trade.trade_num}&trade_state=6'">
+      				<input type="button" value="거래실패" id="btn6">
+      				<div class="penal-reason" style="display:none;">
+      					<input type="radio" class="penal-reason-check" name="reason" value="7" id="fake">
+      					<label for="fake">가품 판정(20점)</label> 
+      					<input type="radio" class="penal-reason-check" name="reason" value="8" id="damage">
+      					<label for="damage">손상/오염(30점)</label>
+      				</div>
       			</c:if>
       			<c:if test="${trade.trade_state == 4}">
       				<input type="button" value="검수중" disabled="disabled" id="btn3">
