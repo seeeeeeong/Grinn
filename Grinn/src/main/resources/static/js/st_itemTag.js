@@ -53,10 +53,10 @@
    }
 
 $(function(){
-      //태그할 상품 저장
+   //태그할 상품 저장
    let item_list = [];
    let item_nameList = [];
-   
+
    //상품 검색
    $('#item_search').keyup(function(){
       if($('#item_search').val().trim()==''){
@@ -108,11 +108,9 @@ $(function(){
 		  item_nameList.push(item_num);
 	  }
       //선택한 상품을 화면에 표시
-      let choice_item = '<span class="item-span" data-name=' + item_name + '">';
-      choice_item += item_num;
+      let choice_item = '<div class="item-span" data-name=' + item_name + '">';
       choice_item += '<img src="../style/viewPhotoByItem_num.do?item_num=' + item_num + '" width="40" height="40" data-num="' + item_num + '">';
-      //choice_item += '<input type="hidden" name="items" value="' + item_num + '">';
-	  choice_item += item_name + '<sup>&times;</sup><br></span>';
+	  choice_item += '<span>' + item_name + '</span><br></div>';
    
       $('#item_tag').append(choice_item);
       $('#item_search').val('');
@@ -139,22 +137,10 @@ $(function(){
 		   for(let i=0;i<item_nameList.length;i++){
 			   $('#item_num' + (i+1)).val(item_nameList[i]);
 		   }
-	   }
+	    }
    });
    
-});
-
-//스타일 수정
-$(function(){
-	
-   //기존 상품 태그 삭제하기
-   //$(document).on('click', '.item-tag-box', function(){
-      //$(this).remove();//이벤트가 발생한 태그 제거
-      //$('#item_num').val('0');
-      //$(this).val('');
-   //});
-   
-   $(document).on('click', '#box1', function(){
+   /*$(document).on('click', '#box1', function(){
 	   $(this).remove();
 	   $('#item_num1').val('0');
    });
@@ -165,13 +151,24 @@ $(function(){
    $(document).on('click', '#box3', function(){
 	   $(this).remove();
 	   $('#item_num3').val('0');
-   });
-   
-   //상품태그 수정
-   $(document).on('click', 'item-tag-box', function(){
-	  let item_name = $(this).attr('data-name');
-      let item_num = $(this).find('img').attr('data-num');
-   });
-	
-});
+   });*/
 
+   $(document).on('click', '.delete-tag', function(){
+	   if($('#item_num1').val() != '0'){
+		   $('#box1').remove();
+	   	   $('#item_num1').val('0');
+	   	   return;
+	   }
+	   if($('#item_num2').val() != '0'){
+		   $('#box2').remove();
+	   	   $('#item_num2').val('0');
+	   	   return;
+	   }
+	   if($('#item_num3').val() != '0'){
+	   	   $('#box3').remove();
+	       $('#item_num3').val('0');
+	       return;
+	   }
+   });
+
+});

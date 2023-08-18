@@ -98,14 +98,28 @@
 		width:500px;
 		margin-top:5px;
 	}
+	.item-span{
+		display: flex;
+        flex-wrap: wrap;
+		width:375px;
+	}
+	.item-span span{
+		margin-left:5px;
+		width:319px;
+		overflow:hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-size:14pt;
+		padding-top:10px;
+	}
 	.tag-boxes{
     	display: flex;
         flex-wrap: wrap; /* 아이템들을 여러 줄에 걸쳐 표시할 수 있도록 설정 */
         width:504px;
+        margin-bottom:15px;
     }
     .tag-title{
     	font-size:15pt;
-    	margin-bottom: 5px;
     }
     .item-tag-box{
     	width:100px;
@@ -113,6 +127,11 @@
     }
     .item-name{
     	width:100px;
+    }
+    .delete-tag{
+    	padding-top:70px;
+    	font-size:20pt;
+    	cursor: pointer;
     }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/st_itemTag.js"></script>
@@ -201,39 +220,41 @@
 			</li>
 			<li>
 				<div class=tag-title>상품 태그</div>
-				<input type="text" id="item_search" autocomplete="off" placeholder="상품 태그를 추가해보세요.">
-				<ul id="search_area"></ul>
-				<div id="item_tag"></div>
 				<div class="item-tag">
+					
 					<div class="tag-boxes">
+						<div class="delete-tag">&#x1F4A8</div>
+						<c:if test="${styleVO.item_num1 != 0}">
 						<div class="item-tag-box" id="box1" data-name="${styleVO.item_name1}">
-							<c:if test="${styleVO.item_num1 != null}">
-								<img 
-								src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${styleVO.item_num1}"
-								width="100" height="100" data-num="${styleVO.item_num1}">
-								<br>
-								<span class="item-name1" style="width: 100px;">${styleVO.item_name1}</span>
-							</c:if>
+							<img 
+							src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${styleVO.item_num1}"
+							width="100" height="100" data-num="${styleVO.item_num1}">
+							<br>
+							<span class="item-name1" style="width: 100px;">${styleVO.item_name1}</span>
 						</div>
+						</c:if>
+						<c:if test="${styleVO.item_num2 != 0}">
 						<div class="item-tag-box" id="box2" data-name="${styleVO.item_name2}">
-							<c:if test="${styleVO.item_num2 != null}">
-								<img 
-								src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${styleVO.item_num2}" 
-								width="100" height="100" data-num="${styleVO.item_num2}">
-								<br>
-								<span class="item-name2" style="width: 100px;">${styleVO.item_name2}</span>
-							</c:if>
+							<img 
+							src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${styleVO.item_num2}" 
+							width="100" height="100" data-num="${styleVO.item_num2}">
+							<br>
+							<span class="item-name2" style="width: 100px;">${styleVO.item_name2}</span>
 						</div>
+						</c:if>
+						<c:if test="${styleVO.item_num3 != 0}">
 						<div class="item-tag-box" id="box3" data-name="${styleVO.item_name3}">
-							<c:if test="${styleVO.item_num3 != 0}">
-								<img 
-								src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${styleVO.item_num3}" 
-								width="100" height="100" data-num="${styleVO.item_num3}">
-								<br>
-								<span class="item-name3" style="width: 100px;">${styleVO.item_name3}</span>
-							</c:if>
+							<img 
+							src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${styleVO.item_num3}" 
+							width="100" height="100" data-num="${styleVO.item_num3}">
+							<br>
+							<span class="item-name3" style="width: 100px;">${styleVO.item_name3}</span>
 						</div>
+						</c:if>
 					</div>
+					<input type="text" id="item_search" autocomplete="off" placeholder="상품 태그를 추가해보세요.">
+					<ul id="search_area"></ul>
+					<div id="item_tag"></div>
 				</div>
 				<div>
 					<input type="hidden" name="item_num1" id="item_num1" value="${styleVO.item_num1}">

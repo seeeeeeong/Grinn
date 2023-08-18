@@ -118,7 +118,7 @@ $(document).ready(function() {
 </script>
     <div class="page-main">
     	<div class="align-right">
-    		<a href="write.do"><img src="${pageContext.request.contextPath}/images/upload_button.png" width="70" height="40"></a>
+    		<a href="write.do"><span style="font-size:30pt;">&#x1F4F7</span></a>
     	</div>
     	<div class="style_list">
     		<c:forEach var="style" items="${list}">

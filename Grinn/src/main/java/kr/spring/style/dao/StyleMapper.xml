@@ -146,11 +146,20 @@
 		<if test="item_num1 != null and item_num1 != ''">
 			,item_num1=#{item_num1}
 		</if>
+		<if test="item_num1 == 0">
+			,item_num1=null
+		</if>
 		<if test="item_num2 != null and item_num2 != ''">
 			,item_num2=#{item_num2}
 		</if>
+		<if test="item_num2 == 0">
+			,item_num2=null
+		</if>
 		<if test="item_num3 != null and item_num3 != ''">
 			,item_num3=#{item_num3}
+		</if>
+		<if test="item_num3 == 0">
+			,item_num3=null
 		</if>
 		WHERE st_num=#{st_num}
 	</update>

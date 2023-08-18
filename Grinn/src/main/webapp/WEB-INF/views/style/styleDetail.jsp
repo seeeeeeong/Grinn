@@ -524,18 +524,20 @@
   	</div>
     
     <div class="style-content">
-    	<c:if test="${style.item_num1 != 0}">
+    	
     	<div class="item-tag">
     		<div class=tag-title>
 				상품 태그
 			</div>
 			<div class="tag-boxes">
+				<c:if test="${style.item_num1 != 0}">
 				<div class="item-tag-box">
 					<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${style.item_num1}">
 						<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num1}" width="100" height="100"><br>
 						<span class="item-name" style="width:100px;">${style.item_name1}</span>
 					</a>
 				</div>
+				</c:if>
 				<c:if test="${style.item_num2 != 0}">
 				<div class="item-tag-box">
 					<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${style.item_num2}">
@@ -554,7 +556,7 @@
 				</c:if>
 			</div>
 		</div>
-		</c:if><p>	
+		<p>	
 		<div id="btnWrap">
 			<img id="output_fav" data-num="${style.st_num}" src="${pageContext.request.contextPath}/images/no_like.png" width="30" height="30">
 			<img id="popupBtn" src="${pageContext.request.contextPath}/images/comm_icon.png" width="33" height="33">
