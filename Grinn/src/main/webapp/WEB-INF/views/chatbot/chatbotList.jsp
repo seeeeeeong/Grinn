@@ -9,7 +9,7 @@
 		<input type="button" value="챗봇문의 생성" onclick="location.href='chatbotCreate.do'">
 	</div>
 	<c:if test="${count == 0}">
-	<div class="result-display">표시할 채팅방이 없습니다.</div>
+		<div class="result-display">표시할 채팅방이 없습니다.</div>
 	</c:if>
 	<c:if test="${count > 0}">
 	<table class="striped-table">
@@ -22,7 +22,7 @@
 				</a>
 			</td>
 			<td>
-				${chatbot.chatbotVO.croom_regdate}
+				 ${chatbot.chatbotVO.croom_regdate} 
 			</td>
 		</tr>
 		</c:forEach>

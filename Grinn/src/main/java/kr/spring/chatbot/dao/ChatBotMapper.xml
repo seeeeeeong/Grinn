@@ -1,10 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.spring.chatbot.dao.ChatBotMapper">
+
+	<resultMap type="chatbotRoomVO" id="chatbotMap">
+		<result property="chatbotVO.message" column="message"/>
+		<result property="chatbotVO.croom_regdate" column="croom_regdate"/>
+	</resultMap>
 	
-	<!-- 챗봇방 목록 -->
-	<select id="selectChatBotRoomList">
-		SELECT * FROM CHATBOT
+	<sql id="chatbotSub">
+		FROM chatbot_room r JOIN chatbot_member m USING(croom_num)
+		LEFT OUTER JOIN (SELECT
+							c_num,
+							<![CDATA[
+							REPLACE(REPLACE(REPLACE(message,'<','&lt;'),'>','&gt;'),'@{member}@','') message,
+							]]>
+							croom_regdate,
+							croom_num
+							FROM chatbot WHERE c_num IN (SELECT
+															MAX(c_num) c_num
+														FROM chatbot
+														GROUP BY croom_num))
+		USING(croom_num)
+		WHERE m.mem_num=#{mem_num}
+	</sql>
+	
+	<!-- 챗봇방 레코드 수 -->
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*)
+		<include refid="chatbotSub"></include>
+	</select>
+	
+	<!-- 전체 챗봇방 목록 (수정필요) -->
+	<select id="selectChatBotRoomList" parameterType="map" resultMap="chatbotMap">
+		SELECT * FROM (SELECT
+						*
+						<include refid="chatbotSub"></include>
+						ORDER BY (CASE
+									WHEN croom_regdate IS NULL THEN croom_date
+									ELSE croom_regdate
+									END) DESC)
+	</select>
+	
+	<!-- 챗봇 멤버 읽기 -->
+	<select id="selectChatBotMember" parameterType="integer" resultType="chatbotMemberVO">
+		SELECT
+			mem_num, mem_id
+		FROM chatbot_member JOIN member
+		USING(mem_num)
+		WHERE croom_num=#{croom_num}
 	</select>
 	
 	<!-- 챗봇메세지 등록 -->
@@ -13,6 +56,25 @@
 		VALUES(#{c_num},#{croom_num},#{mem_num},#{message})
 	</insert>
 	
-	<!-- 챗봇메세지 읽기 -->
-	
+	<!-- 챗봇메세지 읽기 (수정필요) -->
+	<select id="selectChatBotDetail" parameterType="integer" resultType="chatbotVO">
+		SELECT
+			<![CDATA[
+			REPLACE(REPLACE(message, '<', '&lt;'), '>', '&gt;') message,
+			]]>
+			croom_regdate,
+			mem_num,
+			mem_id
+		FROM chatbot
+		JOIN member
+		USING(mem_num)
+		WHERE croom_num = #{croom_num}
+		AND croom_regdate >= (SELECT
+							member_date
+						FROM chatbot_member
+						WHERE croom_num = #{croom_num}
+						AND mem_num=#{mem_num}) /*멤버 등록일 이후의 정보만 읽어옴*/
+		ORDER BY croom_regdate ASC
+	</select>
+
 </mapper>

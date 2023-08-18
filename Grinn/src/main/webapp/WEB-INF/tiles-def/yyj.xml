@@ -19,7 +19,7 @@
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp" />
 	</definition>
 	<!-- 챗봇 메인 ->새창으로띄우기 (모든것을상속받지않기위해 구분) -->
-	<definition name="chatbotMain" template="/WEB-INF/views/chatbot/chatbotDetail.jsp">
+	<definition name="chatbotMain" template="/WEB-INF/views/chatbot/chatbotList.jsp">
 		<put-attribute name="title" value="챗봇으로 문의" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 	</definition>
@@ -36,11 +36,11 @@
 	<definition name="noticeAuth_policy" extends="noticeMain">
 		<put-attribute name="title" value="검수기준 | Grinn" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeAuth_policy.jsp" />
-	</definition>
+	</definition><!-- 
 	<definition name="noticeDetail" extends="noticeMain">
 		<put-attribute name="title" value="공지사항디테일" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeDetail.jsp" />
-	</definition>
+	</definition> -->
 
 	<!-- 메인 상속 / 공지사항 -->
 	<definition name="noticeWrite" extends="main">
@@ -63,7 +63,7 @@
 	
 	<!-- 챗봇 메인 상속 -->
     <definition name="chatbotList" extends="chatbotMain">
-    	<put-attribute name="title" value="챗봇 목록(생성)"/>
+    	<put-attribute name="title" value="챗봇 목록"/>
 	    <put-attribute name="body" value="/WEB-INF/views/chatbot/chatbotList.jsp"/>
     </definition>
     <definition name="chatbotDetail" extends="chatbotMain">
@@ -71,7 +71,7 @@
 	    <put-attribute name="body" value="/WEB-INF/views/chatbot/chatbotDetail.jsp"/>
     </definition>
     <definition name="chatbotCreate" extends="chatbotMain">
-    	<put-attribute name="title" value="챗봇으로 문의하기"/>
+    	<put-attribute name="title" value="챗봇 방 생성"/>
 	    <put-attribute name="body" value="/WEB-INF/views/chatbot/chatbotCreate.jsp"/>
     </definition>
 

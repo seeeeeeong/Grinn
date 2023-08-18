@@ -22,15 +22,17 @@ public interface ChatBotMapper {
 	@Select("SELECT chatbot_seq.nextval FROM dual")
 	public int selectChatBotRoomNum();
 	//챗봇방 생성
-	@Insert("INSERT INTO cahtbot_room (croom_num,mem_num,mem_id) VALUES (#{croom_num},#{mem_num},#{mem_id})")
+	@Insert("INSERT INTO cahtbot_room (croom_num,mem_num) VALUES (#{croom_num},#{mem_num})")
 	public void insertChatBotRoom(ChatBotRoomVO chatbotRoomVO);
 	//챗봇방 멤버등록
+	@Insert("INSERT INTO chatbot_member (croom_num,mem_num) VALUES (#{croom_num},#{mem_num})")
 	public void insertChatBotRoomMember(@Param(value="croom_num") Integer croom_num, @Param(value="mem_num") Integer mem_num);
 	
 	//챗봇 멤버 읽기 -?
 	public List<ChatBotMemberVO> selectChatBotMember(Integer croom_num);
 	
 	//챗봇 메세지 번호 생성
+	@Select("SELECT chatbot_seq.nextval FROM dual")
 	public int selectChatBotNum();
 	//챗봇 메세지 등록
 	public void insertChatBot(ChatBotVO chatbotVO);

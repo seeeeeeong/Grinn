@@ -63,7 +63,18 @@ public class ChatBotController {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_num", user.getMem_num());
+		log.debug("user넘버 : " + user.getMem_num());//넘버 제대로 들어옴
+		int count = chatbotService.selectRowCount(map);
+		
+		List<ChatBotRoomVO> list = null;
+		if(count > 0) {
+			list = chatbotService.selectChatBotRoomList(map);
+		}
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
 		model.addAttribute("croom_num", croom_num);
+		
 		return "chatbotList";
 	}
 	
