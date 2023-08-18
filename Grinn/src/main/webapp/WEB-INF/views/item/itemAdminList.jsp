@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 상품 목록 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
 <script type="text/javascript">
 	$(function(){
 		//검색 유효성 체크
@@ -90,7 +89,7 @@
 					<td>
 						<a href="itemModify.do?item_num=${item.item_num}">수정</a>
 					</td>
-					<td><a id="output" class="delete-btn" data-itemnum="${item.item_num}">삭제</a></td>
+					<td><a href="itemDelete.do?item_num=${item.item_num}" onclick="return confirm('정말로 상품을 삭제하시겠습니까?')">삭제</a></td>
 				</tr>
 			</c:forEach>
 		</table>
