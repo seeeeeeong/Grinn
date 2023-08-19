@@ -720,7 +720,7 @@ body{
 	padding-bottom: 0;
     padding-top: 0;
 }
-.home-products, .home-products-brand{
+.home-products{
 	margin-top: 30px;
 	border-top: 1px solid #eee;
 }
@@ -804,7 +804,7 @@ body{
     display: flex;
 }
 .thumb-box .product{
-	background-color: #f4f4f4;
+	background-color: rgb(244, 244, 244);
 	border-radius: 8px;
     overflow: hidden;
     padding-top: 100%;
@@ -855,21 +855,100 @@ body{
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+    margin: 0;
+    padding: 0;
 }
 .info-box .price{
 	padding-top: 12px;
 }
 .info-box .price .amount{
+	font-size: 0;
+    line-height: 0;
+}
+.info-box .price .amount em{
 	display: inline-block;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: -.04px;
     line-height: 17px;
     vertical-align: top;
+    font-style: normal;
 }
 .amount-notice{
 	color: rgba(34,34,34,.5);
     font-size: 11px;
     line-height: 13px;
     margin-top: 2px;
+}
+.amount-notice p{
+	margin: 0;
+	padding: 0;
+}
+.home-products-brand{
+	margin-bottom: 56px;
+    margin-top: 40px;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+.brand-product{
+	margin-top: 16px;
+	padding-left: 40px;
+    padding-right: 40px;
+    grid-row-gap: 16px;
+    grid-column-gap: 8px;
+    column-gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    row-gap: 16px;
+}
+.brand-item{
+	cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+.brand-item a .thumb-box{
+	border-radius: 10px;
+	height: 150px;
+	position: relative;
+}
+.brand-item a .thumb-box img{
+	background-color: rgb(244, 244, 244);
+	border-radius: 9px;
+	height: 100%;
+    overflow: hidden;
+    width: 100%;
+	border: none;
+    display: flex;
+    image-rendering: auto;
+	object-fit: cover;
+	border: 0;
+	-webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    user-select: none!important;
+    vertical-align: top;
+    overflow: clip;
+}
+.brand-item a p{
+	color: #333;
+    font-size: 15px;
+    letter-spacing: -.15px;
+    margin-top: 8px;
+}
+
+/* 메인 푸터 */
+#main_footer{
+	padding-left: 40px;
+    padding-right: 40px;
+    border-top: 1px solid #ebebeb;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+.service_area{
+	border-top: 0;
 }

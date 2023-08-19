@@ -125,10 +125,10 @@
 									<p class="name">${item.item_name}</p>
 									<div class="price">
 										<div class="amount">
-											${item.item_price}
+											<em><fmt:formatNumber value="${item.item_price}"/>원</em>
 										</div>
 										<div class="amount-notice">
-											<p>즉시구매가</p>
+											<p>구매가</p>
 										</div>
 									</div>
 								</div>
@@ -151,46 +151,16 @@
 			</div>
 			<div class="brand-products-list">
 				<div class="brand-product">
-					<div class="brand-item">
+					<c:forEach var="brand" items="${brand}">
+						<div class="brand-item">
 						<a>
 							<div class="thumb-box">
-							
+								<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${brand.item_num}">
 							</div>
-							<div class="info-box">
-							
-							</div>
+							<p class="brand-product-name">${brand.item_brand}</p>
 						</a>
 					</div>
-					<div class="brand-item">
-						<a>
-							<div class="thumb-box">
-							
-							</div>
-							<div class="info-box">
-							
-							</div>
-						</a>
-					</div>
-					<div class="brand-item">
-						<a>
-							<div class="thumb-box">
-							
-							</div>
-							<div class="info-box">
-							
-							</div>
-						</a>
-					</div>
-					<div class="brand-item">
-						<a>
-							<div class="thumb-box">
-							
-							</div>
-							<div class="info-box">
-							
-							</div>
-						</a>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

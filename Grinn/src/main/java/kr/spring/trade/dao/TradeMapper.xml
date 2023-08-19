@@ -351,4 +351,22 @@
         WHERE t.trade_num=#{trade_num}
 	</select>
 	
+	<!-- 메인페이지 : 브랜드별 아이템 정보 -->
+	<select id="mainGetItemList" resultType="itemVO">
+		SELECT i.* 
+		FROM item i
+		JOIN ( 
+			SELECT * FROM (
+				SELECT a.*, rownum rnum FROM (
+					SELECT item_brand, max(item_date) item_date 
+					FROM item 
+					GROUP BY item_brand
+					ORDER BY item_date DESC)a
+				)
+			<![CDATA[
+			WHERE rnum>=1 AND rnum<=4
+			]]>
+		) b ON i.item_brand=b.item_brand AND i.item_date=b.item_date
+	</select>
+	
 </mapper>

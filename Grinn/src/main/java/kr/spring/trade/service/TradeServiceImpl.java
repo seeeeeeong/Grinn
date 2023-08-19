@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.pbid.vo.PurchaseSizePriceVO;
@@ -272,6 +273,11 @@ public class TradeServiceImpl implements TradeService{
 	@Override
 	public void adminInsertPenalty(PenaltyVO penalty) {
 		tradeMapper.adminInsertPenalty(penalty);
+	}
+
+	@Override
+	public List<ItemVO> mainGetItemList() {
+		return tradeMapper.mainGetItemList();
 	}
 
 	

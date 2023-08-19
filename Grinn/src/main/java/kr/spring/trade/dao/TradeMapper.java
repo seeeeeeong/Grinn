@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.pbid.vo.PurchaseSizePriceVO;
@@ -187,4 +188,12 @@ public interface TradeMapper {
 	// 관리자 회원에게 패널티 부여
 	@Insert("INSERT INTO penalty VALUES(penalty_seq.nextval,#{mem_num},#{pe_service_type},#{pe_score},#{pe_type},SYSDATE)")
 	public void adminInsertPenalty(PenaltyVO penalty);
+	
+	/**
+	 * ======================================================================================================================
+	 * 												메인페이지 관련 정보
+	 * ======================================================================================================================
+	 **/
+	// 브랜드별 아이템 정보 조회
+	public List<ItemVO> mainGetItemList();
 }

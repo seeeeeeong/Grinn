@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.pbid.vo.PurchaseSizePriceVO;
@@ -165,4 +166,7 @@ public interface TradeService {
 	
 	// 관리자 회원에게 패널티 부여
 	public void adminInsertPenalty(PenaltyVO penalty);
+	
+	// 브랜드별 아이템 정보 조회
+	public List<ItemVO> mainGetItemList();
 }

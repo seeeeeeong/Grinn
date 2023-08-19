@@ -13,6 +13,7 @@ import kr.spring.item.service.ItemService;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.trade.service.TradeService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -22,6 +23,8 @@ public class MainController {
 	private MemberService memberService;
 	@Autowired
 	private ItemService itemService;
+	@Autowired
+	private TradeService tradeService;
 	
 	@RequestMapping("/")
 	public String main() {
@@ -39,7 +42,11 @@ public class MainController {
 		map.put("end", 4);
 		List<ItemVO> list = itemService.selectList(map);
 		
+		// 메인페이지 - 신규 브랜드 목록
+		List<ItemVO> brand = tradeService.mainGetItemList();
+		
 		model.addAttribute("itemList",list);
+		model.addAttribute("brand",brand);
 		return "main";//타일스 설정의 식별자
 	}
 	
