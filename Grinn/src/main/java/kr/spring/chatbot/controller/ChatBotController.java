@@ -41,7 +41,7 @@ public class ChatBotController {
 	}
 	//전송된 데이터 처리
 	@PostMapping("/chatbot/chatbotCreate.do")
-	public String chatbotSubmit(@RequestParam int croom_num, Model model, ChatBotRoomVO vo, HttpSession session) {
+	public String chatbotSubmit(ChatBotRoomVO vo, HttpSession session) {
 		log.debug("<<챗봇방 만들기>> : " + vo);
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
@@ -55,8 +55,9 @@ public class ChatBotController {
 		
 		return "redirect:/chatbot/chatbotList.do";
 	}
+	//방을 만든 회원을 구해야하나?
 	
-	/* ====================== 채팅방 목록(?) ====================== */
+	/* ====================== 챗봇방 목록 ====================== */
 	@RequestMapping("/chatbot/chatbotList.do")
 	public String chatbotList(@RequestParam(value="croom_num",defaultValue="0") int croom_num,
 									HttpSession session, Model model) {
@@ -74,11 +75,11 @@ public class ChatBotController {
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("croom_num", croom_num);
-		
+		log.debug("croom_num : " + croom_num);
 		return "chatbotList";
 	}
 	
-	/* ====================== 채팅 메시지 처리 ====================== */
+	/* ====================== 챗봇 메시지 처리 ====================== */
 	//챗봇 메세지 페이지 호출
 	@RequestMapping("/chatbot/chatbotDetail.do")
 	public String chatbotDetail(@RequestParam int croom_num, Model model, HttpSession session) {
@@ -95,6 +96,7 @@ public class ChatBotController {
 		
 		//채팅 멤버 id
 		model.addAttribute("chatMember", chatMember);
+		model.addAttribute("list", list);
 		
 		return "chatbotDetail";
 	}

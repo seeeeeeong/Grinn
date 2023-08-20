@@ -19,10 +19,10 @@ public interface ChatBotMapper {
 	public int selectRowCount(Map<String,Object> map);
 	
 	//챗봇방 번호 생성
-	@Select("SELECT chatbot_seq.nextval FROM dual")
+	@Select("SELECT chatbotroom_seq.nextval FROM dual")
 	public int selectChatBotRoomNum();
 	//챗봇방 생성
-	@Insert("INSERT INTO cahtbot_room (croom_num,mem_num) VALUES (#{croom_num},#{mem_num})")
+	@Insert("INSERT INTO chatbot_room (croom_num) VALUES (#{croom_num})")
 	public void insertChatBotRoom(ChatBotRoomVO chatbotRoomVO);
 	//챗봇방 멤버등록
 	@Insert("INSERT INTO chatbot_member (croom_num,mem_num) VALUES (#{croom_num},#{mem_num})")
@@ -43,6 +43,7 @@ public interface ChatBotMapper {
 	//읽은 챗봇 기록 삭제 -?
 	
 	//챗봇방 상세
+	@Select("SELECT * FROM chatbot_room WHERE croom_num=#{croom_num}")
 	public ChatBotRoomVO selectChatBotRoom(Integer croom_num);
 	
 	//챗봇방 나가기(종료)

@@ -37,7 +37,7 @@ $(function(){
 	
 	/* 챗봇방 생성하기 */
 	//채팅방 생성을 위한 데이터 전송
-	$('#chatbot_form').submit(function(){
+	/*$('#chatbot_form').submit(function(){
 		//이미 배열에 현재 로그인한 유저가 기본 등록되어 있어서
 		//로그인한 유저 포함 최소 2명이 되어야 채팅 가능
 		if(member_list.length<=1){
@@ -45,7 +45,7 @@ $(function(){
 			$('#member_search').focus();
 			return false;
 		}
-	});
+	});*/
 	
 	/* 챗봇방에서 문의하기 */
 	function selectMsg(){
@@ -53,7 +53,7 @@ $(function(){
 		$.ajax({
 			url:'../chatbot/chatbotDetailAjax.do',
 			type:'post',
-			data:{croom_num:$(croom_num).val()},
+			data:{croom_num:$('#croom_num').val()},
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'logout'){
@@ -77,7 +77,7 @@ $(function(){
 						}else{
 							output += '<div class="to-position">';
 							output += '<div class="space-photo">';
-							output += '<img src="../images/123.png" width="40" height="40" class="my-photo">';
+							output += '<img src="../images/how_to_question.jpg" width="40" height="40" class="my-photo">';
 							/* 챗봇이미지 넣기 */
 							output += '</div><div class="space-message">';
 							output += item.mem_id;

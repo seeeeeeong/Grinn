@@ -101,12 +101,12 @@
 <div id="floating">
 	<input type="hidden" value="${croom_num}">
 	<button class="btn_chatbot" id="btn_chatbot" onclick="open3()">
-		<img src="${pageContext.request.contextPath}/images/how_to_chatbot.jpg"
+		<img src="${pageContext.request.contextPath}/images/how_to_question.jpg"
 			width="32" height="32">
 	</button>
 </div>
 <script type="text/javascript">
-function open3(){/* chatbotDetail.do -> chatbotList.do 변경예정 */
+function open3(){
   window.open("${pageContext.request.contextPath}/chatbot/chatbotList.do", "_blank", "width=400, height=500");
 }
 </script>

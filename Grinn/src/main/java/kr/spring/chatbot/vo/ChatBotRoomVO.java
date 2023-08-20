@@ -13,6 +13,7 @@ public class ChatBotRoomVO {
 	private int croom_num; //방번호
 	private String croom_question; //회원의 질문
 	private String croom_answer; //답변
+	private Date croom_date; //질문 날짜
 	
 	private int[] members; //챗봇 멤버의 회원번호
 	private ChatBotVO chatbotVO; //챗봇 메세지 VO

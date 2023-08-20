@@ -117,7 +117,7 @@ public class TalkController {
 		model.addAttribute("list", list);
 		model.addAttribute("page", page.getPage());
 		model.addAttribute("talkroom_num",talkroom_num);
-		/**/
+		/* 여기부터 아래에 있는 톡디테일을 끌어다 쓴 내용 */
 		String chatMember = ""; //채팅 멤버
 		String room_name = ""; //채팅방 이름
 		
