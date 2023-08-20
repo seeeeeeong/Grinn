@@ -63,13 +63,13 @@ $(function(){
 					//메시지 표시 UI 초기화
 					$('#chatbot_message').empty();
 					
-					let chat_date = '';
+					let croom_regdate = '';//chatbot 테이블에 있는 croom_regdate / 채팅이 시작된 날짜
 					$(param.list).each(function(index,item){
 						let output = '';
-						//날짜 추출
-						if(chat_date != item.chat_date.split(' ')[0]){
-							chat_date = item.chat_date.split(' ')[0];
-							output += '<div class="date-position"><span>'+chat_date+'</span></div>';
+						//날짜 추출 / 채팅이 시작된 날짜
+						if(croom_regdate != item.croom_regdate.split(' ')[0]){
+							croom_regdate = item.croom_regdate.split(' ')[0];
+							output += '<div class="date-position"><span>'+croom_regdate+'</span></div>';
 						}
 						//일반 메시지 전송
 						if(item.mem_num == param.user_num){
@@ -78,14 +78,13 @@ $(function(){
 							output += '<div class="to-position">';
 							output += '<div class="space-photo">';
 							output += '<img src="../images/how_to_question.jpg" width="40" height="40" class="my-photo">';
-							/* 챗봇이미지 넣기 */
 							output += '</div><div class="space-message">';
 							output += item.mem_id;
 						}
-						output += 'div class="item">';
-						output += item.read_count + ' <span>'+item.message.replace(/\r\n/g,'<br>').replace(/\r/g,'<br>').replace(/\n/g,'<br>')+'</span>';
+						output += '<div class="item">';
+						output += ' <span>'+item.msgInputArea+'</span>';
 						//시간 추출
-						output += '<div class="align-right">'+item.chat_date.split(' ')[1]+'</div>';
+						output += '<div class="align-right">'+item.croom_regdate.split(' ')[1]+'</div>';
 						output += '</div>';
 						output += '</div><div class="space-clear"></div>';
 						output += '</div>';
@@ -109,24 +108,24 @@ $(function(){
 	}
 	
 	//메시지 입력 후 enter 이벤트 처리
-	$('#message').keydown(function(event){
+	$('#msgInputArea').keydown(function(event){
 		if(event.keyCode == 13 && !event.shiftKey){
-			$('#detail_form').trigger('submit');
+			$('#c_detail_form').trigger('submit');
 		}
 	});
 	
 	//채팅 등록
-	$('#detail_form').submit(function(event){
-		if($('#message').val().trim()==''){
+	$('#c_detail_form').submit(function(event){
+		if($('#msgInputArea').val().trim()==''){
 			alert('메시지를 입력하세요!');
-			$('#message').val('').focus();
+			$('#msgInputArea').val('').focus();
 			return false;
 		}
-		if($('#message').val().length>1333){
+		if($('#msgInputArea').val().length>1333){
 			alert('메시지를 1333자까지만 입력 가능합니다.');
 			return false;
 		}
-		
+		//여기까진 됨
 		let form_data = $(this).serialize();
 		
 		//서버와 통신
@@ -141,7 +140,7 @@ $(function(){
 					msg_socket.close();
 				}else if(param.result == 'success'){
 					//폼 초기화
-					$('#message').val('').focus();
+					$('#msgInputArea').val('').focus();
 					//메시지가 저장되었다고 소켓에 신호를 보냄
 					msg_socket.send('msg:');
 				}else{

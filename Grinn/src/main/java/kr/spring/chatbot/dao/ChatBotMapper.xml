@@ -52,8 +52,9 @@
 	
 	<!-- 챗봇메세지 등록 -->
 	<insert id="insertChatBot" parameterType="chatbotVO">
-		INSERT INTO chatbot(c_num, croom_num, mem_num, message)
-		VALUES(#{c_num},#{croom_num},#{mem_num},#{message})
+		INSERT INTO chatbot(
+			c_num, croom_num, mem_num, message)
+		VALUES (#{c_num}, #{croom_num}, #{mem_num}, #{message})
 	</insert>
 	
 	<!-- 챗봇메세지 읽기 (수정필요) -->
@@ -69,12 +70,12 @@
 		JOIN member
 		USING(mem_num)
 		WHERE croom_num = #{croom_num}
-		AND croom_regdate >= (SELECT
+ 		AND croom_regdate >= (SELECT
 							member_date
 						FROM chatbot_member
 						WHERE croom_num = #{croom_num}
 						AND mem_num=#{mem_num}) /*멤버 등록일 이후의 정보만 읽어옴*/
-		ORDER BY croom_regdate ASC
+		ORDER BY croom_regdate ASC 
 	</select>
 
 </mapper>

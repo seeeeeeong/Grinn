@@ -246,11 +246,11 @@ $(function(){
 	//메시지 입력 후 enter 이벤트 처리
 	$('#message').keydown(function(event){
 		if(event.keyCode == 13 && !event.shiftKey){
-			$('#inner').trigger('submit');
+			$('#detail_form').trigger('submit');
 		}
 	});
 	//채팅 등록
-	$('#inner').submit(function(event){
+	$('#detail_form').submit(function(event){
 		if($('#message').val().trim()==''){
 			alert('메시지를 입력하세요!');
 			$('#message').val('').focus();

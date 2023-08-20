@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +33,12 @@ public class ChatBotController {
 	private ChatBotService chatbotService;
 	@Autowired
 	private MemberService memberService;
+	
+	/* ====================== 자바빈 초기화 ====================== */
+	@ModelAttribute
+	public ChatBotVO initCommand() {
+		return new ChatBotVO();
+	}
 	
 	/* ====================== 채팅방 생성 ====================== */
 	//폼 호출
@@ -96,6 +103,10 @@ public class ChatBotController {
 		
 		//채팅 멤버 id
 		model.addAttribute("chatMember", chatMember);
+		//채팅 멤버수
+		model.addAttribute("chatCount", list.size());
+		//채팅방 번호
+		model.addAttribute("croom_num", croom_num);
 		model.addAttribute("list", list);
 		
 		return "chatbotDetail";
@@ -135,6 +146,8 @@ public class ChatBotController {
 			Map<String,Integer> map = new HashMap<String,Integer>();
 			map.put("croom_num", croom_num);
 			map.put("mem_num", user.getMem_num());
+			log.debug("ajax, croom_num : " + croom_num);
+			log.debug("ajax, user_num : " + user.getMem_num());
 			
 			List<ChatBotVO> list = chatbotService.selectChatBotDetail(map);
 			
