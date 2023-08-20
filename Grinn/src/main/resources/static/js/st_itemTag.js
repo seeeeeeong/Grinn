@@ -165,6 +165,12 @@ $(function(){
 			   $('#item_num3').val(item_nameList[1]);
 		   }
 	   }
+	   
+	   if(item_nameList.length == 3){
+		   for(let i=0;i<item_nameList.length;i++){
+			   $('#item_num' + (i+1)).val(item_nameList[i]);
+		   }
+	    }
    });
 
    $(document).on('click', '#del1', function(){
