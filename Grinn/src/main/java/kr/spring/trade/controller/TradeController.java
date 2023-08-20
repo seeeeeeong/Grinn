@@ -198,7 +198,7 @@ public class TradeController {
 			
 			if(member.getMem_point() - total < 0) {
 				model.addAttribute("message","잔액이 부족합니다. 금액을 충전해주세요.");
-				model.addAttribute("url","../item/itemList.do");
+				model.addAttribute("url","../user/userPointInfo.do");
 				return "common/resultView";
 			}else {
 				tradeService.executePayment(total); // 관리자에게 입금
@@ -240,7 +240,7 @@ public class TradeController {
 				
 				if(total > member.getMem_point()) {
 					model.addAttribute("message","잔액이 부족합니다. 금액을 충전해주세요.");
-					model.addAttribute("url","../item/itemList.do");
+					model.addAttribute("url","../user/userPointInfo.do");
 					return "common/resultView";
 				}
 				// 거래 정보 저장을 위한 거래 번호 생성
@@ -513,6 +513,38 @@ public class TradeController {
 				model.addAttribute("message", "[즉시판매] 완료했습니다.");
 				model.addAttribute("url", "../item/itemList.do");
 			}
+		}
+		return "common/resultView";
+	}
+	
+	// 회원 포인트 조회하기
+	@RequestMapping("/user/userPointInfo.do")
+	public String getUserPointInfo(HttpSession session, Model model) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		if(user == null) {
+			model.addAttribute("message","로그인이 필요합니다.");
+			model.addAttribute("url","../member/login.do");
+			return "common/resultView";
+		}else {
+			MemberVO member = memberService.selectMember(user.getMem_num());
+			model.addAttribute("member",member);
+		}
+		return "userPointInfo";
+	}
+	// 회원 포인트 충전하기
+	@RequestMapping("/user/addUserPoint.do")
+	public String addUserPoint(HttpSession session, Model model, @RequestParam int point) {
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user == null) {
+			model.addAttribute("message","로그인이 필요합니다.");
+			model.addAttribute("url","../member/login.do");
+			return "common/resultView";
+		}else {
+			// 포인트 충전
+			tradeService.sendPointToBuyer(user.getMem_num(), point);
+			model.addAttribute("message","포인트 충전이 성공했습니다.");
+			model.addAttribute("url","userPointInfo.do");
 		}
 		return "common/resultView";
 	}

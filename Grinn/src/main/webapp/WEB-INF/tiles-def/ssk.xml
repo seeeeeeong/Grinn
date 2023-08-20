@@ -55,6 +55,13 @@
 	    <put-attribute name="body" value="/WEB-INF/views/sale/selling.jsp"/>
     </definition>
     
+    <!-- 마이페이지 : 포인트 -->
+    <definition name="userPointInfo" extends="myPage">
+    	<put-attribute name="title" value="포인트"/>
+	    <put-attribute name="body" value="/WEB-INF/views/trade/user_point.jsp"/>
+    </definition>
+    
+    
     <!-- 관리자 : 거래 정보 조회 -->
     <definition name="admin_list" extends="admin">
     	<put-attribute name="title" value="거래 정보"/>

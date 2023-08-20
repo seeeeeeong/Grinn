@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+.bordered-heading{
+	border-bottom: 2px solid #000;
+	padding-bottom: 20px;
+}
+.point-content{
+	width: 50%;
+    margin: 20px auto;
+}
+.point-content-detail{
+	box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.1);
+	height: 60px;
+	justify-content: center;
+	display: flex;
+}
+.point-content-detail dl{
+	display: flex;
+	font-size: 15px;
+	justify-content: center;
+}
+.point-content-detail dl dd{
+	font-weight: bold;
+}
+.btn-point{
+	display: flex;
+	font-size: 15px;
+	justify-content: center;
+	height: 50%;
+	margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+#add_point:hover{
+	font-weight: bold;
+	color: #000;
+	cursor: pointer;
+}
+.input-point-form{
+	width: 100%;
+	justify-content: center;
+	display: flex;
+	border: 0;
+	
+}
+.input-point-form input[type="text"]{
+	width: 200px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: normal;
+    line-height: 26px;
+    max-width: 200px;
+    overflow: visible;
+    text-align: right;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    padding: 0;
+    resize: none;
+    border-bottom: 2px solid #eee;
+}
+.input-point-form input[type="submit"]{
+	margin-left: 10px;
+	background-color: #eee;
+	border: 0;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: bold;
+}
+.input-point-form input[type="submit"]:hover{
+	background-color: gray;
+	color: white;
+}

@@ -96,11 +96,9 @@
 									박스/패키지의 상태를 확인합니다.
 								</p>
 								<p class="check-sub">
-									박스/패키지 상태에 따른 검수 기준을 확인했습니다.
+									박스/패키지 상태에 따른 검수 기준을 확인했습니다.<br>
+									이용안내 탭 검수 기준을 눌러 확인해주세요.
 								</p>
-								<div class="check-detail">
-									검수기준 보기
-								</div>
 							</div>
 							<div class="checkbox-item">
 								<input type="checkbox" id="check3">
@@ -115,11 +113,9 @@
 									KREAM의 최신 이용정책을 모두 확인하였으며, 판매를 계속합니다.
 								</p>
 								<p class="check-sub">
-									건전하고 안전한 거래를 위해 반드시 숙지해야 할 미입고, 페널티, 부정거래 등의 이용정책을 확인했습니다.
+									건전하고 안전한 거래를 위해 반드시 숙지해야 할 미입고, 페널티, 부정거래 등의 이용정책을 확인했습니다.<br>
+									이용안내 탭 이용정책을 눌럭 확인해주세요.
 								</p>
-								<div class="check-detail">
-									이용정책 보기
-								</div>
 							</div>
 							<div class="checkbox-item">
 								<input type="checkbox" id="check4">	
