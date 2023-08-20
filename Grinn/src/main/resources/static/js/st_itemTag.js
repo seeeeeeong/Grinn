@@ -114,7 +114,15 @@ $(function(){
 		  return;
 	  }
       if(item_list.length <= 2) {
-		  item_list.push(item_name);
+		  if(item_num[0] != '0'){
+			  item_list.push(item_name);
+		  }
+		  if(item_num[1] != '0'){
+			  item_list.push(item_name);
+		  }
+		  if(item_num[2] != '0'){
+			  item_list.push(item_name);
+		  }
 	  }else{
 	  		alert('3개까지 추가 가능');
 			$('#item_search').val('');
@@ -194,6 +202,7 @@ $(function(){
 	   if($('#item_num1').val() != '0'){
 		   $('#box1').remove();
 	   	   $('#item_num1').val('0');
+	   	   item_num[0] = '0';
 	   	   return;
 	   }
    });
@@ -202,6 +211,7 @@ $(function(){
 	   if($('#item_num2').val() != '0'){
 		   $('#box2').remove();
 	   	   $('#item_num2').val('0');
+	   	   item_num[1] = '0';
 	   	   return;
 	   }
    });
@@ -210,6 +220,7 @@ $(function(){
 	   if($('#item_num3').val() != '0'){
 	   	   $('#box3').remove();
 	       $('#item_num3').val('0');
+	       item_num[2] = '0';
 	       return;
 	   }
    });
