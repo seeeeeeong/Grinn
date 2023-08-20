@@ -27,5 +27,5 @@ public interface ChatBotService {
 	public ChatBotRoomVO selectChatBotRoom(Integer croom_num);
 	
 	//챗봇방 나가기
-	public void deleteChatBotRoom(ChatBotVO chatbotVO);
+	public void deleteChatBotRoomMember(ChatBotVO chatbotVO);
 }

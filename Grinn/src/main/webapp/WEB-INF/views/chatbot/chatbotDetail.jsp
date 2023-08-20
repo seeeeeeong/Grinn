@@ -31,7 +31,14 @@
 				<!-- inner_talk 끝 -->
 				</div>
 			</li>
+			<li>
+				<!-- 답변을 여기서? -->
+			</li>
 		</ul>
+		<!-- 나가기 버튼 (챗봇문의 삭제) -->
+		<div class="btn_list">
+			<input type="button" value="문의 끝내기" class="btn_auth" id="delete_chatbotRoom">
+		</div>
 		<!-- 입력창 -->
 		<div class="talk_write">
 			<div class="frame_msg">
@@ -40,16 +47,16 @@
 					<div class="inner">
 						<label for="msgInputArea" class="blind">채팅입력창</label>
 						<input type="hidden" name="croom_num" id="croom_num" value="${param.croom_num}">
-						<textarea id="msgInputArea" name="msgInputArea" placeholder="메시지를 입력하세요." rows="1" class="msg_input"></textarea>
-					</div>
+						<textarea id="message" name="message" placeholder="메시지를 입력하세요." rows="1" class="msg_input"></textarea>
+					</div><!-- textarea의 id가 message -> DB에 저장된 컬럼도 message여야함 -->
 				
-					<!-- 보내기 버튼 
+					<!-- 보내기 버튼 수정또는삭제예정
 					<div class="frame_attach">
 						<button onclick="location.href='chatbotDetail.do'">
 							<img src="${pageContext.request.contextPath}/images/how_to_send.jpg" width="50" class="sendBtn">
 							<span class="blind">입력 완료</span>
 						</button>
-					</div>-->
+					</div> -->
 				</form>
 			</div>
 		</div>

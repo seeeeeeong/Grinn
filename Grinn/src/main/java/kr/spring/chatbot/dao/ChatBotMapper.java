@@ -3,6 +3,7 @@ package kr.spring.chatbot.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -47,7 +48,10 @@ public interface ChatBotMapper {
 	public ChatBotRoomVO selectChatBotRoom(Integer croom_num);
 	
 	//챗봇방 나가기(종료)
-	//public void deleteChatBotRoomMember(ChatBotVO chatbotVO);
-	//public void deleteChatBot(Integer croom_num);
-	//public void deleteChatBotRoom(Integer croom_num);
+	@Delete("DELETE FROM chatbot_member WHERE croom_num=#{croom_num} AND mem_num=#{mem_num}")
+	public void deleteChatBotRoomMember(ChatBotVO chatbotVO);
+	@Delete("DELETE FROM chatbot_room WHERE croom_num=#{croom_num}")
+	public void deleteChatBotRoom(Integer croom_num);
+	@Delete("DELETE FROM chatbot WHERE croom_num=#{croom_num}")
+	public void deleteChatBot(Integer croom_num);
 }

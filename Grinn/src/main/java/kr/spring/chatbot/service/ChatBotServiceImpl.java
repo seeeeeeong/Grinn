@@ -80,8 +80,22 @@ public class ChatBotServiceImpl implements ChatBotService{
 
 	//챗봇방 나가기
 	@Override
-	public void deleteChatBotRoom(ChatBotVO chatbotVO) {
+	public void deleteChatBotRoomMember(ChatBotVO chatbotVO) {
+		chatbotMapper.deleteChatBotRoomMember(chatbotVO);
+		/*
+		 * List<ChatBotMemberVO> list =
+		 * chatbotMapper.selectChatBotMember(chatbotVO.getCroom_num());
+		 * 
+		 * if(list.size() > 1) { //탈출메세지?
+		 * chatbotVO.setC_num(chatbotMapper.selectChatBotNum());
+		 * chatbotMapper.insertChatBot(chatbotVO); }else {//아닌거같은디..
+		 * chatbotMapper.deleteChatBot(chatbotVO.getCroom_num());
+		 * chatbotMapper.deleteChatBotRoom(chatbotVO.getCroom_num()); }
+		 */
 		
+		chatbotVO.setC_num(chatbotMapper.selectChatBotNum());
+		chatbotMapper.deleteChatBot(chatbotVO.getCroom_num());
+		chatbotMapper.deleteChatBotRoom(chatbotVO.getCroom_num());
 	}
 	
 	

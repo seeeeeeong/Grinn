@@ -204,14 +204,14 @@ $(function(){
 							output += '<div class="item">';
 							output += '<span>'+item.message.replace(/\r\n/g,'<br>').replace(/\r/g,'<br>').replace(/\n/g,'<br>')+'</span>';
 							output += '</div>';
-							if(item.mem_num == param.user_num){
+							if(item.mem_num == param.user_num){//발신 메세지
 								//		메세지를 읽지않은 사람수			시간 추출
 							output += '<div style="text-align:left">';
 								if(item.read_count > 0){
 									output += item.read_count+'<br>';
 								}
 							output += item.chat_date.split(' ')[1]+'</div>';
-							}else{
+							}else{//수신 메세지
 								//		메세지를 읽지않은 사람수			시간 추출
 							output += '<div style="text-align:right">';
 								if(item.read_count > 0){

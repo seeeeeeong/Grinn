@@ -126,6 +126,11 @@ public class ChatBotController {
 			
 			log.debug("<<채팅 메시지 전송>> : " + vo);
 			
+			Map<String,Integer> map = new HashMap<String,Integer>();
+			map.put("c_num", vo.getC_num());
+			map.put("croom_num", vo.getCroom_num());
+			map.put("mem_num", vo.getMem_num());
+			
 			chatbotService.insertChatBot(vo);
 			
 			mapJson.put("result", "success");
@@ -160,19 +165,25 @@ public class ChatBotController {
 	}
 	
 	/* ====================== 채팅방 나가기 ====================== */
-	
-	
+	@RequestMapping("/chatbot/deleteChatBotRoomMemberAjax.do")
+	@ResponseBody
+	public Map<String, String> memberDeleteAjax(ChatBotVO chatbotVO, HttpSession session){
+		Map<String, String> mapJson = new HashMap<String, String>();
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		
+		if(user==null) {//로그인이 되지 않은 경우
+			mapJson.put("result", "logout");
+		}else {//로그인 된 경우
+			chatbotVO.setMem_num(user.getMem_num());
+			//chatbotVO.setMessage(user.getMem_id()+"님의 문의가 종료됩니다.");
+			chatbotService.deleteChatBotRoomMember(chatbotVO);
+			chatbotVO.getC_num();
+			
+			mapJson.put("result", "success");
+		}
+		log.debug("<<문의나가기 : " + chatbotVO);
+		return mapJson;
+	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -73,21 +73,22 @@ $(function(){
 						}
 						//일반 메시지 전송
 						if(item.mem_num == param.user_num){
-							output += '<div class="form-position">' + item.mem_id + '</div>';
+							//output += '<div class="form-position">' + item.mem_id + '</div>'; //발신자 아이디
 						}else{
 							output += '<div class="to-position">';
 							output += '<div class="space-photo">';
 							output += '<img src="../images/how_to_question.jpg" width="40" height="40" class="my-photo">';
 							output += '</div><div class="space-message">';
-							output += item.mem_id;
+							output += item.mem_id+'ChatBot'; //상대방 아이디?->챗봇으로 떠야하나
 						}
 						output += '<div class="item">';
-						output += ' <span>'+item.msgInputArea+'</span>';
+						output += ' <span>'+item.message.replace(/\r\n/g,'<br>').replace(/\r/g,'<br>').replace(/\n/g,'<br>')+'</span>';
 						//시간 추출
 						output += '<div class="align-right">'+item.croom_regdate.split(' ')[1]+'</div>';
-						output += '</div>';
-						output += '</div><div class="space-clear"></div>';
-						output += '</div>';
+						output += '</div>'; //end of item
+						output += '</div>'; //end of space-message
+						output += '<div class="space-clear"></div>';
+						output += '</div>'; //end of to-position
 						
 						//문서 객체에 추가
 						$('#chatbot_message').append(output);
@@ -108,7 +109,7 @@ $(function(){
 	}
 	
 	//메시지 입력 후 enter 이벤트 처리
-	$('#msgInputArea').keydown(function(event){
+	$('#message').keydown(function(event){
 		if(event.keyCode == 13 && !event.shiftKey){
 			$('#c_detail_form').trigger('submit');
 		}
@@ -116,12 +117,12 @@ $(function(){
 	
 	//채팅 등록
 	$('#c_detail_form').submit(function(event){
-		if($('#msgInputArea').val().trim()==''){
+		if($('#message').val().trim()==''){
 			alert('메시지를 입력하세요!');
-			$('#msgInputArea').val('').focus();
+			$('#message').val('').focus();
 			return false;
 		}
-		if($('#msgInputArea').val().length>1333){
+		if($('#message').val().length>1333){
 			alert('메시지를 1333자까지만 입력 가능합니다.');
 			return false;
 		}
@@ -140,7 +141,7 @@ $(function(){
 					msg_socket.close();
 				}else if(param.result == 'success'){
 					//폼 초기화
-					$('#msgInputArea').val('').focus();
+					$('#message').val('').focus();
 					//메시지가 저장되었다고 소켓에 신호를 보냄
 					msg_socket.send('msg:');
 				}else{
@@ -158,7 +159,7 @@ $(function(){
 	});
 	
 	/* 챗봇문의방 나가기 */
-	$('#exit_croom').click(function(){
+	$('#delete_chatbotRoom').click(function(){
 		let choice = confirm('채팅방을 나가길 원하시나요?');
 		if(!choice){
 			return;
@@ -189,7 +190,7 @@ $(function(){
 				msg_socket.close();
 			}
 		});
-	})
+	});
 	
 });
 
