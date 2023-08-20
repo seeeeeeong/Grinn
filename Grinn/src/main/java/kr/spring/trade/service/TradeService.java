@@ -123,7 +123,7 @@ public interface TradeService {
 	public void updateTradeStateToSend(Integer trade_num);
 
 	// 거래 정보 개수
-	public int getTradeListCount();
+	public int getTradeListCount(Integer status);
 
 	// 거래 정보 조회
 	public List<TradeVO> getTradeList(Map<String, Object> map);

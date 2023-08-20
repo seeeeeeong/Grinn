@@ -72,8 +72,8 @@ public class AdminTradeController {
 			mav.setViewName("common/resultView");
 			return mav;
 		}else {
-			count = tradeService.getTradeListCount();
-			page = new PagingUtil(currentPage,count,10,5,"/trade/admin_list.do");
+			count = tradeService.getTradeListCount(status);
+			page = new PagingUtil(currentPage,count,10,5,"/trade/admin_list.do","&status="+status);
 			
 			if(count > 0) {
 				map.put("start",page.getStartRow());

@@ -167,8 +167,7 @@ public interface TradeMapper {
 	 * ======================================================================================================================
 	 **/
 	// 거래 정보 개수
-	@Select("SELECT COUNT(*) FROM trade t LEFT JOIN trade_detail d ON t.trade_num=d.trade_num")
-	public int getTradeListCount();
+	public int getTradeListCount(Integer status);
 	// 거래 정보 조회
 	public List<TradeVO> getTradeList(Map<String, Object> map);
 	// 거래 상세 정보 조회
