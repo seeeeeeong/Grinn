@@ -57,40 +57,43 @@
 								</div>
 								<p class="item_title">그린 드로우</p>
 							</div>
+							<c:forEach var="promotion" items="${promotionList}" varStatus="status">
+								<div class="collection_item">
+									<div class="item_img">
+										<a href="${pageContext.request.contextPath}/promotion/detail.do?pro_num=${promotion.pro_num}">
+											<img class="item_img_bg"
+												src="${pageContext.request.contextPath}/images/event${status.index+1}.png">
+										</a>
+									</div>
+									<p class="item_title">${promotion.pro_name}</p>
+								</div>
+							</c:forEach>
 							<div class="collection_item">
 								<div class="item_img">
-									<img class="item_img_bg"
-										src="${pageContext.request.contextPath}/images/event_sony.jpeg">
+									<a href="${pageContext.request.contextPath}/item/itemList.do?tab=2">
+										<img class="item_img_bg"
+											src="${pageContext.request.contextPath}/images/new.png">
+									</a>
 								</div>
-								<p class="item_title">8월 이벤트</p>
+								<p class="item_title">상의 추천</p>
 							</div>
 							<div class="collection_item">
 								<div class="item_img">
-									<img class="item_img_bg"
-										src="${pageContext.request.contextPath}/images/summer.jpeg">
+									<a href="${pageContext.request.contextPath}/item/itemList.do?tab=3">
+										<img class="item_img_bg"
+											src="${pageContext.request.contextPath}/images/male.png">
+									</a>
 								</div>
-								<p class="item_title">SUMMER 이벤트</p>
+								<p class="item_title">하의 추천</p>
 							</div>
 							<div class="collection_item">
 								<div class="item_img">
-									<img class="item_img_bg"
-										src="${pageContext.request.contextPath}/images/new.png">
+									<a href="${pageContext.request.contextPath}/item/itemList.do?tab=1">
+										<img class="item_img_bg"
+											src="${pageContext.request.contextPath}/images/female.png">
+									</a>	
 								</div>
-								<p class="item_title">신상품</p>
-							</div>
-							<div class="collection_item">
-								<div class="item_img">
-									<img class="item_img_bg"
-										src="${pageContext.request.contextPath}/images/male.png">
-								</div>
-								<p class="item_title">남성 추천</p>
-							</div>
-							<div class="collection_item">
-								<div class="item_img">
-									<img class="item_img_bg"
-										src="${pageContext.request.contextPath}/images/female.png">
-								</div>
-								<p class="item_title">여성 추천</p>
+								<p class="item_title">신발 추천</p>
 							</div>
 						</div>
 					</div>
@@ -112,7 +115,7 @@
 				<div class="products-list">
 					<c:forEach var="item" items="${itemList}">
 						<div class="product-item">
-							<a>
+							<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}">
 								<div class="thumb-box">
 									<div class="product">
 										<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${item.item_num}">
@@ -153,7 +156,7 @@
 				<div class="brand-product">
 					<c:forEach var="brand" items="${brand}">
 						<div class="brand-item">
-						<a>
+						<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${brand.item_num}">
 							<div class="thumb-box">
 								<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${brand.item_num}">
 							</div>
