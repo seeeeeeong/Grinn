@@ -86,6 +86,12 @@
 	.next:hover{
 	  transform: translateX(10px);
 	}
+	
+	.style-title{
+		margin:0 auto;
+		width:500px;
+		text-align:center;
+	}
 	.style_form{
 		width:500px;
 		margin:0 auto;
@@ -129,9 +135,9 @@
     	width:100px;
     }
     .delete-tag{
-    	padding-top:70px;
-    	font-size:20pt;
+    	font-size:10pt;
     	cursor: pointer;
+    	
     }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/st_itemTag.js"></script>
@@ -175,7 +181,7 @@
   });
 </script>
 <div class="page-main">
-	<div class="style-title">스타일 수정</div>
+	<div><h2 class="style-title">스타일 수정</h2></div>
 	    <div class="style-photos">
 	    <div id="slideShow">
 	    <ul class="slides">
@@ -223,9 +229,9 @@
 				<div class="item-tag">
 					
 					<div class="tag-boxes">
-						<div class="delete-tag">&#x1F4A8</div>
 						<c:if test="${styleVO.item_num1 != 0}">
 						<div class="item-tag-box" id="box1" data-name="${styleVO.item_name1}">
+							<div class="delete-tag" id="del1">&#x2716</div>
 							<img 
 							src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${styleVO.item_num1}"
 							width="100" height="100" data-num="${styleVO.item_num1}">
@@ -235,6 +241,7 @@
 						</c:if>
 						<c:if test="${styleVO.item_num2 != 0}">
 						<div class="item-tag-box" id="box2" data-name="${styleVO.item_name2}">
+							<div class="delete-tag" id="del2">&#x2716</div>
 							<img 
 							src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${styleVO.item_num2}" 
 							width="100" height="100" data-num="${styleVO.item_num2}">
@@ -244,6 +251,7 @@
 						</c:if>
 						<c:if test="${styleVO.item_num3 != 0}">
 						<div class="item-tag-box" id="box3" data-name="${styleVO.item_name3}">
+							<div class="delete-tag" id="del3">&#x2716</div>
 							<img 
 							src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${styleVO.item_num3}" 
 							width="100" height="100" data-num="${styleVO.item_num3}">
@@ -264,7 +272,7 @@
 			</li>
 		</ul>
 		<div class="align-center">
-			<form:button class="submit-style">수정</form:button>
+			<form:button class="modify-style">수정</form:button>
 			<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/style/list.do'">
 		</div>
 	</form:form>

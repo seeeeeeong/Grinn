@@ -3,15 +3,56 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 스타일 작성 시작 -->
+<style>
+.style-title {
+	margin: 0 auto;
+	width: 500px;
+	text-align: center;
+}
+.up-la{
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  text-align:center;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: gray;
+  cursor: pointer;
+  border: 1px solid gray;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.up-la:hover {
+  background-color: black;
+}
+
+.up-la:active {
+  background-color: #367c36;
+}
+
+.upload {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+</style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/st_itemTag.js"></script>
 <div class="page-main">
-	<div class="style-title">스타일 올리기</div>
+	<div class="style-title"><h2>스타일 올리기</h2></div>
 	<form:form modelAttribute="styleVO" action="write.do" enctype="multipart/form-data" class="style_form">
 		<form:errors element="div" cssClass="error-color"/>
 		<ul>
 			<li>
-				<span style="font-size:30pt;">📷</span><br>
-				<input type="file" name="upload1" id="upload1" required onchange="handleFileSelection(1)"/>
+				<label for="upload1" class="up-la">이미지 업로드</label>
+				<input type="file" name="upload1" id="upload1" class="upload" required onchange="handleFileSelection(1)"/>
 				<input type="file" name="upload2" id="upload2" disabled onchange="handleFileSelection(2)" style="display: none;"/>
 			</li>
 			<li>

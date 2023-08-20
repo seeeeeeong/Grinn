@@ -128,7 +128,6 @@ $(function(){
       if($('#item_tag span').length == 0){
          $('.item-span').empty();
       }
-     
    });
    
    //올리기 버튼 클릭시 상품 태그 등록
@@ -140,30 +139,51 @@ $(function(){
 	    }
    });
    
-   /*$(document).on('click', '#box1', function(){
-	   $(this).remove();
-	   $('#item_num1').val('0');
+   //수정버튼
+   $(document).on('click', '.modify-style', function(){
+	   if(item_nameList.length == 1){
+		   if($('#item_num1').val() == '0'){
+			   $('#item_num1').val(item_nameList[0]);
+		   }else if($('#item_num2').val() == '0'){
+			   $('#item_num2').val(item_nameList[0]);
+		   }else{
+			   $('#item_num3').val(item_nameList[0]);
+		   }
+	   }
+	   
+	   if(item_nameList.length == 2){
+		   if($('#item_num1').val() == '0' && $('#item_num2').val() == '0'){
+			   $('#item_num1').val(item_nameList[0]);
+			   $('#item_num2').val(item_nameList[1]);
+		   }
+		   if($('#item_num2').val() == '0' && $('#item_num3').val() == '0'){
+			   $('#item_num2').val(item_nameList[0]);
+			   $('#item_num3').val(item_nameList[1]);
+		   }
+		   if($('#item_num1').val() == '0' && $('#item_num3').val() == '0'){
+			   $('#item_num1').val(item_nameList[0]);
+			   $('#item_num3').val(item_nameList[1]);
+		   }
+	   }
    });
-   $(document).on('click', '#box2', function(){
-	   $(this).remove();
-	   $('#item_num2').val('0');
-   });
-   $(document).on('click', '#box3', function(){
-	   $(this).remove();
-	   $('#item_num3').val('0');
-   });*/
 
-   $(document).on('click', '.delete-tag', function(){
+   $(document).on('click', '#del1', function(){
 	   if($('#item_num1').val() != '0'){
 		   $('#box1').remove();
 	   	   $('#item_num1').val('0');
 	   	   return;
 	   }
+   });
+   
+   $(document).on('click', '#del2', function(){
 	   if($('#item_num2').val() != '0'){
 		   $('#box2').remove();
 	   	   $('#item_num2').val('0');
 	   	   return;
 	   }
+   });
+   
+   $(document).on('click', '#del3', function(){
 	   if($('#item_num3').val() != '0'){
 	   	   $('#box3').remove();
 	       $('#item_num3').val('0');
