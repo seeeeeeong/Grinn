@@ -92,14 +92,31 @@ $(function(){
       });
    });
   
+  
+   let item_num = [];
+   if($('#item_num1').val() != '0'){
+	   item_num[0] = $('#item_num1').val()
+   }
+   if($('#item_num2').val() != '0'){
+	   item_num[1] = $('#item_num2').val()
+   }
+   if($('#item_num3').val() != '0'){
+	   item_num[2] = $('#item_num3').val()
+   }
    //검색된 상품 선택
    $(document).on('click', '#search_area li', function(){
       let item_name = $(this).text(); //선택한 상품 저장
       let item_num = $(this).attr('data-num'); //선택한 상품번호
+      if($('#item_num1').val() != '0' && $('#item_num2').val() != '0' && $('#item_num3').val() != '0'){
+		  alert('3개까지 추가 가능');
+		  $('#item_search').val('');
+		  $('#search_area').empty();
+		  return;
+	  }
       if(item_list.length <= 2) {
 		  item_list.push(item_name);
 	  }else{
-			alert('3개까지 추가 가능');
+	  		alert('3개까지 추가 가능');
 			$('#item_search').val('');
 			$('#search_area').empty();
 			return;
