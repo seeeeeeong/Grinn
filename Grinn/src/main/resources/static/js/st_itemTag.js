@@ -114,15 +114,7 @@ $(function(){
 		  return;
 	  }
       if(item_list.length <= 2) {
-		  if(item_num[0] != '0'){
-			  item_list.push(item_name);
-		  }
-		  if(item_num[1] != '0'){
-			  item_list.push(item_name);
-		  }
-		  if(item_num[2] != '0'){
-			  item_list.push(item_name);
-		  }
+		item_list.push(item_name);
 	  }else{
 	  		alert('3개까지 추가 가능');
 			$('#item_search').val('');
@@ -203,6 +195,7 @@ $(function(){
 		   $('#box1').remove();
 	   	   $('#item_num1').val('0');
 	   	   item_num[0] = '0';
+	   	   
 	   	   return;
 	   }
    });

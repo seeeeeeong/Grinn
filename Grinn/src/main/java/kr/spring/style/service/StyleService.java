@@ -26,6 +26,7 @@ public interface StyleService {
 	//좋아요
 	public StyleFavVO selectFav(StyleFavVO fav);
 	public int selectFavCount(Integer st_num);
+	public void updateFavCount(Integer fav_cnt,Integer st_num);
 	public void insertFav(StyleFavVO fav);
 	public void deleteFav(Integer stfav_num);
 	public void deleteFavByStNum(Integer st_num);

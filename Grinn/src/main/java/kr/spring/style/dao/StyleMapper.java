@@ -37,6 +37,8 @@ public interface StyleMapper {
 	public StyleFavVO selectFav(StyleFavVO fav);
 	@Select("SELECT COUNT(*) FROM style_fav WHERE st_num=#{st_num}")
 	public int selectFavCount(Integer st_num);
+	@Update("UPDATE style SET fav_cnt=#{fav_cnt} WHERE st_num=#{st_num}")
+	public void updateFavCount(Integer fav_cnt,Integer st_num);
 	@Insert("INSERT INTO style_fav (stfav_num,mem_num,st_num) VALUES (style_fav_seq.nextval,#{mem_num},#{st_num})")
 	public void insertFav(StyleFavVO fav);
 	@Delete("DELETE FROM style_fav WHERE stfav_num=#{stfav_num}")

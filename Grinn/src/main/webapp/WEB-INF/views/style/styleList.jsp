@@ -120,10 +120,13 @@ $(document).ready(function() {
     	<div class="align-right">
     		<a href="write.do"><span style="font-size:30pt;">&#x1F4F7</span></a>
     	</div>
+    	<div class="align-right">
+    		<a href="${pageContext.request.contextPath}/style/list.do?order=1"><b>최신순</b> </a><b>|</b>
+    		<a href="${pageContext.request.contextPath}/style/list.do?order=2"><b>인기순</b></a>
+    	</div>
     	<div class="style_list">
     		<c:forEach var="style" items="${list}">
             	<div class="style-item">
-                   
                 	<a href="detail.do?st_num=${style.st_num}">
                     	<img src="${pageContext.request.contextPath}/style/viewPhoto1.do?st_num=${style.st_num}" width="300" height="300">
                 	</a>

@@ -96,7 +96,7 @@
 			ORDER BY s.st_regdate DESC
 		</if>
 		<if test="order == 2"><!-- 좋아요순 조회 -->
-			
+			ORDER BY s.fav_cnt DESC
 		</if>
 	</sql>
 	

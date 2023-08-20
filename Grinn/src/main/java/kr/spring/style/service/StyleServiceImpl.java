@@ -127,6 +127,12 @@ public class StyleServiceImpl implements StyleService{
 		styleMapper.hideComment(com_num);
 	}
 
+	@Override
+	public void updateFavCount(Integer fav_cnt, Integer st_num) {
+		
+		styleMapper.updateFavCount(fav_cnt, st_num);
+	}
+
 	
 
 }

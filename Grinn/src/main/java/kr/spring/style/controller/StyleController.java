@@ -308,6 +308,7 @@ public class StyleController {
 		}
 		mapJson.put("count", styleService.selectFavCount(
 				                   fav.getSt_num()));
+		
 		return mapJson;
 	}
 	//좋아요 등록/삭제
@@ -328,6 +329,8 @@ public class StyleController {
 			StyleFavVO styleFav = styleService.selectFav(fav);
 			if(styleFav!=null) {//등록한 좋아요가 있으면 삭제
 				styleService.deleteFav(styleFav.getStfav_num());
+				styleService.updateFavCount(styleService.selectFavCount(fav.getSt_num()) - 1, fav.getSt_num());
+			
 				
 				mapJson.put("result", "success");
 				mapJson.put("status", "noFav");
@@ -337,8 +340,8 @@ public class StyleController {
 				mapJson.put("result", "success");
 				mapJson.put("status", "yesFav");
 			}
-			mapJson.put("count", styleService.selectFavCount(
-					                          fav.getSt_num()));
+			mapJson.put("count", styleService.selectFavCount(fav.getSt_num()));
+			styleService.updateFavCount(styleService.selectFavCount(fav.getSt_num()), fav.getSt_num());
 		}
 		return mapJson;
 	}
