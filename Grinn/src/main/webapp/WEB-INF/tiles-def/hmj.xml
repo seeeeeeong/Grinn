@@ -25,9 +25,13 @@
     	<put-attribute name="title" value="플리마켓 날짜 예약"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/selectDate.jsp"/>
     </definition>
-    <definition name="userMarketPage" extends="main">
+    <definition name="myMarketPage" extends="main">
     	<put-attribute name="title" value="플리마켓 예약 목록"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/user_bookList.jsp"/>
+    </definition>
+    <definition name="myMarketDetail" extends="main">
+    	<put-attribute name="title" value="플리마켓 예약 상세"/>
+	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/user_bookDetail.jsp"/>
     </definition>
     
     <!-- 프로모션 -->

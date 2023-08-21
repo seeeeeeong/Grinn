@@ -167,12 +167,24 @@ public class BookingController {
 		}
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("userMarketPage");
+		mav.setViewName("myMarketPage");
 		mav.addObject("count", count);
 		mav.addObject("userList", userList);
 		mav.addObject("page", page.getPage());
 				
 		return mav;
+	}
+	
+	
+	// 이용자 - 회원별 예약 상세
+	@RequestMapping("/fleamarket/bookDetail.do")
+	public String userDetail(@RequestParam int book_num, Model model) {
+		
+		BookingVO book = bookingService.selectBooking(book_num);
+		
+		model.addAttribute("bookingVO", book);
+		
+		return "myMarketDetail";
 	}
 	
 	
