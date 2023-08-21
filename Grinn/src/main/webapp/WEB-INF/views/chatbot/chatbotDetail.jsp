@@ -16,21 +16,12 @@
 		<ul class="list_talk">
 			<!-- 문의날짜는 chatbot.js에서 -->
 			<li class="log_my">
-				<div class="inner_talk">
-				<!-- inner_talk 시작 -> chatbot_message 그자체가 된다 -->
-					<div class="talk_info">
-						<div class="bubble">
-						<p class="txt">문의내용넣을곳</p>
-						<div id="chatbot_message"></div>
-						</div>
-						<div class="etc">
-							<span class="desc">읽음 <!--읽었는지는 체크 안해도 되겠지?--></span>
-							<span class="desc">오후 5:33 <!--채팅보낸시간 넣어줄거고--></span>
-						</div>
-					</div>
-				<!-- inner_talk 끝 -->
-				</div>
-			</li>
+			<!--	<div class="talk_info">
+					<div class="bubble"> -->
+					<div id="chatbot_message"></div>
+					<!-- </div>
+				</div>-->
+			</li> 
 			<li>
 				<!-- 답변을 여기서? -->
 			</li>

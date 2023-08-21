@@ -69,9 +69,36 @@ $(function(){
 						//날짜 추출 / 채팅이 시작된 날짜
 						if(croom_regdate != item.croom_regdate.split(' ')[0]){
 							croom_regdate = item.croom_regdate.split(' ')[0];
-							output += '<div class="date-position"><span>'+croom_regdate+'</span></div>';
+							output += '<div class="desc"><span>'+croom_regdate+'</span></div>';
 						}
 						//일반 메시지 전송
+						if(item.mem_num == param.user_num){//내가 보낸 메세지
+							output += '<div class="bubble">';
+							output += '<div class="inner_talk">';
+							output += '<div class="talk_info">';
+							output += '<span>'+item.message.replace(/\r\n/g,'<br>').replace(/\r/g,'<br>').replace(/\n/g,'<br>')+'</span>';
+							output += '</div>';//talk_info 끝
+							output += '</div>';//inner_talk 끝
+							output += '<div class="space-clear"></div>';
+							//시간 추출
+							output += '<div class="desc">'+item.croom_regdate.split(' ')[1]+'</div>';
+							output += '</div>';
+						}else{//답변 메세지
+							output += '<div class="bubble">';
+							output += '<div class="inner_talk">';
+							output += '<div class="talk_info">';
+							output += '<img src="../images/how_to_question.jpg" width="40" height="40" class="my-photo">';
+							
+							output += '</div>';//talk_info 끝
+							output += '</div>';//inner_talk 끝
+							output += '<div class="space-clear"></div>';
+							//시간 추출
+							output += '<div class="desc">'+item.croom_regdate.split(' ')[1]+'</div>';
+							output += '</div>';
+						}
+						
+						
+						/* 삭제예정
 						if(item.mem_num == param.user_num){
 							//output += '<div class="form-position">' + item.mem_id + '</div>'; //발신자 아이디
 						}else{
@@ -89,7 +116,7 @@ $(function(){
 						output += '</div>'; //end of space-message
 						output += '<div class="space-clear"></div>';
 						output += '</div>'; //end of to-position
-						
+						*/
 						//문서 객체에 추가
 						$('#chatbot_message').append(output);
 						//스크롤을 하단에 위치시킴

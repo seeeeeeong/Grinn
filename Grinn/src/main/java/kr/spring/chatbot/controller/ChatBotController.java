@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.chatbot.service.ChatBotService;
 import kr.spring.chatbot.vo.ChatBotMemberVO;
@@ -85,6 +86,8 @@ public class ChatBotController {
 		log.debug("croom_num : " + croom_num);
 		return "chatbotList";
 	}
+	
+	
 	
 	/* ====================== 챗봇 메시지 처리 ====================== */
 	//챗봇 메세지 페이지 호출

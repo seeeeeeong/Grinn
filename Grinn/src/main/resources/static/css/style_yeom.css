@@ -1,13 +1,6 @@
 @charset "UTF-8";
 /* 메인
 ------------------------*/
-/*
-.page-main{
-	width:98%;
-	margin:0 auto;
-	height: auto;
-}
-*/
 #main-footer{
 	position: fixed;
 	bottom: 0;
@@ -669,7 +662,7 @@ form#detail_form{
     font-weight: 400;
     font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
     list-style: none;
-    text-align: right;
+    text-align: center;
     display: block;
     padding: 0 5px 0;
     font-size: 12px;
@@ -691,6 +684,7 @@ form#detail_form{
 	left: 0;
 	right: 0;
 	height: 70px;
+	width: 100%;
 }
 .frame_msg{
     font-weight: 400;
@@ -701,6 +695,11 @@ form#detail_form{
     box-sizing: border-box;
     background-color: #fff;
     height: 70px;
+	width: 100%;
+}
+#c_detail_form{
+	border: none;
+	width: 100%;
 }
 .inner{
     font-weight: 400;
@@ -710,6 +709,7 @@ form#detail_form{
     border-radius: 18px;
     background-color: #f5f6f8;
     height: 50px;
+	width: 100%;
 }
 .blind{/* label */
     font-weight: 400;
@@ -721,7 +721,7 @@ form#detail_form{
     margin: -1px;
     overflow: hidden;
 }
-#msgInputArea{/* textarea */
+.msg_input{/* textarea */
     margin: 0 auto;
     padding: 0 auto;
     font-weight: 400;
@@ -737,7 +737,9 @@ form#detail_form{
     outline: transparent;
     padding-top: 2px;
     font-size: 13px;
+	width: 100%;
 }
+/* 보내기버튼 */
 .frame_attach{
     font-weight: 400;
     font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;

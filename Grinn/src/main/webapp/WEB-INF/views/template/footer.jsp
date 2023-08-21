@@ -108,7 +108,7 @@
 	</div>
 <script type="text/javascript">
 	function open3(){
-		window.open("${pageContext.request.contextPath}/chatbot/chatbotList.do", "_blank", "width=400, height=500");
+		window.open("${pageContext.request.contextPath}/chatbot/chatbotList.do", "_blank", "width=420, height=550");
 	}
 </script>
 <!-- 새창으로챗봇 끝  -->
