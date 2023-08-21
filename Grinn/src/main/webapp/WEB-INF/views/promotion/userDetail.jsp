@@ -38,6 +38,9 @@
 	<p>
 		${promotion.pro_content}
 	</p>
+	<div class="align-center">
+	<input type="button" value="메인" id="main_btn" class="btn small" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+	</div>
 	</c:if>
 </div>
 <!-- 프로모션 상세 끝 -->

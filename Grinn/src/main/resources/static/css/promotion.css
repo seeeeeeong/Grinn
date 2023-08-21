@@ -12,12 +12,20 @@
 }
 .pro-title{
 	font-size:25px;
-	margin:5px 0 5px 20px;
+	margin:5px 0 5px 40px;
 }
 .pro-period{
 	font-size:20px;
+	margin-right:25px;
 }
 .pro-ing{
 	font-size:18px;
-	margin-top:8px;
+	margin:8px 25px 0 0;
+}
+#main_btn{
+	width:60px;
+	height:40px;
+	font-weight:600;
+	color:#fff;
+	background-color:#222;
 }
