@@ -3,7 +3,12 @@
 <mapper namespace="kr.spring.penalty.dao.PenaltyMapper">
 	<resultMap type="penaltyVO" id="penaltyMap">
 		<result property="memberVO.mem_id" column="mem_id"></result>
-		<result property="memberVO.mem_id" column="mem_auth"></result>
+		<result property="memberVO.mem_auth" column="mem_auth"></result>
+	</resultMap>
+	<resultMap type="penaltyVO" id="selectMap">
+		<result property="memberVO.mem_id" column="mem_id"></result>
+		<result property="memberVO.mem_auth" column="mem_auth"></result>
+		<result property="memberVO.mem_nickname" column="mem_nickname"></result>
 	</resultMap>
 	
 	<insert id="insertPenalty" parameterType="penaltyVO">
@@ -24,8 +29,11 @@
 	<sql id="penaltySearch">
 		<where>
 			<if test="keyword != null and keyword != ''">
-				<if test="keyword == 1">
-					AND mem_id LIKE '%' || #{keyword} || '%'
+				<if test="keyfield == 1">
+					AND p.pe_num LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 2">
+					AND m.mem_id LIKE '%' || #{keyword} || '%'
 				</if>
 			</if>
 		</where>
@@ -36,11 +44,12 @@
 		SELECT 
 		  COUNT(*)
 		FROM
-		  penalty
+		  penalty p JOIN member m
+		  			  ON p.mem_num = m.mem_num
 		<include refid="penaltySearch"></include>
 	</select>
 	<!-- 전체/검색 레코드 목록 -->
-	<select id="selectList" parameterType="map" resultType="penaltyVO">
+	<select id="selectList" parameterType="map" resultMap="penaltyMap">
 	  SELECT 
 	    *
 	  FROM (SELECT 
@@ -48,12 +57,19 @@
 	          rownum rnum
 	        FROM (SELECT 
 	                *
-	              FROM penalty
+	              FROM penalty p LEFT OUTER JOIN member m 
+	                                          ON p.mem_num = m.mem_num 
 	              <include refid="penaltySearch"></include>
 	              ORDER BY pe_num DESC)a)
 	  <![CDATA[
 	  WHERE rnum >= #{start} AND rnum <= #{end}
 	  ]]>
+	</select>
+	
+	<select id="selectPenalty" resultMap="selectMap">
+		SELECT * FROM penalty p LEFT JOIN member m
+		                               ON p.mem_num = m.mem_num
+		WHERE pe_num=#{pe_num}
 	</select>
 	
 	<select id="selectPenaltyByMem_num" parameterType="map" resultType="integer">

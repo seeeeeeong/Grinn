@@ -21,7 +21,8 @@
 		<ul class="search">
 			<li>
 				<select name="keyfield" id="keyfield">
-					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>ID</option>
+					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>번호</option>
+					<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>ID</option>
 				</select>
 			</li>
 			<li>
@@ -42,21 +43,21 @@
 		<tr>
 			<th>페널티 번호</th>
 			<th>ID</th>
-			<th>등급</th>
 			<th>페널티</th>
 			<th>부여일</th>
 			<th>권한</th>
 		</tr>
 		<c:forEach var="pe" items="${list}">
 		<tr>
-			<td class="align-center">${pe.pro_num}</td>
-			<td class="align-center">${pe.mem_id}</td>
-			<td class="align-center">${pe.mem_auth}</td>
+			<td class="align-center">${pe.pe_num}</td>
+			<td class="align-center">${pe.memberVO.mem_id}</td>
 			<td class="align-center">${pe.pe_score}</td>
 			<td class="align-center">${pe.pe_date}</td>			
 			<td class="align-center">
-				<input type="button" value="상세보기" onclick="location.href='detailPenalty.do?pe_num=${pe.pe_num}'" class="detail-btn">
-				<input type="button" value="수정" onclick="location.href='updatePenalty.do?pe_num=${pe.pe_num}'" class="detail-btn">
+			<c:if test="${pe.memberVO.mem_auth != 0 or pe.memberVO.mem_auth != 9}">
+				<input type="button" value="상세보기" onclick="location.href='admin_detail.do?pe_num=${pe.pe_num}'" class="detail-btn">
+				<input type="button" value="수정" onclick="location.href='modifyPenalty.do?pe_num=${pe.pe_num}'" class="detail-btn">
+			</c:if>
 			</td>
 		</tr>
 		</c:forEach>

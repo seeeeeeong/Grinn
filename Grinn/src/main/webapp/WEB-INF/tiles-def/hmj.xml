@@ -80,6 +80,14 @@
     	<put-attribute name="title" value="페널티 목록(관리자)"/>
 	    <put-attribute name="body" value="/WEB-INF/views/penalty/adminPenaltyList.jsp"/>
     </definition>
+    <definition name="penaltyDetail" extends="admin">
+    	<put-attribute name="title" value="페널티 상세(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/penalty/adminPenaltyDetail.jsp"/>
+    </definition>
+    <definition name="penaltyModify" extends="admin">
+    	<put-attribute name="title" value="페널티 수정(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/penalty/adminPenaltyModify.jsp"/>
+    </definition>
     
     <!-- 프로모션 -->
     <definition name="adminWrite" extends="admin">

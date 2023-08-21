@@ -17,7 +17,7 @@ public interface PenaltyMapper {
 	// 페널티 부여
 	public void insertPenalty(PenaltyVO penaltyVO);
 	// 페널티 조회 - 관리자
-	@Select("SELECT * FROM penalty WHERE pe_num=#{pe_num}")
+	//@Select("SELECT * FROM penalty WHERE pe_num=#{pe_num}")
 	public PenaltyVO selectPenalty(Integer pe_num);
 	// 회원 번호별 합산된 페널티 - 이용자
 	public int selectPenaltyByMem_num(Map<String, Object> map);

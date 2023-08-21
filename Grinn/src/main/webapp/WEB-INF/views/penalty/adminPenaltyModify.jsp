@@ -1,20 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!-- 페널티 등록 시작 -->
+<!-- 페널티 수정 시작 -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/penalty.js"></script>
 <div class="page-main">
-	<h2>페널티 등록</h2>
-	<form:form modelAttribute="penaltyVO" action="adminPenaltyWrite.do" id="penalty_register">
+	<h2>페널티 수정</h2>
+	<form:form modelAttribute="penaltyVO" action="modifyPenalty.do" id="penalty_register" method="post">
+	<form:hidden path="pe_num"/>
 	<form:errors element="div" cssClass="error-color"></form:errors>
-		<ul class="register-label">
-			<li>
-				<label>ID</label>
-				<input type="text" name="mem_id"/>
-				<%-- 
-				<form:errors path="mem_num" cssClass="error-color"/>
-				--%>
-			</li>
+		<ul class="modify-label">
 			<li>
 				<form:label path="pe_score">점수</form:label>
 				<form:input path="pe_score" type="number"/>
@@ -41,9 +35,9 @@
 			
 		</ul>
 		<div class="align-center">
-			<form:button>등록</form:button>
+			<form:button>수정</form:button>
 			<input type="button" value="목록" onclick="location.href='admin_list.do'">
 		</div>
 	</form:form>
 </div>
-<!-- 페널티 등록 끝 -->
+<!-- 페널티 수정 끝 -->

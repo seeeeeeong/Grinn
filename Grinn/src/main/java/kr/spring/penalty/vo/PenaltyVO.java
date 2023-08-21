@@ -15,7 +15,7 @@ import lombok.ToString;
 public class PenaltyVO {
 	private int pe_num;
 	private int mem_num;
-	@Range(min=1, max=2)
+	@Range(min=1, max=3)
 	private int pe_service_type; // 페널티 유형(1:게시판, 2:거래)
 	@Range(min=0, max=100)
 	private int pe_score;
