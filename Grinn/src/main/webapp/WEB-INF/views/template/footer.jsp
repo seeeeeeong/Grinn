@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/floating.css">
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/chatbot.js"></script> --%>
 <div class = "footer">
@@ -98,17 +99,17 @@
 </div>
 <!-- 채팅 끝  -->
 <!-- 새창으로챗봇 시작 -->
-<div id="floating">
-	<input type="hidden" value="${croom_num}">
-	<button class="btn_chatbot" id="btn_chatbot" onclick="open3()">
-		<img src="${pageContext.request.contextPath}/images/how_to_question.jpg"
-			width="32" height="32">
-	</button>
-</div>
+	<div id="floating">
+		<input type="hidden" value="${croom_num}">
+		<button class="btn_chatbot" id="btn_chatbot" onclick="open3()">
+			<img src="${pageContext.request.contextPath}/images/how_to_question.jpg"
+				width="32" height="32">
+		</button>
+	</div>
 <script type="text/javascript">
-function open3(){
-  window.open("${pageContext.request.contextPath}/chatbot/chatbotList.do", "_blank", "width=400, height=500");
-}
+	function open3(){
+		window.open("${pageContext.request.contextPath}/chatbot/chatbotList.do", "_blank", "width=400, height=500");
+	}
 </script>
 <!-- 새창으로챗봇 끝  -->
 

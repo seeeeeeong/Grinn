@@ -64,7 +64,10 @@ public class AppConfig implements WebMvcConfigurer{
 				.addPathPatterns("/talk/talkDetail.do")
 				.addPathPatterns("/talk/talkRoomWrite.do")
 				.addPathPatterns("/item/itemReview.do")
-				.addPathPatterns("/item/itemReviewModify.do");
+				.addPathPatterns("/item/itemReviewModify.do")
+				.addPathPatterns("/chatbot/chatbotList.do")
+				.addPathPatterns("/chatbot/chatbotCreate.do")
+				.addPathPatterns("/chatbot/chatbotDetail.do");
 	}
 	
 	@Bean

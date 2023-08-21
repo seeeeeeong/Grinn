@@ -58,9 +58,6 @@
 			<include refid="search_faq"></include> AND
 			<include refid="no_category"></include>
 			)a)
-			<![CDATA[
-			WHERE rnum >= #{start} AND rnum <= #{end}
-			]]>
 	</select>
 	
 	<insert id="insertNotice" parameterType="noticeVO">
