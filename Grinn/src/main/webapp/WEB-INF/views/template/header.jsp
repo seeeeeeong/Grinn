@@ -96,17 +96,17 @@
                      </a>
                   </li>
                   <li class = "li_tab">
-                     <a class = "tab" href = "">
+                     <a class = "tab" href = "${pageContext.request.contextPath}/main/main.do?item_gender=1">
                         <span class = "tab_name">남성</span>
                      </a>
                   </li>
                   <li class = "li_tab">
-                     <a class = "tab" href = "">
+                     <a class = "tab" href = "${pageContext.request.contextPath}/main/main.do?item_gender=2">
                         <span class = "tab_name">여성</span>
                      </a>
                   </li>
                   <li class = "li_tab">
-                     <a class = "tab" href = "">
+                     <a class = "tab" href = "${pageContext.request.contextPath}/main/main.do?item_gender=3">
                         <span class = "tab_name">럭셔리</span>
                      </a>
                   </li>

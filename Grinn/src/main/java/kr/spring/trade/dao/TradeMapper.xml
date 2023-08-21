@@ -374,4 +374,20 @@
 		) b ON i.item_brand=b.item_brand AND i.item_date=b.item_date
 	</select>
 	
+	<!-- 메인페이지 : 카테고리별 아이템 정보 조회 -->
+	<select id="mainGetItemListForRecommend" parameterType="integer" resultType="itemVO">
+		SELECT * FROM (
+			SELECT a.* ,rownum rnum FROM (
+				SELECT * FROM 
+				item i 
+				LEFT OUTER JOIN 
+		    	(SELECT COUNT(*) fav_cnt, item_num FROM item_fav GROUP BY item_num) f 
+				ON i.item_num = f.item_num
+				WHERE i.item_gender = #{item_gender}
+				ORDER BY f.fav_cnt DESC NULLS LAST)a) 
+		<![CDATA[
+		where rnum>=1 and rnum<=4
+		]]>
+	</select>
+	
 </mapper>

@@ -103,16 +103,43 @@
 		<div class="home-products">
 			<div class="home-products-title">
 				<div class="title-wrap">
+				<c:if test="${item_gender == 0}">
 					<div class="title">
 						New Item
 					</div>
 					<div class="sub-title">
 						신규 상품
 					</div>
+				</c:if>
+				<c:if test="${item_gender == 1}">
+					<div class="title">
+						For Men
+					</div>
+					<div class="sub-title">
+						남성 추천 상품
+					</div>
+				</c:if>
+				<c:if test="${item_gender == 2}">
+					<div class="title">
+						For Women
+					</div>
+					<div class="sub-title">
+						여성 추천 상품
+					</div>
+				</c:if>	
+				<c:if test="${item_gender == 3}">
+					<div class="title">
+						Luxury
+					</div>
+					<div class="sub-title">
+						인기 럭셔리 상품
+					</div>
+				</c:if>							
 				</div>
 			</div>
 			<div class="home-products-list">
 				<div class="products-list">
+					<c:if test="${item_gender == 0}">
 					<c:forEach var="item" items="${itemList}">
 						<div class="product-item">
 							<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}">
@@ -138,6 +165,34 @@
 							</a>
 						</div>
 					</c:forEach>
+					</c:if>
+					<c:if test="${item_gender != 0}">
+					<c:forEach var="item" items="${itemGenderList}">
+						<div class="product-item">
+							<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}">
+								<div class="thumb-box">
+									<div class="product">
+										<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${item.item_num}">
+									</div>
+								</div>
+								<div class="info-box">
+									<div class="brand">
+										<p class="brand-text">${item.item_brand}</p>
+									</div>
+									<p class="name">${item.item_name}</p>
+									<div class="price">
+										<div class="amount">
+											<em><fmt:formatNumber value="${item.item_price}"/>원</em>
+										</div>
+										<div class="amount-notice">
+											<p>구매가</p>
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</c:forEach>
+					</c:if>
 				</div>
 			</div>
 		</div>

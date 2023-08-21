@@ -280,6 +280,11 @@ public class TradeServiceImpl implements TradeService{
 		return tradeMapper.mainGetItemList();
 	}
 
+	@Override
+	public List<ItemVO> mainGetItemListForRecommend(Integer item_gender) {
+		return tradeMapper.mainGetItemListForRecommend(item_gender);
+	}
+
 	
 
 }

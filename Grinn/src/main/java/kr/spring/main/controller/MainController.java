@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.item.service.ItemService;
 import kr.spring.item.vo.ItemVO;
@@ -36,7 +37,13 @@ public class MainController {
 	}
 	
 	@RequestMapping("/main/main.do")
-	public String main(Model model) {
+	public String main(@RequestParam(value="item_gender", defaultValue="0") int item_gender, Model model) {
+		
+		// 메인페이지 - 카테고리 선택 시 동작
+		if(item_gender > 0) { // 메인 - 헤더에서 카테고리 선택 시 동작
+			List<ItemVO> itemGenderList = tradeService.mainGetItemListForRecommend(item_gender);
+			model.addAttribute("itemGenderList",itemGenderList);
+		}
 		
 		// 메인페이지 - 신규 상품 목록
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -58,7 +65,7 @@ public class MainController {
 		model.addAttribute("itemList",list);
 		model.addAttribute("brand",brand);
 		model.addAttribute("promotionList",promotionList);
-		
+		model.addAttribute("item_gender",item_gender);
 		return "main";//타일스 설정의 식별자
 	}
 	
