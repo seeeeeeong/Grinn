@@ -56,10 +56,11 @@
          
          <div class = "header_main">
             <div class = "main_inner">
-            
+            <div style = "display: flex;">
                <h1>
                   <a id = "logo" class = "logo" href = "${pageContext.request.contextPath}/main/main.do">Grinn</a>
                </h1>
+            </div>
                <div class = "center"></div>
                <div class = "right">
                   <div class = "gnb_area">

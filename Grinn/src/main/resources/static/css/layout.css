@@ -169,8 +169,8 @@ button[type="submit"]{
 #member_delete input[id="id"], #member_delete input[id="passwd"]{
 	width:240px;
 }
-/* 로그인
-------------------------*/
+/* 로그인 */
+/*
 #member_login{
 	width:400px;
 	padding:0;
@@ -214,6 +214,7 @@ button[type="submit"]{
 	width:200px;
 	padding:0 0 5px 0;
 }
+*/
 /* Admin, MY페이지 공통
 ------------------------*/
 .side-bar{
@@ -491,12 +492,6 @@ header.css
 }
 
 
-
-
-
-.board_line{
-	
-}
 .header_main{
 	display: flex;
 	justify-content: flex-end;
@@ -527,8 +522,6 @@ header.css
 }
 .logo{
 	display: flex;
-	height: 24px;
-	width: 120px;
 	font-family: 'LeferiPoint-BlackObliqueA';
     font-weight: normal;
     font-style: normal;
