@@ -5,6 +5,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main_swiper.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.li_tab').eq(${item_gender}).css('font-weight','bold');
+	});
+</script>
 <div class = "body">
 	<div class="swiper-container mySwiper">
 		<div class="swiper-wrapper">
@@ -41,6 +46,7 @@
 				nextEl: ".swiper-button-next",
 				prevEl: ".swiper-button-prev",
 			},
+			
 		});
 	</script>
 	<div class="page-main">
@@ -196,6 +202,7 @@
 				</div>
 			</div>
 		</div>
+		<c:if test="${item_gender == 0}">
 		<div class="home-products-brand">
 			<div class="home-products-title">
 				<div class="title-wrap">
@@ -222,6 +229,138 @@
 				</div>
 			</div>
 		</div>
+		</c:if>
+		<c:if test="${item_gender == 1 || item_gender == 2 }">
+		<div class="home-products">
+			<div class="home-products-title">
+				<div class="title-wrap">
+					<div class="title">
+						<c:if test="${item_gender == 1}">Hit Men Shoes</c:if>
+						<c:if test="${item_gender == 2}">Hit Women Shoes</c:if>
+					</div>
+					<div class="sub-title">
+						<c:if test="${item_gender == 1}">인기 남성 신발 상품</c:if>
+						<c:if test="${item_gender == 2}">인기 여성 신발 상품</c:if>
+					</div>
+				</div>
+			</div>
+			<div class="home-products-list">
+				<div class="products-list">
+					<c:forEach var="itemGenderShoesList" items="${itemGenderShoesList}">
+						<div class="product-item">
+							<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${itemGenderShoesList.item_num}">
+								<div class="thumb-box">
+									<div class="product">
+										<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${itemGenderShoesList.item_num}">
+									</div>
+								</div>
+								<div class="info-box">
+									<div class="brand">
+										<p class="brand-text">${itemGenderShoesList.item_brand}</p>
+									</div>
+									<p class="name">${itemGenderShoesList.item_name}</p>
+									<div class="price">
+										<div class="amount">
+											<em><fmt:formatNumber value="${itemGenderShoesList.item_price}"/>원</em>
+										</div>
+										<div class="amount-notice">
+											<p>구매가</p>
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+		<div class="home-products">
+			<div class="home-products-title">
+				<div class="title-wrap">
+					<div class="title">
+						<c:if test="${item_gender == 1}">Hit Men Shirts</c:if>
+						<c:if test="${item_gender == 2}">Hit Women Shirts</c:if>
+					</div>
+					<div class="sub-title">
+						<c:if test="${item_gender == 1}">인기 남성 상의 상품</c:if>
+						<c:if test="${item_gender == 2}">인기 여성 상의 상품</c:if>
+					</div>
+				</div>
+			</div>
+			<div class="home-products-list">
+				<div class="products-list">
+					<c:forEach var="itemGenderShirtsList" items="${itemGenderShirtsList}">
+						<div class="product-item">
+							<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${itemGenderShirtsList.item_num}">
+								<div class="thumb-box">
+									<div class="product">
+										<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${itemGenderShirtsList.item_num}">
+									</div>
+								</div>
+								<div class="info-box">
+									<div class="brand">
+										<p class="brand-text">${itemGenderShirtsList.item_brand}</p>
+									</div>
+									<p class="name">${itemGenderShirtsList.item_name}</p>
+									<div class="price">
+										<div class="amount">
+											<em><fmt:formatNumber value="${itemGenderShirtsList.item_price}"/>원</em>
+										</div>
+										<div class="amount-notice">
+											<p>구매가</p>
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+		<div class="home-products">
+			<div class="home-products-title">
+				<div class="title-wrap">
+					<div class="title">
+						<c:if test="${item_gender == 1}">Hit Men Pants</c:if>
+						<c:if test="${item_gender == 2}">Hit Women Pants</c:if>
+					</div>
+					<div class="sub-title">
+						<c:if test="${item_gender == 1}">인기 남성 하의 상품</c:if>
+						<c:if test="${item_gender == 2}">인기 여성 하의 상품</c:if>
+					</div>
+				</div>
+			</div>
+			<div class="home-products-list">
+				<div class="products-list">
+					<c:forEach var="itemGenderPantsList" items="${itemGenderPantsList}">
+						<div class="product-item">
+							<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${itemGenderPantsList.item_num}">
+								<div class="thumb-box">
+									<div class="product">
+										<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${itemGenderPantsList.item_num}">
+									</div>
+								</div>
+								<div class="info-box">
+									<div class="brand">
+										<p class="brand-text">${itemGenderPantsList.item_brand}</p>
+									</div>
+									<p class="name">${itemGenderPantsList.item_name}</p>
+									<div class="price">
+										<div class="amount">
+											<em><fmt:formatNumber value="${itemGenderPantsList.item_price}"/>원</em>
+										</div>
+										<div class="amount-notice">
+											<p>구매가</p>
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+		</c:if>
 	</div>
 </div>
 

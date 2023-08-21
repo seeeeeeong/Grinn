@@ -939,7 +939,6 @@ body{
     letter-spacing: -.15px;
     margin-top: 8px;
 }
-
 /* 메인 푸터 */
 #main_footer{
 	padding-left: 40px;
@@ -950,7 +949,9 @@ body{
     max-width: 1280px;
     padding-bottom: 50px;
     padding-top: 50px;
+    margin-top: 50px;
 }
 .service_area{
 	border-top: 0;
+	padding-top: 0;
 }

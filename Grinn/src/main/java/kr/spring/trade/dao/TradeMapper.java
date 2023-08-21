@@ -195,6 +195,16 @@ public interface TradeMapper {
 	 **/
 	// 브랜드별 아이템 정보 조회
 	public List<ItemVO> mainGetItemList();
-	// 카테고리별 아이템 정보 조회 (좋아요 순으로 4개의 아이템 정보)
+	// 성별 아이템 정보 조회 (좋아요 순으로 4개의 아이템 정보)
 	public List<ItemVO> mainGetItemListForRecommend(Integer item_gender);
+	// 성벌 카테고리별 아이템 정보 조회
+	@Select("SELECT * FROM ("
+			+ "SELECT a.*, rownum rnum FROM("
+			+ "SELECT * FROM item i LEFT OUTER JOIN("
+			+ "SELECT COUNT(*) fav_cnt, item_num FROM item_fav GROUP BY item_num) f "
+			+ "ON i.item_num=f.item_num "
+			+ "WHERE i.item_gender=#{item_gender} AND i.item_cate=#{item_cate} "
+			+ "ORDER BY f.fav_cnt DESC NULLS LAST)a) "
+			+ "WHERE rnum>=1 AND rnum<=4")
+	public List<ItemVO> mainGetItemListForGenderCateRecommend(@Param(value="item_gender") Integer item_gender, @Param(value="item_cate") Integer item_cate);
 }

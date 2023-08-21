@@ -42,7 +42,13 @@ public class MainController {
 		// 메인페이지 - 카테고리 선택 시 동작
 		if(item_gender > 0) { // 메인 - 헤더에서 카테고리 선택 시 동작
 			List<ItemVO> itemGenderList = tradeService.mainGetItemListForRecommend(item_gender);
+			List<ItemVO> itemGenderShoesList = tradeService.mainGetItemListForGenderCateRecommend(item_gender, 1);
+			List<ItemVO> itemGenderShirtsList = tradeService.mainGetItemListForGenderCateRecommend(item_gender, 2);
+			List<ItemVO> itemGenderPantsList = tradeService.mainGetItemListForGenderCateRecommend(item_gender, 3);
 			model.addAttribute("itemGenderList",itemGenderList);
+			model.addAttribute("itemGenderShoesList",itemGenderShoesList);
+			model.addAttribute("itemGenderShirtsList",itemGenderShirtsList);
+			model.addAttribute("itemGenderPantsList",itemGenderPantsList);
 		}
 		
 		// 메인페이지 - 신규 상품 목록

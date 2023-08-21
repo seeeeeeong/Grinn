@@ -170,6 +170,9 @@ public interface TradeService {
 	// 브랜드별 아이템 정보 조회
 	public List<ItemVO> mainGetItemList();
 	
-	// 카테고리별 아이템 정보 조회 (좋아요 순으로 4개의 아이템 정보)
+	// 성별 아이템 정보 조회 (좋아요 순으로 4개의 아이템 정보)
 	public List<ItemVO> mainGetItemListForRecommend(Integer item_gender);
+	
+	// 성벌 카테고리별 아이템 정보 조회
+	public List<ItemVO> mainGetItemListForGenderCateRecommend(Integer item_gender,Integer item_cate);
 }

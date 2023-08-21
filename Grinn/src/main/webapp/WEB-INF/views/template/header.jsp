@@ -91,7 +91,7 @@
             <nav class = "tabs">
                <ul class = "ul_tab home_tabs">
                   <li class = "li_tab">
-                     <a class = "tab" href = "">
+                     <a class = "tab" href = "${pageContext.request.contextPath}/main/main.do">
                         <span class = "tab_name">추천</span>
                      </a>
                   </li>
