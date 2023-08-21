@@ -18,6 +18,9 @@
 		<result property="marketVO.place_name" column="place_name"/>
 		<result property="marketVO.booth_fee" column="booth_fee"/>
 	</resultMap>
+	<resultMap type="bookingVO" id="userBookingMap">
+		<result property="marketVO.market_title" column="market_title"/>
+	</resultMap>
 	<insert id="insertBooking" parameterType="bookingVO"> 
 		INSERT INTO booking(
 		  book_num,
@@ -100,7 +103,7 @@
 		<include refid="bookingSearchByUser"></include>
 	</select>
 	
-	<select id="selectListBookingByMem_num" parameterType="map" resultType="bookingVO">
+	<select id="selectListBookingByMem_num" parameterType="map" resultMap="userBookingMap">
 		SELECT
 		  *
 		FROM (SELECT
@@ -108,7 +111,8 @@
 			    rownum rnum
 			  FROM (SELECT
 			          *
-			        FROM booking
+			        FROM booking b JOIN market m
+		            				 ON b.market_num = m.market_num
 			        <include refid="bookingSearchByUser"></include>
 			        ORDER BY book_num DESC)a)
 	    <![CDATA[

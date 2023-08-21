@@ -284,6 +284,11 @@
 		]]>	
 	</select>
 	
+	<!-- 관리자 : 거래 정보 개수 -->
+	<select id="getTradeListCount" parameterType="integer" resultType="integer">
+		SELECT COUNT(*) FROM trade t LEFT JOIN trade_detail d ON t.trade_num=d.trade_num
+		<include refid="admin_tradeState"></include>
+	</select>
 	<!-- 관리자 : 거래 정보 조회 -->
 	<select id="getTradeList" parameterType="map" resultMap="tradeMap">
 		SELECT * FROM (

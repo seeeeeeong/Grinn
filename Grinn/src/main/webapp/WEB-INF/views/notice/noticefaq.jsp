@@ -136,8 +136,7 @@
 					</div>
 				</li>
 			</ul>
-		</div><br>
-		<div class="align-center">${page}</div>
+		</div>
 	</div>
 	<div class="page-clear"></div>
 </div>

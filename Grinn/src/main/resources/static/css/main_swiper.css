@@ -671,6 +671,7 @@ body{
     margin-left: calc(50% - 50vw);
     width: 100vw;
     position: relative;
+    z-index: 0;
 }
 
 

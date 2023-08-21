@@ -262,6 +262,8 @@ a:hover{
 .select-size .price {
     margin-top: 10px; /* Add margin at the top */
 }
+
+
 /* 아이템 디테일 페이지 */
 .itemDetailPage {
   display: flex;
@@ -463,6 +465,80 @@ h3{
 .Grinninfo{
 	color: rgba(34,34,34,.5);
 	margin-top:20px; 
+}
+/*거래내역 탭*/
+.wraps{
+  width: 500px;
+  margin: 20px auto;
+}
+
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	background-color: #f4f4f4;
+	border-radius: 10px;
+	display: flex;
+}
+ul.tabs li{
+  background: none;
+  color: #222;
+  display: block;
+  padding: 10px 15px;
+  cursor: pointer;
+  flex: 1;
+  margin: 4px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  text-align: center;
+}
+
+ul.tabs li.current{
+	background-color: #fff;
+	color: #222;
+	font-weight: 700;
+}
+
+.tabs-content{
+  display: none;
+  padding: 15px;
+}
+
+.tabs-content.current{
+  display: inherit;
+}
+.wraps table{
+	border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.wraps table th{
+	border-bottom: 1px solid #ebebeb;
+    color: rgba(34,34,34,.5);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -.06px;
+    line-height: 14px;
+    padding-bottom: 9px;
+}
+.wraps table td{
+	font-size: 14px;
+    line-height: 17px;
+    padding-top: 9px;
+}
+
+.aright{
+	text-align: right;
+}
+.aleft{
+	text-align: left;
+}
+.tab-none{
+	margin: 30px auto;
+    text-align: center;
 }
 
 /* 구매 전 확인해주세요! */

@@ -196,8 +196,8 @@ public class TradeServiceImpl implements TradeService{
 	}
 
 	@Override
-	public int getTradeListCount() {
-		return tradeMapper.getTradeListCount();
+	public int getTradeListCount(Integer status) {
+		return tradeMapper.getTradeListCount(status);
 	}
 
 	@Override

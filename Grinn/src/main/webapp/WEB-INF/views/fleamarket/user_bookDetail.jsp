@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
 <div class="page-main">
 	<h2 class="detail-border">예약 내역</h2>
-	<form:form modelAttribute="bookingVO" action="userDetail.do" id="book_detail">
+	<form:form modelAttribute="bookingVO" action="bookDetail.do" id="book_detail">
 		<form:hidden path="book_num"/>
 		<ul>
 			<li class="detail-poster">

@@ -203,4 +203,18 @@ $(function(){
 			}
 		}
 	}
+	
+	$(document).ready(function() {
+					//원래 li자리
+		$('ul.tabs .tabs-link').click(function() {
+			var tab_id = $(this).attr('data-tab');
+
+			$('ul.tabs .tabs-link').removeClass('current');
+			$('.tabs-content').removeClass('current');
+
+			$(this).addClass('current');
+			$("#" + tab_id).addClass('current');
+		})
+
+	})
 });
