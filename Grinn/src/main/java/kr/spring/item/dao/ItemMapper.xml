@@ -302,4 +302,12 @@
 		GROUP BY ps.item_sizenum, ps.item_size, ps.purchase_price
 		ORDER BY ps.item_sizenum, ps.purchase_price
 	</select>
+	
+	<select id = "selectSearchItem" parameterType = "string" resultType = "itemVO">
+		SELECT item_num, item_brand, item_name 
+		FROM item 
+		WHERE item_status = 2 AND UPPER(item_name) LIKE '%' || UPPER(#{item_name}) || '%'
+	</select>
+	
+	
 </mapper>

@@ -80,7 +80,6 @@ public interface ItemMapper {
 	public int stylecount(Integer item_num);
 	
 	// 투표
-	@Select("SELECT item_num, item_brand, item_name FROM item WHERE item_status == 1 AND item_name LIKE '%' || #{item_name} || '%'")
 	public List<ItemVO> selectSearchItem(String item_name);
 	
 }
