@@ -272,7 +272,7 @@ public class ItemController {
 		if(user!=null) {
 			mav.addObject("user_num", user.getMem_num());
 		}
-		System.out.println(tradeList);
+		
 		mav.addObject("purchaseList", purchaseList);
 		mav.addObject("saleList", saleList);
 		mav.addObject("stylecount", stylecount);

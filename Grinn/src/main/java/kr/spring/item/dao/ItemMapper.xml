@@ -267,6 +267,7 @@
 		]]>
 	</select>
 	
+	
 	<select id="saleList" parameterType="map" resultType="itemTradeVO">
 		SELECT
 			NVL(ps.item_size,'ONESIZE')item_size,
@@ -302,6 +303,7 @@
 		GROUP BY ps.item_sizenum, ps.item_size, ps.purchase_price
 		ORDER BY ps.item_sizenum, ps.purchase_price
 	</select>
+	
 	
 	<select id = "selectSearchItem" parameterType = "string" resultType = "itemVO">
 		SELECT item_num, item_brand, item_name 

@@ -29,38 +29,28 @@
     	</div>
     </div>
 	<form action="itemList.do" id="search_form" method="get">
-		<ul class="search">
-			<li>
+		<div class="itemListTop">
+		<div class="search">
+			<div>
 				<select name="keyfield" id="keyfield">
 					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>브랜드</option>
 					<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>상품명</option>
 				</select>
-			</li>
-			<li>
+			</div>
+			<div class="itemSearch">
 				<input type="search" name="keyword" id="keyword" value="${param.keyword}">
-			</li>
-			<li>
-				<input type="submit" value="찾기"> 
-				<input type="button" value="목록" onclick="location.href='itemList.do'">
-			</li>
-		</ul>
-		<div class="align-right">
+			</div>
+			<div>
+				<input type="image" src="../images/item_search.png" name="submit"> 
+			</div>
+		</div>
+		<div class="orderTop">
 			<select id="order" name="order">
 				<option value="1" <c:if test="${param.order == 1}">selected</c:if>>최신</option>
 				<option value="2" <c:if test="${param.order == 2}">selected</c:if>>관심상품순</option>
 				<option value="3" <c:if test="${param.order == 3}">selected</c:if>>리뷰순</option>
 			</select>
-			<!-- <script type="text/javascript">
-				$(function() {
-					$('#order').change(
-							function() {
-								location.href = 'itemList.do?keyfield='
-										+ $('#keyfield').val() + '&keyword='
-										+ $('#keyword').val() + '&order='
-										+ $('#order').val();
-							});
-				});
-			</script> -->
+		</div>
 		</div>
 	</form>
 	<c:if test="${count == 0}">
