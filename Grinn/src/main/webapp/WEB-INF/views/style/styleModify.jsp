@@ -182,7 +182,7 @@
 </script>
 <div class="page-main">
 	<div><h2 class="style-title">스타일 수정</h2></div>
-	    <div class="style-photos">
+	<div class="style-photos">
 	    <div id="slideShow">
 	    <ul class="slides">
 	    	<li>
@@ -225,7 +225,7 @@
 				<form:textarea path="st_phrase" rows="4" cols="60" placeholder="스타일을 자랑해보세요."/>
 			</li>
 			<li>
-				<div class=tag-title>상품 태그</div>
+				<div class="tag-title">상품 태그</div>
 				<div class="item-tag">
 					
 					<div class="tag-boxes">

@@ -10,6 +10,12 @@
            if (selectedImg) {
                upload2.removeAttribute('disabled');
                upload2.style.display = 'block';
+               var reader = new FileReader();
+			    reader.onload = function(e) {
+			      document.getElementById('preview1').src = e.target.result;
+			    };
+			    reader.readAsDataURL(selectedImg);
+			    document.getElementById('slideShow').style.display = 'block';
            } else {
                upload2.setAttribute('disabled', 'disabled');
                upload2.style.display = 'none';
@@ -20,6 +26,8 @@
                upload4.setAttribute('disabled', 'disabled');
                upload4.style.display = 'none';
                upload4.value = '';
+               document.getElementById('preview1').src = "";
+               document.getElementById('slideShow').style.display = 'none';
            }
        }
        
@@ -28,6 +36,14 @@
            if (selectedImg) {
                upload3.removeAttribute('disabled');
                upload3.style.display = 'block';
+               var reader = new FileReader();
+			    reader.onload = function(e) {
+			      document.getElementById('preview2').src = e.target.result;
+			    };
+			    reader.readAsDataURL(selectedImg);
+				document.getElementById('prev').style.display = 'block';
+				document.getElementById('next').style.display = 'block';
+				document.getElementById('preview2').style.display = 'block';
            } else {
                upload3.setAttribute('disabled', 'disabled');
                upload3.style.display = 'none';
@@ -35,6 +51,8 @@
                upload4.setAttribute('disabled', 'disabled');
                upload4.style.display = 'none';
                upload4.value = '';
+               document.getElementById('preview2').src = "";
+               document.getElementById('preview2').style.display = 'none';
            }
        }
        
@@ -43,12 +61,35 @@
            if (selectedImg) {
                upload4.removeAttribute('disabled');
                upload4.style.display = 'block';
+               var reader = new FileReader();
+			    reader.onload = function(e) {
+			      document.getElementById('preview3').src = e.target.result;
+			    };
+			    reader.readAsDataURL(selectedImg);
+			    document.getElementById('preview3').style.display = 'block';
            } else {
                upload4.setAttribute('disabled', 'disabled');
                upload4.style.display = 'none';
                upload4.value = '';
+               document.getElementById('preview3').src = "";
+               document.getElementById('preview3').style.display = 'none';
            }
        }
+       
+       if(fileNumber == 4){
+		   const selectedImg = upload4.files[0];
+		   if(selectedImg){
+               var reader = new FileReader();
+			    reader.onload = function(e) {
+			      document.getElementById('preview4').src = e.target.result;
+			    };
+			    reader.readAsDataURL(selectedImg);	
+			    document.getElementById('preview4').style.display = 'block';		   
+		   }else{
+			   document.getElementById('preview4').src = "";
+			   document.getElementById('preview4').style.display = 'none';
+		   }
+	   }
        
    }
 
