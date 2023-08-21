@@ -227,9 +227,93 @@
 						</div>
 					</div>
 				</div>
+				<h3><b>시세</b></h3>
+				<div class="wraps">
+					<ul class="tabs">
+						<li class="tabs-link current" data-tab="tab-1">체결 거래</li>
+						<li class="tabs-link" data-tab="tab-2">판매 입찰</li>
+						<li class="tabs-link" data-tab="tab-3">구매 입찰</li>
+					</ul>
+					<div id="tab-1" class="tabs-content current">
+						<c:if test="${empty latelyTrade}">
+							<div class="tab-none">
+								<span>거래 내역이 없습니다.</span>
+							</div>
+						</c:if>
+						<c:if test="${!empty latelyTrade}">
+							<div>
+								<table>
+									<tr>
+										<th class="aleft">사이즈</th>
+										<th class="aright">거래가</th>
+										<th class="aright">거래일</th>
+									</tr>
+									<c:forEach var="trade" items="${tradeList}">
+										<tr>
+											<td class="aleft">${trade.item_size}</td>
+											<td class="aright"><fmt:formatNumber value="${trade.trade_price}"/>원</td>
+											<td class="aright"><fmt:formatDate value="${trade.trade_regDate}" pattern="yy/MM/dd" /></td>
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+						</c:if>
+					</div>
+					<div id="tab-2" class="tabs-content">
+						<c:if test="${item.sale==0}">
+							<div class="tab-none">
+								<span>판매입찰이 없습니다.</span>
+							</div>
+						</c:if>
+						<c:if test="${item.sale>0}">
+							<div>
+								<table>
+									<tr>
+										<th class="aleft">사이즈</th>
+										<th class="aright">판매희망가</th>
+										<th class="aright">수량</th>
+									</tr>
+									<c:forEach var="saleList" items="${saleList}">
+										<tr>
+											<td class="aleft">${saleList.item_size}</td>
+											<td class="aright"><fmt:formatNumber value="${saleList.sale_price}" />원</td>
+											<td class="aright">${saleList.sale_cnt}</td>
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+						</c:if>
+					</div>
+					<div id="tab-3" class="tabs-content">
+						<c:if test="${empty purchase}">
+							<div class="tab-none">
+								<span>구매입찰이 없습니다.</span>
+							</div>
+						</c:if>
+						<c:if test="${!empty purchase}">
+							<div>
+								<table>
+									<tr>
+										<th class="aleft">사이즈</th>
+										<th class="aright">구매희망가</th>
+										<th class="aright">수량</th>
+									</tr>
+									<c:forEach var="purchaseList" items="${purchaseList}">
+										<tr>
+											<td class="aleft">${purchaseList.item_size}</td>
+											<td class="aright"><fmt:formatNumber
+													value="${purchaseList.purchase_price}" />원</td>
+											<td class="aright">${purchaseList.purchase_cnt}</td>
+										<tr>
+									</c:forEach>
+								</table>
+							</div>
+						</c:if>
+					</div>
+				</div>
 				<div>
 					<h3>
-						<b>구매 전 확인해주세요!</b>
+						<b>구매 전  꼭 확인해주세요!</b>
 					</h3>
 					<button class="accordion">배송 기간 안내</button>
 					<div class="panel">

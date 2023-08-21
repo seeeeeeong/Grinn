@@ -70,6 +70,8 @@
     
 	<sql id="itemCategory">
 		<choose>
+			<when test="tab == 0">
+			</when>
 			<when test="tab == 1">
 				AND item_cate = 1
 			</when><!-- 신발 -->
@@ -263,5 +265,41 @@
 		<![CDATA[
 		 AND rnum >= #{start} AND rnum <= #{end}
 		]]>
+	</select>
+	
+	<select id="saleList" parameterType="map" resultType="itemTradeVO">
+		SELECT
+			NVL(ps.item_size,'ONESIZE')item_size,
+			ps.sale_price,
+			COUNT(*) AS sale_cnt
+		FROM (
+			SELECT
+				sb.item_sizenum,
+				isz.item_size,
+				sb.sale_price
+			FROM sale_bid sb
+				INNER JOIN item_size isz ON sb.item_sizenum = isz.item_sizenum
+			WHERE sb.item_num=#{item_num} AND sale_deadline >= TO_CHAR(SYSDATE,'YYYYMMDD')
+		) ps
+		GROUP BY ps.item_sizenum, ps.item_size, ps.sale_price
+		ORDER BY ps.item_sizenum, ps.sale_price
+	</select>
+	
+	<select id="purchaseList" parameterType="map" resultType="itemTradeVO">
+		SELECT
+		    NVL(ps.item_size,'ONESIZE')item_size,
+		    ps.purchase_price,
+		    COUNT(*) AS purchase_cnt
+		FROM (
+		    SELECT
+		        pb.item_sizenum,
+		        isz.item_size,
+		        pb.purchase_price
+		    FROM purchase_bid pb
+		    INNER JOIN item_size isz ON pb.item_sizenum = isz.item_sizenum
+		    WHERE pb.item_num = #{item_num} AND purchase_deadline >= TO_CHAR(SYSDATE,'YYYYMMDD')
+		) ps
+		GROUP BY ps.item_sizenum, ps.item_size, ps.purchase_price
+		ORDER BY ps.item_sizenum, ps.purchase_price
 	</select>
 </mapper>

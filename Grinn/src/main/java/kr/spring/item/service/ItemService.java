@@ -5,10 +5,10 @@ import java.util.Map;
 
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemReviewVO;
+import kr.spring.item.vo.ItemTradeVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.item.vo.ItemstVO;
-import kr.spring.pbid.vo.PurchaseBidVO;
-import kr.spring.sbid.vo.SaleBidVO;
+import kr.spring.trade.vo.TradeVO;
 
 public interface ItemService {
 	
@@ -23,6 +23,10 @@ public interface ItemService {
 	public Integer latelyTrade(Integer item_num);
 	public void updateItem(ItemVO item);
 	public void deleteItem(Integer item_num);
+	
+	public List<TradeVO> tradeList(Integer item_num);
+	public List<ItemTradeVO> saleList(Integer item_num); 
+	public List<ItemTradeVO> purchaseList(Integer item_num); 
 	
 	//==관심상품==
 	public ItemFavVO selectFav(ItemFavVO fav);

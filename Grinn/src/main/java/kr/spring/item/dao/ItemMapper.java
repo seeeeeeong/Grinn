@@ -10,10 +10,12 @@ import org.apache.ibatis.annotations.Select;
 
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemReviewVO;
+import kr.spring.item.vo.ItemTradeVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.item.vo.ItemstVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
 import kr.spring.sbid.vo.SaleBidVO;
+import kr.spring.trade.vo.TradeVO;
 
 @Mapper
 public interface ItemMapper {
@@ -41,7 +43,10 @@ public interface ItemMapper {
 	public void updateItem(ItemVO item);
 	@Delete("DELETE FROM item WHERE item_num=#{item_num}")
 	public void deleteItem(Integer item_num);
-	
+	@Select("select d.trade_regdate,  NVL(s.item_size,'ONE SIZE')item_size, d.trade_price FROM trade_detail d INNER JOIN item_size s ON d.item_sizenum=s.item_sizenum WHERE item_num=#{item_num}")
+	public List<TradeVO> tradeList(Integer item_num);
+	public List<ItemTradeVO> saleList(Integer item_num); 
+	public List<ItemTradeVO> purchaseList(Integer item_num); 
 	
 	//==관심상품==
 	@Select("SELECT * FROM item_fav WHERE item_num=#{item_num} AND mem_num=#{mem_num}")

@@ -24,11 +24,13 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.spring.item.service.ItemService;
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemReviewVO;
+import kr.spring.item.vo.ItemTradeVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.item.vo.ItemstVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.sbid.vo.SaleSizePriceVO;
 import kr.spring.trade.service.TradeService;
+import kr.spring.trade.vo.TradeVO;
 import kr.spring.util.FileUtil;
 import kr.spring.util.PagingUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -225,12 +227,15 @@ public class ItemController {
 			@RequestParam(value = "order", defaultValue = "1") int order, String keyfield, String keyword,HttpSession session) {
 		
 		List<SaleSizePriceVO> sspList = tradeService.selectSaleSizePrice(item_num);
+		List<TradeVO> tradeList = itemService.tradeList(item_num);
+		List<ItemTradeVO> saleList = itemService.saleList(item_num);
+		List<ItemTradeVO> purchaseList = itemService.purchaseList(item_num);
 		ItemVO item = itemService.selectItem(item_num);
 		ItemVO sizeList = itemService.sizeListInfo(item_num);
 		if(sizeList != null) {
-		item.setItem_sizenum(sizeList.getItem_sizenum());
-		item.setItem_size(sizeList.getItem_size());
-		item.setSale(sizeList.getSale());
+			item.setItem_sizenum(sizeList.getItem_sizenum());
+			item.setItem_size(sizeList.getItem_size());
+			item.setSale(sizeList.getSale());
 		}
 		//Integer sale = itemService.minSale(item_num);
 		int stylecount=itemService.stylecount(item_num);
@@ -267,8 +272,12 @@ public class ItemController {
 		if(user!=null) {
 			mav.addObject("user_num", user.getMem_num());
 		}
+		System.out.println(tradeList);
+		mav.addObject("purchaseList", purchaseList);
+		mav.addObject("saleList", saleList);
 		mav.addObject("stylecount", stylecount);
 		mav.addObject("sspList", sspList);
+		mav.addObject("tradeList", tradeList);
 		mav.addObject("list", list);
 		mav.addObject("count", count);
 		mav.addObject("page", page.getPage());
