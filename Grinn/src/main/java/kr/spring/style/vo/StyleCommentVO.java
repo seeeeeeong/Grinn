@@ -21,5 +21,6 @@ public class StyleCommentVO {
 	private String mem_id; //회원 아이디
 	private byte[] mem_photo;//프로필 사진
 	private String mem_photo_name; //프로필 사진명
+	
 
 }

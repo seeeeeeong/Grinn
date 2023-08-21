@@ -52,7 +52,7 @@ public interface StyleMapper {
 	public List<StyleCommentVO> selectListComment(Map<String,Object> map);
 	@Select("SELECT COUNT(*) FROM style_comment WHERE st_num=#{st_num}")
 	public int selectRowCountComment(Map<String,Object> map);
-	@Select("SELECT * FROM style_comment c JOIN member_detail d ON c.mem_num = d.mem_num WHERE com_num=#{com_num}")
+	@Select("SELECT s.com_comment, s.com_regdate, s.com_mdate, s.mem_num, s.st_num, m.mem_id, d.mem_photo_name, d.mem_photo FROM style_comment s LEFT OUTER JOIN member m ON s.mem_num = m.mem_num JOIN member_detail d ON m.mem_num = d.mem_num WHERE com_num=#{com_num}")
 	public StyleCommentVO selectComment(Integer com_num);
 	public void insertComment(StyleCommentVO styleComment);
 	@Update("UPDATE style_comment SET com_comment=#{com_comment}, com_mdate=SYSDATE WHERE com_num=#{com_num}")
