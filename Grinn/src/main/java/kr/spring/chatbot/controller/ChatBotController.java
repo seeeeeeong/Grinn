@@ -56,7 +56,7 @@ public class ChatBotController {
 		//채팅 멤버 초대문구 설정 시작
 		vo.setChatbotVO(new ChatBotVO());
 		vo.getChatbotVO().setMem_num(user.getMem_num());
-		vo.getChatbotVO().setMessage(user.getMem_id()+"님 반갑습니다. 문의하실 내용을 입력해주세요.");
+		vo.getChatbotVO().setMessage(user.getMem_id()+"님 반갑습니다. 문의하실 내용을 입력해주세요.@{welcome}@");
 		//채팅 멤버 초대문구 설정 끝
 		
 		chatbotService.insertChatBotRoom(vo);

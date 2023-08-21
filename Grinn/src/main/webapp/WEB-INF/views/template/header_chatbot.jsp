@@ -8,8 +8,5 @@
 			<a href="chatbotList.do"><strong class="tit">챗봇으로 문의하기</strong></a>
 		</div>
 	</div>
-	<div class="header_btn">
-		<button id="exit_croom" class="exit_btn" style="color:white;">나가기</button>
-	</div>
 </div>
 <!-- 챗봇 타이틀 끝 -->

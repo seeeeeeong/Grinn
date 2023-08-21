@@ -1,11 +1,12 @@
 @charset "UTF-8";
 /* 메인
 ------------------------*/
-#main-footer{
+#main-footer {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
 }
+
 #ha {
 	padding: 25px 0 16px 0;
 	border-bottom: 3px solid #222;
@@ -13,6 +14,7 @@
 	/*font-size: 27px;*/
 	margin: 0 auto;
 }
+
 #notice_title {
 	padding: 17px 0 19px;
 	display: flex;
@@ -23,747 +25,871 @@
 	font-size: 15px;
 	letter-spacing: -.15px;
 }
-.container{
+
+.container {
 	height: auto;
 }
 /* noticeDetail
 ------------------------*/
-.dropdown_head{/* faq도 사용*/
-    color: #222;
-    font-feature-settings: "frac" 0,"numr" 0;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 17px 0 19px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ebebeb;
-    cursor: pointer;
+.dropdown_head { /* faq도 사용*/
+	color: #222;
+	font-feature-settings: "frac" 0, "numr" 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 17px 0 19px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #ebebeb;
+	cursor: pointer;
 }
-.dropdown_head .title_box{/* faq도 사용*/
-    color: #222;
-    font-feature-settings: "frac" 0,"numr" 0;
-    cursor: pointer;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    margin-right: 10px;
+
+.dropdown_head .title_box { /* faq도 사용*/
+	color: #222;
+	font-feature-settings: "frac" 0, "numr" 0;
+	cursor: pointer;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	margin-right: 10px;
 }
-.title_box .date{
-	--global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    color: #222;
-    font-feature-settings: "frac" 0,"numr" 0;
-    cursor: pointer;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin-bottom: 1px;
-    display: inline-flex;
-    font-size: 12px;
-    letter-spacing: -.06px;
+
+.title_box .date { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	color: #222;
+	font-feature-settings: "frac" 0, "numr" 0;
+	cursor: pointer;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	margin-bottom: 1px;
+	display: inline-flex;
+	font-size: 12px;
+	letter-spacing: -.06px;
 }
-.title_box .title{
-	--global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    color: #222;
-    font-feature-settings: "frac" 0,"numr" 0;
-    cursor: pointer;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin: 0;
-    padding: 0;
-    font-size: 15px;
-    letter-spacing: -.15px;
+
+.title_box .title { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	color: #222;
+	font-feature-settings: "frac" 0, "numr" 0;
+	cursor: pointer;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	margin: 0;
+	padding: 0;
+	font-size: 15px;
+	letter-spacing: -.15px;
 }
-.dropdown_content{/* faq도 사용*/
-	--global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    color: #222;
-    font-feature-settings: "frac" 0,"numr" 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin: 0;
-    padding: 30px 30px 28px;
-    background-color: #fafafa;
-    border-bottom: 1px solid #ebebeb;
-    font-size: 14px;
-    letter-spacing: -.21px;
-    display: block;
+
+.dropdown_content { /* faq도 사용*/ 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	color: #222;
+	font-feature-settings: "frac" 0, "numr" 0;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	margin: 0;
+	padding: 30px 30px 28px;
+	background-color: #fafafa;
+	border-bottom: 1px solid #ebebeb;
+	font-size: 14px;
+	letter-spacing: -.21px;
+	display: block;
 }
-.dropdown_content .content{/* faq도 사용*/
-	--global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    color: #222;
-    font-feature-settings: "frac" 0,"numr" 0;
-    font-size: 14px;
-    letter-spacing: -.21px;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin: 0;
-    padding: 0;
-    max-width: 822px;
-    word-break: break-word;
+
+.dropdown_content .content { /* faq도 사용*/ 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	color: #222;
+	font-feature-settings: "frac" 0, "numr" 0;
+	font-size: 14px;
+	letter-spacing: -.21px;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	margin: 0;
+	padding: 0;
+	max-width: 822px;
+	word-break: break-word;
 }
 /* 목록보기/삭제하기/수정하기/글등록하기 버튼
 ------------------------*/
-.btn_list{
-	--global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    color: #222;
-    font-feature-settings: "frac" 0,"numr" 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin: 0;
-    padding: 0;
-    margin-top: 30px;
-    text-align: center;
-}
-.btn_list .btn_auth{
-    font-feature-settings: "frac" 0,"numr" 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    display: inline-flex;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-    text-align: center;
-    background-color: #fff;
-    padding: 0 18px;
-    height: 42px;
-    border-radius: 12px;
-    font-size: 14px;
-    letter-spacing: -.14px;
-    border: 1px solid #d3d3d3;
-    color: rgba(34,34,34,.8);
-}
-.btn_talkInput{
-    display: inline-flex;
+.btn_list { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	color: #222;
+	font-feature-settings: "frac" 0, "numr" 0;
 	box-sizing: border-box;
-    cursor: pointer;
-    height: 25px;
-    background-color: #fff;
-    border: 1px solid #d3d3d3;
-    font-size: 12px;
-    border-radius: 12px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	margin: 0;
+	padding: 0;
+	margin-top: 30px;
+	text-align: center;
+}
+
+.btn_list .btn_auth {
+	font-feature-settings: "frac" 0, "numr" 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	display: inline-flex;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #fff;
+	padding: 0 18px;
+	height: 42px;
+	border-radius: 12px;
+	font-size: 14px;
+	letter-spacing: -.14px;
+	border: 1px solid #d3d3d3;
+	color: rgba(34, 34, 34, .8);
+}
+
+.btn_talkInput {
+	display: inline-flex;
+	box-sizing: border-box;
+	cursor: pointer;
+	height: 25px;
+	background-color: #fff;
+	border: 1px solid #d3d3d3;
+	font-size: 12px;
+	border-radius: 12px;
 	float: right;
 }
-.btn_talkRoomName{
-    display: inline-flex;
+
+.btn_talkRoomName {
+	display: inline-flex;
 	box-sizing: border-box;
-    cursor: pointer;
-    height: 25px;
-    background-color: #fff;
-    border: 1px solid #d3d3d3;
-    font-size: 12px;
-    border-radius: 12px;
+	cursor: pointer;
+	height: 25px;
+	background-color: #fff;
+	border: 1px solid #d3d3d3;
+	font-size: 12px;
+	border-radius: 12px;
 }
 /* noticeAuth_policy
 ------------------------*/
-.categories{
-    font-feature-settings: "frac" 0,"numr" 0;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    margin-top: 16px;
+.categories {
+	font-feature-settings: "frac" 0, "numr" 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	margin-top: 16px;
 }
-.category_list{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: "frac" 0,"numr" 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin: 0;
-    padding: 0;
+
+.category_list { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	font-feature-settings: "frac" 0, "numr" 0;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	margin: 0;
+	padding: 0;
 }
-.category_list_items{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin: 0;
-    padding: 0;
-    font-feature-settings: "frac" 0,"numr" 0;
-    table-layout: fixed;
-    border-spacing: 0;
-    border: 0;
-    border-collapse: collapse;
-    width: 100%;
+
+.category_list_items { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	margin: 0;
+	padding: 0;
+	font-feature-settings: "frac" 0, "numr" 0;
+	table-layout: fixed;
+	border-spacing: 0;
+	border: 0;
+	border-collapse: collapse;
+	width: 100%;
 }
-.chunk_3{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: "frac" 0,"numr" 0;
-    border-spacing: 0;
-    border-collapse: collapse;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin: 0;
-    padding: 0;
-    color: rgba(34,34,34,.5);
-    text-align: center;
-    background-color: #fff;
-    display: inline-flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    font-size: 18px;
-    letter-spacing: -.09px;
-    height: 59px;
-    width: 33.3333333333%;
-    cursor: pointer;    
-    border-left: 0.5px solid #ebebeb;
-    border-top: 0.5px solid #ebebeb;
+
+.chunk_3 { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	font-feature-settings: "frac" 0, "numr" 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	margin: 0;
+	padding: 0;
+	color: rgba(34, 34, 34, .5);
+	text-align: center;
+	background-color: #fff;
+	display: inline-flex;
+	flex-direction: column-reverse;
+	justify-content: center;
+	font-size: 18px;
+	letter-spacing: -.09px;
+	height: 59px;
+	width: 33.3333333333%;
+	cursor: pointer;
+	border-left: 0.5px solid #ebebeb;
+	border-top: 0.5px solid #ebebeb;
 }
-#ch4,#ch5,#ch6{
+
+#ch4, #ch5, #ch6 {
 	border-bottom: 0.5px solid #ebebeb;
 }
-#ch3, #ch6{
+
+#ch3, #ch6 {
 	border-right: 0.5px solid #ebebeb;
 }
-.category_link{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: "frac" 0,"numr" 0;
-    border-spacing: 0;
-    border-collapse: collapse;
-    text-align: center;
-    font-size: 18px;
-    letter-spacing: -.09px;
-    font-weight: 700;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,.1);
-    text-decoration: none;
-    display: flex;
-    height: 100%;
-    align-items: center;
+
+.category_link { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	font-feature-settings: "frac" 0, "numr" 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+	text-align: center;
+	font-size: 18px;
+	letter-spacing: -.09px;
+	font-weight: 700;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, .1);
+	text-decoration: none;
+	display: flex;
+	height: 100%;
+	align-items: center;
 }
-.category_text{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: "frac" 0,"numr" 0;
-    border-spacing: 0;
-    border-collapse: collapse;
-    text-align: center;
-    font-size: 16px;
-    letter-spacing: -.09px;
-    font-weight: 700;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    padding-left: 18px;
-    padding-right: 18px;
-    margin: 0 auto;
-    overflow: hidden;
-    word-break: keep-all;
+
+.category_text { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	font-feature-settings: "frac" 0, "numr" 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+	text-align: center;
+	font-size: 16px;
+	letter-spacing: -.09px;
+	font-weight: 700;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	padding-left: 18px;
+	padding-right: 18px;
+	margin: 0 auto;
+	overflow: hidden;
+	word-break: keep-all;
 }
-.wrap{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    /*
-    -webkit-font-smoothing: antialiased;
-    */
-    font-feature-settings: "frac" 0,"numr" 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin: 0;
-    min-width: 320px;
-    min-height: 100%;
-    max-width: 882px;
-    color: #222;
-    /*
+
+.wrap { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	font-feature-settings: "frac" 0, "numr" 0;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	margin: 0;
+	min-width: 320px;
+	min-height: 100%;
+	max-width: 882px;
+	color: #222;
+	/*
     font-size: 14px;
     line-height: 1.2;
     */
-    appearance: none;
-    padding: 0;
+	appearance: none;
+	padding: 0;
 }
-.wrap .content{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: "frac" 0,"numr" 0;
-    color: #222;
-    font-size: 14px;
-    line-height: 1.2;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin: 0;
-    padding: 0;
+
+.wrap .content { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	font-feature-settings: "frac" 0, "numr" 0;
+	color: #222;
+	font-size: 14px;
+	line-height: 1.2;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	margin: 0;
+	padding: 0;
 }
-#description_wrap{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: "frac" 0,"numr" 0;
-    color: #222;
-    font-size: 14px;
-    line-height: 1.2;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    margin: 0;
-    padding: 20px 0 19px;
+
+#description_wrap { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	font-feature-settings: "frac" 0, "numr" 0;
+	color: #222;
+	font-size: 14px;
+	line-height: 1.2;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	margin: 0;
+	padding: 20px 0 19px;
 }
 /* noticeFaq
 ------------------------*/
-.dropdown_list{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: "frac" 0,"numr" 0;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.dropdown_list { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	font-feature-settings: "frac" 0, "numr" 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
-.dropdown{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: "frac" 0,"numr" 0;
-    list-style: none;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+
+.dropdown { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	font-feature-settings: "frac" 0, "numr" 0;
+	list-style: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
-.sort{
-    --global-header-height: 86px;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: "frac" 0,"numr" 0;
-    color: #222;
-    list-style: none;
-    cursor: pointer;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    box-sizing: border-box;
-    font-size: 14px;
-    letter-spacing: -.21px;
-    min-width: 68px;
-    width: 68px;
+
+.sort { 
+	-global-header-height: 86px;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	font-feature-settings: "frac" 0, "numr" 0;
+	color: #222;
+	list-style: none;
+	cursor: pointer;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	box-sizing: border-box;
+	font-size: 14px;
+	letter-spacing: -.21px;
+	min-width: 68px;
+	width: 68px;
 }
-.classOpenImg{
+
+.classOpenImg {
 	width: 20px;
 	height: 23px;
 	margin-left: auto;
 }
-.classCloseImg{
+
+.classCloseImg {
 	width: 20px;
 	height: 23px;
 	margin-left: auto;
 }
-.imgOpen,.imgClose{
-    font-feature-settings: "frac" 0,"numr" 0;
-    list-style: none;
-    cursor: pointer;
-    box-sizing: border-box;
-    flex-shrink: 0;
-    margin-left: auto;
-    margin-top: 0;
+
+.imgOpen, .imgClose {
+	font-feature-settings: "frac" 0, "numr" 0;
+	list-style: none;
+	cursor: pointer;
+	box-sizing: border-box;
+	flex-shrink: 0;
+	margin-left: auto;
+	margin-top: 0;
 }
-#search_form{
+
+#search_form {
 	margin: 0 auto;
 	padding: 0 auto;
 }
-.search_faq_div{
+
+.search_faq_div {
 	border-radius: 15px;
-    background-color: #f4f4f4;
-    font-size: 15px;
-    margin: 16px 0 20px;
-    width: 95%;
-    height: 30px;
-    padding: 11px 30px 11px 12px;
+	background-color: #f4f4f4;
+	font-size: 15px;
+	margin: 16px 0 20px;
+	width: 95%;
+	height: 30px;
+	padding: 11px 30px 11px 12px;
 }
-.search_faq_input{
-    box-sizing: border-box;
-    font-feature-settings: "frac" 0,"numr" 0;
-    border: 0;
-    outline: 0;
-    resize: none;
-    background-color: #f4f4f4;
-    font-size: 15px;
+
+.search_faq_input {
+	box-sizing: border-box;
+	font-feature-settings: "frac" 0, "numr" 0;
+	border: 0;
+	outline: 0;
+	resize: none;
+	background-color: #f4f4f4;
+	font-size: 15px;
 }
 /* notice_nav
 ------------------------*/
 
 /* talk(채팅하기)
 ------------------------*/
-.display-none{/* 개설된 채팅방이 없을때 */
+.display-none { /* 개설된 채팅방이 없을때 */
 	padding: 50px;
 	font-size: 20px;
 	text-align: center;
 }
 /* talkList */
-.chatList_main{
+.chatList_main {
 	margin-top: 30px;
 	width: 40%;
 	text-align: center;
 	float: left;
 }
-.chatDetail_main{
+
+.chatDetail_main {
 	width: 60%;
 	text-align: center;
 	float: right;
 }
-#chatting_message{
-	border:1px solid rgb(192, 192, 192);
-	width:660px;
-	height:500px;
-	margin:0 auto;
-	padding:10px;
-	overflow:auto;
+
+#chatting_message {
+	border: 1px solid rgb(192, 192, 192);
+	width: 660px;
+	height: 500px;
+	margin: 0 auto;
+	padding: 10px;
+	overflow: auto;
 }
-.date-position{
-	text-align:center;
+
+.date-position {
+	text-align: center;
 }
-.from-position{/* 내가보낸메세지 */
-	width:240px;
-	margin:10px 0 10px 390px;
+
+.from-position { /* 내가보낸메세지 */
+	width: 240px;
+	margin: 10px 0 10px 390px;
 }
-.from-position .item{/* 내가보낸메세지 */
+
+.from-position .item { /* 내가보낸메세지 */
 	background-color: #EEE;
-	padding:10px;
-	min-height:30px;
-	border-radius:20px;
+	padding: 10px;
+	min-height: 30px;
+	border-radius: 20px;
 }
-.to-position{/* 상대방이보낸메세지 */
-	width:280px;
-	margin:10px 0 10px 0;
+
+.to-position { /* 상대방이보낸메세지 */
+	width: 280px;
+	margin: 10px 0 10px 0;
 }
-.to-position .item{/* 상대방이보낸메세지 */
+
+.to-position .item { /* 상대방이보낸메세지 */
 	background-color: #d2d2ca;
-	padding:10px;
-	min-height:30px;
-	border-radius:20px;
+	padding: 10px;
+	min-height: 30px;
+	border-radius: 20px;
 }
-.to-position div.space-photo{
-	float:left;
-	width:15%;
+
+.to-position div.space-photo {
+	float: left;
+	width: 15%;
 }
-.to-position div.space-message{
-	float:left;
-	width:85%;
+
+.to-position div.space-message {
+	float: left;
+	width: 85%;
 }
-.to-position div.space-clear{
-	clear:both;
+
+.to-position div.space-clear {
+	clear: both;
 }
-.member-message{
-	width:500px;
-	min-height:20px;
-	border-radius:10px;
-	margin:10px auto;
-	text-align:center;
-	padding:8px 4px;
+
+.member-message {
+	width: 500px;
+	min-height: 20px;
+	border-radius: 10px;
+	margin: 10px auto;
+	text-align: center;
+	padding: 8px 4px;
 }
-form#detail_form{
-	width:660px;
-	border:1px solid rgb(192, 192, 192);
+
+form#detail_form {
+	width: 660px;
+	border: 1px solid rgb(192, 192, 192);
 	border-top: none;
 	height: 30px;
 }
-#message{
-    margin: 0 auto;
-    padding: 0 auto;
-    font-weight: 400;
-    overflow-y: auto;
-    width: 100%;
-    max-height: 57px;
-    border: 0 none;
-    line-height: 1.4em;
-    box-sizing: border-box;
-    resize: none;
-    outline: transparent;
-    font-size: 15px;
+
+#message {
+	margin: 0 auto;
+	padding: 0 auto;
+	font-weight: 400;
+	overflow-y: auto;
+	width: 100%;
+	max-height: 57px;
+	border: 0 none;
+	line-height: 1.4em;
+	box-sizing: border-box;
+	resize: none;
+	outline: transparent;
+	font-size: 15px;
 }
 /* chatbot(챗봇으로 문의)
 ------------------------*/
-#main_header{/* layout_chatbot.jsp */
-	width: 500px;
+#main_header { /* layout_chatbot.jsp */
+	width: 580px;
 }
-#body_chatbot{/* layout_chatbot.jsp */
-	width: 500px;
+
+#body_chatbot { /* layout_chatbot.jsp */
+	width: 580px;
+	height: auto;
 }
-.chatbot_header{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    color: #000;
-    -webkit-font-smoothing: antialiased;
-    width: 100%;
-    margin-bottom: auto;
-    background-color: #222;
+
+.chatbot_header {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	color: #000;
+	-webkit-font-smoothing: antialiased;
+	width: 100%;
+	margin-bottom: auto;
+	background-color: #222;
 	margin-bottom: 5px;
 }
-.title_area{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    color: #000;
-    -webkit-font-smoothing: antialiased;
-    position: relative;
-    margin: 0 86px 0 46px;
-    box-sizing: border-box;
-    margin-left: 20px;
+
+.title_area {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	color: #000;
+	-webkit-font-smoothing: antialiased;
+	position: relative;
+	margin: 0 86px 0 46px;
+	box-sizing: border-box;
+	margin-left: 20px;
 }
-.tit_room{
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    display: block;
-    position: relative;
-    font-weight: 700;
-    min-height: 23px;
-    color: #fff;
-    white-space: nowrap;
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
-    line-height: 56px;
+
+.tit_room {
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	display: block;
+	position: relative;
+	font-weight: 700;
+	min-height: 23px;
+	color: #fff;
+	white-space: nowrap;
+	margin: 0;
+	padding: 0;
+	font-size: 18px;
+	line-height: 56px;
 }
-.tit{
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    color: #fff;
-    font-size: 18px;
-    line-height: 56px;
-    max-width: 80%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display: inline-block;
-    vertical-align: top;
-}
-.header_btn{
-    margin: 0;
-    padding: 0;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    cursor: pointer;
-    border: 0;
-    background: none;
-}
-.exit_btn{
-    margin: 0;
-    padding: 0;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    cursor: pointer;
-    border: 0;
-    background: none;
-    float: left;
-    margin-left: 16px;
-}
-.talk_form{
-	border: none;
+
+.tit {
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	color: #fff;
+	font-size: 18px;
+	line-height: 56px;
 	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: inline-block;
+	vertical-align: top;
 }
-.chatbot_content{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    color: #000;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #fff;
+
+
+.chatbot_content {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	color: #000;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: absolute;
+	top: 70px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #fff;
+	overflow-y: scroll;
 }
-.list_talk{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    list-style: none;
-    padding: 0 15px 8px;
+
+.welcome_msg {
+	width: 100%;
+	min-height: 20px;
+	border-radius: 10px;
+	margin: 10px auto;
+	text-align: center;
+	padding: 8px 4px;
+	background-color: #626262;
+	color: white;
 }
-.date{
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    color: #000;
-    list-style: none;
-    display: block;
-    margin: 5px 0;
-    padding: 0;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 24px;
-    text-align: center;
-    margin-top: 10px;
+
+.list_talk {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	list-style: none;
+	padding: 0 15px 8px;
 }
-.log_my{
-    --talk_info-padding: 118px;
-    --bubble_snippet-width: 225px;
-    --snippet-desc-maxHeight: 37px;
-    --snippet-title-fontSize: 14px;
-    --snippet-text-fontSize: 13px;
-    --list_sticker-width: 20%;
-    -webkit-text-size-adjust: none;
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    color: #000;
-    -webkit-font-smoothing: antialiased;
-    list-style: none;
-    margin: 0;
-    padding: 8px 0;
+
+.date { /* 채팅날짜 출력 */
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	color: #000;
+	list-style: none;
+	display: block;
+	margin: 5px 0;
+	padding: 0; font-weight : 700;
+	font-size: 12px;
+	line-height: 24px;
+	text-align: center;
+	margin-top: 10px;
+	font-weight: 700;
 }
-.inner_talk{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    color: #000;
-    list-style: none;
-    position: relative;
-    max-width: calc(100% - var(--talk_info-padding));
-    padding-left: 40px;
-    float: right;
+
+.log_my { 
+	-talk_info-padding: 118px;
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
-.talk_info{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    color: #000;
-    list-style: none;
-    position: relative;
-    box-sizing: border-box;
-    float: right;
-    margin: 0;
-    padding: 0;
-    text-align: right;
+
+.inner_talk {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	list-style: none;
+	position: relative;
+	float: right;
 }
-.bubble{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    list-style: none;
-    overflow: hidden;
-    display: inline-block;
-    position: relative;
-    z-index: 0;
-    max-width: 100%;
-    line-height: 1.33;
-    word-break: break-word;
-    word-wrap: break-word;
-    vertical-align: bottom;
-    background-color: #dbdbdb;
-    text-align: left;
-    /* float: right; */
-    border-radius: 16px 16px 3px;
-    font-size: 13px;
+
+.bubble {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	list-style: none;
+	display: inline-block;
+	position: relative;
+	max-width: 100%;
+	min-height: 21px;
+	min-width: 30px;
+	line-height: 1.33;
+	word-break: break-word;
+	word-wrap: break-word;
+	vertical-align: bottom;
+	background-color: #dbdbdb;
+	text-align: left;
+	/* float: right; */
+	text-align: right;
+	border-radius: 16px 16px 3px;
+	font-size: 13px;
+	margin: 3px;
+	padding: 10px;
 }
-.txt{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    list-style: none;
-    line-height: 2.33;
-    word-break: break-word;
-    word-wrap: break-word;
-    text-align: left;
-    font-size: 13px;
-    padding: 0;
-    margin: 10px 12px 9px;
-    white-space: pre-wrap;
+
+.talk_info {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	list-style: none;
+	position: relative;
+	box-sizing: border-box;
+	float: right;
+	margin: 0;
+	padding: 0;
+	text-align: right;
 }
-.desc{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    list-style: none;
-    text-align: center;
-    display: block;
-    padding: 0 5px 0;
-    font-size: 12px;
-    color: #888;
-    line-height: 1.4em;
-    white-space: nowrap;
-    padding-left: 0;
-    padding-right: 18px;
+
+.to_inner_talk {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	list-style: none;
+	position: relative;
+	padding-left: 40px;
+	float: right;
 }
-.talk_write{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    z-index: 10;
-    margin-top: auto;
-    flex: none;
-    /* position: relative; */
-    position: absolute;
+
+.to_bubble {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	list-style: none;
+	overflow: hidden;
+	display: inline-block;
+	position: relative;
+	z-index: 0;
+	max-width: 100%;
+	min-height: 21px;
+	line-height: 1.33;
+	word-break: break-word;
+	word-wrap: break-word;
+	vertical-align: bottom;
+	background-color: #dbdbdb;
+	text-align: left;
+	/* float: right; */
+	text-align: right;
+	border-radius: 16px 16px 3px;
+	font-size: 13px;
+	margin: 3px;
+	padding: 10px;
+}
+
+.to_talk_info {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	list-style: none;
+	position: relative;
+	box-sizing: border-box;
+	float: right;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+
+.space-clear {
+	clear: both;
+}
+
+.txt {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	list-style: none;
+	line-height: 2.33;
+	word-break: break-word;
+	word-wrap: break-word;
+	text-align: left;
+	font-size: 13px;
+	padding: 0;
+	margin: 10px 12px 9px;
+	white-space: pre-wrap;
+}
+
+.desc { /* 나의 채팅시간 출력 */
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	list-style: none;
+	text-align: left;
+	display: block;
+	padding: 0 5px 0;
+	font-size: 12px;
+	color: #888;
+	line-height: 1.4em;
+	white-space: nowrap;
+	padding-left: 0;
+	/* padding-right: 18px; */
+}
+
+.to_desc { /* 상대방(답변)의 채팅시간 출력 */
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	list-style: none;
+	text-align: left;
+	display: block;
+	padding: 0 5px 0;
+	font-size: 12px;
+	color: #888;
+	line-height: 1.4em;
+	white-space: nowrap;
+	padding-left: 0;
+	/* padding-right: 18px; */
+}
+
+/* 메세지 입력창 */
+.talk_write {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	z-index: 9999;
+	flex: none;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	height: 70px;
 	width: 100%;
 }
-.frame_msg{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    position: relative;
-    min-height: 50px;
-    padding: 7px 55px 7px 16px;
-    box-sizing: border-box;
-    background-color: #fff;
-    height: 70px;
+
+.frame_msg {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	position: relative;
+	min-height: 50px;
+	padding: 7px 55px 7px 16px;
+	box-sizing: border-box;
+	background-color: #fff;
+	height: 70px;
 	width: 100%;
 }
-#c_detail_form{
+
+#c_detail_form {
 	border: none;
 	width: 100%;
 }
-.inner{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    padding: 9px 70px 7px 10px;
-    box-sizing: border-box;
-    border-radius: 18px;
-    background-color: #f5f6f8;
-    height: 50px;
+
+.inner {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	padding: 9px 70px 7px 10px;
+	box-sizing: border-box;
+	border-radius: 18px;
+	background-color: #f5f6f8;
+	height: 50px;
 	width: 100%;
 }
-.blind{/* label */
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    position: absolute;
-    clip: rect(0 0 0 0);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
+
+.blind { /* label */
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
 }
-.msg_input{/* textarea */
-    margin: 0 auto;
-    padding: 0 auto;
-    font-weight: 400;
-    overflow-y: auto;
-    width: 100%;
-    max-height: 57px;
-    border: 0 none;
-    line-height: 2em;
-    background-color: #f5f6f8;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    box-sizing: border-box;
-    resize: none;
-    outline: transparent;
-    padding-top: 2px;
-    font-size: 13px;
+
+.msg_input { /* textarea */
+	margin: 0 auto;
+	padding: 0 auto;
+	font-weight: 400;
+	overflow-y: auto;
+	width: 100%;
+	max-height: 57px;
+	border: 0 none;
+	line-height: 2em;
+	background-color: #f5f6f8;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	box-sizing: border-box;
+	resize: none;
+	outline: transparent;
+	padding-top: 2px;
+	font-size: 13px;
 	width: 100%;
 }
 /* 보내기버튼 */
-.frame_attach{
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    color: #000;
-    position: absolute;
-    bottom: 7px;
-    right: 0;
-    z-index: 1;
+.frame_attach {
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	color: #000;
+	position: absolute;
+	bottom: 7px;
+	right: 0;
+	z-index: 1;
 }
-.sendBtn{
+
+.sendBtn {
 	opacity: 0.3;
-    font-weight: 400;
-    font-family: Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,돋움,dotum,sans-serif;
-    text-decoration: none;
-    overflow: hidden;
-    float: right;
-    margin-right: 5px;
-    padding-bottom: 5px;
+	font-weight: 400;
+	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
+		sans-serif;
+	text-decoration: none;
+	overflow: hidden;
+	float: right;
+	margin-right: 5px;
+	padding-bottom: 5px;
 }
-.frame_attach button{
+
+.frame_attach button {
 	border: none;
 	background-color: white;
 }
-
-
-
-

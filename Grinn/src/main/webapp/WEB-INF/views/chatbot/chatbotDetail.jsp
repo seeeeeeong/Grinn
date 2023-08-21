@@ -16,12 +16,8 @@
 		<ul class="list_talk">
 			<!-- 문의날짜는 chatbot.js에서 -->
 			<li class="log_my">
-			<!--	<div class="talk_info">
-					<div class="bubble"> -->
-					<div id="chatbot_message"></div>
-					<!-- </div>
-				</div>-->
-			</li> 
+				<div id="chatbot_message"></div>
+			</li>
 			<li>
 				<!-- 답변을 여기서? -->
 			</li>
@@ -40,14 +36,6 @@
 						<input type="hidden" name="croom_num" id="croom_num" value="${param.croom_num}">
 						<textarea id="message" name="message" placeholder="메시지를 입력하세요." rows="1" class="msg_input"></textarea>
 					</div><!-- textarea의 id가 message -> DB에 저장된 컬럼도 message여야함 -->
-				
-					<!-- 보내기 버튼 수정또는삭제예정
-					<div class="frame_attach">
-						<button onclick="location.href='chatbotDetail.do'">
-							<img src="${pageContext.request.contextPath}/images/how_to_send.jpg" width="50" class="sendBtn">
-							<span class="blind">입력 완료</span>
-						</button>
-					</div> -->
 				</form>
 			</div>
 		</div>
