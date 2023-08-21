@@ -55,45 +55,5 @@ $(function(){
 		$('#booth_total_txt').text('총 금액 ' + total.toLocaleString() + '원');
 		
 	});
-	
-	// ===날짜 선택 예약===
-	$('#book_btn').submit(function(event){
-		if ($('#get_count').val() == ''){
-			alert('수량을 입력하세요');
-			$('#get_count').focus();
-			return false;
-		}
-		
-		if ($('#get_count').val() == 0){
-			alert('수량을 입력하세요');
-			$('#get_count').focus();
-			return false;
-		}
-		
-		let form_data = $(this).serialize();
-		
-		// 서버와 통신
-		$.ajax({
-			url:'select.do',
-			type:'post',
-			data:form_data,
-			dataType:'json',
-			success:function(param){
-				if (param.result == 'logout'){
-					alert('로그인 후 사용하세요');
-				} else if (param.result == 'success'){
-					alert('예약 확정 단계로 넘어갑니다');
-					location.href='checkBooking.do';
-				} else if (param.result == 'alreadyBooked'){
-					alert('이미 예약하셨습니다');
-				} else {
-					alert('플리마켓 예약 오류');
-				}
-			},
-			error:function(){
-				alert('네트워크 오류 발생')
-			}
-		});
-		event.preventDefault();
-	});         
+	         
 });

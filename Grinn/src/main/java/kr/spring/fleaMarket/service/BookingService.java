@@ -28,6 +28,4 @@ public interface BookingService {
 	public void bookBooth_count(Integer market_num);
 	// 예약 삭제
 	public void deleteBooking(Integer book_num);
-	// 예약 삭제에 따른 booth_count 증가
-	public void rollbackBooth_count(Integer market_num);
 }

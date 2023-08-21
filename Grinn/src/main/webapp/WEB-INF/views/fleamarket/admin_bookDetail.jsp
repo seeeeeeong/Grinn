@@ -7,13 +7,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
 <div class="page-main">
 	<h2 class="detail-border">예약 내역 - 관리자</h2>
+	<div class="detail-poster">
+		<img src="${pageContext.request.contextPath}/fleamarket/imageView.do?market_num=${bookingVO.marketVO.market_num}&photo_type=1"
+		width="280" height="380">
+	</div>
 	<form:form modelAttribute="bookingVO" action="detailBooking.do" id="book_detail">
 		<form:hidden path="book_num"/>
 		<ul>
-			<li class="detail-poster">
-			<img src="${pageContext.request.contextPath}/fleamarket/imageView.do?market_num=${bookingVO.marketVO.market_num}&photo_type=1"
-			width="250" height="300">
-			</li>
+			
 			<li class="detail-market">
 				<label class="user-label">플리마켓명</label>
 				${bookingVO.marketVO.market_title}
@@ -26,7 +27,7 @@
 				<label class="user-label">장소</label>
 				${bookingVO.marketVO.place_name}
 			</li>
-			<li class="detail-user">
+			<li class="detail-user book-border">
 				<label class="user-label">예약 번호</label>
 				${bookingVO.book_num}
 			</li>
@@ -55,7 +56,7 @@
 				<span>현장수령</span>
 			</li>
 		</ul>	
-		<div class="align-right">
+		<div class="align-right btn-area2">
 			<input type="button" value="예약 목록"
 			 onclick="location.href='${pageContext.request.contextPath}/fleamarket/admin_resList.do'">
 		</div>             

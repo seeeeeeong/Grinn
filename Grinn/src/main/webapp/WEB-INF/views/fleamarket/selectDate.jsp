@@ -69,7 +69,7 @@ $(function(){
 		<input type="hidden" name="market_startDate" value="${market.market_startDate}"/>
 		<input type="hidden" name="market_endDate" value="${market.market_endDate}"/>
 		<input type="hidden" name="booth_count" value="${market.booth_count}"/>
-		<input type="hidden" name="booth_fee" value="${market.booth_fee}"/>
+		<input type="hidden" name="booth_fee" value="${market.booth_fee}" id="booth_fee"/>
 		<form:errors element="div" cssClass="error-color"></form:errors>
 		<ul class="date-form">
 			<li class="book-flea-title">${market.market_title}</li>

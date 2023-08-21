@@ -45,6 +45,7 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public void deleteBooking(Integer book_num) {
 		bookingMapper.deleteBooking(book_num);
+		bookingMapper.rollbackBooth_count(book_num);
 	}
 
 	@Override
@@ -54,12 +55,6 @@ public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public void bookBooth_count(Integer market_num) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void rollbackBooth_count(Integer market_num) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -78,4 +73,5 @@ public class BookingServiceImpl implements BookingService{
 	public List<BookingVO> selectListBookingByMem_num(Map<String, Object> map) {
 		return bookingMapper.selectListBookingByMem_num(map);
 	}
+
 }

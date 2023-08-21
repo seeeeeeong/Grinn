@@ -192,9 +192,18 @@ public class BookingController {
 	
 	// 이용자 - 예약 취소
 	@RequestMapping("/fleamarket/bookingDelete.do")
-	public String bookDelete(@RequestParam int book_num) {
-		log.debug("<<예약 취소>> : " + book_num);
+	public String bookDelete(@RequestParam int book_num, Model model, HttpSession session, HttpServletRequest request) {
+		BookingVO db_book = bookingService.selectBooking(book_num);
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if (db_book.getMem_num() != user.getMem_num()) {
+			// 다른 회원 주문 취소 불가
+			model.addAttribute("message", "다른 회원의 예약을 취소할 수 없습니다.");
+			model.addAttribute("url", request.getContextPath() + "/fleamarket/marketList.do");
+			
+			return "common/resultView";
+		}
 		
+		// 예약 취소
 		bookingService.deleteBooking(book_num);
 		
 		return "redirect:/fleamarket/marketList.do";

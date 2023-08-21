@@ -263,17 +263,18 @@ table.market-table > td{
 }
 #book_detail{
 	border:none;
-	width:97%;
+	width:55%;
 	padding:10px;
+	float:left;
 }
 .detail-poster{
 	float:left;
-	width:40%;
+	width:30%;
 	position:relative;
+	margin:30px 20px 20px 30px;
 }
 .detail-market{
 	float:left;
-	width:45%;
 	font-size:18px;
 	margin:15px 0;
 	position:relative;
@@ -281,7 +282,19 @@ table.market-table > td{
 .detail-user{
 	font-size:18px;
 	position:relative;
+	margin-top:5px;
+}
+.book-border{
+	border-top:1px solid #eee;
+	padding-top:15px;
 }
 .user-label{
 	font-weight:600;
+}
+.btn-area2{
+	margin:30px 10px 0 0;
+}
+#delete_btn{
+	height:46px;
+	margin-right:5px;
 }
