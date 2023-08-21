@@ -250,7 +250,7 @@
 	</select>
 
 	
-	<!-- 스타일 전체/검색 목록 -->
+	<!-- 스타일 전체/검색 목록  -->
 	<select id="selectListST" parameterType="map" resultType="itemstVO">
 		SELECT * FROM (SELECT a.*, rownum rnum FROM
 		(SELECT st_num,

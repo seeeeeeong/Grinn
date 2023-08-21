@@ -37,7 +37,7 @@ public interface ItemMapper {
 	//최대 판매입찰가
 	@Select("SELECT MAX(purchase_price) FROM purchase_bid WHERE item_num=#{item_num} AND purchase_deadline >= TO_CHAR(SYSDATE,'YYYYMMDD')")
 	public Integer maxPurchase(Integer item_num);
-	//최근 거래금액
+	//최근 거래금액 
 	@Select("SELECT trade_price FROM trade_detail WHERE trade_regdate = (SELECT MAX(trade_regdate) FROM trade_detail WHERE item_num=#{item_num})")
 	public Integer latelyTrade(Integer item_num);
 	public void updateItem(ItemVO item);
