@@ -505,7 +505,6 @@ public class StyleController {
 			memberVO = memberService.selectMember(user.getMem_num());
 		}
 		
-		
 		viewProfileByMem_num(memberVO, request, model);
 		
 		return "imageView";
