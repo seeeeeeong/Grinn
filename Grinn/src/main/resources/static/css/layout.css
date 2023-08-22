@@ -146,7 +146,8 @@ button[type="submit"]{
 	height:31px;
 }
 /* 회원가입 등록, 수정, 삭제 폼
-------------------------*/
+------------------------*
+/*
 #member_register{
 	width:800px;
 }
@@ -169,6 +170,7 @@ button[type="submit"]{
 #member_delete input[id="id"], #member_delete input[id="passwd"]{
 	width:240px;
 }
+*/
 /* 로그인 */
 /*
 #member_login{
@@ -217,9 +219,6 @@ button[type="submit"]{
 */
 /* Admin, MY페이지 공통
 ------------------------*/
-.side-bar{
-	
-}
 .side-bar ul{
 	margin:0;
 	padding:0;
