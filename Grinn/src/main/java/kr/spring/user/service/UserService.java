@@ -137,9 +137,9 @@ public interface UserService {
 	public Integer getPenaltyTotalScore(Integer mem_num);
 
 	// 게시판 페널티
-	//public List<MemberVO> getPenaltyBoard(Integer mem_num);
+	public List<MemberVO> getPenaltyBoard(Integer mem_num);
 
 	// 거래 페널티
-	//public List<MemberVO> getPenaltyTrade(Integer mem_num);
+	public List<MemberVO> getPenaltyTrade(Integer mem_num);
 
 }

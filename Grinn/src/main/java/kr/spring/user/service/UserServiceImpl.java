@@ -48,19 +48,19 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getPenaltyTotalScore(mem_num);
 	}
 
-	/*
+	
 	@Override
 	public List<MemberVO> getPenaltyBoard(Integer mem_num) {
 		return userMapper.getPenaltyBoard(mem_num);
 	}
-	*/
+	
 
-	/*
+	
 	@Override
 	public List<MemberVO> getPenaltyTrade(Integer mem_num) {
 		return userMapper.getPenaltyTrade(mem_num);
 	}
-	*/
+	
 
 	@Override
 	public void updateEmail(MemberVO member) {

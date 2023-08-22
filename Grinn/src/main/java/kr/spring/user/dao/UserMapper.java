@@ -179,11 +179,11 @@ public interface UserMapper {
 	public Integer getPenaltyTotalScore(Integer mem_num);
 
 	// 게시판 페널티
-	//@Select("SELECT * FROM penalty_board WHERE mem_num = #{mem_num}")
-	//public List<MemberVO> getPenaltyBoard(Integer mem_num);
+	@Select("SELECT * FROM penalty_board WHERE mem_num = #{mem_num}")
+	public List<MemberVO> getPenaltyBoard(Integer mem_num);
 
 	// 거래 페널티
-	//@Select("SELECT * FROM penalty_trade WHERE mem_num = #{mem_num}")
-	//public List<MemberVO> getPenaltyTrade(Integer mem_num);
+	@Select("SELECT * FROM penalty_trade WHERE mem_num = #{mem_num}")
+	public List<MemberVO> getPenaltyTrade(Integer mem_num);
 
 }
