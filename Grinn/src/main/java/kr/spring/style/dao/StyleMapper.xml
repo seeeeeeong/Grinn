@@ -134,7 +134,7 @@
 		s.st_num, s.st_phrase,
 		s.st_photo1n, s.st_photo2n, s.st_photo3n, s.st_photo4n,
 		s.st_photo1, s.st_photo2, s.st_photo3, s.st_photo4,
-		s.st_regdate, s.st_mdate, s.mem_num, m.mem_id, d.mem_photo, d.mem_photo_name,
+		TO_CHAR(s.st_regdate, 'YYYY"년"MM"월"DD"일"') formatted_regdate, TO_CHAR(s.st_mdate, 'YYYY"년"MM"월"DD"일"') formatted_mdate, s.mem_num, m.mem_id, d.mem_photo, d.mem_photo_name,
 		i1.item_num item_num1, i1.item_name item_name1, i1.item_photo1 item_photo1_1, i1.item_photo1name item_photo1name_1,
 		i2.item_num item_num2, i2.item_name item_name2, i2.item_photo1 item_photo1_2, i2.item_photo1name item_photo1name_2,
 		i3.item_num item_num3, i3.item_name item_name3, i3.item_photo1 item_photo1_3, i3.item_photo1name item_photo1name_3
@@ -190,7 +190,7 @@
 	<!-- 댓글 목록 -->
 	<select id="selectListComment" parameterType="map" resultType="styleCommentVO">
 		SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT s.com_num,
-		            s.com_comment, s.com_regdate, s.com_mdate, s.mem_num, s.st_num, m.mem_id, d.mem_photo_name, d.mem_photo
+		            s.com_comment, TO_CHAR(s.com_regdate, 'YYYY"년"MM"월"DD"일"') formatted_regdate, TO_CHAR(s.com_mdate, 'YYYY"년"MM"월"DD"일"') formatted_mdate, s.mem_num, s.st_num, m.mem_id, d.mem_photo_name, d.mem_photo
 		            FROM style_comment s
 		            LEFT OUTER JOIN member m ON s.mem_num = m.mem_num
 		            LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num

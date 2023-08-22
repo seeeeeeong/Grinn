@@ -56,6 +56,15 @@
         	margin:0 auto;
         	text-align:center;
         }
+        .order{
+        	width:1141px;
+        	font-size:14px;
+        }
+        .no-result{
+        	margin: 150px auto;
+        	font-size:15pt;
+        	color:#b5b5b5;
+        }
     </style>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -143,11 +152,11 @@ $(function(){
 });
 </script>
     <div class="page-main">
-    	<div class="align-right">
+    	<div class="order align-right">
     		<a href="write.do"><span style="font-size:30pt;">&#x1F4F7</span></a>
     	</div>
     	<c:if test="${count > 0}">
-    	<div class="align-right">
+    	<div class="order align-right">
     		<a href="${pageContext.request.contextPath}/style/list.do?order=1">
     			<c:if test="${order == 1}"><b>최신순</b></c:if>
     			<c:if test="${order != 1}">최신순</c:if>
@@ -160,7 +169,7 @@ $(function(){
     	</c:if>
     	<div class="style_list">
     		<c:if test="${count == 0}">
-				<div class="align-center">검색 결과가 없습니다.</div>
+				<div class="no-result align-center">검색 결과가 없습니다.</div>
 			</c:if>
     		<c:forEach var="style" items="${list}">
             	<div class="style-item">

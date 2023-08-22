@@ -18,6 +18,9 @@ public class StyleCommentVO {
 	private int st_num;
 	private int com_hide;
 	
+	private String formatted_regdate;
+	private String formatted_mdate;
+	
 	private String mem_id; //회원 아이디
 	private byte[] mem_photo;//프로필 사진
 	private String mem_photo_name; //프로필 사진명

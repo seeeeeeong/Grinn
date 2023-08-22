@@ -35,10 +35,10 @@ $(function(){
 					output += item.mem_id + '<br>';
 					
 					
-					if(item.com_mdate!=null){
-						output += '<span class="modify-date"><small style="color:#9d9d9d">' + item.com_mdate + '</small></span>';
+					if(item.formatted_mdate!=null){
+						output += '<span class="modify-date"><small style="color:#9d9d9d">' + item.formatted_mdate + '</small></span>';
 					}else{
-						output += '<span class="modify-date"><small style="color:#9d9d9d">' + item.com_regdate + '</small></span>';
+						output += '<span class="modify-date"><small style="color:#9d9d9d">' + item.formatted_regdate + '</small></span>';
 					}
 					
 					output += '</li>';

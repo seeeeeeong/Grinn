@@ -110,6 +110,10 @@
     	height:35px;
     	border-radius:70%;
     }
+	.posted-date{
+    	font-size:10pt;
+    	color:#9d9d9d;
+    }
 
 	.style-report{
 		width: 500px;
@@ -205,12 +209,13 @@ $(document).ready(function() {
 				<span class="username">${style.mem_id}</span>
 			</a>
 			<div class="post-date">
-				<c:if test="${empty style.st_mdate}">
-					<span class="posted-date"><small>${style.st_regdate}</small></span>
-				</c:if>
-				<c:if test="${!empty style.st_mdate}">
-					<span class="modified-date"><small>${style.st_mdate}</small></span>
-				</c:if>
+				<span class="posted-date"> <c:if
+						test="${empty style.formatted_mdate}">
+						<small>${style.formatted_regdate}</small>
+					</c:if> <c:if test="${!empty style.formatted_mdate}">
+						<small>${style.formatted_mdate}</small>
+					</c:if>
+				</span>
 			</div>
 		</div>
 	</div>

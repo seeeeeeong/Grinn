@@ -19,7 +19,12 @@
         width:500px;
         float:left;
         margin-top:5px;
-        margin-left:345px;
+        margin-left:445px;
+        margin-bottom:5px;
+    }
+    .posted-date{
+    	font-size:10pt;
+    	color:#9d9d9d;
     }
     .profile-photo{
     	width:35px;
@@ -43,7 +48,7 @@
        	margin: 0 auto;
 	}
 	.except-photo{
-		width:500px;
+		width:300px;
 		margin:0 auto;
 	}
 	.except-photo p{
@@ -93,13 +98,14 @@ $(document).ready(function() {
 		<div class="nameAndDate">
 			<span class="username">${comment.mem_id}</span>
 			<div class="post-date">
-				<c:if test="${empty comment.com_mdate}">
-				<span class="posted-date">${comment.com_regdate}</span>
-				</c:if>
-				<c:if test="${!empty comment.com_mdate}">
-				<span class="posted-date">${comment.com_mdate}</span>
-				</c:if>
-			</div>
+				<span class="posted-date"> <c:if
+						test="${empty comment.formatted_mdate}">
+						<small>${comment.formatted_regdate}</small>
+					</c:if> <c:if test="${!empty comment.formatted_mdate}">
+						<small>${comment.formatted_mdate}</small>
+					</c:if>
+				</span>
+			</div>			
 		</div>
 	</div>
 	<div class="style-report">

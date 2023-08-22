@@ -51,6 +51,8 @@ public class StyleVO {
 	private String i2_brand;
 	private String i3_brand;
 	
+	private String formatted_regdate;
+	private String formatted_mdate;
 	
 	//좋아요
 	private int fav_cnt;

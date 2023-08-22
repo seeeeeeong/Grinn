@@ -34,10 +34,6 @@
     	font-size:10pt;
     	color:#9d9d9d;
     }
-    .modified-date{
-    	font-size:10pt;
-    	color:#9d9d9d;
-    }
     .comment-posted-date{
     	font-size:10pt;
     	color:#9d9d9d;
@@ -427,7 +423,7 @@
 
 //스타일 검색
   $(function(){
-  	$('input[type="search"]').attr('placeholder','스타일 검색');
+  	$('input[type="search"]').attr('placeholder','ID, 상품태그, 내용 검색');
   	
   	function searchData(){
   		let data = $('input[type="search"]').val();
@@ -459,12 +455,14 @@
 					<span class="username">${style.mem_id}</span>
 				</a>
 				<div class="post-date">
-					<c:if test="${empty style.st_mdate}">
-						<span class="posted-date"><small>${style.st_regdate}</small></span>
-					</c:if>
-					<c:if test="${!empty style.st_mdate}">
-						<span class="modified-date"><small>${style.st_mdate}</small></span>
-					</c:if>
+					<span class="posted-date">
+					    <c:if test="${empty style.formatted_mdate}">
+					    	<small>${style.formatted_regdate}</small>
+					    </c:if>
+						<c:if test="${!empty style.formatted_mdate}">
+					    	<small>${style.formatted_mdate}</small>
+						</c:if>
+					</span>
 				</div>
 			</div>
 		</div>
@@ -600,10 +598,14 @@
 				<div class="nameAndDate">
 					<span class="username">${style.mem_id}</span>
 					<div class="post-date">
-				      <span class="posted-date"><small>${style.st_regdate}</small></span>
-				      <c:if test="${!empty style.st_mdate}">
-				        <span class="modified-date"><small>${style.st_mdate}</small></span>
-				      </c:if>
+				      <span class="posted-date">
+				      	<c:if test="${empty style.formatted_mdate}">
+				      		<small>${style.formatted_regdate}</small>
+				      	</c:if>
+				      	<c:if test="${!empty style.formatted_mdate}">
+				      		<small>${style.formatted_mdate}</small>
+				      	</c:if>
+				      </span>
 					</div>
 			    </div>
 		    </div>
