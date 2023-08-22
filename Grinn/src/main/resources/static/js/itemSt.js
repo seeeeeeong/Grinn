@@ -77,7 +77,7 @@ $(function(){
 			error:function(){
 				//로딩 이미지 감추기
 				$('#loading').hide();
-				alert('네트워크 오류 발생');
+				//alert('네트워크 오류 발생');
 			}
 		});
 	}
@@ -93,7 +93,6 @@ $(function(){
 	function displayReplyCount(data){
 		let count = data.count;
 		let stoutput;
-		console.log('count : '+data.count);
 		if(count==0){
 			stoutput = '댓글수(0)';
 		}else{

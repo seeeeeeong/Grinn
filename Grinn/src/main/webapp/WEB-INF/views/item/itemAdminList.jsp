@@ -17,7 +17,12 @@
 	});
 </script>
 <div class="page-main">
-	<h2>상품 목록(관리자)</h2>
+	<div class="addItem">
+		<h2>상품 목록(관리자)</h2>
+		<c:if test="${!empty user}">
+			<input type="button" value="상품등록" onclick="location.href='itemWrite.do'" class="addItem">
+		</c:if>
+	</div>
 	<form action="itemAdminList.do" id="search_form" method="get">
 		<div class="itemListTop">
 		<div class="search">
@@ -41,9 +46,7 @@
 				<option value="3" <c:if test="${param.order == 3}">selected</c:if>>리뷰순</option>
 			</select>
 		</div>
-		<c:if test="${!empty user}">
-				<input type="button" value="상품등록" onclick="location.href='itemWrite.do'">
-			</c:if>
+		
 		</div>
 	</form>
 	<c:if test="${count == 0}">

@@ -35,15 +35,15 @@ public interface ItemMapper {
 	//@Select("SELECT MIN(sale_price) FROM sale_bid WHERE item_num=#{item_num} AND sale_deadline >= TO_CHAR(SYSDATE,'YYYYMMDD')")
 	public Integer minSale(Integer item_num);
 	//최대 판매입찰가
-	@Select("SELECT MAX(purchase_price) FROM purchase_bid WHERE item_num=#{item_num} AND purchase_deadline >= TO_CHAR(SYSDATE,'YYYYMMDD')")
+	@Select("SELECT MAX(purchase_price) FROM purchase_bid WHERE item_num=#{item_num} AND purchase_deadline >= SYSDATE")
 	public Integer maxPurchase(Integer item_num);
 	//최근 거래금액 
-	@Select("SELECT trade_price FROM trade_detail WHERE trade_regdate = (SELECT MAX(trade_regdate) FROM trade_detail WHERE item_num=#{item_num})")
+	@Select("SELECT trade_price FROM trade_detail WHERE trade_regdate = (SELECT MAX(trade_regdate) FROM trade_detail WHERE item_num=#{item_num} AND trade_state=5)")
 	public Integer latelyTrade(Integer item_num);
 	public void updateItem(ItemVO item);
 	@Delete("DELETE FROM item WHERE item_num=#{item_num}")
 	public void deleteItem(Integer item_num);
-	@Select("select d.trade_regdate,  NVL(s.item_size,'ONE SIZE')item_size, d.trade_price FROM trade_detail d INNER JOIN item_size s ON d.item_sizenum=s.item_sizenum WHERE item_num=#{item_num}")
+	@Select("select d.trade_regdate,  NVL(s.item_size,'ONE SIZE')item_size, d.trade_price FROM trade_detail d INNER JOIN item_size s ON d.item_sizenum=s.item_sizenum WHERE item_num=#{item_num} AND d.trade_state=5")
 	public List<TradeVO> tradeList(Integer item_num);
 	public List<ItemTradeVO> saleList(Integer item_num); 
 	public List<ItemTradeVO> purchaseList(Integer item_num); 

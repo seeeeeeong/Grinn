@@ -7,6 +7,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
 <script type="text/javascript">
 $(function(){
+	$('.tabs').hide();
 	$('input[type="search"]').attr('placeholder','상품 검색');
 	
 	function searchData(){
@@ -28,7 +29,7 @@ $(function(){
 });
 </script>
 
-<div class="page-main">
+<div>
 	<div id="page_nav1">
 		<div class="side-bar1">
 			<a href="itemList.do" class="tab-link ${activeTab == 0 ? 'active' : ''}" data-tab="0">전체</a>

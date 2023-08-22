@@ -133,17 +133,16 @@ $(function(){
 					<hr>
 					<div class="details">
 						<div>최근 거래가</div>
-						<c:if test="${empty latelyTrade}">
+						<c:if test="${latelyTrade==0}">
 							<div>
 								<div class="tradeInfo">-</div>
 								<span></span>
 							</div>
 						</c:if>
-						<c:if test="${!empty latelyTrade}">
+						<c:if test="${latelyTrade>0}">
 							<div>
 								<div class="tradeInfo">
-									<fmt:formatNumber value="${latelyTrade}" />
-									원
+									<fmt:formatNumber value="${latelyTrade}" />원
 								</div>
 								<span></span>
 							</div>
@@ -422,7 +421,7 @@ $(function(){
 			</c:if>
 		<div id="stoutput" data-itemnum="${item.item_num}" class="stoutput"></div>
 		<div class="paging-button" style="display: none;">
-			<input type="button" value="더보기" data-itemnum="${item.item_num}">
+			<input type="button" value="더보기" data-itemnum="${item.item_num}" class="moreBtn">
 		</div>
 		<div id="loading" style="display: none;">
 			<img src="${pageContext.request.contextPath}/images/loading.gif"

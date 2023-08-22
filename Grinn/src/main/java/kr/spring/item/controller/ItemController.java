@@ -324,7 +324,7 @@ public class ItemController {
 		itemService.updateItem(itemVO);
 		
 		model.addAttribute("message", "상품 수정 완료!");
-		model.addAttribute("url", request.getContextPath()+"/item/.do?item_num="+itemVO.getItem_num());
+		model.addAttribute("url", request.getContextPath()+"/item/itemAdminList.do");
 		
 		return "common/resultView";
 		
@@ -605,8 +605,9 @@ public class ItemController {
 		
 		//paging하기
 		int count = itemService.selectRowCountST(map);
+		
 		PagingUtil page = new PagingUtil(currentPage, count, rowCount, 1, null);
-		System.out.println("!!"+count);
+		
 		ItemVO item = itemService.selectItem(item_num);
 		List<ItemstVO> list = null;
 		if(count > 0) {
@@ -616,7 +617,7 @@ public class ItemController {
 		}else {
 			list = Collections.emptyList();
 		}
-		System.out.println(list);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("listStyle");
 		mav.addObject("item", item);

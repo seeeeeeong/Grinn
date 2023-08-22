@@ -63,7 +63,7 @@
             item_size isz ON sb.item_sizenum = isz.item_sizenum
         WHERE
             sb.item_num = #{item_num}
-            AND sb.sale_deadline >= TO_CHAR(SYSDATE,'YYYYMMDD')
+            AND sb.sale_deadline >= SYSDATE
         GROUP BY
             isz.item_sizenum, isz.item_size
     </select>
@@ -137,11 +137,11 @@
 			LEFT OUTER JOIN (SELECT count(*) fav_cnt, item_num FROM item_fav GROUP BY item_num)f ON b.item_num=f.item_num
 			LEFT OUTER JOIN (SELECT MIN(sale_price) sale, item_num FROM sale_bid 
 			<![CDATA[
-				WHERE sale_deadline >= TO_CHAR(SYSDATE,'YYYYMMDD')
+				WHERE sale_deadline >= SYSDATE
 			]]>
 			 GROUP BY item_num)s ON b.item_num=s.item_num
 			LEFT OUTER JOIN (SELECT td.item_num, td.trade_price, td.trade_regDate FROM trade_detail td JOIN (
-                SELECT item_num, MAX(trade_regDate) AS md FROM trade_detail GROUP BY item_num) mds ON td.item_num = mds.item_num AND td.trade_regDate = mds.md)t ON b.item_num=t.item_num
+                SELECT item_num, MAX(trade_regDate) AS md FROM trade_detail WHERE trade_state=5 GROUP BY item_num) mds ON td.item_num = mds.item_num AND td.trade_regDate = mds.md)t ON b.item_num=t.item_num
 			<include refid="itemSearch"></include>
 			<include refid="itemOrder"></include>
 			)a)
@@ -281,7 +281,7 @@
 				sb.sale_price
 			FROM sale_bid sb
 				INNER JOIN item_size isz ON sb.item_sizenum = isz.item_sizenum
-			WHERE sb.item_num=#{item_num} AND sale_deadline >= TO_CHAR(SYSDATE,'YYYYMMDD')
+			WHERE sb.item_num=#{item_num} AND sale_deadline >= SYSDATE
 		) ps
 		GROUP BY ps.item_sizenum, ps.item_size, ps.sale_price
 		ORDER BY ps.item_sizenum, ps.sale_price
@@ -299,7 +299,7 @@
 		        pb.purchase_price
 		    FROM purchase_bid pb
 		    INNER JOIN item_size isz ON pb.item_sizenum = isz.item_sizenum
-		    WHERE pb.item_num = #{item_num} AND purchase_deadline >= TO_CHAR(SYSDATE,'YYYYMMDD')
+		    WHERE pb.item_num = #{item_num} AND purchase_deadline >= SYSDATE
 		) ps
 		GROUP BY ps.item_sizenum, ps.item_size, ps.purchase_price
 		ORDER BY ps.item_sizenum, ps.purchase_price
