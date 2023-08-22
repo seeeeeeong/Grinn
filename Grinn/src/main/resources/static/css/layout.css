@@ -527,6 +527,16 @@ header.css
 	font-family: 'LeferiPoint-BlackObliqueA';
     font-weight: normal;
     font-style: normal;
+	color: #222;
+	z-index: 9999;
+}
+#logo{
+	display: flex;
+	font-family: 'LeferiPoint-BlackObliqueA';
+    font-weight: normal;
+    font-style: normal;
+	color: #222;
+	z-index: 9999;
 }
 h1 a{
 	text-decoration: none;
@@ -570,6 +580,7 @@ h1 a{
     display: flex;
     font-size: 17px;
     letter-spacing: -.27px;
+    color: #222;
 }
 .gnb_item a {
     color: #333;

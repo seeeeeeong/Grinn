@@ -531,6 +531,11 @@ form#detail_form {
 	height: auto;
 }
 
+.talk_form{
+	border: none;
+	width: 90%;
+}
+
 .chatbot_header {
 	font-weight: 400;
 	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
