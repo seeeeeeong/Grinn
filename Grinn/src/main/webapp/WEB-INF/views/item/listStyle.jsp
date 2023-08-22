@@ -16,6 +16,15 @@
 			<span><b><fmt:formatNumber value="${item.sale}" />원</b></span>
 	</c:if>
 	</div>
+	<c:if test="${count==0}">
+		<div class="result-display">
+			<div class="align-center">
+				게시된 Style이 없습니다.<br><br>
+				<input type="button" value="상품페이지로 돌아가기" onclick="location.href='itemDetail.do?item_num=${item.item_num}'">
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${count>0}">
 	<div class="stoutput2">
 	<c:forEach var="list" items="${list}">
 		<div class="stylelist01">
@@ -40,4 +49,5 @@
 		</div>
 	</c:forEach>
 	</div>
+	</c:if>
 </div>

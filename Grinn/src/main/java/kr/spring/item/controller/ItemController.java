@@ -272,7 +272,6 @@ public class ItemController {
 		if(user!=null) {
 			mav.addObject("user_num", user.getMem_num());
 		}
-		
 		mav.addObject("purchaseList", purchaseList);
 		mav.addObject("saleList", saleList);
 		mav.addObject("stylecount", stylecount);
@@ -529,6 +528,14 @@ public class ItemController {
 
 	//=========후기 삭제 시작===========
 	@RequestMapping("/item/itemReviewDelete.do")
+	public String deleteReply(@RequestParam int review_num,@RequestParam int item_num) {
+		
+		itemService.deleteReiew(review_num);
+		
+		return "redirect:/item/itemDetail.do?item_num="+item_num;
+	}
+	/*
+	@RequestMapping("/item/itemReviewDelete.do")
 	@ResponseBody
 	public Map<String, String> deleteReply(@RequestParam int review_num, HttpSession session){
 		
@@ -549,7 +556,7 @@ public class ItemController {
 			mapJson.put("result", "wrongAccess");
 		}
 		return mapJson;
-	}
+	}*/
 	//=========후기 삭제 끝============
 	
 	//=========스타일 목록 시작=============
@@ -622,6 +629,7 @@ public class ItemController {
 		mav.setViewName("listStyle");
 		mav.addObject("item", item);
 		mav.addObject("list", list);
+		mav.addObject("count", count);
 		
 		return mav;
 		

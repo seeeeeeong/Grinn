@@ -34,8 +34,8 @@ $(function(){
 	<c:if test="${item.item_status == 1}">
 		<div class="result-display">
 			<div class="align-center">
-				본 상품은 판매 중지되었습니다. <input type="button" value="판매상품보기"
-					onclick="location.href='itemList.do'">
+				본 상품은 판매 중지되었습니다.<br><br>
+				<input type="button" value="판매상품보기" onclick="location.href='itemList.do'">
 			</div>
 		</div>
 	</c:if>
@@ -133,13 +133,12 @@ $(function(){
 					<hr>
 					<div class="details">
 						<div>최근 거래가</div>
-						<c:if test="${latelyTrade==0}">
+						<c:if test="${empty latelyTrade}">
 							<div>
 								<div class="tradeInfo">-</div>
-								<span></span>
 							</div>
 						</c:if>
-						<c:if test="${latelyTrade>0}">
+						<c:if test="${!empty latelyTrade}">
 							<div>
 								<div class="tradeInfo">
 									<fmt:formatNumber value="${latelyTrade}" />원
@@ -458,9 +457,7 @@ $(function(){
 										<c:if test="${user_num eq review.mem_num}">
 											<input type="button" value="수정"
 												onclick="location.href='itemReviewModify.do?review_num=${review.review_num}&item_num=${review.item_num}'">
-											<input type="button" value="삭제" class="delete-btn"
-												data-reviewnum="${review.review_num}"
-												data-itemnum="${review.item_num}" id="output">
+											<a href="itemReviewDelete.do?review_num=${review.review_num}&item_num=${item.item_num}" onclick="return confirm('정말로 댓글을 삭제하시겠습니까?')">삭제</a>
 										</c:if>
 									</li>
 								</ul>

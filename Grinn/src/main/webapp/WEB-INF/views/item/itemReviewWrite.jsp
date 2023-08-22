@@ -67,7 +67,7 @@
 				<div class="reviewButton">
 					<input type="submit" value="등록" class="default-btn"> <input
 						type="button" value="홈으로" class="default-btn"
-						onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+						onclick="location.href='${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}'">
 				</div>
 			
 		</div>
