@@ -51,4 +51,14 @@ public class PenaltyServiceImpl implements PenaltyService{
 		penaltyMapper.updatePenalty(penaltyVO);
 	}
 
+	@Override
+	public int selectPenaltyCountByMem_num(Map<String, Object> map) {
+		return penaltyMapper.selectPenaltyCountByMem_num(map);
+	}
+
+	@Override
+	public List<PenaltyVO> selectListPenaltyByMem_num(Map<String, Object> map) {
+		return penaltyMapper.selectListPenaltyByMem_num(map);
+	}
+
 }

@@ -3,7 +3,6 @@
 <!-- 내용 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
 <div class="page-main">
-	<h3>예약 메인</h3>
 	<div class="selectMarket-wrap">
 		<div class="user-wrap">
 			<div class="market-img">
@@ -21,7 +20,7 @@
 			</div>
 			<p>
 				<span class="market-font">
-				<b>부스 예약 목록</b>
+				<b>예약 내역 조회</b>
 				</span>
 			</p>
 		</div>		

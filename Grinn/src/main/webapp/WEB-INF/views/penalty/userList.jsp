@@ -15,29 +15,11 @@
 	});
 </script>
 <div class="page-main">
-	<h2>페널티 목록 - 관리자</h2>
-	<!-- 검색창 시작 -->
-	<form action="penalty.do" id="search_form" method="get">
-		<ul class="search">
-			<li>
-				<select name="keyfield" id="keyfield">
-					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>ID</option>
-				</select>
-			</li>
-			<li>
-				<input type="search" name="keyword" id="keyword" value="${param.keyword}">
-			</li>
-			<li>
-				<input type="submit" value="찾기">
-				<input type="button" value="목록" onclick="location.href='penalty.do'">
-			</li>
-		</ul>
-	</form>
-	<!-- 검색창 끝 -->
+	<h2>페널티</h2>
 	<div>
 		<div>
 			<p>페널티 합계</p>
-			<span>${penalty_sum}</span>
+			<span></span>
 		</div>
 		<div>
 			<p>회원 등급</p>
@@ -52,9 +34,9 @@
 		<tr>
 			<th>페널티 번호</th>
 			<th>유형</th>
-			<th>페널티</th>
+			<th>점수</th>
 			<th>부여일</th>
-			<th>권한</th>
+			<th>상세</th>
 		</tr>
 		<c:forEach var="pe" items="${penaltyList}">
 		<tr>

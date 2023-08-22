@@ -16,6 +16,7 @@ import kr.spring.member.service.MemberService;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.penalty.service.PenaltyService;
 import kr.spring.penalty.vo.PenaltyVO;
+import kr.spring.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -27,6 +28,9 @@ public class PenaltyController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private UserService userService;
+	
 	// 자바빈 초기화
 	@ModelAttribute
 	public PenaltyVO initCommand() {
@@ -34,7 +38,8 @@ public class PenaltyController {
 	}
 	
 	// ===마이페이지 회원 페널티 조회===
-	@RequestMapping("/user/penalty.do")
+	/*
+	@RequestMapping("/user/userPenaltyInfo.do")
 	public String list(HttpSession session, Model model) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		MemberVO member = memberService.selectMember(user.getMem_num());
@@ -42,7 +47,7 @@ public class PenaltyController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mem_num", user.getMem_num());
 		
-		int penalty_sum = penaltyService.selectPenaltyByMem_num(map);
+		int penalty_sum = userService.getPenaltyTotalScore(user.getMem_num());
 		
 		List<PenaltyVO> penaltyList = null;
 		if (penalty_sum > 0) {
@@ -55,4 +60,5 @@ public class PenaltyController {
 		
 		return "penaltyList";
 	}
+	*/
 }

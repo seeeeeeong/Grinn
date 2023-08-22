@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 예약 목록 - 사용자 시작 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
 <script type="text/javascript">
 	$(function(){
 		//검색 유효성 체크

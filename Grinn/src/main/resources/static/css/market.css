@@ -45,17 +45,19 @@
 	position:relative;
 	margin:0 25px 25px 0;
 }
-.user-wrap img{
+.market-img{
+	overflow:hidden;
+}
+.market-img img{
 	width:100%;
 	height:auto;
 	vertical-align:middle;
 	opacity:0.3;
 	position:absolute;
-	transition:all 3s .25s ease;
-	overflow:hidden;
+	transition:all 2s .25s ease;
 }
-.user-wrap:hover img{
-	transform:scale(1.2);
+.market-img:hover img{
+	transform:scale(1.05);
 }
 .market-font{
 	text-align:center;

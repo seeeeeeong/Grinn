@@ -74,11 +74,33 @@
 	
 	<select id="selectPenaltyByMem_num" parameterType="map" resultType="integer">
 		SELECT
-		  NVL(SUM(pe_score), 0)
+		  *
 		FROM (SELECT
-		        pe_num,
-		        mem_num
-		      FROM penalty JOIN member USING(mem_num))
+		        *
+		      FROM penalty p JOIN member m ON p.mem_num = m.mem_num)
 		WHERE mem_num = #{mem_num}
+	</select>
+	
+	<select id="selectPenaltyCountByMem_num" parameterType="map">
+		SELECT
+		  	COUNT(*)
+			FROM penalty
+		WHERE mem_num = #{mem_num}
+	</select>
+	
+	<select id="selectListPenaltyByMem_num" parameterType="map" resultType="penaltyVO">
+		SELECT
+		  *
+		FROM (SELECT
+		        a.*,
+		        rownum rnum
+		      FROM (SELECT
+		              *
+		            FROM penalty
+		            WHERE mem_num = #{mem_num}
+		            ORDER BY pe_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
 	</select>
 </mapper>
