@@ -38,7 +38,7 @@
                   </c:if>
                   <li class = "top_item" id = "logout">
                      <c:if test="${!empty user}">
-                     <a class = "top_link" href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+                     <a class = "top_link" href="${pageContext.request.contextPath}/member/logout.do"><b>로그아웃</b></a>
                      </c:if>
                   </li>
                   <li class = "top_item">
@@ -80,9 +80,11 @@
                            </li>
                         </ul>
                      </nav>
+                     <%-- 
                      <div class = "search_btn_box">
                         <input type = "search">
                      </div>
+                     --%>
                   </div>
                </div>
             </div>
