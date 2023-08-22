@@ -645,18 +645,24 @@ public class UserController {
 	public String getPenaltyInfo(HttpSession session, Model model) {
 		// 로그인된 사용자 정보 가져오기
 		MemberVO user = (MemberVO) session.getAttribute("user");
+		
+		// 회원 정보 조회
+		MemberVO member = userService.selectMember(user.getMem_num());
 
 		// 패널티 통합 점수 조회
 		Integer pe_total = userService.getPenaltyTotalScore(user.getMem_num());
+		
+		model.addAttribute("member", member);
 		model.addAttribute("pe_total", pe_total);
+		
 
 		// 게시판 페널티 조회
-		List<MemberVO> penaltyBoardList = userService.getPenaltyBoard(user.getMem_num());
-		model.addAttribute("penaltyBoardList", penaltyBoardList);
+		//List<MemberVO> penaltyBoardList = userService.getPenaltyBoard(user.getMem_num());
+		//model.addAttribute("penaltyBoardList", penaltyBoardList);
 
 		// 거래 페널티 조회
-		List<MemberVO> penaltyTradeList = userService.getPenaltyTrade(user.getMem_num());
-		model.addAttribute("penaltyTradeList", penaltyTradeList);
+		//List<MemberVO> penaltyTradeList = userService.getPenaltyTrade(user.getMem_num());
+		//model.addAttribute("penaltyTradeList", penaltyTradeList);
 
 		// penaltyInfo.jsp로 이동
 		return "userPenaltyInfo";

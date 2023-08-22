@@ -175,7 +175,7 @@ public interface UserMapper {
 	public void deleteFavByStNum(Integer st_num);
 
 	// 패널티 통합 점수
-	@Select("SELECT SUM(pe_score) FROM penalty WHERE mem_num = #{mem_num}")
+	@Select("SELECT NVL(SUM(pe_score),0) FROM penalty WHERE mem_num = #{mem_num}")
 	public Integer getPenaltyTotalScore(Integer mem_num);
 
 	// 게시판 페널티
