@@ -26,7 +26,7 @@
 							<a href = "${pageContext.request.contextPath}/notice/noticeAuth_policy.do" class = "menu_link">검수 기준</a>
 						</li>
 						<li class = "menu_item">
-							<a href = "" class = "menu_link">이용정책</a>
+							<a href = "${pageContext.request.contextPath}/notice/noticefaq.do?no_category=2" class = "menu_link">이용정책</a>
 						</li>
 						<li class = "menu_item">
 							<a href = "" class = "menu_link">패널티 정책</a>
