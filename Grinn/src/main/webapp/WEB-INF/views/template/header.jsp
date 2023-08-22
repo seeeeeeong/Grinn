@@ -81,7 +81,7 @@
                         </ul>
                      </nav>
                      <div class = "search_btn_box">
-                        <input type = "search" value = "검색">
+                        <input type = "search">
                      </div>
                   </div>
                </div>

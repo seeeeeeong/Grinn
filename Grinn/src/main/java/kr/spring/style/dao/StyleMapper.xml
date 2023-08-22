@@ -76,9 +76,7 @@
 		<where>
 			s.st_hide = 0
 			<if test="keyword != null and keyword != ''">
-				<if test="keyfield == 2">
 					AND m.mem_id LIKE '%' || #{keyword} || '%'
-				</if>
 			</if>
 		</where>
 	</sql>
