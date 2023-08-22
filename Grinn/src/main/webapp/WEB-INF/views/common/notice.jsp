@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>안내</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/notice.css">
 </head>
 <body>
 <div class="page-one">
@@ -26,7 +26,7 @@
 			  onclick="location.href='${accessUrl}'">
 			</c:if>
 			<c:if test="${empty accessUrl}">
-			<input type="button" value="이동"
+			<input type="button" value="Grinn으로 이동" class = "success-btn"
 			 onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</c:if>
 		</div>
