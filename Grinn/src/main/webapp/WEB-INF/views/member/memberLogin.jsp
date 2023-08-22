@@ -1,31 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/memberLog.css">
+<form:form modelAttribute = "memberVO" action = "login.do" id = "member_login">
+<form:errors element = "div" cssClass = "error-color"/>
 <div class="page-main">
-	<h2>회원로그인</h2>
-	<form:form modelAttribute = "memberVO" action = "login.do" id = "member_login">
-		<form:errors element = "div" cssClass = "error-color"/>
+	<div id = "main-logo">
+		<h1 class = "h1">Grinn</h1>
+		<h1 class = "h1-small" >make your smile</h1>
+	</div>
+	<div class = "form-ul">
 		<ul>
-			<li class="floating-label">
-				<form:input path = "mem_id" placeholder = "아이디" cssClass = "form-input" autocomplete = "off"/>
-				<form:label path = "mem_id">아이디</form:label>
+			<li class="floating-label"><b>아이디</b></li>
+			<li>
+				<form:input path = "mem_id" cssClass = "form-input" autocomplete = "off"/>
+				<form:label path = "mem_id"></form:label>
 				<form:errors path = "mem_id" element = "div" cssClass = "error-color"/> 
 			</li>
-			<li class="floating-label">
-				<form:password path = "mem_passwd" placeholder = "비밀번호" cssClass = "form-input"/>
-				<form:label path = "mem_passwd">비밀번호</form:label>
+			<li class="floating-label"><b>비밀번호</b></li>
+			<li>
+				<form:password path = "mem_passwd" cssClass = "form-input"/>
+				<form:label path = "mem_passwd"></form:label>
 				<form:errors path = "mem_passwd" element = "div" cssClass = "error-color"/> 
 			</li>
 			<li>
-				<label for = "auto"><input type = "checkbox" name = "auto" id = "auto">로그인상태유지</label>
+				<div class = "align-center">
+					<label for = "auto">
+						<input type = "checkbox" name = "auto" id = "auto">
+						자동 로그인
+					</label>
+				</div>
 			</li>
-		</ul>  
-		<div class = "align-center">
-			<form:button class = "login-btn">로그인</form:button>
-			<form:button class = "login-btn">
-			<a href="${pageContext.request.contextPath}/member/registerUser.do">회원가입</a>
-			</form:button>
-		</div>                                 
-	</form:form>
-</div>
+			<li>
+					<form:button class = "login-btn"><b>로그인</b></form:button>
+					<input type = "button" value = "회원가입" class = "login-btn" onclick = "location.href='registerUser.do'">
+				
+			</li>
+		</ul>   
+	</div>  
+	</div>                          
+</form:form>

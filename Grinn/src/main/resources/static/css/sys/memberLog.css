@@ -1,1 +1,134 @@
-@charset "UTF-8";
+#main-logo {
+    font-family: 'LeferiPoint-BlackObliqueA';
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+}
+form-ul {
+	align-items: center;
+}
+.h1 {
+	font-size: 33px;
+	margin: 20px 0 0 0;
+}
+.h1-small {
+	font-size: 13px;
+	margin: 0 0 40px 0;
+}
+ul{
+	display: inline;
+	padding: 0;
+}
+.floating-label{
+	position:relative;
+	padding-top: 20px;
+}
+h1 {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+}
+/* 입력창 */
+form {
+	border: none;
+	padding: 0;
+	display: inline;
+	width: 800px;
+	margin: 0 auto;
+}
+
+.form-input{
+	border: none;
+	outline: none;
+	background: none;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 15px;
+    line-height: 22px;
+    padding: 8px 0;
+}
+input[type="text"],
+input[type="password"]{
+	width: 370px;
+}
+/* Button styles */
+.login-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(205, 204, 206);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  font-size: 14px;
+}
+.login-btn:first-child {
+	margin-top: 35px;
+}
+.login-btn:last-child {
+	margin-top: 10px;
+}
+.default-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 0 0;
+  background-color: rgb(205, 204, 206);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  font-size: 14px;
+}
+a{
+	color: #fff;
+}
+a:visited{
+	color: #fff;
+}
+
+.login-btn:hover {
+  background-color: #000;
+}
+.default-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+button[type="submit"],
+.login-btn {
+    height: 50px;
+    width: 370px;
+}
+input[type='button'] {
+	height: 50px;
+	width: 370px;
+}
+
+
+#member_login div{
+	margin: 0 auto;
+}
+form ul li label{
+	width: 54%;
+}
+form ul li {
+	clear: none;
+	text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
