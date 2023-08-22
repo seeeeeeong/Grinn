@@ -24,7 +24,7 @@
 				<form:errors path = "mem_passwd" element = "div" cssClass = "error-color"/> 
 			</li>
 			<li>
-				<div class = "align-center">
+				<div class = "align-left">
 					<label for = "auto">
 						<input type = "checkbox" name = "auto" id = "auto">
 						자동 로그인

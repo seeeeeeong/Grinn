@@ -46,13 +46,13 @@ public interface StyleMapper {
 	@Delete("DELETE FROM style_fav WHERE st_num=#{st_num}")
 	public void deleteFavByStNum(Integer st_num);
 	//게시글 비공개(관리자 처리)
-	@Update("UPDATE style SET st_hide=1 WHERE st_num=#{st_num}")
+	@Update("UPDATE style SET st_hide=2 WHERE st_num=#{st_num}")
 	public void hideStyle(Integer st_num);
 	//댓글
 	public List<StyleCommentVO> selectListComment(Map<String,Object> map);
 	@Select("SELECT COUNT(*) FROM style_comment WHERE st_num=#{st_num}")
 	public int selectRowCountComment(Map<String,Object> map);
-	@Select("SELECT s.com_comment, TO_CHAR(s.com_regdate, 'YYYY\"년\"MM\"월\"DD\"일\"') formatted_regdate, TO_CHAR(s.com_mdate, 'YYYY\"년\"MM\"월\"DD\"일\"') formatted_mdate, s.mem_num, s.st_num, m.mem_id, d.mem_photo_name, d.mem_photo FROM style_comment s LEFT OUTER JOIN member m ON s.mem_num = m.mem_num JOIN member_detail d ON m.mem_num = d.mem_num WHERE com_num=#{com_num}")
+	@Select("SELECT s.com_num, s.com_comment, TO_CHAR(s.com_regdate, 'YYYY\"년\"MM\"월\"DD\"일\"') formatted_regdate, TO_CHAR(s.com_mdate, 'YYYY\"년\"MM\"월\"DD\"일\"') formatted_mdate, s.mem_num, s.st_num, m.mem_id, d.mem_photo_name, d.mem_photo FROM style_comment s LEFT OUTER JOIN member m ON s.mem_num = m.mem_num JOIN member_detail d ON m.mem_num = d.mem_num WHERE com_num=#{com_num}")
 	public StyleCommentVO selectComment(Integer com_num);
 	public void insertComment(StyleCommentVO styleComment);
 	@Update("UPDATE style_comment SET com_comment=#{com_comment}, com_mdate=SYSDATE WHERE com_num=#{com_num}")

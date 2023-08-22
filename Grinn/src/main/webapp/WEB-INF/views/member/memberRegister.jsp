@@ -21,9 +21,11 @@
 			<li>
 				<form:input path = "mem_id" placeholder = "영문, 숫자 포함 4~12자" autocomplete = "off" cssClass = "form-input"/>
 				<form:label path = "mem_id"></form:label>
-				<button id = "confirmId"><small>ID중복체크</small></button>
+			</li>
+			<li>
+				<button id = "confirmId">ID중복체크</button>
 				<span id = "message_id"></span>
-				<form:errors path = "mem_id" cssClass = "error-color" element = "div"/>      
+				<form:errors path = "mem_id" cssClass = "error-color" element = "div"/>      				
 			</li>
 			<li class="floating-label"><b>비밀번호</b></li>
 			<li>

@@ -4,8 +4,9 @@
     font-style: normal;
     text-align: center;
 }
-form-ul {
-	align-items: center;
+.form-ul{
+	width:360px;
+	margin:0 auto;
 }
 .h1 {
 	font-size: 33px;
@@ -46,6 +47,20 @@ form {
     line-height: 22px;
     padding: 8px 0;
 }
+#confirmId{
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(205, 204, 206);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  font-size: 14px;
+  margin-bottom:10px;	
+}
+
 input[type="text"],
 input[type="password"]{
 	width: 370px;

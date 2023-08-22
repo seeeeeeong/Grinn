@@ -74,7 +74,7 @@
 	<!-- 스타일 목록 -->
 	<sql id="styleSearch">
 		<where>
-			s.st_hide = 0
+			(s.st_hide = 0 OR s.st_hide = 1)
 			<if test="keyword != null and keyword != ''">
 					AND (LOWER(m.mem_id) LIKE '%' || LOWER(#{keyword}) || '%'
 					OR LOWER(s.st_phrase) LIKE '%' || LOWER(#{keyword}) || '%' 
@@ -194,7 +194,7 @@
 		            FROM style_comment s
 		            LEFT OUTER JOIN member m ON s.mem_num = m.mem_num
 		            LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
-		            WHERE s.st_num=#{st_num} AND s.com_hide = 0 ORDER BY s.com_num DESC)a)
+		            WHERE s.st_num=#{st_num} AND s.com_hide = 0 OR s.com_hide = 1 ORDER BY s.com_num DESC)a)
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>          

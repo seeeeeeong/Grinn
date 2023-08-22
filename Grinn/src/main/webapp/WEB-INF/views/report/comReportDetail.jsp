@@ -57,7 +57,16 @@
 	    justify-content: space-between;
 	    font-size: 15px;	
 	}
-
+	.handle-form{
+		border:none;
+	}
+	.reps{
+		border:none;
+	}
+	.reps div{
+		width:170px;
+		margin:0 auto;
+	}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -110,17 +119,15 @@ $(document).ready(function() {
 		</div>
 	</div>
 	<div class="form-handleReport">
-		<form action="comReportDetail.do" method="post">
+		<form action="comReportDetail.do" method="post" class="handle-form">
 			<input type="hidden" value="${com.rcom_num}" name="rcom_num">
 			<fieldset class="reps">
-				<span>
+				<div>
 					<input type="radio" class="rep-hide" name="rep_hide" value="1" <c:if test="${com.rep_hide == 1}">checked</c:if>>
 					공개 처리
-				</span>
-				<span>
 					<input type="radio" class="rep-hide" name="rep_hide" value="2" <c:if test="${com.rep_hide == 2}">checked</c:if>>
 					비공개 처리
-				</span>
+				</div>
 			</fieldset>
 			<div class="align-center">
 				<input type="submit" value="등록" id="submit_btn">

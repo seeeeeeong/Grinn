@@ -58,10 +58,26 @@
 	    font-size: 15px;	
 	}
 
-	dd{
-			
+	.handle-form{
+		border:none;
+	}
+	.reps{
+		border:none;
+	}
+	.reps div{
+		width:170px;
+		margin:0 auto;
 	}
 </style>
+<script type="text/javascript">
+$(function(){
+	$('#submit_btn').on('click', function() {
+	    location.href = 'styleReportList.do';
+	});
+});
+
+
+</script>
 <div class="page-main">
 	<div class="report-title">
 		<h2>스타일 신고</h2>
@@ -100,17 +116,15 @@
 		</div>
 	</div>
 	<div class="form-handleReport">
-		<form action="styleReportDetail.do" method="post">
+		<form action="styleReportDetail.do" method="post" class="handle-form">
 			<input type="hidden" value="${style.rst_num}" name="rst_num">
 			<fieldset class="reps">
-				<span>
+				<div>
 					<input type="radio" class="rep-hide" name="rep_hide" value="1" <c:if test="${style.rep_hide == 1}">checked</c:if>>
 					공개 처리
-				</span>
-				<span>
 					<input type="radio" class="rep-hide" name="rep_hide" value="2" <c:if test="${style.rep_hide == 2}">checked</c:if>>
 					비공개 처리
-				</span>
+				</div>
 			</fieldset>
 			<div class="align-center">
 				<input type="submit" value="등록" id="submit_btn">

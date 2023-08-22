@@ -551,7 +551,7 @@
 				<c:if test="${style.item_num1 != 0}">
 				<div class="item-tag-box">
 					<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${style.item_num1}">
-						<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num1}" width="100" height="100"><br>
+						<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num1}" width="100"><br>
 						<span class="item-name" style="width:100px;">${style.item_name1}</span>
 					</a>
 				</div>
@@ -559,7 +559,7 @@
 				<c:if test="${style.item_num2 != 0}">
 				<div class="item-tag-box">
 					<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${style.item_num2}">
-						<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num2}" width="100" height="100"><br>
+						<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num2}" width="100"><br>
 						<span class="item-name" style="width:100px;">${style.item_name2}</span>
 					</a>
 				</div>
@@ -567,7 +567,7 @@
 				<c:if test="${style.item_num3 != 0}">
 				<div class="item-tag-box">
 					<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${style.item_num3}">
-						<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num3}" width="100" height="100"><br>
+						<img src="${pageContext.request.contextPath}/style/viewPhotoByItem_num.do?item_num=${style.item_num3}" width="100"><br>
 						<span class="item-name" style="width:100px;">${style.item_name3}</span>
 					</a>
 				</div>
