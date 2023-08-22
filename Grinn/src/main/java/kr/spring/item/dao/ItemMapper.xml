@@ -253,17 +253,18 @@
 	<!-- 스타일 전체/검색 목록   -->
 	<select id="selectListST" parameterType="map" resultType="itemstVO">
 		SELECT * FROM (SELECT a.*, rownum rnum FROM
-		(SELECT st_num,
-		<![CDATA[
+		(SELECT st_num, 		
+        <![CDATA[
 		REPLACE(REPLACE(st_phrase, '<', '&lt;'), '>', '&gt;') st_phrase,
 		]]>
-		s.st_photo1n, s.st_photo2n, s.st_photo3n, s.mem_num, s.st_regdate, 
-		s.st_mdate, s.item_num1, s.item_num2, s.item_num3, m.mem_id, d.mem_photo
+		s.st_photo1n, s.mem_num, s.item_num1, s.item_num2, s.item_num3, m.mem_id, d.mem_photo
 		FROM style s LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
-		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num ORDER BY st_num DESC)a)
-		WHERE (item_num1=#{item_num} OR item_num2=#{item_num} OR item_num3=#{item_num})
+		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num 
+        LEFT OUTER JOIN item i ON (s.item_num1=i.item_num OR s.item_num2=i.item_num OR s.item_num3=i.item_num)
+		WHERE item_num=#{item_num}
+        ORDER BY st_num DESC)a)
 		<![CDATA[
-		 AND rnum >= #{start} AND rnum <= #{end}
+		 WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
 	</select>
 	

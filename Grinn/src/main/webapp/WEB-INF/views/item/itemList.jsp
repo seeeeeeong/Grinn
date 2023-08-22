@@ -6,16 +6,26 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/item.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
 <script type="text/javascript">
-	$(function() {
-		//검색 유효성 체크
-		$('#search_form').submit(function() {
-			if ($('#keyword').val().trim() == '') {
-				alert('검색어를 입력하세요!');
-				$('#keyword').val('').focus();
-				return false;
-			}
-		});
+$(function(){
+	$('input[type="search"]').attr('placeholder','상품 검색');
+	
+	function searchData(){
+		let data = $('input[type="search"]').val();
+		if(data == ''){
+			alert('검색어를 입력하세요.');
+			$('input[type="search"]').val('').focus();
+			return false;
+		}
+		location.href="itemList.do?keyfield=2&keyword="+data;
+	};
+	
+	$('input[type="search"]').keypress(function(){
+		if(event.keyCode==13){
+			searchData();	
+		}
+		
 	});
+});
 </script>
 
 <div class="page-main">
@@ -32,17 +42,12 @@
 		<div class="itemListTop">
 		<div class="search">
 			<div>
-				<select name="keyfield" id="keyfield">
+				<select name="keyfield" id="keyfield" class="keynone">
 					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>브랜드</option>
 					<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>상품명</option>
 				</select>
 			</div>
-			<div class="itemSearch">
-				<input type="search" name="keyword" id="keyword" value="${param.keyword}">
-			</div>
-			<div>
-				<input type="image" src="../images/item_search.png" name="submit"> 
-			</div>
+				<input type="search" name="keyword" id="keyword" value="${param.keyword}" class="keynone">
 		</div>
 		<div class="orderTop">
 			<select id="order" name="order">

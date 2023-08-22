@@ -6,6 +6,29 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemWrite.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemReview.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/itemSt.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/itemStFav.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('input[type="search"]').attr('placeholder','상품 검색');
+	
+	function searchData(){
+		let data = $('input[type="search"]').val();
+		if(data == ''){
+			alert('검색어를 입력하세요.');
+			$('input[type="search"]').val('').focus();
+			return false;
+		}
+		location.href="itemList.do?keyfield=2&keyword="+data;
+	};
+	
+	$('input[type="search"]').keypress(function(){
+		if(event.keyCode==13){
+			searchData();	
+		}
+		
+	});
+});
+</script>
 <!-- 게시글 상세 시작 -->
 <div class="page-main">
 	<c:if test="${item.item_status == 1}">
@@ -397,9 +420,9 @@
 		<c:if test="${stylecount==0}">
 				<div class="result-display">등록된 게시글이 없습니다.</div>
 			</c:if>
-		<div id="stoutput" data-itemnum="${item.item_num}"></div>
+		<div id="stoutput" data-itemnum="${item.item_num}" class="stoutput"></div>
 		<div class="paging-button" style="display: none;">
-			<input type="button" value="더보기">
+			<input type="button" value="더보기" data-itemnum="${item.item_num}">
 		</div>
 		<div id="loading" style="display: none;">
 			<img src="${pageContext.request.contextPath}/images/loading.gif"

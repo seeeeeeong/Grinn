@@ -557,11 +557,12 @@ public class ItemController {
 	@ResponseBody
 	public Map<String, Object> getList(
 					@RequestParam(value="pageNum",defaultValue="1") int currentPage,
-					@RequestParam(value="rowCount",defaultValue="10") int rowCount,
+					@RequestParam(value="rowCount",defaultValue="4") int rowCount,
 					@RequestParam int item_num, HttpSession session){
 		
 		log.debug("<<currentPage>> : " + currentPage);
 		log.debug("<<item_num>> : " + item_num);
+		log.debug("<<rowCount>> : " + rowCount);
 		
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("item_num", item_num);
@@ -570,7 +571,6 @@ public class ItemController {
 		
 		//전체 레코드 수 
 		int count = itemService.selectRowCountST(map);
-		
 		//페이지 처리
 		PagingUtil page = new PagingUtil(currentPage, count, rowCount, 1, null);
 		
@@ -595,5 +595,35 @@ public class ItemController {
 	}
 	
 	//=========스타일 목록 끝==============
-	
+	//=========스타일 더보기 시작===========
+	@RequestMapping("/item/listStyle.do")
+	public ModelAndView getStList(@RequestParam int item_num,
+			@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+			@RequestParam(value="rowCount",defaultValue="10") int rowCount) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("item_num", item_num);
+		
+		//paging하기
+		int count = itemService.selectRowCountST(map);
+		PagingUtil page = new PagingUtil(currentPage, count, rowCount, 1, null);
+		System.out.println("!!"+count);
+		ItemVO item = itemService.selectItem(item_num);
+		List<ItemstVO> list = null;
+		if(count > 0) {
+			map.put("start", page.getStartRow());
+			map.put("end", page.getEndRow());
+			list = itemService.selectListST(map);
+		}else {
+			list = Collections.emptyList();
+		}
+		System.out.println(list);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("listStyle");
+		mav.addObject("item", item);
+		mav.addObject("list", list);
+		
+		return mav;
+		
+	}
+	//=========스타일 더보기 끝=============
 }

@@ -1,5 +1,5 @@
 $(function(){
-	let rowCount = 10;
+	let rowCount = 4;
 	let currentPage;
 	let count;
 	
@@ -83,7 +83,9 @@ $(function(){
 	}
 	//다음 댓글 보기 버튼 클릭시 데이터 추가
 	$('.paging-button input').click(function(){
-		selectList(currentPage + 1);
+		let item_num = $('#stoutput').data('itemnum');
+		location.href='../item/listStyle.do?item_num='+item_num;
+		//selectList(currentPage + 1);
 	});
 
 	
@@ -91,7 +93,7 @@ $(function(){
 	function displayReplyCount(data){
 		let count = data.count;
 		let stoutput;
-		console.log(data.count);
+		console.log('count : '+data.count);
 		if(count==0){
 			stoutput = '댓글수(0)';
 		}else{
@@ -100,62 +102,7 @@ $(function(){
 		//문서 객체 추가
 		$('#output_rcount').text(stoutput);
 	}
-	//좋아요 읽기
-	//좋아요 선택 여부와 선택한 총개수 표시
-		function selectFav(st_num) {
-			$.ajax({
-				url: '../style/getFav.do',
-				type: 'post',
-				data: { st_num: st_num },
-				dataType: 'json',
-				success: function(param) {
-					displayFav(param, st_num);
-				},
-				error: function() {
-					alert('네트워크 오류 발생');
-				}
-			});
-		}//end of selectFav
-		//좋아요 표시 공통 함수
-		function displayFav(param, st_num) {
-			let outputSelector = '.output_fav[data-num="' + st_num + '"]';
-			let outputCountSelector = '.output_fcount[data-num="' + st_num + '"]';
-			let output;
-			if (param.status == 'yesFav') {
-				output = '../images/yes_like.png';
-			} else if (param.status == 'noFav') {
-				output = '../images/no_like.png';
-			} else {
-				alert('좋아요 표시 오류 발생');
-			}
-			//문서 객체에 추가
-			$(outputSelector).attr('src', output);
-			$(outputCountSelector).text(param.count);
-		}//end of displayFav
 
-		//좋아요 등록/삭제
-		$(document).on('click', '.output_fav', function() {
-			let st_num = $(this).attr('data-num');
-			$.ajax({
-				url: '../style/writeFav.do',
-				type: 'post',
-				data: { st_num: st_num },
-				dataType: 'json',
-				success: function(param) {
-					if (param.result == 'logout') {
-						alert('로그인 후 이용 가능합니다.');
-					} else if (param.result == 'success') {
-						displayFav(param, st_num);
-					} else {
-						alert('등록시 오류 발생');
-					}
-				},
-				error: function() {
-					alert('네트워크 오류 발생');
-				}
-			});
-		});//end of click
-	
 	//초기 데이터(목록) 호출
 	selectList(1);
 });	

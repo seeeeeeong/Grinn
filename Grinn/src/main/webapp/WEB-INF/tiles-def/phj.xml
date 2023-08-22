@@ -50,5 +50,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/item/itemReviewModify.jsp" />
 	</definition>
+	
+	<definition name="listStyle" extends="main">
+		<put-attribute name="title" value="스타일모아보기" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/item/listStyle.jsp" />
+	</definition>
     
 </tiles-definitions>
