@@ -63,6 +63,7 @@ $(function(){
 					//메시지 표시 UI 초기화
 					$('#chatbot_message').empty();
 					
+					
 					let croom_regdate = '';//chatbot 테이블에 있는 croom_regdate / 채팅이 시작된 날짜
 					$(param.list).each(function(index,item){
 						let output = '';
@@ -81,6 +82,7 @@ $(function(){
 								output += '<div class="bubble">';
 								output += '<div class="talk_info">';
 								output += '<span>'+item.message.replace(/\r\n/g,'<br>').replace(/\r/g,'<br>').replace(/\n/g,'<br>')+'</span>';
+								output += '<input type="hidden" value="'+item.c_num+'">';
 								output += '</div>';//talk_info 끝
 								output += '</div>';//bubble 끝
 								//시간 추출
@@ -88,25 +90,57 @@ $(function(){
 								output += '</div>';//inner_talk 끝
 								//하나의 메세지를 끝내기 위해 clear
 								output += '<div class="space-clear"></div>';
-							}else{//답변 메세지
+								
+								//output += 답변 넣기
+								output += '<div class="to_inner_talk">';
+								output += '<div class="to_bubble">';
+								output += '<div class="to_talk_info">';
+								if(item.message.includes("배송")){
+									output += '배송 처리 완료';
+								}else if(item.message.includes("검수")){
+									output += '검수 처리 완료';
+								}else if(item.message.includes("구매")){
+									output += '구매 처리 완료';
+								}else if(item.message.includes("판매")){
+									output += '판매 처리 완료';
+								}else if(item.message.includes("고객센터")){
+									output += '고객센터 처리 완료';
+								}else{
+									output += '안녕하세요. 그린봇입니다. 무엇을 도와드릴까요?';
+								}
+								output += '</div>';//talk_info 끝
+								output += '</div>';//bubble 끝
+								//시간 추출
+								output += '<div class="to_desc">'+item.croom_regdate.split(' ')[1]+'</div>';
+								output += '</div>';//inner_talk 끝
+								//하나의 메세지를 끝내기 위해 clear
+								output += '<div class="space-clear"></div>';
+								
+							}else{//답변 메세지 삭제할거같음
 								output += '<div class="to_inner_talk">';
 								output += '<div class="to_bubble">';
 								output += '<div class="to_talk_info">';
 								output += '<img src="../images/how_to_question.jpg" width="40" height="40" class="my-photo">';
+								//output += 답변 넣기
 								
 								output += '</div>';//talk_info 끝
 								output += '</div>';//bubble 끝
 								//시간 추출
 								output += '<div class="to_desc">'+item.croom_regdate.split(' ')[1]+'</div>';
-								output += '<div class="space-clear"></div>';
-								//하나의 메세지를 끝내기 위해 clear
 								output += '</div>';//inner_talk 끝
+								//하나의 메세지를 끝내기 위해 clear
+								output += '<div class="space-clear"></div>';
 							}
 						}
 						//문서 객체에 추가
 						$('#chatbot_message').append(output);
 						//스크롤을 하단에 위치시킴
 						$('#chatbotDetail').scrollTop($('#chatbot_message')[0].scrollHeight);
+						
+					});
+					//여기서부터
+					$(param.list2).each(function(index,item){
+						output += ''+item.list2.an_answer;
 					});
 					
 				}else{

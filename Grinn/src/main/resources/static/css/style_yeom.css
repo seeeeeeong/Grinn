@@ -696,17 +696,17 @@ form#detail_form {
 	text-align: right;
 }
 
-.to_inner_talk {
+.to_inner_talk {/* ok */
 	font-weight: 400;
 	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
 		sans-serif;
 	list-style: none;
 	position: relative;
-	padding-left: 40px;
-	float: right;
+	padding-left: 6px;
+	float: left;
 }
 
-.to_bubble {
+.to_bubble {/* ok */
 	font-weight: 400;
 	font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum,
 		sans-serif;
@@ -725,7 +725,7 @@ form#detail_form {
 	text-align: left;
 	/* float: right; */
 	text-align: right;
-	border-radius: 16px 16px 3px;
+	border-radius: 16px 16px 16px 3px;
 	font-size: 13px;
 	margin: 3px;
 	padding: 10px;

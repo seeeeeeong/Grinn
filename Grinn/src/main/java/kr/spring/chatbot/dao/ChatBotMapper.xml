@@ -7,6 +7,13 @@
 		<result property="chatbotVO.croom_regdate" column="croom_regdate"/>
 	</resultMap>
 	
+	<!-- 답변 키워드 받기 -->
+	<sql id="keyword">
+		<if test="keyword == '배송'">
+			an_intent LIKE '%' || #{keyword} || '%'
+		</if>
+	</sql>
+	
 	<sql id="chatbotSub">
 		FROM chatbot_room r JOIN chatbot_member m USING(croom_num)
 		LEFT OUTER JOIN (SELECT
@@ -65,7 +72,9 @@
 			]]>
 			croom_regdate,
 			mem_num,
-			mem_id
+			mem_id,
+			c_num,
+			croom_num
 		FROM chatbot
 		JOIN member
 		USING(mem_num)
@@ -75,7 +84,15 @@
 						FROM chatbot_member
 						WHERE croom_num = #{croom_num}
 						AND mem_num=#{mem_num}) /*멤버 등록일 이후의 정보만 읽어옴*/
-		ORDER BY croom_regdate ASC 
+		ORDER BY croom_regdate ASC
+		<include refid="keyword"></include> <!-- include는 안먹는 상태 -->
+	</select>
+	
+	<!-- 챗봇 답변 -->
+	<select id="selectChatBotAnswer" parameterType="map">
+		SELECT a.an_intent, a.an_answer
+		FROM chatbot c JOIN chatbot_answer a
+		ON INSTR(c.message, a.an_intent) > 0
 	</select>
 
 </mapper>

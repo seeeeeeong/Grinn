@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.spring.chatbot.service.ChatBotService;
+import kr.spring.chatbot.vo.ChatBotAnswerVO;
 import kr.spring.chatbot.vo.ChatBotMemberVO;
 import kr.spring.chatbot.vo.ChatBotRoomVO;
 import kr.spring.chatbot.vo.ChatBotVO;
@@ -56,7 +57,7 @@ public class ChatBotController {
 		//채팅 멤버 초대문구 설정 시작
 		vo.setChatbotVO(new ChatBotVO());
 		vo.getChatbotVO().setMem_num(user.getMem_num());
-		vo.getChatbotVO().setMessage(user.getMem_id()+"님 반갑습니다. 문의하실 내용을 입력해주세요.@{welcome}@");
+		vo.getChatbotVO().setMessage(user.getMem_id()+"님 반갑습니다.@{welcome}@");
 		//채팅 멤버 초대문구 설정 끝
 		
 		chatbotService.insertChatBotRoom(vo);
@@ -141,6 +142,7 @@ public class ChatBotController {
 		
 		return mapJson;
 	}
+	
 	//채팅 메시지 	읽기
 	@RequestMapping("/chatbot/chatbotDetailAjax.do")
 	@ResponseBody
@@ -158,13 +160,22 @@ public class ChatBotController {
 			log.debug("ajax, user_num : " + user.getMem_num());
 			
 			List<ChatBotVO> list = chatbotService.selectChatBotDetail(map);
-			
+
 			mapJson.put("result", "success");
 			mapJson.put("list", list);
 			mapJson.put("user_num", user.getMem_num());
+						
+			System.out.println("message: "+list);
+			System.out.println(list);
+			
 		}
 		
 		return mapJson;
+	}
+	public List<ChatBotAnswerVO> selectChatBotAnswer(){
+		List<ChatBotAnswerVO> list = null;
+		
+		return list;
 	}
 	
 	/* ====================== 채팅방 나가기 ====================== */

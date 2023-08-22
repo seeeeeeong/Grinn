@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.chatbot.dao.ChatBotMapper;
+import kr.spring.chatbot.vo.ChatBotAnswerVO;
 import kr.spring.chatbot.vo.ChatBotMemberVO;
 import kr.spring.chatbot.vo.ChatBotRoomVO;
 import kr.spring.chatbot.vo.ChatBotVO;
@@ -62,7 +63,6 @@ public class ChatBotServiceImpl implements ChatBotService{
 		chatbotVO.setC_num(chatbotMapper.selectChatBotNum());
 		//챗봇 메세지 저장
 		chatbotMapper.insertChatBot(chatbotVO);
-		//챗봇방 멤버가 읽지 않은 채팅 정보 저장 -?
 	}
 
 	//챗봇 메시지 읽기
@@ -96,6 +96,16 @@ public class ChatBotServiceImpl implements ChatBotService{
 		chatbotVO.setC_num(chatbotMapper.selectChatBotNum());
 		chatbotMapper.deleteChatBot(chatbotVO.getCroom_num());
 		chatbotMapper.deleteChatBotRoom(chatbotVO.getCroom_num());
+	}
+	
+	//답변
+	@Override
+	public List<ChatBotAnswerVO> selectChatBotAnswer(Map<String, Object> map) {
+		return chatbotMapper.selectChatBotAnswer(map);
+	}
+	@Override
+	public ChatBotAnswerVO selectCNum(int c_num) {
+		return chatbotMapper.selectCNum(c_num);
 	}
 	
 	

@@ -3,6 +3,7 @@ package kr.spring.chatbot.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.spring.chatbot.vo.ChatBotAnswerVO;
 import kr.spring.chatbot.vo.ChatBotMemberVO;
 import kr.spring.chatbot.vo.ChatBotRoomVO;
 import kr.spring.chatbot.vo.ChatBotVO;
@@ -28,4 +29,9 @@ public interface ChatBotService {
 	
 	//챗봇방 나가기
 	public void deleteChatBotRoomMember(ChatBotVO chatbotVO);
+	
+	
+	/* 답변에 관련한 */
+	public List<ChatBotAnswerVO> selectChatBotAnswer(Map<String,Object> map);
+	public ChatBotAnswerVO selectCNum(int c_num);
 }

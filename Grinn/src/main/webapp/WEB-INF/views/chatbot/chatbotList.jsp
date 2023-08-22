@@ -19,7 +19,6 @@
 		<tr>
 			<td style="width:80%">
 				<a href="chatbotDetail.do?croom_num=${chatbot.croom_num}">
-					<br>
 					<span>${fn:substring(chatbot.chatbotVO.message,0,45)}</span>
 				</a>
 			</td>

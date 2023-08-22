@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import kr.spring.chatbot.vo.ChatBotAnswerVO;
 import kr.spring.chatbot.vo.ChatBotMemberVO;
 import kr.spring.chatbot.vo.ChatBotRoomVO;
 import kr.spring.chatbot.vo.ChatBotVO;
@@ -54,4 +55,9 @@ public interface ChatBotMapper {
 	public void deleteChatBotRoom(Integer croom_num);
 	@Delete("DELETE FROM chatbot WHERE croom_num=#{croom_num}")
 	public void deleteChatBot(Integer croom_num);
+	
+	//챗봇 답변
+	public List<ChatBotAnswerVO> selectChatBotAnswer(Map<String,Object> map);
+	@Select("SELECT * FROM chatbot WHERE c_num=#{c_num}")
+	public ChatBotAnswerVO selectCNum(int c_num);
 }
