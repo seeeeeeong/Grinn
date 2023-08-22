@@ -40,12 +40,7 @@
         <put-attribute name="body" value="/WEB-INF/views/promotion/userDetail.jsp"/>
     </definition>
     
-    <!-- 페널티 -->
-    <definition name="penaltyList" extends="main">
-    	<put-attribute name="title" value="회원 페널티 목록"/>
-	    <put-attribute name="body" value="/WEB-INF/views/penalty/userList.jsp"/>
-    </definition>
-    
+        
     <!-- 관리자 -->
     <!-- 플리마켓 -->
     <definition name="adminBoothList" extends="admin">

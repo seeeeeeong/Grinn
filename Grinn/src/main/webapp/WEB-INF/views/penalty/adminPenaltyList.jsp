@@ -64,8 +64,5 @@
 	</table>
 	<div class="align-center">${page}</div>
 	</c:if>
-	<div class="align-right">
-		<input type="button" value="페널티 등록" onclick="location.href='adminPenaltyWrite.do'" class="register-btn">
-	</div>
 </div>
 <!-- 페널티 리스트 목록 끝 -->
