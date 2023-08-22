@@ -79,12 +79,10 @@
                               <a class = "gnb_link" href = "${pageContext.request.contextPath}/fleamarket/marketSelect.do">FLEA MARKET</a>
                            </li>
                         </ul>
-                     </nav>
-                     <%-- 
+                     </nav> 
                      <div class = "search_btn_box">
                         <input type = "search">
                      </div>
-                     --%>
                   </div>
                </div>
             </div>

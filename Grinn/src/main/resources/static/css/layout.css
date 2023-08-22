@@ -115,6 +115,9 @@ div#main_menu ul{
 div#main_menu ul li{
 	margin-bottom:5px;
 }
+.search_btn_box{
+	margin-left: 20px;
+}
 /* 메인
 ------------------------*/
 
