@@ -119,7 +119,7 @@ public class StyleController {
 		log.debug("<<count>> : " + count);
 		
 		//페이지 처리
-		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,5,10,"list.do","&order="+order);
+		PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count,10,10,"list.do","&order="+order);
 		
 		List<StyleVO> list = null;
 		if(count > 0) {
@@ -135,6 +135,7 @@ public class StyleController {
 		mav.addObject("count", count);
 		mav.addObject("list", list);
 		mav.addObject("page", page.getPage());
+		mav.addObject("order", order);
 		
 		return mav;
 	}

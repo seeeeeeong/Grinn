@@ -425,7 +425,27 @@
   });
   
 
-
+//스타일 검색
+  $(function(){
+  	$('input[type="search"]').attr('placeholder','스타일 검색');
+  	
+  	function searchData(){
+  		let data = $('input[type="search"]').val();
+  		if(data == ''){
+  			alert('검색어를 입력하세요.');
+  			$('input[type="search"]').val('').focus();
+  			return false;
+  		}
+  		location.href="list.do?keyword="+data;
+  	};
+  	
+  	$('input[type="search"]').keypress(function(){
+  		if(event.keyCode==13){
+  			searchData();	
+  		}
+  		
+  	});
+  });
 </script>
 <!-- 스타일 상세 -->
 <div class="page-main" id="styleDetail">

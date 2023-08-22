@@ -52,6 +52,10 @@
         .output-fav{
         	cursor: pointer;
         }
+        .align-center{
+        	margin:0 auto;
+        	text-align:center;
+        }
     </style>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -118,7 +122,7 @@ $(document).ready(function() {
 
 //스타일 검색
 $(function(){
-	$('input[type="search"]').attr('placeholder','스타일 검색');
+	$('input[type="search"]').attr('placeholder','ID, 상품태그, 내용 검색');
 	
 	function searchData(){
 		let data = $('input[type="search"]').val();
@@ -142,11 +146,22 @@ $(function(){
     	<div class="align-right">
     		<a href="write.do"><span style="font-size:30pt;">&#x1F4F7</span></a>
     	</div>
+    	<c:if test="${count > 0}">
     	<div class="align-right">
-    		<a href="${pageContext.request.contextPath}/style/list.do?order=1"><b>최신순</b> </a><b>|</b>
-    		<a href="${pageContext.request.contextPath}/style/list.do?order=2"><b>인기순</b></a>
+    		<a href="${pageContext.request.contextPath}/style/list.do?order=1">
+    			<c:if test="${order == 1}"><b>최신순</b></c:if>
+    			<c:if test="${order != 1}">최신순</c:if>
+    		</a> |
+    		<a href="${pageContext.request.contextPath}/style/list.do?order=2">
+    			<c:if test="${order == 2}"><b>인기순</b></c:if>
+    			<c:if test="${order != 2}">인기순</c:if>
+    		</a>
     	</div>
+    	</c:if>
     	<div class="style_list">
+    		<c:if test="${count == 0}">
+				<div class="align-center">검색 결과가 없습니다.</div>
+			</c:if>
     		<c:forEach var="style" items="${list}">
             	<div class="style-item">
                 	<a href="detail.do?st_num=${style.st_num}">
@@ -167,14 +182,10 @@ $(function(){
                     <div class="phrase">
                     	<p>${style.st_phrase}</p>
                     </div>
-                	<!--  
-                	${style.st_regdate}
-                	<c:if test="${!empty style.st_mdate}">
-                    ${style.st_mdate}
-                	</c:if>
-                	-->
             	</div>
         	</c:forEach>
     	</div>
+    	<c:if test="${count > 0}">
     	<div class="align-center">${page}</div>
+    	</c:if>
     </div>

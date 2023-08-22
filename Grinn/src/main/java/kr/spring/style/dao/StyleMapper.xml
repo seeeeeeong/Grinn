@@ -76,7 +76,11 @@
 		<where>
 			s.st_hide = 0
 			<if test="keyword != null and keyword != ''">
-					AND m.mem_id LIKE '%' || #{keyword} || '%'
+					AND (LOWER(m.mem_id) LIKE '%' || LOWER(#{keyword}) || '%'
+					OR LOWER(s.st_phrase) LIKE '%' || LOWER(#{keyword}) || '%' 
+			        OR LOWER(i1.item_brand) LIKE '%' || LOWER(#{keyword}) || '%'
+			        OR LOWER(i2.item_brand) LIKE '%' || LOWER(#{keyword}) || '%'
+			        OR LOWER(i3.item_brand) LIKE '%' || LOWER(#{keyword}) || '%')
 			</if>
 		</where>
 	</sql>
@@ -86,6 +90,9 @@
 		SELECT COUNT(*) FROM style s 
 		LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
 		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
+		LEFT OUTER JOIN item i1 ON s.item_num1 = i1.item_num
+        LEFT OUTER JOIN item i2 ON s.item_num2 = i2.item_num
+        LEFT OUTER JOIN item i3 ON s.item_num3 = i3.item_num
 		<include refid="styleSearch"></include>
 	</select>
 	
@@ -106,9 +113,13 @@
 		REPLACE(REPLACE(st_phrase, '<', '&lt;'), '>', '&gt;') st_phrase,
 		]]>
 		s.st_photo1n, s.st_photo2n, s.st_photo3n, s.mem_num, s.st_regdate, 
-		s.st_mdate, s.item_num1, s.item_num2, s.item_num3, s.st_hide, m.mem_id, d.mem_photo
+		s.st_mdate, s.item_num1, s.item_num2, s.item_num3, s.st_hide, m.mem_id, d.mem_photo, 
+		i1.item_brand i1_brand, i2.item_brand i2_brand, i3.item_brand i3_brand
 		FROM style s LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
-		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num 
+		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
+		LEFT OUTER JOIN item i1 ON s.item_num1 = i1.item_num
+        LEFT OUTER JOIN item i2 ON s.item_num2 = i2.item_num
+        LEFT OUTER JOIN item i3 ON s.item_num3 = i3.item_num
 		<include refid="styleSearch"></include>
 		<include refid="styleOrder"></include>
 		)a)

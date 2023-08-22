@@ -13,7 +13,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = {"st_photo1", "st_photo2", "st_photo3", "st_photo4"})
+@ToString(exclude = {"st_photo1", "st_photo2", "st_photo3", "st_photo4", "item_photo1_1", "item_photo1_2", "item_photo1_3"})
 public class StyleVO {
 	private int st_num;
 	private String st_phrase;
@@ -46,6 +46,11 @@ public class StyleVO {
 	private String item_photo1name_2;
 	private byte[] item_photo1_3;
 	private String item_photo1name_3;
+	
+	private String i1_brand;
+	private String i2_brand;
+	private String i3_brand;
+	
 	
 	//좋아요
 	private int fav_cnt;
