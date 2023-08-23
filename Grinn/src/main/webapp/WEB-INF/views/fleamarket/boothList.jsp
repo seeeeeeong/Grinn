@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 부스 리스트 목록 시작 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
 <script type="text/javascript">
 	$(function(){
 		// 검색 유효성 체크
@@ -19,22 +20,23 @@
 	<h2>부스 목록</h2>
 	<!-- 검색창 시작 -->
 	<form action="boothList.do" id="search_form" method="get">
-		<ul class="search">
-			<li>
+		<div class="itemListTop">
+		<div class="search">
+			<div>
 				<select name="keyfield" id="keyfield">
 					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목+내용</option>
 					<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>제목</option>
 					<option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>내용</option>
 				</select>
-			</li>
-			<li>
+			</div>
+			<div class="itemSearch">
 				<input type="search" name="keyword" id="keyword" value="${param.keyword}">
-			</li>
-			<li>
-				<input type="submit" value="찾기">
-				<input type="button" value="목록" onclick="location.href='boothList.do'">
-			</li>
-		</ul>
+			</div>
+			<div>
+				<input type="image" src="../images/item_search.png" name="submit"> 
+			</div>
+		</div>
+		</div>
 	</form>
 	<!-- 검색창 끝 -->
 	<c:if test="${count == 0}">
@@ -46,7 +48,7 @@
 		<tr class="market-list">
 			<td class="align-center tuumbNail">
 				<a href="${pageContext.request.contextPath}/fleamarket/detail.do?market_num=${booth.market_num}">
-					<img src="${pageContext.request.contextPath}/fleamarket/imageView.do?market_num=${booth.market_num}&photo_type=2" width="80" height="120">
+					<img src="${pageContext.request.contextPath}/fleamarket/imageView.do?market_num=${booth.market_num}&photo_type=2" width="120" height="160">
 				</a>
 			</td>
 			<td class="market-title"><b>${booth.market_title}</b></td>

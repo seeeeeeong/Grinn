@@ -300,3 +300,32 @@ table.market-table > td{
 	height:46px;
 	margin-right:5px;
 }
+/*검색창
+-------------------------*/
+#keyfield{
+	height:100%;
+    border:none;
+    font-size:15px;
+}
+#keyword{
+	border-bottom:3px solid #000;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    margin:0 8px;
+    width:350px;
+    border-radius:unset;
+}
+input[type="image"] {
+    width:20px;
+    height:20px;
+    padding:3px;
+}
+.search{
+	display:flex;
+	justify-content:center;
+	margin:0 auto;
+}
+.buttons{
+	float:right;
+}

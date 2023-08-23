@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 페널티 리스트 목록 시작 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
 <script type="text/javascript">
 	$(function(){
 		// 검색 유효성 체크
@@ -18,21 +19,22 @@
 	<h2>페널티 목록 - 관리자</h2>
 	<!-- 검색창 시작 -->
 	<form action="admin_list.do" id="search_form" method="get">
-		<ul class="search">
-			<li>
+		<div class="itemListTop">
+		<div class="search">
+			<div>
 				<select name="keyfield" id="keyfield">
 					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>번호</option>
 					<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>ID</option>
 				</select>
-			</li>
-			<li>
+			</div>
+			<div class="itemSearch">
 				<input type="search" name="keyword" id="keyword" value="${param.keyword}">
-			</li>
-			<li>
-				<input type="submit" value="찾기">
-				<input type="button" value="목록" onclick="location.href='admin_list.do'">
-			</li>
-		</ul>
+			</div>
+			<div>
+				<input type="image" src="../images/item_search.png" name="submit"> 
+			</div>
+		</div>
+		</div>
 	</form>
 	<!-- 검색창 끝 -->
 	<c:if test="${count == 0}">
@@ -55,8 +57,8 @@
 			<td class="align-center">${pe.pe_date}</td>			
 			<td class="align-center">
 			<c:if test="${pe.memberVO.mem_auth != 0 or pe.memberVO.mem_auth != 9}">
-				<input type="button" value="상세보기" onclick="location.href='admin_detail.do?pe_num=${pe.pe_num}'" class="detail-btn">
-				<input type="button" value="수정" onclick="location.href='modifyPenalty.do?pe_num=${pe.pe_num}'" class="detail-btn">
+				<input type="button" value="상세보기" onclick="location.href='admin_detail.do?pe_num=${pe.pe_num}'">
+				<input type="button" value="수정" onclick="location.href='modifyPenalty.do?pe_num=${pe.pe_num}'">
 			</c:if>
 			</td>
 		</tr>

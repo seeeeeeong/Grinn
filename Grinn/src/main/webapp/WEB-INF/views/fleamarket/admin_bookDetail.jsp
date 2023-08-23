@@ -41,7 +41,7 @@
 			</li>
 			<li class="detail-user">
 				<label class="user-label">예약자 ID</label>
-				${memberVO.mem_id}
+				${bookingVO.mem_id}
 			</li>
 			<li class="detail-user">
 				<label class="user-label">예약일</label>

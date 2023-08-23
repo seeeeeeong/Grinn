@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 부스 리스트 목록 시작 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
 <script type="text/javascript">
 	$(function(){
 		// 검색 유효성 체크
@@ -18,22 +19,23 @@
 	<h2>부스 목록 - 관리자</h2>
 	<!-- 검색창 시작 -->
 	<form action="adminBoothList.do" id="search_form" method="get">
-		<ul class="search">
-			<li>
+		<div class="itemListTop">
+		<div class="search">
+			<div>
 				<select name="keyfield" id="keyfield">
 					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>제목+내용</option>
 					<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>제목</option>
 					<option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>내용</option>
 				</select>
-			</li>
-			<li>
+			</div>
+			<div class="itemSearch">
 				<input type="search" name="keyword" id="keyword" value="${param.keyword}">
-			</li>
-			<li>
-				<input type="submit" value="찾기">
-				<input type="button" value="목록" onclick="location.href='adminBoothList.do'">
-			</li>
-		</ul>
+			</div>
+			<div>
+				<input type="image" src="../images/item_search.png" name="submit"> 
+			</div>
+		</div>
+		</div>
 	</form>
 	<!-- 검색창 끝 -->
 	<c:if test="${count == 0}">
@@ -63,8 +65,8 @@
 				<c:if test="${adminBooth.market_type == 3}">종료</c:if>
 			</td>
 			<td class="align-center">
-				<input type="button" value="수정" onclick="location.href='updateBooth.do?market_num=${adminBooth.market_num}'" class="detail-btn">
-				<input type="button" value="삭제" id="delete_btn">
+				<input type="button" value="수정" onclick="location.href='updateBooth.do?market_num=${adminBooth.market_num}'">
+				<input type="button" value="삭제" id="default_btn">
 				<script type="text/javascript">
 					let delete_btn = document.getElementById('delete_btn');
 					delete_btn.onclick=function(){

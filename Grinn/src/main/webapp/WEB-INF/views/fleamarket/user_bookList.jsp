@@ -19,21 +19,21 @@
 <div class="page-main">
 	<h2>예약 목록</h2>
 	<form action="marketList.do" id="search_form" method="get">
-		<ul class="search">
-			<li>
-				<select name="keyfield">
+		<div class="itemListTop">
+		<div class="search">
+			<div>
+				<select name="keyfield" id="keyfield">
 					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>예약번호</option>
 				</select>
-			</li>
-			<li>
+			</div>
+			<div class="itemSearch">
 				<input type="search" name="keyword" id="keyword" value="${param.keyword}">
-			</li>
-			<li>
-				<input type="submit" value="찾기">
-				<input type="button" value="목록" 
-				   onclick="location.href='marketList.do'">
-			</li>
-		</ul>
+			</div>
+			<div>
+				<input type="image" src="../images/item_search.png" name="submit"> 
+			</div>
+		</div>
+		</div>
 	</form>
 	<c:if test="${count == 0}">
 	<div class="result-display">표시할 예약 목록이 없습니다.</div>
