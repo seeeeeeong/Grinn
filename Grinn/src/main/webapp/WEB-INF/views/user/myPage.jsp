@@ -257,7 +257,7 @@
 				</div>
 			</c:when>
 			<c:otherwise>
-				<c:forEach items="${purchasedItems}" var="pitem">
+				<c:forEach items="${purchasedItems}" var="pitem" varStatus="loop">
 
 					<div class="purchased-item"
 						style="display: flex; align-items: center; justify-content: space-between;">
@@ -272,25 +272,35 @@
 						</a>
 						<div class="item-section"
 							style="display: flex; align-items: center; gap: 80px; justify-content: center; white-space: nowrap;">
-							<span style="margin-left: 10px; opacity: 0.3;">${purchasedDate[0]}</span>
+							<span style="margin-left: 10px; opacity: 0.3;">${purchasedDate[loop.index]}</span>
 							<c:choose>
-								<c:when test="${purchasedState[0] eq 2}">
-                        검수준비중
-                    </c:when>
-								<c:when test="${purchasedState[0] eq 3}">
-                        검수중
-                    </c:when>
-								<c:when test="${purchasedState[0] eq 4}">
-                        배송중
-                    </c:when>
-								<c:when test="${purchasedState[0] eq 5}">
-                        배송완료<br>
-									<a href="${pageConetext.request.contextPath}/style/write.do" style="font-size: 12px; opacity: 0.5;">스타일올리기</a>
-								</c:when>
-								<c:when test="${purchasedState[0] eq 6}">
-                        거래실패
-                    </c:when>
-							</c:choose>
+    <c:when test="${purchasedState[loop.index] eq 5}">
+       <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+       <div>배송완료</div><br>
+       <div class="completed-links" style="font-size: 10px; opacity: 0.5; text-align: center;">
+            <a href="${pageContext.request.contextPath}/style/write.do">스타일올리기</a><br>
+            <a href="${pageContext.request.contextPath}/item/itemReview.do?item_num=${pitem.item_num}">리뷰쓰기</a>
+        </div>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <c:choose>
+            <c:when test="${purchasedState[loop.index] eq 2}">
+                검수준비중
+            </c:when>
+            <c:when test="${purchasedState[loop.index] eq 3}">
+                검수중
+            </c:when>
+            <c:when test="${purchasedState[loop.index] eq 4}">
+                배송중
+            </c:when>
+            <c:when test="${purchasedState[loop.index] eq 6}">
+                <span style="color: red;">거래실패</span>
+            </c:when>
+        </c:choose>
+    </c:otherwise>
+</c:choose>
+
 
 						</div>
 					</div>

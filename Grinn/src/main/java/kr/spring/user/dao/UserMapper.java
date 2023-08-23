@@ -141,7 +141,7 @@ public interface UserMapper {
 	public ItemVO selectItem(Integer item_num);
 
 	// 좋아요한 게시물 정보 가져오기
-	@Select("SELECT s.st_num, s.st_phrase, s.mem_num FROM style s JOIN style_fav sf ON s.st_num = sf.st_num WHERE sf.mem_num = #{mem_num}")
+	@Select("SELECT s.st_num, s.st_phrase, s.mem_num FROM style s JOIN style_fav sf ON s.st_num = sf.st_num WHERE sf.mem_num = #{mem_num} AND s.st_hide = 0")
 	public List<StyleVO> selectLikedStyles(Integer mem_num);
 
 	// 좋아요한 게시물의 st_num에 해당하는 style 테이블의 정보 가져오기

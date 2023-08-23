@@ -21,11 +21,11 @@ public interface UserStyleMapper {
 	public MemberVO selectMember(Integer mem_num);
 
 	// 사용자가 작성한 스타일게시물 총 개수 가져오기
-	@Select("SELECT COUNT(*) AS total FROM style " + "WHERE mem_num = #{mem_num}")
+	@Select("SELECT COUNT(*) AS total FROM style WHERE mem_num = #{mem_num} AND st_hide = 0")
 	public int selectUserStyleCount(Integer mem_num);
 
 	// 사용자가 작성한 스타일게시물 사진, 내용 가져오기
-	@Select("SELECT s.mem_num, s.st_num, s.st_photo1, s.st_phrase FROM member_detail m JOIN style s ON m.mem_num = s.mem_num WHERE m.mem_num = #{mem_num}")
+	@Select("SELECT s.mem_num, s.st_num, s.st_photo1, s.st_phrase FROM member_detail m JOIN style s ON m.mem_num = s.mem_num WHERE m.mem_num = #{mem_num} AND s.st_hide = 0")
 	public List<StyleVO> selectStyle(Integer mem_num);
 
 	// st_num에 해당하는 style 테이블의 정보 가져오기

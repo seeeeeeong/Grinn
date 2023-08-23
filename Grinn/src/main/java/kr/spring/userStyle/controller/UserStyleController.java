@@ -52,7 +52,7 @@ public class UserStyleController {
 	/*
 	 * =========================== userStyle ===========================
 	 */
-
+	
 	@GetMapping("/user/userStyle.do")
 	public String userStyle(@RequestParam("mem_num") int memNum, HttpSession session, Model model) {
 		// 로그인한 사용자의 mem_num 값을 가져옵니다.
@@ -76,7 +76,7 @@ public class UserStyleController {
 		// 팔로잉 mem_num, mem_id
 		List<MemberVO> followingInfo = userStyleService.followingInfo(memNum);
 		model.addAttribute("followingInfo", followingInfo);
-
+		
 		// mem_num 값과 로그인한 사용자의 mem_num 값을 비교합니다.
 		if (memNum == loggedInUserMemNum) {
 			// mem_num 값과 로그인한 사용자의 mem_num이 일치하는 경우, 해당 사용자의 정보를 표시합니다.

@@ -372,7 +372,7 @@
 
 
 
-			<button class="unfollow-button" data-user-id="${member.mem_num}">팔로잉</button>
+			<button class="unfollow-button" data-user-id="${member.mem_num}" style="display: none;">팔로잉</button>
 			<button class="follow-button" data-user-id="${member.mem_num}">팔로우</button>
 
 
