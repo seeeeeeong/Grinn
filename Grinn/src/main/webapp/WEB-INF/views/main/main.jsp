@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	$(function(){
 		$('.li_tab').eq(${item_gender}).css('font-weight','bold');
-		$('.tabs').hide();
+		
 		$('input[type="search"]').attr('placeholder','전체 검색');
 		
 		function searchData(){
