@@ -95,39 +95,60 @@ $(function(){
 								output += '<div class="to_inner_talk">';
 								output += '<div class="to_bubble">';
 								output += '<div class="to_talk_info">';
-								if(item.message.includes("배송")){
-									output += '배송 처리 완료';
+								if(item.message.includes("배송중")){
+									output += '구매자에게 발송하는 운송장번호가 택배사에 접수되었습니다. 운송장조회는 택배사 수거 이후에 가능하게 됩니다.';
+								}else if(item.message.includes("대기중")){
+									output += '판매자의 상품 발송을 기다립니다. 판매자는 거래 체결 후 48시간(일요일・공휴일 제외) 이내에 운송장 정보를 입력하여야 합니다.';
+								}else if(item.message.includes("발송완료")){
+									output += '판매자가 GRINN으로 상품을 발송하여, 택배가 이동중입니다';
+								}else if(item.message.includes("입고완료")){
+									output += '검수센터 도착 후, 판매자가 입력한 정보 기준으로 택배를 확인했다는 의미입니다.'
+									output += '<br>포장된 택배상자로 입고처리를 진행하며, 주문하신 상품의 확인은 해당 단계에서 진행되지 않습니다.';
+								}else if(item.message.includes("배송")){
+									output += '구매하신 상품의 배송은 결제완료 이후 영업일 기준 7-10일 소요되며, 택배사 사정에 따라 변경될 수 있습니다.';
+									output += '<br>배송에 관련된 세부내용이 궁금하시다면 입력해주세요';
+									output += '<br>ex) 대기중 / 배송중 / 발송완료 / 입고완료 / 검수중';
+								}else if(item.message.includes("검수중")){
+									output += '전문 검수팀에서 검수를 진행합니다. 이때 택배상자를 열어, 주문내역과 다른 상품은 바로 검수 불합격 처리됩니다.<br>상품에 따라 검수소요시간은 상이합니다.';
 								}else if(item.message.includes("검수")){
-									output += '검수 처리 완료';
+									output += '발송시 주의사항1 > ✔️ 착불 발송 시, 정산 금액에서 차감';
+									output += '<br>발송시 주의사항2 > ✔️ 카테고리 혼합/교차 등 오배송 주의';
+									output += '<br>발송시 주의사항3 > ✔️ 파손 방지를 위한 이중 포장 필수';
+									output += '<br>검수센터의 주소와 연락처를 알려드립니다.<br>찾으려는 검수센터명을 입력하세요.';
+									output += '<br>ex) 스니커즈 / 패션잡화 / 의류 / 시계,가방';
+								}else if(item.message.includes("스니커즈")){
+									output += '📦 (12345) 서울 왕왕구 왕왕이로12길 34, 5층 (와왕타워)<br>📞 1588-1234 ';
+								}else if(item.message.includes("패션잡화")){
+									output += '📦 (6789) 서울 홍홍구 호호홍로1길 23, B32층 (호홍시티빌딩)<br>📞 1588-5678 ';
+								}else if(item.message.includes("의류")){
+									output += '📦 (6789) 서울 홍홍구 호호홍로1길 23, B32층 (호홍시티빌딩)<br>📞 1588-5678 ';
+								}else if(item.message.includes("시계")){
+									output += '📦 (1011121) 서울 히히구 히히산로 12길 3, 히히빌딩 2층<br>📞 1588-9101 ';
+								}else if(item.message.includes("가방")){
+									output += '📦 (1011121) 서울 히히구 히히산로 12길 3, 히히빌딩 2층<br>📞 1588-9101 ';
 								}else if(item.message.includes("구매")){
-									output += '구매 처리 완료';
-								}else if(item.message.includes("판매")){
-									output += '판매 처리 완료';
+									output += '💵 구매 입찰 > 원하는 가격을 적고 판매자 입찰을 기다립니다.';
+									output += '<br>💵 즉시 구매 > 판매 입찰 가격 중에 최저가로 바로 구매합니다.';
+									output += '<br>구매방법이 궁금하시다면 구매방법이라고 입력해주세요.';
+								}else if(item.message.includes("판매방법")){
+									output += '판매는 5단계로 이루어집니다.<br>1)판매할 상품 등록<br>2)거래 체결<br>3)상품 배송<br>4)GRINN검수<br>5)정산 완료';
+								}else if(item.message.includes("판매취소")){
+									output += '즉시 판매는 취소할 수 없습니다.';
+									output += '<br>거래 체결 전인 경우에는 취소가 가능합니다.';
+									output += '<br>해당 주문내역 상세보기에서 오른쪽 상단 휴지통 모양의 "입찰지우기"를 선택하시면 취소가 가능합니다.';
+									output += '<br>즉시 판매한 경우 또는 입찰 후 거래가 체결된 경우에는 원칙적으로 취소가 불가능합니다.';
+								}else if(item.message.includes("환불")){
+									output += '환불은 배송완료 후 7일 이내로 신청 가능하며 상품 회수 후 영업일 기준 3-5일 소요됩니다.';
 								}else if(item.message.includes("고객센터")){
-									output += '고객센터 처리 완료';
+									output += '고객센터 운영시간은 평일 09:00 ~ 18:00 (토,일,공휴일 휴무)이며 휴게시간은 평일 12:50 ~ 14:00입니다.';
 								}else{
 									output += '안녕하세요. 그린봇입니다. 무엇을 도와드릴까요?';
 								}
-								output += '</div>';//talk_info 끝
-								output += '</div>';//bubble 끝
+								output += '</div>';//to_talk_info 끝
+								output += '</div>';//to_bubble 끝
 								//시간 추출
 								output += '<div class="to_desc">'+item.croom_regdate.split(' ')[1]+'</div>';
-								output += '</div>';//inner_talk 끝
-								//하나의 메세지를 끝내기 위해 clear
-								output += '<div class="space-clear"></div>';
-								
-							}else{//답변 메세지 삭제할거같음
-								output += '<div class="to_inner_talk">';
-								output += '<div class="to_bubble">';
-								output += '<div class="to_talk_info">';
-								output += '<img src="../images/how_to_question.jpg" width="40" height="40" class="my-photo">';
-								//output += 답변 넣기
-								
-								output += '</div>';//talk_info 끝
-								output += '</div>';//bubble 끝
-								//시간 추출
-								output += '<div class="to_desc">'+item.croom_regdate.split(' ')[1]+'</div>';
-								output += '</div>';//inner_talk 끝
+								output += '</div>';//to_inner_talk 끝
 								//하나의 메세지를 끝내기 위해 clear
 								output += '<div class="space-clear"></div>';
 							}

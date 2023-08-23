@@ -666,17 +666,14 @@ form#detail_form {
 	list-style: none;
 	display: inline-block;
 	position: relative;
-	max-width: 100%;
+	max-width: 400px;
 	min-height: 21px;
 	min-width: 30px;
 	line-height: 1.33;
 	word-break: break-word;
 	word-wrap: break-word;
 	vertical-align: bottom;
-	background-color: #dbdbdb;
-	text-align: left;
-	/* float: right; */
-	text-align: right;
+	background-color: #c0c0c0;
 	border-radius: 16px 16px 3px;
 	font-size: 13px;
 	margin: 3px;
@@ -715,13 +712,13 @@ form#detail_form {
 	display: inline-block;
 	position: relative;
 	z-index: 0;
-	max-width: 100%;
+	max-width: 400px;
 	min-height: 21px;
 	line-height: 1.33;
 	word-break: break-word;
 	word-wrap: break-word;
 	vertical-align: bottom;
-	background-color: #dbdbdb;
+	background-color: #e6e6e6;
 	text-align: left;
 	/* float: right; */
 	text-align: right;
@@ -738,10 +735,11 @@ form#detail_form {
 	list-style: none;
 	position: relative;
 	box-sizing: border-box;
-	float: right;
+	float: left;
 	margin: 0;
 	padding: 0;
-	text-align: right;
+	text-align: left;
+	font-weight: bolder;
 }
 
 .space-clear {
