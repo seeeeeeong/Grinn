@@ -136,6 +136,13 @@
 				$(this).css('color','rgba(34,34,34,.8)');
 			});
 		};
+		
+		$('#address2').focusin(function(){
+			$('#address2').css('border-bottom','1px solid black');
+		});
+		$('#address2').focusout(function(){
+			$('#address2').css('border','0');
+		});
 	});
 </script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssk/purchaseDetail.css">
@@ -272,8 +279,8 @@
       			<div class="input-box">
       				<h4>우편번호</h4>
       				<div class="input-item">
-      					<input type="text" id="zipcode" placeholder="우편 번호를 검색하세요.">
-      					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="zipcode-btn">
+      					<input type="text" id="zipcode" placeholder="우편 번호를 검색하세요." readonly="readonly">
+      					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="zipcode-btn" >
       				</div>
       				<p class="input-error"></p>
       			</div>

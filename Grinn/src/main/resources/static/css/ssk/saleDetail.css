@@ -500,8 +500,11 @@ input[type="checkbox"]:checked + label{
   font-size:25px;
   cursor: pointer;
 }
+.modal-content{
+	margin: 10px 10px;
+}
 .modal-detail{
-	margin: 20px auto;
+	padding: 0 32px;
 }
 .modal-btns{
 	display:flex;
@@ -524,6 +527,72 @@ input[type="checkbox"]:checked + label{
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
+}
+.input-box{
+    position: relative;
+    margin: 0;
+}
+.input-item{
+	border-bottom: 1px solid #ebebeb;
+}
+.input-box .input-item{
+	position: relative;
+}
+.input-item input[type="text"]{
+	
+    font-size: 15px;
+    letter-spacing: -.15px;
+    line-height: 22px;
+    padding: 8px 0;
+    width: 100%;
+   	-webkit-appearance: none;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    resize: none;
+}
+.input-item input[type="button"]{
+	bottom: 8px;
+    position: absolute;
+    right: 0;
+    align-items: center;
+    background-color: #fff;
+    color: rgba(34,34,34,.8);
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 10px;
+    font-size: 12px;
+    height: 34px;
+    letter-spacing: -.06px;
+    padding: 0 14px;
+}
+.modal-close{
+	padding-top: 32px;
+	padding: 24px 32px 32px;
+}
+.modal-close input[type="button"]{
+	width: 120px;
+	border: 1px solid #d3d3d3;
+    color: rgba(34,34,34,.8);
+    border-radius: 12px;
+    font-size: 14px;
+    height: 42px;
+    letter-spacing: -.14px;
+    padding: 0 18px;
+    align-items: center;
+    background-color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 
 
