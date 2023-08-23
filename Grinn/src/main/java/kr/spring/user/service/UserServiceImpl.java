@@ -11,6 +11,7 @@ import kr.spring.user.dao.UserMapper;
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.penalty.vo.PenaltyVO;
 import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
@@ -230,6 +231,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteProfile(Integer mem_num) {
 		userMapper.deleteProfile(mem_num);
+	}
+
+	@Override
+	public List<PenaltyVO> getPenaltyList(Integer mem_num) {
+		return userMapper.getPenaltyList(mem_num);
 	}
 
 }

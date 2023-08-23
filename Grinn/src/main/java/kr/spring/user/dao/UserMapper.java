@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
+import kr.spring.penalty.vo.PenaltyVO;
 import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.vo.TradeVO;
@@ -185,5 +186,9 @@ public interface UserMapper {
 	// 거래 페널티
 	@Select("SELECT * FROM penalty_trade WHERE mem_num = #{mem_num}")
 	public List<MemberVO> getPenaltyTrade(Integer mem_num);
+	
+	// 회원별 패널티 리스트
+	@Select("SELECT * FROM penalty WHERE mem_num = #{mem_num}")
+	public List<PenaltyVO> getPenaltyList(Integer mem_num);
 
 }

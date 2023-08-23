@@ -14,6 +14,7 @@ import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
+import kr.spring.penalty.vo.PenaltyVO;
 import kr.spring.sbid.vo.SaleBidVO;
 import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
@@ -141,5 +142,8 @@ public interface UserService {
 
 	// 거래 페널티
 	public List<MemberVO> getPenaltyTrade(Integer mem_num);
+	
+	// 회원별 패널티 리스트
+	public List<PenaltyVO> getPenaltyList(Integer mem_num);
 
 }
