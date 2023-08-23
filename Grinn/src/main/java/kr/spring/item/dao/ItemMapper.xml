@@ -91,10 +91,13 @@
 	<sql id="itemSearch">
 		<where>
 			<if test="keyword != null and keyword != ''">
-				<if test="keyfield == 1"><!-- 브랜드 -->
+				<if test="keyfield == 1"><!-- 상품명+브랜드 -->
+					item_name LIKE '%' || #{keyword} || '%' OR item_brand LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 2"><!-- 브랜드 -->
 					item_brand LIKE '%' || #{keyword} || '%'
 				</if>
-				<if test="keyfield == 2"><!-- 상품명 -->
+				<if test="keyfield == 3"><!-- 상품명 -->
 					item_name LIKE '%' || #{keyword} || '%'
 				</if>
 			</if>

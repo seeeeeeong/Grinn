@@ -644,7 +644,6 @@ ul.tabs li.current{
 }
 .stylelist01 {
   padding: 10px;
-  margin-bottom: 20px;
   margin-left: 30px;
 }
 
@@ -955,4 +954,23 @@ to {
 	border-radius: 5px;
 	border: 2px solid #b0abab;
 	margin-top: 15px;
+}
+.searchBox1{
+	margin-top: 50px;
+}
+.searchBox2{
+	border-bottom: 1px solid #b0abab;
+	border-top: 1px solid #b0abab;
+	display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.searchBox2 input[type="button"]{
+	border: none;
+	background-color: #FFF;
+	margin-right: 10px;
+}
+.searchBox2 h3{
+	margin : 15px 0 15px 5px;
+	font-size: 18px;
 }

@@ -14,6 +14,25 @@
 				return false;
 			}
 		});
+		
+		$('input[type="search"]').attr('placeholder','전체 검색');
+		
+		function searchData(){
+			let data = $('input[type="search"]').val();
+			if(data == ''){
+				alert('검색어를 입력하세요.');
+				$('input[type="search"]').val('').focus();
+				return false;
+			}
+			location.href="../main/search.do?keyfield=1&keyword="+data;
+		};
+		
+		$('input[type="search"]').keypress(function(){
+			if(event.keyCode==13){
+				searchData();	
+			}
+			
+		});
 	});
 </script>
 <div class="page-main">
@@ -28,8 +47,8 @@
 		<div class="search">
 			<div>
 				<select name="keyfield" id="keyfield">
-					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>브랜드</option>
-					<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>상품명</option>
+					<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>브랜드</option>
+					<option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>상품명</option>
 				</select>
 			</div>
 			<div class="itemSearch">

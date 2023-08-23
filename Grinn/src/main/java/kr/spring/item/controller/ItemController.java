@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.spring.fleaMarket.service.MarketService;
+import kr.spring.fleaMarket.vo.MarketVO;
 import kr.spring.item.service.ItemService;
 import kr.spring.item.vo.ItemFavVO;
 import kr.spring.item.vo.ItemReviewVO;
@@ -49,6 +51,9 @@ public class ItemController {
 	
 	@Autowired
 	private StyleService styleService;
+	
+	@Autowired
+	private MarketService marketService;
 
 	// ===========자바빈 초기화===========
 	@ModelAttribute
@@ -641,13 +646,14 @@ public class ItemController {
 	}
 	//=========스타일 더보기 끝=============
 	@RequestMapping("/main/search.do")
-	public ModelAndView getSearch(@RequestParam String keyword,
+	public ModelAndView getSearch(@RequestParam String keyword,String keyfield,
 							@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 							@RequestParam(value="rowCount",defaultValue="4") int rowCount){
 		
 		//itemsearch
 		Map<String,Object> map1 = new HashMap<String, Object>();
 		map1.put("keyword", keyword);
+		map1.put("keyfield", keyfield);
 		
 		//전체/검색 레코드 수
 		int count1 = itemService.selectRowCount(map1);
@@ -666,7 +672,6 @@ public class ItemController {
 		mav.addObject("count1", count1);
 		mav.addObject("list1",list1);
 		mav.addObject("page1", page1.getPage());
-		
 		//stylesearch
 		Map<String,Object> map2 = new HashMap<String, Object>();
 		map2.put("keyword", keyword);
@@ -676,15 +681,33 @@ public class ItemController {
 		PagingUtil page2 = new PagingUtil(currentPage, count2, rowCount, 1, null);
 		List<StyleVO> list2 = null;
 		if(count2 > 0) {
-			map2.put("start", page1.getStartRow());
-			map2.put("end", page1.getEndRow());
+			map2.put("start", page2.getStartRow());
+			map2.put("end", page2.getEndRow());
 			list2 = styleService.selectList(map2);
 		}
 		
 		mav.addObject("count2", count2);
 		mav.addObject("list2",list2);
-		mav.addObject("page2", page1.getPage());
-		//reservationsearch
+		mav.addObject("page2", page2.getPage());
+		
+		//fleamarketsearch
+		Map<String,Object> map3 = new HashMap<String, Object>();
+		map3.put("keyword", keyword);
+		map3.put("keyfield", keyfield);
+		
+		//전체/검색 레코드 수
+		int count3 = marketService.selectCount(map3);
+		PagingUtil page3 = new PagingUtil(currentPage, count3, rowCount, 1, null);
+		List<MarketVO> list3 = null;
+		if(count3 > 0) {
+			map3.put("start", page3.getStartRow());
+			map3.put("end", page3.getEndRow());
+			list3 = marketService.selectList(map3);
+		}
+		
+		mav.addObject("count3", count3);
+		mav.addObject("list3",list3);
+		mav.addObject("page3", page3.getPage());
 		
 		return mav;
 	}

@@ -17,7 +17,7 @@ $(function(){
 			$('input[type="search"]').val('').focus();
 			return false;
 		}
-		location.href="itemList.do?keyfield=2&keyword="+data;
+		location.href="itemList.do?keyfield=3&keyword="+data;
 	};
 	
 	$('input[type="search"]').keypress(function(){
@@ -44,8 +44,8 @@ $(function(){
 		<div class="search">
 			<div>
 				<select name="keyfield" id="keyfield" class="keynone">
-					<option value="1" <c:if test="${param.keyfield == 1}">selected</c:if>>브랜드</option>
-					<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>상품명</option>
+					<option value="2" <c:if test="${param.keyfield == 2}">selected</c:if>>브랜드</option>
+					<option value="3" <c:if test="${param.keyfield == 3}">selected</c:if>>상품명</option>
 				</select>
 			</div>
 				<input type="search" name="keyword" id="keyword" value="${param.keyword}" class="keynone">

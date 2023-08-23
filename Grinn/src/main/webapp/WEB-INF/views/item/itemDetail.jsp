@@ -18,7 +18,7 @@ $(function(){
 			$('input[type="search"]').val('').focus();
 			return false;
 		}
-		location.href="itemList.do?keyfield=2&keyword="+data;
+		location.href="itemList.do?keyfield=1&keyword="+data;
 	};
 	
 	$('input[type="search"]').keypress(function(){
@@ -53,7 +53,7 @@ $(function(){
 				<div class="itemInfo">
 					<div class="title_box">
 					<div>
-						<a href="itemList.do?keyfield=1&keyword=${item.item_brand}&order=1" class="a">${item.item_brand}</a>
+						<a href="itemList.do?keyfield=2&keyword=${item.item_brand}&order=1" class="a">${item.item_brand}</a>
 						</div>
 						<p class="b">${item.item_name}</p>
 						<p class="c">${item.item_detail}</p>
@@ -425,7 +425,7 @@ $(function(){
 		<div id="loading" style="display: none;">
 			<img src="${pageContext.request.contextPath}/images/loading.gif"
 				width="100" height="100">
-		</div>
+		</div><br><br>
 		<!-- 스타일 끝 -->
 		<hr>
 		<!-- 댓글 시작 -->
