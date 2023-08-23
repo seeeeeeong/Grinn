@@ -29,6 +29,8 @@ import kr.spring.item.vo.ItemVO;
 import kr.spring.item.vo.ItemstVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.sbid.vo.SaleSizePriceVO;
+import kr.spring.style.service.StyleService;
+import kr.spring.style.vo.StyleVO;
 import kr.spring.trade.service.TradeService;
 import kr.spring.trade.vo.TradeVO;
 import kr.spring.util.FileUtil;
@@ -44,6 +46,9 @@ public class ItemController {
 	
 	@Autowired
 	private TradeService tradeService;
+	
+	@Autowired
+	private StyleService styleService;
 
 	// ===========자바빈 초기화===========
 	@ModelAttribute
@@ -635,4 +640,52 @@ public class ItemController {
 		
 	}
 	//=========스타일 더보기 끝=============
+	@RequestMapping("/main/search.do")
+	public ModelAndView getSearch(@RequestParam String keyword,
+							@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+							@RequestParam(value="rowCount",defaultValue="4") int rowCount){
+		
+		//itemsearch
+		Map<String,Object> map1 = new HashMap<String, Object>();
+		map1.put("keyword", keyword);
+		
+		//전체/검색 레코드 수
+		int count1 = itemService.selectRowCount(map1);
+		PagingUtil page1 = new PagingUtil(currentPage, count1, rowCount, 1, null);
+		List<ItemVO> list1 = null;
+		if(count1 > 0) {
+			map1.put("start", page1.getStartRow());
+			map1.put("end", page1.getEndRow());
+			list1 = itemService.selectList(map1);
+		}
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("search");
+		mav.addObject("keyword", keyword);
+		mav.addObject("count1", count1);
+		mav.addObject("list1",list1);
+		mav.addObject("page1", page1.getPage());
+		
+		//stylesearch
+		Map<String,Object> map2 = new HashMap<String, Object>();
+		map2.put("keyword", keyword);
+		
+		//전체/검색 레코드 수
+		int count2 = styleService.selectRowCount(map2);
+		PagingUtil page2 = new PagingUtil(currentPage, count2, rowCount, 1, null);
+		List<StyleVO> list2 = null;
+		if(count2 > 0) {
+			map2.put("start", page1.getStartRow());
+			map2.put("end", page1.getEndRow());
+			list2 = styleService.selectList(map2);
+		}
+		
+		mav.addObject("count2", count2);
+		mav.addObject("list2",list2);
+		mav.addObject("page2", page1.getPage());
+		//reservationsearch
+		
+		return mav;
+	}
 }

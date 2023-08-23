@@ -8,6 +8,25 @@
 <script type="text/javascript">
 	$(function(){
 		$('.li_tab').eq(${item_gender}).css('font-weight','bold');
+		$('.tabs').hide();
+		$('input[type="search"]').attr('placeholder','전체 검색');
+		
+		function searchData(){
+			let data = $('input[type="search"]').val();
+			if(data == ''){
+				alert('검색어를 입력하세요.');
+				$('input[type="search"]').val('').focus();
+				return false;
+			}
+			location.href="../main/search.do?keyfield=2&keyword="+data;
+		};
+		
+		$('input[type="search"]').keypress(function(){
+			if(event.keyCode==13){
+				searchData();	
+			}
+			
+		});
 	});
 </script>
 <div class = "body">
