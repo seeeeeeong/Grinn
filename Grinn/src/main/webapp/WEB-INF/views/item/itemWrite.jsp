@@ -60,7 +60,8 @@
 				<form:input path="item_price" placeholder="상품정가를 입력하세요" autocomplete="off"/><br>
 				<form:errors path="item_price" cssClass="error-color" id="error"/>
 			</li>
-						<li>
+			<%-- 
+			<li>
 				<form:label path="item_keyword1">키워드1</form:label>
 				<form:input path="item_keyword1" placeholder="상품키워드를 입력하세요" autocomplete="off"/>
 			</li>
@@ -71,7 +72,7 @@
 			<li>
 				<form:label path="item_keyword3">키워드3</form:label>
 				<form:input path="item_keyword3" placeholder="상품키워드를 입력하세요" autocomplete="off"/>
-			</li>
+			</li> --%>
 			<li>
    				<form:label path="item_cate">상품분류</form:label>
     			<form:radiobutton path="item_cate" value="1"/>신발

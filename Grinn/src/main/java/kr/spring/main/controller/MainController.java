@@ -57,6 +57,7 @@ public class MainController {
 		map.put("order", 1);
 		map.put("start", 1);
 		map.put("end", 4);
+		map.put("item_status", 1);
 		List<ItemVO> list = itemService.selectList(map);
 		
 		// 메인페이지 - 신규 브랜드 목록

@@ -26,7 +26,7 @@ $(function(){
 });
 </script>
 <div class="page-main">
-	<h2 class="h2h2">"${keyword}" 검색결과</h2>
+	<h2>"${keyword}" 검색결과</h2>
 	<c:if test="${count1==0 && count2==0 &&count3==0}">
 		<div class="result-display">표시할 게시물이 없습니다.</div>
 	</c:if>

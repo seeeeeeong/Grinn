@@ -31,15 +31,6 @@ $(function(){
 </script>
 <!-- 게시글 상세 시작 -->
 <div class="page-main">
-	<c:if test="${item.item_status == 1}">
-		<div class="result-display">
-			<div class="align-center">
-				본 상품은 판매 중지되었습니다.<br><br>
-				<input type="button" value="판매상품보기" onclick="location.href='itemList.do'">
-			</div>
-		</div>
-	</c:if>
-	<c:if test="${item.item_status == 2}">
 		<div class="itemDetailPage">
 			<!-- 사진 -->
 			<div class="left">
@@ -58,6 +49,12 @@ $(function(){
 						<p class="b">${item.item_name}</p>
 						<p class="c">${item.item_detail}</p>
 					</div>
+					<c:if test="${item.item_status==1}">
+						<div class="h1h1">
+							<h2>거래 중지된 상품 입니다.</h2>
+						</div>
+					</c:if>
+					<c:if test="${item.item_status==2}">
 					<div class="details">
 						<div>사이즈</div>
 							<c:if test="${item.item_cate==4}"><span class="oneSize">ONE SIZE</span></c:if>
@@ -175,7 +172,7 @@ $(function(){
 									<span class="d">즉시 판매가</span>
 								</div>
 							</button>
-						</div><br> 
+						</div><br>
 						<span class="output_itemfav" data-num="${item.item_num}" id="output-itemfav"> 
 							<span> 
 								<img class="output_itemfav" data-num="${item.item_num}" 
@@ -185,7 +182,9 @@ $(function(){
 							</span>
 						</span>
 					</div>
+					</c:if>
 				</div>
+				
 				<div>
 					<h3>상품정보</h3>
 					<div class="detail_wrap">
@@ -507,5 +506,4 @@ $(function(){
 		</div>
 		<!-- 댓글 끝 -->
 		<div class="align-center">${page}</div>
-	</c:if>
 </div>

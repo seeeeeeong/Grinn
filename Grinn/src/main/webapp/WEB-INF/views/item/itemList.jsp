@@ -63,6 +63,9 @@ $(function(){
 		<div class="result-display">표시할 게시물이 없습니다.</div>
 	</c:if>
 	<c:if test="${count > 0}">
+		<c:if test="${!empty keyword}">
+			<h2>"${keyword}" 검색결과</h2>
+		</c:if>
 		<div class="list01">
 			<c:forEach var="item" items="${list}">
 				<div class="list02">
@@ -102,30 +105,6 @@ $(function(){
 					</div>
 				</c:forEach>
 			</div>
-		<%-- <table class="striped-table">
-			<tr>
-				<td>사진</td>
-				<td>제품명</td>
-				<td>제품상세</td>
-				<td>가격</td>
-				<td>좋아요수</td>
-				<td>댓글수</td>
-			</tr>
-			<c:forEach var="item" items="${list}">
-				<tr>
-					<td>
-						<img src="${pageContext.request.contextPath}/item/photoView.do?item_num=${item.item_num}" width="200" height="200">
-					</td>
-					<td width="400">
-						<a href="detail.do?item_num=${item.item_num}">${item.item_name}</a>
-					</td>
-					<td class="align-center">${item.item_detail}</td>
-					<td class="align-center">${item.item_price}</td>
-					<td class="align-center">${item.fav_cnt}</td>
-					<td class="align-center">${item.re_cnt}</td>
-				</tr>
-			</c:forEach>
-		</table> --%>
 		<div class="align-center">${page}</div>
 	</c:if>
 </div>

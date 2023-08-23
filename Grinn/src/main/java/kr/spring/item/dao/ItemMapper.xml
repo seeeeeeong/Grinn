@@ -12,6 +12,7 @@
 		item_model,
 		item_date,
 		item_price,
+		<!-- 
 		<if test="item_keyword1!=null and item_keyword1!=''">
 			item_keyword1,
 		</if>
@@ -20,7 +21,7 @@
 		</if>
 		<if test="item_keyword3!=null or item_keyword3!=''">
 			item_keyword3,
-		</if>
+		</if> -->
 		item_photo1,
 		item_photo1name,
 		item_cate,
@@ -35,6 +36,7 @@
 		#{item_model},
 		#{item_date},
 		#{item_price},
+		<!-- 
 		<if test="item_keyword1!=null and item_keyword1!=''">
 			#{item_keyword1},
 		</if>
@@ -43,7 +45,7 @@
 		</if>
 		<if test="item_keyword3!=null or item_keyword3!=''">
 			#{item_keyword3},
-		</if>
+		</if> -->
 		#{item_photo1},
 		#{item_photo1name},
 		#{item_cate},
@@ -89,20 +91,21 @@
 	</sql>
 
 	<sql id="itemSearch">
-		<where>
+		<![CDATA[
+			WHERE item_status > #{item_status}
+		]]>
 			<if test="keyword != null and keyword != ''">
 				<if test="keyfield == 1"><!-- 상품명+브랜드 -->
-					item_name LIKE '%' || #{keyword} || '%' OR item_brand LIKE '%' || #{keyword} || '%'
+					AND item_name LIKE '%' || #{keyword} || '%' OR item_brand LIKE '%' || #{keyword} || '%'
 				</if>
 				<if test="keyfield == 2"><!-- 브랜드 -->
-					item_brand LIKE '%' || #{keyword} || '%'
+					AND item_brand LIKE '%' || #{keyword} || '%'
 				</if>
 				<if test="keyfield == 3"><!-- 상품명 -->
-					item_name LIKE '%' || #{keyword} || '%'
+					AND item_name LIKE '%' || #{keyword} || '%'
 				</if>
 			</if>
 			<include refid="itemCategory"></include>
-		</where>
 	</sql>
 
 	<sql id="itemOrder">
@@ -164,7 +167,7 @@
 		item_model=#{item_model},
 		item_date=#{item_date},
 		item_price=#{item_price},
-		<if test="item_keyword1!=null and item_keyword1!=''">
+		<!-- <if test="item_keyword1!=null and item_keyword1!=''">
 			item_keyword1=#{item_keyword1},
 		</if>
 		<if test="item_keyword2!=null and item_keyword2!=''">
@@ -176,7 +179,7 @@
 		<if test="item_photo1.length>0">
 			item_photo1=#{item_photo1},
 			item_photo1name=#{item_photo1name},
-		</if>
+		</if> -->
 		item_cate=#{item_cate},
 		item_gender=#{item_gender},
 		item_status=#{item_status}
@@ -249,7 +252,7 @@
 		LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
 		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num
         LEFT OUTER JOIN item i ON (s.item_num1=i.item_num OR s.item_num2=i.item_num OR s.item_num3=i.item_num)
-		WHERE item_num=#{item_num}
+		WHERE item_num=#{item_num} AND (s.st_hide = 0 OR s.st_hide = 1)
 	</select>
 
 	
@@ -264,7 +267,7 @@
 		FROM style s LEFT OUTER JOIN member m ON s.mem_num = m.mem_num 
 		LEFT OUTER JOIN member_detail d ON m.mem_num = d.mem_num 
         LEFT OUTER JOIN item i ON (s.item_num1=i.item_num OR s.item_num2=i.item_num OR s.item_num3=i.item_num)
-		WHERE item_num=#{item_num}
+		WHERE item_num=#{item_num} AND (s.st_hide = 0 OR s.st_hide = 1)
         ORDER BY st_num DESC)a)
 		<![CDATA[
 		 WHERE rnum >= #{start} AND rnum <= #{end}

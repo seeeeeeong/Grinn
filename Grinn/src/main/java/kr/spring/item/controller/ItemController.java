@@ -79,7 +79,9 @@ public class ItemController {
 		map.put("tab", tab);
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
+		map.put("item_status", 1);
 		
+		System.out.println(map);
 		//전체/검색 레코드 수
 		int count = itemService.selectRowCount(map);
 		
@@ -99,6 +101,7 @@ public class ItemController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("itemList");
+		mav.addObject("keyword",keyword);
 		mav.addObject("count", count);
 		mav.addObject("list",list);
 		mav.addObject("page", page.getPage());
@@ -113,6 +116,7 @@ public class ItemController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
+		map.put("item_status", 0);
 
 		// 전체/검색 레코드 수
 		int count = itemService.selectRowCount(map);
@@ -583,6 +587,7 @@ public class ItemController {
 		
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("item_num", item_num);
+		map.put("item_status", 1);
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		
@@ -619,6 +624,7 @@ public class ItemController {
 			@RequestParam(value="rowCount",defaultValue="10") int rowCount) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("item_num", item_num);
+		map.put("item_status", 1);
 		
 		//paging하기
 		int count = itemService.selectRowCountST(map);
@@ -654,6 +660,7 @@ public class ItemController {
 		Map<String,Object> map1 = new HashMap<String, Object>();
 		map1.put("keyword", keyword);
 		map1.put("keyfield", keyfield);
+		map1.put("item_status", 1);
 		
 		//전체/검색 레코드 수
 		int count1 = itemService.selectRowCount(map1);

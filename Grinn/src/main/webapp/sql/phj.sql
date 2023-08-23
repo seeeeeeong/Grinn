@@ -9,11 +9,6 @@ create table item(
  item_price number(15) not null, --상품 정가
  item_photo1 blob not null, --상품 사진1
  item_photo1name varchar2(100) not null, --상품 사진1 이름
- item_photo2 blob, --상품 사진2
- item_photo2name varchar2(100), --상품 사진2 이름
- item_keyword1 varchar2(30), --상품 검색 키워드1
- item_keyword2 varchar2(30), --상품 검색 키워드2
- item_keyword3 varchar2(30), --상품 검색 키워드3
  item_cate number(1) not null, --상품 분류(1:신발, 2,상의, 3:하의, 4:기타)
  item_gender number(1) not null, --성별(1:남성, 2:여성, 3:기타)
  item_status number(1) not null, --상품판매가능여부(1:표시, 2:미표시)
