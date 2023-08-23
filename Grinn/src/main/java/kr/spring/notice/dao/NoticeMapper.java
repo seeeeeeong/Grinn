@@ -14,7 +14,7 @@ import kr.spring.notice.vo.NoticeVO;
 @Mapper
 public interface NoticeMapper {
 	//고객센터-공지사항
-	@Select("SELECT * FROM notice WHERE no_status=1")
+	@Select("SELECT * FROM notice WHERE no_status=1 ORDER BY no_regdate DESC")
 	public List<NoticeVO> selectList(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);
 	
