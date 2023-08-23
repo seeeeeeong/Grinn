@@ -30,6 +30,7 @@ import kr.spring.item.vo.ItemVO;
 import kr.spring.itemsize.vo.ItemSizeVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.pbid.vo.PurchaseBidVO;
+import kr.spring.penalty.vo.PenaltyVO;
 import kr.spring.sbid.vo.SaleBidVO;
 import kr.spring.style.vo.StyleFavVO;
 import kr.spring.style.vo.StyleVO;
@@ -63,6 +64,11 @@ public class UserController {
 	@ModelAttribute
 	public StyleVO initStyleVO() {
 		return new StyleVO();
+	}
+	
+	@ModelAttribute
+	public PenaltyVO initPenaltyVO() {
+		return new PenaltyVO();
 	}
 
 	/*
@@ -652,8 +658,12 @@ public class UserController {
 		// 패널티 통합 점수 조회
 		Integer pe_total = userService.getPenaltyTotalScore(user.getMem_num());
 		
+		// 회원 패널티 리스트
+		List<PenaltyVO> penaltyList = userService.getPenaltyList(user.getMem_num());
+		
 		model.addAttribute("member", member);
 		model.addAttribute("pe_total", pe_total);
+		model.addAttribute("penaltyList", penaltyList);
 		
 
 		// 게시판 페널티 조회
