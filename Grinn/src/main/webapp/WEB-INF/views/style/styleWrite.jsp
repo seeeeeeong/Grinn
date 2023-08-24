@@ -180,6 +180,28 @@
     });
   	//사진 슬라이드
   });
+
+  //스타일 검색
+  $(function(){
+  	$('input[type="search"]').attr('placeholder','ID, 상품태그, 내용 검색');
+  	
+  	function searchData(){
+  		let data = $('input[type="search"]').val();
+  		if(data == ''){
+  			alert('검색어를 입력하세요.');
+  			$('input[type="search"]').val('').focus();
+  			return false;
+  		}
+  		location.href="list.do?keyword="+data;
+  	};
+  	
+  	$('input[type="search"]').keypress(function(){
+  		if(event.keyCode==13){
+  			searchData();	
+  		}
+  		
+  	});
+  });
 </script>
 <div class="page-main">
 	<div class="style-title"><h2>스타일 작성</h2></div>
