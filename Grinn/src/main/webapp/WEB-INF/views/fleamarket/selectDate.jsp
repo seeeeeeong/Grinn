@@ -77,10 +77,13 @@ $(function(){
 			<li class="choose-date book-flea-detail">
 				<label for="from-to"><b>예약 일정</b></label>
 				<form:input path="book_date1" type="text" id="from-to" autocomplete="off" placeholder="희망 시작 일자"/> ~ <form:input path="book_date2" type="text" id="from-to2" autocomplete="off" placeholder="희망 종료 일자"/>
+				<br><form:errors path="book_date1" cssClass="error-color"/>
+				<form:errors path="book_date2" cssClass="error-color"/>
 			</li>
 			<li class="book-flea-detail">
 				<label for="get_count"><b>예약 부스 수</b></label>
-				<input type="number" name="get_count" min="0" max="1" id="get_count"/>
+				<form:input path="get_count" type="number" min="0" max="1"/>
+				<form:errors path="get_count" cssClass="error-color"/>
 			</li>
 			<li class="book-flea-detail">
 				<label><b>남은 부스 수</b></label>

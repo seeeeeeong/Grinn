@@ -9,34 +9,34 @@
     <!-- 이용자 -->
     <!-- 플리마켓 및 예약 -->
     <definition name="marketSelect" extends="main">
-    	<put-attribute name="title" value="예약 메인"/>
+    	<put-attribute name="title" value="Flea Market | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/marketSelect.jsp"/>
     </definition>
     <definition name="boothList" extends="main">
-    	<put-attribute name="title" value="플리마켓 예약 목록"/>
+    	<put-attribute name="title" value="목록 | Flea Market | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/boothList.jsp"/>
     </definition>
     <definition name="marketView" extends="main">
-    	<put-attribute name="title" value="플리마켓 상세"/>
+    	<put-attribute name="title" value="상세 | Flea Market | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/marketView.jsp"/>
     </definition>
     
     <definition name="selectDate" extends="main">
-    	<put-attribute name="title" value="플리마켓 날짜 예약"/>
+    	<put-attribute name="title" value="예약 | Flea Market | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/selectDate.jsp"/>
     </definition>
     <definition name="myMarketPage" extends="main">
-    	<put-attribute name="title" value="플리마켓 예약 목록"/>
+    	<put-attribute name="title" value="예약 목록 | Flea Market | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/user_bookList.jsp"/>
     </definition>
     <definition name="myMarketDetail" extends="main">
-    	<put-attribute name="title" value="플리마켓 예약 상세"/>
+    	<put-attribute name="title" value="예약 상세 | Flea Market | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/user_bookDetail.jsp"/>
     </definition>
     
     <!-- 프로모션 -->
     <definition name="promotionDetail" extends="main">
-        <put-attribute name="title" value="프로모션 상세"/>
+        <put-attribute name="title" value="Promotion | Grinn"/>
         <put-attribute name="body" value="/WEB-INF/views/promotion/userDetail.jsp"/>
     </definition>
     
@@ -44,43 +44,43 @@
     <!-- 관리자 -->
     <!-- 플리마켓 -->
     <definition name="adminBoothList" extends="admin">
-    	<put-attribute name="title" value="플리마켓 목록(관리자)"/>
+    	<put-attribute name="title" value="플리마켓 목록 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminBoothList.jsp"/>
     </definition>
     <definition name="adminBoothWrite" extends="admin">
-    	<put-attribute name="title" value="플리마켓 등록(관리자)"/>
+    	<put-attribute name="title" value="플리마켓 등록 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminBoothWrite.jsp"/>
     </definition>
     <definition name="adminBoothUpdate" extends="admin">
-    	<put-attribute name="title" value="플리마켓 수정(관리자)"/>
+    	<put-attribute name="title" value="플리마켓 수정 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/adminBoothUpdate.jsp"/>
     </definition>
     
     <!-- 예약 -->
     <definition name="adminBookList" extends="admin">
-    	<put-attribute name="title" value="예약 목록(관리자)"/>
+    	<put-attribute name="title" value="예약 목록 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/admin_bookList.jsp"/>
     </definition>
     <definition name="bookDetail" extends="admin">
-    	<put-attribute name="title" value="예약 내역(관리자)"/>
+    	<put-attribute name="title" value="예약 내역 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/fleamarket/admin_bookDetail.jsp"/>
     </definition>
     
     <!-- 페널티 -->
     <definition name="adminPenaltyWrite" extends="admin">
-    	<put-attribute name="title" value="페널티 등록(관리자)"/>
+    	<put-attribute name="title" value="페널티 등록 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/penalty/adminPenaltyWrite.jsp"/>
     </definition>
     <definition name="adminPenaltyList" extends="admin">
-    	<put-attribute name="title" value="페널티 목록(관리자)"/>
+    	<put-attribute name="title" value="페널티 목록 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/penalty/adminPenaltyList.jsp"/>
     </definition>
     <definition name="penaltyDetail" extends="admin">
-    	<put-attribute name="title" value="페널티 상세(관리자)"/>
+    	<put-attribute name="title" value="페널티 상세 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/penalty/adminPenaltyDetail.jsp"/>
     </definition>
     <definition name="penaltyModify" extends="admin">
-    	<put-attribute name="title" value="페널티 수정(관리자)"/>
+    	<put-attribute name="title" value="페널티 수정 | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/penalty/adminPenaltyModify.jsp"/>
     </definition>
     

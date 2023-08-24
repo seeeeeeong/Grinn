@@ -71,6 +71,10 @@ public class BookingController {
 		
 		// 유효성 체크 결과 오류가 있으면 폼 호출
 		if (result.hasErrors()) {
+			MarketVO market = marketService.selectMarket(bookingVO.getMarket_num());
+			
+			model.addAttribute("market", market);
+			
 			return "selectDate";
 		}
 				

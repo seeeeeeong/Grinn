@@ -28,7 +28,7 @@
 			<li>
 				<form:label path="market_title">제목</form:label>
 				<form:input path="market_title"/>
-				<form:errors path="market_title" cssClass="error-color"/>
+				<br><form:errors path="market_title" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="market_startDate">시작일</form:label>
@@ -43,7 +43,7 @@
 			<li>
 				<form:label path="place_name">장소명</form:label>
 				<form:input path="place_name"/>
-				<form:errors path="place_name" cssClass="error-color"/>
+				<br><form:errors path="place_name" cssClass="error-color"/>
 			</li>
 			<li>
 				<form:label path="booth_count">부스 수</form:label>
