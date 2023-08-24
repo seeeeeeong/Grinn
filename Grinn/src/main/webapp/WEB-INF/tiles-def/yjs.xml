@@ -11,24 +11,29 @@
     </definition>
     <definition name="styleWrite" extends="main">
     	<put-attribute name="title" value="작성 | Style | Grinn"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 	    <put-attribute name="body" value="/WEB-INF/views/style/styleWrite.jsp"/>
     </definition>
     <definition name="styleList" extends="main">
     	<put-attribute name="title" value="Style | Grinn"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 	    <put-attribute name="body" value="/WEB-INF/views/style/styleList.jsp"/>
     </definition>
     <definition name="styleDetail" extends="main">
     	<put-attribute name="title" value="Style | Grinn"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 	    <put-attribute name="body" value="/WEB-INF/views/style/styleDetail.jsp"/>
     </definition>
     <definition name="styleModify" extends="main">
     	<put-attribute name="title" value="수정 | Style | Grinn"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 	    <put-attribute name="body" value="/WEB-INF/views/style/styleModify.jsp"/>
     </definition>
     
         
     <definition name="styleReport" extends="main">
     	<put-attribute name="title" value="게시글 신고 | Grinn"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 	    <put-attribute name="body" value="/WEB-INF/views/report/styleReport.jsp"/>
     </definition>
     <definition name="styleReportList" extends="admin">
@@ -42,6 +47,7 @@
    
     <definition name="commentReport" extends="main">
     	<put-attribute name="title" value="댓글 신고 | Grinn"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 	    <put-attribute name="body" value="/WEB-INF/views/report/commentReport.jsp"/>
     </definition>
     <definition name="comReportList" extends="admin">

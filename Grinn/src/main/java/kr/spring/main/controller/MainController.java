@@ -73,7 +73,7 @@ public class MainController {
 		model.addAttribute("brand",brand);
 		model.addAttribute("promotionList",promotionList);
 		model.addAttribute("item_gender",item_gender);
-		return "main";//타일스 설정의 식별자
+		return "main_search";//타일스 설정의 식별자
 	}
 	
 	@RequestMapping("/main/admin.do")

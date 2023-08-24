@@ -8,7 +8,7 @@
     <!-- myPage -->
     <definition name="myPage" template="/WEB-INF/views/template/layout_mypage.jsp">
     	<put-attribute name="title" value="MyPage"/>
-    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header2.jsp"/>
     	<put-attribute name="nav" value="/WEB-INF/views/user/myPage_nav.jsp"/>
     	<put-attribute name="body" value="/WEB-INF/views/user/myPage.jsp"/>
     	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>                                        
@@ -48,7 +48,7 @@
     <!-- userStyle -->
     <definition name="userStyle" template="/WEB-INF/views/template/layout_basic.jsp">
     	<put-attribute name="title" value="user"/>
-    	<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/header2.jsp"/>
     	<put-attribute name="body" value="/WEB-INF/views/user/userStyle.jsp"/>
     	<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>                                        
     </definition>                
