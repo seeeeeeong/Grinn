@@ -57,7 +57,7 @@
 			<td class="align-center">${book.marketVO.market_title}</td>
 			<td class="align-center">${book.book_regDate}</td>
 			<td class="align-center">
-				<input type="button" value="상세보기" onclick="location.href='detailBooking.do?book_num=${book.book_num}'">
+				<input type="button" value="상세보기" onclick="location.href='detailBooking.do?book_num=${book.book_num}'" class="admin-btn">
 			</td>
 		</tr>
 		</c:forEach>

@@ -57,8 +57,8 @@
 			<td class="align-center">${pe.pe_date}</td>			
 			<td class="align-center">
 			<c:if test="${pe.memberVO.mem_auth != 0 or pe.memberVO.mem_auth != 9}">
-				<input type="button" value="상세보기" onclick="location.href='admin_detail.do?pe_num=${pe.pe_num}'">
-				<input type="button" value="수정" onclick="location.href='modifyPenalty.do?pe_num=${pe.pe_num}'">
+				<input type="button" value="상세보기" onclick="location.href='admin_detail.do?pe_num=${pe.pe_num}'" class="admin-btn">
+				<input type="button" value="수정" onclick="location.href='modifyPenalty.do?pe_num=${pe.pe_num}'" class="admin-btn">
 			</c:if>
 			</td>
 		</tr>

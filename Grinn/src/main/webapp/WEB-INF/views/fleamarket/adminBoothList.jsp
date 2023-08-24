@@ -65,8 +65,8 @@
 				<c:if test="${adminBooth.market_type == 3}">종료</c:if>
 			</td>
 			<td class="align-center">
-				<input type="button" value="수정" onclick="location.href='updateBooth.do?market_num=${adminBooth.market_num}'">
-				<input type="button" value="삭제" id="default_btn">
+				<input type="button" value="수정" onclick="location.href='updateBooth.do?market_num=${adminBooth.market_num}'" class="admin-btn">
+				<input type="button" value="삭제" class="admin-btn">
 				<script type="text/javascript">
 					let delete_btn = document.getElementById('delete_btn');
 					delete_btn.onclick=function(){

@@ -152,7 +152,4 @@ public class MarketAdminController {
 		return "redirect:/fleamarket/adminBoothList.do";
 	}
 	
-	
-	//======
-
 }

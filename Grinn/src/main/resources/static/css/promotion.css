@@ -58,3 +58,22 @@ input[type="image"] {
 .buttons{
 	float:right;
 }
+/*프로모션 목록
+-------------------------*/
+.register-btn{
+	background-color:#fff;
+	border:2px solid #b0abab;
+	border-radius:5px;
+}
+.detail-btn{
+	border:none;
+	background-color:initial;
+	font-size:15px;
+	cursor:pointer;
+}
+.delete-btn{
+	border:none;
+	background-color:initial;
+	font-size:15px;
+	cursor:pointer;
+}

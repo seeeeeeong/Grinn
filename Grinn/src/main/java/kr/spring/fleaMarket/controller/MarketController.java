@@ -27,9 +27,6 @@ public class MarketController {
 	@Autowired
 	private MarketService marketService;
 	
-	@Autowired
-	private MemberService memberService;
-	
 	// ===자바빈 초기화===
 	@ModelAttribute
 	public MarketVO initCommand() {
@@ -39,9 +36,7 @@ public class MarketController {
 	// ===플리마켓 예약 선택===
 	@RequestMapping("/fleamarket/marketSelect.do")
 	public ModelAndView getList() {
-		
-		//MemberVO member = memberService.selectMember();
-		
+				
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("marketSelect");
 		

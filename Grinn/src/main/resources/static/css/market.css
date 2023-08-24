@@ -126,6 +126,11 @@ table.market-table > td{
 	line-height:36px;
 	text-align:center;
 }
+.register-btn{
+	background-color:#fff;
+	border:2px solid #b0abab;
+	border-radius:5px;
+}
 /*플리마켓 상세
 -------------------------*/
 .flea-info{
@@ -328,4 +333,12 @@ input[type="image"] {
 }
 .buttons{
 	float:right;
+}
+/*관리자 목록
+-------------------------*/
+.admin-btn{
+	border:none;
+	background-color:initial;
+	font-size:15px;
+	cursor:pointer;
 }
