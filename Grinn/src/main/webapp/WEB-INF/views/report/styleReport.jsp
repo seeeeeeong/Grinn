@@ -266,7 +266,7 @@ $(document).ready(function() {
 				</div>
 				<div>
 					<input type="radio" id="rep_2" class="rep-type" name="rep_type" value="2">
-					관련 없는 상품 태그 또는 해시태그			
+					관련 없는 상품 태그			
 				</div>
 				<div>
 					<input type="radio" id="rep_3" class="rep-type" name="rep_type" value="3">

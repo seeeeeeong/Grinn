@@ -236,7 +236,7 @@ public class ReportController {
 		//신고 처리
 		reportService.handleComReport(rcom_num, rep_hide);
 		
-		//게시물 비공개 처리
+		//댓글 비공개 처리
 		if(rep_hide == 2) {
 			styleService.hideComment(com.getCom_num());
 		}

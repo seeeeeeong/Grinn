@@ -53,6 +53,8 @@
                upload4.value = '';
                document.getElementById('preview2').src = "";
                document.getElementById('preview2').style.display = 'none';
+               document.getElementById('preview3').style.display = 'none';
+               document.getElementById('preview4').style.display = 'none';
            }
        }
        
@@ -73,6 +75,7 @@
                upload4.value = '';
                document.getElementById('preview3').src = "";
                document.getElementById('preview3').style.display = 'none';
+               document.getElementById('preview4').style.display = 'none';
            }
        }
        
