@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 스타일 수정 시작 -->
 <style>
-
 	/* 사진 슬라이드 */
 	li{
 	  list-style-type: none;

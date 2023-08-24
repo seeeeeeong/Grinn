@@ -236,7 +236,7 @@
 	
 	#modalContent{
 		float:right;
-		height:1443px;
+		height:887px;
 		background-color:white;
 	}
 	

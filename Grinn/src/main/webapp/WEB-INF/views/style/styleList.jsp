@@ -49,6 +49,11 @@
         .phrase{
         	clear:both;
         }
+        .phrase p{
+          	overflow: hidden;
+  			white-space: nowrap;
+  			text-overflow: ellipsis;
+        }
         .output-fav{
         	cursor: pointer;
         }
