@@ -13,7 +13,7 @@
 	<!-- 공지사항 메인 -->
 	<definition name="noticeMain" template="/WEB-INF/views/template/layout_notice.jsp">
 		<put-attribute name="title" value="SpringPage" />
-		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/template/header2.jsp" />
 		<put-attribute name="nav" value="/WEB-INF/views/template/notice_nav.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp" />
@@ -39,40 +39,40 @@
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeAuth_policy.jsp" />
 	</definition>
 	<definition name="noticeDetail" extends="noticeMain">
-		<put-attribute name="title" value="공지사항디테일" />
+		<put-attribute name="title" value="공지사항 | Grinn" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeDetail.jsp" />
 	</definition>
 
 	<!-- 메인 상속 / 공지사항 -->
 	<definition name="noticeWrite" extends="main">
-		<put-attribute name="title" value="공지사항 글 등록" />
+		<put-attribute name="title" value="공지사항 | Grinn" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeWrite.jsp" />
 	</definition>
 	<definition name="noticeModify" extends="main">
-		<put-attribute name="title" value="공지사항 글 수정" />
+		<put-attribute name="title" value="공지사항 | Grinn" />
 		<put-attribute name="body" value="/WEB-INF/views/notice/noticeModify.jsp" />
 	</definition>
 	<!-- 메인 상속 / 채팅 -->
 	<definition name="talkRoomWrite" extends="main">
-		<put-attribute name="title" value="채팅방 생성" />
+		<put-attribute name="title" value="Chatting | Grinn" />
 		<put-attribute name="body" value="/WEB-INF/views/talk/talkRoomWrite.jsp" />
 	</definition>
     <definition name="talkList" extends="main">
-    	<put-attribute name="title" value="채팅리스트"/>
+    	<put-attribute name="title" value="Chatting | Grinn"/>
 	    <put-attribute name="body" value="/WEB-INF/views/talk/talkList.jsp"/>
     </definition> 
 	
 	<!-- 챗봇 메인 상속 -->
     <definition name="chatbotList" extends="chatbotMain">
-    	<put-attribute name="title" value="챗봇 목록"/>
+    	<put-attribute name="title" value="ChatBot | Grinn"/>
 	    <put-attribute name="body_chatbot" value="/WEB-INF/views/chatbot/chatbotList.jsp"/>
     </definition>
     <definition name="chatbotDetail" extends="chatbotMain">
-    	<put-attribute name="title" value="챗봇으로 문의하기"/>
+    	<put-attribute name="title" value="ChatBot | Grinn"/>
 	    <put-attribute name="body_chatbot" value="/WEB-INF/views/chatbot/chatbotDetail.jsp"/>
     </definition>
     <definition name="chatbotCreate" extends="chatbotMain">
-    	<put-attribute name="title" value="챗봇 방 생성"/>
+    	<put-attribute name="title" value="ChatBot | Grinn"/>
 	    <put-attribute name="body_chatbot" value="/WEB-INF/views/chatbot/chatbotCreate.jsp"/>
     </definition>
 

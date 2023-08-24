@@ -43,8 +43,8 @@
 	</c:if>
 		
 	<div class="chatList_main">
-		<h2>채팅리스트</h2>
 		<c:if test="${count > 0}">
+		<h2>채팅리스트</h2>
 		<table class="striped-table">
 			<c:forEach var="talk" items="${list}">
 			<tr>

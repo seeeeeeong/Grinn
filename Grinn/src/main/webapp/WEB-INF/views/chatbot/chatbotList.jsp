@@ -5,7 +5,7 @@
 <!-- 채팅방 목록 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_yeom.css">
 <div class="body_chatbot" id="body_chatbot">
-	<h2>ChatBot</h2>
+	<h2 id="ha">ChatBot</h2>
  	<div class="btn_list">
 		<input type="button" value="챗봇문의 생성" onclick="location.href='chatbotCreate.do'" class="btn_auth">
 	</div>

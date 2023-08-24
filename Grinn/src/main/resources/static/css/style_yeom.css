@@ -14,7 +14,8 @@
 	/*font-size: 27px;*/
 	margin: 0 auto;
 }
-
+/* 고객센터
+------------------------*/
 #notice_title {
 	padding: 17px 0 19px;
 	display: flex;
@@ -25,7 +26,45 @@
 	font-size: 15px;
 	letter-spacing: -.15px;
 }
-
+.noticeForm{
+	padding-top: 35px;
+	width: 1000px;
+	float: center;
+	border: none;
+}
+.noticeSelect{
+	font-size: 15px;
+	width: 900px;
+	height: 500px;
+}
+.noticeSelect .no_status{
+	width: 165px;
+	padding-left: 135px;
+}
+.noticeSelect .no_category{
+	width: 200px;
+	padding-left: 40px;
+	padding-right: 60px;
+}
+.noticeSelect .no_policy{
+	width: 200px;
+	padding-left: 70px;
+	padding-right: 30px;
+}
+.noticeSelect .no_title{
+	width: 100px;
+	padding-left: 200px;
+}
+.noticeSelect .no_content{
+	width: 100px;
+	padding-left: 200px;
+}
+.noticeCategory{
+	display:none;
+}
+.line{
+	cursor: pointer;
+}
 .container {
 	height: auto;
 }
@@ -415,8 +454,6 @@
 	background-color: #f4f4f4;
 	font-size: 15px;
 }
-/* notice_nav
-------------------------*/
 
 /* talk(채팅하기)
 ------------------------*/
@@ -424,6 +461,15 @@
 	padding: 50px;
 	font-size: 20px;
 	text-align: center;
+}
+.talkroomForm{
+	padding-top: 50px;
+	width:700px;
+	float: center;
+	border: none;
+}
+.talkroomForm ul{
+	padding-left: 100px;
 }
 /* talkList */
 .chatList_main {
