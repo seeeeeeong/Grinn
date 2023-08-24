@@ -94,7 +94,7 @@
 <!-- 채팅 시작 -->
 <div id = "floating">
 	<button class = "btn_talk" onclick = "location.href='${pageContext.request.contextPath}/talk/talkList.do'">
-		<img class = "ico-top" src = "${pageContext.request.contextPath}/images/how_to_talk.jpg" width = "32" height = "32">
+		<img class = "ico-top" src = "${pageContext.request.contextPath}/images/how_to_talk.png" width = "32" height = "32">
 	</button>
 </div>
 <!-- 채팅 끝  -->
@@ -102,7 +102,7 @@
 	<div id="floating">
 		<input type="hidden" value="${croom_num}">
 		<button class="btn_chatbot" id="btn_chatbot" onclick="open3()">
-			<img src="${pageContext.request.contextPath}/images/how_to_question.jpg"
+			<img src="${pageContext.request.contextPath}/images/how_to_question.png"
 				width="32" height="32">
 		</button>
 	</div>
