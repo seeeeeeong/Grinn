@@ -109,46 +109,83 @@
 	<hr>
 	<br>
 
-	<div class="tab-content" id="transactionContent">
-		<c:forEach var="purchaseInfo" items="${purchaseInfo}"
-			varStatus="purchaseInfoStatus">
-			<c:set var="purchase" value="${pItem[purchaseInfoStatus.index]}" />
+	 <div class="tab-content" id="transactionContent">
+		<c:forEach var="purchase" items="${purchaseList}">
+			
 			<div class="fav-info-container">
-				<c:forEach var="purchase" items="${pItem}" varStatus="pItemStatus">
+				
 					<div class="fav-item">
 						<img
-							src="/user/itemImageView.do?item_num=${purchaseInfo.item_num}"
+							src="/user/itemImageView.do?item_num=${purchase.item_num}"
 							alt="Item Image" style="width: 50px; height: 50px;">
 						<div class="text-content">
 							<c:choose>
-								<c:when test="${purchaseInfo.trade_state == 2}">
+								<c:when test="${purchase.trade_state == 2}">
 									<strong class="text-small">&nbsp;&nbsp;검수준비중</strong>
 								</c:when>
-								<c:when test="${purchaseInfo.trade_state == 3}">
+								<c:when test="${purchase.trade_state == 3}">
 									<strong class="text-small">&nbsp;&nbsp;검수중</strong>
 								</c:when>
-								<c:when test="${purchaseInfo.trade_state == 4}">
+								<c:when test="${purchase.trade_state == 4}">
 									<strong class="text-small">&nbsp;&nbsp;배송중</strong>
 								</c:when>
-								<c:when test="${purchaseInfo.trade_state == 5}">
+								<c:when test="${purchase.trade_state == 5}">
 									<strong class="text-small">&nbsp;&nbsp;배송완료</strong>
 								</c:when>
-								<c:when test="${purchaseInfo.trade_state == 6}">
+								<c:when test="${purchase.trade_state == 6}">
 									<strong class="text-small">&nbsp;&nbsp;거래실패</strong>
 								</c:when>
 								<c:otherwise>
-									<strong class="text-small">&nbsp;&nbsp;${purchaseInfo.trade_state}</strong>
+									<strong class="text-small">&nbsp;&nbsp;${purchase.trade_state}</strong>
 								</c:otherwise>
 							</c:choose>
 							<br> <span class="text-small transparent-bg">&nbsp;&nbsp;${purchase.item_name}
-								<br>&nbsp;&nbsp;${purchaseInfo.trade_regDate}
+								<br>&nbsp;&nbsp;${purchase.trade_regDate}
 							</span>
 						</div>
 					</div>
-				</c:forEach>
+				
 			</div>
-		</c:forEach>
-	</div>
+	</c:forEach>
+	
+	<c:forEach var="sale" items="${saleList}">
+			
+			<div class="fav-info-container">
+				
+					<div class="fav-item">
+						<img
+							src="/user/itemImageView.do?item_num=${sale.item_num}"
+							alt="Item Image" style="width: 50px; height: 50px;">
+						<div class="text-content">
+							<c:choose>
+								<c:when test="${sale.trade_state == 2}">
+									<strong class="text-small">&nbsp;&nbsp;검수준비중</strong>
+								</c:when>
+								<c:when test="${sale.trade_state == 3}">
+									<strong class="text-small">&nbsp;&nbsp;검수중</strong>
+								</c:when>
+								<c:when test="${sale.trade_state == 4}">
+									<strong class="text-small">&nbsp;&nbsp;배송중</strong>
+								</c:when>
+								<c:when test="${sale.trade_state == 5}">
+									<strong class="text-small">&nbsp;&nbsp;배송완료</strong>
+								</c:when>
+								<c:when test="${sale.trade_state == 6}">
+									<strong class="text-small">&nbsp;&nbsp;거래실패</strong>
+								</c:when>
+								<c:otherwise>
+									<strong class="text-small">&nbsp;&nbsp;${sale.trade_state}</strong>
+								</c:otherwise>
+							</c:choose>
+							<br> <span class="text-small transparent-bg">&nbsp;&nbsp;${sale.item_name}
+								<br>&nbsp;&nbsp;${sale.trade_regDate}
+							</span>
+						</div>
+					</div>
+				
+			</div>
+	</c:forEach>
+	</div> 
 
 
 
@@ -167,10 +204,10 @@
 	<!-- 스타일 탭 내용을 여기에 표시합니다. -->
 	<div class="like-tab tab-content">
 
-		<c:forEach var="styleInfo" items="${styleInfoList}" varStatus="status">
+		<c:forEach var="fav" items="${favList}">
 
 			<div class="fav-info-container">
-				<c:forEach var="fav" items="${favInfo}" varStatus="favStatus">
+				
 					<div class="fav-item">
 						<img src="/user/userProfile.do?mem_num=${fav.mem_num}"
 							class="my-photo">
@@ -178,39 +215,40 @@
 							<strong class="text-small">&nbsp;&nbsp;${fav.mem_id}</strong><span
 								class="text-small transparent-bg">님이 회원님의 게시글을 좋아합니다.</span>
 						</div>
-						<img src="/user/StyleImageView.do?st_num=${styleInfo.st_num}"
+						<img src="/user/StyleImageView.do?st_num=${fav.st_num}"
 							class="style-image">
 					</div>
-				</c:forEach>
+				
 			</div>
 		</c:forEach>
 	</div>
 
 	<div class="comment-tab tab-content">
-    <c:forEach var="styleInfo" items="${styleInfoList}" varStatus="status">
-        <div class="fav-info-container">
-            <c:forEach var="comment" items="${commentInfo}" varStatus="commentStatus">
-                <c:set var="commentContent" value="${commentsMap[styleInfo.st_num][commentStatus.index]}" />
+		<c:forEach var="comment" items="${commentList}">
+			<div class="fav-info-container">
+				<c:if test="${not empty comment}">
+					
 
-                <c:if test="${not empty commentContent}">
-                    <div class="fav-item">
-                        <img src="/user/userProfile.do?mem_num=${comment.mem_num}" class="my-photo">
-                        <div class="text-content">
-                            <strong class="text-small">&nbsp;&nbsp;${comment.mem_id}</strong>
-                            <span class="text-small transparent-bg">
-                                님이 댓글을 남겼습니다: ${commentContent}
-                            </span>
-                        </div>
-                        <img src="/user/StyleImageView.do?st_num=${styleInfo.st_num}" class="style-image">
-                    </div>
-                </c:if>
-            </c:forEach>
-        </div>
-    </c:forEach>
-</div>
+						<div class="fav-item">
+							<img src="/user/userProfile.do?mem_num=${comment.mem_num}"
+								class="my-photo">
+							<div class="text-content">
+								<strong class="text-small">&nbsp;&nbsp;${comment.mem_id}</strong>
+								<span class="text-small transparent-bg"> 님이 댓글을 남겼습니다:
+									${comment.com_comment} </span>
+							</div>
+							<img src="/user/StyleImageView.do?st_num=${comment.st_num}"
+								class="style-image">
+						</div>
+					
+				</c:if>
+			</div>
+		</c:forEach>
+	</div>
 
 
-	<div class="follow-tab tab-content">
+
+	 <div class="follow-tab tab-content">
 
 		<div class="fav-info-container">
 			<c:forEach var="follow" items="${followInfo}">
@@ -227,7 +265,7 @@
 				</div>
 			</c:forEach>
 		</div>
-	</div>
+	</div> 
 
 
 	<script type="text/javascript">
@@ -323,4 +361,3 @@
 
 </body>
 </html>
-

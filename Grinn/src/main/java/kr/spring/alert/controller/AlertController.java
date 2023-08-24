@@ -1,4 +1,3 @@
-
 package kr.spring.alert.controller;
 
 import java.util.HashMap;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.alert.service.AlertService;
+import kr.spring.alert.vo.AlertVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleVO;
@@ -39,53 +39,20 @@ public class AlertController {
         
         if (user != null) {
             
-            List<StyleVO> styleInfoList = alertService.selectStyleInfo(user.getMem_num());
-            List<TradeVO> purchaseInfo = alertService.purchaseInfo(user.getMem_num());
-            List<TradeVO> saleInfo = alertService.saleInfo(user.getMem_num());
+        	List<AlertVO> commentList = alertService.commentInfo(user.getMem_num());
+            model.addAttribute("commentList", commentList);
             
-            
-            Map<Integer, List<String>> commentsMap = new HashMap<>();
-
-            for (StyleVO styleInfo : styleInfoList) {
-                Integer st_num = styleInfo.getSt_num();
-
-                // 좋아요 한 회원 정보 가져오기
-                List<MemberVO> favInfo = alertService.favId(st_num);
-                model.addAttribute("favInfo", favInfo);
-
-                // 댓글 작성자 아이디, 내용 가져오기
-                List<MemberVO> commentInfo = alertService.commentId(st_num);
-                List<String> comments = alertService.comment(st_num);
-
-                if (!commentInfo.isEmpty() || !comments.isEmpty()) {
-                    model.addAttribute("commentInfo", commentInfo);
-                    commentsMap.put(st_num, comments);
-                }
-            }
-            
-            for (TradeVO purchase : purchaseInfo) {
-                Integer item_num = purchase.getItem_num();
-
-                List<ItemVO> pItem = alertService.selectItem(item_num);
-                model.addAttribute("pItem", pItem);
-            }
-            
-            for (TradeVO sale : saleInfo) {
-                Integer item_num = sale.getItem_num();
-
-                List<ItemVO> sItem = alertService.selectItem(item_num);
-                model.addAttribute("sItem", sItem);
-            }
-            
+            List<AlertVO> favList = alertService.favInfo(user.getMem_num());
+            model.addAttribute("favList", favList);
             
             List<MemberVO> followInfo = alertService.followId(user.getMem_num());
             model.addAttribute("followInfo", followInfo);
             
-            model.addAttribute("purchaseInfo", purchaseInfo);
-            model.addAttribute("saleInfo", saleInfo);
-            model.addAttribute("styleInfoList", styleInfoList);
-            model.addAttribute("commentsMap", commentsMap);
+        	List<AlertVO> purchaseList = alertService.purchaseInfo(user.getMem_num());
+            model.addAttribute("purchaseList", purchaseList);
             
+            List<AlertVO> saleList = alertService.saleInfo(user.getMem_num());
+            model.addAttribute("saleList", saleList);
         }
 		return "/user/alert";
 	}
@@ -115,7 +82,3 @@ public class AlertController {
 	
 
 }
-
-
-
-

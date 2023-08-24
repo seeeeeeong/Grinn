@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
+import kr.spring.alert.vo.AlertVO;
 import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleVO;
@@ -20,8 +21,14 @@ public interface AlertService {
 	// 스타일 게시물 댓글 작성자 id, mem_num
 	public List<MemberVO> commentId(Integer st_num);
 	
+	// 스타일 게시물 좋아요 누른 회원, 작성자 아이디, 스타일 번호
+	public List<AlertVO> favInfo(Integer mem_num);
+	
+	// 스타일 게시물 댓글내용, 작성자 아이디, 스타일 번호
+	public List<AlertVO> commentInfo(Integer mem_num);
+	
 	// 스타일 게시물 댓글 내용
-	public List<String> comment(Integer st_num);
+	public List<String> comment(Integer st_num, Integer mem_num);
 	
 	// 프로필 이미지
 	public MemberVO profilePhoto(Integer mem_num);	
@@ -33,10 +40,10 @@ public interface AlertService {
 	public MemberVO followPhoto(Integer mem_num);
 	
 	// 구매 정보
-	public List<TradeVO> purchaseInfo(Integer mem_num);
+	public List<AlertVO> purchaseInfo(Integer mem_num);
 	
 	// 판매 정보
-	public List<TradeVO> saleInfo(Integer mem_num);
+	public List<AlertVO> saleInfo(Integer mem_num);
 	
 	// item_num에 해당하는 item 테이블의 정보 가져오기
 	public List<ItemVO> selectItem(Integer item_num);
