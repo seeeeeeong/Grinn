@@ -1,0 +1,16 @@
+
+.success-btn {
+  display: block;
+  width: 370px;
+  padding: 10px;
+  background-color: rgb(205, 204, 206);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  font-size: 14px;
+}
+.success-btn:hover {
+  background-color: #000;
+}

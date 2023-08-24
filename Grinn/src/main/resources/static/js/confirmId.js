@@ -17,10 +17,10 @@ $(function(){
 			dataType:'json',
 			success:function(param){
 				if(param.result == 'idNotFound'){
-					$('#message_id').css('color','#000').text('등록가능ID');
+					$('#message_id').css('color','#000').text('등록 가능한 아이디입니다.');
 					checkId = 1;
 				}else if(param.result == 'idDuplicated'){
-					$('#message_id').css('color','red').text('중복된 ID');
+					$('#message_id').css('color','red').text('이미 사용 중인 아이디입니다.');
 					$('#mem_id').val('').focus();
 					checkId = 0;
 				}else if(param.result == 'notMatchPattern'){

@@ -30,18 +30,24 @@ create table member_detail(
 create table poll(
 	poll_num number, -- 투표글 번호
 	poll_title varchar2(50) not null, -- 투표글 제목
-	poll_content varchar2(200) not null, -- 투표글 내용
-	poll_item1 varchar2(500) not null, -- 투표 항목1
-	poll_item2 varchar2(500) not null, -- 투표 항목2
-	poll_item3 varchar2(500), -- 투표 항목3
-	poll_item4 varchar2(500), -- 투표 항목4
-	poll_total number not null, -- 총 득표수
-	poll_date date default sysdate not null, -- 투표글 등록일
+	poll_content varchar2(200), -- 투표글 내용
+	poll_item1 number not null, -- 투표 항목1
+	poll_item2 number not null, -- 투표 항목2
+	poll_item3 number, -- 투표 항목3
+	poll_item4 number, -- 투표 항목4
+	poll_date varchar2(10) not null, -- 투표글 등록일
+	poll_hit number(8) default 0 not null, -- 투표글 조회수(추가)
+	poll_ip varchar2(40) not null, -- ip 주소(추가)
+	poll_status number(1) default 0 not null, -- 투표 상태(0: 마감, 1: 진행중)(추가)
+	poll_deadline varchar2(10) not null, -- 투표글 마감일(추가)
 	mem_num number not null, -- 회원번호
-	item_num number not null, -- 상품번호
 	constraint poll_pk primary key (poll_num),
 	constraint poll_fk1 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE,
-	constraint poll_fk2 foreign key (item_num) references item (item_num) ON DELETE CASCADE
+    constraint poll_fk2 foreign key (poll_item1) references item (item_num) ON DELETE CASCADE,
+    constraint poll_fk3 foreign key (poll_item2) references item (item_num) ON DELETE CASCADE,
+	constraint poll_fk4 foreign key (poll_item3) references item (item_num) ON DELETE CASCADE,
+	constraint poll_fk5 foreign key (poll_item4) references item (item_num) ON DELETE CASCADE
+	alter table "C##TEAM004"."POLL" add constraint  foreign key("POLL_ITEM1") references "ITEM"("ITEM_NUM")
 );
 create sequence poll_seq;
 
@@ -73,6 +79,8 @@ create table poll_reply(
 	re_num number, -- 투표글 댓글 번호
 	re_content varchar2(100) not null, -- 투표글 댓글 내용
 	re_date date default sysdate not null, -- 투표 댓글 등록일
+	re_mdate date, -- 투표 댓글 수정일(추가)
+	re_ip varchar2(40) not null, -- ip 주소(추가)
 	mem_num number not null, -- 회원 번호
 	poll_num number not null, -- 게시물 번호
 	constraint poll_reply_pk primary key (re_num),
@@ -80,6 +88,30 @@ create table poll_reply(
 	constraint poll_reply_fk2 foreign key (poll_num) references poll (poll_num) ON DELETE CASCADE
 );
 create sequence poll_reply_seq;
+
+create table poll_report(
+	report_num number,
+	report_reason number(1) default 0 not null,
+	report_comment varchar2(200),
+	report_status number(1) default 1 not null,
+	report_date date default sysdate not null,
+	report_hide number(1) default 1 not null,
+	reporter_num number not null,
+	targeter_num number not null,
+	poll_num number not null,
+	constraint poll_report_pk primary key (report_num),
+	constraint poll_report_fk1 foreign key (reporter_num) references member (mem_num) ON DELETE CASCADE,
+	constraint poll_report_fk2 foreign key (targeter_num) references member (mem_num) ON DELETE CASCADE,
+	constraint poll_report_fk3 foreign key (poll_num) references poll (poll_num) ON DELETE CASCADE
+);
+create sequence poll_report_seq;
+
+
+
+
+
+
+
 
 
 

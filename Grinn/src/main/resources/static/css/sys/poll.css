@@ -1,0 +1,95 @@
+
+
+
+
+
+
+/*---------------------------------------*/
+form {
+    width: 600px;
+    margin: 0 auto;
+    border: none;
+    padding: 30px 10px 30px 10px;
+}
+input[type="text"] {
+	border: none;
+	outline: none;
+	background: none;
+    font-size: 15px;
+    line-height: 22px;
+    padding: 8px 0;
+}
+input[type="date"]{
+	border: none;
+	outline: none;
+	background: none;
+    font-size: 15px;
+    line-height: 22px;
+    padding: 3px 0;
+}
+input[type="text"]{
+	border-bottom: 1px solid #ebebeb;
+}
+divdiv div{
+	display: none;
+}
+.content-poll{
+	margin: 0 auto;
+	padding-left: 140px;
+}
+.list-poll{
+  width: 100px;
+  height: 40px;
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  margin: 0 auto;
+  font-size: 13px;
+  font-weight: bold;
+}
+.submit-poll {
+  width: 200px;
+  height: 40px;
+  padding: 10px;
+  background-color: rgb(205, 204, 206);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  margin: 0 auto;
+  font-size: 13px;
+  font-weight: bold;
+}
+.submit-poll:hover {
+  background-color: #000;
+}
+.insert-poll {
+  width: 61px;
+  height: 30px;
+  padding: 2px;
+  background-color: rgb(205, 204, 206);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  font-size: 11px;
+  margin: 0 auto;
+  font-weight: bold;
+}
+.insert-poll:hover {
+  background-color: #000;
+}
+#order{
+	border: none;
+	font-size: 11px;
+	font-weight: bold;
+	color:#000;
+}
+
+

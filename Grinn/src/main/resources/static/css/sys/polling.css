@@ -1,0 +1,153 @@
+/* 투표글을 감싸는 속성 */
+.poll-item{
+	border: 1px solid rgb(205, 204, 206);
+	border-radius: 10px;
+	padding: 12px 12px 16px 12px;
+	margin-bottom: 15px;
+}
+/* 실제 라디오 버튼 숨기기 */
+/*
+input[type="radio"] {
+	display: none;
+    position: absolute;
+    opacity: 0;
+}
+*/
+/* 투표 항목을 감싸는 속성(커스텀된 라디오 버튼) */
+.polling-item{
+	border: 0.5px solid rgb(144, 144, 144);
+	border-radius: 6px;
+	margin-bottom: 5px;
+	cursor: pointer;
+	width: 570px;
+	height: 104px;
+	display: flex;
+}
+.polling-item:last-child{
+	margin-bottom: 0;
+}
+ /* 선택된 커스텀 라디오 버튼 스타일링 */
+input[type="radio"]:checked + .polling-item {
+  background-color: rgb(49, 219, 214);
+  /*
+  border: 0.7px solid rgb(49, 219, 214);
+  */
+}
+input[type="radio"] + .polling-item {
+  border: 0.5px solid rgb(144, 144, 144);
+}
+
+/* 투표글에 보이는 회원 프로필 사진 속성 */
+/*
+.user-profile{
+	width: 100px;
+}
+*/
+/* 추가 */
+.user-profile {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    float: left;
+    margin-top: 5px;
+}
+.mem-id {
+	font-size: 11pt;
+}
+.poll-date {
+	font-size: 10pt;
+    color: #9d9d9d;
+	text-align: right;
+}
+
+.poll-content-detail {
+	margin-left: 50px;
+}
+
+.polling-items {
+	padding-top: 10px;
+	margin-left: 50px;
+}
+
+.user-photo{
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+}
+form {
+    width: 700px;
+    margin: 0 auto;
+    border: none;
+    padding: 30px 10px 30px 10px;
+}
+
+/* 투표 항목 사진 속성 */
+#polling-item-box{
+	display: inline-block;
+	width: 104px;
+	height: 104px;
+}
+#polling-item-img{
+	width: 104px;
+	height: 104px;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+.insert-poll{
+  width: 70px;
+  height: 35px;
+  padding: 10px;
+  background-color: rgb(205, 204, 206);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  margin-bottom: 7px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.insert-poll:hover {
+  background-color: #000;
+}
+
+#poll-result {
+	width: 40px;
+	padding: 7px;
+	margin-top: 6px;
+	margin-right: 53px;
+	font-size: 10px;
+	background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+    font-weight: bold;
+}
+#delete_btn {
+	font-size: 9px;
+	margin-right: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

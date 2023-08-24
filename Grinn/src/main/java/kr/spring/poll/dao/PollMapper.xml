@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.poll.dao.PollMapper">
+	
+	<!-- 투표글 등록 -->
+	<insert id = "insertPoll" parameterType = "pollVO">
+		INSERT INTO poll(
+		  poll_num,
+		  poll_title,
+		  poll_content,
+		  poll_ip,
+		  poll_item1,
+		  poll_item2,
+		  <if test="poll_item3 !=null and poll_item3 != ''">
+		  poll_item3,
+		  </if>
+		  <if test="poll_item4 !=null and poll_item4 != ''">
+		  poll_item4,
+		  </if>
+		  poll_date,
+		  poll_deadline,
+		  poll_status,
+		  mem_num)
+		VALUES (
+		  poll_seq.nextval,
+		  #{poll_title},
+		  #{poll_content},
+		  #{poll_ip},
+		  #{poll_item1},
+		  #{poll_item2},
+		  <if test="poll_item3 !=null and poll_item3 != ''">
+		  #{poll_item3},
+		  </if>
+		  <if test="poll_item4 !=null and poll_item4 != ''">
+		  #{poll_item4},
+		  </if>
+		  #{poll_date},
+		  #{poll_deadline},
+		  #{poll_status},
+		  #{mem_num})
+	</insert>
+	
+	<!-- 투표글 목록 -->
+	<select id = "selectPollList" parameterType = "map" resultType = "pollVO">
+		SELECT 
+		  * 
+		FROM (SELECT a.*, rownum rnum FROM (SELECT p.poll_num,
+			  		  <![CDATA[
+			  		  REPLACE(REPLACE(p.poll_title,'<','&lt;'),'>','&gt;') poll_title,
+			  		  ]]>
+			  		  p.poll_content,
+			  		  p.poll_hit,
+			  		  p.poll_date,
+			  		  p.poll_deadline,
+			  		  p.poll_item1,
+			  		  p.poll_item2,
+			  		  p.poll_item3,
+			  		  p.poll_item4,
+			  		  p.mem_num,
+			  		  m.mem_id,
+			  		  m.mem_nickname
+			  		FROM poll p JOIN member m ON p.mem_num = m.mem_num
+			  		<include refid = "pollSearch"></include>
+			  		<include refid = "pollOrder"></include>
+			  		)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 전체/검색 레코드 수 -->
+	<select id = "selectRowCount" parameterType = "map" resultType = "integer">
+		SELECT
+		  COUNT(*)
+		FROM poll p JOIN member m
+		ON p.mem_num = m.mem_num
+		<include refid = "pollSearch"></include>
+	</select>
+	
+	<!-- (관리자 투표목록에서만 검색 기능 추가)투표글 목록의 검색 조건 ? -->
+	<sql id = "pollSearch">
+		<where>
+			<if test = "keyword != null and keyword != ''">
+				<if test = "keyfield == 1">
+					p.poll_title LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test = "keyfield == 2">
+					m.mem_id LIKE '%' || #{keyword} || '%' or
+					m.mem_nickname LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test = "keyfield == 3">
+					p.poll_content LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test = "keyfield == 4">
+					p.poll_title LIKE '%' || #{keyword} || '%' or
+					p.poll_content LIKE '%' || #{keyword} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 검색 조건 (order: 투표수 최신순, 조회수, 총 투표수) -->
+	<sql id = "pollOrder">
+		<if test = "order == 1">
+			ORDER BY p.poll_num DESC
+		</if>
+		<if test = "order == 2">
+			ORDER BY p.poll_hit DESC
+		</if>
+		<if test = "order == 3">
+			ORDER BY p.poll_total DESC
+		</if>
+	</sql>
+	
+	<!-- 투표글 상세 -->
+	<select id = "selectPoll" parameterType = "integer">
+		SELECT
+		  *
+		FROM poll p JOIN member m USING(mem_num)
+		WHERE p.poll_num=#{poll_num}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	<!-- 
+	=============================================
+	================ 투표 댓글 ====================
+	=============================================
+	 -->
+	
+	<!-- 투표글 댓글 등록 -->
+	<insert id = "insertReply" parameterType = "pollReplyVO">
+		INSERT INTO poll_reply(
+			re_num,
+			re_content,
+			re_ip,
+			poll_num,
+			mem_num)
+		VALUES(
+			poll_reply_seq.nextval,
+			#{re_content},
+			#{re_ip},
+			#{poll_num},
+			#{mem_num})
+	</insert>
+	
+	<!-- 투표글 댓글 목록 -->
+	<select id = "selectListReply" parameterType = "map" resultType = "pollReplyVO">
+		SELECT *
+		FROM (SELECT
+				a.*,
+				rownum rnum
+			  FROM (SELECT
+			  		  re_num,
+			  		  <![CDATA[
+			  		  REPLACE(REPLACE(re_content, '<', '&lt;'), '>', '&gt;') re_content,
+			  		  ]]>
+			  		  re_date,
+			  		  re_mdate,
+			  		  poll_num,
+			  		  mem_num,
+			  		  mem_id,
+			  		  mem_nickname
+			  		FROM poll_reply JOIN member USING (mem_num)
+			  		WHERE poll_num=#{poll_num}
+			  		ORDER BY re_num DESC)a)
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

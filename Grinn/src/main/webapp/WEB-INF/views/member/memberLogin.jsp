@@ -26,15 +26,14 @@
 			<li>
 				<div class = "align-left">
 					<label for = "auto">
-						<input type = "checkbox" name = "auto" id = "auto">
-						자동 로그인
+						<input type = "checkbox" name = "auto" id = "auto-check">
+						자동로그인
 					</label>
 				</div>
 			</li>
 			<li>
-					<form:button class = "login-btn"><b>로그인</b></form:button>
-					<input type = "button" value = "회원가입" class = "login-btn" onclick = "location.href='registerUser.do'">
-				
+				<form:button class = "login-btn"><b>로그인</b></form:button>
+				<input type = "button" value = "회원가입" class = "login-btn" onclick = "location.href='registerUser.do'">
 			</li>
 		</ul>   
 	</div>  

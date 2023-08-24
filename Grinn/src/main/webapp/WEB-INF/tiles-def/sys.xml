@@ -28,6 +28,24 @@
     	<put-attribute name="title" value="회원권한수정(관리자)"/>
 	    <put-attribute name="body" value="/WEB-INF/views/member/admin_memberModify.jsp"/>
     </definition>
+    <definition name="admin_pollList" extends="main">
+    	<put-attribute name="title" value="투표목록(관리자)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/poll/admin_pollList.jsp"/>
+    </definition>
+    
+    <!-- 투표 -->
+    <definition name="pollList" extends="main">
+    	<put-attribute name="title" value="투표목록"/>
+	    <put-attribute name="body" value="/WEB-INF/views/poll/pollList.jsp"/>
+    </definition>
+    <definition name="pollWrite" extends="main">
+    	<put-attribute name="title" value="투표등록"/>
+	    <put-attribute name="body" value="/WEB-INF/views/poll/pollWrite.jsp"/>
+    </definition>
+    <definition name="selectItem" extends="main">
+    	<put-attribute name="title" value="투표항목등록(상품검색)"/>
+	    <put-attribute name="body" value="/WEB-INF/views/poll/selectItem.jsp"/>
+    </definition>
 </tiles-definitions>
 
 
