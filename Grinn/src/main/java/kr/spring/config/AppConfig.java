@@ -55,7 +55,18 @@ public class AppConfig implements WebMvcConfigurer{
 				.addPathPatterns("/notice/noticeModify.do")
 				.addPathPatterns("/item/itemAdminList.do")
 				.addPathPatterns("/item/itemWrite.do")
-				.addPathPatterns("/item/itemModify.do");
+				.addPathPatterns("/item/itemModify.do")
+				.addPathPatterns("/fleamarket/adminBoothList.do")
+				.addPathPatterns("/fleamarket/adminBoothWrite.do")
+				.addPathPatterns("/fleamarket/updateBooth.do")
+				.addPathPatterns("/fleamarket/admin_resList.do")
+				.addPathPatterns("/fleamarket/detailBooking.do")
+				.addPathPatterns("/penalty/admin_list.do")
+				.addPathPatterns("/penalty/admin_detail.do")
+				.addPathPatterns("/penalty/modifyPenalty.do")
+				.addPathPatterns("/promotion/adminList.do")
+				.addPathPatterns("/promotion/adminWrite.do")
+				.addPathPatterns("/promotion/updatePromotion.do");
 		//LoginInterceptor 설정
 		registry.addInterceptor(loginCheck)
 				.addPathPatterns("/style/write.do")
@@ -67,7 +78,10 @@ public class AppConfig implements WebMvcConfigurer{
 				.addPathPatterns("/item/itemReviewModify.do")
 				.addPathPatterns("/chatbot/chatbotList.do")
 				.addPathPatterns("/chatbot/chatbotCreate.do")
-				.addPathPatterns("/chatbot/chatbotDetail.do");
+				.addPathPatterns("/chatbot/chatbotDetail.do")
+				.addPathPatterns("/fleamarket/booking.do")
+				.addPathPatterns("/fleamarket/marketList.do")
+				.addPathPatterns("/fleamarket/bookDetail.do");
 	}
 	
 	@Bean
