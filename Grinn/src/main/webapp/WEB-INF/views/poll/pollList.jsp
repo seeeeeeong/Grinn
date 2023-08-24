@@ -73,10 +73,13 @@
 							<c:if test="${poll.poll_item1 != 0}">
 							<input type="radio" name="polling-option" value="option1" onclick = "showResult()" id = "radioCheck">
 							<div class="polling-item" id = "poll1Box">
-								<label id = "polling-item-box">
+								<!-- <label id = "polling-item-box">
 									<img id = "polling-item-img" src="${pageContext.request.contextPath}/poll/viewPhotoByItem_num.do?item_num=${poll.poll_item1}">
 									<span id = "result"></span>
-								</label>
+									${poll.item_brand1}${poll.item_name1}
+								</label> -->
+								<img id = "polling-item-img" src="${pageContext.request.contextPath}/poll/viewPhotoByItem_num.do?item_num=${poll.poll_item1}">
+								${poll.item_brand1}${poll.item_name1}
 							</div>
 							</c:if>
 							

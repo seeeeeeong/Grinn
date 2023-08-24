@@ -45,6 +45,15 @@ public class PollVO {
 	private String item_name; // 상품명
 	
 	private String poll_items;
+	
+	private String item_brand1;
+	private String item_name1;
+	private String item_brand2;
+	private String item_name2;
+	private String item_brand3;
+	private String item_name3;
+	private String item_brand4;
+	private String item_name4;
 }
 
 

@@ -58,8 +58,21 @@
 			  		  p.poll_item4,
 			  		  p.mem_num,
 			  		  m.mem_id,
-			  		  m.mem_nickname
-			  		FROM poll p JOIN member m ON p.mem_num = m.mem_num
+			  		  m.mem_nickname,
+			  		  i1.item_brand item_brand1,
+			  		  i1.item_name item_name1,
+			  		  i2.item_brand item_brand2,
+			  		  i2.item_name item_name2,
+			  		  i3.item_brand item_brand3,
+			  		  i3.item_name item_name3,
+			  		  i4.item_brand item_brand4,
+			  		  i4.item_name item_name4
+			  		FROM poll p 
+			  		LEFT OUTER JOIN member m ON p.mem_num = m.mem_num
+			  		LEFT OUTER JOIN item i1 ON p.poll_item1 = i1.item_num
+			  		LEFT OUTER JOIN item i2 ON p.poll_item2 = i2.item_num
+			  		LEFT OUTER JOIN item i3 ON p.poll_item3 = i3.item_num
+			  		LEFT OUTER JOIN item i4 ON p.poll_item4 = i4.item_num
 			  		<include refid = "pollSearch"></include>
 			  		<include refid = "pollOrder"></include>
 			  		)a)
