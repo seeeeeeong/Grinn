@@ -23,6 +23,7 @@ ul{
 .floating-label{
 	position:relative;
 	padding-top: 20px;
+	width: 370px;
 }
 h1 {
     display: block;
@@ -48,23 +49,20 @@ form {
     padding: 8px 0;
 }
 #confirmId{
-  display: block;
-  width: 100%;
-  padding: 10px;
+  width: 66px;
+  padding: 7px;
   background-color: rgb(205, 204, 206);
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
   transition: 0.3s ease-out;
-  font-size: 14px;
-  margin-bottom:10px;
-  margin-top:10px;	
+  font-size: 9px;
+  margin-left: auto 10px;
 }
 
-input[type="text"],
-input[type="password"]{
-	width: 370px;
+#input-text-id{
+	width: 280px;
 }
 /* Button styles */
 .login-btn {
@@ -87,7 +85,7 @@ input[type="password"]{
 }
 .default-btn {
   display: block;
-  width: 100%;
+  width: 350px;
   padding: 10px;
   margin: 10px 0 0 0;
   background-color: rgb(205, 204, 206);
@@ -115,11 +113,11 @@ a:visited{
 button[type="submit"],
 .login-btn {
     height: 50px;
-    width: 370px;
+    width: 350px;
 }
 input[type='button'] {
 	height: 50px;
-	width: 370px;
+	width: 350px;
 }
 
 
@@ -133,18 +131,9 @@ form ul li {
 	clear: none;
 	text-align: left;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#li {
+	margin-bottom: 10px;
+}
+#li-phone {
+	margin-bottom: 20px;
+} 
