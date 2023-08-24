@@ -115,6 +115,10 @@
 	  cursor: pointer;
 	}
 	
+	#delete_btn{
+		cursor: pointer;
+	}
+	
 	.options{
 		margin-top:45px;
 		text-align:center;
