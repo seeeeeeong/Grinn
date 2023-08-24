@@ -17,7 +17,7 @@
 </script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
 <div class="page-main">
-	<h2>부스 목록</h2>
+	<h2>플리마켓 목록</h2>
 	<!-- 검색창 시작 -->
 	<form action="boothList.do" id="search_form" method="get">
 		<div class="itemListTop">

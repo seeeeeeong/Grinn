@@ -16,7 +16,7 @@
 	});
 </script>
 <div class="page-main">
-	<h2>페널티 목록 - 관리자</h2>
+	<h2>페널티 목록(관리자)</h2>
 	<!-- 검색창 시작 -->
 	<form action="admin_list.do" id="search_form" method="get">
 		<div class="itemListTop">

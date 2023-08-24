@@ -15,7 +15,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/uploadAdapter.js"></script>
 <div class="page-main">
-	<h2>플리마켓 등록</h2>
+	<h2>플리마켓 수정</h2>
 	<form:form modelAttribute="marketVO" action="updateBooth.do" id="booth_update" enctype="multipart/form-data">
 		<form:hidden path="market_num"/>
 		<form:errors element="div" cssClass="error-color"></form:errors>

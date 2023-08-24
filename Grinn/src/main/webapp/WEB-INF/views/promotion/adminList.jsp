@@ -16,7 +16,7 @@
 	});
 </script>
 <div class="page-main">
-	<h2>프로모션 목록 - 관리자</h2>
+	<h2>프로모션 목록(관리자)</h2>
 	<!-- 검색창 시작 -->
 	<form action="adminList.do" id="search_form" method="get">
 		<div class="itemListTop">

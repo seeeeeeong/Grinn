@@ -16,7 +16,7 @@
 	});
 </script>
 <div class="page-main">
-	<h2>부스 목록 - 관리자</h2>
+	<h2>플리마켓 목록(관리자)</h2>
 	<!-- 검색창 시작 -->
 	<form action="adminBoothList.do" id="search_form" method="get">
 		<div class="itemListTop">

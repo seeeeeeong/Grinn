@@ -6,7 +6,7 @@
 <!-- 관리자 예약 내역 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/market.css">
 <div class="page-main">
-	<h2 class="detail-border">예약 내역 - 관리자</h2>
+	<h2 class="detail-border">예약 내역(관리자)</h2>
 	<div class="detail-poster">
 		<img src="${pageContext.request.contextPath}/fleamarket/imageView.do?market_num=${bookingVO.marketVO.market_num}&photo_type=1"
 		width="280" height="380">

@@ -4,11 +4,23 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!-- 관리자 페널티 내역 시작 -->
+<style>
+.penalty-info li{
+	margin:15px 0 15px 0;
+}
+.penalty-info li label{
+	font-size:15px;
+	font-weight:700;
+}
+#penalty_detail input[type="button"]{
+	margin-right:40px;
+}
+</style>
 <div class="page-main">
 	<h2 class="detail-border">페널티 내역</h2>
 	<form:form modelAttribute="penaltyVO" action="admin_detail.do" id="penalty_detail">
 		<form:hidden path="pe_num"/>
-		<ul>
+		<ul class="penalty-info">
 			<li>
 				<label>번호</label>
 				${penaltyVO.pe_num}
