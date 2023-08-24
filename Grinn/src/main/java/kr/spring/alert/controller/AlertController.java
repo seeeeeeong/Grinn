@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.alert.service.AlertService;
+import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleVO;
+import kr.spring.trade.vo.TradeVO;
 import kr.spring.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,7 +40,10 @@ public class AlertController {
         if (user != null) {
             
             List<StyleVO> styleInfoList = alertService.selectStyleInfo(user.getMem_num());
-
+            List<TradeVO> purchaseInfo = alertService.purchaseInfo(user.getMem_num());
+            List<TradeVO> saleInfo = alertService.saleInfo(user.getMem_num());
+            
+            
             Map<Integer, List<String>> commentsMap = new HashMap<>();
 
             for (StyleVO styleInfo : styleInfoList) {
@@ -52,15 +57,32 @@ public class AlertController {
                 List<MemberVO> commentInfo = alertService.commentId(st_num);
                 List<String> comments = alertService.comment(st_num);
 
-                model.addAttribute("commentInfo", commentInfo);
-                commentsMap.put(st_num, comments);
-             
+                if (!commentInfo.isEmpty() || !comments.isEmpty()) {
+                    model.addAttribute("commentInfo", commentInfo);
+                    commentsMap.put(st_num, comments);
+                }
+            }
+            
+            for (TradeVO purchase : purchaseInfo) {
+                Integer item_num = purchase.getItem_num();
+
+                List<ItemVO> pItem = alertService.selectItem(item_num);
+                model.addAttribute("pItem", pItem);
+            }
+            
+            for (TradeVO sale : saleInfo) {
+                Integer item_num = sale.getItem_num();
+
+                List<ItemVO> sItem = alertService.selectItem(item_num);
+                model.addAttribute("sItem", sItem);
             }
             
             
             List<MemberVO> followInfo = alertService.followId(user.getMem_num());
             model.addAttribute("followInfo", followInfo);
             
+            model.addAttribute("purchaseInfo", purchaseInfo);
+            model.addAttribute("saleInfo", saleInfo);
             model.addAttribute("styleInfoList", styleInfoList);
             model.addAttribute("commentsMap", commentsMap);
             

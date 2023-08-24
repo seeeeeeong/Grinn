@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.spring.alert.dao.AlertMapper;
+import kr.spring.item.vo.ItemVO;
 import kr.spring.member.vo.MemberVO;
 import kr.spring.style.vo.StyleVO;
+import kr.spring.trade.vo.TradeVO;
 
 @Service
 @Transactional
@@ -59,6 +61,21 @@ public class AlertServiceImpl implements AlertService{
 	}
 
 
+	@Override
+	public List<TradeVO> purchaseInfo(Integer mem_num) {
+		return alertMapper.purchaseInfo(mem_num);
+	}
 
-	
+
+	@Override
+	public List<TradeVO> saleInfo(Integer mem_num) {
+		return alertMapper.saleInfo(mem_num);
+	}
+
+
+	@Override
+	public List<ItemVO> selectItem(Integer item_num) {
+		return alertMapper.selectItem(item_num);
+	}
+
 }
