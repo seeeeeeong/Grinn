@@ -207,8 +207,8 @@
 		<c:forEach var="fav" items="${favList}">
 
 			<div class="fav-info-container">
-				
 					<div class="fav-item">
+					
 						<img src="/user/userProfile.do?mem_num=${fav.mem_num}"
 							class="my-photo">
 						<div class="text-content">
@@ -218,7 +218,6 @@
 						<img src="/user/StyleImageView.do?st_num=${fav.st_num}"
 							class="style-image">
 					</div>
-				
 			</div>
 		</c:forEach>
 	</div>

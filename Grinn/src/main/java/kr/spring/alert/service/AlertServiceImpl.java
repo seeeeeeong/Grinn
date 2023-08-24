@@ -20,16 +20,7 @@ public class AlertServiceImpl implements AlertService{
 	@Autowired
 	private AlertMapper alertMapper;
 	
-	@Override
-	public List<StyleVO> selectStyleInfo(Integer mem_num) {
-		return alertMapper.selectStyleInfo(mem_num);
-	}
 
-
-	@Override
-	public List<String> comment(Integer st_num, Integer mem_num) {
-		return alertMapper.comment(st_num, mem_num);
-	}	
 	
 
 	@Override
@@ -43,31 +34,6 @@ public class AlertServiceImpl implements AlertService{
 	}
 
 
-	@Override
-	public MemberVO profilePhoto(Integer mem_num) {
-		return alertMapper.profilePhoto(mem_num);
-	}
-
-
-	@Override
-	public List<MemberVO> favId(Integer st_num) {
-		return alertMapper.favId(st_num);
-	}
-
-
-
-	@Override
-	public List<MemberVO> commentId(Integer st_num) {
-		return alertMapper.commentId(st_num);
-	}
-
-
-
-
-	@Override
-	public List<ItemVO> selectItem(Integer item_num) {
-		return alertMapper.selectItem(item_num);
-	}
 
 
 	@Override
@@ -91,6 +57,11 @@ public class AlertServiceImpl implements AlertService{
 	@Override
 	public List<AlertVO> saleInfo(Integer mem_num) {
 		return alertMapper.saleInfo(mem_num);
+	}
+
+	@Override
+	public MemberVO profilePhoto(Integer mem_num) {
+		return alertMapper.profilePhoto(mem_num);
 	}
 
 
