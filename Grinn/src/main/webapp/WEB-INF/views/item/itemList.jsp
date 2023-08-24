@@ -52,7 +52,7 @@ $(function(){
 		</div>
 		<div class="orderTop">
 			<select id="order" name="order">
-				<option value="1" <c:if test="${param.order == 1}">selected</c:if>>최신</option>
+				<option value="1" <c:if test="${param.order == 1}">selected</c:if>>최신순</option>
 				<option value="2" <c:if test="${param.order == 2}">selected</c:if>>관심상품순</option>
 				<option value="3" <c:if test="${param.order == 3}">selected</c:if>>리뷰순</option>
 			</select>

@@ -88,9 +88,9 @@ $(function(){
 																	</span>
 																</div>
 															</button>
-													<c:forEach var="list" items="${sspList}">
+													<c:forEach var="sspList" items="${sspList}">
 														<li class="select-size">
-															<c:if test="${empty list.item_size}">
+															<c:if test="${empty sspList.item_size}">
 																<script type="text/javascript">
 																	$(function() {
 																		$('.select-size')
@@ -99,20 +99,20 @@ $(function(){
 																</script>
 															</c:if>
 															<button
-																onclick="location.href='${pageContext.request.contextPath}/purchase/check.do?item_num=${list.item_num}&item_sizenum=${list.item_sizenum}&item_size=${list.item_size}'">
+																onclick="location.href='${pageContext.request.contextPath}/purchase/check.do?item_num=${item.item_num}&item_sizenum=${sspList.item_sizenum}&item_size=${sspList.item_size}'">
 																<div class="select-inner">
 																	<span class="size"><br> 
-																		<c:if test="${!empty list.item_size}">
-																			${list.item_size}
+																		<c:if test="${!empty sspList.item_size}">
+																			${sspList.item_size}
 																		</c:if>
 																	</span> 
 																	<span class="price"
-																		<c:if test="${list.sale_price != 0}">style="color:#fa7070;"</c:if>><br>
-																		<c:if test="${list.sale_price == 0}">
+																		<c:if test="${sspList.sale_price != 0}">style="color:#fa7070;"</c:if>><br>
+																		<c:if test="${sspList.sale_price == 0}">
 																		구매입찰
 																		</c:if> 
-																		<c:if test="${list.sale_price != 0}">
-																			<fmt:formatNumber value="${list.sale_price}" />원
+																		<c:if test="${sspList.sale_price != 0}">
+																			<fmt:formatNumber value="${sspList.sale_price}" />원
 																		</c:if>
 																	</span>
 																</div>

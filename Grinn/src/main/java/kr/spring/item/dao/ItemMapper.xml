@@ -66,6 +66,7 @@
         WHERE
             sb.item_num = #{item_num}
             AND sb.sale_deadline >= SYSDATE
+            AND sale_price = (SELECT MIN(sale_price) FROM sale_bid)
         GROUP BY
             isz.item_sizenum, isz.item_size
     </select>

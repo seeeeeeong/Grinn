@@ -245,12 +245,16 @@ public class ItemController {
 		List<ItemTradeVO> saleList = itemService.saleList(item_num);
 		List<ItemTradeVO> purchaseList = itemService.purchaseList(item_num);
 		ItemVO item = itemService.selectItem(item_num);
+		
+		
 		ItemVO sizeList = itemService.sizeListInfo(item_num);
 		if(sizeList != null) {
 			item.setItem_sizenum(sizeList.getItem_sizenum());
 			item.setItem_size(sizeList.getItem_size());
 			item.setSale(sizeList.getSale());
 		}
+		
+		//xml을 수정하면 된다.!!!!! sale 통틀어서 가장 작은 값을 출력하도록 한다.
 		//Integer sale = itemService.minSale(item_num);
 		int stylecount=itemService.stylecount(item_num);
 		Integer purchase = itemService.maxPurchase(item_num);

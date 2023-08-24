@@ -12,60 +12,60 @@
 	</definition>
 	
 	<definition name="itemWrite" extends="main">
-		<put-attribute name="title" value="상품등록" />
+		<put-attribute name="title" value="등록 | Item | Grinn" />
 		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/item/itemWrite.jsp" />
 	</definition>
 
 	<definition name="itemModify" extends="main">
-		<put-attribute name="title" value="상품수정" />
+		<put-attribute name="title" value="수정 | Item | Grinn" />
 		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 		<put-attribute name="body"
 			value="/WEB-INF/views/item/itemModify.jsp" />
 	</definition>
 	
 	<definition name="itemList" extends="main">
-		<put-attribute name="title" value="상품목록" />
+		<put-attribute name="title" value="Item | Grinn" />
 		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/item/itemList.jsp" />
 	</definition>
 
 	<definition name="itemDetail" extends="main">
-		<put-attribute name="title" value="상세정보" />
+		<put-attribute name="title" value="Item | Grinn" />
 		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 		<put-attribute name="body"
 			value="/WEB-INF/views/item/itemDetail.jsp" />
 	</definition>
 
 	<definition name="itemAdminList" extends="admin">
-		<put-attribute name="title" value="상품목록(관리자)" />
+		<put-attribute name="title" value="admin | Item | Grinn" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/item/itemAdminList.jsp" />
 	</definition>
 
 	<definition name="itemReviewWrite" extends="main">
-		<put-attribute name="title" value="후기작성" />
+		<put-attribute name="title" value="Review | Item | Grinn" />
 		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 		<put-attribute name="body"
 			value="/WEB-INF/views/item/itemReviewWrite.jsp" />
 	</definition>
 	
 	<definition name="itemReviewModify" extends="main">
-		<put-attribute name="title" value="후기수정" />
+		<put-attribute name="title" value="Review | Item | Grinn" />
 		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 		<put-attribute name="body"
 			value="/WEB-INF/views/item/itemReviewModify.jsp" />
 	</definition>
 	
 	<definition name="listStyle" extends="main">
-		<put-attribute name="title" value="스타일모아보기" />
+		<put-attribute name="title" value="Style | Grinn" />
 		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 		<put-attribute name="body"
 			value="/WEB-INF/views/item/listStyle.jsp" />
 	</definition>
 	
 	<definition name="search" extends="main">
-		<put-attribute name="title" value="검색" />
+		<put-attribute name="title" value="Search | Grinn" />
 		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
 		<put-attribute name="body"
 			value="/WEB-INF/views/item/search.jsp" />
