@@ -25,7 +25,6 @@ create table review(
  review_date date default sysdate not null,
  review_modifydate date,
  review_star number(1) not null,
- review_status number(1) not null,
  item_num number not null,
  mem_num number not null,
  constraint review_pk primary key (review_num),
