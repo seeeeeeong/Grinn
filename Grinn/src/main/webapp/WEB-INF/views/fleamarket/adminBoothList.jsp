@@ -66,7 +66,7 @@
 			</td>
 			<td class="align-center">
 				<input type="button" value="수정" onclick="location.href='updateBooth.do?market_num=${adminBooth.market_num}'" class="admin-btn">
-				<input type="button" value="삭제" class="admin-btn">
+				<input type="button" value="삭제" class="admin-btn" id="delete_btn">
 				<script type="text/javascript">
 					let delete_btn = document.getElementById('delete_btn');
 					delete_btn.onclick=function(){

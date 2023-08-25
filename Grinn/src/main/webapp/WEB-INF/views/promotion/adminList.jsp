@@ -73,7 +73,7 @@
 			</td>
 			<td class="align-center">
 				<input type="button" value="수정" onclick="location.href='updatePromotion.do?pro_num=${pro.pro_num}'" class="detail-btn">
-				<input type="button" value="삭제" class="delete-btn">
+				<input type="button" value="삭제" class="delete-btn" id="delete_btn">
 				<script type="text/javascript">
 					let delete_btn = document.getElementById('delete_btn');
 					delete_btn.onclick=function(){

@@ -28,8 +28,7 @@ public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public int selectTotalByMem_num(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bookingMapper.selectTotalByMem_num(map);
 	}
 
 	@Override
