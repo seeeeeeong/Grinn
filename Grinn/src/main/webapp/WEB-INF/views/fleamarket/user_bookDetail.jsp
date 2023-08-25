@@ -39,7 +39,7 @@
 				${bookingVO.book_date2}
 			</li>
 			<li class="detail-user">
-				<label class="user-label">예약일</label>
+				<label class="user-label">예약일시</label>
 				${bookingVO.book_regDate}
 			</li>
 			<li class="detail-user">

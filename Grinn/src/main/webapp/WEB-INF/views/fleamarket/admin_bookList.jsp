@@ -47,7 +47,7 @@
 			<th>번호</th>
 			<th>회원 ID</th>
 			<th>플리마켓명</th>
-			<th>예약 날짜</th>
+			<th>예약일시</th>
 			<th>권한</th>
 		</tr>
 		<c:forEach var="book" items="${bookList}">

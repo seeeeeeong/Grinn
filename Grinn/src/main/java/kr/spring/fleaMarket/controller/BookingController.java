@@ -210,6 +210,10 @@ public class BookingController {
 		// 예약 취소
 		bookingService.deleteBooking(book_num);
 		
-		return "redirect:/fleamarket/marketList.do";
+		model.addAttribute("message", "예약이 취소되었습니다.");
+		model.addAttribute("url", request.getContextPath() + "/fleamarket/marketList.do");
+		
+		//return "redirect:/fleamarket/marketList.do";
+		return "common/resultView";
 	}
 }

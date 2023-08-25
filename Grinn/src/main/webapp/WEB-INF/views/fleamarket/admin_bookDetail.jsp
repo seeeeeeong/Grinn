@@ -44,7 +44,7 @@
 				${bookingVO.mem_id}
 			</li>
 			<li class="detail-user">
-				<label class="user-label">예약일</label>
+				<label class="user-label">예약일시</label>
 				${bookingVO.book_regDate}
 			</li>
 			<li class="detail-user">

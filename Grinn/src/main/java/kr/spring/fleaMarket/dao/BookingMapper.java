@@ -33,12 +33,12 @@ public interface BookingMapper {
 	//@Select("SELECT * FROM booking b LEFT JOIN market m ON b.market_num = m.market_num LEFT JOIN member u ON b.mem_num = u.mem_num WHERE b.book_num = #{book_num}")
 	public BookingVO selectBooking(Integer book_num);
 	// 예약 완료로 인한 booth_count 변동
-	@Update("UPDATE market SET booth_count=booth_count-#{get_count} WHERE market_num=#{market_num}")
+	@Update("UPDATE market SET booth_count=booth_count-1 WHERE market_num=#{market_num}")
 	public void bookBooth_count(Integer market_num);
 	// 예약 삭제
 	@Delete("DELETE FROM booking WHERE book_num=#{book_num}")
 	public void deleteBooking(Integer book_num);
 	// 예약 삭제에 따른 booth_count 증가
-	@Update("UPDATE market SET booth_count=booth_count+#{get_count} WHERE market_num=#{market_num}")
+	@Update("UPDATE market SET booth_count=booth_count+1 WHERE market_num=#{market_num}")
 	public void rollbackBooth_count(Integer market_num);
 }

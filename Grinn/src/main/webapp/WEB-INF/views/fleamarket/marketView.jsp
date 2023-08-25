@@ -27,8 +27,8 @@
 					<p class="flea-detail-comment2">종료 30분 전까지</p>	
 				</li>
 				<li class="flea-detail">
-					<p>참가 비용</p>
-					<p class="flea-detail-comment3">하단 내용 참조</p>
+					<p>참가 비용 및 예약 시작일</p>
+					<p class="flea-detail-comment3"><b>하단 내용 참조</b></p>
 				</li>
 				<c:if test="${market.market_type == 2}">
 					<c:if test="${market.booth_count > 0}">
