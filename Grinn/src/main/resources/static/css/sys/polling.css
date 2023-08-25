@@ -133,11 +133,13 @@ form {
 }
 
 .item_content{
-	padding-top: 35px;
+	padding-top: 30px;
 	padding-left: 15px;
+	width: 300px;
 }
 
-#result {
+
+.result-box {
 	text-align: right;
 }
 

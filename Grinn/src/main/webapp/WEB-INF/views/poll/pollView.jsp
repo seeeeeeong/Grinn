@@ -50,7 +50,7 @@
 									<b>${poll.item_brand1}</b><br>
 									${poll.item_name1}
 								</div>
-								<div id = "result"></div>
+								<div class = "result-box" id = "result"></div>
 							</div>
 							</c:if>
 							
@@ -63,7 +63,7 @@
 									<b>${poll.item_brand2}</b><br>
 									${poll.item_name2}
 								</div>
-								<div id = "result"></div>
+								<div class = "result-box" id = "result"></div>
 							</div>
 							</c:if>
 							
@@ -75,7 +75,7 @@
 								<div class = "item_content">
 									<b>${poll.item_brand3}</b><br>
 									${poll.item_name3}
-									<div id = "result"></div>
+									<div class = "result-box" id = "result"></div>
 								</div>
 							</div>
 							</c:if>
@@ -88,7 +88,7 @@
 								<div class = "item_content">
 									<b>${poll.item_brand4}</b><br>
 									${poll.item_name4}
-									<div id = "result"></div>
+									<div class = "result-box" id = "result"></div>
 								</div>
 							</div>
 							</c:if>
