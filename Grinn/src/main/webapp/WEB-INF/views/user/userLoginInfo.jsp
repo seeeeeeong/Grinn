@@ -264,13 +264,18 @@ h5 {
 	margin-top: 25px;
 }
 #delete-account-button {
-    border: none; /* Remove border */
-    background-color: white; /* White background */
-    color: rgba(0, 0, 0, 0.4); /* Text color with 40% opacity */
-    font-size: 13px; /* Font size */
-    padding: 5px 10px; /* Padding */
+    border: none;
+    background-color: white;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 13px;
+    padding: 5px 0px;
     cursor: pointer;
+	
+
+    float: left; 
+    text-decoration: underline;
 }
+
 </style>
 <!-- 회원정보 시작 -->
 <div class="page-main">
