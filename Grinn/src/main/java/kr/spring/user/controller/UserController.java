@@ -601,48 +601,21 @@ public class UserController {
 	/*
 	 * ======================= 회원탈퇴(회원정보삭제) =======================
 	 */
-	// 회원탈퇴 폼 호출
-	// 회원 탈퇴
-	@GetMapping("/user/delete.do")
-	public String formDelete() {
-		return "userDelete";
-	}
-
-	// 전송된 데이터 처리
-	@PostMapping("/user/delete.do")
-	public String submitDelete(@Valid MemberVO memberVO, BindingResult result, HttpSession session, Model model) {
-		log.debug("<<회원탈퇴>> : " + memberVO);
-
-		// id와 passwd 필드만 유효성 체크, 유효성 체크 결과 오류가 있으면 폼 호출
-		if (result.hasFieldErrors("mem_id") || result.hasFieldErrors("mem_passwd")) {
-			return formDelete();
-		}
-
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		MemberVO db_member = userService.selectMember(user.getMem_num());
-		boolean check = false;
-		// 아이디, 비밀번호 일치 여부 체크
-		try {
-			if (db_member != null && db_member.getMem_id().equals(memberVO.getMem_id())) {
-				// 비밀번호 일치 여부 체크
-				check = db_member.isCheckedPassword(memberVO.getMem_passwd());
-			}
-			if (check) {
-				// 인증 성공, 회원정보 삭제
-				userService.deleteMember(user.getMem_num());
-				// 로그아웃
-				session.invalidate();
-
-				model.addAttribute("accessMsg", "회원탈퇴를 완료했습니다.");
-				return "common/notice";
-			}
-			// 인증 실패
-			throw new AuthCheckException();
-		} catch (AuthCheckException e) {
-			result.reject("invalidIdOrPassword");
-			return formDelete();
-		}
-	}
+    @PostMapping("/user/deleteAccount")
+    @ResponseBody
+    public String deleteAccount(HttpSession session) {
+    	// 로그인된 사용자 정보 가져오기
+    			MemberVO user = (MemberVO) session.getAttribute("user");
+    	
+    	try {
+            // 회원 정보 삭제 로직 실행
+            userService.deleteMember(user.getMem_num()); 
+            return "success";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
 
 	/*
 	 * =========================== 페널티 정보 조회 ===========================

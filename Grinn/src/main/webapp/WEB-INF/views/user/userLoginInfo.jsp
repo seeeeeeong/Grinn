@@ -149,6 +149,26 @@ $(document).ready(function() {
 		                });
 		            }
 		        });
+		        
+		        
+		        $("#delete-account-button").click(function() {
+		            // Show a confirmation dialog
+		            var confirmed = confirm("정말로 회원탈퇴하시겠습니까?");
+		            if (confirmed) {
+		                // Perform account deletion
+		                // Assuming there's a server-side endpoint for account deletion
+		                $.post("/user/deleteAccount", function(response) {
+		                    if (response === "success") {
+		                        // Show a success notification
+		                        alert("회원탈퇴가 완료되었습니다.");
+		                        // Redirect to the login page
+		                        window.location.href = "/member/login.do"; // Change "/login" to your actual login page URL
+		                    } else {
+		                        alert("회원탈퇴에 실패했습니다.");
+		                    }
+		                });
+		            }
+		        });
 			});
 </script>
 
@@ -243,6 +263,14 @@ h5 {
 	padding: 5px 0;
 	margin-top: 25px;
 }
+#delete-account-button {
+    border: none; /* Remove border */
+    background-color: white; /* White background */
+    color: rgba(0, 0, 0, 0.4); /* Text color with 40% opacity */
+    font-size: 13px; /* Font size */
+    padding: 5px 10px; /* Padding */
+    cursor: pointer;
+}
 </style>
 <!-- 회원정보 시작 -->
 <div class="page-main">
@@ -294,5 +322,7 @@ h5 {
 			<button class="button phone-button">변경</button>
 		</div>
 	</div>
+	<br><br><br><br><br>
+	<button id="delete-account-button">회원탈퇴</button>
 </div>
 <!-- 회원정보 끝 -->

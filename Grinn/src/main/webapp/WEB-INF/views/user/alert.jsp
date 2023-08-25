@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,31 +119,31 @@
 					<div class="fav-item">
 						<img
 							src="/user/itemImageView.do?item_num=${purchase.item_num}"
-							alt="Item Image" style="width: 50px; height: 50px;">
-						<div class="text-content">
+							alt="Item Image" style="width: 70px; height: 70px;">
+						<div class="text-content" style="font-size: 15px;">
 							<c:choose>
 								<c:when test="${purchase.trade_state == 2}">
-									<strong class="text-small">&nbsp;&nbsp;검수준비중</strong>
+									<strong class="text-small" style="font-size: 14px;">&nbsp;&nbsp;검수준비중</strong>
 								</c:when>
 								<c:when test="${purchase.trade_state == 3}">
-									<strong class="text-small">&nbsp;&nbsp;검수중</strong>
+									<strong class="text-small" style="font-size: 14px;">&nbsp;&nbsp;검수중</strong>
 								</c:when>
 								<c:when test="${purchase.trade_state == 4}">
-									<strong class="text-small">&nbsp;&nbsp;배송중</strong>
+									<strong class="text-small" style="font-size: 14px;">&nbsp;&nbsp;배송중</strong>
 								</c:when>
 								<c:when test="${purchase.trade_state == 5}">
-									<strong class="text-small">&nbsp;&nbsp;배송완료</strong>
+									<strong class="text-small" style="font-size: 14px;">&nbsp;&nbsp;배송완료</strong>
 								</c:when>
 								<c:when test="${purchase.trade_state == 6}">
-									<strong class="text-small">&nbsp;&nbsp;거래실패</strong>
+									<strong class="text-small" style="color: red; font-size:15px;">&nbsp;&nbsp;거래실패</strong>
 								</c:when>
 								<c:otherwise>
 									<strong class="text-small">&nbsp;&nbsp;${purchase.trade_state}</strong>
 								</c:otherwise>
 							</c:choose>
-							<br> <span class="text-small transparent-bg">&nbsp;&nbsp;${purchase.item_name}
-								<br>&nbsp;&nbsp;${purchase.trade_regDate}
-							</span>
+							<br> <span class="text-small transparent-bg" style="font-size: 13px;">&nbsp;&nbsp;${purchase.item_name}<br>&nbsp;&nbsp;<span style="font-size: 12px; opacity: 0.5;"><fmt:formatDate value="${purchase.trade_regDate}" pattern="yyyy'년' MM'월' dd'일'" /></span></span>
+
+							
 						</div>
 					</div>
 				
@@ -155,31 +157,31 @@
 					<div class="fav-item">
 						<img
 							src="/user/itemImageView.do?item_num=${sale.item_num}"
-							alt="Item Image" style="width: 50px; height: 50px;">
+							alt="Item Image" style="width: 70px; height: 70px;">
 						<div class="text-content">
 							<c:choose>
 								<c:when test="${sale.trade_state == 2}">
-									<strong class="text-small">&nbsp;&nbsp;검수준비중</strong>
+									<strong class="text-small" style="font-size: 14px;">&nbsp;&nbsp;검수준비중</strong>
 								</c:when>
 								<c:when test="${sale.trade_state == 3}">
-									<strong class="text-small">&nbsp;&nbsp;검수중</strong>
+									<strong class="text-small" style="font-size: 14px;">&nbsp;&nbsp;검수중</strong>
 								</c:when>
 								<c:when test="${sale.trade_state == 4}">
-									<strong class="text-small">&nbsp;&nbsp;배송중</strong>
+									<strong class="text-small" style="font-size: 14px;">&nbsp;&nbsp;배송중</strong>
 								</c:when>
 								<c:when test="${sale.trade_state == 5}">
-									<strong class="text-small">&nbsp;&nbsp;배송완료</strong>
+									<strong class="text-small" style="font-size: 14px;">&nbsp;&nbsp;배송완료</strong>
 								</c:when>
 								<c:when test="${sale.trade_state == 6}">
-									<strong class="text-small">&nbsp;&nbsp;거래실패</strong>
+									<strong class="text-small" style="font-size: 14px;">&nbsp;&nbsp;거래실패</strong>
 								</c:when>
 								<c:otherwise>
 									<strong class="text-small">&nbsp;&nbsp;${sale.trade_state}</strong>
 								</c:otherwise>
 							</c:choose>
-							<br> <span class="text-small transparent-bg">&nbsp;&nbsp;${sale.item_name}
-								<br>&nbsp;&nbsp;${sale.trade_regDate}
-							</span>
+							<br> <span class="text-small transparent-bg" style="font-size: 13px;">&nbsp;&nbsp;${sale.item_name}<br>&nbsp;&nbsp;<span style="font-size: 12px; opacity: 0.5;"><fmt:formatDate value="${purchase.trade_regDate}" pattern="yyyy'년' MM'월' dd'일'" /></span></span>
+
+						
 						</div>
 					</div>
 				
