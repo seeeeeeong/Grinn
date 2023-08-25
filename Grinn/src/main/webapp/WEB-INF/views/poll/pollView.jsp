@@ -102,7 +102,7 @@
 									delete_btn.onclick=function(){
 										let choice = confirm('글을 삭제하시겠습니까?');
 										if(choice){
-											location.replace('delete.do?poll_num=${poll.poll_num}');
+											location.replace('deletePoll.do?poll_num=${poll.poll_num}');
 										}
 									};
 								</script>        		      				

@@ -186,16 +186,14 @@ public class PollController {
 	// ===================== 투표글 삭제 =====================
 	// ====================================================
 	
-	/* 투표항목 삭제 */
 	@RequestMapping("/poll/deletePoll.do")
-	@ResponseBody
-	public Map<String, String> delete(@RequestParam int poll_num) {
+	public String deletePoll(@RequestParam int poll_num) {
 		
-		Map<String, String> mapJson = new HashMap<String, String>();
+		log.debug("<<투표글 삭제>> : " + poll_num);
+		
 		pollService.deletePoll(poll_num);
-		mapJson.put("result", "success");
 		
-		return mapJson;
+		return "redirect:/poll/pollList.do";
 	}
 	
 	

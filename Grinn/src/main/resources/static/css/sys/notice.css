@@ -1,4 +1,6 @@
-
+h2{
+	text-align: center;
+}
 .success-btn {
   display: block;
   width: 370px;
@@ -10,7 +12,14 @@
   cursor: pointer;
   transition: 0.3s ease-out;
   font-size: 14px;
+  margin: 0 auto;
+  
 }
 .success-btn:hover {
   background-color: #000;
+}
+.accessMsg {
+	text-align: center;
+	color: #ccc;
+	font-size: 40px;
 }

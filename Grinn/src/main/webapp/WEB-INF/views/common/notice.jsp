@@ -15,7 +15,7 @@
 	<div class="result-display">
 		<div class="align-center">
 			<c:if test="${!empty accessMsg}">
-				${accessMsg}
+				<div class = "accessMsg">${accessMsg}</div>
 			</c:if>
 			<c:if test="${empty accessMsg}">
 				잘못된 접속입니다.
