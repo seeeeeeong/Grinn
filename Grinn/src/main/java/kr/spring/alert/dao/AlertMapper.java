@@ -23,8 +23,7 @@ public interface AlertMapper {
 	// 스타일 게시물 댓글내용, 작성자 아이디, 스타일 번호
 	@Select("select m.mem_num, sc.com_comment, m.mem_id, s.st_num from style_comment sc left join style s on s.st_num = sc.st_num left join member m on sc.mem_num = m.mem_num WHERE sc.st_num IN(select st_num from style where mem_num = #{mem_num}) ORDER BY sc.com_regdate DESC")
 	public List<AlertVO> commentInfo(Integer mem_num);
-	
-		
+			
 	// 프로필 이미지
 	@Select("SELECT * FROM member_detail WHERE mem_num = #{mem_num}")
 	public MemberVO profilePhoto(Integer mem_num);	
@@ -44,7 +43,5 @@ public interface AlertMapper {
 	// 판매 정보
 	@Select("SELECT td.trade_state, td.trade_regDate, td.item_num, i.item_name FROM sale_bid s JOIN trade_detail td ON s.item_num = td.item_num JOIN item i ON td.item_num = i.item_num WHERE s.mem_num = #{mem_num} ORDER BY td.trade_regDate DESC")
 	public List<AlertVO> saleInfo(Integer mem_num);
-	
-
 	
 }

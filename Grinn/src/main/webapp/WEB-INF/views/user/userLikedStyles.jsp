@@ -125,6 +125,19 @@
 .user-profile span {
 	display: block;
 }
+
+.style-phrase {
+    max-width: 200px; /* 원하는 최대 너비로 조정하세요 */
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ellipsis {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 </style>
 <!-- 좋아요 시작 -->
 <h2>좋아요</h2>
@@ -152,7 +165,8 @@
 								style="color: rgba(34, 34, 34, .8); font-size: 15px;">
 								<img
 									src="${pageContext.request.contextPath}/user/ProfileImageView.do?st_num=${post.st_num}"
-									width="25" height="25" class="my-photo"> ${profileIds[loop.index]}
+									width="25" height="25" class="my-photo">
+								${profileIds[loop.index]}
 							</div>
 						</a>
 						<div class="like-section">
@@ -167,7 +181,7 @@
 					</div>
 					<div class="style-phrase"
 						style="margin-top: 10px; font-size: 14px;">
-						<a href="/style/detail.do?st_num=${post.st_num}">
+						<a href="/style/detail.do?st_num=${post.st_num}" class="ellipsis">
 							${post.st_phrase} </a>
 					</div>
 				</div>

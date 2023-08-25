@@ -155,6 +155,19 @@
 	text-decoration: none; /* 링크의 밑줄 제거 */
 	color: black; /* 글자 색상 지정 */
 }
+
+.style-phrase {
+    max-width: 200px; /* 원하는 최대 너비로 조정하세요 */
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ellipsis {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 </style>
 <script type="text/javascript">
 	$(document).ready(
@@ -372,7 +385,8 @@
 
 
 
-			<button class="unfollow-button" data-user-id="${member.mem_num}" style="display: none;">팔로잉</button>
+			<button class="unfollow-button" data-user-id="${member.mem_num}"
+				style="display: none;">팔로잉</button>
 			<button class="follow-button" data-user-id="${member.mem_num}">팔로우</button>
 
 
@@ -414,13 +428,13 @@
 					<c:forEach items="${followerInfo}" var="follower">
 						<div
 							style="display: flex; align-items: center; margin-bottom: 10px;">
-							
+
 							<img
 								src="${pageContext.request.contextPath}/user/FollowerProfileImage.do?mem_num=${follower.mem_num}"
 								width="44" height="44" class="my-photo"
-								style="margin-right: 10px;">
-							<a href="/user/userStyle.do?mem_num=${follower.mem_num}">
-							<p style="font-size: 14px; font-weight: bold;">${follower.mem_id}</p>
+								style="margin-right: 10px;"> <a
+								href="/user/userStyle.do?mem_num=${follower.mem_num}">
+								<p style="font-size: 14px; font-weight: bold;">${follower.mem_id}</p>
 							</a>
 							<div style="margin-left: auto;">
 								<button class="follow-button" style="padding: 6px 26px;"
@@ -462,13 +476,13 @@
 					<c:forEach items="${followingInfo}" var="following">
 						<div
 							style="display: flex; align-items: center; margin-bottom: 10px;">
-							
+
 							<img
 								src="${pageContext.request.contextPath}/user/FollowerProfileImage.do?mem_num=${following.mem_num}"
 								width="44" height="44" class="my-photo"
-								style="margin-right: 10px;">
-							<a href="/user/userStyle.do?mem_num=${following.mem_num}">
-							<p style="font-size: 14px; font-weight: bold;">${following.mem_id}</p>
+								style="margin-right: 10px;"> <a
+								href="/user/userStyle.do?mem_num=${following.mem_num}">
+								<p style="font-size: 14px; font-weight: bold;">${following.mem_id}</p>
 							</a>
 							<div style="margin-left: auto;">
 								<button class="follow-button" style="padding: 6px 26px;"
@@ -525,9 +539,10 @@
 								</div>
 							</div>
 							<div class="style-phrase">
-								<a href="/style/detail.do?st_num=${style.st_num}">
-									${style.st_phrase} </a>
+								<a href="/style/detail.do?st_num=${style.st_num}"
+									class="ellipsis"> ${style.st_phrase} </a>
 							</div>
+
 						</div>
 					</div>
 
