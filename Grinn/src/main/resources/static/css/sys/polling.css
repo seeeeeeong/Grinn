@@ -28,7 +28,7 @@ input[type="radio"] {
 }
  /* 선택된 커스텀 라디오 버튼 스타일링 */
 input[type="radio"]:checked + .polling-item {
-  background-color: rgb(49, 219, 214);
+  background-color: rgb(209, 209, 213);
   /*
   border: 0.7px solid rgb(49, 219, 214);
   */
@@ -131,7 +131,44 @@ form {
 	margin-right: 5px;
 }
 
+.item_content{
+	padding-top: 35px;
+	padding-left: 15px;
+}
 
+#result {
+	text-align: right;
+}
+
+
+
+
+
+
+
+
+
+/*
+
+============ 댓글 ==============
+
+*/
+
+
+#poll-reply {
+	width: 40px;
+	padding: 7px;
+	margin-top: 6px;
+	margin-right: 8px;
+	font-size: 10px;
+	background-color: rgb(193, 192, 194);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+    font-weight: bold;
+}
 
 
 

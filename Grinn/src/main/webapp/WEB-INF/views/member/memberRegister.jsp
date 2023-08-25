@@ -13,13 +13,13 @@
 		<ul>
 			<li class="floating-label"><b>이름</b></li>
 			<li id = "li">
-				<form:input id = "input-text" path="mem_name" cssClass = "form-input"/>
+				<form:input class = "input-text-name" path="mem_name" cssClass = "form-input"/>
 				<form:label path="mem_name"></form:label>
 				<form:errors path="mem_name" cssClass="error-color" element = "div"/>      
 			</li>
 			<li class="floating-label"><b>아이디</b></li>
 			<li id = "li">
-				<form:input id = "input-text-id" path = "mem_id" placeholder = "영문, 숫자 포함 4~12자" autocomplete = "off" cssClass = "form-input"/>
+				<form:input class = "input-text-id" path = "mem_id" placeholder = "영문, 숫자 포함 4~12자" autocomplete = "off" cssClass = "form-input"/>
 				<form:label path = "mem_id"></form:label>
 				<button id = "confirmId">ID중복체크</button>
 				<span id = "message_id"></span>
@@ -33,13 +33,13 @@
 			</li>
 			<li class="floating-label"><b>이메일</b></li>
 			<li id = "li">
-				<form:input id = "input-text" path = "mem_email" cssClass = "form-input"/>
+				<form:input class = "input-text" path = "mem_email" cssClass = "form-input"/>
 				<form:label path = "mem_email"></form:label>
 				<form:errors path = "mem_email" cssClass = "error-color" element = "div"/>      
 			</li>
 			<li class="floating-label"><b>전화번호</b></li>
 			<li id = "li-phone">
-				<form:input id = "input-text" path = "mem_phone" cssClass = "form-input"/>
+				<form:input class= "input-text" path = "mem_phone" cssClass = "form-input"/>
 				<form:label path = "mem_phone"></form:label>
 				<form:errors path = "mem_phone" cssClass = "error-color" element = "div"/>      
 			</li>

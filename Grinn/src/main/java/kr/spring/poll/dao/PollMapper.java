@@ -24,7 +24,7 @@ public interface PollMapper {
 	public List<PollVO> selectPollList(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);
 	// 투표글 상세
-	public PollVO selectPoll(PollVO poll);
+	public PollVO selectPoll(Integer poll_num);
 	// 투표글 등록
 	public void insertPoll(PollVO poll);
 	// 투표항목 추가
@@ -46,6 +46,8 @@ public interface PollMapper {
 	public void insertPolling(PollSubVO sub);
 	@Delete("DELETE FROM pollsub WHERE poll_num=#{poll_num}")
 	public void deletePolling(Integer pollsub_num);
+	@Select("SELECT item_num, COUNT(*) poll_count FROM pollsub WHERE poll_num=#{poll_num} group by item_num")
+	public List<PollSubVO> selectPollCount(Integer poll_num);
 	
 	//==================================================================
 	//============== 투표글 댓글 ==========================================

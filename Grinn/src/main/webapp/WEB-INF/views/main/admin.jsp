@@ -2,14 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<style>
-	h2{
-		text-align: center;
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sys/admin.css">
 <div class="page-main">
 	<div class = "page_body">
-		<h2>회원목록</h2>
+		<h2 id = "ha">회원목록</h2>
 		<div class = "table">
 		<table class="striped-table">
 			<tr>

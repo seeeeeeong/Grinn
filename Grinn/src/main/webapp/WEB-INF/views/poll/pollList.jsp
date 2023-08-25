@@ -59,7 +59,11 @@
 						<div class = "poll-content-detail">
 							<div class = "poll-item-title">
 								<input type="hidden" data-id="${poll.poll_num}" value="${poll.poll_num}"> 
-								<span class = "poll-title"><b>${poll.poll_title}</b></span>
+								<div class = "poll-title">
+									<a href = "${pageContext.request.contextPath}/poll/pollView.do?poll_num=${poll.poll_num}">
+										<span><b>${poll.poll_title}</b></span>
+									</a>
+								</div>
 							</div>
 							<div class = "poll-item-content">
 								<c:if test = "${!empty poll.poll_content}">
@@ -67,77 +71,7 @@
 								</c:if>
 							</div>
 						</div>
-						
-						<div class="polling-items">
-							<!-- poll_item2 -->
-							<c:if test="${poll.poll_item1 != 0}">
-							<input type="radio" name="polling-option" value="option1" onclick = "showResult()" id = "radioCheck">
-							<div class="polling-item" id = "poll1Box">
-								<!-- <label id = "polling-item-box">
-									<img id = "polling-item-img" src="${pageContext.request.contextPath}/poll/viewPhotoByItem_num.do?item_num=${poll.poll_item1}">
-									<span id = "result"></span>
-									${poll.item_brand1}${poll.item_name1}
-								</label> -->
-								<img id = "polling-item-img" src="${pageContext.request.contextPath}/poll/viewPhotoByItem_num.do?item_num=${poll.poll_item1}">
-								${poll.item_brand1}${poll.item_name1}
-							</div>
-							</c:if>
-							
-							<!-- poll_item2 -->
-							<c:if test="${poll.poll_item2 != 0}">
-							<input type="radio" name="polling-option" value="option2" onclick = "showResult()">
-							<div class="polling-item" id = "poll2Box">
-								<label id = "polling-item-box">
-									<img id = "polling-item-img" src="${pageContext.request.contextPath}/poll/viewPhotoByItem_num.do?item_num=${poll.poll_item2}" width="100" height="100"><br>
-									<span id = "result2"></span>
-								</label>
-							</div>
-							</c:if>
-							
-							<!-- poll_item3 -->
-							<c:if test="${poll.poll_item3 != 0}">
-							<input type="radio" name="polling-option" value="option3" onclick = "showResult()">
-							<div class="polling-item" id = "poll3Box">
-								<label id = "polling-item-box">
-									<img id = "polling-item-img" src="${pageContext.request.contextPath}/poll/viewPhotoByItem_num.do?item_num=${poll.poll_item3}" width="100" height="100"><br>
-									<span id = "result3"></span>
-								</label>
-							</div>
-							</c:if>
-							
-							<!-- poll_item4 -->
-							<c:if test="${poll.poll_item4 != 0}">
-							<input type="radio" name="polling-option" value="option4" onclick = "showResult()">
-							<div class="polling-item" id = "poll4Box">
-								<label id = "polling-item-box">
-									<img id = "polling-item-img" src="${pageContext.request.contextPath}/poll/viewPhotoByItem_num.do?item_num=${poll.poll_item4}" width="100" height="100"><br>
-									<span id = "result4"></span>
-								</label>
-							</div>
-							</c:if>
-							
-							
-							<div class = "align-right">
-							<c:if test="${!empty user && user.mem_num == poll.mem_num}">
-			      				<span id="delete_btn" style = "color:gray;">삭제</span>
-								<script type="text/javascript">
-									let delete_btn = document.getElementById('delete_btn');
-									delete_btn.onclick=function(){
-										let choice = confirm('글을 삭제하시겠습니까?');
-										if(choice){
-											location.replace('delete.do?poll_num=${poll.poll_num}');
-										}
-									};
-								</script>        		      				
-			      			</c:if>
-			      			<input id = "poll-result" type = "button" value = "투표">
-							</div>
-						</div><%--polling-items 투표 항목들 --%>
 						</div><%-- poll-item3 --%>
-						
-						<!-- 3 -->
-						<div class = "poll-item3">
-					</div><%-- poll-item --%>
 				</c:forEach>
 			</c:if>
 		</div><%-- poll_list --%>

@@ -84,6 +84,20 @@ public class PollController {
 		return mav;
 	}
 	
+	/* 투표글 상세 */
+	@RequestMapping("/poll/pollView.do")
+	public ModelAndView getPollView(@RequestParam int poll_num) {
+		
+		log.debug("<<투표글 상세>> : " + poll_num);
+		pollService.updateHit(poll_num);
+		
+		
+		
+		PollVO poll = pollService.selectPoll(poll_num);
+		
+		return new ModelAndView("pollView", "poll", poll);
+	}
+	
 	
 	
 	
@@ -91,19 +105,18 @@ public class PollController {
 	
 	
 	/* 관리자 - 투표 목록 */
-	@RequestMapping("/poll/poll_adminList.do")
-	public ModelAndView getAdminPollList(@RequestParam(value = "pageNum", defaultValue = "1") int currentPage,
-			@RequestParam(value="order", defaultValue="1") int order, String keyfield, String keyword) {
+	@RequestMapping("/poll/admin_pollList.do")
+	public ModelAndView getAdminPollList(@RequestParam(value="pageNum",defaultValue = "1") int currentPage,
+			@RequestParam(value="order", defaultValue="1") int order) {
 		
 		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("keyfield", keyfield);
-		map.put("keyword", keyword);
 		
 		int count = pollService.selectRowCount(map);
 		
 		log.debug("<<count>> : " + count);
 		
-		PagingUtil page = new PagingUtil(keyfield, keyword, currentPage, count, 8, 10, "admin_pollList.do", "&order="+order);
+		// 페이지 처리
+		PagingUtil page = new PagingUtil(currentPage, count, 5, 10, "pollList.do", "&order="+order);
 		
 		List<PollVO> list = null;
 		if(count > 0) {
@@ -112,8 +125,8 @@ public class PollController {
 			map.put("end", page.getEndRow());
 			
 			list = pollService.selectPollList(map);
-			
-		}	
+			log.debug("<리스트>:"+list);
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("pollList");
@@ -257,16 +270,16 @@ public class PollController {
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(user==null) {//로그인이 되지 않은 상태
-			mapJson.put("status", "noFav");
+			mapJson.put("status", "noPoll");
 		}else {
 			//로그인된 회원번호 셋팅
 			sub.setMem_num(user.getMem_num());
 			
 			PollSubVO pollPolling = pollService.selectPoll_item(sub);
 			if(pollPolling!=null) {
-				mapJson.put("status", "yesPolling");
+				mapJson.put("status", "yesPoll");
 			}else {
-				mapJson.put("status","noPolling");
+				mapJson.put("status","noPoll");
 			}
 		}
 		mapJson.put("count", pollService.selectPoll_item_count(sub.getPoll_num()));
@@ -274,34 +287,47 @@ public class PollController {
 	}
 	
 	@RequestMapping("/poll/writePolling.do")
-	@ResponseBody
-	public Map<String,Object> writePolling(PollSubVO sub,HttpSession session){
+	public String writePolling(PollSubVO sub,HttpSession session,Model model){
 		log.debug("<<투표글 투표/삭제 - PollSubVO>> : " + sub);
-		
-		Map<String,Object> mapJson = new HashMap<String,Object>();
 		
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		if(user==null) {
-			mapJson.put("result", "logout");
+			model.addAttribute("message", "로그인 필수");
+			model.addAttribute("url", "../member/login.do");
 		}else {
 			//로그인된 회원번호 셋팅
 			sub.setMem_num(user.getMem_num());
+			pollService.insertPolling(sub);
 			
-			PollSubVO pollPolling = pollService.selectPoll_item(sub);
-			if(pollPolling!=null) {//등록한 좋아요가 있으면 삭제
-				pollService.deletePolling(pollPolling.getPoll_num());
+			//PollSubVO pollPolling = pollService.selectPoll_item(sub);
+			//if(pollPolling!=null) {
+				//pollService.deletePolling(pollPolling.getPoll_num());
 				
-				mapJson.put("result", "success");
-				mapJson.put("status", "noPolling");
-			}else {//등록한 좋아요가 없으면 등록
-				pollService.insertPolling(sub);
+				//mapJson.put("result", "success");
+				//mapJson.put("status", "noPoll");
+			//}else {
 				
-				mapJson.put("result", "success");
-				mapJson.put("status", "yesPolling");
-			}
-			mapJson.put("count", pollService.selectPoll_item_count(
-					sub.getPoll_num()));
+				
+			model.addAttribute("message", "투표 성공");
+			//	mapJson.put("status", "yesPoll");
+			//}
+			model.addAttribute("url", "../poll/pollList.do");	
+			
+			//mapJson.put("count", pollService.selectPoll_item_count(
+			//		sub.getPoll_num()));
 		}
+		return "common/resultView";
+	}
+	
+	@RequestMapping("poll/getPollingCount.do")
+	@ResponseBody
+	public Map<String, Object> getPollingCount(@RequestParam int poll_num) {
+		log.debug("<<투표수조회 진입>>");
+		List<PollSubVO> list = pollService.selectPollCount(poll_num);
+		Map<String,Object> mapJson = new HashMap<>();
+		
+		mapJson.put("result","success");
+		mapJson.put("list", list);
 		return mapJson;
 	}
 	

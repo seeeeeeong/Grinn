@@ -53,12 +53,13 @@ create sequence poll_seq;
 
 create table pollsub(
 	pollsub_num number, -- 투표번호
-	poll_acount number not null, -- 투표수
 	poll_num number not null, -- 투표글 번호
 	item_num number not null, -- 상품번호
+	mem_num number not null, -- 회원번호
 	constraint pollsub_pk primary key (pollsub_num),
 	constraint pollsub_fk1 foreign key (poll_num) references poll (poll_num) ON DELETE CASCADE,
-	constraint pollsub_fk2 foreign key (item_num) references item (item_num) ON DELETE CASCADE
+	constraint pollsub_fk2 foreign key (item_num) references item (item_num) ON DELETE CASCADE,
+	constraint pollsub_fk3 foreign key (mem_num) references member (mem_num) ON DELETE CASCADE
 );
 create sequence pollsub_seq;
 

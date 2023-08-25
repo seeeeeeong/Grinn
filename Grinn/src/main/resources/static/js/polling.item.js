@@ -51,18 +51,165 @@ document.addEventListener("DOMContentLoaded", function () {
   });
  
 
- 
-function showResult() {
-    var resultContainer = document.getElementById("result");
-    var radios = document.getElementsByName("polling-option");
 
-    for (var i = 0; i < radios.length; i++) {
-        if (radios[i].checked) {
-            resultContainer.innerHTML = "투표수: " + radios[i].value;
-            break;
-        }
-    }   
+function showResult() {
+	$.ajax({
+		url: 'getPollingCount.do',
+		type: 'post',
+		data: {poll_num:$('#pollNum').attr('data-id')},
+		dataType: 'json',
+		success: function(param){
+			if(param.result == 'success'){
+				let resultId1 = $('#radioCheck1').val(); 
+				let resultId2 = $('#radioCheck2').val();
+				let resultId3 = $('#radioCheck3').val();
+				let resultId4 = $('#radioCheck4').val();
+				
+				if(param.list[0].item_num == resultId1){
+					$('#poll1Box div').append(param.list[0].poll_count);
+				}
+				if(param.list[0].item_num == resultId2){
+					$('#poll2Box div').append(param.list[1].poll_count);
+				}
+				if(param.list[0].item_num == resultId3){
+					$('#poll3Box div').append(param.list[2].poll_count);
+				}
+				if(param.list[0].item_num == resultId4){
+					$('#poll4Box div').append(param.list[3].poll_count);
+				}
+				
+				if(param.list[1].item_num == resultId1){
+					$('#poll1Box div').append(param.list[0].poll_count);
+				}
+				if(param.list[1].item_num == resultId2){
+					$('#poll2Box div').append(param.list[1].poll_count);
+				}
+				if(param.list[1].item_num == resultId3){
+					$('#poll3Box div').append(param.list[2].poll_count);
+				}
+				if(param.list[1].item_num == resultId4){
+					$('#poll4Box div').append(param.list[3].poll_count);
+				}
+				
+				if(param.list[2].item_num == resultId1){
+					$('#poll1Box div').append(param.list[0].poll_count);
+				}
+				if(param.list[2].item_num == resultId2){
+					$('#poll2Box div').append(param.list[1].poll_count);
+				}
+				if(param.list[2].item_num == resultId3){
+					$('#poll3Box div').append(param.list[2].poll_count);
+				}
+				if(param.list[2].item_num == resultId4){
+					$('#poll4Box div').append(param.list[3].poll_count);
+				}
+				
+				if(param.list[3].item_num == resultId1){
+					$('#poll1Box div').append(param.list[0].poll_count);
+				}
+				if(param.list[3].item_num == resultId2){
+					$('#poll2Box div').append(param.list[1].poll_count);
+				}
+				if(param.list[3].item_num == resultId3){
+					$('#poll3Box div').append(param.list[2].poll_count);
+				}
+				if(param.list[3].item_num == resultId4){
+					$('#poll4Box div').append(param.list[3].poll_count);
+				}
+			}else{
+				alert('투표수 조회 오류 발생');
+			}
+		},
+		error: function(){
+			alert('네트워크 오류 발생');
+		}
+	})
+	
+    var radios = document.getElementsByName("polling-option");
+    var resultElements = document.querySelectorAll('#result');
+    resultElements.forEach(function(resultElement) {
+        resultElement.innerHTML = "투표수";
+    });
 }
+
+function pollClick() {
+	if($('#radioCheck1').is(":checked")) {
+		let item_num = $('#radioCheck1').val();
+		let poll_num = $('#radioCheck1').attr('data-num');
+		location.href='writePolling.do?poll_num=' + poll_num + '&item_num=' + item_num;
+	} 
+	if($('#radioCheck2').is(":checked")) {
+		let item_num = $('#radioCheck2').val();
+		let poll_num = $('#radioCheck2').attr('data-num');
+		location.href='writePolling.do?poll_num=' + poll_num + '&item_num=' + item_num;
+	} 
+	if($('#radioCheck3').is(":checked")) {
+		let item_num = $('#radioCheck3').val();
+		let poll_num = $('#radioCheck3').attr('data-num');
+		location.href='writePolling.do?poll_num=' + poll_num + '&item_num=' + item_num;
+	} 
+	if($('#radioCheck4').is(":checked")) {
+		let item_num = $('#radioCheck4').val();
+		let poll_num = $('#radioCheck4').attr('data-num');
+		location.href='writePolling.do?poll_num=' + poll_num + '&item_num=' + item_num;
+	} 
+}
+/*
+$(function(){
+	function selectPoll_item(poll_num){
+		$.ajax({
+			url: 'getPolling',
+			type: 'post',
+			data: {poll_num:poll_num},
+			dataType: 'json',
+			success: function(param) {
+				displayPoll(param);
+			},
+			error: function(){
+				alert('네트워크 오류');
+			}
+		})
+	}
+	
+	$('#poll_result').click(function(){
+		$.ajax({
+			url: 'writePolling',
+			type: 'post',
+			data: {poll_num:$('#poll_result').attr('data-num')},
+			dataType: 'json',
+			success: function(param) {
+				if(param.result=='logout'){
+					alert('로그인 후 이용 가능합니다.');
+					location.href='/member/login.do';
+				}else if(param.result == 'success'){
+					displayPoll(param);
+				}else{
+					alert('등록시 오류 발생');
+				}
+			},
+			error: function(){
+				alert('네트워크 오류');
+			}
+		})
+	})
+	
+	function displayPoll(param){
+			let output;
+			if(param.status=='yesPoll'){
+				alert('투표 성공')
+			}else if(param.status=='noPoll'){
+				alert('투표 취소')
+			}else{
+				alert('투표 오류 발생');
+			}
+			//문서 객체에 추가
+			$('#poll_result').attr('src',output);
+			$('#output_pcount').text("총 투표수 " + param.count + "표");
+		}
+		selectPoll_item($('#poll_result').attr('data-num'));
+})
+*/
+
  
  
  

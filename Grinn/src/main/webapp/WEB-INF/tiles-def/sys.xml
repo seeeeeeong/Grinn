@@ -38,6 +38,10 @@
     	<put-attribute name="title" value="투표목록"/>
 	    <put-attribute name="body" value="/WEB-INF/views/poll/pollList.jsp"/>
     </definition>
+    <definition name="pollView" extends="main">
+    	<put-attribute name="title" value="투표상세"/>
+	    <put-attribute name="body" value="/WEB-INF/views/poll/pollView.jsp"/>
+    </definition>
     <definition name="pollWrite" extends="main">
     	<put-attribute name="title" value="투표등록"/>
 	    <put-attribute name="body" value="/WEB-INF/views/poll/pollWrite.jsp"/>

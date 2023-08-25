@@ -34,8 +34,8 @@ public class PollServiceImpl implements PollService{
 	}
 
 	@Override
-	public PollVO selectPoll(PollVO poll) {
-		return pollMapper.selectPoll(poll);
+	public PollVO selectPoll(Integer poll_num) {
+		return pollMapper.selectPoll(poll_num);
 	}
 
 	@Override
@@ -121,6 +121,11 @@ public class PollServiceImpl implements PollService{
 	public void deletePolling(Integer pollsub_num) {
 		pollMapper.deletePolling(pollsub_num);
 		
+	}
+
+	@Override
+	public List<PollSubVO> selectPollCount(Integer poll_num) {
+		return pollMapper.selectPollCount(poll_num);
 	}
 
 	

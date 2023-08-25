@@ -61,7 +61,7 @@ form {
   margin-left: auto 10px;
 }
 
-#input-text-id{
+.input-text-id{
 	width: 280px;
 }
 /* Button styles */
@@ -132,7 +132,7 @@ form ul li {
 	text-align: left;
 }
 #li {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 #li-phone {
 	margin-bottom: 20px;

@@ -9,10 +9,9 @@ import lombok.ToString;
 @ToString
 public class PollSubVO {
 	private int pollsub_num; // 투표 번호
-	private String answer; // 투표 항목
-	private int poll_acount; // 투표수
+	private int item_num; // 상품 번호
 	private int poll_num; // 투표글 번호
-	private int polling_status; // 0: 미선택, 1: 선택
+	public int mem_num; // 회원번호
 	
-	private int mem_num;
+	private int poll_count; //
 }

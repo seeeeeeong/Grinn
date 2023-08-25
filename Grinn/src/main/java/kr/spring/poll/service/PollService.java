@@ -21,7 +21,7 @@ public interface PollService {
 	public List<PollVO> selectPollList(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);
 	// 투표글 상세
-	public PollVO selectPoll(PollVO poll);
+	public PollVO selectPoll(Integer poll_num);
 	// 투표글 등록
 	public void insertPoll(PollVO poll);
 	// 투표항목 수정
@@ -37,6 +37,8 @@ public interface PollService {
 	public int selectPoll_item_count(Integer poll_num);
 	public void insertPolling(PollSubVO sub);
 	public void deletePolling(Integer pollsub_num);
+	
+	public List<PollSubVO> selectPollCount(Integer poll_num);
 	
 	//==================================================================
 	//============== 투표글 댓글 ==========================================
