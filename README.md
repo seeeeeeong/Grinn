@@ -89,30 +89,30 @@
 
 
 ------
-
-
-
-
-------
 - #### 요구사항 정의서
 
-  
- 
+  <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/8d8e707ce3b86526fe9388e9b23f37236220b9e1/Grinn/src/main/webapp/file/req1.png?raw=true"/></p>
+  <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/8d8e707ce3b86526fe9388e9b23f37236220b9e1/Grinn/src/main/webapp/file/req2.png?raw=true"/></p>
+  <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/8d8e707ce3b86526fe9388e9b23f37236220b9e1/Grinn/src/main/webapp/file/req3.png?raw=true"/></p>
 
+
+
+
+  
 ------
 - #### ERD
 
-
-
-
-------
-- #### Sequence Diagram
+  <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/8d8e707ce3b86526fe9388e9b23f37236220b9e1/Grinn/src/main/webapp/file/erd.png?raw=true"/></p>
 
 
 
 
+  
 ------ 
 - #### Usecase Diagram
+
+    <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/8d8e707ce3b86526fe9388e9b23f37236220b9e1/Grinn/src/main/webapp/file/usecase.png?raw=true"/></p>
+
 
 
 
@@ -120,3 +120,11 @@
 ------
 - #### 일정계획 (WBS)
 
+  <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/8d8e707ce3b86526fe9388e9b23f37236220b9e1/Grinn/src/main/webapp/file/wbs1.png?raw=true"/></p>
+  <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/8d8e707ce3b86526fe9388e9b23f37236220b9e1/Grinn/src/main/webapp/file/wbs2.png?raw=true"/></p>
+  <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/8d8e707ce3b86526fe9388e9b23f37236220b9e1/Grinn/src/main/webapp/file/wbs3.png?raw=true"/></p>
+
+
+
+
+------
