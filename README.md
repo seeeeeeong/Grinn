@@ -81,9 +81,7 @@
 - **회원정보 수정**
 
   <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/bb9ffe3d06898e3f2259b4874d05e98f597b6532/Grinn/src/main/webapp/file/mypage5.png?raw=true"/></p>
-  <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/bb9ffe3d06898e3f2259b4874d05e98f597b6532/Grinn/src/main/webapp/file/mypage6.png?raw=true"/></p>
-  <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/bb9ffe3d06898e3f2259b4874d05e98f597b6532/Grinn/src/main/webapp/file/mypage7.png?raw=true"/></p>
-
+  
 ------  
 ## userstyle
 
