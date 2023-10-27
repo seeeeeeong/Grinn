@@ -32,7 +32,7 @@
 
 
 
-# Views
+
 
 ## mypage
 
@@ -44,7 +44,7 @@
 
 
 
-  
+------  
 - **관심 상품** 
 
   <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/bb9ffe3d06898e3f2259b4874d05e98f597b6532/Grinn/src/main/webapp/file/mypage3.png?raw=true"/></p>
@@ -52,7 +52,7 @@
 
 
 
-  
+------  
 - **좋아요**
 
   <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/bb9ffe3d06898e3f2259b4874d05e98f597b6532/Grinn/src/main/webapp/file/mypage4.png?raw=true"/></p>
@@ -60,7 +60,7 @@
 
 
 
-  
+------  
 - **회원정보 수정**
 
   <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/bb9ffe3d06898e3f2259b4874d05e98f597b6532/Grinn/src/main/webapp/file/mypage5.png?raw=true"/></p>
@@ -70,7 +70,7 @@
 
 
 
-  
+------  
 ## userstyle
 
   <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/bb9ffe3d06898e3f2259b4874d05e98f597b6532/Grinn/src/main/webapp/file/userstyle1.png?raw=true"/></p>
@@ -79,7 +79,7 @@
 
 
 
-  
+------  
 ## alert
 
   <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/bb9ffe3d06898e3f2259b4874d05e98f597b6532/Grinn/src/main/webapp/file/alert1.png?raw=true"/></p>
@@ -87,43 +87,36 @@
 
 
 
+
 ------
 
 
 
+
+------
 - #### 요구사항 정의서
 
   
  
 
 ------
-
 - #### ERD
 
-  
-
-- #### Class Diagram
-
-  <p align="center"><img src="https://github.com/77kkyu/Style_Is_You/blob/master/src/main/webapp/file/%EB%94%94%ED%85%8C%EC%9D%BC2.png?raw=true"/></p>
-
-  - **상품 문의 기능**
-    1. JsonView를 설정해 Json형태로 데이터를 가져와 Ajax 통신으로 리스트 구성.
-    2. Toggle을 사용하여 제목을 클릭 시 보이기, 숨기기 기능 구성.
-  - **Review 기능**
-    1. JsonView를 설정해 Json형태로 데이터를 가져와 Ajax 통신으로 리스트 구성.
-    2. Toggle을 사용하여 제목을 클릭 시 보이기, 숨기기 기능 구성. 
-    3. 리뷰를 등록할 때 CkEditor를 사용하여 DataBase에 저장된 이미지와 내용 출력.
-    4. Ajax 및 Jquery로 페이징 구성.
-
- 
 
 
 
+------
 - # Sequence Diagram
 
- 
+
+
+
+------ 
 - # Usecase Diagram
 
 
+
+
+------
 - # 일정계획 (WBS)
 
