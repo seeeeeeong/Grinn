@@ -117,6 +117,16 @@
 
 
 ------
+- #### 느낀점
+
+- 개선사항
+  - 예외 처리, 현재 네트워크 오류에 대한 알림만 존재한다.
+  - RESTful API의 URL가 명확하게 설계되지 못 한 부분이 있다, HTTP 상태 코드를 사용하여 요청의 결과를 전달하지 않았다.
+  - 단위 테스트를 통해 예상치 못한 문제를 방지하지 않았다.
+  - API 문서화의 필요성을 느꼈다.
+  
+
+------
 - #### 요구사항 정의서
 
   <p align="center"><img src="https://github.com/seeeeeeong/Grinn/blob/8d8e707ce3b86526fe9388e9b23f37236220b9e1/Grinn/src/main/webapp/file/req1.png?raw=true"/></p>
@@ -125,8 +135,6 @@
 
 
 
-
-  
 ------
 - #### ERD
 
